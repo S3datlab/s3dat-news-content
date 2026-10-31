@@ -1,47 +1,30 @@
 {
   "slug": "protostar-public-science-challenge",
-  "kind": "story",
+  "kind": "brief",
   "topic": "research",
   "title": "Project ProtoStar links public research sharing to a climate AI challenge",
   "titleAccent": "public research",
   "dek": "Hugging Face and research partners have launched ProtoStar to make scientific resources reusable, with a CMU climate challenge scheduled to test their practical value.",
   "publishedAt": "2026-10-31T04:18:53Z",
   "updatedAt": "2026-10-31T04:18:53Z",
-  "whatHappened": [
-    "On October 29, 2026, Hugging Face and research partners announced Project ProtoStar, an initiative supporting reusable, AI-ready scientific datasets, models and code.",
-    "The project page lists university partners including Carnegie Mellon, Purdue, Georgia Tech, Arizona State and George Washington, alongside Astera Institute; Hugging Face, ORCA and the Open Forum for AI support the collaboration.",
-    "Carnegie Mellon's inaugural Climate Risk Intelligence challenge is scheduled for November 2–13, 2026, using historical weather records for 210 U.S. cities. It is upcoming, not already completed.",
-    "The organizers say participating institutions make non-binding, non-exclusive commitments to release suitable publicly funded research on open infrastructure."
-  ],
-  "whyItMatters": [
-    "For research software teams, availability alone is not enough: the launch post identifies documentation, provenance, metadata and incompatible formats as barriers to reuse. ProtoStar aims to make those release practices part of institutional work.",
-    "The announced climate challenge connects data release to a measurable task rather than counting uploads alone. Organizers plan to compare predictions with simple statistical baselines and assess climate-adaptation ideas separately.",
-    "The non-exclusive participation model leaves room for domain-specific repositories. Institutions can improve discoverability on shared infrastructure without treating one platform as the only valid home for scientific records."
-  ],
-  "take": [
-    "The useful test is whether another team can reproduce and extend a result without private help from its authors, not whether a dataset receives an AI-ready label.",
-    "A climate challenge can expose missing documentation and interoperability problems quickly, but one successful competition would not prove that the same practices work across every scientific discipline.",
-    "ProtoStar should be judged by reusable artifacts and independently checkable outcomes, rather than the size of its partner list."
-  ],
-  "openQuestions": [
-    "The launch blog and project page disagree on the challenge's prediction-year range; prospective participants should confirm the final rules rather than infer the target period from this announcement.",
-    "What measurable improvement over statistical baselines will participants achieve, and which publishing practices will remain useful after the challenge?"
-  ],
   "sources": [
     {
       "title": "Announcing Project ProtoStar, October 29, 2026",
       "publisher": "Hugging Face and Project ProtoStar partners",
-      "url": "https://huggingface.co/blog/announcing-project-protostar"
+      "url": "https://huggingface.co/blog/announcing-project-protostar",
+      "date": "2026-10-29"
     },
     {
-      "title": "Project ProtoStar organization and participation page; checked October 31, 2026",
+      "title": "Project ProtoStar organization and participation page",
       "publisher": "Project ProtoStar",
-      "url": "https://huggingface.co/project-protostar"
+      "url": "https://huggingface.co/project-protostar",
+      "date": "2026-10-31"
     },
     {
-      "title": "Climate Risk Intelligence challenge page; checked October 31, 2026",
+      "title": "Climate Risk Intelligence challenge page",
       "publisher": "Carnegie Mellon University Open Source Programs Office",
-      "url": "https://huggingface.co/spaces/CMU-OSPO/protostar-challenge-climate-risk-intelligence"
+      "url": "https://huggingface.co/spaces/CMU-OSPO/protostar-challenge-climate-risk-intelligence",
+      "date": "2026-10-31"
     }
   ],
   "video": {
@@ -49,5 +32,51 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-29",
+  "lede": "Hugging Face and research partners announced Project ProtoStar on October 29 to improve reuse of publicly funded scientific datasets, models and code. A scheduled climate challenge will test those resources on a concrete research task.",
+  "facts": [
+    {
+      "label": "Initiative",
+      "value": "Project ProtoStar"
+    },
+    {
+      "label": "Challenge host",
+      "value": "Carnegie Mellon University"
+    },
+    {
+      "label": "Challenge dates",
+      "value": "2–13 November 2026"
+    },
+    {
+      "label": "Weather coverage",
+      "value": "210 US cities"
+    },
+    {
+      "label": "Participation",
+      "value": "Non-binding and non-exclusive"
+    }
+  ],
+  "body": [
+    {
+      "text": "The initiative targets practical obstacles to reuse, including missing documentation, unclear provenance, incomplete metadata and incompatible formats. Participating institutions commit to releasing suitable research artifacts through open infrastructure. The project describes those commitments as non-binding and non-exclusive, leaving institutions room to use domain-specific repositories as well as shared infrastructure."
+    },
+    {
+      "text": "Carnegie Mellon’s Climate Risk Intelligence challenge is scheduled for November 2–13 and uses historical weather records from 210 US cities. Organizers plan to compare predictions with statistical baselines and assess climate-adaptation ideas separately. The competition has yet to produce results."
+    }
+  ],
+  "claims": [
+    {
+      "text": "The October 29 announcement launches ProtoStar and schedules the first challenge to open November 2.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The launch blog and project page give different prediction-year ranges; participants need the final challenge rules.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "buildersNote": "Before preparing a November 2–13 challenge submission, confirm the final prediction period and evaluation rules on the challenge page."
 }
