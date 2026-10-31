@@ -53,15 +53,20 @@ funding rounds unless they change what builders can do.
 Follow `tools/news-banner/README.md`. Every story gets one engine banner. No video models, stock
 media, templates, logos or real people.
 
-## Workflow
+## Workflow (approved for publishing on 31 October 2026)
 
-1. Research, pick the story, verify sources and dates.
-2. Write `story.json` and `spec.json`, generate the two images, render with the engine
-   (`--sheet`), run the review checklist.
-3. Put the files in `stories/YYYY/MM/DD/<slug>/` on a branch `review/YYYY-MM-DD-<slug>` and open
-   a pull request into `main`. Never merge it yourself.
-4. In the pull request description list: the sources you checked, the engine report JSON and
-   the checklist result.
+Committing a story to `main` publishes it to news.s3dat.com automatically.
+
+1. Research, pick the story, verify sources and dates. Skip the hour if nothing deserves a story.
+2. Write `story.json` and `spec.json`, generate the two images, render with the engine (`--sheet`),
+   run the banner checklist and `python3 scripts/validate.py stories/YYYY/MM/DD/<slug>`.
+3. Set `publishedAt` to the current time in UTC.
+4. Commit only `story.json`, `spec.json`, `banner.mp4` and `poster.webp` to `main` in
+   `stories/YYYY/MM/DD/<slug>/`, one commit per story, message `Publish: <title>`. Keep the PNG
+   images and `sheet.jpg` in your workspace; they are not needed in the repository.
+5. Check that the "Publish news stories" run for your commit succeeds and that the story opens at
+   `https://news.s3dat.com/stories/<slug>`. If the run fails, read the log, fix and commit again.
+6. Never change or remove someone else's story. Withdrawing a story is Sedat's decision.
 
 ## Corrections
 

@@ -7,8 +7,7 @@ One folder per story: `stories/YYYY/MM/DD/<slug>/`
 | `story.json` | The story (schema below). |
 | `spec.json` | Banner spec for `tools/news-banner` (see its README). |
 | `banner.mp4`, `poster.webp` | Engine output. |
-| `sheet.jpg` | Engine contact sheet, for review. |
-| `background.png`, `hero.png` | The two $imagegen images the banner was rendered from. |
+| `sheet.jpg`, `background.png`, `hero.png` | Review material: keep them in your workspace, do not commit them (they grow the repository by several MB per story). |
 
 ## story.json
 
