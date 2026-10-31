@@ -1,41 +1,24 @@
 {
   "slug": "anthropic-science-institution-access",
-  "kind": "story",
+  "kind": "brief",
   "topic": "research",
   "title": "Anthropic expands science credits through research institutions",
   "titleAccent": "science credits",
-  "dek": "Anthropic’s October 28 science-program expansion puts Claude credits through foundations and research institutions, broadening access without establishing scientific results.",
+  "dek": "Anthropic’s science-program expansion distributes Claude credits through institutions and funders, adding an access route for research teams.",
   "publishedAt": "2026-10-31T04:16:52Z",
   "updatedAt": "2026-10-31T04:16:52Z",
-  "whatHappened": [
-    "On October 28, 2026, Anthropic highlighted 20 foundations, institutions and research groups participating in an expansion of its AI for Science program.",
-    "The program provides free Claude credits for scientific projects. Institutional distribution extends a program that began with individual researchers in May 2025.",
-    "Named partners include the Simons Foundation, Wellcome Sanger Institute, Space Telescope Science Institute and EMBL. Anthropic says many collaborations remain at an early stage.",
-    "The announcement also references its work with HHMI Janelia on the Model Hardware Standard. That separate hardware-integration initiative entered research preview on August 27 and is not a new October launch."
-  ],
-  "whyItMatters": [
-    "Institutional distribution gives research groups another route to obtain model access, rather than requiring every scientist to secure support individually.",
-    "Anthropic expects some supported work to produce open datasets, software and standards. Those reusable outputs would be a more useful public benefit than a count of credits consumed.",
-    "Access does not remove experimental risk: Anthropic’s hardware-preview post says physical reasoning still needs expert oversight and that devices without programming interfaces are not yet supported."
-  ],
-  "take": [
-    "The strongest outcome would be reusable research infrastructure that remains valuable after the subsidy ends.",
-    "Institutions should budget for validation and continuing compute costs alongside the free credits; neither broader access nor an agent-produced hypothesis proves a discovery."
-  ],
-  "openQuestions": [
-    "What allocation sizes, durations and renewal terms will participating institutions offer researchers?",
-    "Which projects will release reproducible results or reusable tools, and how will their benefit be assessed independently?"
-  ],
   "sources": [
     {
       "title": "AI for Science expands to foundations and research institutions, October 28, 2026",
       "publisher": "Anthropic",
-      "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions"
+      "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+      "date": "2026-10-28"
     },
     {
       "title": "Previewing the Model Hardware Standard, August 27, 2026",
       "publisher": "Anthropic",
-      "url": "https://www.anthropic.com/news/model-hardware-standard-research-preview"
+      "url": "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+      "date": "2026-08-27"
     }
   ],
   "video": {
@@ -43,5 +26,63 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-28",
+  "lede": "Anthropic announced an AI for Science expansion on October 28, naming 20 foundations, institutions and research groups receiving support. The change gives researchers an institutional route to Claude credits alongside a program that began with individual scientists.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "28 Oct 2026"
+    },
+    {
+      "label": "Organizations highlighted",
+      "value": "20, according to Anthropic"
+    },
+    {
+      "label": "Support",
+      "value": "Free Claude credits for scientific projects"
+    },
+    {
+      "label": "Original program",
+      "value": "Started May 2025"
+    },
+    {
+      "label": "Related hardware work",
+      "value": "Model Hardware Standard; research preview since 27 Aug 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Institutions distribute the credits",
+      "text": "Anthropic names organizations including the Simons Foundation, Wellcome Sanger Institute, Space Telescope Science Institute and EMBL. Funders will distribute credits to researchers, while institutional partners will use credits within their organizations. The company expects some supported projects to produce shared datasets, software and standards. For a research software team, the immediate decision is which access route fits its institution and project. A credit award should be planned alongside the staff time needed to review outputs and maintain any resulting tools."
+    },
+    {
+      "heading": "Hardware access is a separate project",
+      "text": "The announcement also references the Model Hardware Standard developed with HHMI Janelia. That effort entered research preview on August 27 and addresses connections between agents and programmable equipment. It is separate from distributing model credits. Teams considering both should keep the access budget and the equipment-integration review separate."
+    }
+  ],
+  "buildersNote": "Ask the participating institution for allocation size, expiry and renewal terms before committing a project budget. For hardware work, separately confirm programmable interfaces and assign an expert to review the proposed operating procedure.",
+  "claims": [
+    {
+      "text": "Anthropic names 20 organizations in its October 28 program expansion",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The Model Hardware Standard entered research preview on August 27",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Supported projects will produce reusable public research resources",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Anthropic says MHS requires expert oversight and does not support equipment without programming interfaces",
+      "status": "confirmed",
+      "source": 1
+    }
+  ]
 }
