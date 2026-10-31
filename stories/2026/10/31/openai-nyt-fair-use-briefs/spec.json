@@ -1,23 +1,23 @@
 {
-  "title": [
+  "engine": 2,
+  "template": "versus",
+  "headline": [
     "OPENAI DEFENDS",
     "AI FAIR USE"
   ],
-  "accent_line": 1,
-  "kicker": "POLICY",
-  "entities": [
-    "OPENAI",
-    "THE NEW YORK TIMES"
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    },
+    {
+      "name": "The New York Times",
+      "icon": "newyorktimes"
+    }
   ],
-  "versus": true,
-  "palette": {
-    "deep": "#26080e",
-    "mid": "#ff4d6a",
-    "light": "#ffbac6"
-  },
-  "assets": {
-    "background": "background.png",
-    "hero": "hero.png"
-  },
-  "payoff": "COURT FIGHT"
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 22,
+  "sources": {}
 }
