@@ -96,9 +96,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: banners-${{ github.run_id }}
-          path: |
-            stories/**/banner.mp4
-            stories/**/poster.webp
+          path: out/banners/
           retention-days: 14
           if-no-files-found: ignore
       - name: Publish validated stories

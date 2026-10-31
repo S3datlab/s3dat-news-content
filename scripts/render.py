@@ -8,10 +8,13 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
-ENGINE = Path(__file__).resolve().parent.parent / "tools" / "news-banner-v2" / "render.mjs"
+ROOT = Path(__file__).resolve().parent.parent
+ENGINE = ROOT / "tools" / "news-banner-v2" / "render.mjs"
+OUT = ROOT / "out" / "banners"
 
 
 def main(folders):
@@ -31,6 +34,11 @@ def main(folders):
         if result.returncode:
             print(result.stderr.strip()[-1200:])
             failed += 1
+            continue
+        # Copies named after the slug, kept as the workflow artifact for social posting.
+        OUT.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(folder / "banner.mp4", OUT / f"{folder.name}.mp4")
+        shutil.copyfile(folder / "poster.webp", OUT / f"{folder.name}.webp")
     return 1 if failed else 0
 
 

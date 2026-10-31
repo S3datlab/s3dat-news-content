@@ -19,18 +19,30 @@
     <div id="stage"></div>
     <script>
       // The renderer calls __setup once (with data URLs for every asset), then __frame(t) per frame.
+      // Faces the templates use. Each is loaded explicitly and checked before anything is measured.
+      const FACES = ["900 100px Archivo", "400 100px Anton", "800 100px Bricolage", "400 100px 'Instrument Serif'", "italic 400 100px 'Instrument Serif'", "700 100px 'Space Grotesk'"];
+      const frames = (n) => new Promise((done) => { const step = () => (n-- > 0 ? requestAnimationFrame(step) : done()); step(); });
       window.__setup = async (data) => {
         const template = window.BANNER.templates[data.template];
         if (!template) throw new Error("Unknown template " + data.template);
-        // Load every face before measuring: fitting text with a fallback font gives wrong sizes.
         await Promise.all([...document.fonts].map((f) => f.load().catch(() => null)));
+        await Promise.all(FACES.map((f) => document.fonts.load(f).catch(() => null)));
         await document.fonts.ready;
+        const missing = FACES.filter((f) => !document.fonts.check(f));
+        if (missing.length) throw new Error("Fonts not loaded: " + missing.join(", "));
         data.cutouts = await Promise.all((data.cutouts || []).map(async (c) => ({ ...c, edged: await window.BANNER.bakeSticker(c.image) })));
         const stage = document.getElementById("stage");
-        stage.innerHTML = "";
-        window.__instance = template(stage, data, window.BANNER);
+        const build = () => { stage.innerHTML = ""; return template(stage, data, window.BANNER); };
+        // Build twice: the first pass puts every face and image in use; the second measures the
+        // text again once the browser has laid them out (fitting with a fallback font shrinks it).
+        window.__instance = build();
         await document.fonts.ready;
         await Promise.all([...stage.querySelectorAll("img")].map((img) => (img.complete ? null : img.decode().catch(() => null))));
+        await frames(2);
+        window.__instance = build();
+        await document.fonts.ready;
+        await Promise.all([...stage.querySelectorAll("img")].map((img) => (img.complete ? null : img.decode().catch(() => null))));
+        await frames(2);
         if (window.__instance.ready) await window.__instance.ready();
         return { poster: window.__instance.poster || 1.6 };
       };
