@@ -15,7 +15,11 @@ on:
 permissions:
   contents: read
 
-concurrency: news-publish
+# One group per run: publishing is idempotent, and a shared group would cancel queued runs
+# (GitHub keeps only the newest pending run per group), silently skipping stories.
+concurrency:
+  group: news-publish-${{ github.run_id }}
+  cancel-in-progress: false
 
 jobs:
   publish:
