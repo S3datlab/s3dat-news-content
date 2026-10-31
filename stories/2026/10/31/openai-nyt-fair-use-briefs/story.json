@@ -1,0 +1,43 @@
+{
+  "slug": "openai-nyt-fair-use-briefs",
+  "kind": "story",
+  "topic": "policy",
+  "title": "OpenAI highlights fair-use briefs in its New York Times dispute",
+  "titleAccent": "fair-use briefs",
+  "dek": "OpenAI is spotlighting arguments supporting AI training in its dispute with The New York Times, putting copyright policy back in focus without announcing a court victory.",
+  "publishedAt": "2026-10-31T01:12:00Z",
+  "whatHappened": [
+    "On October 30, 2026, OpenAI published excerpts from briefs supporting the application of fair use to AI training in litigation involving The New York Times.",
+    "The post includes submissions from Authors Alliance, Public Knowledge and the United States government, among others.",
+    "This is OpenAI's presentation of arguments supporting its position, not an announcement of a new court ruling."
+  ],
+  "whyItMatters": [
+    "The dispute concerns the copyright framework for training AI models, an issue relevant to model developers and publishers."
+  ],
+  "take": [
+    "Our view: a broad supporting coalition is politically significant, but advocacy should not be confused with a legal outcome."
+  ],
+  "openQuestions": [
+    "The announcement does not establish how the court will decide the fair-use issue."
+  ],
+  "sources": [
+    {
+      "title": "Fair use benefits everyone, October 30",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/fair-use-benefits-everyone/"
+    },
+    {
+      "title": "The New York Times lawsuit",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/new-york-times/"
+    }
+  ],
+  "video": {
+    "src": "banner.mp4",
+    "poster": "poster.webp",
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

@@ -1,0 +1,21 @@
+{
+  "title": [
+    "GEMMA ANSWERS",
+    "FROM ORBIT"
+  ],
+  "accent_line": 1,
+  "kicker": "NEWS · RESEARCH",
+  "entities": [
+    "GOOGLE"
+  ],
+  "versus": false,
+  "palette": {
+    "deep": "#261204",
+    "mid": "#ff8a2a",
+    "light": "#ffd6a3"
+  },
+  "assets": {
+    "background": "background.png",
+    "hero": "hero.png"
+  }
+}

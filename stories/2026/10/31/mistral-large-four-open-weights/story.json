@@ -1,0 +1,43 @@
+{
+  "slug": "mistral-large-four-open-weights",
+  "kind": "story",
+  "topic": "models",
+  "title": "Mistral opens the weights of its trillion-parameter Large 4 model",
+  "titleAccent": "trillion-parameter",
+  "dek": "Mistral has released improved Large 4 weights, giving developers a trillion-parameter multimodal model to customize and host under its open-weight license.",
+  "publishedAt": "2026-10-31T01:12:00Z",
+  "whatHappened": [
+    "Mistral released improved Mistral Large 4 weights on October 29, 2026, following an earlier public preview; Hugging Face documented the release that day.",
+    "Mistral describes Large 4 as a one-trillion-parameter, natively multimodal model with low, medium and high reasoning modes.",
+    "The model uses the Mistral Ecosystem Open-Weight License, with separate commercial licensing rules for Model-as-a-Service offerings."
+  ],
+  "whyItMatters": [
+    "Downloadable weights let organizations customize and self-host the model rather than relying exclusively on a hosted API."
+  ],
+  "take": [
+    "Our view: deployment control is the headline here; parameter count alone does not establish which model is best for a workload."
+  ],
+  "openQuestions": [
+    "Mistral says a full technical report is still forthcoming."
+  ],
+  "sources": [
+    {
+      "title": "Mistral Large 4 (Le Chonk) is now open weight",
+      "publisher": "Mistral AI",
+      "url": "https://mistral.ai/news/mistral-large-4-oss/"
+    },
+    {
+      "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face, October 29",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/blog/mistral-large4"
+    }
+  ],
+  "video": {
+    "src": "banner.mp4",
+    "poster": "poster.webp",
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

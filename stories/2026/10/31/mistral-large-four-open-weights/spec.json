@@ -1,0 +1,25 @@
+{
+  "title": [
+    "MISTRAL LARGE 4",
+    "WEIGHTS RELEASED"
+  ],
+  "accent_line": 1,
+  "kicker": "NEWS · MODELS",
+  "entities": [
+    "MISTRAL"
+  ],
+  "versus": false,
+  "stat": {
+    "value": "1T",
+    "label": "TOTAL PARAMETERS"
+  },
+  "palette": {
+    "deep": "#06122e",
+    "mid": "#2f6bff",
+    "light": "#9fd8ff"
+  },
+  "assets": {
+    "background": "background.png",
+    "hero": "hero.png"
+  }
+}

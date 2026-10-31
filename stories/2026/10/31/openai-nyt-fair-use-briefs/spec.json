@@ -1,0 +1,22 @@
+{
+  "title": [
+    "OPENAI DEFENDS",
+    "AI FAIR USE"
+  ],
+  "accent_line": 1,
+  "kicker": "NEWS · POLICY",
+  "entities": [
+    "OPENAI",
+    "THE NEW YORK TIMES"
+  ],
+  "versus": true,
+  "palette": {
+    "deep": "#26080e",
+    "mid": "#ff4d6a",
+    "light": "#ffbac6"
+  },
+  "assets": {
+    "background": "background.png",
+    "hero": "hero.png"
+  }
+}
