@@ -1,0 +1,67 @@
+{
+  "slug": "openai-shared-training-signal",
+  "kind": "analysis",
+  "topic": "dev-tools",
+  "title": "OpenAI backs a shared training signal, but existing bot controls still matter",
+  "titleAccent": "shared training signal",
+  "dek": "OpenAI plans to honor a common robots.txt training preference, promising simpler publisher controls without replacing today's crawler rules or creating a technical access barrier.",
+  "publishedAt": "2026-10-31T02:29:06Z",
+  "updatedAt": "2026-10-31T02:29:06Z",
+  "whatHappened": [
+    "On October 30, 2026, OpenAI announced that it would honor a shared robots.txt signal for preferences about foundational generative AI training, with implementation planned in the coming months.",
+    "OpenAI says its existing crawler controls will remain in place and describes the cross-provider effort as voluntary; it has not announced an implementation date.",
+    "The linked October 30 proposal defines a purpose-specific __usage_ai-training token using existing robots.txt syntax. The IETF Datatracker lists it as an individual Internet-Draft, explicitly not IETF-endorsed or an adopted standard.",
+    "The draft distinguishes content-use preferences from crawler-access rules. Its policy token does not itself instruct a crawler to stop retrieving pages."
+  ],
+  "whyItMatters": [
+    "Comparison as of October 31: OpenAI's current documentation separates GPTBot training controls from OAI-SearchBot search controls. A publisher can disallow the former while allowing the latter; the proposed shared token adds a cross-provider purpose signal rather than replacing this distinction.",
+    "Anthropic's April 7 crawler documentation, checked October 31, similarly separates ClaudeBot for potential training collection, Claude-SearchBot for search and Claude-User for user-requested retrieval. These provider-specific controls already distinguish uses, but operators must maintain different names across companies; a commonly honored training token could reduce that administrative work.",
+    "For web-platform teams, the draft preserves familiar path-based Allow and Disallow rules and lets existing parsers ignore an unfamiliar policy group. That offers an incremental deployment route, but also means an unsupported consumer may continue behaving exactly as before.",
+    "For publishers and users, preference signaling is not access security: RFC 9309 states that robots.txt is no substitute for protective measures such as authentication. A common signal can clarify intended use without guaranteeing that every recipient follows it or preventing downloads."
+  ],
+  "take": [
+    "The useful change is interoperability, not a new right or a universal block: one recognizable training preference could reduce configuration drift across participating providers.",
+    "Site operators should keep their existing crawler rules until implementation details are documented, and evaluate search visibility separately from training preferences rather than treating all AI traffic as one category.",
+    "The next meaningful test is whether providers document the same precedence rules and observable compliance, because inconsistent interpretation would leave publishers maintaining both a shared signal and the old exceptions."
+  ],
+  "openQuestions": [
+    "When will OpenAI activate support, and what exact behavior will it document when a shared preference conflicts with provider-specific rules?",
+    "How many providers will implement compatible behavior, and how will publishers verify compliance rather than merely record a declared preference?",
+    "The proposal remains work in progress; its final syntax and standards status may change, and this announcement does not establish retroactive removal of training data."
+  ],
+  "sources": [
+    {
+      "title": "Making it easier for websites to express AI training preferences, October 30, 2026",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences/"
+    },
+    {
+      "title": "Machine-Readable Training Preference Signal, individual Internet-Draft 00, October 30, 2026",
+      "publisher": "IETF Datatracker / Kevin Kelley",
+      "url": "https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/"
+    },
+    {
+      "title": "Overview of OpenAI Crawlers; checked October 31, 2026",
+      "publisher": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "title": "Anthropic crawler controls, April 7, 2026; checked October 31, 2026",
+      "publisher": "Anthropic",
+      "url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "title": "RFC 9309: Robots Exclusion Protocol, September 2022, section 3",
+      "publisher": "RFC Editor / IETF",
+      "url": "https://www.rfc-editor.org/rfc/rfc9309.html"
+    }
+  ],
+  "video": {
+    "src": "banner.mp4",
+    "poster": "poster.webp",
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

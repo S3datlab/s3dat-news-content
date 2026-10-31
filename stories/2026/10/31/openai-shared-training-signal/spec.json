@@ -1,0 +1,22 @@
+{
+  "title": [
+    "OPENAI BACKS",
+    "TRAINING SIGNAL"
+  ],
+  "accent_line": 1,
+  "kicker": "ANALYSIS \u00b7 DEV TOOLS",
+  "entities": [
+    "OPENAI"
+  ],
+  "versus": false,
+  "payoff": "NOT LIVE YET",
+  "palette": {
+    "deep": "#03201b",
+    "mid": "#17b38a",
+    "light": "#a5f6d9"
+  },
+  "assets": {
+    "background": "background.png",
+    "hero": "hero.png"
+  }
+}
