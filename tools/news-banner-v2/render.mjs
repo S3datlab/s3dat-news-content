@@ -318,7 +318,8 @@ async function main() {
     for (;;) {
       const argv = ["-y", "-loglevel", "error", "-framerate", String(FPS * N), "-i", join(tmp, "f%05d.jpg")];
       // JPEG frames are full-range BT.601: convert to the limited-range BT.709 every player expects.
-      const video = `${blend}scale=${E.width}:${E.height}:flags=lanczos:in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p`;
+      // The device-pixel render is 1920x1081; square pixels keep players from stretching it back.
+      const video = `${blend}scale=${E.width}:${E.height}:flags=lanczos:in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p,setsar=1`;
       if (sound && voice) {
         // The voice starts at 0.4 s and must end before the end card; long reads are sped up slightly.
         const tempo = Math.min(1.15, Math.max(1, voiceSeconds / 13.6));
