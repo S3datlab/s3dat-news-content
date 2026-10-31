@@ -1,64 +1,139 @@
 # S3DAT News on social media
 
-Every story leaves the site as a 15-second vertical video with a voice-over, and Buffer posts it to
-the channels that suit its kind. You write the copy in `story.json` (`social`, below); GitHub
-Actions renders the video and hands the posts to Buffer. Nobody posts by hand.
+Every story can leave the site as a video post on every channel connected to Buffer. You write
+the copy in `story.json` (`social`, below). GitHub Actions renders the videos when the story is
+published, and `scripts/social.py` posts the best fresh story every five hours. Nobody posts by
+hand.
 
-## The video
+## The videos
 
-- 1080×1920 (9:16), 15 seconds, H.264 with AAC sound, rendered by `tools/news-banner-v2`.
-- 0–8 s: the story's banner in a 4:5 frame centred in the vertical picture, clear of the captions
-  and buttons each app draws at the edges.
-- 8–14 s: up to three spec-sheet facts as full-screen cards (facts with numbers first).
-- 14–15 s: the S3DAT News end card with `news.s3dat.com`.
-- Sound: the voice-over (Fish Audio) over a quiet synthesised bed and effects on the cuts; the
-  bed ducks under the voice. Loudness is normalised to −14 LUFS.
-- The run artifact holds it as `<slug>-social.mp4`.
+Two cuts of every story, rendered by `tools/news-banner-v2` when the story is published:
+
+| Cut | Size | Length | Sound | Goes to |
+| --- | --- | --- | --- | --- |
+| Wide | 1920×1080 (16:9) | 8 s loop | the banner's soundtrack | X, Threads, Bluesky, Mastodon, Substack |
+| Tall | 1080×1920 (9:16) | 15 s | voice-over over the soundtrack | Facebook, Instagram, LinkedIn, Pinterest (YouTube Shorts and TikTok when connected) |
+
+- The wide cut is the site banner rendered at full HD with 12-sample motion blur; the site gets
+  the same render scaled to 1080×608.
+- The tall cut: 0–8 s the banner in a 4:5 frame centred in the picture (the part every feed shows
+  uncropped), 8–14 s up to three spec-sheet facts as full-screen cards (facts with numbers first),
+  14–15 s the S3DAT News end card with `news.s3dat.com`.
+- The voice is Ethan (Fish Audio, `FISH_VOICE_ID`), mixed over the soundtrack, which ducks under
+  him. Loudness is normalised to −14 LUFS.
+- Both cuts are uploaded to `news.s3dat.com/news-media/news-social/<slug>/` for Buffer to fetch,
+  and deleted there after 30 days. The run artifact also keeps them.
+
+## When we post
+
+- One story every five hours, on every channel at once: about five posts a day, around the
+  clock, so Europe, the Americas and Asia each see some in their daytime.
+- The workflow `Post to social media` runs hourly and posts when the last post is five hours
+  old. It picks the strongest story published in the last 12 hours that has not been posted:
+  analysis first, then story and explained, then brief; the newest first; and not the same lead
+  company as the previous post when there is a choice. Stories that miss the window are not
+  posted later.
+- `social/state.json` records what went out, when, and any errors. Manual runs default to a dry
+  run that only prints the posts.
+
+## What each channel gets
+
+| Channel | Video | Text | Link |
+| --- | --- | --- | --- |
+| X (@s3datlab) | wide | `short` | none: X shows posts with links to fewer people |
+| Threads | wide | `short` + link; the first hashtag becomes the topic | in the post |
+| Bluesky | wide | `short` + link | in the post |
+| Mastodon | wide | `short` + link + hashtags | in the post |
+| Substack Notes | wide | `long` + link | in the post |
+| Facebook page | tall, as a reel | `long` | first comment (reel captions do not link) |
+| Instagram | tall, as a reel shared to the feed | `long` + hashtags | none: Instagram captions do not link |
+| LinkedIn page | tall | `long` | first comment (posts with links reach fewer people) |
+| Pinterest | tall | headline as the title, `short` as the description | the pin opens the story |
+
+Instagram and YouTube posts carry the platforms' AI disclosure, because the voice-over is
+synthetic (`SOCIAL_AI_LABEL=0` turns it off).
 
 ## What you write: `social` in story.json
 
 ```json
 "social": {
-  "voiceover": "Britain's competition regulator has opened a case into Meta's business terms. Can Meta reuse publishers' content for AI without a real choice? Meta has paused the terms, and no breach has been found.",
-  "short": "The UK's competition regulator opened a case into Meta's business terms on 30 October: can Meta reuse publishers' content for AI without giving them a choice?",
+  "voiceover": "[matter-of-fact] Britain's competition regulator has opened a case into Meta's business terms. [break] The question is whether Meta can reuse publishers' content for AI without giving them a real choice. Meta has paused the terms.",
+  "short": "Britain's competition regulator opened a case into Meta's business terms on 30 October: the issue is whether Meta can reuse publishers' content for AI without giving them a choice.",
   "long": "Britain's Competition and Markets Authority opened a formal investigation into Meta's commercial terms for businesses on 30 October. ...",
-  "hashtags": ["AI", "Meta", "Competition"]
+  "hashtags": ["Meta", "Competition", "AI"]
 }
 ```
 
 | Field | Rule |
 | --- | --- |
-| `voiceover` | 26–36 words, written to be heard: short sentences, no links, no abbreviations a voice would stumble on, numbers as people say them. It must stand alone; the viewer may not read anything else. |
-| `short` | 60–240 characters for X, Threads, Bluesky and Mastodon. The news in one or two sentences. The link is added automatically. |
-| `long` | 300–1500 characters for LinkedIn, Facebook, Instagram, Pinterest and Substack: the lede, why it matters, one concrete number. No link (it goes in the first comment or bio). |
-| `hashtags` | 0–4 tags, letters and digits only, without `#`. Topic and company names, never filler (#AI is fine, #innovation is not). |
+| `voiceover` | 26–36 spoken words (cues not counted), written to be heard. It must stand alone. |
+| `short` | 60–240 characters. X, Threads, Bluesky, Mastodon and Pinterest. The link is added for you. |
+| `long` | 300–1500 characters. Facebook, Instagram, LinkedIn and Substack. No link. |
+| `hashtags` | 0–4 tags, letters and digits only, without `#`: companies and topics (#OpenAI, #Robotics), never filler (#innovation, #tech). |
 
-The house style of `EDITORIAL.md` applies here too: no generated-sounding words, no emoji, no hype,
-no questions as bait. `scripts/validate.py` checks all of it. Required for stories published from
-1 November 2026 04:00 UTC.
+`scripts/validate.py` checks every rule below. Required for stories published from 1 November
+2026 04:00 UTC.
 
-## Where each story goes
+## How we sound
 
-| Channel | What goes there | Text | Most per day |
-| --- | --- | --- | --- |
-| X (@s3datlab) | Every story, right after publishing | `short` + link | no cap |
-| Threads | Every story, right after publishing | `short` + link | no cap |
-| Bluesky | Every story, right after publishing | `short` + link | no cap |
-| Mastodon | Every story, right after publishing | `short` + link + hashtags | no cap |
-| Facebook page | Stories and analyses | `long`, link in the first comment | 3 |
-| Instagram (Reels) | Analyses, and stories with a hero cut-out | `long` + hashtags; "link in bio" | 2 |
-| LinkedIn page | Analyses and explainers | `long`, link in the first comment | 2 |
-| Pinterest | Analyses and explainers | title + `short`, pin links to the story | 1 |
-| Substack (Notes) | The day's analysis | `long` + link | 1 |
+We are the S3DAT News Desk: people who build software, writing for people who build software.
+Calm, exact, a little dry. We sound like the colleague who read the filing so you did not have
+to, and tells you in two sentences what it says and what it changes. Never like a brand account,
+never like a press release, never like a bot.
 
-Briefs go only to the fast networks (X, Threads, Bluesky, Mastodon). Fast networks post at once;
-the others go into Buffer's queue at fixed times (Istanbul time): LinkedIn 11:00 and 16:00,
-Facebook 12:00, 17:00 and 21:00, Instagram 13:00 and 20:00, Pinterest 21:00, Substack 18:00. Those
-slots reach European mornings and the US East Coast morning. When a channel's daily cap is full,
-the story skips that channel rather than piling up for the next day.
+1. **The news comes first.** Who did what, in the first eight words. "Mistral released the Large
+   4 weights", not "Big day for open models".
+2. **One detail that proves we read the source.** A number, a date, a price, the name of the
+   document, the exact limit. One is enough; three is a spec sheet.
+3. **Then what it changes, plainly.** Say it without a label: no "why it matters", "here's why",
+   "what this means".
+4. **Say what is still open.** An honest unknown is our hook: "The company has not said when it
+   reaches Europe." Never a teaser question, never "stay tuned".
+5. **Plain verbs.** released, opened, cut, raised, paused, sued, shipped. Not unveils, unleashes,
+   is set to, takes aim, doubles down, heats up.
+6. **No emoji, no exclamation marks, no questions, no "Breaking", no all-caps words.**
+7. **Vary the shape.** One sentence or two; start with the company, the number, the regulator or
+   the product. The validator rejects an opening that one of the last ten posts used.
+8. **`short` is the whole post for most readers.** It must make sense with no video and no link.
+9. **`long` is written for its own readers,** not `short` with more words: the news, the detail,
+   the consequence, then what is still open, in two or three short paragraphs. No headings, no
+   bullet lists.
+
+| Instead of | Write |
+| --- | --- |
+| Breaking: Mistral unveils a game-changing 1T model! Here's why it matters for devs | Mistral released the Large 4 weights: 1 trillion parameters, 49 billion active per token. The NVFP4 files alone are about 610 GB, so most teams will rent it before they host it. |
+| Is your editor safe? Huge security news for Cursor users. | Cursor flagged two malicious copies of the Claude Code extension, 2.1.312 and 2.1.313, in its marketplace. Removing the extension is not enough: the payload can leave SSH keys behind. |
+| GitHub just dropped Copilot Fusion and the AI coding race heats up! | Copilot Fusion now picks the model for each task in VS Code, JetBrains and the CLI. GitHub bills each model it calls; Fusion itself costs nothing extra. |
+
+## The voice-over
+
+Ethan reads it: a curious explainer. Write the way a person talks.
+
+- Short sentences, contractions where natural ("it's", "they've"), no parentheses.
+- Numbers the way people say them: "one trillion parameters", "about six hundred gigabytes".
+- Spell out what a voice would trip on: "robots dot T X T", "G P U".
+- No links or domains; the end card shows `news.s3dat.com`.
+
+Fish Audio S2 reads `[cues]` in the text as directions for the delivery; they are not spoken.
+Use at most four, from the house set:
+
+| Cue | Use |
+| --- | --- |
+| `[matter-of-fact]` `[calm]` `[measured]` `[serious]` | the default tones for news; open the first sentence with one |
+| `[curious]` `[thoughtful]` `[skeptical]` `[wry]` | the open question or the twist at the end |
+| `[concerned]` `[surprised]` `[upbeat]` `[warm]` `[confident]` | only when the news really is worrying, surprising or good |
+| `[emphasis]` | right before the one word that carries the story |
+| `[break]` `[pause]` `[long-break]` | a beat between the news and what it changes |
+
+`slightly` may precede a tone: `[slightly skeptical]`. One tone per sentence, at the start of it.
+No laughs, sighs, gasps or shouting.
+
+```text
+[matter-of-fact] OpenAI says it will honor one shared robots dot T X T signal for AI training. [break] Publishers would set a single rule instead of one per company. [curious] Whether Google and Anthropic follow is still open.
+```
 
 ## Corrections and withdrawals
 
 A published post is never edited silently. If a story is corrected, the correction note on the
 site is the record; for a material error, post a short correction on the same channels. A
-withdrawn story has its scheduled posts removed from Buffer.
+withdrawn story is not posted, and its scheduled posts are removed from Buffer.

@@ -174,6 +174,43 @@ def word_count(text):
 SOCIAL_CUTOVER = dt.datetime(2026, 11, 1, 4, 0, tzinfo=dt.timezone.utc)
 HASHTAG = re.compile(r"[A-Za-z][A-Za-z0-9]{1,29}")
 EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF]")
+# Fish Audio S2 reads [bracket] cues as delivery directions. The house set suits a news read:
+# one tone per sentence at most, no laughs, sighs or shouting.
+CUE = re.compile(r"\[([^\[\]]*)\]")
+CUES = {"calm", "confident", "curious", "serious", "concerned", "surprised", "matter-of-fact", "warm", "wry",
+        "thoughtful", "skeptical", "measured", "upbeat", "emphasis", "break", "long-break", "pause"}
+# Social formulas that make an account read like a bot, on top of BANNED.
+SOCIAL_BANNED = [
+    "breaking", "big news", "huge news", "here's why", "here is why", "here's what", "here is what", "why it matters",
+    "why this matters", "what this means", "what you need to know", "everything you need to know", "let's",
+    "buckle up", "stay tuned", "you won't believe", "mind-blowing", "this changes everything", "a new era",
+    "the race is on", "heats up", "makes waves", "takes aim", "doubles down", "set to", "poised to", "unveils",
+    "unveiled", "unleash", "unleashes", "just dropped", "in a move", "thread", "game on", "big moment",
+]
+SOCIAL_BANNED_RE = re.compile(r"(?<![\w-])(" + "|".join(re.escape(b) for b in sorted(SOCIAL_BANNED, key=len, reverse=True)) + r")(?![\w-])", re.IGNORECASE)
+STORIES = Path(__file__).resolve().parent.parent / "stories"
+
+
+def opener(text, n=3):
+    words = re.findall(r"[a-z0-9']+", CUE.sub(" ", text).lower())
+    return tuple(words[:n]) if len(words) >= n else None
+
+
+def recent_social(story, limit=10):
+    """The social blocks of the stories published just before this one, newest first."""
+    mine = timestamp(story.get("publishedAt"))
+    found = []
+    for path in STORIES.glob("*/*/*/*/story.json"):
+        try:
+            other = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        when = timestamp(other.get("publishedAt")) if isinstance(other, dict) else None
+        if not when or other.get("slug") == story.get("slug") or (mine and when >= mine):
+            continue
+        if isinstance(other.get("social"), dict):
+            found.append((when, other["social"]))
+    return [s for _, s in sorted(found, key=lambda x: x[0], reverse=True)[:limit]]
 
 
 def validate_social(story, published):
@@ -186,10 +223,19 @@ def validate_social(story, published):
     if not isinstance(social, dict):
         return ["social must be an object"]
     vo = social.get("voiceover")
-    if check_text(vo, "social.voiceover", 60, 300, errors):
-        n = word_count(vo)
+    if check_text(vo, "social.voiceover", 60, 360, errors):
+        cues = [c.strip().lower() for c in CUE.findall(vo)]
+        for cue in cues:
+            base = re.sub(r"^(slightly|a little)\s+", "", cue)
+            if base not in CUES:
+                errors.append(f"social.voiceover: [{cue}] is not a house cue; use one of {', '.join(sorted(CUES))}")
+        if len(cues) > 4:
+            errors.append(f"social.voiceover has {len(cues)} cues; keep at most four")
+        if re.search(r"\[|\]", CUE.sub("", vo)):
+            errors.append("social.voiceover has an unmatched [ or ]")
+        n = word_count(CUE.sub(" ", vo))
         if not 26 <= n <= 36:
-            errors.append(f"social.voiceover must be 26–36 words so it fits the 15-second video (found {n})")
+            errors.append(f"social.voiceover must be 26–36 spoken words, cues not counted, so it fits the 15-second video (found {n})")
         if re.search(r"https?://|www\.|\b[a-z0-9-]+\.(com|ai|io|org)\b", vo, re.IGNORECASE):
             errors.append("social.voiceover is read aloud: no links or domains")
     for key, low, high in (("short", 60, 240), ("long", 300, 1500)):
@@ -201,14 +247,33 @@ def validate_social(story, published):
                 errors.append(f"social.{key} must not contain emoji")
             if "#" in text:
                 errors.append(f"social.{key} must not contain hashtags; list them in social.hashtags")
+            if "[" in text or "]" in text:
+                errors.append(f"social.{key} is read, not spoken: no [cues]")
     tags = social.get("hashtags", [])
     if not isinstance(tags, list) or len(tags) > 4 or not all(isinstance(t, str) and HASHTAG.fullmatch(t) for t in tags):
         errors.append("social.hashtags must list 0–4 tags of letters and digits, without #")
     for key in ("voiceover", "short", "long"):
         text = social.get(key)
-        if isinstance(text, str):
-            for m in BANNED_RE.finditer(text):
-                errors.append(f'social.{key}: "{m.group(0)}" reads like generated copy; say it plainly')
+        if not isinstance(text, str):
+            continue
+        for phrase in dict.fromkeys(m.group(0).lower() for m in BANNED_RE.finditer(text)):
+            errors.append(f'social.{key}: "{phrase}" reads like generated copy; say it plainly')
+        for phrase in dict.fromkeys(m.group(0).lower() for m in SOCIAL_BANNED_RE.finditer(text)):
+            errors.append(f'social.{key}: "{phrase}" is a social-media formula; state the news instead')
+        if "?" in text:
+            errors.append(f"social.{key}: no questions; state what happened and what is still open")
+        if "!" in text:
+            errors.append(f"social.{key}: no exclamation marks")
+    short, long = social.get("short"), social.get("long")
+    if isinstance(short, str) and isinstance(long, str) and opener(short, 6) and opener(short, 6) == opener(long, 6):
+        errors.append("social.long starts like social.short; write it for its own readers")
+    # A recognisable voice, not a template: no opening the last ten posts already used.
+    recent = recent_social(story)
+    for key in ("voiceover", "short", "long"):
+        text = social.get(key)
+        mine = opener(text) if isinstance(text, str) else None
+        if mine and any(isinstance(r.get(key), str) and opener(r[key]) == mine for r in recent):
+            errors.append(f'social.{key} opens with "{" ".join(mine)}" like a recent post; vary the opening')
     return errors
 
 

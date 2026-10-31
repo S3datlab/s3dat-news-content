@@ -24,7 +24,7 @@ BANNER.templates.monolith = async (stage, d, B) => {
   // ---- three.js scene ----
   const canvas = css(el("canvas", "layer", stage), { width: W + "px", height: H + "px" });
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
-  renderer.setPixelRatio(1);
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
   renderer.setSize(W, H, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;

@@ -1,15 +1,17 @@
 # S3DAT News banner engine v2
 
-Every story gets one 8-second banner: 1080×608, 30 fps, H.264, no audio, at most 1.6 MB, plus a
-WebP poster, for the site. The same spec also renders a 4:5 social version (1080×1350) with a
-soundtrack for X and LinkedIn. Banners are built from HTML templates and rendered frame by frame
-in Chrome. No video models, no stock media, no sampled music: the soundtrack is synthesised.
+Every story gets one 8-second banner, rendered at 1920×1080: the site gets it scaled to 1080×608
+(30 fps, H.264, no audio, at most 1.6 MB, plus a WebP poster), and X, Threads, Bluesky, Mastodon
+and Substack get the full-HD cut with its soundtrack. The same spec renders a 15-second 9:16 cut
+with a voice-over for Facebook, Instagram, LinkedIn and Pinterest (`SOCIAL.md`). Banners are built
+from HTML templates and rendered frame by frame in Chrome. No video models, no stock media, no
+sampled music: the soundtrack is synthesised.
 
 How the engine makes them feel produced, so you know what to feed it:
 
 - **Springs, not timers:** things overshoot and settle. **Nothing stands still:** a virtual camera
   drifts and pushes, layers move in parallax, the hero breathes.
-- **Real motion blur:** each frame blends 8 moments of a 180° shutter.
+- **Real motion blur:** each frame blends 12 moments of a 180° shutter (8 in the 9:16 cut).
 - **A beat grid:** cuts land on 120 BPM (every 0.5 s); sound effects sit on the same cues.
 - **Match cuts:** the ring becomes an iris, the chart tip becomes a colour field, the disc behind
   the hero opens into the next colour — instead of hard cuts.
@@ -165,9 +167,10 @@ logos. A specific place or object in clear light, not an abstract tech wallpaper
 cd tools/news-banner-v2 && npm ci
 # contact sheet of chosen moments, no video:
 CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --frames 0.6,1.5,3,4.8,6,7.5 --sheet /tmp/sheet.jpg
-# full render (site) and the 4:5 social version with sound:
-CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --out /tmp/banner.mp4 --poster /tmp/poster.webp
-CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --format social --out /tmp/social.mp4
+# full render: site banner, poster and the 16:9 social cut; then the 9:16 cut with the voice-over
+# (needs FISH_API_KEY and FISH_VOICE_ID):
+CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --out /tmp/banner.mp4 --poster /tmp/poster.webp --social-out /tmp/wide.mp4
+CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --format social --out /tmp/tall.mp4
 python3 ../../scripts/validate.py --spec-only ../../stories/YYYY/MM/DD/<slug>
 ```
 
@@ -178,7 +181,7 @@ Without Chrome installed, run `npx playwright-core install chromium` once and le
 
 On every push to `main` that touches `stories/`, the publish workflow validates the spec,
 renders the banner with this engine, validates the video and poster, publishes the story and
-keeps the rendered files as the run artifact `banners-<run id>` for 14 days: `<slug>.mp4` and
-`<slug>.webp` (site) and `<slug>-social.mp4` (4:5 with sound, for X and LinkedIn). A full render
-takes one to three minutes per format. The site video is also at the `banner` URL on the story
+then renders the 9:16 cut and uploads both social cuts for `scripts/social.py`. The run artifact
+`banners-<run id>` keeps `<slug>.mp4` and `<slug>.webp` (site), `<slug>-wide.mp4` and
+`<slug>-tall.mp4` for 14 days. A full render takes about two to five minutes per cut. The site video is also at the `banner` URL on the story
 page. Third-party credits: `THIRD_PARTY_NOTICES.md`.

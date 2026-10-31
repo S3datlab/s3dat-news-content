@@ -1,0 +1,79 @@
+name: Post to social media
+
+# Every hour; scripts/social.py posts only when the last post is five hours old (SOCIAL.md).
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+    inputs:
+      story:
+        description: 'Story slug to post (empty: pick the next one)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Only print the posts'
+        type: boolean
+        default: true
+      force:
+        description: 'Ignore the five-hour spacing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-posting
+  cancel-in-progress: false
+
+jobs:
+  post:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Post the next story
+        id: post
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          PINTEREST_BOARD: ${{ vars.PINTEREST_BOARD }}
+          SOCIAL_AI_LABEL: ${{ vars.SOCIAL_AI_LABEL }}
+          STORY: ${{ inputs.story }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ -z "$BUFFER_API_KEY" ]; then
+            echo "BUFFER_API_KEY is not set; nothing posted."
+            echo "status=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          args=()
+          [ -n "$STORY" ] && args+=(--story "$STORY")
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          [ "$FORCE" = "true" ] && args+=(--force)
+          set +e
+          python scripts/social.py "${args[@]}"
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+      - name: Commit the posting record
+        if: always()
+        run: |
+          git diff --quiet -- social/state.json 2>/dev/null && [ -z "$(git status --porcelain -- social/state.json)" ] && exit 0
+          git config user.name 'S3DAT News'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add social/state.json
+          git commit -q -m 'Social: posting record'
+          # Makima pushes stories to main every hour; rebase onto hers and retry.
+          for attempt in 1 2 3; do
+            git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
+      - name: Report failed posts
+        if: steps.post.outputs.status != '0'
+        run: |
+          echo "Some posts failed; the log above names the channels."
+          exit 1

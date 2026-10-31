@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Render engine-2 banners (banner.mp4 + poster.webp) into each story folder before publishing.
+"""Render engine-2 banners (banner.mp4 + poster.webp) into each story folder before publishing,
+with the 16:9 social cut out/banners/<slug>-wide.mp4 (1920x1080, sound) from the same frames.
+
+  python scripts/render.py FOLDER...          site banner, poster and wide cut
+  python scripts/render.py --tall FOLDER...   the 9:16 cut out/banners/<slug>-tall.mp4 (15 s, voice)
+
+publish.py uploads both cuts for scripts/social.py. The tall cut runs after the story is live,
+and a failure there never blocks the story.
 
 Folders whose spec.json is not engine 2 are skipped: they carry committed banners.
 Needs Node 20+, ffmpeg, Chrome/Chromium and `npm ci` in tools/news-banner-v2.
@@ -17,7 +24,22 @@ ENGINE = ROOT / "tools" / "news-banner-v2" / "render.mjs"
 OUT = ROOT / "out" / "banners"
 
 
+def tall(folders):
+    for name in folders:
+        folder = Path(name)
+        if not (folder / "banner.mp4").is_file():
+            continue
+        OUT.mkdir(parents=True, exist_ok=True)
+        result = subprocess.run(["node", str(ENGINE), str(folder), "--format", "social", "--out", str(OUT / f"{folder.name}-tall.mp4")], capture_output=True, text=True, timeout=3000)
+        print(f"{'TALL FAILED' if result.returncode else 'TALL'} {folder} {result.stdout.strip()}")
+        if result.returncode:
+            print(result.stderr.strip()[-800:])
+    return 0
+
+
 def main(folders):
+    if folders[:1] == ["--tall"]:
+        return tall(folders[1:])
     failed = 0
     for name in folders:
         folder = Path(name)
@@ -29,22 +51,17 @@ def main(folders):
         if not isinstance(spec, dict) or spec.get("engine") != 2:
             print(f"SKIP {folder}: not an engine 2 banner")
             continue
-        result = subprocess.run(["node", str(ENGINE), str(folder)], capture_output=True, text=True, timeout=1500)
+        OUT.mkdir(parents=True, exist_ok=True)
+        wide = OUT / f"{folder.name}-wide.mp4"
+        result = subprocess.run(["node", str(ENGINE), str(folder), "--social-out", str(wide)], capture_output=True, text=True, timeout=3000)
         print(f"{'FAIL' if result.returncode else 'RENDERED'} {folder} {result.stdout.strip()}")
         if result.returncode:
             print(result.stderr.strip()[-1200:])
             failed += 1
             continue
-        # Copies named after the slug, kept as the workflow artifact for social posting.
-        OUT.mkdir(parents=True, exist_ok=True)
+        # Copies named after the slug, kept as the workflow artifact.
         shutil.copyfile(folder / "banner.mp4", OUT / f"{folder.name}.mp4")
         shutil.copyfile(folder / "poster.webp", OUT / f"{folder.name}.webp")
-        # The 4:5 social version with its soundtrack goes to the artifact only. It is best effort:
-        # a failure here never blocks publishing the story.
-        social = subprocess.run(["node", str(ENGINE), str(folder), "--format", "social", "--out", str(OUT / f"{folder.name}-social.mp4")], capture_output=True, text=True, timeout=1500)
-        print(f"{'SOCIAL FAILED' if social.returncode else 'SOCIAL'} {folder} {social.stdout.strip()}")
-        if social.returncode:
-            print(social.stderr.strip()[-800:])
     return 1 if failed else 0
 
 

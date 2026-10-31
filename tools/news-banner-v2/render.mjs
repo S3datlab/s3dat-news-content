@@ -3,13 +3,17 @@
  * S3DAT News banner engine — renders one story banner from stories/.../spec.json.
  *
  *   node render.mjs <story-dir> [--format wide|social] [--out file.mp4] [--poster poster.webp]
- *                   [--sheet sheet.jpg] [--template name] [--blur n] [--frame s] [--frames a,b,c]
+ *                   [--social-out wide-social.mp4] [--sheet sheet.jpg] [--template name] [--blur n]
+ *                   [--frame s] [--frames a,b,c]
  *
- * wide (site):     1080x608, 30 fps, 8 s, H.264 yuv420p, silent, at most 1.6 MB, plus a WebP poster.
- * social (every Buffer channel): 1080x1920 (9:16), 15 s: the banner in a centred 4:5 frame, then fact
- *   cards and an end card, with a Fish Audio voice-over (FISH_API_KEY, optional FISH_VOICE_ID) over a
- *   soundtrack synthesised from the template's cues.
- * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8).
+ * wide: laid out at 1080x608 CSS px and rendered at 1920x1080 device pixels (deviceScaleFactor 16/9).
+ *   The site banner is that render scaled to 1080x608: 30 fps, 8 s, H.264, silent, at most 1.6 MB, plus
+ *   a WebP poster. --social-out also keeps the full 1920x1080 render with the synthesised soundtrack,
+ *   for X, Threads, Bluesky, Mastodon and Substack.
+ * social: 1080x1920 (9:16), 15 s, for Facebook, Instagram, LinkedIn and Pinterest: the banner in a
+ *   centred 4:5 frame, then fact cards and an end card, with a Fish Audio voice-over (FISH_API_KEY,
+ *   FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as [calm].
+ * Motion blur: every frame is the average of --blur samples across a 180° shutter (wide 12, social 8).
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
  */
 import { spawn } from "node:child_process";
@@ -22,8 +26,15 @@ import { synthesize } from "./audio.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const FPS = 30;
 const FORMATS = {
-  wide: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, seconds: 8, blur: 8 },
-  social: { width: 1080, height: 1920, stageHeight: 1350, maxBytes: 9_000_000, crf: 21, seconds: 15, blur: 4 },
+  wide: {
+    width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 12,
+    site: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, maxrate: "1700k" },
+    social: { width: 1920, height: 1080, maxBytes: 24_000_000, crf: 17, maxrate: "16000k" },
+  },
+  social: {
+    width: 1080, height: 1920, stageHeight: 1350, scale: 1, seconds: 15, blur: 8,
+    social: { width: 1080, height: 1920, maxBytes: 24_000_000, crf: 18, maxrate: "12000k" },
+  },
 };
 export const TEMPLATES = ["paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith"];
 const MOODS = ["up", "down", "shock", "calm"];
@@ -166,7 +177,8 @@ function readStory(dir) {
 async function voiceover(text, out) {
   const key = process.env.FISH_API_KEY;
   if (!key || !text) return null;
-  const body = { text, format: "mp3", mp3_bitrate: 128, normalize: true };
+  // S2 reads [bracket] cues in the text as delivery directions; they are not spoken.
+  const body = { text, format: "mp3", mp3_bitrate: 192, normalize: true, latency: "normal", language: "en" };
   if (process.env.FISH_VOICE_ID) body.reference_id = process.env.FISH_VOICE_ID;
   const res = await fetch("https://api.fish.audio/v1/tts", {
     method: "POST",
@@ -231,7 +243,7 @@ async function main() {
   const data = await buildData(dir, a.template, format);
   const chromium = await loadChromium();
   const browser = await chromium.launch(launchOptions(data.template));
-  const page = await browser.newPage({ viewport: { width: F.width, height: F.height }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: F.width, height: F.height }, deviceScaleFactor: F.scale });
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await serve(page);
@@ -259,28 +271,30 @@ async function main() {
 
   // Motion blur: N samples across a 180° shutter centred on each frame time.
   const DURATION = F.seconds;
-  const N = Math.max(1, Math.min(12, Number(a.blur) || F.blur));
+  const N = Math.max(1, Math.min(16, Number(a.blur) || F.blur));
   const frames = DURATION * FPS;
   let k = 0;
   for (let i = 0; i < frames; i++) {
     for (let s = 0; s < N; s++) {
       const t = (i + (N === 1 ? 0 : ((s + 0.5) / N - 0.5) * 0.5)) / FPS;
-      writeFileSync(join(tmp, `f${String(k++).padStart(5, "0")}.jpg`), await shot(t, N > 1 ? 90 : 94));
+      writeFileSync(join(tmp, `f${String(k++).padStart(5, "0")}.jpg`), await shot(t, N > 1 ? 92 : 94));
     }
   }
   await page.evaluate((x) => window.__frame(x), poster);
   const png = (await page.screenshot({ type: "png" })).toString("base64");
-  // Encode the poster as WebP in Chromium, so the ffmpeg build needs no libwebp.
-  const webp = await page.evaluate(async (b64) => {
+  // Encode the poster as WebP in Chromium (so the ffmpeg build needs no libwebp), at layout size.
+  const webp = await page.evaluate(async ([b64, w, h]) => {
     const img = new Image();
     img.src = "data:image/png;base64," + b64;
     await img.decode();
     const cv = document.createElement("canvas");
-    cv.width = img.naturalWidth;
-    cv.height = img.naturalHeight;
-    cv.getContext("2d").drawImage(img, 0, 0);
+    cv.width = w;
+    cv.height = h;
+    const g = cv.getContext("2d");
+    g.imageSmoothingQuality = "high";
+    g.drawImage(img, 0, 0, w, h);
     return cv.toDataURL("image/webp", 0.82).split(",")[1];
-  }, png);
+  }, [png, F.width, F.height]);
   if (a.sheet) {
     const picks = Array.from({ length: 16 }, (_, i) => Math.min(frames - 1, Math.round((i * DURATION / 16 + 0.25) * FPS)) * N + Math.floor(N / 2));
     const list = join(tmp, "sheet.txt");
@@ -289,52 +303,60 @@ async function main() {
     await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", list, "-vf", `scale=${tw}:${th},tile=4x4`, "-frames:v", "1", resolve(a.sheet)]);
   }
 
-  let audio = null, voice = null, voiceSeconds = 0;
+  const audio = join(tmp, "sound.wav");
+  writeFileSync(audio, synthesize(cues, { seconds: DURATION, seed: data.seed }));
+  let voice = null, voiceSeconds = 0;
   if (format === "social") {
-    audio = join(tmp, "sound.wav");
-    writeFileSync(audio, synthesize(cues, { seconds: DURATION, seed: data.seed }));
     voice = await voiceover(data.story.voiceover, join(tmp, "voice.mp3"));
     if (voice) voiceSeconds = await probeSeconds(voice);
   }
 
-  const out = resolve(a.out || join(dir, format === "social" ? "banner-social.mp4" : "banner.mp4"));
   const blend = N > 1 ? `tmix=frames=${N},select='not(mod(n+1\\,${N}))',setpts=N/(${FPS}*TB),` : "";
-  let crf = F.crf, size = 0;
-  for (;;) {
-    const argv = ["-y", "-loglevel", "error", "-framerate", String(FPS * N), "-i", join(tmp, "f%05d.jpg")];
-    if (audio) argv.push("-i", audio);
-    if (voice) argv.push("-i", voice);
-    // JPEG frames are full-range BT.601: convert to the limited-range BT.709 every player expects.
-    const video = `${blend}scale=in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p`;
-    if (voice) {
-      // The voice starts at 0.4 s and must end before the end card; long reads are sped up slightly.
-      const tempo = Math.min(1.15, Math.max(1, voiceSeconds / 13.6));
-      argv.push("-filter_complex",
-        `[0:v]${video}[v];` +
-        `[1:a]volume=0.6[bed];[2:a]atempo=${tempo.toFixed(3)},adelay=400|400,apad,asplit=2[vo1][vo2];` +
-        `[bed][vo1]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=300[duck];` +
-        `[duck][vo2]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
-        "-map", "[v]", "-map", "[a]");
-    } else argv.push("-vf", video);
-    argv.push(
-      "-r", String(FPS), "-c:v", "libx264", "-preset", "slow", "-profile:v", "high", "-crf", String(crf),
-      "-maxrate", format === "social" ? "6000k" : "1700k", "-bufsize", format === "social" ? "12000k" : "3400k",
-      "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv", "-pix_fmt", "yuv420p",
-      "-movflags", "+faststart", "-g", String(FPS * 2), "-t", String(DURATION),
-    );
-    if (audio) argv.push("-c:a", "aac", "-b:a", "160k", "-ar", "48000", ...(voice ? [] : ["-map", "0:v", "-map", "1:a"]));
-    else argv.push("-an");
-    argv.push(out);
-    await run("ffmpeg", argv);
-    size = statSync(out).size;
-    if (size <= F.maxBytes || crf >= 32) break;
-    crf += 2;
-  }
-  const result = { out, template: data.template, format, bytes: size, crf, width: F.width, height: F.height, fps: FPS, seconds: DURATION, blur: N, cues: cues.length, voice: voice ? Number(voiceSeconds.toFixed(2)) : null };
+  /** Encode the frames at one size; raises the CRF until the file fits. */
+  const encode = async (out, E, sound) => {
+    let crf = E.crf, size = 0;
+    for (;;) {
+      const argv = ["-y", "-loglevel", "error", "-framerate", String(FPS * N), "-i", join(tmp, "f%05d.jpg")];
+      // JPEG frames are full-range BT.601: convert to the limited-range BT.709 every player expects.
+      const video = `${blend}scale=${E.width}:${E.height}:flags=lanczos:in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p`;
+      if (sound && voice) {
+        // The voice starts at 0.4 s and must end before the end card; long reads are sped up slightly.
+        const tempo = Math.min(1.15, Math.max(1, voiceSeconds / 13.6));
+        argv.push("-i", audio, "-i", voice, "-filter_complex",
+          `[0:v]${video}[v];` +
+          `[1:a]volume=0.6[bed];[2:a]atempo=${tempo.toFixed(3)},adelay=400|400,apad,asplit=2[vo1][vo2];` +
+          `[bed][vo1]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=300[duck];` +
+          `[duck][vo2]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
+          "-map", "[v]", "-map", "[a]");
+      } else if (sound) {
+        argv.push("-i", audio, "-filter_complex", `[0:v]${video}[v];[1:a]loudnorm=I=-16:TP=-1.5:LRA=11[a]`, "-map", "[v]", "-map", "[a]");
+      } else argv.push("-vf", video);
+      argv.push(
+        "-r", String(FPS), "-c:v", "libx264", "-preset", "slow", "-profile:v", "high", "-crf", String(crf),
+        "-maxrate", E.maxrate, "-bufsize", `${parseInt(E.maxrate, 10) * 2}k`,
+        "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv", "-pix_fmt", "yuv420p",
+        "-movflags", "+faststart", "-g", String(FPS * 2), "-t", String(DURATION),
+      );
+      argv.push(...(sound ? ["-c:a", "aac", "-b:a", "192k", "-ar", "48000"] : ["-an"]), out);
+      await run("ffmpeg", argv);
+      size = statSync(out).size;
+      if (size <= E.maxBytes || crf >= 32) return { bytes: size, crf };
+      crf += 2;
+    }
+  };
+
+  const out = resolve(a.out || join(dir, format === "social" ? "banner-social.mp4" : "banner.mp4"));
+  const main = await encode(out, format === "social" ? F.social : F.site, format === "social");
+  const result = { out, template: data.template, format, ...main, width: (format === "social" ? F.social : F.site).width, height: (format === "social" ? F.social : F.site).height, fps: FPS, seconds: DURATION, blur: N, cues: cues.length, voice: voice ? Number(voiceSeconds.toFixed(2)) : null };
   if (format === "wide") {
     const posterOut = resolve(a.poster || join(dir, "poster.webp"));
     writeFileSync(posterOut, Buffer.from(webp, "base64"));
     Object.assign(result, { poster: posterOut, poster_bytes: statSync(posterOut).size });
+    if (a["social-out"]) {
+      const socialOut = resolve(a["social-out"]);
+      const s = await encode(socialOut, F.social, true);
+      result.social = { out: socialOut, ...s, width: F.social.width, height: F.social.height };
+    }
   }
   await done();
   if (errors.length) console.error("page errors:", errors.join(" | "));
