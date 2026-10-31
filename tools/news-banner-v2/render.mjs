@@ -2,18 +2,17 @@
 /**
  * S3DAT News banner engine — renders one story banner from stories/.../spec.json.
  *
- *   node render.mjs <story-dir> [--format wide|social] [--out file.mp4] [--poster poster.webp]
- *                   [--social-out wide-social.mp4] [--sheet sheet.jpg] [--template name] [--blur n]
- *                   [--frame s] [--frames a,b,c]
+ *   node render.mjs <story-dir> [--format wide|hd|social] [--out file.mp4] [--poster poster.webp]
+ *                   [--sheet sheet.jpg] [--template name] [--blur n] [--frame s] [--frames a,b,c]
  *
- * wide: laid out at 1080x608 CSS px and rendered at 1920x1080 device pixels (deviceScaleFactor 16/9).
- *   The site banner is that render scaled to 1080x608: 30 fps, 8 s, H.264, silent, at most 1.6 MB, plus
- *   a WebP poster. --social-out also keeps the full 1920x1080 render with the synthesised soundtrack,
- *   for X, Threads, Bluesky, Mastodon and Substack.
- * social: 1080x1920 (9:16), 15 s, for Facebook, Instagram, LinkedIn and Pinterest: the banner in a
- *   centred 4:5 frame, then fact cards and an end card, with a Fish Audio voice-over (FISH_API_KEY,
+ * wide (site): 1080x608, 30 fps, 8 s, H.264, silent, at most 1.6 MB, plus a WebP poster.
+ * hd (X, Threads, Bluesky, Mastodon, Substack): the same layout rendered at 1920x1080 device pixels
+ *   (deviceScaleFactor 16/9), with the synthesised soundtrack.
+ * social (Facebook, Instagram, LinkedIn, Pinterest): 1080x1920 (9:16), 15 s: the banner in a centred
+ *   4:5 frame, then fact cards and an end card, with a Fish Audio voice-over (FISH_API_KEY,
  *   FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as [calm].
- * Motion blur: every frame is the average of --blur samples across a 180° shutter (wide 12, social 8).
+ * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8, 6 for
+ * the 15-second cut).
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
  */
 import { spawn } from "node:child_process";
@@ -26,15 +25,12 @@ import { synthesize } from "./audio.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const FPS = 30;
 const FORMATS = {
-  wide: {
-    width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 12,
-    site: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, maxrate: "1700k" },
-    social: { width: 1920, height: 1080, maxBytes: 24_000_000, crf: 17, maxrate: "16000k" },
-  },
-  social: {
-    width: 1080, height: 1920, stageHeight: 1350, scale: 1, seconds: 15, blur: 8,
-    social: { width: 1080, height: 1920, maxBytes: 24_000_000, crf: 18, maxrate: "12000k" },
-  },
+  wide: { layout: "wide", width: 1080, height: 608, scale: 1, seconds: 8, blur: 8, sound: false,
+    encode: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, maxrate: "1700k" } },
+  hd: { layout: "wide", width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 8, sound: true,
+    encode: { width: 1920, height: 1080, maxBytes: 24_000_000, crf: 17, maxrate: "16000k" } },
+  social: { layout: "social", width: 1080, height: 1920, stageHeight: 1350, scale: 1, seconds: 15, blur: 6, sound: true,
+    encode: { width: 1080, height: 1920, maxBytes: 24_000_000, crf: 18, maxrate: "12000k" } },
 };
 export const TEMPLATES = ["paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith"];
 const MOODS = ["up", "down", "shock", "calm"];
@@ -139,7 +135,7 @@ async function buildData(dir, override, format) {
   if (headline.length < 1 || headline.length > 3) throw new Error("headline needs 1-3 lines");
   return {
     template,
-    format: { name: format, width: FORMATS[format].width, height: FORMATS[format].height, stageHeight: FORMATS[format].stageHeight },
+    format: { name: FORMATS[format].layout, width: FORMATS[format].width, height: FORMATS[format].height, stageHeight: FORMATS[format].stageHeight },
     story: readStory(dir),
     headline,
     accent: Number.isInteger(spec.accent) ? spec.accent : headline.length - 1,
@@ -238,7 +234,7 @@ function run(cmd, argv) {
 async function main() {
   const a = args(process.argv.slice(2));
   const dir = resolve(a._[0] || ".");
-  const format = a.format === "social" ? "social" : "wide";
+  const format = FORMATS[a.format] ? a.format : "wide";
   const F = FORMATS[format];
   const data = await buildData(dir, a.template, format);
   const chromium = await loadChromium();
@@ -262,7 +258,7 @@ async function main() {
       const cols = Math.min(4, times.length), rows = Math.ceil(times.length / cols);
       const list = join(tmp, "q.txt");
       writeFileSync(list, times.map((_, i) => `file 'q${i}.jpg'`).join("\n"));
-      const tw = format === "social" ? 360 : 540, th = Math.round((tw * F.height) / F.width);
+      const tw = F.layout === "social" ? 360 : 540, th = Math.round((tw * F.height) / F.width);
       await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", list, "-vf", `scale=${tw}:${th},tile=${cols}x${rows}:padding=4:color=gray`, "-frames:v", "1", resolve(a.sheet || join(dir, "frames.jpg"))]);
     }
     await done();
@@ -299,12 +295,12 @@ async function main() {
     const picks = Array.from({ length: 16 }, (_, i) => Math.min(frames - 1, Math.round((i * DURATION / 16 + 0.25) * FPS)) * N + Math.floor(N / 2));
     const list = join(tmp, "sheet.txt");
     writeFileSync(list, picks.map((p) => `file 'f${String(p).padStart(5, "0")}.jpg'`).join("\n"));
-    const tw = format === "social" ? 270 : 360, th = Math.round((tw * F.height) / F.width);
+    const tw = F.layout === "social" ? 270 : 360, th = Math.round((tw * F.height) / F.width);
     await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", list, "-vf", `scale=${tw}:${th},tile=4x4`, "-frames:v", "1", resolve(a.sheet)]);
   }
 
   const audio = join(tmp, "sound.wav");
-  writeFileSync(audio, synthesize(cues, { seconds: DURATION, seed: data.seed }));
+  if (F.sound) writeFileSync(audio, synthesize(cues, { seconds: DURATION, seed: data.seed }));
   let voice = null, voiceSeconds = 0;
   if (format === "social") {
     voice = await voiceover(data.story.voiceover, join(tmp, "voice.mp3"));
@@ -318,7 +314,7 @@ async function main() {
     for (;;) {
       const argv = ["-y", "-loglevel", "error", "-framerate", String(FPS * N), "-i", join(tmp, "f%05d.jpg")];
       // JPEG frames are full-range BT.601: convert to the limited-range BT.709 every player expects.
-      // The device-pixel render is 1920x1081; square pixels keep players from stretching it back.
+      // The hd render is 1920x1081 device pixels; square pixels keep players from stretching it back.
       const video = `${blend}scale=${E.width}:${E.height}:flags=lanczos:in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p,setsar=1`;
       if (sound && voice) {
         // The voice starts at 0.4 s and must end before the end card; long reads are sped up slightly.
@@ -346,18 +342,13 @@ async function main() {
     }
   };
 
-  const out = resolve(a.out || join(dir, format === "social" ? "banner-social.mp4" : "banner.mp4"));
-  const main = await encode(out, format === "social" ? F.social : F.site, format === "social");
-  const result = { out, template: data.template, format, ...main, width: (format === "social" ? F.social : F.site).width, height: (format === "social" ? F.social : F.site).height, fps: FPS, seconds: DURATION, blur: N, cues: cues.length, voice: voice ? Number(voiceSeconds.toFixed(2)) : null };
+  const out = resolve(a.out || join(dir, format === "wide" ? "banner.mp4" : `banner-${format}.mp4`));
+  const encoded = await encode(out, F.encode, F.sound);
+  const result = { out, template: data.template, format, ...encoded, width: F.encode.width, height: F.encode.height, fps: FPS, seconds: DURATION, blur: N, cues: cues.length, voice: voice ? Number(voiceSeconds.toFixed(2)) : null };
   if (format === "wide") {
     const posterOut = resolve(a.poster || join(dir, "poster.webp"));
     writeFileSync(posterOut, Buffer.from(webp, "base64"));
     Object.assign(result, { poster: posterOut, poster_bytes: statSync(posterOut).size });
-    if (a["social-out"]) {
-      const socialOut = resolve(a["social-out"]);
-      const s = await encode(socialOut, F.social, true);
-      result.social = { out: socialOut, ...s, width: F.social.width, height: F.social.height };
-    }
   }
   await done();
   if (errors.length) console.error("page errors:", errors.join(" | "));

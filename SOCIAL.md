@@ -1,38 +1,38 @@
 # S3DAT News on social media
 
 Every story can leave the site as a video post on every channel connected to Buffer. You write
-the copy in `story.json` (`social`, below). GitHub Actions renders the videos when the story is
-published, and `scripts/social.py` posts the best fresh story every five hours. Nobody posts by
-hand.
+the copy in `story.json` (`social`, below). Five times a day the workflow `Post to social media`
+picks the best fresh story, renders its two videos and posts them. Nobody posts by hand.
 
 ## The videos
 
-Two cuts of every story, rendered by `tools/news-banner-v2` when the story is published:
+Two cuts of the story being posted, rendered by `tools/news-banner-v2` at posting time (only the
+five stories a day that go out, which keeps GitHub Actions within its monthly minutes):
 
 | Cut | Size | Length | Sound | Goes to |
 | --- | --- | --- | --- | --- |
 | Wide | 1920×1080 (16:9) | 8 s loop | the banner's soundtrack | X, Threads, Bluesky, Mastodon, Substack |
 | Tall | 1080×1920 (9:16) | 15 s | voice-over over the soundtrack | Facebook, Instagram, LinkedIn, Pinterest (YouTube Shorts and TikTok when connected) |
 
-- The wide cut is the site banner rendered at full HD with 12-sample motion blur; the site gets
-  the same render scaled to 1080×608.
+- The wide cut is the site banner's layout rendered at full HD with its soundtrack.
 - The tall cut: 0–8 s the banner in a 4:5 frame centred in the picture (the part every feed shows
   uncropped), 8–14 s up to three spec-sheet facts as full-screen cards (facts with numbers first),
   14–15 s the S3DAT News end card with `news.s3dat.com`.
 - The voice is Ethan (Fish Audio, `FISH_VOICE_ID`), mixed over the soundtrack, which ducks under
   him. Loudness is normalised to −14 LUFS.
 - Both cuts are uploaded to `news.s3dat.com/news-media/news-social/<slug>/` for Buffer to fetch,
-  and deleted there after 30 days. The run artifact also keeps them.
+  and deleted there after 30 days. The run artifact keeps them for a week.
 
 ## When we post
 
-- One story every five hours, on every channel at once: about five posts a day, around the
-  clock, so Europe, the Americas and Asia each see some in their daytime.
-- The workflow `Post to social media` runs hourly and posts when the last post is five hours
-  old. It picks the strongest story published in the last 12 hours that has not been posted:
+- Five slots a day, five hours apart, on every channel at once: 01:00, 06:00, 11:00, 16:00 and
+  21:00 UTC (04:00, 09:00, 14:00, 19:00 and 00:00 in Istanbul). A day has 24 hours, so one gap is
+  four. The slots reach the European morning, noon and evening and the US East Coast morning,
+  afternoon and evening.
+- Each slot picks the strongest story published in the last 12 hours that has not been posted:
   analysis first, then story and explained, then brief; the newest first; and not the same lead
   company as the previous post when there is a choice. Stories that miss the window are not
-  posted later.
+  posted later. Nothing is posted within three hours of the previous post.
 - `social/state.json` records what went out, when, and any errors. Manual runs default to a dry
   run that only prints the posts.
 

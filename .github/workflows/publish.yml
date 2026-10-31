@@ -93,10 +93,6 @@ jobs:
           PY
       - name: Publish validated stories
         env:
-          CHROME_CHANNEL: chrome
-          # Voice-over for the 9:16 social cut. FISH_VOICE_ID (a repository variable) picks the voice.
-          FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
-          FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
           NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
           NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}
           STORY_FOLDERS: ${{ steps.stories.outputs.folders }}
@@ -107,20 +103,8 @@ jobs:
           import subprocess
           import sys
 
-          from pathlib import Path
-
-          folders = json.loads(os.environ['STORY_FOLDERS'])
-          for folder in folders:
+          for folder in json.loads(os.environ['STORY_FOLDERS']):
               subprocess.run([sys.executable, 'scripts/publish.py', folder], check=True)
-          # Then the social cuts for scripts/social.py: the 9:16 render takes several minutes, so it
-          # runs once the stories are live. A failure only means a story is not posted to social media.
-          subprocess.run([sys.executable, 'scripts/render.py', '--tall', *folders])
-          for folder in folders:
-              slug = Path(folder).name
-              social = subprocess.run([sys.executable, 'scripts/publish.py', '--social', slug,
-                                       '--wide', f'out/banners/{slug}-wide.mp4', '--tall', f'out/banners/{slug}-tall.mp4'])
-              if social.returncode:
-                  print(f'::warning::Social cuts for {slug} were not uploaded; it will not be posted to social media')
           PY
       - name: Keep rendered banners for download
         if: always() && steps.stories.outputs.folders != '[]'

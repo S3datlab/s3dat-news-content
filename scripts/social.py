@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
-"""Post one story to every connected Buffer channel, at most once every five hours.
+"""Post one story to every connected Buffer channel; .github/workflows/social.yml runs it five
+times a day, five hours apart (SOCIAL.md).
 
-.github/workflows/social.yml runs this every hour. Each run:
+  python scripts/social.py --pick      choose the story; writes slug= and folder= to $GITHUB_OUTPUT
+  (the workflow then renders and uploads its two social cuts)
+  python scripts/social.py --story SLUG [--dry-run] [--force]
+                                       post it now and record it in social/state.json
+  python scripts/social.py --dry-run --offline
+                                       print the posts for sample channels, no API key
 
-1. reads social/state.json (what went out, and when) and reports publishing errors Buffer
-   recorded for the previous post;
-2. stops if the last post is less than five hours old (20 minutes of slack for the cron);
-3. picks the strongest story published in the last 12 hours that has not been posted, has a
-   social block, is live on news.s3dat.com and has both social cuts uploaded: analysis first,
-   then story and explained, then brief; newest first; not the same lead company as the
-   previous post when there is a choice;
-4. posts it now to each channel through the Buffer GraphQL API (SOCIAL.md has the reasons):
-     16:9 cut  X (no link), Threads, Bluesky, Mastodon, Substack
-     9:16 cut  Facebook and Instagram reels, LinkedIn, Pinterest, and YouTube or TikTok if connected
-5. records the result in social/state.json, which the workflow commits.
+--pick reports publishing errors Buffer recorded for the previous post, then picks the
+strongest story published in the last 12 hours that has not been posted, has a social block
+and is live on news.s3dat.com: analysis first, then story and explained, then brief; newest
+first; not the same lead company as the previous post when there is a choice. It picks nothing
+within three hours of the last post, so a delayed or repeated run cannot post twice.
 
-  python scripts/social.py [--dry-run] [--offline] [--story SLUG] [--force]
+Posting goes through the Buffer GraphQL API:
+  16:9 cut  X (no link), Threads, Bluesky, Mastodon, Substack
+  9:16 cut  Facebook and Instagram reels, LinkedIn, Pinterest, and YouTube or TikTok if connected
 
 BUFFER_API_KEY is required except with --offline. PINTEREST_BOARD picks the board by name or
 id (default: the first board whose name contains "s3dat" or "news"). SOCIAL_AI_LABEL=0 turns
@@ -30,6 +32,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -38,8 +41,7 @@ STATE = ROOT / "social" / "state.json"
 SITE = "https://news.s3dat.com"
 API = "https://api.buffer.com"
 AGENT = "S3DAT-News-Social/1.0 (+https://news.s3dat.com/about)"
-INTERVAL = dt.timedelta(hours=5)
-SLACK = dt.timedelta(minutes=20)
+MIN_GAP = dt.timedelta(hours=3)
 WINDOW = dt.timedelta(hours=12)
 RANK = {"analysis": 3, "story": 2, "explained": 2, "brief": 1}
 WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack"}
@@ -82,7 +84,8 @@ def stories() -> list[dict]:
         brands = spec.get("brands") if isinstance(spec, dict) else None
         lead = str(brands[0].get("name") or brands[0].get("icon") or "").lower() if brands and isinstance(brands[0], dict) else ""
         found.append({"slug": story["slug"], "title": story.get("title", ""), "kind": story.get("kind", "story"),
-                      "published": published, "social": social, "lead": lead})
+                      "published": published, "social": social, "lead": lead,
+                      "folder": str(path.parent.relative_to(ROOT))})
     return found
 
 
@@ -103,9 +106,12 @@ def reachable(url: str, method: str = "HEAD") -> bool:
         return False
 
 
-def live(story: dict) -> bool:
-    return (reachable(story_url(story["slug"]), "GET") and reachable(media_url(story["slug"], "wide"))
-            and reachable(media_url(story["slug"], "tall")))
+def media_ready(slug: str, tries: int = 4) -> bool:
+    for attempt in range(tries):
+        if reachable(media_url(slug, "wide")) and reachable(media_url(slug, "tall")):
+            return True
+        time.sleep(10 * (attempt + 1))
+    return False
 
 
 def pick(candidates: list[dict], state: dict, at: dt.datetime) -> dict | None:
@@ -116,9 +122,9 @@ def pick(candidates: list[dict], state: dict, at: dt.datetime) -> dict | None:
     # Same lead company as the previous post goes to the back of the line.
     fresh.sort(key=lambda s: bool(last_lead) and s["lead"] == last_lead)
     for story in fresh:
-        if live(story):
+        if reachable(story_url(story["slug"]), "GET"):
             return story
-        warn(f"{story['slug']} is not live yet or its social cuts are missing; skipped")
+        warn(f"{story['slug']} is not live on the site; skipped")
     return None
 
 
@@ -284,12 +290,22 @@ def check_previous(buffer: Buffer, state: dict, at: dt.datetime) -> int:
 
 
 # ------------------------------------------------------------------ main
+def output(**values: str) -> None:
+    target = os.environ.get("GITHUB_OUTPUT")
+    lines = "".join(f"{k}={v}\n" for k, v in values.items())
+    if target:
+        with open(target, "a", encoding="utf-8") as handle:
+            handle.write(lines)
+    print(lines, end="")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--pick", action="store_true", help="choose the next story for the workflow")
+    parser.add_argument("--story", metavar="SLUG", help="post this story")
     parser.add_argument("--dry-run", action="store_true", help="print the posts, send nothing, keep the state")
     parser.add_argument("--offline", action="store_true", help="with --dry-run: sample channels, no API key")
-    parser.add_argument("--story", metavar="SLUG", help="post this story instead of picking one")
-    parser.add_argument("--force", action="store_true", help="ignore the five-hour spacing")
+    parser.add_argument("--force", action="store_true", help="ignore the three-hour guard and earlier posts")
     args = parser.parse_args()
     at = now()
     state = load_state()
@@ -298,16 +314,26 @@ def main() -> int:
         print("BUFFER_API_KEY is required", file=sys.stderr)
         return 1
     buffer = Buffer(key) if key else None
-    failed = check_previous(buffer, state, at) if buffer and not args.dry_run else 0
-
-    last = parse_time(state["lastPostAt"]) if state["lastPostAt"] else None
-    if last and at - last < INTERVAL - SLACK and not (args.force or args.dry_run):
-        print(f"Last post at {iso(last)}; the next one is due after {iso(last + INTERVAL - SLACK)}.")
-        if failed and not args.dry_run:
-            save_state(state)
-        return 1 if failed else 0
-
     candidates = stories()
+
+    if args.pick:
+        failed = check_previous(buffer, state, at) if buffer else 0
+        if failed:
+            save_state(state)
+        last = parse_time(state["lastPostAt"]) if state["lastPostAt"] else None
+        if last and at - last < MIN_GAP and not args.force:
+            print(f"Last post at {iso(last)}, less than {MIN_GAP} ago; nothing picked.")
+            output(slug="", folder="")
+            return 0
+        story = pick(candidates, state, at)
+        if not story:
+            print("No fresh story to post.")
+            output(slug="", folder="")
+            return 0
+        print(f"Picked {story['slug']} ({story['kind']}, published {iso(story['published'])})")
+        output(slug=story["slug"], folder=story["folder"])
+        return 0
+
     if args.story:
         story = next((s for s in candidates if s["slug"] == args.story), None)
         if not story:
@@ -316,13 +342,16 @@ def main() -> int:
         if any(p["slug"] == story["slug"] for p in state["posts"]) and not args.force:
             print(f"{story['slug']} was already posted; use --force to post it again", file=sys.stderr)
             return 1
+    elif args.dry_run and args.offline:
+        story = max(candidates, key=lambda s: s["published"], default=None)
+        if not story:
+            print("No story with a social block yet.")
+            return 0
     else:
-        story = pick(candidates, state, at)
-    if not story:
-        print("No fresh story to post.")
-        if failed:
-            save_state(state)
-        return 1 if failed else 0
+        parser.error("use --pick or --story SLUG")
+    if not args.offline and not media_ready(story["slug"]):
+        print(f"{story['slug']}: the social cuts are not reachable on {SITE}", file=sys.stderr)
+        return 1
 
     if args.offline:
         channels = [{"id": f"sample-{s}", "service": s, "name": s, "metadata": {"boards": [{"serviceId": "b1", "name": "S3DAT News"}]}}
@@ -330,6 +359,7 @@ def main() -> int:
     else:
         channels = buffer.channels()
     results, organizations = {}, sorted({c.get("organizationId") for c in channels if c.get("organizationId")})
+    failed = 0
     print(f"Posting {story['slug']} ({story['kind']}, published {iso(story['published'])})")
     for channel in channels:
         name = f"{channel['service']}:{channel.get('displayName') or channel['name']}"
@@ -355,8 +385,7 @@ def main() -> int:
     if args.dry_run:
         return 0
     if not any(r["id"] for r in results.values()):
-        # Nothing went out (rate limit, outage): keep the slot open for the next run.
-        save_state(state)
+        # Nothing went out (rate limit, outage): the next slot picks again.
         return 1
     state["lastPostAt"] = iso(at)
     state["posts"].append({"slug": story["slug"], "lead": story["lead"], "at": iso(at), "organizations": organizations,
