@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "GPT-6 ROSALIND",
+    "LIMITED ACCESS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 51,
+  "sources": {}
+}

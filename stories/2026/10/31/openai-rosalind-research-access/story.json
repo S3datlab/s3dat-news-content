@@ -1,0 +1,45 @@
+{
+  "slug": "openai-rosalind-research-access",
+  "kind": "story",
+  "topic": "models",
+  "title": "OpenAI rolls out GPT-6 Rosalind Research through restricted access",
+  "titleAccent": "restricted access",
+  "dek": "OpenAI is bringing GPT-6 Rosalind Research to approved life-science customers, with organization and user approvals rather than a general ChatGPT release.",
+  "publishedAt": "2026-10-31T04:03:59Z",
+  "updatedAt": "2026-10-31T04:03:59Z",
+  "whatHappened": [
+    "OpenAI's October 30, 2026 release notes announce a limited rollout of GPT-6 Rosalind Research in Work, Codex and the API, not the Chat tab.",
+    "Research approval is required for both the organization and its users; Discovery approval does not grant it. Enterprise access starts in a two-week Admin Preview and is off by default.",
+    "The October 30 system-card addendum says GPT-Rosalind-6 uses GPT-6 Astra weights without additional training data or post-training for this release."
+  ],
+  "whyItMatters": [
+    "For research teams, access governance is part of deployment: OpenAI requires approved enterprise users to have a legitimate need and qualified human review before outputs inform consequential decisions.",
+    "Existing GPT-5.5 Rosalind Research workflows remain available, according to the release notes. Teams can evaluate the new deployment without assuming the older option has been withdrawn.",
+    "This is a different access configuration for an existing model foundation, not evidence that OpenAI has newly trained a biology-only model or demonstrated a clinical outcome."
+  ],
+  "take": [
+    "The practical advance is permissioned access to an existing general model foundation for research workflows, not a replacement for scientific validation.",
+    "Labs should judge it by reproducible assistance on their own tasks and the cost of oversight, rather than treating model availability as proof of faster drug discovery."
+  ],
+  "openQuestions": [
+    "OpenAI has not announced general availability or a date when all eligible research organizations will receive access."
+  ],
+  "sources": [
+    {
+      "title": "Model release notes, October 30, 2026",
+      "publisher": "OpenAI",
+      "url": "https://help.openai.com/en/articles/9624314-model-release-notes"
+    },
+    {
+      "title": "GPT-Rosalind-6 System Card Addendum, October 30, 2026",
+      "publisher": "OpenAI",
+      "url": "https://deploymentsafety.openai.com/gpt-rosalind-6"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
