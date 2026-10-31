@@ -301,6 +301,13 @@ def validate_format2(story):
     hedges = len(re.findall(r"\brather than\b|,\s*not\s|\bnot just\b|\bnot only\b", all_text, re.IGNORECASE))
     if hedges > 3:
         errors.append(f'{hedges} "rather than / not X" constructions; say what it is, keep at most three')
+    body_text = " ".join(str(p.get("text", "")) for p in body if isinstance(p, dict))
+    advice = len(re.findall(r"\bwe would\b|\bwe'd\b|\bour (?:suggested|proposed|recommended)\b|\bteams should\b|\bdevelopers should\b", body_text, re.IGNORECASE))
+    if advice > 2:
+        errors.append(f'the body gives advice {advice} times ("we would", "teams should"...); report in the body, advise in buildersNote or ourRead')
+    for i, src in enumerate(sources):
+        if isinstance(src, dict) and PROCESS_RE.search(str(src.get("title", ""))):
+            errors.append(f"sources[{i}].title: drop the research note; the date field records when")
     words = word_count(spoken)
     lo, hi = WORDS.get(kind, (100, 1500))
     if not lo <= words <= hi:

@@ -65,14 +65,17 @@ numerate, a little dry. English only. The validator rejects copy that breaks the
    `title` and the banner headline in `spec.json` say the same thing.
 8. **The spec sheet** is what a reader would put in a table: who, what, when, price, limits,
    status. Values are short and exact; at least one is a number.
-9. **The builder's note** gives an action or a number: "migrate before 1 December", "costs
+9. **The body reports; the boxes advise.** Body paragraphs explain what happened and what it
+   means. Recommendations ("we would", "teams should") belong in the builder's note and our
+   read; the body may carry at most two.
+10. **The builder's note** gives an action or a number: "migrate before 1 December", "costs
    about $1,100 a month at 50,000 searches a day", "test it on the target phone". Never generic
    advice such as "teams should evaluate carefully".
-10. **Our read** takes a position in one paragraph, says "we", and ends with what would change
+11. **Our read** takes a position in one paragraph, says "we", and ends with what would change
     our mind. The site labels it as opinion.
-11. **Paraphrase.** Never copy paragraphs from sources. At most one short quote per story, in
+12. **Paraphrase.** Never copy paragraphs from sources. At most one short quote per story, in
     quotation marks, attributed. No invented quotes, people, numbers, dates or links.
-12. S3DAT's own products appear only when genuinely relevant, and the link is disclosed.
+13. S3DAT's own products appear only when genuinely relevant, and the link is disclosed.
 
 Before and after:
 
