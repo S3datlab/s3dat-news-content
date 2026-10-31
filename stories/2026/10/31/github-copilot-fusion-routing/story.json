@@ -4,44 +4,27 @@
   "topic": "dev-tools",
   "title": "GitHub Copilot Fusion makes model routing a developer-tool feature",
   "titleAccent": "model routing",
-  "dek": "GitHub’s October 28 Fusion launch shifts model selection into the coding assistant, making routing, review and cost controls part of the product teams must evaluate.",
+  "dek": "Fusion delegates model selection to GitHub; Claude Code’s advisor keeps the second model configurable, creating different tests for cost and review.",
   "publishedAt": "2026-10-31T04:21:43Z",
   "updatedAt": "2026-10-31T04:21:43Z",
-  "whatHappened": [
-    "GitHub made Copilot Fusion generally available on October 28, 2026, across Visual Studio Code, Copilot CLI, the Copilot app and JetBrains IDEs.",
-    "Instead of selecting a named model, users select an effort level; Fusion chooses models and can run a single-model answer, a draft-and-escalate workflow or a draft-and-critique workflow.",
-    "GitHub says Fusion respects organization model policies and bills each model used at its standard rate.",
-    "For comparison as of October 31, Anthropic documents Claude Code’s experimental advisor tool: users choose a second model, and Claude decides when to consult it. The tool requires the Anthropic API and is not available through the listed third-party cloud providers."
-  ],
-  "whyItMatters": [
-    "The competing approaches delegate different decisions: Fusion selects models and execution patterns, while Claude Code’s advisor lets the developer choose the adviser but delegates when to ask it. Teams should test both against recurring tasks rather than assume more model calls mean better code.",
-    "GitHub’s documentation warns that discarding a draft does not automatically undo workspace edits it already made. A reviewed final answer therefore does not replace inspecting the actual diff and running tests.",
-    "Fusion’s model pool and execution patterns can change. For companies standardizing a coding workflow, a stable evaluation suite and policy controls matter more than a one-time model preference."
-  ],
-  "take": [
-    "Routing is becoming a competitive layer of the coding product, not merely a dropdown beside the prompt.",
-    "The useful procurement test is cost per accepted change, including review time and failed attempts, rather than token savings alone.",
-    "A company choosing between automatic orchestration and a configured adviser should favor the approach it can audit and reproduce on its own repository."
-  ],
-  "openQuestions": [
-    "How do Fusion and Claude Code’s advisor compare on identical repositories, task definitions, budgets and acceptance tests?",
-    "How consistently will a team’s results hold as the routing policy and available model pool evolve?"
-  ],
   "sources": [
     {
       "title": "Copilot Fusion general availability, October 28, 2026",
       "publisher": "GitHub",
-      "url": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/"
+      "url": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/",
+      "date": "2026-10-28"
     },
     {
-      "title": "About GitHub Copilot Fusion; checked October 31, 2026",
+      "title": "About GitHub Copilot Fusion",
       "publisher": "GitHub",
-      "url": "https://docs.github.com/en/copilot/concepts/models/copilot-fusion"
+      "url": "https://docs.github.com/en/copilot/concepts/models/copilot-fusion",
+      "date": "2026-10-31"
     },
     {
-      "title": "Escalate hard decisions with the advisor tool; checked October 31, 2026",
+      "title": "Escalate hard decisions with the advisor tool",
       "publisher": "Anthropic",
-      "url": "https://code.claude.com/docs/en/advisor"
+      "url": "https://code.claude.com/docs/en/advisor",
+      "date": "2026-10-31"
     }
   ],
   "video": {
@@ -49,5 +32,114 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-28",
+  "lede": "GitHub made Copilot Fusion generally available on October 28, introducing automatic model selection and orchestration across its coding tools. The release gives teams a reason to compare how assistants delegate work, account for model costs and preserve reviewable changes.",
+  "facts": [
+    {
+      "label": "Released",
+      "value": "28 Oct 2026; generally available"
+    },
+    {
+      "label": "Tools",
+      "value": "VS Code, Copilot CLI, Copilot app and JetBrains IDEs"
+    },
+    {
+      "label": "Selectable effort",
+      "value": "Standard, High and Max"
+    },
+    {
+      "label": "Execution patterns",
+      "value": "Single, cascade and critique"
+    },
+    {
+      "label": "Billing",
+      "value": "Each model used; no separate Fusion charge"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Model selection becomes part of the tool",
+      "text": "GitHub's launch announcement asks users to choose an effort level while Fusion selects the models and execution pattern. The launch describes a direct answer, a draft that can be escalated, and a draft reviewed before revision. For a developer, the purchased behavior is therefore broader than access to one named model. Our reason for revisiting the release is the choice it creates for teams setting assistant defaults. We would compare the complete workflow on recurring maintenance tasks before changing a shared configuration. A familiar model name alone no longer describes that workflow."
+    },
+    {
+      "heading": "The closest alternative delegates a different decision",
+      "text": "Anthropic's experimental Claude Code advisor tool lets the user choose a second model while Claude decides when to consult it. Its documentation says the advisor receives the conversation, including tool calls and results, and returns guidance to the main model. That is a useful comparison because it separates two choices: who selects the adviser and who decides when advice is needed. We would favor explicit configuration when a team wants to hold the pairing steady during a trial. Automatic selection is worth testing when the team wants less manual switching between tasks."
+    },
+    {
+      "heading": "Compare accepted changes",
+      "text": "Our proposed trial would use the same repository snapshots, task descriptions and acceptance tests for both approaches. Start each attempt in a clean checkout, and save the final diff before reviewing the assistant's explanation. Count an attempt as accepted only after the tests and human review pass. Record rejected attempts as well, since a cheap unsuccessful run still consumes developer time. It gives a procurement team a result tied to work it actually needs to complete."
+    },
+    {
+      "heading": "A discarded draft can leave work behind",
+      "text": "GitHub's documentation warns that discarding a draft does not automatically reverse workspace edits already made during that draft. It also says the model pool can change. We would make both points part of the rollout checklist. A reviewer should inspect every changed file, including files the final explanation does not mention. A recurring test should preserve the chosen effort level and the models reported for that run. If outcomes shift, that record helps distinguish a repository change from a change in the assistant's execution."
+    },
+    {
+      "heading": "Set a budget for the whole attempt",
+      "text": "GitHub bills the models Fusion uses and applies organization model policies to selection. Anthropic describes its advisor as experimental and requiring the Anthropic API, with the listed third-party cloud providers excluded. These constraints belong in the initial eligibility check before a performance trial. Our preferred cost measure is spend per accepted change, accompanied by reviewer minutes and elapsed time. Report those measures separately instead of combining them into a single invented productivity score. A team can then decide whether faster completion justifies extra calls for its particular workload."
+    },
+    {
+      "heading": "Keep a simple baseline",
+      "text": "We would retain a fixed-model workflow alongside the two orchestration approaches throughout the evaluation. Run routine fixes and more involved changes as separate groups so easy tasks cannot hide expensive failures. Include a task with an incorrect initial approach and inspect how each workflow recovers. Give reviewers the acceptance criteria before showing them the tool's explanation. This procedure makes review quality less dependent on how persuasive the final response sounds. It also tests whether an added consultation produces a useful correction that survives the repository's own checks."
+    }
+  ],
+  "buildersNote": "Trial both workflows on clean copies of the same repository. Save model selections, total model spend, final diffs and test results for each attempt; include failed attempts when calculating cost per accepted change.",
+  "comparison": {
+    "caption": "Closest orchestration alternative: GitHub Fusion versus Claude Code’s documented experimental advisor.",
+    "columns": [
+      "Control",
+      "Copilot Fusion",
+      "Claude Code advisor"
+    ],
+    "rows": [
+      [
+        "Model selection",
+        "Fusion chooses the models",
+        "User configures the advisor"
+      ],
+      [
+        "When extra review runs",
+        "Fusion chooses an execution pattern",
+        "Claude decides when to consult"
+      ],
+      [
+        "Availability",
+        "Generally available across listed coding tools",
+        "Experimental; Anthropic API required"
+      ],
+      [
+        "Policy boundary",
+        "Organization and enterprise model policies",
+        "Configured advisor must be allowed"
+      ]
+    ]
+  },
+  "claims": [
+    {
+      "text": "GitHub announced general availability of Copilot Fusion on October 28",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Fusion documentation warns that discarded drafts can leave workspace edits",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Claude Code documents an experimental advisor with a user-selected second model",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Either orchestration approach consistently lowers cost per accepted change on our repositories",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "ourRead": "We see model routing as a coding-tool feature that needs its own acceptance test. Our default would stay with the workflow that produces reviewable changes at a predictable total cost. More model participation is useful only when it improves that outcome. Repeated repository-level trials showing fewer rejected changes and less review time at comparable spend would change our mind in favor of automatic orchestration.",
+  "watching": [
+    "On November 7, 2026, we will check Fusion documentation for changes to routing behavior and draft-edit limitations.",
+    "On November 7, 2026, we will revisit the advisor documentation for availability and configuration changes."
+  ]
 }
