@@ -2,58 +2,40 @@
   "slug": "openai-shared-training-signal",
   "kind": "analysis",
   "topic": "dev-tools",
-  "title": "OpenAI backs a shared training signal, but existing bot controls still matter",
-  "titleAccent": "shared training signal",
-  "dek": "OpenAI plans to honor a common robots.txt training preference, promising simpler publisher controls without replacing today's crawler rules or creating a technical access barrier.",
+  "title": "OpenAI backs a shared robots.txt signal for AI training",
+  "titleAccent": "shared robots.txt signal",
+  "dek": "OpenAI plans to accept a common training preference. Website operators still need separate decisions about training, search discovery and access control.",
   "publishedAt": "2026-10-31T02:29:06Z",
-  "updatedAt": "2026-10-31T02:29:06Z",
-  "whatHappened": [
-    "On October 30, 2026, OpenAI announced that it would honor a shared robots.txt signal for preferences about foundational generative AI training, with implementation planned in the coming months.",
-    "OpenAI says its existing crawler controls will remain in place and describes the cross-provider effort as voluntary; it has not announced an implementation date.",
-    "The linked October 30 proposal defines a purpose-specific __usage_ai-training token using existing robots.txt syntax. The IETF Datatracker lists it as an individual Internet-Draft, explicitly not IETF-endorsed or an adopted standard.",
-    "The draft distinguishes content-use preferences from crawler-access rules. Its policy token does not itself instruct a crawler to stop retrieving pages."
-  ],
-  "whyItMatters": [
-    "Comparison as of October 31: OpenAI's current documentation separates GPTBot training controls from OAI-SearchBot search controls. A publisher can disallow the former while allowing the latter; the proposed shared token adds a cross-provider purpose signal rather than replacing this distinction.",
-    "Anthropic's April 7 crawler documentation, checked October 31, similarly separates ClaudeBot for potential training collection, Claude-SearchBot for search and Claude-User for user-requested retrieval. These provider-specific controls already distinguish uses, but operators must maintain different names across companies; a commonly honored training token could reduce that administrative work.",
-    "For web-platform teams, the draft preserves familiar path-based Allow and Disallow rules and lets existing parsers ignore an unfamiliar policy group. That offers an incremental deployment route, but also means an unsupported consumer may continue behaving exactly as before.",
-    "For publishers and users, preference signaling is not access security: RFC 9309 states that robots.txt is no substitute for protective measures such as authentication. A common signal can clarify intended use without guaranteeing that every recipient follows it or preventing downloads."
-  ],
-  "take": [
-    "The useful change is interoperability, not a new right or a universal block: one recognizable training preference could reduce configuration drift across participating providers.",
-    "Site operators should keep their existing crawler rules until implementation details are documented, and evaluate search visibility separately from training preferences rather than treating all AI traffic as one category.",
-    "The next meaningful test is whether providers document the same precedence rules and observable compliance, because inconsistent interpretation would leave publishers maintaining both a shared signal and the old exceptions."
-  ],
-  "openQuestions": [
-    "When will OpenAI activate support, and what exact behavior will it document when a shared preference conflicts with provider-specific rules?",
-    "How many providers will implement compatible behavior, and how will publishers verify compliance rather than merely record a declared preference?",
-    "The proposal remains work in progress; its final syntax and standards status may change, and this announcement does not establish retroactive removal of training data."
-  ],
   "sources": [
     {
       "title": "Making it easier for websites to express AI training preferences, October 30, 2026",
       "publisher": "OpenAI",
-      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences/"
+      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences/",
+      "date": "2026-10-30"
     },
     {
       "title": "Machine-Readable Training Preference Signal, individual Internet-Draft 00, October 30, 2026",
       "publisher": "IETF Datatracker / Kevin Kelley",
-      "url": "https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/"
+      "url": "https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/",
+      "date": "2026-10-30"
     },
     {
-      "title": "Overview of OpenAI Crawlers; checked October 31, 2026",
+      "title": "Overview of OpenAI Crawlers",
       "publisher": "OpenAI",
-      "url": "https://developers.openai.com/api/docs/bots"
+      "url": "https://developers.openai.com/api/docs/bots",
+      "date": "2026-10-31"
     },
     {
-      "title": "Anthropic crawler controls, April 7, 2026; checked October 31, 2026",
+      "title": "Anthropic crawler controls, April 7, 2026",
       "publisher": "Anthropic",
-      "url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+      "url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+      "date": "2026-04-07"
     },
     {
-      "title": "RFC 9309: Robots Exclusion Protocol, September 2022, section 3",
+      "title": "RFC 9309: Robots Exclusion Protocol, published September 2022",
       "publisher": "RFC Editor / IETF",
-      "url": "https://www.rfc-editor.org/rfc/rfc9309.html"
+      "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+      "date": "2026-10-31"
     }
   ],
   "video": {
@@ -63,5 +45,110 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-30",
+  "lede": "OpenAI announced on October 30 that it plans to honor a shared robots.txt preference for foundational generative AI training. The proposal could reduce the number of provider-specific rules publishers maintain, while leaving their existing crawler controls in place.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "30 October 2026"
+    },
+    {
+      "label": "Proposed token",
+      "value": "__usage_ai-training"
+    },
+    {
+      "label": "Document",
+      "value": "Individual Internet-Draft 00"
+    },
+    {
+      "label": "OpenAI rollout",
+      "value": "Planned in the coming months"
+    },
+    {
+      "label": "Current controls",
+      "value": "Existing robots.txt crawler rules continue"
+    }
+  ],
+  "body": [
+    {
+      "heading": "One purpose, several providers",
+      "text": "OpenAI describes a voluntary effort to express the same training preference to multiple participating providers. Its announcement commits to implementing support in the coming months and publishing details when that happens. For a web team, the immediate task is therefore planning a configuration change. Removing existing bot rules now would discard controls that OpenAI says it will continue to respect. A shared entry should eventually simplify maintenance, especially for publishers that manage many domains with the same content policy."
+    },
+    {
+      "heading": "The proposal separates use from retrieval",
+      "text": "The linked draft puts a purpose-specific token into familiar robots.txt groups. It uses path-based Allow and Disallow rules to express preferences about training use. The policy group does not itself tell a crawler to stop fetching a page. That distinction lets an operator express a content-use preference separately from its access rules. It also creates a testing requirement: parsing a file successfully does not demonstrate that a downstream training process applies the preference. Operators need to decide which evidence they will accept for each part of that chain."
+    },
+    {
+      "heading": "Existing controls already split the jobs",
+      "text": "OpenAI documents GPTBot for training and OAI-SearchBot for search. A publisher can restrict the former while permitting the latter. Anthropic makes a similar split with ClaudeBot and Claude-SearchBot, and also documents Claude-User for user-requested retrieval. Anthropic says disabling its user-directed crawler prevents that retrieval and can reduce visibility in those requests. These controls give site owners separate choices, at the price of maintaining several provider names. For a publisher that wants discovery without training collection, an undifferentiated block on every AI crawler would express the wrong policy."
+    },
+    {
+      "heading": "An access boundary still needs enforcement",
+      "text": "RFC 9309 treats robots.txt as a crawler convention and explicitly distinguishes it from protective measures such as authentication. A training preference therefore belongs in a different operational category from a password, account entitlement or paywall. The practical consequence is simple: private material should stay behind enforced access controls. A team reviewing this proposal should inventory public pages separately from customer records and paid content. That avoids asking a public preference file to carry a security responsibility it was never designed to perform."
+    },
+    {
+      "heading": "Test the policy that readers actually want",
+      "text": "Our suggested rollout starts with a small matrix: training, search indexing and user-requested retrieval, each with an explicit owner and decision. Keep the deployed robots.txt version with the change record, then test representative paths before changing every domain. Include public articles, subscription pages and any paths with exceptions. Request logs can help check retrieval behavior, while a separate review must address providers' documented training-use commitments. Treat these as two tests with different evidence. Combining them into one green status would hide the most important distinction in the proposal. Give exceptions an expiry date and a named reviewer. Otherwise a temporary rule for one integration can survive long after that integration disappears. Include a rollback copy of the previous file. If a deployment changes search discovery unexpectedly, the operator should be able to restore the earlier configuration without reconstructing it."
+    }
+  ],
+  "buildersNote": "Keep GPTBot, OAI-SearchBot and other provider rules deployed. Assign separate owners for crawl-log checks and training-use policy review, and test the shared group on representative paths after implementation guidance arrives.",
+  "claims": [
+    {
+      "text": "OpenAI has announced planned support and says existing crawler controls will remain in place.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Draft 00 is an individual Internet-Draft, not an IETF-endorsed or adopted standard; its syntax can change.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The announcement gives no activation date, cross-provider compliance evidence or promise to remove previously collected training data.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "comparison": {
+    "caption": "Training preferences and existing crawler controls",
+    "columns": [
+      "Control",
+      "OpenAI crawler rules",
+      "Anthropic crawler rules",
+      "Shared proposal"
+    ],
+    "rows": [
+      [
+        "Training",
+        "GPTBot",
+        "ClaudeBot",
+        "__usage_ai-training"
+      ],
+      [
+        "Search",
+        "OAI-SearchBot",
+        "Claude-SearchBot",
+        "Separate access rules remain"
+      ],
+      [
+        "Scope",
+        "Provider-specific bots",
+        "Provider-specific bots",
+        "Training purpose across participants"
+      ],
+      [
+        "Status",
+        "Documented controls",
+        "Documented controls",
+        "Draft; OpenAI implementation planned"
+      ]
+    ]
+  },
+  "ourRead": "We favor the shared signal because duplicated provider rules are an avoidable maintenance burden. Publishers should adopt it as an additional policy layer when implementation details arrive, keeping their access controls separate. The success measure is fewer exceptions to maintain without sacrificing search visibility or the intended training preference. We would change our view if providers interpret the same file differently enough that the shared group adds another rulebook instead of replacing duplicated work.",
+  "watching": [
+    "By 30 November 2026, check OpenAI's implementation notes for an activation date and conflict-handling rules.",
+    "By 30 November 2026, check the draft history and participating providers' documentation for matching interpretations."
+  ]
 }
