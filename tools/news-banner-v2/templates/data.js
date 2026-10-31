@@ -23,7 +23,8 @@ BANNER.templates.data = (stage, d, B) => {
   const line = chart.querySelectorAll("path")[1], area = chart.querySelectorAll("path")[0];
   const dot = css(el("div", "abs", root), { width: "26px", height: "26px", marginLeft: "-13px", marginTop: "-13px", borderRadius: "50%", background: color, boxShadow: `0 0 0 8px ${color}33` });
 
-  const parsed = parseStat(d.stat.value);
+  // Count up only when the number has room to move: "1T" counting from "0T" reads as a glitch.
+  const parsed = (() => { const p = parseStat(d.stat.value); return p && (Math.abs(p.value) >= 10 || p.decimals > 0) ? p : null; })();
   const big = css(el("div", "abs", root), { left: "56px", top: "40px", font: "700 300px/0.82 'Space Grotesk'", letterSpacing: "-0.06em", color: "#0a0a0a", whiteSpace: "nowrap" });
   big.textContent = d.stat.value;
   fitLines([big], 900, 330, 330, 120, 0.82);
