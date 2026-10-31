@@ -126,6 +126,7 @@ class Spec:
     versus: bool
     stat_value: str | None
     stat_label: str | None
+    payoff: str | None
     deep: tuple[int, int, int]
     mid: tuple[int, int, int]
     light: tuple[int, int, int]
@@ -155,6 +156,7 @@ def load_spec(path: str) -> Spec:
         versus=bool(raw.get("versus", False)),
         stat_value=stat.get("value"),
         stat_label=(stat.get("label") or "").upper()[:28] or None,
+        payoff=(str(raw.get("payoff") or "").upper().strip()[:14] or None),
         deep=rgb(palette.get("deep", "#06122e")),
         mid=rgb(palette.get("mid", "#2f6bff")),
         light=rgb(palette.get("light", "#9fd8ff")),
@@ -294,6 +296,9 @@ class Banner:
         self.chips = [chip_layer(e, spec.light, 24) for e in spec.entities]
         self.stat_label = text_layer(spec.stat_label, 18, 600, (255, 255, 255), tracking=0.16) if spec.stat_label else None
         self.stat_cache: dict[str, Image.Image] = {}
+        self.payoff = None
+        if spec.payoff and not spec.stat_value:
+            self.payoff = sticker_line(spec.payoff, 104, (255, 255, 255), spec.light, spec.mid)
         self.vs = text_layer("VS", 24, 800, spec.light, tracking=0.2) if spec.versus and len(self.chips) == 2 else None
 
     # -- layout of the headline block in canvas px (unscaled heights)
@@ -305,7 +310,7 @@ class Banner:
 
     def stat_layer(self, text: str) -> Image.Image:
         if text not in self.stat_cache:
-            self.stat_cache[text] = sticker_line(text, 150, (255, 255, 255), self.spec.light, self.spec.mid)
+            self.stat_cache[text] = sticker_line(text, 180, (255, 255, 255), self.spec.light, self.spec.mid)
         return self.stat_cache[text]
 
     def stat_text(self, x: float) -> str:
@@ -358,11 +363,11 @@ class Banner:
                 hx = W * 0.74 + (1 - rise) * 40
                 hy = H * 0.56 + (1 - rise) * H * 0.55 + float_y
                 scale = (1 / SS) * lerp(0.92, 1.0, rise) * (1 + 0.05 * seg(t, 5.0, 7.3))
-                if s.stat_value:  # make room for the stat in the payoff
+                if s.stat_value or self.payoff is not None:  # make room for the payoff line
                     move = ease_in_out(seg(t, 4.7, 5.3))
-                    hx = lerp(hx, W * 0.93, move)
-                    hy = lerp(hy, H * 0.66 + float_y, move)
-                    scale *= lerp(1, 0.66, move)
+                    hx = lerp(hx, W * 0.86, move)
+                    hy = lerp(hy, H * 0.68 + float_y, move)
+                    scale *= lerp(1, 0.62, move)
                 frame.alpha_composite(place(self.hero_shadow, hx + 10, hy + 26, scale, rot, alpha=alive))
                 frame.alpha_composite(place(self.hero, hx, hy, scale, rot, alpha=alive))
 
@@ -461,11 +466,18 @@ class Banner:
             if sx > 0 and alive > 0:
                 layer = self.stat_layer(self.stat_text(sx))
                 pop = ease_out_back(seg(t, 5.0, 5.45))
-                lx, ly = W * 0.7, H * 0.4
+                lx, ly = W * 0.68, H * 0.38
                 frame.alpha_composite(place(layer, lx, ly, (1 / SS) * lerp(0.7, 1, pop), alpha=clamp01(pop * 1.3) * alive))
                 if self.stat_label is not None:
                     frame.alpha_composite(place(self.stat_label, lx, ly + layer.height / SS / 2 + 14, 1 / SS,
                                                 alpha=ease_out_expo(seg(t, 5.3, 5.8)) * alive))
+        if self.payoff is not None:
+            pop = ease_out_back(seg(t, 5.0, 5.45))
+            if pop > 0 and alive > 0:
+                pw = self.payoff.width / SS
+                px = W - pw / 2 - W * 0.05
+                frame.alpha_composite(place(self.payoff, px, H * 0.28, (1 / SS) * lerp(0.7, 1, pop),
+                                            skew=math.radians(lerp(-10, 0, clamp01(pop))), alpha=clamp01(pop * 1.3) * alive))
         return frame.convert("RGB")
 
     @staticmethod

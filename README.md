@@ -5,6 +5,7 @@ under S3DAT's editorial responsibility and reviewed before they go live.
 
 | Path | What lives there |
 | --- | --- |
+| `EDITORIAL.md` | What we cover, sources, writing rules, workflow. Read before every run. |
 | `tools/news-banner/` | The banner engine. Every story banner is rendered with it; read its README first. |
 | `stories/` | One folder per story (format in `stories/README.md`). |
 

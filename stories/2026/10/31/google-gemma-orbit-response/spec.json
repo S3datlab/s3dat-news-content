@@ -4,7 +4,7 @@
     "FROM ORBIT"
   ],
   "accent_line": 1,
-  "kicker": "NEWS · RESEARCH",
+  "kicker": "RESEARCH",
   "entities": [
     "GOOGLE"
   ],
@@ -17,5 +17,6 @@
   "assets": {
     "background": "background.png",
     "hero": "hero.png"
-  }
+  },
+  "payoff": "TPU IN ORBIT"
 }

@@ -4,7 +4,7 @@
     "WEIGHTS RELEASED"
   ],
   "accent_line": 1,
-  "kicker": "NEWS · MODELS",
+  "kicker": "MODELS",
   "entities": [
     "MISTRAL"
   ],
@@ -21,5 +21,6 @@
   "assets": {
     "background": "background.png",
     "hero": "hero.png"
-  }
+  },
+  "payoff": null
 }

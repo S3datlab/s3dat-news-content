@@ -4,7 +4,7 @@
     "AI FAIR USE"
   ],
   "accent_line": 1,
-  "kicker": "NEWS · POLICY",
+  "kicker": "POLICY",
   "entities": [
     "OPENAI",
     "THE NEW YORK TIMES"
@@ -18,5 +18,6 @@
   "assets": {
     "background": "background.png",
     "hero": "hero.png"
-  }
+  },
+  "payoff": "COURT FIGHT"
 }

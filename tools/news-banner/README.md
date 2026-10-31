@@ -26,7 +26,7 @@ are in `fonts/`.
 | 1.5–2.1 s | Dock | The headline shrinks into a lower-left lockup and stays there. |
 | 2.1–4.5 s | Story | The hero object rises on the right; company chips pop in above the headline. |
 | 4.5–5.0 s | Burst | A light ring bursts from the hero. |
-| 5.0–7.3 s | Payoff | Colour shifts; the stat counts up next to the hero. |
+| 5.0–7.3 s | Payoff | Colour shifts; the stat counts up (or the payoff line slams in) next to the hero. |
 | 7.3–8.0 s | Out | Everything clears so the loop restarts cleanly. |
 
 ## spec.json
@@ -35,10 +35,11 @@ are in `fonts/`.
 {
   "title": ["CODEX LIMITS", "DOUBLED"],
   "accent_line": 1,
-  "kicker": "NEWS · DEV TOOLS",
+  "kicker": "DEV TOOLS",
   "entities": ["OPENAI"],
   "versus": false,
   "stat": { "value": "2×", "label": "WORK & CODEX QUOTA" },
+  "payoff": null,
   "palette": { "deep": "#03201b", "mid": "#17b38a", "light": "#a5f6d9" },
   "assets": { "background": "background.png", "hero": "hero.png" }
 }
@@ -48,10 +49,11 @@ are in `fonts/`.
 | --- | --- |
 | `title` | 1–3 lines, ideally ≤ 14 characters per line (hard limit 16), uppercase. It is the banner headline, not the article headline: short, concrete, names the company or product when that is the news. Must be true to the sources: no "KILLS", "DESTROYS", "SHOCKING", no question-bait. |
 | `accent_line` | Index of the line drawn in the topic colour: the twist ("DOUBLED", "GOES OPEN", "LEAVES BETA"). |
-| `kicker` | `KIND · TOPIC`, e.g. `ANALYSIS · AGENTS`, `NEWS · MODELS`, `EXPLAINED · RESEARCH`. |
+| `kicker` | The topic alone for daily news (`MODELS`, `POLICY`), or `KIND · TOPIC` for longer pieces (`ANALYSIS · AGENTS`, `EXPLAINED · RESEARCH`). Never write `NEWS ·`: the banner already says S3DAT NEWS. |
 | `entities` | 0–3 company or product names exactly as they write them, uppercase (`OPENAI`, `ANTHROPIC`, `GOOGLE`, `MISTRAL`, `NVIDIA`). Text only, never logos. |
 | `versus` | `true` only when the story is a genuine head-to-head between exactly two entities; adds "VS". |
 | `stat` | Optional. One number that appears in the sources (`2×`, `$150M`, `1M TOKENS`, `41%`) and a label of up to 28 characters. Numbers count up. Leave it out if there is no clear number. |
+| `payoff` | Used when there is no `stat`: 1–3 words, at most 14 characters, the second beat of the story (`IN ORBIT`, `COURT FIGHT`, `NOW OPEN`, `FREE TIER`). It slams in during the payoff. Every banner needs either a `stat` or a `payoff`, otherwise the last three seconds are empty. |
 | `palette` | The story's topic palette (table below). Do not invent colours. |
 | `assets.background` | 16:9 AI image (see below). Required. |
 | `assets.hero` | Transparent PNG of one object (see below). Recommended. |
@@ -75,8 +77,10 @@ The engine also duotones the background into the palette, so every banner sits i
 Both images: no text, no letters, no logos or trademarks, no real people or faces of real people,
 no screenshots of real products, no watermarks. Depict the idea, not a brand.
 
-**Background (16:9, landscape).** Cinematic, high-end product-film look, dark overall, one clear
-light source, rich depth. Keep the left 55% calm and darker (the headline sits there) and put the
+**Background (16:9, landscape).** An environment, never the same object as the hero: if the
+hero is a satellite, the background is Earth's horizon from orbit; if the hero is a scale, the
+background is a courtroom or a wall of newsprint. Cinematic, high-end product-film look, dark
+overall, one clear light source, rich depth. Keep the left 55% calm and darker (the headline sits there) and put the
 visual interest right of centre. Template:
 
 > Cinematic wide 16:9 scene, dark premium studio lighting, [SUBJECT AS METAPHOR], subject placed

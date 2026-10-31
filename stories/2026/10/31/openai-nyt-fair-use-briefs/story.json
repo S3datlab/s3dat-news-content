@@ -5,20 +5,26 @@
   "title": "OpenAI highlights fair-use briefs in its New York Times dispute",
   "titleAccent": "fair-use briefs",
   "dek": "OpenAI is spotlighting arguments supporting AI training in its dispute with The New York Times, putting copyright policy back in focus without announcing a court victory.",
-  "publishedAt": "2026-10-31T01:12:00Z",
+  "publishedAt": "2026-10-31T02:12:00Z",
   "whatHappened": [
     "On October 30, 2026, OpenAI published excerpts from briefs supporting the application of fair use to AI training in litigation involving The New York Times.",
     "The post includes submissions from Authors Alliance, Public Knowledge and the United States government, among others.",
+    "The court's April 4, 2025 opinion recounts The Times's allegations that its works were used in training and reproduced in outputs, and that such outputs can replace visits to publishers' sites. These are allegations described in a procedural opinion, not established findings of infringement.",
     "This is OpenAI's presentation of arguments supporting its position, not an announcement of a new court ruling."
   ],
   "whyItMatters": [
-    "The dispute concerns the copyright framework for training AI models, an issue relevant to model developers and publishers."
+    "For publishers, the issue reaches beyond attribution: the court record describes alleged harm to subscriptions, advertising and licensing, the revenue streams that finance reporting.",
+    "For model developers, the briefs defend using copyrighted material in training without treating every use as requiring a license. A narrower fair-use outcome could increase pressure to license training data or change sourcing; the effect would depend on the ruling's scope and facts.",
+    "Training and outputs are distinct parts of the dispute. Even a favorable training decision would not automatically resolve claims about reproduced articles or substituted visits to publishers' websites."
   ],
   "take": [
-    "Our view: a broad supporting coalition is politically significant, but advocacy should not be confused with a legal outcome."
+    "The briefs strengthen OpenAI's public argument, but they do not remove publishers' economic objection: an answer that substitutes for an article can weaken the business funding that article.",
+    "The practical question for builders is which uses a court distinguishes between training, retrieval and reproduced output, rather than whether AI receives a universal exemption.",
+    "A narrower fair-use decision could improve publishers' negotiating leverage, while a broader one could reduce some training-license pressure; neither outcome alone would settle every output-related claim."
   ],
   "openQuestions": [
-    "The announcement does not establish how the court will decide the fair-use issue."
+    "How will the court assess the specific training uses and claimed market harm?",
+    "The October 30 post does not announce a new ruling, settlement or licensing requirement; the cited 2025 opinion is background, not the current case disposition."
   ],
   "sources": [
     {
@@ -30,6 +36,11 @@
       "title": "The New York Times lawsuit",
       "publisher": "OpenAI",
       "url": "https://openai.com/new-york-times/"
+    },
+    {
+      "title": "Opinion, April 4, 2025, The New York Times Co. v. Microsoft et al., 23-cv-11195 (SHS), pp. 5, 7–9 and 20–24",
+      "publisher": "U.S. District Court, Southern District of New York",
+      "url": "https://nysd.uscourts.gov/sites/default/files/2025-04/yf%2023cv11195%20OpenAI%20MTD%20opinion%20april%204%202025.pdf"
     }
   ],
   "video": {
