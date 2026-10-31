@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "COPILOT FUSION",
+    "ROUTES MODELS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "GitHub",
+      "icon": "github"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 128,
+  "sources": {}
+}
