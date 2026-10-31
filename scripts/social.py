@@ -2,8 +2,9 @@
 """Post one story to every connected Buffer channel; .github/workflows/social.yml runs it five
 times a day, five hours apart (SOCIAL.md).
 
-  python scripts/social.py --pick      choose the story; writes slug= and folder= to $GITHUB_OUTPUT
-  (the workflow then renders and uploads its two social cuts)
+  python scripts/social.py --pick      choose the story; writes slug=, folder= and release= (the
+                                       GitHub release holding Makima's cuts) to $GITHUB_OUTPUT
+  (the workflow then fetches or renders its two social cuts and uploads them)
   python scripts/social.py --story SLUG [--dry-run] [--force]
                                        post it now and record it in social/state.json
   python scripts/social.py --dry-run --offline
@@ -87,6 +88,11 @@ def stories() -> list[dict]:
                       "published": published, "social": social, "lead": lead,
                       "folder": str(path.parent.relative_to(ROOT))})
     return found
+
+
+def release_tag(published: dt.datetime) -> str:
+    """Makima uploads a story's social cuts to this GitHub release (SOCIAL.md)."""
+    return "social-" + published.astimezone(dt.timezone.utc).strftime("%Y-%m-%d")
 
 
 def media_url(slug: str, kind: str) -> str:
@@ -323,15 +329,15 @@ def main() -> int:
         last = parse_time(state["lastPostAt"]) if state["lastPostAt"] else None
         if last and at - last < MIN_GAP and not args.force:
             print(f"Last post at {iso(last)}, less than {MIN_GAP} ago; nothing picked.")
-            output(slug="", folder="")
+            output(slug="", folder="", release="")
             return 0
         story = pick(candidates, state, at)
         if not story:
             print("No fresh story to post.")
-            output(slug="", folder="")
+            output(slug="", folder="", release="")
             return 0
         print(f"Picked {story['slug']} ({story['kind']}, published {iso(story['published'])})")
-        output(slug=story["slug"], folder=story["folder"])
+        output(slug=story["slug"], folder=story["folder"], release=release_tag(story["published"]))
         return 0
 
     if args.story:

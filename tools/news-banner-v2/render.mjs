@@ -4,6 +4,7 @@
  *
  *   node render.mjs <story-dir> [--format wide|hd|social] [--out file.mp4] [--poster poster.webp]
  *                   [--sheet sheet.jpg] [--template name] [--blur n] [--frame s] [--frames a,b,c]
+ *   node render.mjs <story-dir> --add-voice tall.mp4 --out voiced.mp4
  *
  * wide (site): 1080x608, 30 fps, 8 s, H.264, silent, at most 1.6 MB, plus a WebP poster.
  * hd (X, Threads, Bluesky, Mastodon, Substack): the same layout rendered at 1920x1080 device pixels
@@ -13,6 +14,8 @@
  *   FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as [calm].
  * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8, 6 for
  * the 15-second cut).
+ * --add-voice mixes the story's voice-over into a 9:16 cut rendered without one (Makima renders the
+ *   cuts on her computer without the Fish key; social.yml adds the voice). The video is copied as is.
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
  */
 import { spawn } from "node:child_process";
@@ -186,6 +189,30 @@ async function voiceover(text, out) {
   return out;
 }
 
+/** The voice starts at 0.4 s and must end before the end card (14 s); long reads are sped up
+ *  slightly. The soundtrack ducks under the voice; the mix is normalised to -14 LUFS. */
+function voiceMix(bed, voice, seconds) {
+  const tempo = Math.min(1.15, Math.max(1, seconds / 13.6));
+  return `[${bed}]volume=0.6[bed];[${voice}]atempo=${tempo.toFixed(3)},adelay=400|400,apad,asplit=2[vo1][vo2];` +
+    `[bed][vo1]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=300[duck];` +
+    `[duck][vo2]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]`;
+}
+
+async function addVoice(dir, input, out) {
+  const tmp = mkdtempSync(join(tmpdir(), "s3voice-"));
+  try {
+    const voice = await voiceover(readStory(dir).voiceover, join(tmp, "voice.mp3"));
+    if (!voice) throw new Error("--add-voice needs FISH_API_KEY and a voice-over script");
+    const seconds = await probeSeconds(voice);
+    const target = resolve(out || input.replace(/\.mp4$/, "-voiced.mp4"));
+    await run("ffmpeg", ["-y", "-loglevel", "error", "-i", resolve(input), "-i", voice, "-filter_complex", voiceMix("0:a", "1:a", seconds),
+      "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", "-shortest", target]);
+    console.log(JSON.stringify({ out: target, voice: Number(seconds.toFixed(2)), bytes: statSync(target).size }));
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 function probeSeconds(file) {
   return new Promise((ok) => {
     const p = spawn("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", file]);
@@ -234,6 +261,7 @@ function run(cmd, argv) {
 async function main() {
   const a = args(process.argv.slice(2));
   const dir = resolve(a._[0] || ".");
+  if (a["add-voice"]) return addVoice(dir, String(a["add-voice"]), a.out);
   const format = FORMATS[a.format] ? a.format : "wide";
   const F = FORMATS[format];
   const data = await buildData(dir, a.template, format);
@@ -317,14 +345,7 @@ async function main() {
       // The hd render is 1920x1081 device pixels; square pixels keep players from stretching it back.
       const video = `${blend}scale=${E.width}:${E.height}:flags=lanczos:in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p,setsar=1`;
       if (sound && voice) {
-        // The voice starts at 0.4 s and must end before the end card; long reads are sped up slightly.
-        const tempo = Math.min(1.15, Math.max(1, voiceSeconds / 13.6));
-        argv.push("-i", audio, "-i", voice, "-filter_complex",
-          `[0:v]${video}[v];` +
-          `[1:a]volume=0.6[bed];[2:a]atempo=${tempo.toFixed(3)},adelay=400|400,apad,asplit=2[vo1][vo2];` +
-          `[bed][vo1]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=300[duck];` +
-          `[duck][vo2]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
-          "-map", "[v]", "-map", "[a]");
+        argv.push("-i", audio, "-i", voice, "-filter_complex", `[0:v]${video}[v];` + voiceMix("1:a", "2:a", voiceSeconds), "-map", "[v]", "-map", "[a]");
       } else if (sound) {
         argv.push("-i", audio, "-filter_complex", `[0:v]${video}[v];[1:a]loudnorm=I=-16:TP=-1.5:LRA=11[a]`, "-map", "[v]", "-map", "[a]");
       } else argv.push("-vf", video);

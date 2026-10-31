@@ -1,8 +1,9 @@
 name: Post to social media
 
 # Five slots a day, five hours apart (24 is not a multiple of 5, so one gap is four hours).
-# UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00. Each slot picks one story, renders its
-# two social cuts and posts it to every Buffer channel (SOCIAL.md).
+# UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00. Each slot picks one story, takes the two
+# social cuts Makima rendered (GitHub release social-YYYY-MM-DD), adds the voice-over, uploads
+# them and posts to every Buffer channel. Without Makima's cuts it renders them here (SOCIAL.md).
 on:
   schedule:
     - cron: '12 1,6,11,16,21 * * *'
@@ -55,12 +56,32 @@ jobs:
             if ! printf '%s' "$STORY" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "Invalid slug"; exit 1; fi
             folder=$(ls -d stories/*/*/*/"$STORY" 2>/dev/null | head -1)
             if [ -z "$folder" ]; then echo "No story folder for $STORY"; exit 1; fi
+            release=$(python -c "import datetime as d, json, sys; p = json.load(open(sys.argv[1] + '/story.json'))['publishedAt']; print('social-' + d.datetime.fromisoformat(p.replace('Z', '+00:00')).astimezone(d.timezone.utc).strftime('%Y-%m-%d'))" "$folder")
             echo "slug=$STORY" >> "$GITHUB_OUTPUT"
             echo "folder=$folder" >> "$GITHUB_OUTPUT"
+            echo "release=$release" >> "$GITHUB_OUTPUT"
           else
             args=()
             [ "$FORCE" = "true" ] && args+=(--force)
             python scripts/social.py --pick "${args[@]}"
+          fi
+      - name: Fetch Makima's cuts
+        id: fetch
+        if: steps.pick.outputs.slug != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SLUG: ${{ steps.pick.outputs.slug }}
+          RELEASE: ${{ steps.pick.outputs.release }}
+        run: |
+          mkdir -p out/social
+          if gh release download "$RELEASE" -p "$SLUG-wide.mp4" -p "$SLUG-tall.mp4" -D out/social --clobber \
+             && [ -s "out/social/$SLUG-wide.mp4" ] && [ -s "out/social/$SLUG-tall.mp4" ]; then
+            echo "Using Makima's cuts from $RELEASE"
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -f out/social/*
+            echo "::warning::No cuts from Makima for $SLUG in release $RELEASE; rendering them here"
+            echo "found=false" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/setup-node@v4
         if: steps.pick.outputs.slug != ''
@@ -68,19 +89,29 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/news-banner-v2/package-lock.json
-      - name: Install the banner engine
+      - name: Install ffmpeg
         if: steps.pick.outputs.slug != ''
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Add the voice-over to Makima's 9:16 cut
+        if: steps.fetch.outputs.found == 'true'
+        env:
+          FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
+          FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
+          FOLDER: ${{ steps.pick.outputs.folder }}
+          SLUG: ${{ steps.pick.outputs.slug }}
         run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
-          npm ci --no-audit --no-fund --prefix tools/news-banner-v2
-      - name: Render the social cuts
-        if: steps.pick.outputs.slug != ''
+          node tools/news-banner-v2/render.mjs "$FOLDER" --add-voice "out/social/$SLUG-tall.mp4" --out "out/social/$SLUG-voiced.mp4"
+          mv "out/social/$SLUG-voiced.mp4" "out/social/$SLUG-tall.mp4"
+      - name: Render the social cuts here
+        if: steps.pick.outputs.slug != '' && steps.fetch.outputs.found != 'true'
         env:
           CHROME_CHANNEL: chrome
           FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
           FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
           FOLDER: ${{ steps.pick.outputs.folder }}
-        run: python scripts/render.py --social "$FOLDER"
+        run: |
+          npm ci --no-audit --no-fund --prefix tools/news-banner-v2
+          python scripts/render.py --social "$FOLDER"
       - name: Upload them to news.s3dat.com
         if: steps.pick.outputs.slug != ''
         env:
@@ -116,6 +147,15 @@ jobs:
             sleep 10
           done
           exit 1
+      - name: Delete Makima's releases older than 14 days
+        if: always() && env.BUFFER_API_KEY != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cutoff=$(date -u -d '14 days ago' +%Y-%m-%d)
+          gh release list --limit 100 --json tagName --jq '.[].tagName' | grep '^social-' | while read -r tag; do
+            if [[ "${tag#social-}" < "$cutoff" ]]; then gh release delete "$tag" --cleanup-tag -y; fi
+          done
       - name: Keep the social cuts for review
         if: always() && steps.pick.outputs.slug != ''
         uses: actions/upload-artifact@v4
