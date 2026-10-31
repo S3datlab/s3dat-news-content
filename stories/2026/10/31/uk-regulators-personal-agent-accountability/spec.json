@@ -1,0 +1,22 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "AI AGENTS",
+    "FIRMS STILL",
+    "ACCOUNTABLE"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Competition and Markets Authority",
+      "logo": "cma.png"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 84,
+  "sources": {
+    "cma.png": "https://www.gov.uk/government/organisations/competition-and-markets-authority"
+  }
+}

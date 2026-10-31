@@ -1,0 +1,50 @@
+{
+  "slug": "uk-regulators-personal-agent-accountability",
+  "kind": "story",
+  "topic": "policy",
+  "title": "UK regulators say personal AI agents do not remove company responsibility",
+  "titleAccent": "company responsibility",
+  "dek": "Four UK regulators have issued a joint statement on personal AI agents, telling developers to address authority, data use and redress under existing legal frameworks.",
+  "publishedAt": "2026-10-31T04:11:49Z",
+  "updatedAt": "2026-10-31T04:11:49Z",
+  "whatHappened": [
+    "On October 30, 2026, the CMA, FCA, ICO and Ofcom issued a joint statement through the Digital Regulation Cooperation Forum about personal AI agents.",
+    "The statement says existing legal frameworks apply and that an agent's autonomy does not reduce the deploying organization's responsibility to comply.",
+    "It identifies user authorization, personal-data handling, commercial influences, accountability and routes to redress as issues firms should consider."
+  ],
+  "whyItMatters": [
+    "For product teams, delegation needs an understandable scope: users should know when the agent can act and how that authority was granted.",
+    "For commercial deployments, recommendations and transactions need governance beyond model accuracy, including explanations of business incentives and a way to resolve mistakes.",
+    "The new statement coordinates regulators' approach; it is not a new AI statute. The CMA's associated consumer research was first published in March, not October."
+  ],
+  "take": [
+    "An agent that can act for a user needs an operational owner when the action goes wrong.",
+    "Builders should treat permissions and complaint handling as product features from the start, rather than waiting for autonomy to become a legal excuse."
+  ],
+  "openQuestions": [
+    "The statement does not provide a single technical compliance standard or announce enforcement against a named agent product."
+  ],
+  "sources": [
+    {
+      "title": "Joint statement on protecting people and businesses in an agentic economy, October 30, 2026",
+      "publisher": "Digital Regulation Cooperation Forum",
+      "url": "https://www.drcf.org.uk/publications/joint-statements/joint-statement-on-protecting-people-and-businesses-in-an-agentic-economy"
+    },
+    {
+      "title": "Joint statement full text, October 30, 2026",
+      "publisher": "CMA, FCA, ICO and Ofcom",
+      "url": "https://www.drcf.org.uk/siteassets/drcf/pdf-files/drcf-joint-statement-protecting-people-and-businesses-in-and-agentic-economy2.pdf?v=427414"
+    },
+    {
+      "title": "Agentic AI and consumers: March 9 research and October 30 joint-statement update",
+      "publisher": "Competition and Markets Authority",
+      "url": "https://www.gov.uk/government/publications/agentic-ai-and-consumers"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
