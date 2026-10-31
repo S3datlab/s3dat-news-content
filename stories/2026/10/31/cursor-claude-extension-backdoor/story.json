@@ -1,0 +1,89 @@
+{
+  "format": 2,
+  "slug": "cursor-claude-extension-backdoor",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Cursor warns malicious Claude Code extensions can leave a backdoor",
+  "titleAccent": "leave a backdoor",
+  "dek": "An updated Cursor notice identifies two tampered extension versions; Microsoft explains why removing the extension can leave malicious files behind.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-10-31T09:02:42Z",
+  "lede": "Cursor updated its security notice on October 30 to identify two malicious Claude Code extension versions distributed through its marketplace. Developers who installed them face cleanup beyond the editor: the payload can leave SSH keys and startup scripts elsewhere on their machines.",
+  "facts": [
+    {
+      "label": "Affected copies",
+      "value": "Anthropic.claude-code 2.1.312 and 2.1.313"
+    },
+    {
+      "label": "Distribution channel",
+      "value": "Cursor VS Code Extension Marketplace"
+    },
+    {
+      "label": "Platforms identified",
+      "value": "macOS and Windows"
+    },
+    {
+      "label": "Exposure window",
+      "value": "29 Oct, 09:27–20:35 UTC"
+    },
+    {
+      "label": "Notice updated",
+      "value": "30 Oct 2026, 18:30 UTC"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A marketplace incident",
+      "text": "Cursor first disclosed the incident on October 29. Its update clarified the affected versions and added indicators for investigators. The company says it removed the packages, audited other extensions, rotated keys and rebuilt the marketplace. It also arranged for the attacker’s server to be taken offline."
+    },
+    {
+      "heading": "The official distribution was separate",
+      "text": "Microsoft’s October 30 investigation confirms that the malicious packages did not reach the Microsoft Visual Studio Marketplace or Anthropic’s official npm distribution. Anthropic told Microsoft that its own systems were not compromised. Microsoft analyzed JavaScript injected into the extension, which ran before the extension’s expected code."
+    },
+    {
+      "heading": "Files outlast the extension",
+      "text": "The injected code collected host information and attempted to establish remote access through SSH. Microsoft describes startup scripts stored outside the extension directory, including a macOS LaunchAgent and Windows startup mechanisms. Those locations explain why replacing the extension does not remove every artifact. Server takedown also leaves files already written to a workstation in place."
+    },
+    {
+      "text": "Microsoft’s response guidance separates evidence collection from cleanup. Installation records identify which distribution channel delivered the package; endpoint and network records help establish what happened after it loaded. Its investigation also warns that a missing key marker alone cannot establish that a machine is unaffected."
+    }
+  ],
+  "buildersNote": "Check installation records for the affected versions and distribution window. Preserve evidence before cleanup, and isolate hosts showing payload execution. Follow the linked vendor guidance to remove confirmed artifacts; assess credential rotation and rebuilding from a trusted device.",
+  "claims": [
+    {
+      "text": "The updated notice identifies two tampered extension versions and supplies package hashes.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Cursor says it found no other tampered extensions and took the attacker’s server offline.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Successful attacker login is not established for every affected host; privileges and SSH configuration determine access.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Security notice — malicious version of Anthropic.claude-code (2.1.312 and 2.1.313) identified in the Cursor VS Code Extension Marketplace",
+      "publisher": "Cursor",
+      "url": "https://cursor.com/blog/claude-code-extension-security-notice",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Inside a malicious Claude Code-branded extension and its persistent SSH backdoor",
+      "publisher": "Microsoft Security Research",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
+      "date": "2026-10-30"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

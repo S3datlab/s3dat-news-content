@@ -1,0 +1,11 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": ["CURSOR", "EXTENSION", "BACKDOOR"],
+  "accent": 2,
+  "brands": [{"name": "Cursor", "icon": "cursor"}],
+  "cutouts": [],
+  "mood": "shock",
+  "seed": 131,
+  "sources": {}
+}
