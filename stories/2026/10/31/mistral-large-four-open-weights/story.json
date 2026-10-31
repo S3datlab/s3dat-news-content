@@ -2,60 +2,46 @@
   "slug": "mistral-large-four-open-weights",
   "kind": "story",
   "topic": "models",
-  "title": "Mistral opens the weights of its trillion-parameter Large 4 model",
-  "titleAccent": "trillion-parameter",
-  "dek": "Mistral has released improved Large 4 weights, giving developers a trillion-parameter multimodal model to customize and host under its open-weight license.",
+  "title": "Mistral releases Large 4 weights with 1 trillion parameters",
+  "titleAccent": "1 trillion parameters",
+  "dek": "Large 4 is available for self-hosting, with a deployment recipe that calls for hundreds of gigabytes of weights and multiple accelerators.",
   "publishedAt": "2026-10-31T01:12:00Z",
-  "whatHappened": [
-    "Mistral released improved Mistral Large 4 weights on October 29, 2026, following an earlier public preview; Hugging Face documented the release that day.",
-    "Mistral's model card describes a one-trillion-parameter multimodal mixture-of-experts model: 49 billion parameters are active per token, or 52 billion including embeddings and output layers.",
-    "The model uses the Mistral Ecosystem Open-Weight License, with separate commercial licensing rules for Model-as-a-Service offerings."
-  ],
-  "whyItMatters": [
-    "Self-hosting means substantial infrastructure, not merely downloading weights: vLLM's recipe, checked October 31, lists approximately 610 GB of NVFP4 weights or 1.06 TB of FP8 weights, before runtime memory. It validates configurations including four GB300 GPUs for NVFP4 and sixteen H200 GPUs for FP8.",
-    "Active parameters describe per-token computation, not the entire weight-storage requirement. vLLM validates this recipe to 256K context; longer context and higher concurrency consume additional memory, so the model's advertised 1M context is not a blanket serving guarantee.",
-    "For a dated comparison, Mistral's model card checked October 31 reports 48% on the Artificial Analysis Coding Agent Index, effectively tied with GLM-5.3 while using 47% fewer tokens. These are Mistral-reported results, not an S3DAT reproduction; Z.ai's own card documents different benchmark setups, so its individual scores should not be mixed into that ranking.",
-    "Licensing is another practical differentiator: DeepSeek's V4.1-Flash-1017 card, checked October 31, lists MIT-licensed weights, while Large 4 has separate Model-as-a-Service licensing rules. Developers comparing these large open-weight alternatives need to evaluate both task performance and deployment rights."
-  ],
-  "take": [
-    "Large 4 is most compelling for teams that need control over image-and-text workloads and can justify a multi-accelerator deployment, rather than for developers seeking cheap local experimentation.",
-    "The useful comparison with GLM-5.3 is quality per completed coding task, not a trillion-parameter headline; fewer generated tokens may help, but do not by themselves establish lower end-to-end cost.",
-    "Against a permissively licensed alternative such as DeepSeek V4.1 Flash, Mistral needs to earn its place through workload results, operational fit and acceptable licensing terms."
-  ],
-  "openQuestions": [
-    "How do these alternatives compare on the same production workload, quantization, concurrency and hardware?",
-    "Mistral says a full technical report is forthcoming; the current company comparisons do not settle independent quality or total serving cost."
-  ],
   "sources": [
     {
       "title": "Mistral Large 4 (Le Chonk) is now open weight",
       "publisher": "Mistral AI",
-      "url": "https://mistral.ai/news/mistral-large-4-oss/"
+      "url": "https://mistral.ai/news/mistral-large-4-oss/",
+      "date": "2026-10-29"
     },
     {
       "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face, October 29",
       "publisher": "Hugging Face",
-      "url": "https://huggingface.co/blog/mistral-large4"
+      "url": "https://huggingface.co/blog/mistral-large4",
+      "date": "2026-10-29"
     },
     {
       "title": "Mistral Large 4 model card; checked October 31, 2026",
       "publisher": "Mistral AI",
-      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B"
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "date": "2026-10-31"
     },
     {
       "title": "Mistral Large 4 deployment recipe; checked October 31, 2026",
       "publisher": "vLLM",
-      "url": "https://recipes.vllm.ai/mistralai/Mistral-Large-4-1T-A52B"
+      "url": "https://recipes.vllm.ai/mistralai/Mistral-Large-4-1T-A52B",
+      "date": "2026-10-31"
     },
     {
       "title": "GLM-5.3 model card and evaluation methods; checked October 31, 2026",
       "publisher": "Z.ai",
-      "url": "https://huggingface.co/zai-org/GLM-5.3"
+      "url": "https://huggingface.co/zai-org/GLM-5.3",
+      "date": "2026-10-31"
     },
     {
       "title": "DeepSeek V4.1 Flash 1017 model card and license; checked October 31, 2026",
       "publisher": "DeepSeek",
-      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017"
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "date": "2026-10-17"
     }
   ],
   "video": {
@@ -65,5 +51,66 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-29",
+  "lede": "Mistral released improved Large 4 weights on October 29, following the model's earlier public preview. Developers can customize and host the multimodal model, provided their hardware and intended use fit its deployment and licensing requirements.",
+  "facts": [
+    {
+      "label": "Total parameters",
+      "value": "1 trillion"
+    },
+    {
+      "label": "Active per token",
+      "value": "49 billion; 52 billion including embeddings and output layers"
+    },
+    {
+      "label": "NVFP4 weights",
+      "value": "Approximately 610 GB, before runtime memory"
+    },
+    {
+      "label": "FP8 weights",
+      "value": "Approximately 1.06 TB, before runtime memory"
+    },
+    {
+      "label": "License",
+      "value": "Mistral Ecosystem Open-Weight License"
+    },
+    {
+      "label": "Release",
+      "value": "29 October 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The download is only the start",
+      "text": "Large 4 uses a mixture-of-experts architecture. Only part of the model participates in each token calculation, which separates its active parameter count from its full weight-storage requirement. The release gives organizations control over a model that handles images and text. That control comes with decisions about quantization, serving software and the accelerator capacity assigned to each workload."
+    },
+    {
+      "heading": "Size the serving configuration",
+      "text": "The vLLM recipe lists four GB300 GPUs for NVFP4 and sixteen H200 GPUs for FP8 among its validated configurations. It validates context lengths up to 256K tokens, below the model card's advertised 1M maximum. Longer inputs and more simultaneous requests need their own memory budget. A deployment plan should include runtime state alongside the stored weights, then measure throughput with the actual input lengths customers send."
+    },
+    {
+      "heading": "Compare the work, then the license",
+      "text": "Mistral positions Large 4 against GLM-5.3 on agentic coding. Token consumption deserves attention because long coding runs can generate substantial intermediate work. Buyers should compare completed tasks, failure recovery and serving costs on the same workload. The license is another decision point: Large 4 carries separate commercial rules for Model-as-a-Service offerings. DeepSeek's V4.1 Flash 1017 card lists MIT licensing. Those terms matter when a team plans to sell model access, even if both models offer downloadable weights."
+    }
+  ],
+  "buildersNote": "Before reserving GPUs, select NVFP4 or FP8, budget runtime memory beyond the weights, and replay your longest requests against the vLLM recipe. Review the Model-as-a-Service license terms before offering an endpoint to customers.",
+  "claims": [
+    {
+      "text": "The model card specifies 1T total parameters and 49B active per token, or 52B including embeddings and output layers.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Mistral reports 48% on the Artificial Analysis Coding Agent Index, effectively tied with GLM-5.3 while using 47% fewer tokens.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "Independent quality and total serving cost on a shared production workload are not established by the vendor comparison.",
+      "status": "unclear",
+      "source": 2
+    }
+  ]
 }
