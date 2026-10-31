@@ -66,28 +66,28 @@
   ],
   "body": [
     {
-      "heading": "The speech baseline stays useful",
-      "text": "Apple's SpeechAnalyzer already provides an on-device transcription path with system-managed model assets, as its WWDC25 session explains. AnySpeechRecognizer offers a familiar interface with additional engine choices. That makes Apple's implementation the closest practical baseline for a speech application. We would start a comparison with the same recording and the same output requirements. A team that only needs transcription should first establish what a different engine contributes. Speaker attribution, supported languages and useful timing information are better selection criteria than the mere availability of another backend."
+      "heading": "Apple supplies the starting interface",
+      "text": "Apple's SpeechAnalyzer processes audio through modules and returns results asynchronously, with timestamps connecting text to the original recording. Its SpeechTranscriber runs on the device. Apple manages downloaded model assets in system storage and installs updates without adding those assets to the application's own bundle. AnySpeechRecognizer follows this interface while allowing additional recognition engines. The immediate change is a new choice behind familiar application code. Apple's implementation remains available as the package's default backend, so adopting the library does not itself require switching the recognizer."
     },
     {
-      "heading": "A shared interface has boundaries",
-      "text": "The speech repository documents differences from Apple's framework, including its own analyzer and module types. An application cannot assume every native module fits unchanged into the package. The repository also supplies a command-line evaluation tool that reports transcription errors, elapsed time and memory. Our suggested adoption test is a small integration branch with one existing recording workflow. Keep audio capture, display and storage unchanged where possible. Then exercise cancellation and final results, because the interface must fit the application's lifecycle as well as its recognition needs."
+      "heading": "The engines return different results",
+      "text": "The package's capability table gives Parakeet live transcription with word timing, while Qwen3-ASR produces completed segments without individual word timestamps. Its Qwen implementation cuts long audio into segments of up to 40 seconds. Results therefore arrive after a segment completes, including when input ends or a gap appears. That timing difference changes what an application can display during a conversation. A completed segment suits a different interaction from a caption that updates while someone is speaking. The same transcriber interface exposes distinct output behavior."
     },
     {
-      "heading": "Match the engine to the screen",
-      "text": "Mattt's launch post distinguishes Parakeet's live output and word timing from Qwen3-ASR's segment-final output. We would treat a live caption view and a completed recording viewer as separate product tests. In a caption view, delayed output changes how a user follows a conversation. In a recording viewer, final transcription quality may matter more. A shared API makes this comparison easier to organize; it does not settle it."
+      "heading": "Speaker attribution adds another module",
+      "text": "Mattt's announcement describes a speaker diarization module using NVIDIA's Streaming Sortformer, operating alongside Apple or Parakeet transcription. It tracks up to four speakers and links speaker activity to the transcript's timeline. The launch post describes open-model downloads from the Hugging Face Hub, with fixed revisions and file checksums. This combines recognition and speaker attribution within one analysis session. A conversation transcript can consequently identify turns as well as words, while the application continues to receive results through the package's shared interface."
     },
     {
-      "heading": "Typed decisions remove one integration step",
-      "text": "AnyDecisionModel exposes probabilities and typed choices or scores, with local and hosted backends documented in its repository. The developer can consume a defined result instead of extracting an answer from generated prose. For a hypothetical support queue, we would define the allowed destinations before connecting the model. We would also keep an explicit path for human review. The useful measurement would be whether messages reach the correct queue, including ambiguous messages that fit several categories. Successful parsing would only establish that the application received a usable data structure."
+      "heading": "Compatibility stops at the module boundary",
+      "text": "The repository gives the library its own analyzer and module types. Package modules and Apple's native module instances are not interchangeable inside the package analyzer. The library also leaves audio capture to the application, which supplies buffers for analysis. Its command-line tool can transcribe recordings and report elapsed time, memory use and recognition errors. These details explain the scope of the abstraction: it standardizes the recognition workflow while retaining separate responsibilities for input capture, engine selection and the application's handling of results."
     },
     {
-      "heading": "Calibrate the decision you will deploy",
-      "text": "The decision repository defines confidence as probability concentration for local answers and warns against comparisons across backends. Our evaluation plan would therefore keep a labeled test set separate from any calibration examples. It would report errors for each destination, not merely one combined score. We would inspect confident mistakes first, because those are the cases a threshold may send straight into an automated workflow. An application owner should decide the acceptable error cost before selecting that threshold."
+      "heading": "Decisions use a different output contract",
+      "text": "AnyDecisionModel returns probabilities, typed choices and rating scores. Its repository describes local MLX inference that maps permitted answers to labels and reads their probabilities in one model pass. That path supports up to 26 choices or 10 score levels. A separate trained decision-head backend reads outputs directly from the head and has no equivalent option-count limit. The distinction affects the questions an application can express. A finite set of destinations fits a typed choice, whereas a free-form response belongs to a different interface."
     },
     {
-      "heading": "Keep the comparison reproducible",
-      "text": "For deployment, we recommend recording the package revision, selected model and target device beside each result. Repeat the same inputs after a dependency update and retain the previous outputs for review. Test download failures and unavailable services alongside successful requests, since a fallback is part of the user experience. We would also compare the effort required to maintain each path. A slightly different transcript may be acceptable for a search index and unacceptable for a quotation tool. That distinction belongs in the application's acceptance criteria before the team chooses its default engine."
+      "heading": "Backend choice also changes execution",
+      "text": "The decision README describes local GGUF execution through llama.cpp and remote calls through the System One API. Its Jev and Ollama integrations return the server's probability and confidence values. Local backends support calibration parameters that adjust answer probabilities. The launch post also describes Swift package traits: applications select the integrations they build instead of taking every dependency. Without optional traits, the core types and hosted backends can build on Linux. The two packages therefore share a model-selection approach while serving different tasks and exposing different deployment choices."
     }
   ],
   "buildersNote": "Run the speech evaluation tool on your target device using your own recordings. For decisions, reserve a separate labeled test set before fitting calibration, and record errors by output category before enabling automatic routing.",
@@ -117,6 +117,12 @@
         "Timing in attributed results",
         "Supported",
         "Not provided"
+      ],
+      [
+        "Speaker attribution",
+        "No Speech framework diarizer",
+        "Sortformer alongside transcriber",
+        "Not the documented pairing"
       ]
     ]
   },
