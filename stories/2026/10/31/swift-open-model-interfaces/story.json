@@ -4,49 +4,33 @@
   "topic": "dev-tools",
   "title": "New Swift packages add open-model choices for speech and decisions",
   "titleAccent": "open-model choices",
-  "dek": "Two new Swift libraries let app developers swap speech engines and request typed model decisions, but hardware requirements and confidence scores still need careful testing.",
+  "dek": "Two independent Swift libraries add selectable speech engines and typed model decisions, putting integration choices into application code.",
   "publishedAt": "2026-10-31T04:09:33Z",
   "updatedAt": "2026-10-31T04:09:33Z",
-  "whatHappened": [
-    "On October 29, 2026, developer Mattt announced AnySpeechRecognizer and AnyDecisionModel in a Hugging Face blog post; these are independent packages, not new Apple products.",
-    "AnySpeechRecognizer follows Apple's modern Speech API while adding selectable engines, including local Parakeet and Qwen3-ASR, and speaker diarization.",
-    "AnyDecisionModel returns probabilities and typed choices or scores instead of requiring applications to parse generated answer text. Its repository documents local and hosted backends."
-  ],
-  "whyItMatters": [
-    "Comparison checked October 31: Apple's WWDC25 documentation describes on-device SpeechTranscriber with system-managed model assets and updates. AnySpeechRecognizer instead offers engine choice behind a similar interface; its README requires Swift 6.2 and macOS 26 or iOS 26, with Apple silicon for Parakeet and Sortformer.",
-    "The creator's October 29 comparison distinguishes live Parakeet output with word timing from Qwen3-ASR's segment-final output without word timing or confidence. That is a product-design tradeoff, not a universal accuracy ranking; the reported speech tests ran on a Mac, not an iPhone.",
-    "For routing and scoring applications, typed decisions remove a text-parsing step. The decision-library README warns that confidence reflects the concentration of probabilities, not the chance an answer is correct, and that confidence values should not be compared across backends.",
-    "Open-model flexibility adds integration work: the decision README says hosted wire compatibility was checked against fixtures rather than live services, and calibration transfer to new tasks is untested. Teams still need domain-specific evaluations before automating consequential actions."
-  ],
-  "take": [
-    "The speech package is useful when engine choice or speaker attribution is worth more than the simplicity of a system-managed model; Apple's native path remains a sensible baseline rather than an obsolete option.",
-    "Typed decisions can make application code cleaner, but a well-formed answer is not evidence of a well-calibrated or instruction-resistant decision.",
-    "Builders should compare complete workflows on their target devices, including model downloads, latency and error rates, before treating a shared Swift interface as interchangeable behavior."
-  ],
-  "openQuestions": [
-    "How do the speech engines perform on supported iPhones and on an application's real languages, microphones and overlapping speakers?",
-    "Will calibration and hosted integrations remain reliable outside the repository's tested tasks and fixtures?"
-  ],
   "sources": [
     {
       "title": "Introducing AnySpeechRecognizer and AnyDecisionModel, October 29, 2026",
       "publisher": "Mattt / Hugging Face",
-      "url": "https://huggingface.co/blog/anydecisionmodel"
+      "url": "https://huggingface.co/blog/anydecisionmodel",
+      "date": "2026-10-29"
     },
     {
-      "title": "AnySpeechRecognizer README; checked October 31, 2026",
+      "title": "AnySpeechRecognizer README",
       "publisher": "Mattt",
-      "url": "https://github.com/mattt/AnySpeechRecognizer"
+      "url": "https://github.com/mattt/AnySpeechRecognizer",
+      "date": "2026-10-31"
     },
     {
-      "title": "AnyDecisionModel README; checked October 31, 2026",
+      "title": "AnyDecisionModel README",
       "publisher": "Mattt",
-      "url": "https://github.com/mattt/AnyDecisionModel"
+      "url": "https://github.com/mattt/AnyDecisionModel",
+      "date": "2026-10-31"
     },
     {
-      "title": "Bring advanced speech-to-text to your app with SpeechAnalyzer, WWDC25; checked October 31, 2026",
+      "title": "Bring advanced speech-to-text to your app with SpeechAnalyzer, WWDC25",
       "publisher": "Apple",
-      "url": "https://developer.apple.com/videos/play/wwdc2025/277/"
+      "url": "https://developer.apple.com/videos/play/wwdc2025/277/",
+      "date": "2026-10-31"
     }
   ],
   "video": {
@@ -54,5 +38,118 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-29",
+  "lede": "Developer Mattt introduced AnySpeechRecognizer and AnyDecisionModel on October 29, giving Swift applications new interfaces for speech recognition and model decisions. The packages let developers separate application logic from some model choices, while keeping responsibility for testing the resulting behavior.",
+  "facts": [
+    {
+      "label": "Developer",
+      "value": "Mattt; independent Swift packages"
+    },
+    {
+      "label": "Announced",
+      "value": "29 Oct 2026"
+    },
+    {
+      "label": "Speech requirements",
+      "value": "Swift 6.2; macOS 26 or iOS 26"
+    },
+    {
+      "label": "Speech engines",
+      "value": "Apple, Parakeet and Qwen3-ASR"
+    },
+    {
+      "label": "Decision output",
+      "value": "Typed probabilities, choices and scores"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The speech baseline stays useful",
+      "text": "Apple's SpeechAnalyzer already provides an on-device transcription path with system-managed model assets, as its WWDC25 session explains. AnySpeechRecognizer offers a familiar interface with additional engine choices. That makes Apple's implementation the closest practical baseline for a speech application. We would start a comparison with the same recording and the same output requirements. A team that only needs transcription should first establish what a different engine contributes. Speaker attribution, supported languages and useful timing information are better selection criteria than the mere availability of another backend."
+    },
+    {
+      "heading": "A shared interface has boundaries",
+      "text": "The speech repository documents differences from Apple's framework, including its own analyzer and module types. An application cannot assume every native module fits unchanged into the package. The repository also supplies a command-line evaluation tool that reports transcription errors, elapsed time and memory. Our suggested adoption test is a small integration branch with one existing recording workflow. Keep audio capture, display and storage unchanged where possible. Then exercise cancellation and final results, because the interface must fit the application's lifecycle as well as its recognition needs."
+    },
+    {
+      "heading": "Match the engine to the screen",
+      "text": "Mattt's launch post distinguishes Parakeet's live output and word timing from Qwen3-ASR's segment-final output. We would treat a live caption view and a completed recording viewer as separate product tests. In a caption view, delayed output changes how a user follows a conversation. In a recording viewer, final transcription quality may matter more. A shared API makes this comparison easier to organize; it does not settle it."
+    },
+    {
+      "heading": "Typed decisions remove one integration step",
+      "text": "AnyDecisionModel exposes probabilities and typed choices or scores, with local and hosted backends documented in its repository. The developer can consume a defined result instead of extracting an answer from generated prose. For a hypothetical support queue, we would define the allowed destinations before connecting the model. We would also keep an explicit path for human review. The useful measurement would be whether messages reach the correct queue, including ambiguous messages that fit several categories. Successful parsing would only establish that the application received a usable data structure."
+    },
+    {
+      "heading": "Calibrate the decision you will deploy",
+      "text": "The decision repository defines confidence as probability concentration for local answers and warns against comparisons across backends. Our evaluation plan would therefore keep a labeled test set separate from any calibration examples. It would report errors for each destination, not merely one combined score. We would inspect confident mistakes first, because those are the cases a threshold may send straight into an automated workflow. An application owner should decide the acceptable error cost before selecting that threshold."
+    },
+    {
+      "heading": "Keep the comparison reproducible",
+      "text": "For deployment, we recommend recording the package revision, selected model and target device beside each result. Repeat the same inputs after a dependency update and retain the previous outputs for review. Test download failures and unavailable services alongside successful requests, since a fallback is part of the user experience. We would also compare the effort required to maintain each path. A slightly different transcript may be acceptable for a search index and unacceptable for a quotation tool. That distinction belongs in the application's acceptance criteria before the team chooses its default engine."
+    }
+  ],
+  "buildersNote": "Run the speech evaluation tool on your target device using your own recordings. For decisions, reserve a separate labeled test set before fitting calibration, and record errors by output category before enabling automatic routing.",
+  "comparison": {
+    "caption": "Closest speech alternatives: Apple documentation and the package documentation describe different output contracts.",
+    "columns": [
+      "Choice",
+      "Apple SpeechTranscriber",
+      "Parakeet via package",
+      "Qwen3-ASR via package"
+    ],
+    "rows": [
+      [
+        "Execution",
+        "On device",
+        "Local Core ML",
+        "Local Core ML"
+      ],
+      [
+        "Live output",
+        "Volatile and final results",
+        "Live output supported",
+        "Segment-final output"
+      ],
+      [
+        "Word timing",
+        "Timing in attributed results",
+        "Supported",
+        "Not provided"
+      ]
+    ]
+  },
+  "claims": [
+    {
+      "text": "The two independent packages were announced on October 29, 2026",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The speech package documents Swift 6.2 and macOS 26 or iOS 26 requirements",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The creator reports speech results from a Mac; the post does not establish iPhone performance",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Typed decisions establish that an automated routing threshold is reliable",
+      "status": "unclear",
+      "source": 2
+    },
+    {
+      "text": "Hosted compatibility is tested with fixtures; calibration transfer beyond the tested tasks is unestablished",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "ourRead": "We favor these packages as a way to compare application behavior without rewriting every integration. The strongest case is a specific missing feature, such as speaker attribution or typed routing output. We would keep the native speech path in the evaluation and avoid a blanket migration. Repeated target-device tests showing lower maintenance effort and fewer application-level errors would change our mind about making the new path the default.",
+  "watching": [
+    "On November 7, 2026, we will revisit the speech repository for iPhone evaluations and any changes to documented engine capabilities.",
+    "On November 7, 2026, we will check whether the decision repository adds live hosted-service tests or new calibration evidence."
+  ]
 }
