@@ -385,7 +385,7 @@ class Banner:
         hs, gap, total = self.title_block()
         slam = seg(t, 0.12, 0.85)
         dock = ease_in_out(seg(t, 1.5, 2.1))
-        dock_scale = min(0.6, (W * 0.52) / max(l.width / SS for l in self.lines))
+        dock_scale = min(0.7, (W * 0.6) / max(l.width / SS for l in self.lines))
         y_cursor_full = H * 0.5 - total / 2 + H * 0.04
         y_cursor_dock = H * 0.9 - total * dock_scale
         sweep_t = (seg(t, 3.0, 3.9), seg(t, 6.0, 6.9))
@@ -400,7 +400,7 @@ class Banner:
             lw = layer.width / SS
             cx_full = W / 2
             cx_dock = W * 0.065 + lw * dock_scale / 2
-            scale_full = lerp(1.65, 1.0, x)
+            scale_full = lerp(1.4, 1.0, x)
             skew = math.radians(lerp(-14, 0, x))
             cxp = lerp(cx_full, cx_dock, dock)
             cyp = lerp(cy_full, cy_dock, dock) + (1 - x) * 30
@@ -411,7 +411,7 @@ class Banner:
                     xk = ease_out_expo(seg(t - k / FPS * 1.2, 0.12 + delay, 0.85 + delay))
                     if xk <= 0:
                         continue
-                    ghost = place(layer, cxp, cy_full + (1 - xk) * 30, lerp(1.65, 1.0, xk) / SS,
+                    ghost = place(layer, cxp, cy_full + (1 - xk) * 30, lerp(1.4, 1.0, xk) / SS,
                                   skew=math.radians(lerp(-14, 0, xk)), alpha=0.16 * alive)
                     frame.alpha_composite(ghost)
             placed = place(layer, cxp, cyp, sc, skew=skew, alpha=min(1.0, x * 1.4) * alive)
@@ -435,7 +435,7 @@ class Banner:
             if self.kicker is not None:
                 kx_full = W / 2
                 ky_full = y_cursor_full + total + 34
-                kx_dock = W * 0.065 + self.brand.width / SS + 22 + self.kicker.width / SS / 2
+                kx_dock = W * 0.065 + self.brand.width / SS + 36 + self.kicker.width / SS / 2
                 kx = lerp(kx_full, kx_dock, dock)
                 ky = lerp(ky_full, max(ty, H * TOP_SAFE + 8), dock)
                 frame.alpha_composite(place(self.kicker, kx, ky, 1 / SS, alpha=meta_in))
@@ -475,7 +475,7 @@ class Banner:
         yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
         pos = lerp(-0.3, 1.3, x) * (W + H)
         d = (xx + yy * 0.6) - pos
-        band = np.exp(-(d / 70) ** 2) * 0.55
+        band = np.exp(-(d / 70) ** 2) * 0.32
         alpha = a[..., 3:4] / 255
         a[..., :3] = a[..., :3] + (255 - a[..., :3]) * band[..., None] * alpha
         return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))

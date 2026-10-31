@@ -95,8 +95,10 @@ glass slab, a server tower, a scale of justice made of glass.
 ## Review checklist (before handing over)
 
 1. The engine report says `seconds` 8.0, `width` 1080, `height` 608 and `bytes` ≤ 1,600,000.
-2. Look at `sheet.jpg`: the headline is never cut off, spelled right, and readable on the
-   background; the hero never covers the headline; company names are spelled exactly right.
+2. Look at `sheet.jpg`: once the headline has landed (from 0.9 s on) it is never cut off, it is
+   spelled right and readable on the background; the hero never covers it; company names are
+   spelled exactly right. During the slam (0.1–0.9 s) the headline starts oversized and may run
+   past the frame edges for a few frames: that is the intended entrance, not a defect.
 3. The headline and the stat are supported by the story's sources.
 4. Nothing in the images resembles a real logo, a real person or a real product screenshot.
 5. Deliver `banner.mp4`, `poster.webp`, `sheet.jpg`, `spec.json` and both source images.
