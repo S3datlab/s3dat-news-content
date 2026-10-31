@@ -1,0 +1,31 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "AI AGENTS",
+    "AT TELESCOPES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 95,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

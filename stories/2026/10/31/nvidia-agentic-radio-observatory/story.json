@@ -1,0 +1,45 @@
+{
+  "slug": "nvidia-agentic-radio-observatory",
+  "kind": "story",
+  "topic": "agents",
+  "title": "AI agents join live radio-telescope operations at the Allen Telescope Array",
+  "titleAccent": "live radio-telescope operations",
+  "dek": "NVIDIA reports that the Allen Telescope Array is using agents with local GPU processing to control instruments and analyze live radio data, not to confirm alien life.",
+  "publishedAt": "2026-10-31T04:14:18Z",
+  "updatedAt": "2026-10-31T04:14:18Z",
+  "whatHappened": [
+    "In an October 30, 2026 report, NVIDIA describes agent-assisted operations at the Allen Telescope Array with Breakthrough Listen and the SETI Institute.",
+    "NVIDIA says the system handles 2.4 terabits per second on RTX PRO 6000 Blackwell GPUs, with inference on site, using Holoscan data ingestion and the Nexus orchestration layer.",
+    "The company reports a real-time AI detection of a pulsar in the Crab Nebula. It does not announce detection of extraterrestrial intelligence."
+  ],
+  "whyItMatters": [
+    "The engineering task is processing a sensor stream while observations happen, rather than moving every raw sample into an offline analysis queue.",
+    "The Stelline project documents a stack spanning packet ingestion, signal processing, storage and cluster orchestration. A language interface sits above that infrastructure; it does not replace the scientific pipeline.",
+    "Local inference makes instrument state and incoming data available near the hardware, a useful deployment pattern for other data-intensive scientific facilities."
+  ],
+  "take": [
+    "This is a concrete agent application because the software connects to instrument controls and live measurements, not merely a conversational dashboard.",
+    "The next useful evidence is reliability under sustained observing conditions and the quality of operator oversight; a throughput claim and a pulsar demonstration do not establish autonomous scientific judgment."
+  ],
+  "openQuestions": [
+    "The report does not provide independent throughput validation, long-run failure rates or detailed limits on agent authority."
+  ],
+  "sources": [
+    {
+      "title": "Agentic AI joins the search for extraterrestrial signals, October 30, 2026",
+      "publisher": "NVIDIA",
+      "url": "https://blogs.nvidia.com/blog/ai-joins-the-search-for-extraterrestrial-signals/"
+    },
+    {
+      "title": "Stelline observatory stack and deployment targets; checked October 31, 2026",
+      "publisher": "Stelline project",
+      "url": "https://stelline.space/"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
