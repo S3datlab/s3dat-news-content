@@ -239,7 +239,12 @@ async function loadChromium() {
  *  CHROME_ARGS extra flags (space-separated), for locked-down machines. The 3D template always
  *  renders on SwiftShader so CI and laptops draw the same pixels. */
 function launchOptions(template) {
-  if (BROWSER !== "chromium") return process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {};
+  if (BROWSER !== "chromium") {
+    const o = process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {};
+    // Headless Firefox without a GPU refuses WebGL unless forced (the 3D template needs it).
+    if (BROWSER === "firefox") o.firefoxUserPrefs = { "webgl.force-enabled": true, "webgl.disabled": false, "webgl.enable-webgl2": true };
+    return o;
+  }
   const o = process.env.CHROME_CHANNEL ? { channel: process.env.CHROME_CHANNEL } : process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {};
   o.args = (process.env.CHROME_ARGS || "").split(/\s+/).filter(Boolean);
   if (template === "monolith") o.args.push("--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist");

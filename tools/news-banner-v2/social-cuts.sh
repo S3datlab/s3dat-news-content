@@ -25,5 +25,13 @@ unset FISH_API_KEY
 
 cd "$here"
 npx --no-install playwright-core install firefox >/dev/null
-node render.mjs "$story" --format hd --out "$out/$slug-wide.mp4"
-node render.mjs "$story" --format social --out "$out/$slug-tall.mp4"
+# The 3D template needs WebGL; where Firefox cannot create a context, render the cut with the
+# flat brand template instead of failing.
+cut() {
+  node render.mjs "$story" --format "$1" --out "$2" || {
+    echo "Retrying $(basename "$2") with the brand template" >&2
+    node render.mjs "$story" --format "$1" --out "$2" --template brand
+  }
+}
+cut hd "$out/$slug-wide.mp4"
+cut social "$out/$slug-tall.mp4"
