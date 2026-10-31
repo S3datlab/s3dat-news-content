@@ -2,9 +2,9 @@
 """Post one story to every connected Buffer channel; .github/workflows/social.yml runs it five
 times a day, five hours apart (SOCIAL.md).
 
-  python scripts/social.py --pick      choose the story; writes slug=, folder= and release= (the
-                                       GitHub release holding Makima's cuts) to $GITHUB_OUTPUT
-  (the workflow then fetches or renders its two social cuts and uploads them)
+  python scripts/social.py --pick      choose the story; writes slug=, folder= and cuts= (the file
+                                       naming Makima's two videos on Google Drive) to $GITHUB_OUTPUT
+  (the workflow then downloads them, adds the voice-over and uploads them)
   python scripts/social.py --story SLUG [--dry-run] [--force]
                                        post it now and record it in social/state.json
   python scripts/social.py --dry-run --offline
@@ -13,7 +13,7 @@ times a day, five hours apart (SOCIAL.md).
 
 --pick reports publishing errors Buffer recorded for the previous post, then picks the
 strongest story published in the last 12 hours that has not been posted, has a social block,
-is live on news.s3dat.com and has both social cuts in its GitHub release (SOCIAL.md): analysis first, then story and explained, then brief; newest
+is live on news.s3dat.com and has its two social cuts listed in social/cuts/<slug>.json (SOCIAL.md): analysis first, then story and explained, then brief; newest
 first; not the same lead company as the previous post when there is a choice. It picks nothing
 within three hours of the last post, so a delayed or repeated run cannot post twice.
 
@@ -40,6 +40,8 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "social" / "state.json"
+CUTS = ROOT / "social" / "cuts"
+DRIVE_ID = re.compile(r"[A-Za-z0-9_-]{20,100}")
 SITE = "https://news.s3dat.com"
 API = "https://api.buffer.com"
 AGENT = "S3DAT-News-Social/1.0 (+https://news.s3dat.com/about)"
@@ -91,11 +93,6 @@ def stories() -> list[dict]:
     return found
 
 
-def release_tag(published: dt.datetime) -> str:
-    """Makima uploads a story's social cuts to this GitHub release (SOCIAL.md)."""
-    return "social-" + published.astimezone(dt.timezone.utc).strftime("%Y-%m-%d")
-
-
 def media_url(slug: str, kind: str) -> str:
     return f"{SITE}/news-media/news-social/{slug}/{kind}.mp4"
 
@@ -121,24 +118,17 @@ def media_ready(slug: str, tries: int = 4) -> bool:
     return False
 
 
-_releases: dict[str, set[str]] = {}
+def cuts_file(slug: str) -> Path:
+    return CUTS / f"{slug}.json"
 
 
 def cuts_uploaded(story: dict) -> bool:
-    """Both cuts are assets of the story's release. Without GITHUB_TOKEN nothing is checked."""
-    token, repo = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN"), os.environ.get("GITHUB_REPOSITORY")
-    if not token or not repo:
-        return True
-    tag = release_tag(story["published"])
-    if tag not in _releases:
-        request = urllib.request.Request(f"https://api.github.com/repos/{repo}/releases/tags/{tag}", headers={
-            "Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "User-Agent": AGENT})
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                _releases[tag] = {a["name"] for a in json.loads(response.read()).get("assets", [])}
-        except (urllib.error.URLError, OSError, ValueError):
-            _releases[tag] = set()
-    return {f"{story['slug']}-wide.mp4", f"{story['slug']}-tall.mp4"} <= _releases[tag]
+    """Makima lists the Google Drive file ids of both cuts in social/cuts/<slug>.json."""
+    try:
+        cuts = json.loads(cuts_file(story["slug"]).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    return isinstance(cuts, dict) and all(isinstance(cuts.get(k), str) and DRIVE_ID.fullmatch(cuts[k]) for k in ("wide", "tall"))
 
 
 def pick(candidates: list[dict], state: dict, at: dt.datetime) -> dict | None:
@@ -150,7 +140,7 @@ def pick(candidates: list[dict], state: dict, at: dt.datetime) -> dict | None:
     fresh.sort(key=lambda s: bool(last_lead) and s["lead"] == last_lead)
     for story in fresh:
         if not cuts_uploaded(story):
-            print(f"{story['slug']}: no social cuts in release {release_tag(story['published'])}; skipped")
+            print(f"{story['slug']}: no social cuts listed in social/cuts; skipped")
             continue
         if reachable(story_url(story["slug"]), "GET"):
             return story
@@ -364,15 +354,15 @@ def main() -> int:
         last = parse_time(state["lastPostAt"]) if state["lastPostAt"] else None
         if last and at - last < MIN_GAP and not args.force:
             print(f"Last post at {iso(last)}, less than {MIN_GAP} ago; nothing picked.")
-            output(slug="", folder="", release="")
+            output(slug="", folder="", cuts="")
             return 0
         story = pick(candidates, state, at)
         if not story:
             print("No fresh story to post.")
-            output(slug="", folder="", release="")
+            output(slug="", folder="", cuts="")
             return 0
         print(f"Picked {story['slug']} ({story['kind']}, published {iso(story['published'])})")
-        output(slug=story["slug"], folder=story["folder"], release=release_tag(story["published"]))
+        output(slug=story["slug"], folder=story["folder"], cuts=str(cuts_file(story["slug"]).relative_to(ROOT)))
         return 0
 
     if args.story:

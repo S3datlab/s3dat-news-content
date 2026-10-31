@@ -27,17 +27,27 @@ Two cuts of every story, rendered with `tools/news-banner-v2`:
 ## Rendering the cuts (Makima)
 
 The videos are rendered on Makima's computer, not in GitHub Actions (Actions minutes cost
-money). The workflow posts only stories whose two cuts are in the GitHub pre-release
-`social-YYYY-MM-DD` (the UTC date of `publishedAt`):
+money). After a story is committed (briefs can be skipped; they are rarely posted):
 
-- `<slug>-wide.mp4`: `node render.mjs <story-dir> --format hd`
-- `<slug>-tall.mp4`: `node render.mjs <story-dir> --format social`, without `FISH_API_KEY`; the
-  workflow adds the voice-over with `--add-voice`.
+1. Render both cuts with Firefox (Chromium cannot start on Makima's computer):
 
-`BROWSER=firefox` or `BROWSER=webkit` renders with another Playwright engine where Chromium
-cannot start (Firefox frames match Chromium's; check a contact sheet first); `CHROME_ARGS`
-passes extra Chromium flags. How the files reach the release is being worked out with Makima
-(31 October 2026). Never commit the videos to the repository. GitHub renders them only when a
+   ```sh
+   tools/news-banner-v2/social-cuts.sh stories/YYYY/MM/DD/<slug> /tmp/social-cuts
+   ```
+
+   It writes `/tmp/social-cuts/<slug>-wide.mp4` (1920×1080, 8 s) and `<slug>-tall.mp4`
+   (1080×1920, 15 s, no voice: the workflow adds Ethan). It takes about eight minutes.
+2. Upload both files to the Google Drive folder **S3DAT Social Cuts** (shared as "anyone with the
+   link can view", so the workflow can download them without a password).
+3. Commit `social/cuts/<slug>.json` with the two Drive file ids, as its own commit:
+
+   ```json
+   { "wide": "<drive file id of <slug>-wide.mp4>", "tall": "<drive file id of <slug>-tall.mp4>" }
+   ```
+
+The workflow posts only stories that have this file. It downloads both videos, checks their
+size (1920×1080 and 1080×1920), adds the voice-over to the tall cut with `render.mjs
+--add-voice` and posts. Never commit the videos themselves. GitHub renders them only when a
 person runs the workflow with `render_here`.
 
 ## When we post

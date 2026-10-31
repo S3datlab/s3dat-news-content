@@ -183,8 +183,9 @@ Without Chrome installed, run `npx playwright-core install chromium` once and le
 
 On every push to `main` that touches `stories/`, the publish workflow validates the spec,
 renders the banner with this engine, validates the video and poster, publishes the story
-and keeps `<slug>.mp4` and `<slug>.webp` as the run artifact `banners-<run id>` for 14 days. The
-social workflow renders the two social cuts only for the story it posts; cuts rendered elsewhere
-and uploaded to a GitHub release get the voice-over with `--add-voice` instead (`SOCIAL.md`). A render takes one to
+and keeps `<slug>.mp4` and `<slug>.webp` as the run artifact `banners-<run id>` for 14 days. Makima
+renders the two social cuts on her computer with `social-cuts.sh` (Firefox) and puts them on
+Google Drive; the social workflow downloads them and adds the voice-over with `--add-voice`
+(`SOCIAL.md`). A render takes one to
 several minutes per cut. The site video is also at the `banner` URL on the story
 page. Third-party credits: `THIRD_PARTY_NOTICES.md`.
