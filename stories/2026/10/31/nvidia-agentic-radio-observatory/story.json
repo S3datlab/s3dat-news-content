@@ -4,36 +4,21 @@
   "topic": "agents",
   "title": "AI agents join live radio-telescope operations at the Allen Telescope Array",
   "titleAccent": "live radio-telescope operations",
-  "dek": "NVIDIA reports that the Allen Telescope Array is using agents with local GPU processing to control instruments and analyze live radio data, not to confirm alien life.",
+  "dek": "NVIDIA reports that the Allen Telescope Array uses agents and local GPU processing to control instruments and analyze live radio observations.",
   "publishedAt": "2026-10-31T04:14:18Z",
   "updatedAt": "2026-10-31T04:14:18Z",
-  "whatHappened": [
-    "In an October 30, 2026 report, NVIDIA describes agent-assisted operations at the Allen Telescope Array with Breakthrough Listen and the SETI Institute.",
-    "NVIDIA says the system handles 2.4 terabits per second on RTX PRO 6000 Blackwell GPUs, with inference on site, using Holoscan data ingestion and the Nexus orchestration layer.",
-    "The company reports a real-time AI detection of a pulsar in the Crab Nebula. It does not announce detection of extraterrestrial intelligence."
-  ],
-  "whyItMatters": [
-    "The engineering task is processing a sensor stream while observations happen, rather than moving every raw sample into an offline analysis queue.",
-    "The Stelline project documents a stack spanning packet ingestion, signal processing, storage and cluster orchestration. A language interface sits above that infrastructure; it does not replace the scientific pipeline.",
-    "Local inference makes instrument state and incoming data available near the hardware, a useful deployment pattern for other data-intensive scientific facilities."
-  ],
-  "take": [
-    "This is a concrete agent application because the software connects to instrument controls and live measurements, not merely a conversational dashboard.",
-    "The next useful evidence is reliability under sustained observing conditions and the quality of operator oversight; a throughput claim and a pulsar demonstration do not establish autonomous scientific judgment."
-  ],
-  "openQuestions": [
-    "The report does not provide independent throughput validation, long-run failure rates or detailed limits on agent authority."
-  ],
   "sources": [
     {
       "title": "Agentic AI joins the search for extraterrestrial signals, October 30, 2026",
       "publisher": "NVIDIA",
-      "url": "https://blogs.nvidia.com/blog/ai-joins-the-search-for-extraterrestrial-signals/"
+      "url": "https://blogs.nvidia.com/blog/ai-joins-the-search-for-extraterrestrial-signals/",
+      "date": "2026-10-30"
     },
     {
-      "title": "Stelline observatory stack and deployment targets; checked October 31, 2026",
+      "title": "Stelline observatory stack and deployment targets",
       "publisher": "Stelline project",
-      "url": "https://stelline.space/"
+      "url": "https://stelline.space/",
+      "date": "2026-10-31"
     }
   ],
   "video": {
@@ -41,5 +26,62 @@
     "height": 608,
     "titleInVideo": true
   },
-  "corrections": []
+  "corrections": [],
+  "format": 2,
+  "eventDate": "2026-10-30",
+  "lede": "NVIDIA reported agent-assisted operations at the Allen Telescope Array on October 30, working with Breakthrough Listen and the SETI Institute. The deployment connects language-driven controls to instruments and live radio measurements.",
+  "facts": [
+    {
+      "label": "Site",
+      "value": "Allen Telescope Array"
+    },
+    {
+      "label": "Reported throughput",
+      "value": "2.4 terabits per second, NVIDIA says"
+    },
+    {
+      "label": "Hardware",
+      "value": "RTX PRO 6000 Blackwell GPUs"
+    },
+    {
+      "label": "Inference",
+      "value": "On site"
+    },
+    {
+      "label": "Orchestration",
+      "value": "Nexus"
+    }
+  ],
+  "body": [
+    {
+      "text": "NVIDIA says the system processes incoming observations near the telescope, using Holoscan data ingestion and local GPU inference. Nexus supplies the orchestration layer. The company reports that agents can control the instrument and work with incoming measurements through a language interface. It also reports a real-time AI detection of a pulsar in the Crab Nebula."
+    },
+    {
+      "text": "The Stelline project documents the infrastructure beneath that interface. Its stack separates packet ingestion, signal processing, storage and cluster orchestration. CyberEther handles signal processing and visualization, while the Stelline plugin provides telescope networking and radio astronomy tools. DAQIRI covers packet ingestion, and Nexus coordinates distributed execution of observations across the compute cluster."
+    },
+    {
+      "text": "Those components show where an agent fits into an observatory. Scientific software still has to ingest the stream, transform the measurements and retain the relevant results. The language interface gives operators another way to work with that machinery. It depends on the instrument and processing layers continuing to expose usable state and reliable controls."
+    },
+    {
+      "text": "For teams building other sensor-heavy systems, the deployment offers a specific architecture to inspect: keep inference close to incoming data and connect it to explicit processing tools. The documented separation of networking, computation, storage and orchestration makes those responsibilities visible. It also gives developers places to test the system before adding authority over physical equipment."
+    }
+  ],
+  "claims": [
+    {
+      "text": "Stelline documents packet ingestion, signal processing, storage and orchestration components.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "NVIDIA reports 2.4 terabits per second and a real-time AI detection of a Crab Nebula pulsar.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The report supplies no independent throughput test, long-run failure rates or detailed authority limits; it announces no extraterrestrial detection.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "buildersNote": "Before giving an agent instrument controls, test packet ingestion, signal processing and orchestration separately. Log each control request with the instrument state and preserve an operator override for live observations."
 }
