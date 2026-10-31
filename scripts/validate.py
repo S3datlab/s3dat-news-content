@@ -187,7 +187,8 @@ def validate_format2(story):
     elif published is not None:
         if event > published.date():
             errors.append("eventDate cannot be after publishedAt")
-        elif kind in ("brief", "story") and (published.date() - event).days > 2:
+        # Freshness applies to what we publish from the cutover on; converted older stories keep their dates.
+        elif kind in ("brief", "story") and published >= FORMAT2_CUTOVER and (published.date() - event).days > 2:
             errors.append(f"news older than two days cannot be a {kind}: publish it as analysis or explained, or skip it")
     lede = story.get("lede")
     if check_text(lede, "lede", 80, 600, errors):
