@@ -1,9 +1,9 @@
 # S3DAT News on social media
 
 Every story can leave the site as a video post on every channel connected to Buffer. You write
-the copy in `story.json` (`social`, below) and render the story's two videos on your computer
-(below). Five times a day the workflow `Post to social media` picks the best fresh story, adds the
-voice-over and posts it. Nobody posts by hand.
+the copy in `story.json` (`social`, below). Five times a day the workflow `Post to social media`
+picks the best fresh story, renders its two videos with the voice-over and posts them. Nobody
+posts by hand.
 
 ## The videos
 
@@ -18,40 +18,20 @@ Two cuts of every story, rendered with `tools/news-banner-v2`:
 - The tall cut: 0–8 s the banner in a 4:5 frame centred in the picture (the part every feed shows
   uncropped), 8–14 s up to three spec-sheet facts as full-screen cards (facts with numbers first),
   14–15 s the S3DAT News end card with `news.s3dat.com`.
-- The voice is Ethan (Fish Audio, `FISH_VOICE_ID`). The workflow adds it to your tall cut at
-  posting time, over the soundtrack, which ducks under him; loudness is normalised to −14 LUFS.
-  You render without a voice and need no Fish key.
+- The voice is Ethan (Fish Audio, `FISH_VOICE_ID`), mixed over the soundtrack, which ducks under
+  him; loudness is normalised to −14 LUFS.
 - Buffer cannot take a file, only a public link, so at posting time the workflow uploads both
   cuts to `news.s3dat.com/news-media/news-social/<slug>/` (not shown on any page, deleted after
-  30 days). If your cuts are missing, the workflow renders them itself, which is slower and uses
-  GitHub Actions minutes.
+  30 days).
 
-## Rendering the cuts (Makima)
+## Rendering elsewhere (paused)
 
-After a story is committed, render its two cuts on your computer and upload them to the GitHub
-release of its publication day, so GitHub does not spend its monthly minutes on rendering.
-
-1. Once per environment: `npm ci` in `tools/news-banner-v2`, and a Chromium for Playwright
-   (`npx playwright-core install chromium`, or set `CHROME_PATH` to an installed Chrome/Chromium).
-2. Render, from `tools/news-banner-v2` (no `FISH_API_KEY` in the environment):
-
-   ```sh
-   node render.mjs ../../stories/YYYY/MM/DD/<slug> --format hd --out /tmp/<slug>-wide.mp4
-   node render.mjs ../../stories/YYYY/MM/DD/<slug> --format social --out /tmp/<slug>-tall.mp4
-   ```
-
-   Each prints a JSON line; check `"width"`/`"height"` (1920×1080 and 1080×1920) and that it ran
-   without errors. Together they take a few minutes.
-3. Upload both files to the release `social-YYYY-MM-DD`, where the date is the UTC date of the
-   story's `publishedAt`. Create it if it does not exist yet, as a pre-release:
-
-   ```sh
-   gh release create social-YYYY-MM-DD --prerelease --title "Social cuts YYYY-MM-DD" --notes "Rendered by Makima"
-   gh release upload social-YYYY-MM-DD /tmp/<slug>-wide.mp4 /tmp/<slug>-tall.mp4 --clobber
-   ```
-
-   The file names must be exactly `<slug>-wide.mp4` and `<slug>-tall.mp4`. Never commit the
-   videos to the repository. The workflow deletes releases older than 14 days.
+The workflow renders the cuts in GitHub Actions. It first looks for cuts uploaded to the GitHub
+pre-release `social-YYYY-MM-DD` (the UTC date of `publishedAt`) as `<slug>-wide.mp4`
+(`render.mjs --format hd`) and `<slug>-tall.mp4` (`--format social`, rendered without a voice),
+and only adds the voice-over to those. Makima's cloud computer cannot run Chromium or upload
+release assets yet (tested 31 October 2026), so nobody uploads them for now: do not try to
+render the social cuts in the hourly task.
 
 ## When we post
 
