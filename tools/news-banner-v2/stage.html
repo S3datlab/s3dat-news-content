@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="stage.css" />
+    <script type="importmap">
+      { "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/" } }
+    </script>
     <script src="runtime.js"></script>
     <script src="templates/paper.js"></script>
     <script src="templates/ink.js"></script>
@@ -14,39 +17,53 @@
     <script src="templates/poster.js"></script>
     <script src="templates/cinematic.js"></script>
     <script src="templates/cutout.js"></script>
+    <script type="module" src="templates/monolith.js"></script>
   </head>
   <body>
     <div id="stage"></div>
     <script>
       // The renderer calls __setup once (with data URLs for every asset), then __frame(t) per frame.
       // Faces the templates use. Each is loaded explicitly and checked before anything is measured.
-      const FACES = ["900 100px Archivo", "400 100px Anton", "800 100px Bricolage", "400 100px 'Instrument Serif'", "italic 400 100px 'Instrument Serif'", "700 100px 'Space Grotesk'"];
+      const FACES = ["900 100px Archivo", "200 100px Archivo", "400 100px Anton", "800 100px Bricolage", "400 100px 'Instrument Serif'", "italic 400 100px 'Instrument Serif'", "700 100px 'Space Grotesk'"];
       const frames = (n) => new Promise((done) => { const step = () => (n-- > 0 ? requestAnimationFrame(step) : done()); step(); });
+      const settle = async (stage) => {
+        await document.fonts.ready;
+        await Promise.all([...stage.querySelectorAll("img")].map((img) => (img.complete ? null : img.decode().catch(() => null))));
+        await frames(2);
+      };
       window.__setup = async (data) => {
-        const template = window.BANNER.templates[data.template];
+        const B = window.BANNER;
+        const W = data.format ? data.format.width : 1080, H = data.format ? data.format.height : 608;
+        B.setFormat(W, H);
+        const stage = document.getElementById("stage");
+        for (const n of [document.documentElement, document.body, stage]) Object.assign(n.style, { width: W + "px", height: H + "px" });
+        if (data.template === "monolith") await window.__monolithReady;
+        const template = B.templates[data.template];
         if (!template) throw new Error("Unknown template " + data.template);
         await Promise.all([...document.fonts].map((f) => f.load().catch(() => null)));
         await Promise.all(FACES.map((f) => document.fonts.load(f).catch(() => null)));
         await document.fonts.ready;
         const missing = FACES.filter((f) => !document.fonts.check(f));
         if (missing.length) throw new Error("Fonts not loaded: " + missing.join(", "));
-        data.cutouts = await Promise.all((data.cutouts || []).map(async (c) => { const b = await window.BANNER.bakeSticker(c.image); return { ...c, edged: b.url, aspect: b.aspect }; }));
-        const stage = document.getElementById("stage");
-        const build = () => { stage.innerHTML = ""; return template(stage, data, window.BANNER); };
+        const bake = async (c) => { const b = await B.bakeSticker(c.image); return { ...c, edged: b.url, aspect: b.aspect }; };
+        data.cutouts = await Promise.all((data.cutouts || []).map(async (c) => ({ ...(await bake(c)), poses: await Promise.all((c.poses || []).map(bake)) })));
         // Build twice: the first pass puts every face and image in use; the second measures the
         // text again once the browser has laid them out (fitting with a fallback font shrinks it).
-        window.__instance = build();
-        await document.fonts.ready;
-        await Promise.all([...stage.querySelectorAll("img")].map((img) => (img.complete ? null : img.decode().catch(() => null))));
-        await frames(2);
-        window.__instance = build();
-        await document.fonts.ready;
-        await Promise.all([...stage.querySelectorAll("img")].map((img) => (img.complete ? null : img.decode().catch(() => null))));
-        await frames(2);
+        const build = async () => {
+          if (window.__instance && window.__instance.dispose) window.__instance.dispose();
+          stage.innerHTML = "";
+          B.cues = [];
+          return await template(stage, data, B);
+        };
+        window.__instance = await build();
+        await settle(stage);
+        window.__instance = await build();
+        await settle(stage);
         if (window.__instance.ready) await window.__instance.ready();
-        return { poster: window.__instance.poster || 1.6 };
+        return { poster: window.__instance.poster || 2, cues: B.cues };
       };
-      window.__frame = (t) => window.__instance.frame(t);
+      // Loops are seamless: any time wraps into [0, 8).
+      window.__frame = (t) => window.__instance.frame(((t % 8) + 8) % 8);
     </script>
   </body>
 </html>

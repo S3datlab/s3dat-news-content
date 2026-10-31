@@ -1,8 +1,22 @@
 # S3DAT News banner engine v2
 
 Every story gets one 8-second banner: 1080×608, 30 fps, H.264, no audio, at most 1.6 MB, plus a
-WebP poster. The banner is built from HTML templates and rendered frame by frame in Chrome. No
-video models, no stock media.
+WebP poster, for the site. The same spec also renders a 4:5 social version (1080×1350) with a
+soundtrack for X and LinkedIn. Banners are built from HTML templates and rendered frame by frame
+in Chrome. No video models, no stock media, no sampled music: the soundtrack is synthesised.
+
+How the engine makes them feel produced, so you know what to feed it:
+
+- **Springs, not timers:** things overshoot and settle. **Nothing stands still:** a virtual camera
+  drifts and pushes, layers move in parallax, the hero breathes.
+- **Real motion blur:** each frame blends 8 moments of a 180° shutter.
+- **A beat grid:** cuts land on 120 BPM (every 0.5 s); sound effects sit on the same cues.
+- **Match cuts:** the ring becomes an iris, the chart tip becomes a colour field, the disc behind
+  the hero opens into the next colour — instead of hard cuts.
+- **Kinetic type:** eight headline treatments (rise, drop, weight, decode, skew, outline, slam,
+  track); each template picks one from the seed, so the same template looks different each time.
+- **Logos draw themselves:** the outline traces, then the fill comes in.
+- **Seamless loops:** every banner ends exactly where it began.
 
 **The big headline is the only text in a banner.** No `S3DAT NEWS`, no topic or kind labels
 (`ANALYSIS · DEV TOOLS`), no company name chips, no dates. The logo, the colours and the
@@ -37,7 +51,7 @@ Never commit `banner.mp4`, `poster.webp` or review sheets. Keep all assets of on
   "accent": 1,
   "brands": [{ "name": "Tesla", "icon": "tesla" }],
   "cutouts": [
-    { "src": "hero.webp", "role": "hero" },
+    { "src": "hero.webp", "role": "hero", "poses": ["hero-2.webp", "hero-3.webp"] },
     { "src": "prop-1.webp", "role": "prop" },
     { "src": "prop-2.webp", "role": "prop" }
   ],
@@ -46,6 +60,8 @@ Never commit `banner.mp4`, `poster.webp` or review sheets. Keep all assets of on
   "seed": 3,
   "sources": {
     "hero.webp": "generated",
+    "hero-2.webp": "generated",
+    "hero-3.webp": "generated",
     "prop-1.webp": "generated",
     "prop-2.webp": "generated"
   }
@@ -59,7 +75,7 @@ Never commit `banner.mp4`, `poster.webp` or review sheets. Keep all assets of on
 | `headline` | 1–3 uppercase lines, at most 22 characters each (aim for 16). The short form of the story title. Shorter lines are drawn bigger. |
 | `accent` | Index of the line that carries the news (the number, the verb, the verdict). It gets the colour or highlight. |
 | `brands` | 1–2 companies. Each has `name` and either `icon` (a [simple-icons](https://simpleicons.org) slug) or `logo` (a file in the folder). Optional `color` (`#rrggbb`) overrides the brand colour. |
-| `cutouts` | 0–4 transparent images: at most one `hero`, the rest `prop`. |
+| `cutouts` | 0–4 transparent images: at most one `hero`, the rest `prop`. The hero may list up to two `poses`: the same character in the next expressions of the story, swapped in on the beat (around 3 s and 5.5 s) with a squash and impact marks. |
 | `mood` | How the hero acts: `up` (bounce: launches, records, wins), `down` (slump: losses, cuts, outages), `shock` (shake: surprises, rulings, leaks), `calm` (float: everything else). |
 | `stat` | Optional key number from a source: `value` at most 10 characters with a digit (`$4.2B`, `38%`, `1T`), `label` at most 28. |
 | `art` | Optional generated scene for `cinematic`. |
@@ -80,7 +96,8 @@ Never commit `banner.mp4`, `poster.webp` or review sheets. Keep all assets of on
 | `paper` | Off-white editorial page; the logo inside a drawn ring; a brand-colour panel wipes in. | — | Product and model releases. |
 | `brand` | The brand colour fills the frame; a giant logo turns behind a wide headline; black wipe. | — | Company announcements. |
 | `ink` | Pure black; letters flicker on; the logo glows; a glitch cut to a centred layout. | — | Security, outages, infrastructure, research. |
-| `cinematic` | A generated scene, full bleed, with a slow push and a second shot; label-strip headline. | art | Explainers and analysis with a strong scene. |
+| `cinematic` | A generated scene behind a letterbox shutter, a whip pan to a second shot; label-strip headline. | art | Explainers and analysis with a strong scene. |
+| `monolith` | The real logo as a solid 3D object in a studio: it flips up, light runs across its bevels, it spins to the other side. | a vector logo (`icon` or `.svg`) | Big company moments: launches, results, deals. Use sparingly (at most one in ten). |
 
 Rotation: never use the template of the previous story, and at most two of any template among the
 last ten. Look at the last three published stories before choosing. Prefer templates with a hero
@@ -120,6 +137,11 @@ One hero and up to three props per story, all in the same style.
   remove it before committing; the validator rejects images without transparency.
 - **Size:** longest side at most 1200 px, PNG or WebP with alpha, at most 900 KB each. Convert
   large PNGs to WebP (`quality 85`).
+- **Poses (hero only, optional, recommended for people):** after the first hero image, ask the
+  image model to edit that same image into one or two follow-up expressions, so the face and
+  outfit stay identical: e.g. 1) calm, 2) surprised, 3) head in hands for a share drop; 1)
+  neutral, 2) pointing, 3) arms up for a launch. Same size, same framing, feet at the same place.
+  List them in `poses` in story order.
 
 Prompt pattern (one image per prompt):
 
@@ -143,8 +165,9 @@ logos. A specific place or object in clear light, not an abstract tech wallpaper
 cd tools/news-banner-v2 && npm ci
 # contact sheet of chosen moments, no video:
 CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --frames 0.6,1.5,3,4.8,6,7.5 --sheet /tmp/sheet.jpg
-# full render:
+# full render (site) and the 4:5 social version with sound:
 CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --out /tmp/banner.mp4 --poster /tmp/poster.webp
+CHROME_CHANNEL=chrome node render.mjs ../../stories/YYYY/MM/DD/<slug> --format social --out /tmp/social.mp4
 python3 ../../scripts/validate.py --spec-only ../../stories/YYYY/MM/DD/<slug>
 ```
 
@@ -155,5 +178,7 @@ Without Chrome installed, run `npx playwright-core install chromium` once and le
 
 On every push to `main` that touches `stories/`, the publish workflow validates the spec,
 renders the banner with this engine, validates the video and poster, publishes the story and
-keeps the rendered files as the run artifact `banners-<run id>` for 14 days. The published video
-is also at the `banner` URL on the story page.
+keeps the rendered files as the run artifact `banners-<run id>` for 14 days: `<slug>.mp4` and
+`<slug>.webp` (site) and `<slug>-social.mp4` (4:5 with sound, for X and LinkedIn). A full render
+takes one to three minutes per format. The site video is also at the `banner` URL on the story
+page. Third-party credits: `THIRD_PARTY_NOTICES.md`.

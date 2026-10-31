@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "playwright-core": "1.61.1",
-    "simple-icons": "16.36.0"
+    "simple-icons": "16.36.0",
+    "three": "0.187.0"
   }
 }

@@ -29,7 +29,7 @@ def main(folders):
         if not isinstance(spec, dict) or spec.get("engine") != 2:
             print(f"SKIP {folder}: not an engine 2 banner")
             continue
-        result = subprocess.run(["node", str(ENGINE), str(folder)], capture_output=True, text=True, timeout=600)
+        result = subprocess.run(["node", str(ENGINE), str(folder)], capture_output=True, text=True, timeout=1500)
         print(f"{'FAIL' if result.returncode else 'RENDERED'} {folder} {result.stdout.strip()}")
         if result.returncode:
             print(result.stderr.strip()[-1200:])
@@ -39,6 +39,12 @@ def main(folders):
         OUT.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(folder / "banner.mp4", OUT / f"{folder.name}.mp4")
         shutil.copyfile(folder / "poster.webp", OUT / f"{folder.name}.webp")
+        # The 4:5 social version with its soundtrack goes to the artifact only. It is best effort:
+        # a failure here never blocks publishing the story.
+        social = subprocess.run(["node", str(ENGINE), str(folder), "--format", "social", "--out", str(OUT / f"{folder.name}-social.mp4")], capture_output=True, text=True, timeout=1500)
+        print(f"{'SOCIAL FAILED' if social.returncode else 'SOCIAL'} {folder} {social.stdout.strip()}")
+        if social.returncode:
+            print(social.stderr.strip()[-800:])
     return 1 if failed else 0
 
 

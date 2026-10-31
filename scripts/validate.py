@@ -178,7 +178,7 @@ def validate_spec(spec, story):
     return errors
 
 
-TEMPLATES = ("paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout")
+TEMPLATES = ("paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith")
 MOODS = ("up", "down", "shock", "calm")
 FIELDS = ("white", "black", "brand", "pop")
 ICON = re.compile(r"[a-z0-9]+", re.ASCII)
@@ -268,6 +268,16 @@ def validate_spec_v2(spec, story, folder):
         path = check_asset(folder, cut.get("src"), f"{label}.src", (".png", ".webp"), 900_000, sources, errors)
         if path and not has_alpha(path):
             errors.append(f"{label}.src must have a transparent background (PNG or WebP with alpha)")
+        poses = cut.get("poses", [])
+        if poses and cut.get("role") != "hero":
+            errors.append(f"{label}.poses is only for the hero")
+        elif not isinstance(poses, list) or len(poses) > 2:
+            errors.append(f"{label}.poses must list at most 2 extra pose files")
+        else:
+            for j, pose in enumerate(poses):
+                pp = check_asset(folder, pose, f"{label}.poses[{j}]", (".png", ".webp"), 900_000, sources, errors)
+                if pp and not has_alpha(pp):
+                    errors.append(f"{label}.poses[{j}] must have a transparent background")
     if heroes > 1:
         errors.append("spec.cutouts may have at most one hero")
     if "art" in spec:
@@ -291,6 +301,7 @@ def validate_spec_v2(spec, story, folder):
         "cutout": (heroes == 1, "a hero cut-out"),
         "portrait": (heroes == 1, "a hero cut-out"),
         "collage": (bool(cutouts) or "art" in spec, "cut-outs or art"),
+        "monolith": (bool(brands) and isinstance(brands[0], dict) and ("icon" in brands[0] or str(brands[0].get("logo", "")).lower().endswith(".svg")), "a vector logo (icon or .svg) for its first brand"),
     }
     if template in needs and not needs[template][0]:
         errors.append(f"template {template} needs {needs[template][1]}")
