@@ -1,0 +1,46 @@
+{
+  "slug": "meta-commercial-terms-cma-probe",
+  "kind": "story",
+  "topic": "policy",
+  "title": "UK regulator opens investigation into Meta's content-use terms",
+  "titleAccent": "investigation",
+  "dek": "The CMA is investigating whether Meta's commercial terms unfairly constrain publishers whose website content could be used for AI, without finding a breach.",
+  "publishedAt": "2026-10-31T04:06:54Z",
+  "updatedAt": "2026-10-31T04:06:54Z",
+  "whatHappened": [
+    "On October 30, 2026, the UK Competition and Markets Authority opened a competition-law investigation into Meta's commercial terms for businesses.",
+    "The CMA says the terms could allow use of publishers' website content for Meta products, including AI features, without a choice over that use.",
+    "According to the regulator, Meta paused the revised terms on October 28 for industry consultation after earlier delaying their introduction.",
+    "The case will assess dominance and possible abuse; the CMA explicitly says no infringement has been established."
+  ],
+  "whyItMatters": [
+    "Publishers relying on Meta for distribution face a potential trade-off between access to audiences and control over content reuse; that concern is what the regulator is investigating.",
+    "For AI developers, this examines how platform contracts acquire content permissions, not just whether a crawler respects a website preference.",
+    "The official case timetable schedules initial information gathering through January 2027, with dates subject to change. A launch announcement is not an enforcement outcome."
+  ],
+  "take": [
+    "The important distinction is between agreeing to distribute content and being required to accept broader reuse as a condition of reaching customers.",
+    "If the investigation changes those contract terms, it could affect publishers' negotiating position, but neither dominance nor unlawful conduct should be assumed before the evidence is assessed."
+  ],
+  "openQuestions": [
+    "Whether the CMA will pursue objections, accept changes or close the investigation remains unknown."
+  ],
+  "sources": [
+    {
+      "title": "CMA opens investigation into Meta's commercial terms, October 30, 2026",
+      "publisher": "Competition and Markets Authority",
+      "url": "https://www.gov.uk/government/news/cma-opens-investigation-into-metas-commercial-terms--2"
+    },
+    {
+      "title": "Meta commercial terms case, opened October 30, 2026",
+      "publisher": "Competition and Markets Authority",
+      "url": "https://www.gov.uk/cma-cases/suspected-abuse-of-a-dominant-position-in-relation-to-metas-commercial-terms"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

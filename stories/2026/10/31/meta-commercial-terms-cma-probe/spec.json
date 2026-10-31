@@ -1,0 +1,26 @@
+{
+  "engine": 2,
+  "template": "portrait",
+  "headline": [
+    "META TERMS",
+    "UNDER UK PROBE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Meta",
+      "icon": "meta"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    }
+  ],
+  "mood": "calm",
+  "seed": 62,
+  "sources": {
+    "hero.webp": "generated"
+  }
+}
