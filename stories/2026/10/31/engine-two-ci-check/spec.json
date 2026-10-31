@@ -1,0 +1,41 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "TESLA SHARES",
+    "SLIDE 12%",
+    "AFTER DELIVERY MISS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Tesla",
+      "icon": "tesla"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.png",
+      "role": "hero"
+    },
+    {
+      "src": "coin.png",
+      "role": "prop"
+    },
+    {
+      "src": "chart.png",
+      "role": "prop"
+    }
+  ],
+  "mood": "down",
+  "stat": {
+    "value": "-12%",
+    "label": "in one session"
+  },
+  "seed": 3,
+  "sources": {
+    "hero.png": "generated",
+    "coin.png": "generated",
+    "chart.png": "generated"
+  }
+}
