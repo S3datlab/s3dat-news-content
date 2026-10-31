@@ -1,0 +1,22 @@
+{
+  "engine": 2,
+  "template": "cinematic",
+  "headline": [
+    "PROTOSTAR BACKS",
+    "OPEN SCIENCE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Hugging Face",
+      "icon": "huggingface"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 117,
+  "sources": {
+    "art.jpg": "generated"
+  },
+  "art": "art.jpg"
+}
