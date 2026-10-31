@@ -1,0 +1,54 @@
+{
+  "slug": "google-gemma-orbit-response",
+  "kind": "story",
+  "topic": "research",
+  "title": "Google's Gemma 4 answers from a TPU in orbit",
+  "titleAccent": "in orbit",
+  "dek": "Google says its Project Suncatcher satellite generated a Gemma 4 response in orbit, an early milestone in testing whether data-center AI hardware can operate in space.",
+  "publishedAt": "2026-10-31T03:12:00Z",
+  "whatHappened": [
+    "On October 30, 2026, Google reported that its Project Suncatcher prototype had generated a Gemma 4 response in orbit earlier that week.",
+    "A ground station sent a prompt requesting a space-themed haiku; the satellite returned the result while passing Svalbard, Norway.",
+    "Google calls it the first AI response from a data-center-class TPU in orbit; the prototype satellite launched on October 1.",
+    "Thermal-stress and radiation tests are next, ahead of a planned twin-satellite milestone in 2027."
+  ],
+  "whyItMatters": [
+    "The energy attraction predates this test: in its September 24 explanation, Google says low-Earth-orbit satellites can receive near-continuous sunlight. That motivates solar-powered AI infrastructure, but this response does not measure its delivered computing cost.",
+    "Cooling remains a constraint, not a free benefit of space. Google describes using heat pipes and radiators because the vacuum provides no airflow to carry heat away; sustained AI workloads must keep rejecting that heat.",
+    "The response tests an onboard model and the ground-to-satellite communication path. Scaling beyond one satellite also requires high-bandwidth links between moving spacecraft, which Google's September explanation identifies as a separate engineering challenge."
+  ],
+  "take": [
+    "The meaningful step is that a data-center-class chip executed an AI workload after launch; the haiku's content tells us little about whether a fleet would be useful.",
+    "For infrastructure buyers, the next persuasive evidence would be sustained throughput per unit of power, reliable heat rejection and end-to-end costs including launch and replacement, rather than another short generated answer.",
+    "Until those numbers and inter-satellite links are demonstrated, orbital compute belongs in an engineering research budget rather than a production capacity plan."
+  ],
+  "openQuestions": [
+    "Google has not established sustained throughput, service uptime, radiation-related failure rates or the cost of useful compute delivered to customers.",
+    "The October update does not report a working interconnected constellation or commercial availability; thermal, radiation and multi-satellite validation remain ahead."
+  ],
+  "sources": [
+    {
+      "title": "We've received our first response from the Project Suncatcher prototype satellite, October 30",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/"
+    },
+    {
+      "title": "Our Project Suncatcher prototype satellite is in orbit, October 1",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-prototype/"
+    },
+    {
+      "title": "Behind Project Suncatcher, our moonshot to put AI in space, September 24, 2026",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-project-suncatcher-facts/"
+    }
+  ],
+  "video": {
+    "src": "banner.mp4",
+    "poster": "poster.webp",
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

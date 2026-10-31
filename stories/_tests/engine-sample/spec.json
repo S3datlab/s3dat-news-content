@@ -1,0 +1,26 @@
+{
+  "title": [
+    "CODEX LIMITS",
+    "DOUBLED"
+  ],
+  "accent_line": 1,
+  "kicker": "DEV TOOLS",
+  "entities": [
+    "OPENAI"
+  ],
+  "versus": false,
+  "stat": {
+    "value": "2×",
+    "label": "WORK & CODEX QUOTA"
+  },
+  "palette": {
+    "deep": "#03201b",
+    "mid": "#17b38a",
+    "light": "#a5f6d9"
+  },
+  "assets": {
+    "background": "background.png",
+    "hero": "hero.png"
+  },
+  "payoff": null
+}

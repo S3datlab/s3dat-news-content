@@ -1,0 +1,69 @@
+{
+  "slug": "mistral-large-four-open-weights",
+  "kind": "story",
+  "topic": "models",
+  "title": "Mistral opens the weights of its trillion-parameter Large 4 model",
+  "titleAccent": "trillion-parameter",
+  "dek": "Mistral has released improved Large 4 weights, giving developers a trillion-parameter multimodal model to customize and host under its open-weight license.",
+  "publishedAt": "2026-10-31T01:12:00Z",
+  "whatHappened": [
+    "Mistral released improved Mistral Large 4 weights on October 29, 2026, following an earlier public preview; Hugging Face documented the release that day.",
+    "Mistral's model card describes a one-trillion-parameter multimodal mixture-of-experts model: 49 billion parameters are active per token, or 52 billion including embeddings and output layers.",
+    "The model uses the Mistral Ecosystem Open-Weight License, with separate commercial licensing rules for Model-as-a-Service offerings."
+  ],
+  "whyItMatters": [
+    "Self-hosting means substantial infrastructure, not merely downloading weights: vLLM's recipe, checked October 31, lists approximately 610 GB of NVFP4 weights or 1.06 TB of FP8 weights, before runtime memory. It validates configurations including four GB300 GPUs for NVFP4 and sixteen H200 GPUs for FP8.",
+    "Active parameters describe per-token computation, not the entire weight-storage requirement. vLLM validates this recipe to 256K context; longer context and higher concurrency consume additional memory, so the model's advertised 1M context is not a blanket serving guarantee.",
+    "For a dated comparison, Mistral's model card checked October 31 reports 48% on the Artificial Analysis Coding Agent Index, effectively tied with GLM-5.3 while using 47% fewer tokens. These are Mistral-reported results, not an S3DAT reproduction; Z.ai's own card documents different benchmark setups, so its individual scores should not be mixed into that ranking.",
+    "Licensing is another practical differentiator: DeepSeek's V4.1-Flash-1017 card, checked October 31, lists MIT-licensed weights, while Large 4 has separate Model-as-a-Service licensing rules. Developers comparing these large open-weight alternatives need to evaluate both task performance and deployment rights."
+  ],
+  "take": [
+    "Large 4 is most compelling for teams that need control over image-and-text workloads and can justify a multi-accelerator deployment, rather than for developers seeking cheap local experimentation.",
+    "The useful comparison with GLM-5.3 is quality per completed coding task, not a trillion-parameter headline; fewer generated tokens may help, but do not by themselves establish lower end-to-end cost.",
+    "Against a permissively licensed alternative such as DeepSeek V4.1 Flash, Mistral needs to earn its place through workload results, operational fit and acceptable licensing terms."
+  ],
+  "openQuestions": [
+    "How do these alternatives compare on the same production workload, quantization, concurrency and hardware?",
+    "Mistral says a full technical report is forthcoming; the current company comparisons do not settle independent quality or total serving cost."
+  ],
+  "sources": [
+    {
+      "title": "Mistral Large 4 (Le Chonk) is now open weight",
+      "publisher": "Mistral AI",
+      "url": "https://mistral.ai/news/mistral-large-4-oss/"
+    },
+    {
+      "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face, October 29",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/blog/mistral-large4"
+    },
+    {
+      "title": "Mistral Large 4 model card; checked October 31, 2026",
+      "publisher": "Mistral AI",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B"
+    },
+    {
+      "title": "Mistral Large 4 deployment recipe; checked October 31, 2026",
+      "publisher": "vLLM",
+      "url": "https://recipes.vllm.ai/mistralai/Mistral-Large-4-1T-A52B"
+    },
+    {
+      "title": "GLM-5.3 model card and evaluation methods; checked October 31, 2026",
+      "publisher": "Z.ai",
+      "url": "https://huggingface.co/zai-org/GLM-5.3"
+    },
+    {
+      "title": "DeepSeek V4.1 Flash 1017 model card and license; checked October 31, 2026",
+      "publisher": "DeepSeek",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    }
+  ],
+  "video": {
+    "src": "banner.mp4",
+    "poster": "poster.webp",
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
