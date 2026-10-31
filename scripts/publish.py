@@ -75,6 +75,8 @@ def main():
         target = urlsplit(url)
         request = urllib.request.Request(url, data=body, method="POST", headers={
             "Content-Type": content_type,
+            # Cloudflare's browser integrity check rejects the default Python-urllib agent (error 1010).
+            "User-Agent": "S3DAT-News-Publisher/1.0 (+https://news.s3dat.com/about)",
             # Astro checks Origin on multipart POSTs before dispatching the signed endpoint.
             "Origin": f"{target.scheme}://{target.netloc}",
             "X-S3DAT-Timestamp": timestamp,
