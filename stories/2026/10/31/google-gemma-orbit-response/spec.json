@@ -1,22 +1,31 @@
 {
-  "title": [
+  "engine": 2,
+  "template": "collage",
+  "headline": [
     "GEMMA ANSWERS",
     "FROM ORBIT"
   ],
-  "accent_line": 1,
-  "kicker": "RESEARCH",
-  "entities": [
-    "GOOGLE"
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
   ],
-  "versus": false,
-  "palette": {
-    "deep": "#261204",
-    "mid": "#ff8a2a",
-    "light": "#ffd6a3"
-  },
-  "assets": {
-    "background": "background.png",
-    "hero": "hero.png"
-  },
-  "payoff": "TPU IN ORBIT"
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 44,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
 }
