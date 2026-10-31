@@ -7,13 +7,13 @@ BANNER.templates.brand = (stage, d, B) => {
   const bg = c.dark ? "#f2f0ea" : c.base;
   const ink = c.dark ? "#0b0b0b" : c.ink;
   const root = css(el("div", "layer", stage), { background: bg });
-  const giant = css(logoNode(brand, ink, root), { position: "absolute", left: "540px", top: "-120px", width: "760px", height: "760px", opacity: 0.12 });
+  const giant = css(logoNode(brand, ink, root), { position: "absolute", left: "540px", top: "-120px", width: "760px", height: "760px", opacity: 0.08 });
 
   const a = css(el("div", "abs", root), { left: "60px", top: "0", bottom: "0", width: "900px", display: "flex", flexDirection: "column", justifyContent: "center" });
   // The accent line is an outline of the ink colour: readable on any brand colour.
   const aLines = d.headline.map((text, i) => {
     const n = css(el("div", "line", a), { font: "900 80px/0.92 Archivo", fontStretch: "125%", letterSpacing: "-0.03em", color: ink, textTransform: "uppercase" });
-    if (i === d.accent) css(n, { color: "transparent", WebkitTextStroke: `2.5px ${ink}` });
+    if (i === d.accent) css(n, { color: "transparent", WebkitTextStroke: `0.045em ${ink}` });
     n.textContent = text;
     return n;
   });
@@ -25,7 +25,7 @@ BANNER.templates.brand = (stage, d, B) => {
   const negLogo = css(logoNode(brand, c.dark ? "#ffffff" : c.base, neg), { width: "190px", height: "190px", flex: "none" });
   const negText = css(el("div", "", neg), { display: "flex", flexDirection: "column" });
   const negLines = d.headline.map((text) => { const n = css(el("div", "line", negText), { font: "900 80px/0.92 Archivo", fontStretch: "110%", color: c.dark ? "#fff" : c.base, textTransform: "uppercase" }); n.textContent = text; return n; });
-  fitLines(negLines, 700, 360, 130, 30, 0.95);
+  B.fitEach(negLines, 700, 400, 150, 30, 0.95);
 
   return {
     poster: 1.6,

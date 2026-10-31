@@ -17,7 +17,7 @@ BANNER.templates.poster = (stage, d, B) => {
     const card = css(el("div", "layer", root), { background: bg, display: "grid", placeItems: "center", visibility: "hidden" });
     const n = css(el("div", "line", card), { font: "400 300px/0.9 Anton", color: ink, textTransform: "uppercase", letterSpacing: "0.005em" });
     n.textContent = w;
-    fitLines([n], 980, 540, 520, 80, 0.9);
+    fitLines([n], 920, 520, 520, 80, 0.9);
     return { card, n, start: 0.1 + i * per };
   });
   const flashEnd = 0.1 + words.length * per;
@@ -28,7 +28,7 @@ BANNER.templates.poster = (stage, d, B) => {
   const stack = css(el("div", "abs", lock), { left: "56px", top: "0", bottom: "110px", width: "700px", display: "flex", flexDirection: "column", justifyContent: "center" });
   const lines = d.headline.map((text, i) => {
     const n = css(el("div", "line", stack), { font: "400 80px/0.92 Anton", color: ink2, textTransform: "uppercase" });
-    if (i !== d.accent && d.headline.length > 1 && i % 2 === 1) css(n, { color: "transparent", WebkitTextStroke: `3px ${ink2}` });
+    if (i !== d.accent && d.headline.length > 1 && i % 2 === 1) css(n, { color: "transparent", WebkitTextStroke: `0.045em ${ink2}` });
     n.textContent = text;
     return n;
   });
@@ -45,7 +45,7 @@ BANNER.templates.poster = (stage, d, B) => {
       flash.forEach(({ card, n, start }, i) => {
         const on = t >= start && (i === flash.length - 1 ? t < flashEnd : t < flash[i + 1].start);
         card.style.visibility = on ? "visible" : "hidden";
-        if (on) { const x = seg(t, start, start + per); n.style.transform = `scale(${lerp(1.18, 1, ease.outExpo(x))})`; }
+        if (on) { const x = seg(t, start, start + per); n.style.transform = `scale(${lerp(1.07, 1, ease.outExpo(x))})`; }
       });
       const show = t >= flashEnd;
       lock.style.visibility = show ? "visible" : "hidden";
