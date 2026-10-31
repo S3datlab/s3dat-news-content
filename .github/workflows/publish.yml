@@ -44,6 +44,9 @@ jobs:
         id: stories
         env:
           CHROME_CHANNEL: chrome
+          # Voice-over for the 9:16 social cut. FISH_VOICE_ID (a repository variable) picks the voice.
+          FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
+          FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
           BASE_SHA: ${{ github.event.before }}
           HEAD_SHA: ${{ github.sha }}
           STORY_DIR: ${{ inputs.story_dir }}

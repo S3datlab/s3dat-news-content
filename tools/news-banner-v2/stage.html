@@ -17,10 +17,12 @@
     <script src="templates/poster.js"></script>
     <script src="templates/cinematic.js"></script>
     <script src="templates/cutout.js"></script>
+    <script src="social.js"></script>
     <script type="module" src="templates/monolith.js"></script>
   </head>
   <body>
     <div id="stage"></div>
+    <div id="social"></div>
     <script>
       // The renderer calls __setup once (with data URLs for every asset), then __frame(t) per frame.
       // Faces the templates use. Each is loaded explicitly and checked before anything is measured.
@@ -34,9 +36,14 @@
       window.__setup = async (data) => {
         const B = window.BANNER;
         const W = data.format ? data.format.width : 1080, H = data.format ? data.format.height : 608;
-        B.setFormat(W, H);
+        // The social cut is 9:16; the template draws its 4:5 layout centred in it, then the cards take over.
+        const social = data.format && data.format.name === "social";
+        const SH = social ? data.format.stageHeight : H;
+        B.setFormat(W, SH);
         const stage = document.getElementById("stage");
-        for (const n of [document.documentElement, document.body, stage]) Object.assign(n.style, { width: W + "px", height: H + "px" });
+        for (const n of [document.documentElement, document.body]) Object.assign(n.style, { width: W + "px", height: H + "px" });
+        Object.assign(stage.style, { width: W + "px", height: SH + "px", top: (H - SH) / 2 + "px" });
+        window.__social = null;
         if (data.template === "monolith") await window.__monolithReady;
         const template = B.templates[data.template];
         if (!template) throw new Error("Unknown template " + data.template);
@@ -60,10 +67,30 @@
         window.__instance = await build();
         await settle(stage);
         if (window.__instance.ready) await window.__instance.ready();
+        if (social) {
+          const root = document.getElementById("social");
+          root.innerHTML = "";
+          Object.assign(root.style, { width: W + "px", height: H + "px" });
+          window.__social = B.social(root, data, B);
+          await settle(root);
+        }
         return { poster: window.__instance.poster || 2, cues: B.cues };
       };
-      // Loops are seamless: any time wraps into [0, 8).
-      window.__frame = (t) => window.__instance.frame(((t % 8) + 8) % 8);
+      // Loops are seamless: any time wraps into [0, 8). The social cut runs the banner once, then the cards.
+      window.__frame = (t) => {
+        const s = window.__social;
+        if (!s) return window.__instance.frame(((t % 8) + 8) % 8);
+        const stage = document.getElementById("stage");
+        if (t < 8) {
+          window.__instance.frame(Math.max(0, t));
+          // The bands above and below the 4:5 frame continue its background.
+          const bg = getComputedStyle(stage).backgroundColor;
+          document.body.style.background = bg && bg !== "rgba(0, 0, 0, 0)" ? bg : "#0a0a0a";
+        }
+        stage.style.visibility = t < 8 ? "visible" : "hidden";
+        document.getElementById("social").style.visibility = t >= 8 ? "visible" : "hidden";
+        s.frame(t - 8);
+      };
     </script>
   </body>
 </html>

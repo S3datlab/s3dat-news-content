@@ -170,6 +170,48 @@ def word_count(text):
     return len(re.findall(r"[A-Za-z0-9$€£%][\w$€£%.,'’/-]*", text))
 
 
+# Every story published from here on carries its social copy and voice-over script.
+SOCIAL_CUTOVER = dt.datetime(2026, 11, 1, 4, 0, tzinfo=dt.timezone.utc)
+HASHTAG = re.compile(r"[A-Za-z][A-Za-z0-9]{1,29}")
+EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF]")
+
+
+def validate_social(story, published):
+    errors = []
+    social = story.get("social")
+    if social is None:
+        if published is not None and published >= SOCIAL_CUTOVER:
+            errors.append("social is required: voiceover, short, long and hashtags (see stories/README.md)")
+        return errors
+    if not isinstance(social, dict):
+        return ["social must be an object"]
+    vo = social.get("voiceover")
+    if check_text(vo, "social.voiceover", 60, 300, errors):
+        n = word_count(vo)
+        if not 26 <= n <= 36:
+            errors.append(f"social.voiceover must be 26–36 words so it fits the 15-second video (found {n})")
+        if re.search(r"https?://|www\.|\b[a-z0-9-]+\.(com|ai|io|org)\b", vo, re.IGNORECASE):
+            errors.append("social.voiceover is read aloud: no links or domains")
+    for key, low, high in (("short", 60, 240), ("long", 300, 1500)):
+        text = social.get(key)
+        if check_text(text, f"social.{key}", low, high, errors):
+            if re.search(r"https?://|www\.", text):
+                errors.append(f"social.{key} must not contain links; the story link is added when posting")
+            if EMOJI.search(text):
+                errors.append(f"social.{key} must not contain emoji")
+            if "#" in text:
+                errors.append(f"social.{key} must not contain hashtags; list them in social.hashtags")
+    tags = social.get("hashtags", [])
+    if not isinstance(tags, list) or len(tags) > 4 or not all(isinstance(t, str) and HASHTAG.fullmatch(t) for t in tags):
+        errors.append("social.hashtags must list 0–4 tags of letters and digits, without #")
+    for key in ("voiceover", "short", "long"):
+        text = social.get(key)
+        if isinstance(text, str):
+            for m in BANNED_RE.finditer(text):
+                errors.append(f'social.{key}: "{m.group(0)}" reads like generated copy; say it plainly')
+    return errors
+
+
 def validate_format2(story):
     errors = []
     kind = story.get("kind")
@@ -308,6 +350,7 @@ def validate_format2(story):
     for i, src in enumerate(sources):
         if isinstance(src, dict) and PROCESS_RE.search(str(src.get("title", ""))):
             errors.append(f"sources[{i}].title: drop the research note; the date field records when")
+    errors.extend(validate_social(story, published))
     words = word_count(spoken)
     lo, hi = WORDS.get(kind, (100, 1500))
     if not lo <= words <= hi:

@@ -36,6 +36,7 @@ A story is a lede, a spec sheet and prose, plus the parts its kind calls for:
 | `ourRead` | Our opinion, one paragraph (120–1200 characters), ending with what would change our mind. |
 | `watching` | 1–3 concrete, dated things we will check next. |
 | `sources` | 1–8 `{ "title", "publisher", "url", "date" }`; primary sources first; `date` is `YYYY-MM-DD`. |
+| `social` | The copy and voice-over for social media: `{ "voiceover", "short", "long", "hashtags" }`. Rules in `SOCIAL.md`; required from 1 November 2026 04:00 UTC. |
 | `video.titleInVideo` | `true` (the banner carries the headline). |
 | `corrections` | `[{ "date": "...", "note": "..." }]` when a published fact changes. |
 

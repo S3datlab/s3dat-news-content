@@ -6,7 +6,9 @@
  *                   [--sheet sheet.jpg] [--template name] [--blur n] [--frame s] [--frames a,b,c]
  *
  * wide (site):     1080x608, 30 fps, 8 s, H.264 yuv420p, silent, at most 1.6 MB, plus a WebP poster.
- * social (X, LinkedIn): 1080x1350 (4:5) with a soundtrack synthesised from the template's cues.
+ * social (every Buffer channel): 1080x1920 (9:16), 15 s: the banner in a centred 4:5 frame, then fact
+ *   cards and an end card, with a Fish Audio voice-over (FISH_API_KEY, optional FISH_VOICE_ID) over a
+ *   soundtrack synthesised from the template's cues.
  * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8).
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
  */
@@ -18,10 +20,10 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { synthesize } from "./audio.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const FPS = 30, DURATION = 8;
+const FPS = 30;
 const FORMATS = {
-  wide: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22 },
-  social: { width: 1080, height: 1350, maxBytes: 6_000_000, crf: 20 },
+  wide: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, seconds: 8, blur: 8 },
+  social: { width: 1080, height: 1920, stageHeight: 1350, maxBytes: 9_000_000, crf: 21, seconds: 15, blur: 4 },
 };
 export const TEMPLATES = ["paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith"];
 const MOODS = ["up", "down", "shock", "calm"];
@@ -126,7 +128,8 @@ async function buildData(dir, override, format) {
   if (headline.length < 1 || headline.length > 3) throw new Error("headline needs 1-3 lines");
   return {
     template,
-    format: { name: format, width: FORMATS[format].width, height: FORMATS[format].height },
+    format: { name: format, width: FORMATS[format].width, height: FORMATS[format].height, stageHeight: FORMATS[format].stageHeight },
+    story: readStory(dir),
     headline,
     accent: Number.isInteger(spec.accent) ? spec.accent : headline.length - 1,
     stat: spec.stat && spec.stat.value ? { value: String(spec.stat.value), label: String(spec.stat.label || "").toUpperCase() } : null,
@@ -142,6 +145,46 @@ async function buildData(dir, override, format) {
     bg: FIELDS.includes(spec.bg) ? spec.bg : null,
     seed: Number(spec.seed) || 7,
   };
+}
+
+/** The parts of story.json the social cut uses: spec-sheet facts and the voice-over script. */
+function readStory(dir) {
+  const file = join(dir, "story.json");
+  if (!existsSync(file)) return { facts: [], voiceover: "" };
+  const story = JSON.parse(readFileSync(file, "utf8"));
+  const facts = Array.isArray(story.facts) ? story.facts.slice(0, 6).map((f) => ({ label: String(f.label || ""), value: String(f.value || "") })) : [];
+  let voiceover = story.social && typeof story.social.voiceover === "string" ? story.social.voiceover : "";
+  if (!voiceover && typeof story.lede === "string") {
+    // Fallback: the lede, cut at a sentence end before about 36 words.
+    const sentences = story.lede.split(/(?<=[.!?])\s+/);
+    for (const sentence of sentences) { if ((voiceover + " " + sentence).trim().split(/\s+/).length > 36) break; voiceover = (voiceover + " " + sentence).trim(); }
+  }
+  return { facts, voiceover };
+}
+
+/** Fish Audio text-to-speech; returns the mp3 path, or null without a key or script. */
+async function voiceover(text, out) {
+  const key = process.env.FISH_API_KEY;
+  if (!key || !text) return null;
+  const body = { text, format: "mp3", mp3_bitrate: 128, normalize: true };
+  if (process.env.FISH_VOICE_ID) body.reference_id = process.env.FISH_VOICE_ID;
+  const res = await fetch("https://api.fish.audio/v1/tts", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", model: process.env.FISH_MODEL || "s2.1-pro-free" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`Fish Audio TTS failed with HTTP ${res.status}`);
+  writeFileSync(out, Buffer.from(await res.arrayBuffer()));
+  return out;
+}
+
+function probeSeconds(file) {
+  return new Promise((ok) => {
+    const p = spawn("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", file]);
+    let out = "";
+    p.stdout.on("data", (c) => (out += c));
+    p.on("close", () => ok(parseFloat(out) || 0));
+  });
 }
 
 async function loadChromium() {
@@ -215,7 +258,8 @@ async function main() {
   }
 
   // Motion blur: N samples across a 180° shutter centred on each frame time.
-  const N = Math.max(1, Math.min(12, Number(a.blur) || 8));
+  const DURATION = F.seconds;
+  const N = Math.max(1, Math.min(12, Number(a.blur) || F.blur));
   const frames = DURATION * FPS;
   let k = 0;
   for (let i = 0; i < frames; i++) {
@@ -245,10 +289,12 @@ async function main() {
     await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", list, "-vf", `scale=${tw}:${th},tile=4x4`, "-frames:v", "1", resolve(a.sheet)]);
   }
 
-  let audio = null;
+  let audio = null, voice = null, voiceSeconds = 0;
   if (format === "social") {
     audio = join(tmp, "sound.wav");
     writeFileSync(audio, synthesize(cues, { seconds: DURATION, seed: data.seed }));
+    voice = await voiceover(data.story.voiceover, join(tmp, "voice.mp3"));
+    if (voice) voiceSeconds = await probeSeconds(voice);
   }
 
   const out = resolve(a.out || join(dir, format === "social" ? "banner-social.mp4" : "banner.mp4"));
@@ -257,15 +303,26 @@ async function main() {
   for (;;) {
     const argv = ["-y", "-loglevel", "error", "-framerate", String(FPS * N), "-i", join(tmp, "f%05d.jpg")];
     if (audio) argv.push("-i", audio);
+    if (voice) argv.push("-i", voice);
+    // JPEG frames are full-range BT.601: convert to the limited-range BT.709 every player expects.
+    const video = `${blend}scale=in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p`;
+    if (voice) {
+      // The voice starts at 0.4 s and must end before the end card; long reads are sped up slightly.
+      const tempo = Math.min(1.15, Math.max(1, voiceSeconds / 13.6));
+      argv.push("-filter_complex",
+        `[0:v]${video}[v];` +
+        `[1:a]volume=0.6[bed];[2:a]atempo=${tempo.toFixed(3)},adelay=400|400,apad,asplit=2[vo1][vo2];` +
+        `[bed][vo1]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=300[duck];` +
+        `[duck][vo2]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
+        "-map", "[v]", "-map", "[a]");
+    } else argv.push("-vf", video);
     argv.push(
-      // JPEG frames are full-range BT.601: convert to the limited-range BT.709 every player expects.
-      "-vf", `${blend}scale=in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709,format=yuv420p`,
       "-r", String(FPS), "-c:v", "libx264", "-preset", "slow", "-profile:v", "high", "-crf", String(crf),
       "-maxrate", format === "social" ? "6000k" : "1700k", "-bufsize", format === "social" ? "12000k" : "3400k",
       "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv", "-pix_fmt", "yuv420p",
       "-movflags", "+faststart", "-g", String(FPS * 2), "-t", String(DURATION),
     );
-    if (audio) argv.push("-c:a", "aac", "-b:a", "160k", "-ar", "48000");
+    if (audio) argv.push("-c:a", "aac", "-b:a", "160k", "-ar", "48000", ...(voice ? [] : ["-map", "0:v", "-map", "1:a"]));
     else argv.push("-an");
     argv.push(out);
     await run("ffmpeg", argv);
@@ -273,7 +330,7 @@ async function main() {
     if (size <= F.maxBytes || crf >= 32) break;
     crf += 2;
   }
-  const result = { out, template: data.template, format, bytes: size, crf, width: F.width, height: F.height, fps: FPS, seconds: DURATION, blur: N, cues: cues.length };
+  const result = { out, template: data.template, format, bytes: size, crf, width: F.width, height: F.height, fps: FPS, seconds: DURATION, blur: N, cues: cues.length, voice: voice ? Number(voiceSeconds.toFixed(2)) : null };
   if (format === "wide") {
     const posterOut = resolve(a.poster || join(dir, "poster.webp"));
     writeFileSync(posterOut, Buffer.from(webp, "base64"));
