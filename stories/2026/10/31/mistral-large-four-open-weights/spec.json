@@ -1,26 +1,23 @@
 {
-  "title": [
+  "engine": 2,
+  "template": "data",
+  "headline": [
     "MISTRAL LARGE 4",
-    "WEIGHTS RELEASED"
+    "OPEN WEIGHTS"
   ],
-  "accent_line": 1,
-  "kicker": "MODELS",
-  "entities": [
-    "MISTRAL"
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Mistral AI",
+      "icon": "mistralai"
+    }
   ],
-  "versus": false,
+  "cutouts": [],
+  "mood": "up",
+  "seed": 11,
+  "sources": {},
   "stat": {
     "value": "1T",
     "label": "TOTAL PARAMETERS"
-  },
-  "palette": {
-    "deep": "#06122e",
-    "mid": "#2f6bff",
-    "light": "#9fd8ff"
-  },
-  "assets": {
-    "background": "background.png",
-    "hero": "hero.png"
-  },
-  "payoff": null
+  }
 }
