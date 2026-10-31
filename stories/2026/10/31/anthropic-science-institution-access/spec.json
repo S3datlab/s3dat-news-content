@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "CLAUDE CREDITS",
+    "FOR SCIENCE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 106,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  },
+  "bg": "white"
+}
