@@ -20,25 +20,25 @@
       "date": "2026-10-29"
     },
     {
-      "title": "Mistral Large 4 model card; checked October 31, 2026",
+      "title": "Mistral Large 4 model card",
       "publisher": "Mistral AI",
       "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
       "date": "2026-10-31"
     },
     {
-      "title": "Mistral Large 4 deployment recipe; checked October 31, 2026",
+      "title": "Mistral Large 4 deployment recipe",
       "publisher": "vLLM",
       "url": "https://recipes.vllm.ai/mistralai/Mistral-Large-4-1T-A52B",
       "date": "2026-10-31"
     },
     {
-      "title": "GLM-5.3 model card and evaluation methods; checked October 31, 2026",
+      "title": "GLM-5.3 model card and evaluation methods",
       "publisher": "Z.ai",
       "url": "https://huggingface.co/zai-org/GLM-5.3",
       "date": "2026-10-31"
     },
     {
-      "title": "DeepSeek V4.1 Flash 1017 model card and license; checked October 31, 2026",
+      "title": "DeepSeek V4.1 Flash 1017 model card and license",
       "publisher": "DeepSeek",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
       "date": "2026-10-17"
