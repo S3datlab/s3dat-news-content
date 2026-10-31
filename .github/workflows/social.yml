@@ -3,7 +3,8 @@ name: Post to social media
 # Five slots a day, five hours apart (24 is not a multiple of 5, so one gap is four hours).
 # UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00. Each slot picks one story, takes the two
 # social cuts Makima rendered (GitHub release social-YYYY-MM-DD), adds the voice-over, uploads
-# them and posts to every Buffer channel. Without Makima's cuts it renders them here (SOCIAL.md).
+# them and posts to every Buffer channel. Stories without her cuts are not posted: rendering
+# here costs Actions minutes and runs only when asked (render_here) (SOCIAL.md).
 on:
   schedule:
     - cron: '12 1,6,11,16,21 * * *'
@@ -19,6 +20,14 @@ on:
         default: true
       force:
         description: 'Ignore the three-hour guard and earlier posts'
+        type: boolean
+        default: false
+      render_here:
+        description: 'Render the cuts here if Makima has not (uses Actions minutes)'
+        type: boolean
+        default: false
+      check_channels:
+        description: 'Only list the Buffer channels and Pinterest boards'
         type: boolean
         default: false
 
@@ -46,9 +55,17 @@ jobs:
         env:
           STORY: ${{ inputs.story }}
           FORCE: ${{ inputs.force }}
+          CHECK: ${{ inputs.check_channels }}
+          PINTEREST_BOARD: ${{ vars.PINTEREST_BOARD }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           if [ -z "$BUFFER_API_KEY" ]; then
             echo "BUFFER_API_KEY is not set; nothing to post."
+            echo "slug=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$CHECK" = "true" ]; then
+            python scripts/social.py --channels
             echo "slug=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -72,28 +89,33 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           SLUG: ${{ steps.pick.outputs.slug }}
           RELEASE: ${{ steps.pick.outputs.release }}
+          RENDER_HERE: ${{ inputs.render_here }}
         run: |
           mkdir -p out/social
           if gh release download "$RELEASE" -p "$SLUG-wide.mp4" -p "$SLUG-tall.mp4" -D out/social --clobber \
              && [ -s "out/social/$SLUG-wide.mp4" ] && [ -s "out/social/$SLUG-tall.mp4" ]; then
             echo "Using Makima's cuts from $RELEASE"
-            echo "found=true" >> "$GITHUB_OUTPUT"
+            echo "mode=makima" >> "$GITHUB_OUTPUT"
+          elif [ "$RENDER_HERE" = "true" ]; then
+            rm -f out/social/*
+            echo "No cuts from Makima for $SLUG; rendering them here as asked"
+            echo "mode=render" >> "$GITHUB_OUTPUT"
           else
             rm -f out/social/*
-            echo "::warning::No cuts from Makima for $SLUG in release $RELEASE; rendering them here"
-            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No cuts from Makima for $SLUG in release $RELEASE; not posted"
+            echo "mode=skip" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/setup-node@v4
-        if: steps.pick.outputs.slug != ''
+        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/news-banner-v2/package-lock.json
       - name: Install ffmpeg
-        if: steps.pick.outputs.slug != ''
+        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Add the voice-over to Makima's 9:16 cut
-        if: steps.fetch.outputs.found == 'true'
+        if: steps.fetch.outputs.mode == 'makima'
         env:
           FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
           FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
@@ -103,7 +125,7 @@ jobs:
           node tools/news-banner-v2/render.mjs "$FOLDER" --add-voice "out/social/$SLUG-tall.mp4" --out "out/social/$SLUG-voiced.mp4"
           mv "out/social/$SLUG-voiced.mp4" "out/social/$SLUG-tall.mp4"
       - name: Render the social cuts here
-        if: steps.pick.outputs.slug != '' && steps.fetch.outputs.found != 'true'
+        if: steps.fetch.outputs.mode == 'render'
         env:
           CHROME_CHANNEL: chrome
           FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
@@ -113,7 +135,7 @@ jobs:
           npm ci --no-audit --no-fund --prefix tools/news-banner-v2
           python scripts/render.py --social "$FOLDER"
       - name: Upload them to news.s3dat.com
-        if: steps.pick.outputs.slug != ''
+        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
         env:
           NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
           NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}
@@ -121,7 +143,7 @@ jobs:
         run: python scripts/publish.py --social "$SLUG" --wide "out/social/$SLUG-wide.mp4" --tall "out/social/$SLUG-tall.mp4"
       - name: Post to every channel
         id: post
-        if: steps.pick.outputs.slug != ''
+        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
         env:
           PINTEREST_BOARD: ${{ vars.PINTEREST_BOARD }}
           SOCIAL_AI_LABEL: ${{ vars.SOCIAL_AI_LABEL }}
@@ -157,7 +179,7 @@ jobs:
             if [[ "${tag#social-}" < "$cutoff" ]]; then gh release delete "$tag" --cleanup-tag -y; fi
           done
       - name: Keep the social cuts for review
-        if: always() && steps.pick.outputs.slug != ''
+        if: always() && (steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render')
         uses: actions/upload-artifact@v4
         with:
           name: social-${{ steps.pick.outputs.slug }}-${{ github.run_id }}

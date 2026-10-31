@@ -1,9 +1,9 @@
 # S3DAT News on social media
 
 Every story can leave the site as a video post on every channel connected to Buffer. You write
-the copy in `story.json` (`social`, below). Five times a day the workflow `Post to social media`
-picks the best fresh story, renders its two videos with the voice-over and posts them. Nobody
-posts by hand.
+the copy in `story.json` (`social`, below) and render its two videos on your computer (below).
+Five times a day the workflow `Post to social media` picks the best fresh story that has its
+videos, adds the voice-over and posts it. Nobody posts by hand.
 
 ## The videos
 
@@ -24,14 +24,21 @@ Two cuts of every story, rendered with `tools/news-banner-v2`:
   cuts to `news.s3dat.com/news-media/news-social/<slug>/` (not shown on any page, deleted after
   30 days).
 
-## Rendering elsewhere (paused)
+## Rendering the cuts (Makima)
 
-The workflow renders the cuts in GitHub Actions. It first looks for cuts uploaded to the GitHub
-pre-release `social-YYYY-MM-DD` (the UTC date of `publishedAt`) as `<slug>-wide.mp4`
-(`render.mjs --format hd`) and `<slug>-tall.mp4` (`--format social`, rendered without a voice),
-and only adds the voice-over to those. Makima's cloud computer cannot run Chromium or upload
-release assets yet (tested 31 October 2026), so nobody uploads them for now: do not try to
-render the social cuts in the hourly task.
+The videos are rendered on Makima's computer, not in GitHub Actions (Actions minutes cost
+money). The workflow posts only stories whose two cuts are in the GitHub pre-release
+`social-YYYY-MM-DD` (the UTC date of `publishedAt`):
+
+- `<slug>-wide.mp4`: `node render.mjs <story-dir> --format hd`
+- `<slug>-tall.mp4`: `node render.mjs <story-dir> --format social`, without `FISH_API_KEY`; the
+  workflow adds the voice-over with `--add-voice`.
+
+`BROWSER=firefox` or `BROWSER=webkit` renders with another Playwright engine where Chromium
+cannot start (Firefox frames match Chromium's; check a contact sheet first); `CHROME_ARGS`
+passes extra Chromium flags. How the files reach the release is being worked out with Makima
+(31 October 2026). Never commit the videos to the repository. GitHub renders them only when a
+person runs the workflow with `render_here`.
 
 ## When we post
 

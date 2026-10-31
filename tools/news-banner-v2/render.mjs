@@ -222,20 +222,27 @@ function probeSeconds(file) {
   });
 }
 
+/** BROWSER=chromium (default), firefox or webkit: the Playwright engine that draws the frames.
+ *  Firefox and WebKit are for machines where Chromium cannot start; compare their frames first. */
+const BROWSER = ["chromium", "firefox", "webkit"].includes(process.env.BROWSER) ? process.env.BROWSER : "chromium";
+
 async function loadChromium() {
-  if (process.env.PLAYWRIGHT_MODULE) return (await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE).href)).chromium;
+  if (process.env.PLAYWRIGHT_MODULE) return (await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE).href))[BROWSER];
   try {
-    return (await import("playwright-core")).chromium;
+    return (await import("playwright-core"))[BROWSER];
   } catch {
-    return (await import("playwright")).chromium;
+    return (await import("playwright"))[BROWSER];
   }
 }
 
-/** CHROME_CHANNEL=chrome uses an installed Google Chrome; CHROME_PATH an explicit binary. The 3D
- *  template always renders on SwiftShader so CI and laptops draw the same pixels. */
+/** CHROME_CHANNEL=chrome uses an installed Google Chrome; CHROME_PATH an explicit binary;
+ *  CHROME_ARGS extra flags (space-separated), for locked-down machines. The 3D template always
+ *  renders on SwiftShader so CI and laptops draw the same pixels. */
 function launchOptions(template) {
+  if (BROWSER !== "chromium") return process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {};
   const o = process.env.CHROME_CHANNEL ? { channel: process.env.CHROME_CHANNEL } : process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {};
-  if (template === "monolith") o.args = ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"];
+  o.args = (process.env.CHROME_ARGS || "").split(/\s+/).filter(Boolean);
+  if (template === "monolith") o.args.push("--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist");
   return o;
 }
 

@@ -9,10 +9,11 @@ times a day, five hours apart (SOCIAL.md).
                                        post it now and record it in social/state.json
   python scripts/social.py --dry-run --offline
                                        print the posts for sample channels, no API key
+  python scripts/social.py --channels  list the Buffer channels and Pinterest boards (read-only)
 
 --pick reports publishing errors Buffer recorded for the previous post, then picks the
-strongest story published in the last 12 hours that has not been posted, has a social block
-and is live on news.s3dat.com: analysis first, then story and explained, then brief; newest
+strongest story published in the last 12 hours that has not been posted, has a social block,
+is live on news.s3dat.com and has both social cuts in its GitHub release (SOCIAL.md): analysis first, then story and explained, then brief; newest
 first; not the same lead company as the previous post when there is a choice. It picks nothing
 within three hours of the last post, so a delayed or repeated run cannot post twice.
 
@@ -120,6 +121,26 @@ def media_ready(slug: str, tries: int = 4) -> bool:
     return False
 
 
+_releases: dict[str, set[str]] = {}
+
+
+def cuts_uploaded(story: dict) -> bool:
+    """Both cuts are assets of the story's release. Without GITHUB_TOKEN nothing is checked."""
+    token, repo = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN"), os.environ.get("GITHUB_REPOSITORY")
+    if not token or not repo:
+        return True
+    tag = release_tag(story["published"])
+    if tag not in _releases:
+        request = urllib.request.Request(f"https://api.github.com/repos/{repo}/releases/tags/{tag}", headers={
+            "Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "User-Agent": AGENT})
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                _releases[tag] = {a["name"] for a in json.loads(response.read()).get("assets", [])}
+        except (urllib.error.URLError, OSError, ValueError):
+            _releases[tag] = set()
+    return {f"{story['slug']}-wide.mp4", f"{story['slug']}-tall.mp4"} <= _releases[tag]
+
+
 def pick(candidates: list[dict], state: dict, at: dt.datetime) -> dict | None:
     posted = {p["slug"] for p in state["posts"]}
     last_lead = state["posts"][-1].get("lead", "") if state["posts"] else ""
@@ -128,6 +149,9 @@ def pick(candidates: list[dict], state: dict, at: dt.datetime) -> dict | None:
     # Same lead company as the previous post goes to the back of the line.
     fresh.sort(key=lambda s: bool(last_lead) and s["lead"] == last_lead)
     for story in fresh:
+        if not cuts_uploaded(story):
+            print(f"{story['slug']}: no social cuts in release {release_tag(story['published'])}; skipped")
+            continue
         if reachable(story_url(story["slug"]), "GET"):
             return story
         warn(f"{story['slug']} is not live on the site; skipped")
@@ -312,6 +336,7 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="print the posts, send nothing, keep the state")
     parser.add_argument("--offline", action="store_true", help="with --dry-run: sample channels, no API key")
     parser.add_argument("--force", action="store_true", help="ignore the three-hour guard and earlier posts")
+    parser.add_argument("--channels", action="store_true", help="list channels and Pinterest boards, read-only")
     args = parser.parse_args()
     at = now()
     state = load_state()
@@ -320,6 +345,16 @@ def main() -> int:
         print("BUFFER_API_KEY is required", file=sys.stderr)
         return 1
     buffer = Buffer(key) if key else None
+    if args.channels:
+        for c in buffer.channels():
+            state_note = "disconnected" if c.get("isDisconnected") else "locked" if c.get("isLocked") else "paused" if c.get("isQueuePaused") else "ok"
+            print(f"{c['service']:<10} {c.get('displayName') or c['name']:<24} {state_note}")
+            if c["service"] == "pinterest":
+                boards = (c.get("metadata") or {}).get("boards") or []
+                print("           boards: " + (", ".join(b["name"] for b in boards) or "none"))
+                if boards:
+                    print("           posting to: " + str(next((b["name"] for b in boards if b["serviceId"] == board(c)), None)))
+        return 0
     candidates = stories()
 
     if args.pick:
