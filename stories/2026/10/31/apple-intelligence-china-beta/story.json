@@ -1,0 +1,53 @@
+{
+  "format": 2,
+  "slug": "apple-intelligence-china-beta",
+  "kind": "brief",
+  "topic": "apps",
+  "title": "Apple schedules its China AI beta for November 4",
+  "titleAccent": "November 4",
+  "dek": "Apple sets a developer beta and December public rollout for its first China AI features, including Qwen integration.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-10-31T10:02:51Z",
+  "lede": "Apple announced on October 31 that its first Apple Intelligence features for China will enter developer testing on November 4. The timetable gives iPhone users a December public release with iOS 27.3.",
+  "facts": [
+    {
+      "label": "Developer beta",
+      "value": "4 November 2026"
+    },
+    {
+      "label": "Public release",
+      "value": "December, iOS 27.3"
+    },
+    {
+      "label": "Initial platform",
+      "value": "Supported iPhones in China"
+    }
+  ],
+  "body": [
+    {
+      "text": "The rollout includes Live Translation, Writing Tools, Visual Intelligence, photo cleanup and Genmoji. Alibaba’s Qwen will work inside Siri, Writing Tools and Visual Intelligence. Apple lists iPhone 16 and later, iPhone Duo, iPhone Air, and iPhone 15 Pro and Pro Max as supported devices. It specifies English and Simplified Chinese for device and Siri language settings. Writing Tools can rewrite, proofread and summarize text; photo cleanup removes distracting objects from pictures."
+    }
+  ],
+  "claims": [
+    {
+      "text": "Siri AI and other next-generation WWDC 2026 features are excluded; other platforms await approvals.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Apple 智能即将登陆中国",
+      "publisher": "Apple",
+      "url": "https://www.apple.com.cn/newsroom/2026/10/apple-intelligence-features-are-coming-to-users-in-china/",
+      "date": "2026-10-31"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "buildersNote": "Test China-specific language and Qwen flows on a supported iPhone when the November 4 developer beta arrives."
+}

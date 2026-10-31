@@ -1,0 +1,11 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": ["APPLE AI", "CHINA BETA", "NOV 4"],
+  "accent": 2,
+  "brands": [{"name": "Apple", "icon": "apple"}],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 141,
+  "sources": {}
+}
