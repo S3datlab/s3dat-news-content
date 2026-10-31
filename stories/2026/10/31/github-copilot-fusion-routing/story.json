@@ -25,6 +25,12 @@
       "publisher": "Anthropic",
       "url": "https://code.claude.com/docs/en/advisor",
       "date": "2026-10-31"
+    },
+    {
+      "title": "Managing availability of models in your enterprise",
+      "publisher": "GitHub",
+      "url": "https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-availability-of-default-models",
+      "date": "2026-10-31"
     }
   ],
   "video": {
@@ -60,28 +66,28 @@
   ],
   "body": [
     {
-      "heading": "Model selection becomes part of the tool",
-      "text": "GitHub's launch announcement asks users to choose an effort level while Fusion selects the models and execution pattern. The launch describes a direct answer, a draft that can be escalated, and a draft reviewed before revision. For a developer, the purchased behavior is therefore broader than access to one named model. Our reason for revisiting the release is the choice it creates for teams setting assistant defaults. We would compare the complete workflow on recurring maintenance tasks before changing a shared configuration. A familiar model name alone no longer describes that workflow."
+      "heading": "Effort replaces a fixed model choice",
+      "text": "GitHub's launch combines its earlier automatic model selection with the multi-model work from Project HydraFusion. Users choose Standard, High or Max effort while Copilot chooses the models involved. The announcement positions Standard for everyday coding and reserves the higher levels for more demanding work. Fusion is available across Visual Studio Code, Copilot CLI, the Copilot app and JetBrains IDEs. That puts orchestration inside several existing coding environments, with the effort setting describing the requested service level instead of identifying a particular model."
     },
     {
-      "heading": "The closest alternative delegates a different decision",
-      "text": "Anthropic's experimental Claude Code advisor tool lets the user choose a second model while Claude decides when to consult it. Its documentation says the advisor receives the conversation, including tool calls and results, and returns guidance to the main model. That is a useful comparison because it separates two choices: who selects the adviser and who decides when advice is needed. We would favor explicit configuration when a team wants to hold the pairing steady during a trial. Automatic selection is worth testing when the team wants less manual switching between tasks."
+      "heading": "The workflow can change between prompts",
+      "text": "GitHub documents three execution patterns. One model can answer directly; a judge can accept or escalate a draft; or critics can provide feedback for revision. Fusion selects the pattern for each prompt, so a follow-up can use a different arrangement from the first request. The documentation says model selection also considers service health and availability. This means one conversation can contain several execution paths. The visible response is the result of that process, while the underlying work may involve drafting, review and a revised answer."
     },
     {
-      "heading": "Compare accepted changes",
-      "text": "Our proposed trial would use the same repository snapshots, task descriptions and acceptance tests for both approaches. Start each attempt in a clean checkout, and save the final diff before reviewing the assistant's explanation. Count an attempt as accepted only after the tests and human review pass. Record rejected attempts as well, since a cheap unsuccessful run still consumes developer time. It gives a procurement team a result tied to work it actually needs to complete."
+      "heading": "An advisor keeps one choice explicit",
+      "text": "Claude Code's advisor tool separates configuration from consultation timing. The user selects the advisor, and the main model decides when to request guidance. Anthropic documents a server-side consultation that receives the conversation, including tool activity, before returning advice. The main model then continues the task. Compared with Fusion, this keeps the identity of the second model under direct user control. It also gives the second model a defined advisory role, instead of asking a router to choose both the participants and their arrangement."
     },
     {
-      "heading": "A discarded draft can leave work behind",
-      "text": "GitHub's documentation warns that discarding a draft does not automatically reverse workspace edits already made during that draft. It also says the model pool can change. We would make both points part of the rollout checklist. A reviewer should inspect every changed file, including files the final explanation does not mention. A recurring test should preserve the chosen effort level and the models reported for that run. If outcomes shift, that record helps distinguish a repository change from a change in the assistant's execution."
+      "heading": "Administration defines the available pool",
+      "text": "GitHub's enterprise documentation provides separate controls for models used by Fusion. Enabling a model there only makes it available when the user's other model policies also permit access. The broader enterprise settings can enable, disable or delegate model access to organizations or enterprise teams. Fusion therefore operates inside an existing permission boundary, with an additional filter for automatic selection. An enterprise can keep a model available for direct use while excluding it from Fusion. That distinction makes the routing configuration a separate administrative decision from general model access."
     },
     {
-      "heading": "Set a budget for the whole attempt",
-      "text": "GitHub bills the models Fusion uses and applies organization model policies to selection. Anthropic describes its advisor as experimental and requiring the Anthropic API, with the listed third-party cloud providers excluded. These constraints belong in the initial eligibility check before a performance trial. Our preferred cost measure is spend per accepted change, accompanied by reviewer minutes and elapsed time. Report those measures separately instead of combining them into a single invented productivity score. A team can then decide whether faster completion justifies extra calls for its particular workload."
+      "heading": "Billing follows the models involved",
+      "text": "GitHub's launch says Fusion charges for the models used, with no separate orchestration fee. More participating models can therefore change a task's bill even when the user receives one final response. Claude Code also adds advisor usage to the main model's consumption. Its documentation says each consultation processes the full conversation anew, without reusing the advisor's previous read. The main model's prompt cache remains intact when the advisor is enabled or disabled. These designs attach costs to different forms of extra work: selected execution steps in Fusion and discrete consultations in Claude Code."
     },
     {
-      "heading": "Keep a simple baseline",
-      "text": "We would retain a fixed-model workflow alongside the two orchestration approaches throughout the evaluation. Run routine fixes and more involved changes as separate groups so easy tasks cannot hide expensive failures. Include a task with an incorrect initial approach and inspect how each workflow recovers. Give reviewers the acceptance criteria before showing them the tool's explanation. This procedure makes review quality less dependent on how persuasive the final response sounds. It also tests whether an added consultation produces a useful correction that survives the repository's own checks."
+      "heading": "The products expose different review records",
+      "text": "Fusion shows progress and the models involved, then presents the final response after intermediate drafts have been revised or discarded. Claude Code marks consultations in its transcript and distinguishes returned guidance, a declined request and an unavailable advisor. The records consequently describe different units of work: orchestration steps in one product and advisory events in the other."
     }
   ],
   "buildersNote": "Trial both workflows on clean copies of the same repository. Save model selections, total model spend, final diffs and test results for each attempt; include failed attempts when calculating cost per accepted change.",
