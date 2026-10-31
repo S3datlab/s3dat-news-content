@@ -13,40 +13,75 @@ funding rounds unless they change what builders can do.
 - About one story per hour while there is real news, up to roughly ten a day. Space
   `publishedAt` an hour apart.
 - Skip the hour when there is nothing worth adding. Volume is never the goal.
-- Never present an old announcement as new. Check the original date; if a story resurfaces,
-  either skip it or say clearly when it was first announced.
+- Never present an old announcement as new. Put the announcement date in `eventDate`. A `brief`
+  or `story` must be at most two days old; anything older is an `analysis` or `explained` with
+  a reason to exist today, or it is skipped. The site shows "Announced" next to "Published".
 
 ## Kinds
 
-| Kind | Use it for | Must contain |
-| --- | --- | --- |
-| `story` | One development of the day | What happened (sourced facts), why it matters (2–4 concrete points), the S3DAT take (2–3 sentences), open questions when something is unknown. |
-| `analysis` | A development worth a deeper reading | Everything in `story`, plus a dated, sourced comparison with the closest competitors or alternatives, and what it means for the sector (developers, companies, users). |
-| `explained` | An idea behind the news | Plain explanation, a worked example, limits and common misunderstandings. |
+Choose the kind by the news, not by habit. A small update is a brief; most days have more briefs
+than analyses. The sections each kind needs are in `stories/README.md`.
+
+| Kind | Use it for |
+| --- | --- |
+| `brief` | A clear, small development: a release, a price change, a policy step. Lede, spec sheet, one or two paragraphs. |
+| `story` | One development of the day with context: what changed, for whom, and a builder's note or a claim check. |
+| `analysis` | A development worth a deeper reading: a comparison table against the closest alternatives, a claim check, our read and what we are watching. |
+| `explained` | The idea behind the news, evergreen: sections headed by the questions a reader would ask, a worked example, limits. |
 
 ## Sources
 
-- Every fact in `whatHappened` must be traceable to a source in `sources`. Prefer primary
-  sources: the company's post, paper, filing, documentation, release notes, court docket.
+- Every fact in the lede, spec sheet and body must be traceable to a source in `sources`.
+  Prefer primary sources: the company's post, paper, filing, documentation, release notes,
+  court docket. Give each source its `date`.
 - Disputes and `versus` stories cite both sides or a neutral record (for example the court
   docket), never only one party's blog.
 - Numbers (benchmarks, prices, parameters, funding) come with who measured or claimed them.
 - Company claims stay attributed ("Mistral says", "Google reports"); they are not our findings.
+- The claim check sorts the key claims: `confirmed` when a primary document shows it (link it),
+  `claimed` when only the company says so, `unclear` when it is not established. Put the
+  uncertainty there, once, so the prose can speak plainly.
 
-## Writing
+## Writing: the S3DAT voice
 
-- English, plain and specific. Short sentences. No hype words ("revolutionary", "game-changing",
-  "insane"), no clickbait, no questions as headlines.
-- `title` is accurate and sentence case. The banner headline in `spec.json` is its short
-  uppercase form and must say the same thing.
-- `take` is our own reading: what this changes, who wins or loses, how it compares, what to
-  watch next. Write it directly; the site already labels it "The S3DAT take", so do not start
-  with "Our view".
-- Paraphrase; never copy paragraphs from sources. At most one short quote per story, in
-  quotation marks, attributed.
-- No invented quotes, people, numbers, dates or links. If something is uncertain, put it in
-  `openQuestions`.
-- S3DAT's own products appear only when genuinely relevant, and the link is disclosed.
+We write like a product team explaining the news to another product team: plain, specific,
+numerate, a little dry. English only. The validator rejects copy that breaks the rules below.
+
+1. **Lead with the news.** The lede's first sentence says who did what, and when. The second
+   says why it matters to someone who builds or uses software. No scene-setting.
+2. **Specific beats general.** Names, versions, dates, prices, limits, counts, with units.
+   Not "much faster" but "2.3 times faster on SWE-bench, Google says".
+3. **Short sentences.** 15–22 words on average, never 40. One idea per paragraph. Active voice.
+4. **Say it once.** Caveats belong in the claim check. Do not hedge every sentence, and do not
+   stack "rather than", "not X but Y", "not just" (three at most per story).
+5. **No research notes in the copy.** "Checked October 31", "comparison as of" and similar go
+   in the sources' dates, never in the text.
+6. **No generated-sounding words.** delve, landscape, notably, worth noting, robust, seamless,
+   leverage, unlock, crucial, pivotal, game-changer, paves the way, underscores, in today's,
+   the future of, moreover, furthermore, in conclusion, and the rest of the list in
+   `scripts/validate.py`. No hype, no clickbait, no rhetorical questions.
+7. **Headlines** have a concrete subject and an active verb, a number when there is one, at
+   most 90 characters, no question, and never "X, but Y". Vary their shape from story to story.
+   `title` and the banner headline in `spec.json` say the same thing.
+8. **The spec sheet** is what a reader would put in a table: who, what, when, price, limits,
+   status. Values are short and exact; at least one is a number.
+9. **The builder's note** gives an action or a number: "migrate before 1 December", "costs
+   about $1,100 a month at 50,000 searches a day", "test it on the target phone". Never generic
+   advice such as "teams should evaluate carefully".
+10. **Our read** takes a position in one paragraph, says "we", and ends with what would change
+    our mind. The site labels it as opinion.
+11. **Paraphrase.** Never copy paragraphs from sources. At most one short quote per story, in
+    quotation marks, attributed. No invented quotes, people, numbers, dates or links.
+12. S3DAT's own products appear only when genuinely relevant, and the link is disclosed.
+
+Before and after:
+
+- Before: "That is a product-design tradeoff, not a universal accuracy ranking; the reported tests
+  ran on a Mac, not an iPhone." After: "The creator tested both engines on a Mac. There are no
+  iPhone numbers yet."
+- Before: "Comparison checked October 31: OpenAI's documentation separates GPTBot from
+  OAI-SearchBot." After: "OpenAI already runs two crawlers: GPTBot for training and
+  OAI-SearchBot for search."
 
 ## Banners
 

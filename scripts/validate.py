@@ -21,7 +21,7 @@ TOPICS = {
     "policy": ("#26080e", "#ff4d6a", "#ffbac6"),
     "apps": ("#23071f", "#e04fd0", "#ffc6f6"),
 }
-KINDS = ("story", "analysis", "explained")
+KINDS = ("brief", "story", "analysis", "explained")
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*", re.ASCII)
 ISO = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2})", re.ASCII)
 
@@ -75,7 +75,10 @@ def validate_story(story):
             errors.append(f"{key} must be a valid ISO 8601 timestamp with timezone")
         elif key == "publishedAt" and parsed > dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=24):
             errors.append("publishedAt is more than 24 hours in the future")
-    for key, low, high in (("whatHappened", 1, 8), ("whyItMatters", 1, 6), ("take", 1, 4), ("openQuestions", 0, 4)):
+    format2 = story.get("format") == 2
+    if story.get("format") not in (None, 1, 2):
+        errors.append("format must be 1 or 2")
+    for key, low, high in (() if format2 else (("whatHappened", 1, 8), ("whyItMatters", 1, 6), ("take", 1, 4), ("openQuestions", 0, 4))):
         value = story.get(key, [] if key == "openQuestions" else None)
         if not isinstance(value, list) or not low <= len(value) <= high:
             errors.append(f"{key} must contain {low}–{high} strings")
@@ -93,6 +96,8 @@ def validate_story(story):
                 continue
             check_text(source.get("title"), f"{path}.title", 1, 200, errors)
             check_text(source.get("publisher"), f"{path}.publisher", 1, 100, errors)
+            if "date" in source and calendar_date(source.get("date")) is None:
+                errors.append(f"{path}.date must be a YYYY-MM-DD date")
             try:
                 url = source.get("url")
                 if not isinstance(url, str) or re.search(r"\s", url) or not re.match(r"https://", url, re.IGNORECASE):
@@ -118,6 +123,187 @@ def validate_story(story):
     video = story.get("video")
     if not isinstance(video, dict) or video.get("width") != 1080 or video.get("height") != 608 or type(video.get("titleInVideo")) is not bool:
         errors.append("video must have width 1080, height 608 and boolean titleInVideo")
+    published = timestamp(story.get("publishedAt"))
+    if format2:
+        errors.extend(validate_format2(story))
+    elif published is not None and published >= FORMAT2_CUTOVER:
+        errors.append('stories published from 31 October 2026 09:00 UTC must use the S3DAT story format ("format": 2); see stories/README.md')
+    return errors
+
+
+# ---------------------------------------------------------------- S3DAT story format (format 2)
+FORMAT2_CUTOVER = dt.datetime(2026, 10, 31, 9, 0, tzinfo=dt.timezone.utc)
+MONTHS = "january|february|march|april|may|june|july|august|september|october|november|december"
+# Phrases that make copy read like generated text. Lower-case, matched on word boundaries.
+BANNED = [
+    "delve", "delves", "delving", "landscape", "game-changer", "game changer", "game-changing", "it's worth noting",
+    "it is worth noting", "worth noting", "notably", "remains to be seen", "pave the way", "paves the way",
+    "paving the way", "underscore", "underscores", "underscoring", "a testament", "tapestry", "realm", "navigate the",
+    "navigating the", "in today's", "seamless", "seamlessly", "robust", "leverage", "leverages", "leveraging", "unlock",
+    "unlocks", "unlocking", "revolutionary", "revolutionize", "revolutionise", "groundbreaking", "ground-breaking",
+    "cutting-edge", "transformative", "pivotal", "crucial", "in conclusion", "overall,", "moreover", "furthermore",
+    "a significant step", "highlights the importance", "ever-evolving", "fast-paced", "harness the power",
+    "the future of", "at the end of the day", "in the world of", "dive into", "deep dive", "elevate", "empower",
+    "empowers", "supercharge", "next-level", "it is important to note", "importantly,", "in summary", "a myriad",
+]
+BANNED_RE = re.compile(r"(?<![\w-])(" + "|".join(re.escape(b) for b in sorted(BANNED, key=len, reverse=True)) + r")(?![\w-])", re.IGNORECASE)
+PROCESS_RE = re.compile(r"\b(?:checked|verified|accessed|retrieved)\s+(?:on\s+)?(?:" + MONTHS + r"|\d{1,2}\s+(?:" + MONTHS + r"))|\bcomparison (?:as of|checked)\b", re.IGNORECASE)
+WORDS = {"brief": (100, 320), "story": (250, 650), "analysis": (600, 1300), "explained": (450, 1500)}
+BODY = {"brief": (1, 2), "story": (2, 5), "analysis": (3, 8), "explained": (3, 10)}
+
+
+def calendar_date(value):
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value):
+        return None
+    try:
+        return dt.date.fromisoformat(value)
+    except ValueError:
+        return None
+
+
+def sentences(text):
+    parts = re.split(r"(?<=[.!?])[\"”’)]?\s+(?=[A-Z0-9“\"(])", text.strip())
+    return [p for p in parts if p.strip()]
+
+
+def word_count(text):
+    return len(re.findall(r"[A-Za-z0-9$€£%][\w$€£%.,'’/-]*", text))
+
+
+def validate_format2(story):
+    errors = []
+    kind = story.get("kind")
+    title = story.get("title") if isinstance(story.get("title"), str) else ""
+    if len(title) > 90:
+        errors.append("title must be at most 90 characters")
+    if "?" in title:
+        errors.append("title must not be a question")
+    if re.search(r",\s+but\b", title, re.IGNORECASE):
+        errors.append('title must not use the "X, but Y" pattern; put the caveat in the story')
+    event = calendar_date(story.get("eventDate"))
+    published = timestamp(story.get("publishedAt"))
+    if event is None:
+        errors.append("eventDate must be the YYYY-MM-DD date of the announcement or event")
+    elif published is not None:
+        if event > published.date():
+            errors.append("eventDate cannot be after publishedAt")
+        elif kind in ("brief", "story") and (published.date() - event).days > 2:
+            errors.append(f"news older than two days cannot be a {kind}: publish it as analysis or explained, or skip it")
+    lede = story.get("lede")
+    if check_text(lede, "lede", 80, 600, errors):
+        ls = sentences(lede)
+        if not 2 <= len(ls) <= 3:
+            errors.append(f"lede must be two or three sentences (found {len(ls)})")
+        if ls and word_count(ls[0]) > 35:
+            errors.append("the lede's first sentence must be at most 35 words")
+        if not re.search(r"\d|" + MONTHS + r"|monday|tuesday|wednesday|thursday|friday|saturday|sunday|today|yesterday", lede, re.IGNORECASE):
+            errors.append("the lede must say when it happened")
+    facts = story.get("facts", [])
+    need_facts = kind != "explained"
+    if not isinstance(facts, list) or not (3 if need_facts else 0) <= len(facts) <= 6:
+        errors.append(f"facts must contain {'3' if need_facts else '0'}–6 items")
+        facts = []
+    for i, fact in enumerate(facts):
+        if not isinstance(fact, dict):
+            errors.append(f"facts[{i}] must be an object")
+            continue
+        check_text(fact.get("label"), f"facts[{i}].label", 1, 28, errors)
+        check_text(fact.get("value"), f"facts[{i}].value", 1, 120, errors)
+    if need_facts and facts and not any(isinstance(f, dict) and re.search(r"\d", str(f.get("value", ""))) for f in facts):
+        errors.append("at least one fact must carry a number (a date, price, size or count)")
+    body = story.get("body", [])
+    low, high = BODY.get(kind, (1, 10))
+    if not isinstance(body, list) or not low <= len(body) <= high:
+        errors.append(f"a {kind} needs {low}–{high} body paragraphs")
+        body = []
+    for i, para in enumerate(body):
+        if not isinstance(para, dict):
+            errors.append(f"body[{i}] must be an object")
+            continue
+        check_text(para.get("text"), f"body[{i}].text", 40, 1400, errors)
+        if "heading" in para:
+            check_text(para.get("heading"), f"body[{i}].heading", 1, 90, errors)
+        if kind == "explained" and not str(para.get("heading", "")).endswith("?"):
+            errors.append(f"explained body[{i}] needs a question as its heading")
+        if re.search(r"(^|\n)\s*([-*•]|\d+\.)\s|\*\*|##", str(para.get("text", ""))):
+            errors.append(f"body[{i}] must be prose: no bullets or markdown")
+    note = story.get("buildersNote")
+    if note is not None:
+        check_text(note, "buildersNote", 40, 500, errors)
+    our = story.get("ourRead")
+    if our is not None:
+        check_text(our, "ourRead", 120, 1200, errors)
+    sources = story.get("sources") if isinstance(story.get("sources"), list) else []
+    claims = story.get("claims", [])
+    if not isinstance(claims, list) or len(claims) > 6:
+        errors.append("claims must contain 0–6 items")
+        claims = []
+    for i, claim in enumerate(claims):
+        if not isinstance(claim, dict):
+            errors.append(f"claims[{i}] must be an object")
+            continue
+        check_text(claim.get("text"), f"claims[{i}].text", 10, 240, errors)
+        if claim.get("status") not in ("confirmed", "claimed", "unclear"):
+            errors.append(f"claims[{i}].status must be confirmed, claimed or unclear")
+        if "source" in claim and (type(claim["source"]) is not int or not 0 <= claim["source"] < len(sources)):
+            errors.append(f"claims[{i}].source must index a source")
+        if claim.get("status") == "confirmed" and "source" not in claim:
+            errors.append(f"claims[{i}] is confirmed, so it must point to its source")
+    cmp = story.get("comparison")
+    if cmp is not None:
+        cols = cmp.get("columns") if isinstance(cmp, dict) else None
+        rows = cmp.get("rows") if isinstance(cmp, dict) else None
+        if not isinstance(cols, list) or not 3 <= len(cols) <= 5 or not isinstance(rows, list) or not 2 <= len(rows) <= 6:
+            errors.append("comparison needs 3–5 columns and 2–6 rows")
+        else:
+            for r, row in enumerate(rows):
+                if not isinstance(row, list) or len(row) != len(cols) or not all(isinstance(c, str) and len(c) <= 80 for c in row):
+                    errors.append(f"comparison.rows[{r}] must have {len(cols)} text cells of at most 80 characters")
+    watching = story.get("watching", [])
+    if not isinstance(watching, list) or len(watching) > 3:
+        errors.append("watching must contain 0–3 items")
+        watching = []
+    # What each kind must carry.
+    if kind == "brief" and (our is not None or cmp is not None):
+        errors.append("a brief has no ourRead or comparison")
+    if kind == "story" and note is None and len(claims) < 2:
+        errors.append("a story needs a buildersNote or at least two claims")
+    if kind == "analysis":
+        if cmp is None:
+            errors.append("an analysis needs a comparison table")
+        if len(claims) < 2:
+            errors.append("an analysis needs at least two claims")
+        if our is None:
+            errors.append("an analysis needs ourRead")
+        if not watching:
+            errors.append("an analysis needs 1–3 watching items")
+    # House style on the prose a reader sees.
+    prose = [("lede", lede)] + [(f"body[{i}]", p.get("text")) for i, p in enumerate(body) if isinstance(p, dict)]
+    prose += [("buildersNote", note), ("ourRead", our)] + [(f"watching[{i}]", w) for i, w in enumerate(watching)]
+    prose += [(f"facts[{i}].value", f.get("value")) for i, f in enumerate(facts) if isinstance(f, dict)]
+    prose += [("title", title), ("dek", story.get("dek"))]
+    all_text = " ".join(str(t) for _, t in prose if isinstance(t, str))
+    for path, text in prose:
+        if not isinstance(text, str):
+            continue
+        for m in BANNED_RE.finditer(text):
+            errors.append(f'{path}: "{m.group(0)}" reads like generated copy; say it plainly')
+        if PROCESS_RE.search(text):
+            errors.append(f"{path}: research notes such as \"checked October 31\" belong in sources, not in the story")
+    spoken = " ".join(str(t) for p, t in prose if isinstance(t, str) and not p.startswith("facts") and p not in ("title", "dek"))
+    lengths = [word_count(x) for x in sentences(spoken)]
+    if lengths:
+        if max(lengths) > 40:
+            errors.append(f"a sentence has {max(lengths)} words; keep every sentence under 40")
+        if sum(lengths) / len(lengths) > 24:
+            errors.append(f"sentences average {sum(lengths) / len(lengths):.0f} words; aim for 15–22")
+    hedges = len(re.findall(r"\brather than\b|,\s*not\s|\bnot just\b|\bnot only\b", all_text, re.IGNORECASE))
+    if hedges > 3:
+        errors.append(f'{hedges} "rather than / not X" constructions; say what it is, keep at most three')
+    words = word_count(spoken)
+    lo, hi = WORDS.get(kind, (100, 1500))
+    if not lo <= words <= hi:
+        errors.append(f"a {kind} runs {lo}–{hi} words of prose (found {words})")
     return errors
 
 
