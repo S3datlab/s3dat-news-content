@@ -365,9 +365,9 @@ class Banner:
                 scale = (1 / SS) * lerp(0.92, 1.0, rise) * (1 + 0.05 * seg(t, 5.0, 7.3))
                 if s.stat_value or self.payoff is not None:  # make room for the payoff line
                     move = ease_in_out(seg(t, 4.7, 5.3))
-                    hx = lerp(hx, W * 0.86, move)
-                    hy = lerp(hy, H * 0.68 + float_y, move)
-                    scale *= lerp(1, 0.62, move)
+                    hx = lerp(hx, W * 0.88, move)
+                    hy = lerp(hy, H * 0.74 + float_y, move)
+                    scale *= lerp(1, 0.52, move)
                 frame.alpha_composite(place(self.hero_shadow, hx + 10, hy + 26, scale, rot, alpha=alive))
                 frame.alpha_composite(place(self.hero, hx, hy, scale, rot, alpha=alive))
 

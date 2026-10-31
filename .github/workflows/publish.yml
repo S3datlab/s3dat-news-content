@@ -1,0 +1,93 @@
+name: Publish news stories
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'stories/**'
+  workflow_dispatch:
+    inputs:
+      story_dir:
+        description: 'Story folder: stories/YYYY/MM/DD/slug'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency: news-publish
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Find and validate changed story folders
+        id: stories
+        env:
+          BASE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+          STORY_DIR: ${{ inputs.story_dir }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+
+          folders = set()
+          requested = os.environ.get('STORY_DIR', '')
+          if requested:
+              if not re.fullmatch(r'stories/2[0-9]{3}/[0-9]{2}/[0-9]{2}/[a-z0-9]+(?:-[a-z0-9]+)*', requested):
+                  sys.exit('Invalid story_dir')
+              if not (Path(requested) / 'story.json').is_file():
+                  sys.exit('story_dir does not contain story.json')
+              folders.add(requested)
+          else:
+              base = os.environ['BASE_SHA']
+              if not base or set(base) == {'0'}:
+                  paths = subprocess.check_output(['git', 'ls-files', '-z', 'stories/']).decode().split('\0')
+              else:
+                  if subprocess.run(['git', 'cat-file', '-e', base], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+                      subprocess.run(['git', 'fetch', '--depth=1', 'origin', base], check=True)
+                  paths = subprocess.check_output([
+                      'git', 'diff', '--name-only', '-z', base, os.environ['HEAD_SHA'], '--', 'stories/'
+                  ]).decode().split('\0')
+              for name in paths:
+                  parts = Path(name).parts
+                  if len(parts) >= 6 and parts[0] == 'stories' and parts[1].startswith('2'):
+                      folder = Path(*parts[:5])
+                      if (folder / 'story.json').is_file():
+                          folders.add(str(folder))
+          ordered = sorted(folders)
+          if ordered:
+              subprocess.run([sys.executable, 'scripts/validate.py', *ordered], check=True)
+          else:
+              print('No changed story folders containing story.json.')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('folders=' + json.dumps(ordered) + '\n')
+          PY
+      - name: Publish validated stories
+        env:
+          NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
+          NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}
+          STORY_FOLDERS: ${{ steps.stories.outputs.folders }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          import sys
+
+          for folder in json.loads(os.environ['STORY_FOLDERS']):
+              subprocess.run([sys.executable, 'scripts/publish.py', folder], check=True)
+          PY

@@ -1,0 +1,47 @@
+name: Validate news stories
+
+on:
+  pull_request:
+    paths:
+      - 'stories/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Validate changed story folders
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          paths = subprocess.check_output([
+              'git', 'diff', '--name-only', '-z', os.environ['BASE_SHA'], os.environ['HEAD_SHA'], '--', 'stories/'
+          ]).decode().split('\0')
+          folders = set()
+          for name in paths:
+              parts = Path(name).parts
+              if len(parts) >= 6 and parts[0] == 'stories' and parts[1].startswith('2'):
+                  folder = Path(*parts[:5])
+                  if (folder / 'story.json').is_file():
+                      folders.add(str(folder))
+          if folders:
+              subprocess.run([sys.executable, 'scripts/validate.py', *sorted(folders)], check=True)
+          else:
+              print('No changed story folders containing story.json.')
+          PY
