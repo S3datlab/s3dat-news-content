@@ -30,7 +30,7 @@
         await document.fonts.ready;
         const missing = FACES.filter((f) => !document.fonts.check(f));
         if (missing.length) throw new Error("Fonts not loaded: " + missing.join(", "));
-        data.cutouts = await Promise.all((data.cutouts || []).map(async (c) => ({ ...c, edged: await window.BANNER.bakeSticker(c.image) })));
+        data.cutouts = await Promise.all((data.cutouts || []).map(async (c) => { const b = await window.BANNER.bakeSticker(c.image); return { ...c, edged: b.url, aspect: b.aspect }; }));
         const stage = document.getElementById("stage");
         const build = () => { stage.innerHTML = ""; return template(stage, data, window.BANNER); };
         // Build twice: the first pass puts every face and image in use; the second measures the

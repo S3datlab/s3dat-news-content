@@ -110,7 +110,7 @@
     g.fillRect(0, 0, cv.width, cv.height);
     g.globalCompositeOperation = "source-over";
     g.drawImage(img, w, w);
-    return cv.toDataURL("image/png");
+    return { url: cv.toDataURL("image/png"), aspect: cv.width / cv.height };
   }
   /** A cut-out as a sticker: the baked edge version when there is one, plus one soft shadow. */
   function sticker(cut, parent, edged = true) {

@@ -15,7 +15,11 @@ BANNER.templates.collage = (stage, d, B) => {
   const pieces = [];
   const cuts = d.cutouts || [];
   const hero = cuts.find((x) => x.role === "hero") || cuts[0];
-  if (hero) pieces.push({ node: css(B.sticker(hero, root), { width: "340px", height: "340px" }), w: 340, h: 340 });
+  if (hero) {
+    // Size the hero by its own shape: a standing figure gets a tall box instead of shrinking in a square.
+    const hh = (hero.aspect || 1) < 0.85 ? 470 : 360, hw = Math.round(Math.min(420, Math.max(220, hh * (hero.aspect || 1))));
+    pieces.push({ node: css(B.sticker(hero, root), { width: hw + "px", height: hh + "px" }), w: hw, h: hh });
+  }
   const logoTile = tile(200, 200, c.dark ? "#111" : c.base);
   css(logoNode(brand, c.dark ? "#fff" : c.ink, logoTile), { width: "116px", height: "116px" });
   pieces.push({ node: logoTile, w: 200, h: 200 });
