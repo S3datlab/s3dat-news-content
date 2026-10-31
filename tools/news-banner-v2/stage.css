@@ -1,0 +1,25 @@
+@font-face { font-family: "Archivo"; src: url("fonts/Archivo.ttf"); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: "Anton"; src: url("fonts/Anton.ttf"); }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/InstrumentSerif.ttf"); }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/InstrumentSerif-Italic.ttf"); font-style: italic; }
+@font-face { font-family: "Space Grotesk"; src: url("fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+@font-face { font-family: "Bricolage"; src: url("fonts/Bricolage.ttf"); font-weight: 200 800; font-stretch: 75% 100%; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 608px; overflow: hidden; background: #000; }
+#stage {
+  position: relative;
+  width: 1080px;
+  height: 608px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+.layer { position: absolute; inset: 0; }
+.abs { position: absolute; }
+.line { display: inline-block; white-space: nowrap; }
+.mask { display: block; overflow: hidden; }
+.logo svg, .logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+.logo.wide { display: grid; place-items: center; }
+.logo.wide svg { width: var(--w); height: auto; flex: none; }

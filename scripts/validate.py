@@ -178,6 +178,130 @@ def validate_spec(spec, story):
     return errors
 
 
+TEMPLATES = ("paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout")
+MOODS = ("up", "down", "shock", "calm")
+FIELDS = ("white", "black", "brand", "pop")
+ICON = re.compile(r"[a-z0-9]+", re.ASCII)
+ASSET = re.compile(r"[a-z0-9][a-z0-9._-]{0,63}", re.ASCII)
+HEX = re.compile(r"#[0-9a-fA-F]{6}", re.ASCII)
+# Stories published before engine 2 keep their original banners; everything newer must use it.
+ENGINE2_CUTOVER = dt.datetime(2026, 10, 31, 12, 0, tzinfo=dt.timezone.utc)
+
+
+def has_alpha(path):
+    data = path.read_bytes()[:64]
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return data[25] in (4, 6) or b"tRNS" in path.read_bytes()[:4096]
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        chunk = data[12:16]
+        return chunk == b"VP8L" or (chunk == b"VP8X" and bool(data[20] & 0x10))
+    return False
+
+
+def check_asset(folder, name, label, kinds, maximum, sources, errors):
+    if not isinstance(name, str) or not ASSET.fullmatch(name):
+        errors.append(f"{label} must be a plain file name in the story folder")
+        return None
+    path = folder / name
+    if path.suffix.lower() not in kinds:
+        errors.append(f"{label} must be one of {', '.join(kinds)}")
+    elif not path.is_file():
+        errors.append(f"{label} {name} is missing")
+    elif path.stat().st_size > maximum:
+        errors.append(f"{label} {name} exceeds {maximum:,} bytes")
+    else:
+        source = sources.get(name) if isinstance(sources, dict) else None
+        if source != "generated" and not (isinstance(source, str) and source.startswith("https://")):
+            errors.append(f"spec.sources[{name!r}] must be \"generated\" or the https URL the file came from")
+        return path
+    return None
+
+
+def validate_spec_v2(spec, story, folder):
+    errors = []
+    template = spec.get("template")
+    if template not in TEMPLATES:
+        errors.append(f"spec.template must be one of {', '.join(TEMPLATES)}")
+    lines = spec.get("headline")
+    if not isinstance(lines, list) or not 1 <= len(lines) <= 3:
+        errors.append("spec.headline must contain 1–3 lines")
+        lines = []
+    for i, line in enumerate(lines):
+        if check_text(line, f"spec.headline[{i}]", 1, 22, errors) and line != line.upper():
+            errors.append(f"spec.headline[{i}] must be uppercase")
+    accent = spec.get("accent", len(lines) - 1)
+    if type(accent) is not int or not 0 <= accent < max(1, len(lines)):
+        errors.append("spec.accent must index a headline line")
+    sources = spec.get("sources", {})
+    if not isinstance(sources, dict):
+        errors.append("spec.sources must map each asset file to its source")
+        sources = {}
+    brands = spec.get("brands")
+    if not isinstance(brands, list) or not 1 <= len(brands) <= 2:
+        errors.append("spec.brands must contain 1–2 brands")
+        brands = []
+    for i, brand in enumerate(brands):
+        label = f"spec.brands[{i}]"
+        if not isinstance(brand, dict):
+            errors.append(f"{label} must be an object")
+            continue
+        check_text(brand.get("name"), f"{label}.name", 1, 40, errors)
+        if ("icon" in brand) == ("logo" in brand):
+            errors.append(f"{label} needs exactly one of icon (a simple-icons slug) or logo (a file)")
+        elif "icon" in brand and not (isinstance(brand["icon"], str) and ICON.fullmatch(brand["icon"])):
+            errors.append(f"{label}.icon must be a simple-icons slug")
+        elif "logo" in brand:
+            check_asset(folder, brand["logo"], f"{label}.logo", (".svg", ".png", ".webp"), 300_000, sources, errors)
+        if "color" in brand and not (isinstance(brand["color"], str) and HEX.fullmatch(brand["color"])):
+            errors.append(f"{label}.color must be #rrggbb")
+    cutouts = spec.get("cutouts", [])
+    if not isinstance(cutouts, list) or len(cutouts) > 4:
+        errors.append("spec.cutouts must contain 0–4 cut-outs")
+        cutouts = []
+    heroes = 0
+    for i, cut in enumerate(cutouts):
+        label = f"spec.cutouts[{i}]"
+        if not isinstance(cut, dict) or cut.get("role", "prop") not in ("hero", "prop"):
+            errors.append(f"{label} must be an object with role hero or prop")
+            continue
+        heroes += cut.get("role") == "hero"
+        path = check_asset(folder, cut.get("src"), f"{label}.src", (".png", ".webp"), 900_000, sources, errors)
+        if path and not has_alpha(path):
+            errors.append(f"{label}.src must have a transparent background (PNG or WebP with alpha)")
+    if heroes > 1:
+        errors.append("spec.cutouts may have at most one hero")
+    if "art" in spec:
+        check_asset(folder, spec["art"], "spec.art", (".jpg", ".jpeg", ".webp"), 500_000, sources, errors)
+    stat = spec.get("stat")
+    if stat is not None:
+        if not isinstance(stat, dict) or not isinstance(stat.get("value"), str) or not re.search(r"[0-9]", stat["value"]) or len(stat["value"]) > 10:
+            errors.append("spec.stat.value must be a short string with a number (at most 10 characters)")
+        elif "label" in stat:
+            check_text(stat["label"], "spec.stat.label", 1, 28, errors)
+    if "mood" in spec and spec["mood"] not in MOODS:
+        errors.append(f"spec.mood must be one of {', '.join(MOODS)}")
+    if "bg" in spec and spec["bg"] not in FIELDS:
+        errors.append(f"spec.bg must be one of {', '.join(FIELDS)}")
+    if "seed" in spec and (type(spec["seed"]) is not int or not 0 <= spec["seed"] < 1_000_000):
+        errors.append("spec.seed must be an integer")
+    needs = {
+        "versus": (len(brands) == 2, "two brands"),
+        "data": (stat is not None, "a stat"),
+        "cinematic": ("art" in spec, "art"),
+        "cutout": (heroes == 1, "a hero cut-out"),
+        "portrait": (heroes == 1, "a hero cut-out"),
+        "collage": (bool(cutouts) or "art" in spec, "cut-outs or art"),
+    }
+    if template in needs and not needs[template][0]:
+        errors.append(f"template {template} needs {needs[template][1]}")
+    total = sum((folder / name).stat().st_size for name in sources if isinstance(name, str) and ASSET.fullmatch(name) and (folder / name).is_file())
+    if total > 1_600_000:
+        errors.append(f"story assets total {total:,} bytes; keep them under 1,600,000")
+    if isinstance(story, dict) and isinstance(story.get("video"), dict) and story["video"].get("titleInVideo") is not True:
+        errors.append("engine 2 banners carry the headline: story.video.titleInVideo must be true")
+    return errors
+
+
 def probe(path):
     result = subprocess.run(["ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(path)], capture_output=True, text=True, timeout=30)
     if result.returncode:
@@ -239,6 +363,7 @@ def load_json(path, errors):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("story_dirs", nargs="+", type=Path)
+    parser.add_argument("--spec-only", action="store_true", help="skip banner.mp4/poster.webp checks (before rendering)")
     args = parser.parse_args()
     failed = 0
     for folder in args.story_dirs:
@@ -246,8 +371,15 @@ def main():
         story = load_json(folder / "story.json", errors)
         spec = load_json(folder / "spec.json", errors)
         errors.extend(validate_story(story))
-        errors.extend(validate_spec(spec, story))
-        errors.extend(validate_media(folder))
+        if isinstance(spec, dict) and spec.get("engine") == 2:
+            errors.extend(validate_spec_v2(spec, story, folder))
+        else:
+            published = timestamp(story.get("publishedAt")) if isinstance(story, dict) else None
+            if published is not None and published >= ENGINE2_CUTOVER:
+                errors.append('new stories must use banner engine 2 (spec.json "engine": 2)')
+            errors.extend(validate_spec(spec, story))
+        if not args.spec_only:
+            errors.extend(validate_media(folder))
         print(f"{'FAIL' if errors else 'PASS'} {folder}")
         for error in errors:
             print(f"  - {error}")

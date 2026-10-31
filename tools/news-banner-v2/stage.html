@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stage.css" />
+    <script src="runtime.js"></script>
+    <script src="templates/paper.js"></script>
+    <script src="templates/ink.js"></script>
+    <script src="templates/brand.js"></script>
+    <script src="templates/collage.js"></script>
+    <script src="templates/versus.js"></script>
+    <script src="templates/portrait.js"></script>
+    <script src="templates/data.js"></script>
+    <script src="templates/poster.js"></script>
+    <script src="templates/cinematic.js"></script>
+    <script src="templates/cutout.js"></script>
+  </head>
+  <body>
+    <div id="stage"></div>
+    <script>
+      // The renderer calls __setup once (with data URLs for every asset), then __frame(t) per frame.
+      window.__setup = async (data) => {
+        const template = window.BANNER.templates[data.template];
+        if (!template) throw new Error("Unknown template " + data.template);
+        // Load every face before measuring: fitting text with a fallback font gives wrong sizes.
+        await Promise.all([...document.fonts].map((f) => f.load().catch(() => null)));
+        await document.fonts.ready;
+        data.cutouts = await Promise.all((data.cutouts || []).map(async (c) => ({ ...c, edged: await window.BANNER.bakeSticker(c.image) })));
+        const stage = document.getElementById("stage");
+        stage.innerHTML = "";
+        window.__instance = template(stage, data, window.BANNER);
+        await document.fonts.ready;
+        await Promise.all([...stage.querySelectorAll("img")].map((img) => (img.complete ? null : img.decode().catch(() => null))));
+        if (window.__instance.ready) await window.__instance.ready();
+        return { poster: window.__instance.poster || 1.6 };
+      };
+      window.__frame = (t) => window.__instance.frame(t);
+    </script>
+  </body>
+</html>

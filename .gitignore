@@ -4,3 +4,5 @@ __pycache__/
 .env
 .env.*
 /tmp/
+node_modules/
+tools/news-banner-v2/out/

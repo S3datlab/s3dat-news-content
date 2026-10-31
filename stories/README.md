@@ -5,9 +5,9 @@ One folder per story: `stories/YYYY/MM/DD/<slug>/`
 | File | Content |
 | --- | --- |
 | `story.json` | The story (schema below). |
-| `spec.json` | Banner spec for `tools/news-banner` (see its README). |
-| `banner.mp4`, `poster.webp` | Engine output. |
-| `sheet.jpg`, `background.png`, `hero.png` | Review material: keep them in your workspace, do not commit them (they grow the repository by several MB per story). |
+| `spec.json` | Banner spec for engine 2, `tools/news-banner-v2` (see its README). |
+| Asset files | The cut-outs, art and logo files named in `spec.json`, at most 1.6 MB together. |
+| `banner.mp4`, `poster.webp` | Rendered by GitHub Actions. Do not commit them for engine-2 stories. |
 
 ## story.json
 
@@ -27,7 +27,7 @@ One folder per story: `stories/YYYY/MM/DD/<slug>/`
   "sources": [
     { "title": "Release notes, 29 October", "publisher": "OpenAI", "url": "https://..." }
   ],
-  "video": { "src": "banner.mp4", "poster": "poster.webp", "width": 1080, "height": 608, "titleInVideo": true },
+  "video": { "width": 1080, "height": 608, "titleInVideo": true },
   "corrections": []
 }
 ```

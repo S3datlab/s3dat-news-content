@@ -1,0 +1,50 @@
+{
+  "openai": {
+    "name": "OpenAI",
+    "file": "openai.svg",
+    "color": "#000000",
+    "recolor": true,
+    "source": "https://commons.wikimedia.org/wiki/File:OpenAI_logo_2025_(symbol).svg",
+    "license": "Public domain (Wikimedia Commons)"
+  },
+  "microsoft": {
+    "name": "Microsoft",
+    "file": "microsoft.svg",
+    "color": "#00A4EF",
+    "recolor": true,
+    "source": "https://commons.wikimedia.org/wiki/File:Microsoft_logo_(2012).svg",
+    "license": "Public domain (Wikimedia Commons); symbol only"
+  },
+  "amazon": {
+    "name": "Amazon",
+    "file": "amazon.svg",
+    "color": "#FF9900",
+    "recolor": true,
+    "source": "https://commons.wikimedia.org/wiki/File:Amazon_logo.svg",
+    "license": "Public domain (Wikimedia Commons)"
+  },
+  "aws": {
+    "name": "Amazon Web Services",
+    "file": "aws.svg",
+    "color": "#FF9900",
+    "recolor": true,
+    "source": "https://commons.wikimedia.org/wiki/File:Amazon_Web_Services_Logo.svg",
+    "license": "Apache License 2.0 (Wikimedia Commons)"
+  },
+  "ibm": {
+    "name": "IBM",
+    "file": "ibm.svg",
+    "color": "#1F70C1",
+    "recolor": true,
+    "source": "https://commons.wikimedia.org/wiki/File:IBM_logo.svg",
+    "license": "Public domain (Wikimedia Commons)"
+  },
+  "oracle": {
+    "name": "Oracle",
+    "file": "oracle.svg",
+    "color": "#C74634",
+    "recolor": true,
+    "source": "https://commons.wikimedia.org/wiki/File:Oracle_logo.svg",
+    "license": "Public domain (Wikimedia Commons)"
+  }
+}

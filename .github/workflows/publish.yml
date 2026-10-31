@@ -32,10 +32,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/news-banner-v2/package-lock.json
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install the banner engine
+        run: npm ci --no-audit --no-fund --prefix tools/news-banner-v2
       - name: Find and validate changed story folders
         id: stories
         env:
+          CHROME_CHANNEL: chrome
           BASE_SHA: ${{ github.event.before }}
           HEAD_SHA: ${{ github.sha }}
           STORY_DIR: ${{ inputs.story_dir }}
@@ -74,12 +82,25 @@ jobs:
                           folders.add(str(folder))
           ordered = sorted(folders)
           if ordered:
+              # Spec first, then render engine-2 banners, then the full check including media.
+              subprocess.run([sys.executable, 'scripts/validate.py', '--spec-only', *ordered], check=True)
+              subprocess.run([sys.executable, 'scripts/render.py', *ordered], check=True)
               subprocess.run([sys.executable, 'scripts/validate.py', *ordered], check=True)
           else:
               print('No changed story folders containing story.json.')
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write('folders=' + json.dumps(ordered) + '\n')
           PY
+      - name: Keep rendered banners for download
+        if: steps.stories.outputs.folders != '[]'
+        uses: actions/upload-artifact@v4
+        with:
+          name: banners-${{ github.run_id }}
+          path: |
+            stories/**/banner.mp4
+            stories/**/poster.webp
+          retention-days: 14
+          if-no-files-found: ignore
       - name: Publish validated stories
         env:
           NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}

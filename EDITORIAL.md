@@ -50,22 +50,28 @@ funding rounds unless they change what builders can do.
 
 ## Banners
 
-Follow `tools/news-banner/README.md`. Every story gets one engine banner. No video models, stock
-media, templates, logos or real people.
+Follow `tools/news-banner-v2/README.md`. Every story gets one banner from engine 2, rendered by
+GitHub Actions. The big headline is the only text in it; the real logo, the brand colours and an
+illustrated cut-out make the subject clear at a glance. No video models and no stock media. Real
+people appear only as clearly illustrated caricatures, never photorealistic. Logos are never
+generated.
 
 ## Workflow (approved for publishing on 31 October 2026)
 
 Committing a story to `main` publishes it to news.s3dat.com automatically.
 
 1. Research, pick the story, verify sources and dates. Skip the hour if nothing deserves a story.
-2. Write `story.json` and `spec.json`, generate the two images, render with the engine (`--sheet`),
-   run the banner checklist and `python3 scripts/validate.py stories/YYYY/MM/DD/<slug>`.
+2. Write `story.json` and `spec.json` (engine 2), choose a template that differs from the last
+   published story, generate the cut-outs (and art for `cinematic`), and if you can, preview with
+   `render.mjs --frames` and run `python3 scripts/validate.py --spec-only <folder>`.
 3. Set `publishedAt` to the current time in UTC.
-4. Commit only `story.json`, `spec.json`, `banner.mp4` and `poster.webp` to `main` in
-   `stories/YYYY/MM/DD/<slug>/`, one commit per story, message `Publish: <title>`. Keep the PNG
-   images and `sheet.jpg` in your workspace; they are not needed in the repository.
+4. Commit `story.json`, `spec.json` and the asset files named in `spec.json` to `main` in
+   `stories/YYYY/MM/DD/<slug>/`, one commit per story, message `Publish: <title>`. Never commit
+   `banner.mp4`, `poster.webp` or sheets: GitHub Actions renders them.
 5. Check that the "Publish news stories" run for your commit succeeds and that the story opens at
    `https://news.s3dat.com/stories/<slug>`. If the run fails, read the log, fix and commit again.
+   The rendered banner is in the run artifact `banners-<run id>` and on the story page; use it for
+   the daily social delivery.
 6. Never change or remove someone else's story. Withdrawing a story is Sedat's decision.
 
 ## Corrections

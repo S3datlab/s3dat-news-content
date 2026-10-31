@@ -18,9 +18,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/news-banner-v2/package-lock.json
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install the banner engine
+        run: npm ci --no-audit --no-fund --prefix tools/news-banner-v2
       - name: Validate changed story folders
         env:
+          CHROME_CHANNEL: chrome
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
@@ -41,7 +49,10 @@ jobs:
                   if (folder / 'story.json').is_file():
                       folders.add(str(folder))
           if folders:
-              subprocess.run([sys.executable, 'scripts/validate.py', *sorted(folders)], check=True)
+              ordered = sorted(folders)
+              subprocess.run([sys.executable, 'scripts/validate.py', '--spec-only', *ordered], check=True)
+              subprocess.run([sys.executable, 'scripts/render.py', *ordered], check=True)
+              subprocess.run([sys.executable, 'scripts/validate.py', *ordered], check=True)
           else:
               print('No changed story folders containing story.json.')
           PY

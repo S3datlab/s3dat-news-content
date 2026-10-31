@@ -1,0 +1,17 @@
+{
+  "name": "s3dat-news-banner",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "S3DAT News banner engine v2: HTML templates rendered frame by frame to H.264.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "1.61.1",
+    "simple-icons": "16.36.0"
+  }
+}
