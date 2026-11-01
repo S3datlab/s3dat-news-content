@@ -1,0 +1,97 @@
+{
+  "format": 2,
+  "slug": "xai-colossus-turbine-suit-proceeds",
+  "kind": "story",
+  "topic": "policy",
+  "title": "Court lets the pollution lawsuit over xAI’s Colossus 2 power plant proceed",
+  "dek": "An October 30 order rejects xAI’s bid to dismiss the Southaven turbine case, keeping its power supply under legal scrutiny.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-11-01T18:04:28Z",
+  "updatedAt": "2026-11-01T18:04:28Z",
+  "lede": "U.S. District Judge Debra Brown denied xAI’s motion to dismiss a Clean Air Act lawsuit on October 30. The decision keeps a challenge to the power plant supplying its Colossus 2 data center in court.",
+  "facts": [
+    {
+      "label": "Defendants",
+      "value": "X.AI Corp. and MZX Tech LLC"
+    },
+    {
+      "label": "Facility",
+      "value": "Colossus Gas Plant, Southaven, Mississippi"
+    },
+    {
+      "label": "Order",
+      "value": "ECF 139, 30 October 2026"
+    },
+    {
+      "label": "Decision",
+      "value": "Motion to dismiss denied"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The dispute concerns the power supply",
+      "text": "The NAACP and its Mississippi State Conference brought the case in April against xAI and its subsidiary, MZX Tech. Their complaint challenges construction and operation of gas turbines without the required air permits. The Southaven plant supplies Colossus 2 across the state border in Memphis, Tennessee. The requested remedies include pollution controls, civil penalties and restrictions on operation."
+    },
+    {
+      "heading": "Portable equipment did not settle the permit question",
+      "text": "The defendants argued that trailer-mounted turbines qualified as mobile sources exempt from permitting under Mississippi’s implementation plan. They relied on a July 2025 letter from the state environmental agency and also argued that they lacked fair notice. Brown rejected that route to dismissal. Applying the definitions incorporated into the state plan, she treated turbines that remain stationary while working as stationary combustion turbines. Their ability to travel on trailers did not make them exempt mobile sources. The agency’s interpretation did not bind the court or prevent private plaintiffs from advancing a different interpretation."
+    },
+    {
+      "heading": "Two different attempts to end the case",
+      "text": "The October 30 decision also rejected challenges to the plaintiffs’ statutory standing and the constitutionality of citizen suits. It followed a separate October 19 order concerning the federal government’s role. In that earlier decision, Brown allowed the United States to intervene on behalf of the Environmental Protection Agency, but rejected its asserted power to dismiss the citizens’ case unilaterally. The government had argued that its enforcement authority should prevail over the plaintiffs’ contrary preferences. The court distinguished joining a lawsuit from controlling another plaintiff’s claims. October 30 addressed the companies’ own dismissal motion, including their permitting defense. The earlier order recognized federal and state agencies as the primary enforcers of the Clean Air Act. It found that this role did not give the federal government complete control over private litigation. The statute specifies circumstances in which government enforcement can prevent citizen suits; intervention alone did not meet that condition."
+    },
+    {
+      "heading": "The immediate consequence is continued litigation",
+      "text": "SELC and Earthjustice, which represent the plaintiffs, said on October 30 that the preliminary-injunction request remained undecided. That request concerns stopping plant operations until permitting and pollution-control requirements are met. Keeping it separate from the dismissal decision matters for understanding the infrastructure risk. A case surviving an early challenge, a temporary restriction on operations and a final judgment are different events. For the AI sector, this dispute connects access to computing capacity with the legal status of the power supply supporting it. The legal dispute concerns electricity generation supporting the data center, rather than the model’s behavior or software licensing."
+    }
+  ],
+  "buildersNote": "For a dedicated compute contract, ask the provider to identify the facility’s power source and any operating restrictions. Record which party must notify you of a supply interruption, then test a checkpoint restart in another region before committing a long training run.",
+  "claims": [
+    {
+      "text": "The court denied the defendants’ dismissal motion; the order neither awards penalties nor establishes final liability.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "A shutdown or operational restriction has not been established by this decision; counsel reported the preliminary injunction remained pending.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "OPINION AND ORDER",
+      "publisher": "U.S. District Court, Northern District of Mississippi",
+      "url": "https://earthjustice.org/document/xai-denied-motion-to-dismiss-pollution-case",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Court tosses request to block Clean Air Act lawsuit against Musk’s xAI",
+      "publisher": "Southern Environmental Law Center",
+      "url": "https://www.selc.org/press-release/court-tosses-request-to-block-clean-air-act-lawsuit-against-musks-xai/",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "OPINION AND ORDER",
+      "publisher": "U.S. District Court, Northern District of Mississippi",
+      "url": "https://www.selc.org/wp-content/uploads/2026/10/135-Opinion-and-Order.pdf",
+      "date": "2026-10-19"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] A federal judge let the Colossus Two pollution lawsuit proceed. [break] The October thirtieth ruling concerns the data center’s power supply. It does not order the plant to shut down.",
+    "short": "A judge let the lawsuit over xAI’s Colossus 2 power supply proceed on October 30. The ruling does not order a shutdown.",
+    "long": "Judge Debra Brown rejected xAI’s dismissal request in the Colossus 2 power-plant case on October 30. The pollution lawsuit over its Southaven turbines continues.\n\nThe ruling does not order a shutdown. Counsel said the separate preliminary-injunction request remained pending. That decision could affect operations.",
+    "hashtags": [
+      "xAI",
+      "AIInfrastructure"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

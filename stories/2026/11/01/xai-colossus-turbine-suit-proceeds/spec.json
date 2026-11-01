@@ -1,0 +1,22 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "XAI AIR",
+    "SUIT PROCEEDS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "xAI",
+      "logo": "xai.svg",
+      "color": "#FFFFFF"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 241,
+  "sources": {
+    "xai.svg": "https://commons.wikimedia.org/wiki/File:XAI_Logo.svg"
+  }
+}
