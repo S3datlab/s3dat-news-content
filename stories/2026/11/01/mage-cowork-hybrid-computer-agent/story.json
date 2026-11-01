@@ -1,0 +1,134 @@
+{
+  "format": 2,
+  "slug": "mage-cowork-hybrid-computer-agent",
+  "kind": "analysis",
+  "topic": "agents",
+  "title": "Microsoft puts clicks and commands inside one Mage agent",
+  "titleAccent": "one Mage agent",
+  "dek": "Mage-VL-Cowork makes channel selection part of the model, while earlier open approaches separate specialist delegation and visual-action training.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-11-01T19:09:01Z",
+  "lede": "Microsoft released its Mage-VL-Cowork computer-use model on October 30. Its combined visual-and-terminal policy puts action selection inside the model, giving builders an alternative to specialist delegation.",
+  "facts": [
+    {
+      "label": "Weights",
+      "value": "Apache 2.0"
+    },
+    {
+      "label": "Model scale",
+      "value": "4B, according to Microsoft"
+    },
+    {
+      "label": "Reference runtime",
+      "value": "Custom SGLang container"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A different place to choose the tool",
+      "text": "Microsoft describes a 4B model trained in five stages, moving from visual grounding through separate GUI and coding instruction into hybrid training and reinforcement learning. Its reported OSWorld-Verified score rises from 55.84% after hybrid supervised training to 66.04% after reinforcement learning. That final measurement covers two runs, 361 tasks excluding Google Drive, and 50 steps. The reference uses a custom SGLang runtime. The progression matters because it separates acquiring both skills from learning when to use them."
+    },
+    {
+      "text": "Microsoft’s May 21 MagenticLite release took a different route. MagenticBrain plans, codes and delegates browser tasks to Fara1.5, then resumes after the specialist returns. The harness manages context and pauses critical browser or code actions for human approval. It runs through Quicksand, a QEMU-based sandbox. Splitting the roles creates a visible handoff where an operator can inspect the delegated task and returned result. A unified policy removes that particular boundary; its action trace becomes the place to understand the choice."
+    },
+    {
+      "heading": "Training evidence and deployment evidence",
+      "text": "OpenCUA offers an independent comparison through its October 4, 2025 paper revision. Its training pipeline turns recorded human computer use into state-action examples, augmented with reflective reasoning. The authors collected demonstrations across Windows, macOS and Ubuntu. They also report that small environmental differences can produce different outcomes even with deterministic decoding. This makes the training route relevant to evaluation: a model can learn plausible actions without behaving identically across every installation of the same application."
+    },
+    {
+      "text": "OpenCUA’s error analysis identifies missed saves, unnecessary clicks and different routes to the same goal. Network delays and unexpected dialogs can also change an interaction sequence. Its authors found that extending the action budget often gave diminishing returns: extra steps could be spent repeating mistakes or failing to recognize completion. This evidence puts a useful limit on the idea that more opportunities to act necessarily improve an agent. A successful path needs both a way forward and a recognizable stopping condition. In a hypothetical document workflow, a correct saved file can still conflict with an unsaved application buffer; checking either state alone leaves part of the task unexamined."
+    },
+    {
+      "heading": "The permission boundary survives the architecture change",
+      "text": "The comparison also separates a model’s action choice from the operator’s authorization. Fara’s published design includes asking for permission at critical points. That is a useful product behavior, while an execution policy answers a separate question: what happens if a request reaches the tool without that pause. A browser specialist and a unified desktop policy both need an answer. Model packaging does not determine whether an account can send a message, replace a file or access a private service."
+    },
+    {
+      "text": "MagenticLite makes context management another explicit harness responsibility. Microsoft describes condensed histories and selective context for its specialists. Fara1.5 also has actions for retaining information and requesting user preferences or permission during long tasks. The broader system exposes the agent’s actions and lets users take control. These choices concern what survives between decisions and where a person can interrupt, not just which model handles a screenshot. They help explain why comparing isolated model sizes misses part of the system: delegation, memory and intervention all sit around the prediction itself."
+    },
+    {
+      "text": "For developers, the architectural trade-off is now concrete. Delegation exposes a task boundary, while a unified policy puts channel choice inside each turn. Neither arrangement specifies what an account is authorized to do. The evidence here supports comparing those divisions of responsibility, rather than treating their benchmark scores as interchangeable. A controlled desktop task offers a clear place to test the difference because its inputs, permitted changes and final state can all be defined in advance."
+    }
+  ],
+  "buildersNote": "Create a disposable desktop with three representative tasks. Record the final artifact, visible application state, approvals and unexpected writes. Repeat after one controlled application-setting change, keeping permissions fixed. Use test credentials, not a personal session.",
+  "comparison": {
+    "caption": "Published architectures, not a matched performance ranking.",
+    "columns": [
+      "Dimension",
+      "Mage-VL-Cowork",
+      "MagenticLite / Fara1.5",
+      "OpenCUA"
+    ],
+    "rows": [
+      [
+        "Action selection",
+        "Unified GUI and terminal policy",
+        "Planner delegates browser work",
+        "Screenshot-grounded action prediction"
+      ],
+      [
+        "Published evidence",
+        "Model and reference runtime",
+        "Application, specialist and orchestrator",
+        "Human demonstrations and training recipe"
+      ]
+    ]
+  },
+  "claims": [
+    {
+      "text": "The reported score is Microsoft’s measurement, not an independent replication.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The model card requires isolated execution and human confirmation for irreversible actions.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "These sources do not establish a matched cross-system reliability comparison.",
+      "status": "unclear"
+    }
+  ],
+  "ourRead": "We favor unified channel selection for reversible tasks in controlled desktops, with permission checks enforced outside the model. It is a reasonable way to reduce handoffs when one task genuinely needs both visual and programmatic work. We would retain specialist delegation where its explicit boundary makes review easier. We would change that preference if matched tests showed that a unified policy caused more unintended changes or required more human intervention to reach the same accepted results.",
+  "watching": [
+    "November 8 checkpoint: independent evaluations with documented task sets and runtime configurations.",
+    "November 15 checkpoint: reported interventions and unintended changes alongside completed-task scores."
+  ],
+  "sources": [
+    {
+      "title": "Mage-VL-Cowork",
+      "publisher": "Microsoft",
+      "url": "https://huggingface.co/microsoft/Mage-VL-Cowork",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "MagenticLite, MagenticBrain, Fara1.5: An agentic experience optimized for small models",
+      "publisher": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/magenticlite-magenticbrain-fara1-5-an-agentic-experience-optimized-for-small-models/",
+      "date": "2026-05-21"
+    },
+    {
+      "title": "OpenCUA: Open Foundations for Computer-Use Agents",
+      "publisher": "OpenCUA researchers / arXiv",
+      "url": "https://arxiv.org/html/2508.09123v3",
+      "date": "2025-10-04"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Microsoft released a Mage agent that chooses between clicking and running commands. [break] Our analysis compares that design with specialist delegation, asking where operators can inspect decisions before they become actions.",
+    "short": "Microsoft released Mage-VL-Cowork on October 30. Our analysis compares its unified action selection with specialist delegation and visual-action training.",
+    "long": "Mage-VL-Cowork puts desktop and terminal actions in one policy. Microsoft released the model on October 30.\n\nOur analysis compares its architecture with specialist delegation and a visual-action approach. The useful deployment test includes application state, human interventions and unintended writes. A successful final screenshot cannot answer every one of those questions.",
+    "hashtags": [
+      "Microsoft",
+      "Agents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T19:09:01Z"
+}

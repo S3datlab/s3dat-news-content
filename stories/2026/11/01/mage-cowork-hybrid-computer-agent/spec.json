@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "MICROSOFT",
+    "HYBRID",
+    "COMPUTER USE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 251,
+  "sources": {}
+}
