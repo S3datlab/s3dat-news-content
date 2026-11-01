@@ -1,0 +1,98 @@
+{
+  "format": 2,
+  "slug": "conductor-agent-execution-realms",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Microsoft Conductor moves agent execution into container profiles",
+  "titleAccent": "container profiles",
+  "dek": "Conductor 0.1.44 separates model choice from execution placement, with different dependency and recovery rules for Docker and Azure Container Apps.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-01T22:07:51Z",
+  "lede": "Microsoft released Conductor 0.1.44 on November 1 with execution profiles for running agents in Docker or Azure Container Apps. Workflow authors can now select where an agent runs separately from the model provider it uses.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "0.1.44; 1 November 2026"
+    },
+    {
+      "label": "Placement",
+      "value": "Local, Docker or Azure Container Apps"
+    },
+    {
+      "label": "Remote providers",
+      "value": "Copilot, OpenAI and Claude"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Moving more than a shell command",
+      "text": "Conductor defines multi-agent workflows in YAML, with routes selected through expressions rather than a model deciding the next step. Its existing workflow tools include parallel agents, reusable sub-workflows, shell scripts and direct MCP calls. Human gates pause a workflow for a decision. That orchestration layer is separate from the agent doing the work: a predictable route through a workflow does not make the model’s individual answers predictable. The release changes where those agent steps execute, while preserving the distinction between workflow control and model behavior. Validation catches undeclared dependencies and stale references before a run, while iteration and timeout limits bound how long a workflow continues. The command-line tool also exposes a web dashboard and a Fleet Manager, giving operators workflow state and human decisions outside the agent’s own conversation."
+    },
+    {
+      "text": "Previously, Docker execution profiles covered script steps. The new agent placement also moves the model interaction loop and its stdio MCP child processes into the selected environment. Docker can stage skills and plugins with the workspace; Azure Container Apps cannot stage those dependencies and requires them baked into the runner image. Moving a workflow between these environments therefore involves its tools and dependencies, not only changing a model name."
+    },
+    {
+      "heading": "Recovery preserves files, not a suspended turn",
+      "text": "The implementation review identified a specific recovery problem: an agent-only Docker run could resume by staging files over a workspace the agent had already changed. The merged fix records agent dispatch and refuses attachment when the staging marker is missing. The intact-marker case reconnects without copying the bundle again. This matters for workflows that generate files before failing, because preserving those files is different from restarting the agent. The documented resume model reruns remote agents from their initial inputs; it does not restore their suspended Python execution. Runner image names are recorded, but resolved image digests are not pinned across resumption."
+    },
+    {
+      "text": "The release also adds targeted interruption of an active call and delivers agent-scoped secrets to stdio MCP child processes. Remote profiles default to excluding the control process environment. Docker checks for protocol version 2 before dispatch, rejecting an outdated runner image early. Each concurrent invocation gets its own runner; sequential calls can reuse an idle one. These mechanics connect execution placement to capacity planning and image management. A workflow with parallel agent steps needs enough execution capacity for those calls, even when its routing configuration remains unchanged."
+    }
+  ],
+  "buildersNote": "Before migrating a workflow, test a failure after one file write and inspect the resumed workspace. Use a fixed runner image digest in your deployment configuration, and inventory which tools need credentials before assigning their delivery scope.",
+  "claims": [
+    {
+      "text": "Version 0.1.44 ships agent execution profiles for Docker and Azure Container Apps.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Isolation depends on configuration: Docker host networking exposes its loopback listener, privileged container processes can inspect child-process secrets, and Azure isolation depends on the session pool.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Conductor 0.1.44",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/conductor/releases/tag/v0.1.44",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Agent Execution Realms",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/conductor/blob/v0.1.44/docs/design/agent-realms.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Conductor",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/conductor/blob/v0.1.44/README.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "feat: agent execution realms — run agent steps through runner backends",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/conductor/pull/598",
+      "date": "2026-11-01"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Microsoft Conductor can now run agents inside container profiles. [break] The new release separates model choice from execution placement. Moving the agent also means checking its tools, credentials and recovery behavior.",
+    "short": "Conductor 0.1.44 moves agent execution into Docker or Azure Container Apps profiles. Model choice and execution placement are now separate settings.",
+    "long": "Microsoft released container execution profiles for Conductor agents on November 1. The workflow can choose a model provider independently of where the agent runs.\n\nMoving execution also moves deployment decisions: tool dependencies, credential delivery and recovery after a failed turn. Those details determine whether an existing workflow can move unchanged.",
+    "hashtags": [
+      "Microsoft",
+      "Agents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T22:07:51Z"
+}
