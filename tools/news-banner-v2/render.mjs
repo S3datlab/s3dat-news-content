@@ -7,15 +7,16 @@
  *   node render.mjs <story-dir> --add-voice tall.mp4 --out voiced.mp4
  *
  * wide (site): 1080x608, 30 fps, 8 s, H.264, silent, at most 1.6 MB, plus a WebP poster.
- * hd (X, Threads, Bluesky, Mastodon, Substack): the same layout rendered at 1920x1080 device pixels
- *   (deviceScaleFactor 16/9), with the synthesised soundtrack.
- * social (Facebook, Instagram, LinkedIn, Pinterest): 1080x1920 (9:16), 15 s: the banner in a centred
- *   4:5 frame, then fact cards and an end card, with a Fish Audio voice-over (FISH_API_KEY,
- *   FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as [calm].
- * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8, 6 for
- * the 15-second cut).
- * --add-voice mixes the story's voice-over into a 9:16 cut rendered without one (Makima renders the
- *   cuts on her computer without the Fish key; social.yml adds the voice). The video is copied as is.
+ * hd (X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest, Substack): the same layout
+ *   rendered at 1920x1080 device pixels (deviceScaleFactor 16/9), with the synthesised soundtrack.
+ * social (Instagram Reels): 1080x1920 (9:16), 15 s: the 16:9 banner as a card over a blurred copy of
+ *   itself, the voice-over set as kinetic type below it (social.js), with a Fish Audio voice-over
+ *   (FISH_API_KEY, FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as
+ *   [calm]; without a key the cut is silent apart from the soundtrack and the type is timed by estimate.
+ * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8 for the
+ * site banner, 6 for the social cuts).
+ * --add-voice mixes the story's voice-over into a 9:16 cut rendered without one. The video is copied
+ *   as is.
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
  */
 import { spawn } from "node:child_process";
@@ -30,9 +31,9 @@ const FPS = 30;
 const FORMATS = {
   wide: { layout: "wide", width: 1080, height: 608, scale: 1, seconds: 8, blur: 8, sound: false,
     encode: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, maxrate: "1700k" } },
-  hd: { layout: "wide", width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 8, sound: true,
+  hd: { layout: "wide", width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 6, sound: true,
     encode: { width: 1920, height: 1080, maxBytes: 24_000_000, crf: 17, maxrate: "16000k" } },
-  social: { layout: "social", width: 1080, height: 1920, stageHeight: 1350, scale: 1, seconds: 15, blur: 6, sound: true,
+  social: { layout: "social", width: 1080, height: 1920, stageHeight: 608, card: { x: 36, y: 300, w: 1008, h: 567 }, scale: 1, seconds: 15, blur: 6, sound: true,
     encode: { width: 1080, height: 1920, maxBytes: 24_000_000, crf: 18, maxrate: "12000k" } },
 };
 export const TEMPLATES = ["paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith"];
@@ -138,7 +139,8 @@ async function buildData(dir, override, format) {
   if (headline.length < 1 || headline.length > 3) throw new Error("headline needs 1-3 lines");
   return {
     template,
-    format: { name: FORMATS[format].layout, width: FORMATS[format].width, height: FORMATS[format].height, stageHeight: FORMATS[format].stageHeight },
+    format: { name: FORMATS[format].layout, width: FORMATS[format].width, height: FORMATS[format].height, stageHeight: FORMATS[format].stageHeight,
+      card: FORMATS[format].card, seconds: FORMATS[format].seconds },
     story: readStory(dir),
     headline,
     accent: Number.isInteger(spec.accent) ? spec.accent : headline.length - 1,
@@ -157,10 +159,10 @@ async function buildData(dir, override, format) {
   };
 }
 
-/** The parts of story.json the social cut uses: spec-sheet facts and the voice-over script. */
+/** The parts of story.json the social cut uses: topic, spec-sheet facts and the voice-over script. */
 function readStory(dir) {
   const file = join(dir, "story.json");
-  if (!existsSync(file)) return { facts: [], voiceover: "" };
+  if (!existsSync(file)) return { facts: [], voiceover: "", topic: "" };
   const story = JSON.parse(readFileSync(file, "utf8"));
   const facts = Array.isArray(story.facts) ? story.facts.slice(0, 6).map((f) => ({ label: String(f.label || ""), value: String(f.value || "") })) : [];
   let voiceover = story.social && typeof story.social.voiceover === "string" ? story.social.voiceover : "";
@@ -169,7 +171,51 @@ function readStory(dir) {
     const sentences = story.lede.split(/(?<=[.!?])\s+/);
     for (const sentence of sentences) { if ((voiceover + " " + sentence).trim().split(/\s+/).length > 36) break; voiceover = (voiceover + " " + sentence).trim(); }
   }
-  return { facts, voiceover };
+  return { facts, voiceover, topic: typeof story.topic === "string" ? story.topic.replace(/-/g, " ") : "" };
+}
+
+/** Phrase-by-phrase timings for the kinetic captions. The voice starts at 0.4 s and runs `spoken`
+ *  seconds (after voiceMix's speed-up); each word gets a share of that time by its length, with
+ *  extra room after sentence ends and [break]/[pause] cues. [emphasis] and words with digits are
+ *  accents. Phrases break at sentence ends, at commas once three words are in, and at seven words. */
+function captions(script, seconds) {
+  const words = [];
+  let accentNext = false, pause = 0;
+  for (const m of String(script).matchAll(/\[([^\]]+)\]|([^\s\[\]]+)/g)) {
+    if (m[1]) {
+      const cue = m[1].trim().toLowerCase();
+      if (cue === "emphasis") accentNext = true;
+      else if (cue === "long-break") pause += 14;
+      else if (cue === "break" || cue === "pause") pause += 7;
+      continue;
+    }
+    words.push({ text: m[2], accent: accentNext || /\d/.test(m[2]), pause });
+    accentNext = false;
+    pause = 0;
+  }
+  if (!words.length) return [];
+  const tempo = Math.min(1.15, Math.max(1, seconds / 13.6));
+  const spoken = seconds ? seconds / tempo : words.length / 2.6;
+  const weight = (w) => w.text.length + 1 + (/[.!?]["”’)]?$/.test(w.text) ? 5 : /[,;:]$/.test(w.text) ? 2 : 0);
+  const total = words.reduce((sum, w) => sum + w.pause + weight(w), 0);
+  let acc = 0;
+  for (const w of words) {
+    acc += w.pause;
+    w.start = 0.4 + (spoken * acc) / total;
+    acc += weight(w);
+    w.end = 0.4 + (spoken * acc) / total;
+  }
+  const phrases = [];
+  let cur = [];
+  words.forEach((w, i) => {
+    cur.push(w);
+    const nextPause = i + 1 < words.length && words[i + 1].pause > 0;
+    if (/[.!?]["”’)]?$/.test(w.text) || cur.length >= 7 || (cur.length >= 3 && (/[,;:—]$/.test(w.text) || nextPause)) || i === words.length - 1) {
+      phrases.push({ start: cur[0].start, end: cur[cur.length - 1].end, words: cur.map(({ text, accent, start }) => ({ text, accent, start })) });
+      cur = [];
+    }
+  });
+  return phrases;
 }
 
 /** Fish Audio text-to-speech; returns the mp3 path, or null without a key or script. */
@@ -277,6 +323,13 @@ async function main() {
   const format = FORMATS[a.format] ? a.format : "wide";
   const F = FORMATS[format];
   const data = await buildData(dir, a.template, format);
+  const tmp = mkdtempSync(join(tmpdir(), "s3news-"));
+  let voice = null, voiceSeconds = 0;
+  if (format === "social") {
+    voice = await voiceover(data.story.voiceover, join(tmp, "voice.mp3"));
+    if (voice) voiceSeconds = await probeSeconds(voice);
+    data.story.captions = captions(data.story.voiceover, voiceSeconds);
+  }
   const chromium = await loadChromium();
   const browser = await chromium.launch(launchOptions(data.template));
   const page = await browser.newPage({ viewport: { width: F.width, height: F.height }, deviceScaleFactor: F.scale });
@@ -286,7 +339,6 @@ async function main() {
   await page.goto(`${ORIGIN}/stage.html`);
   const { poster, cues } = await page.evaluate((d) => window.__setup(d), data).catch((e) => { throw new Error(`setup failed: ${e.message} ${errors.join(" | ")}`); });
   const shot = async (t, quality = 92) => { await page.evaluate((x) => window.__frame(x), t); return page.screenshot({ type: "jpeg", quality }); };
-  const tmp = mkdtempSync(join(tmpdir(), "s3news-"));
   const done = async () => { await browser.close(); rmSync(tmp, { recursive: true, force: true }); };
 
   if (a.frames || a.frame !== undefined) {
@@ -341,12 +393,6 @@ async function main() {
 
   const audio = join(tmp, "sound.wav");
   if (F.sound) writeFileSync(audio, synthesize(cues, { seconds: DURATION, seed: data.seed }));
-  let voice = null, voiceSeconds = 0;
-  if (format === "social") {
-    voice = await voiceover(data.story.voiceover, join(tmp, "voice.mp3"));
-    if (voice) voiceSeconds = await probeSeconds(voice);
-  }
-
   const blend = N > 1 ? `tmix=frames=${N},select='not(mod(n+1\\,${N}))',setpts=N/(${FPS}*TB),` : "";
   /** Encode the frames at one size; raises the CRF until the file fits. */
   const encode = async (out, E, sound) => {

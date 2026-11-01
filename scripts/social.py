@@ -1,25 +1,24 @@
 #!/usr/bin/env python3
 """Post a story to the Buffer channels in two groups (SOCIAL.md).
 
-  now      X, Threads, Bluesky, Mastodon: the 16:9 cut, shared the moment the story is published
-           (.github/workflows/publish.yml runs it after publishing)
-  planned  Facebook, Instagram, LinkedIn, Pinterest (and YouTube or TikTok if connected) with the
-           9:16 cut, Substack with the 16:9 cut: the render PC schedules five stories a day at
-           fixed times every night
+  now   X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack: the 16:9 cut,
+        shared the moment the story is published (.github/workflows/publish.yml)
+  reel  Instagram (and YouTube Shorts or TikTok if connected): the 9:16 cut. Every five hours
+        .github/workflows/reel.yml picks the story most worth a video and posts it
 
-  python scripts/social.py --story SLUG --group now [--dry-run] [--force]
-  python scripts/social.py --select [--count 5]
-                                       print the stories to plan tonight as JSON: the strongest
-                                       unplanned stories of the last 30 hours, each with its time
-  python scripts/social.py --story SLUG --group planned --at ISO-TIME [--dry-run] [--force]
+  python scripts/social.py --story SLUG --group now|reel [--dry-run] [--force]
+  python scripts/social.py --pick      choose the story for the next reel; writes slug= and folder=
+                                       to $GITHUB_OUTPUT (empty when nothing is worth a video)
   python scripts/social.py --cancel SLUG
                                        delete the story's posts from Buffer (a withdrawn story)
-  python scripts/social.py --dry-run --offline [--group now|planned]
+  python scripts/social.py --dry-run --offline [--group now|reel]
                                        print the posts for sample channels, no API key
   python scripts/social.py --channels  list the Buffer channels and Pinterest boards (read-only)
 
-Each posting is recorded in social/posted/<slug>.json (SOCIAL_RECORDS overrides the folder; the
-render PC keeps its own), so a story goes to each group once unless --force is given.
+--pick takes the strongest live story of the last 24 hours that has no reel yet, by the writer's
+social.priority (1-5; 1 and 2 never get a reel), then analysis before story and explained, then
+the newest. Each posting is recorded in social/posted/<slug>.json (SOCIAL_RECORDS overrides the
+folder), so a story goes to each group once unless --force is given.
 
 BUFFER_API_KEY is required except with --offline. PINTEREST_BOARD picks the board by name or
 id (default: the first board whose name contains "s3dat" or "news"). SOCIAL_AI_LABEL=0 turns
@@ -43,15 +42,12 @@ RECORDS = Path(os.environ.get("SOCIAL_RECORDS") or ROOT / "social" / "posted")
 SITE = "https://news.s3dat.com"
 API = "https://api.buffer.com"
 AGENT = "S3DAT-News-Social/1.0 (+https://news.s3dat.com/about)"
-# The PC plans once a night from the stories published since the night before, with some overlap.
-WINDOW = dt.timedelta(hours=30)
-ISTANBUL = dt.timezone(dt.timedelta(hours=3))
-SLOTS = (9, 13, 17, 21, 25)  # Istanbul hours of the planned posts; 25 is 01:00 the next night
+WINDOW = dt.timedelta(hours=24)  # how far back a reel looks for its story
+REEL_GAP = dt.timedelta(hours=4)  # reels run every five hours; a manual run cannot crowd them
 RANK = {"analysis": 3, "story": 2, "explained": 2, "brief": 1}
-WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack"}
-TALL = {"facebook", "instagram", "linkedin", "pinterest", "youtube", "tiktok"}
-GROUPS = {"now": {"twitter", "threads", "bluesky", "mastodon"},
-          "planned": {"facebook", "instagram", "linkedin", "pinterest", "youtube", "tiktok", "substack"}}
+WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack", "facebook", "linkedin", "pinterest"}
+TALL = {"instagram", "youtube", "tiktok"}
+GROUPS = {"now": WIDE, "reel": TALL}
 THUMB_MS = 2500  # a frame where the banner headline is fully on screen
 
 
@@ -89,7 +85,8 @@ def stories() -> list[dict]:
             continue
         brands = spec.get("brands") if isinstance(spec, dict) else None
         lead = str(brands[0].get("name") or brands[0].get("icon") or "").lower() if brands and isinstance(brands[0], dict) else ""
-        found.append({"slug": story["slug"], "title": story.get("title", ""), "kind": story.get("kind", "story"),
+        priority = social.get("priority") if type(social.get("priority")) is int else 3
+        found.append({"slug": story["slug"], "title": story.get("title", ""), "kind": story.get("kind", "story"), "priority": priority,
                       "published": published, "social": social, "lead": lead,
                       "folder": str(path.parent.relative_to(ROOT))})
     return found
@@ -121,30 +118,25 @@ def media_ready(slug: str, shapes: tuple[str, ...] = ("wide", "tall"), tries: in
     return False
 
 
-def slots(at: dt.datetime) -> list[dt.datetime]:
-    """The planned posting times of the coming day, all after `at`."""
-    day = at.astimezone(ISTANBUL).replace(hour=0, minute=0, second=0, microsecond=0)
-    if at.astimezone(ISTANBUL).hour >= SLOTS[0]:
-        day += dt.timedelta(days=1)
-    return [(day + dt.timedelta(hours=h)).astimezone(dt.timezone.utc) for h in SLOTS]
+def last_reel() -> dt.datetime | None:
+    times = []
+    for path in RECORDS.glob("*.json"):
+        try:
+            times.append(parse_time(json.loads(path.read_text(encoding="utf-8")).get("reel", {}).get("at")))
+        except (OSError, ValueError, AttributeError):
+            continue
+    return max((t for t in times if t), default=None)
 
 
-def select(candidates: list[dict], at: dt.datetime, count: int) -> list[dict]:
-    """The strongest live stories of the last WINDOW not planned yet; one lead company at most twice."""
-    fresh = [s for s in candidates if at - WINDOW <= s["published"] <= at and "planned" not in record(s["slug"])]
-    fresh.sort(key=lambda s: (RANK.get(s["kind"], 1), s["published"]), reverse=True)
-    chosen, leads = [], {}
+def pick(candidates: list[dict], at: dt.datetime) -> dict | None:
+    """The live story of the last WINDOW most worth a reel, or None."""
+    fresh = [s for s in candidates if at - WINDOW <= s["published"] <= at and s["priority"] >= 3 and "reel" not in record(s["slug"])]
+    fresh.sort(key=lambda s: (s["priority"], RANK.get(s["kind"], 1), s["published"]), reverse=True)
     for story in fresh:
-        if len(chosen) == count:
-            break
-        if story["lead"] and leads.get(story["lead"], 0) >= 2:
-            continue
-        if not reachable(story_url(story["slug"]), "GET"):
-            warn(f"{story['slug']} is not live on the site; skipped")
-            continue
-        chosen.append(story)
-        leads[story["lead"]] = leads.get(story["lead"], 0) + 1
-    return chosen
+        if reachable(story_url(story["slug"]), "GET"):
+            return story
+        warn(f"{story['slug']} is not live on the site; skipped")
+    return None
 
 
 # ------------------------------------------------------------------ Buffer
@@ -220,7 +212,7 @@ def board(channel: dict) -> str | None:
     return None
 
 
-def build(channel: dict, story: dict, group: str, due: dt.datetime | None = None) -> dict | None:
+def build(channel: dict, story: dict, group: str) -> dict | None:
     """The createPost input for one channel, or None when the channel is not in the group."""
     service, social, slug = channel["service"], story["social"], story["slug"]
     url, tags = story_url(slug), [t for t in social.get("hashtags", []) if isinstance(t, str)]
@@ -234,8 +226,6 @@ def build(channel: dict, story: dict, group: str, due: dt.datetime | None = None
         video["metadata"] = {"thumbnailOffset": THUMB_MS}
     post = {"channelId": channel["id"], "schedulingType": "automatic", "mode": "shareNow", "needsApproval": False,
             "assets": [{"video": video}]}
-    if due:
-        post["mode"], post["dueAt"] = "customScheduled", iso(due)
     hashtags = " ".join("#" + t for t in tags)
     if service == "twitter":
         # X ranks posts with links lower: the text carries the news, no link.
@@ -255,9 +245,9 @@ def build(channel: dict, story: dict, group: str, due: dt.datetime | None = None
     elif service == "substack":
         post["text"] = f"{long}\n\n{url}"
     elif service == "facebook":
-        # Links in reel captions are not clickable; the first comment carries it.
-        post["text"] = long
-        post["metadata"] = {"facebook": {"type": "reel", "firstComment": f"Full story: {url}"}}
+        # A regular video post (the 16:9 cut), so the link in the text is clickable.
+        post["text"] = f"{long}\n\n{url}"
+        post["metadata"] = {"facebook": {"type": "post"}}
     elif service == "instagram":
         post["text"] = long + (f"\n\n{hashtags}" if hashtags else "")
         post["metadata"] = {"instagram": {"type": "reel", "shouldShareToFeed": True, "isAiGenerated": label}}
@@ -294,13 +284,20 @@ def save_record(slug: str, data: dict) -> None:
 
 
 # ------------------------------------------------------------------ main
+def output(**values: str) -> None:
+    target = os.environ.get("GITHUB_OUTPUT")
+    lines = "".join(f"{k}={v}\n" for k, v in values.items())
+    if target:
+        with open(target, "a", encoding="utf-8") as handle:
+            handle.write(lines)
+    print(lines, end="")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--story", metavar="SLUG", help="post this story")
-    parser.add_argument("--group", choices=sorted(GROUPS), help="now (16:9 at publishing) or planned (scheduled)")
-    parser.add_argument("--at", metavar="ISO-TIME", help="with --group planned: when Buffer posts it")
-    parser.add_argument("--select", action="store_true", help="print tonight's stories to plan as JSON")
-    parser.add_argument("--count", type=int, default=len(SLOTS), help="with --select: how many (default 5)")
+    parser.add_argument("--group", choices=sorted(GROUPS), help="now (16:9 at publishing) or reel (9:16)")
+    parser.add_argument("--pick", action="store_true", help="choose the story for the next reel")
     parser.add_argument("--cancel", metavar="SLUG", help="delete the story's Buffer posts")
     parser.add_argument("--dry-run", action="store_true", help="print the posts, send nothing, record nothing")
     parser.add_argument("--offline", action="store_true", help="with --dry-run: sample channels, no API key")
@@ -310,11 +307,19 @@ def main() -> int:
     at = now()
     candidates = stories()
 
-    if args.select:
-        times = slots(at)
-        chosen = select(candidates, at, min(args.count, len(times)))
-        print(json.dumps([{"slug": s["slug"], "folder": s["folder"], "kind": s["kind"], "at": iso(t)}
-                          for s, t in zip(chosen, times)], indent=2))
+    if args.pick:
+        last = last_reel()
+        if last and at - last < REEL_GAP and not args.force:
+            print(f"Last reel at {iso(last)}, less than {REEL_GAP} ago; nothing picked.")
+            output(slug="", folder="")
+            return 0
+        story = pick(candidates, at)
+        if not story:
+            print("No story worth a reel.")
+            output(slug="", folder="")
+            return 0
+        print(f"Picked {story['slug']} ({story['kind']}, priority {story['priority']}, published {iso(story['published'])})")
+        output(slug=story["slug"], folder=story["folder"])
         return 0
 
     key = os.environ.get("BUFFER_API_KEY", "")
@@ -347,9 +352,6 @@ def main() -> int:
         return 1 if failed else 0
 
     group = args.group or "now"
-    due = parse_time(args.at) if args.at else None
-    if group == "planned" and not args.offline and (not due or due <= at):
-        parser.error("--group planned needs --at with a future ISO time")
     if args.story:
         story = next((s for s in candidates if s["slug"] == args.story), None)
         if not story:
@@ -364,10 +366,10 @@ def main() -> int:
             print("No story with a social block yet.")
             return 0
     else:
-        parser.error("use --story SLUG, --select, --cancel SLUG or --channels")
-    shapes = ("wide",) if group == "now" else ("wide", "tall")
-    if not args.offline and not media_ready(story["slug"], shapes):
-        print(f"{story['slug']}: the {'/'.join(shapes)} cut is not reachable on {SITE}", file=sys.stderr)
+        parser.error("use --story SLUG, --pick, --cancel SLUG or --channels")
+    shape = "wide" if group == "now" else "tall"
+    if not args.offline and not media_ready(story["slug"], (shape,)):
+        print(f"{story['slug']}: the {shape} cut is not reachable on {SITE}", file=sys.stderr)
         return 1
 
     if args.offline:
@@ -376,8 +378,7 @@ def main() -> int:
     else:
         channels = buffer.channels()
     results, failed = {}, 0
-    when = f"for {iso(due)}" if due else "now"
-    print(f"Posting {story['slug']} ({story['kind']}, published {iso(story['published'])}) to the {group} group {when}")
+    print(f"Posting {story['slug']} ({story['kind']}, published {iso(story['published'])}) to the {group} group")
     for channel in channels:
         name = f"{channel['service']}:{channel.get('displayName') or channel['name']}"
         if channel["service"] not in GROUPS[group]:
@@ -385,7 +386,7 @@ def main() -> int:
         if channel.get("isDisconnected") or channel.get("isLocked") or channel.get("isQueuePaused"):
             warn(f"{name} is disconnected, locked or paused; skipped")
             continue
-        post = build(channel, story, group, due)
+        post = build(channel, story, group)
         if post is None:
             print(f"  skip {name}")
             continue
@@ -407,7 +408,7 @@ def main() -> int:
         # Nothing went out (rate limit, outage): nothing is recorded, so a later run can try again.
         return 1
     data = record(story["slug"])
-    data[group] = {"at": iso(at), **({"dueAt": iso(due)} if due else {}), "results": results}
+    data[group] = {"at": iso(at), "results": results}
     save_record(story["slug"], data)
     return 1 if failed else 0
 

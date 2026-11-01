@@ -25,4 +25,5 @@ html, body { width: 1080px; height: 608px; overflow: hidden; background: #000; }
 .logo.wide { display: grid; place-items: center; }
 .logo.wide svg { width: var(--w); height: auto; flex: none; }
 .cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+#bg { position: absolute; left: 0; top: 0; overflow: hidden; }
 #social { position: absolute; left: 0; top: 0; overflow: hidden; visibility: hidden; }

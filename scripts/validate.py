@@ -257,6 +257,8 @@ def validate_social(story, published):
                 errors.append(f"social.short must be at most {room} characters so it fits Bluesky with the story link (found {len(text)})")
             if "[" in text or "]" in text:
                 errors.append(f"social.{key} is read, not spoken: no [cues]")
+    if "priority" in social and (type(social["priority"]) is not int or not 1 <= social["priority"] <= 5):
+        errors.append("social.priority must be a whole number from 1 to 5 (how much the story is worth a video; 1 and 2 never get one)")
     tags = social.get("hashtags", [])
     if not isinstance(tags, list) or len(tags) > 4 or not all(isinstance(t, str) and HASHTAG.fullmatch(t) for t in tags):
         errors.append("social.hashtags must list 0–4 tags of letters and digits, without #")

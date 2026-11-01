@@ -1,12 +1,12 @@
 name: Post to social media
 
 # Manual tools only. Stories are shared automatically: the 16:9 cut by publish.yml the moment a
-# story is live, the planned channels by the render PC every night (SOCIAL.md).
+# story is live, the 9:16 reel by reel.yml every five hours (SOCIAL.md).
 on:
   workflow_dispatch:
     inputs:
       story:
-        description: 'Story slug to share now on X, Threads, Bluesky and Mastodon'
+        description: 'Story slug to share the 16:9 cut of now (it must already be on news.s3dat.com)'
         required: false
         type: string
       dry_run:

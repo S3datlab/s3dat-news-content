@@ -4,24 +4,24 @@ Every story leaves the site as a video post on the channels connected to Buffer,
 You write the copy in `story.json` (`social`, below); nobody posts by hand.
 
 - **Now:** the moment a story is published, `publish.yml` renders its 16:9 cut and shares it on
-  X, Threads, Bluesky and Mastodon.
-- **Planned:** every night at 03:00 Istanbul time the render PC picks the five strongest stories
-  of the day, renders their 9:16 cut with the voice-over and schedules them in Buffer for the
-  coming day, four hours apart, on Facebook, Instagram, LinkedIn, Pinterest and Substack.
+  X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack.
+- **Reel:** every five hours `reel.yml` picks the story of the last 24 hours most worth a video,
+  renders its 9:16 cut with the voice-over and posts it to Instagram (and YouTube Shorts or TikTok
+  when connected). Instagram is the one channel that needs the vertical video.
 
 ## The videos
 
-Two cuts of a story, rendered with `tools/news-banner-v2`:
-
-| Cut | Size | Length | Sound | Rendered by | Goes to |
+| Cut | Size | Length | Sound | Rendered | Goes to |
 | --- | --- | --- | --- | --- | --- |
-| Wide | 1920×1080 (16:9) | 8 s loop | the banner's soundtrack | GitHub, when the story is published | X, Threads, Bluesky, Mastodon; Substack |
-| Tall | 1080×1920 (9:16) | 15 s | voice-over over the soundtrack | the render PC, at night, for the five planned stories | Facebook, Instagram, LinkedIn, Pinterest (YouTube Shorts and TikTok when connected) |
+| Wide | 1920×1080 (16:9) | 8 s loop | the banner's soundtrack | by `publish.yml`, with the story | every channel but Instagram |
+| Tall | 1080×1920 (9:16) | 15 s | voice-over over the soundtrack | by `reel.yml`, for the picked story | Instagram Reels (YouTube Shorts, TikTok) |
 
 - The wide cut is the site banner's layout rendered at full HD with its soundtrack.
-- The tall cut: 0–8 s the banner in a 4:5 frame centred in the picture (the part every feed shows
-  uncropped), 8–14 s up to three spec-sheet facts as full-screen cards (facts with numbers first),
-  14–15 s the S3DAT News end card with `news.s3dat.com`.
+- The tall cut (`tools/news-banner-v2/social.js`): the 16:9 banner plays as a card near the top;
+  behind it the same banner runs scaled up and blurred, so the frame takes its colours from the
+  video. Below it the voice-over is set as kinetic type, one phrase at a time, words lighting up
+  as they are spoken; numbers and `[emphasis]` words sit on a pill in the brand colour. It ends on
+  the S3DAT News sign-off with `news.s3dat.com`. Everything stays in the Reels safe zone.
 - The voice is Ethan (Fish Audio, `FISH_VOICE_ID`), mixed over the soundtrack, which ducks under
   him; loudness is normalised to −14 LUFS.
 - Buffer cannot take a file, only a public link, so both cuts are uploaded to
@@ -30,28 +30,22 @@ Two cuts of a story, rendered with `tools/news-banner-v2`:
 
 ## Now: the 16:9 cut at publishing
 
-`publish.yml`, after a story is published: if it has a `social` block, is at most 12 hours old
-and has not been shared, it renders `--format hd`, uploads it (`publish.py --social --wide`) and
-runs `social.py --story <slug> --group now`. The result is committed to
-`social/posted/<slug>.json`. A failure here leaves the story published; the workflow
-`Post to social media` can share it by hand.
+After a story is published, if it has a `social` block, is at most 12 hours old and has not been
+shared, `publish.yml` renders `--format hd`, uploads it (`publish.py --social --wide`) and runs
+`social.py --story <slug> --group now`. The result is committed to `social/posted/<slug>.json`. A
+failure here leaves the story published; the workflow `Post to social media` can share it by hand.
 
-## Planned: the render PC at night
+## Reel: the 9:16 cut every five hours
 
-The render PC (Windows, RTX GPU) wakes at 03:00 Istanbul time and, for this job:
+At 01:20, 06:20, 11:20, 16:20 and 21:20 UTC (04:20, 09:20, 14:20, 19:20 and 00:20 in Istanbul)
+`reel.yml` runs `social.py --pick`: the live story of the last 24 hours without a reel, highest
+`social.priority` first, then analysis before story and explained, then the newest. Stories with
+priority 1 or 2 never get a reel; when nothing qualifies, nothing is posted. It renders the tall
+cut, uploads it and runs `social.py --story <slug> --group reel`. No reel within four hours of the
+previous one.
 
-1. `python scripts/social.py --select` picks the five strongest live stories of the last 30 hours
-   that are not planned yet (analysis first, then story and explained; the newest first; one
-   lead company at most twice) and gives each a time: 09:00, 13:00, 17:00, 21:00 and 01:00
-   Istanbul.
-2. For each, it renders the tall cut (`render.mjs --format social`, voice included) and uploads it
-   (`publish.py --social --tall`).
-3. `social.py --story <slug> --group planned --at <time>` schedules it in Buffer.
-4. It goes back to sleep. Buffer posts at the planned times on its own.
-
-The PC keeps its own records (`SOCIAL_RECORDS`). If it misses a night, the next run plans the
-newest stories again. For a withdrawn story, run `social.py --cancel <slug>` on the PC (planned
-posts) and delete the shared posts in Buffer.
+For a withdrawn story, run `social.py --cancel <slug>` with `BUFFER_API_KEY` (it deletes the posts
+recorded in `social/posted/<slug>.json`).
 
 ## What each channel gets
 
@@ -61,11 +55,11 @@ posts) and delete the shared posts in Buffer.
 | Threads | now | wide | `short` + link; the first hashtag becomes the topic | in the post |
 | Bluesky | now | wide | `short` + link (300 characters in all) | in the post |
 | Mastodon | now | wide | `short` + link + hashtags | in the post |
-| Substack Notes | planned | wide | `long` + link | in the post |
-| Facebook page | planned | tall, as a reel | `long` | first comment (reel captions do not link) |
-| Instagram | planned | tall, as a reel shared to the feed | `long` + hashtags | none: Instagram captions do not link |
-| LinkedIn page | planned | tall | `long` | first comment (posts with links reach fewer people) |
-| Pinterest | planned | tall | headline as the title, `short` as the description | the pin opens the story |
+| Facebook page | now | wide, as a video post | `long` + link | in the post |
+| LinkedIn page | now | wide | `long` | first comment (posts with links reach fewer people) |
+| Pinterest | now | wide | headline as the title, `short` as the description | the pin opens the story |
+| Substack Notes | now | wide | `long` + link | in the post |
+| Instagram | reel | tall, as a reel shared to the feed | `long` + hashtags | none: Instagram captions do not link |
 
 Instagram and YouTube posts carry the platforms' AI disclosure, because the voice-over is
 synthetic (`SOCIAL_AI_LABEL=0` turns it off).
@@ -77,7 +71,8 @@ synthetic (`SOCIAL_AI_LABEL=0` turns it off).
   "voiceover": "[matter-of-fact] Britain's competition regulator has opened a case into Meta's business terms. [break] The question is whether Meta can reuse publishers' content for AI without giving them a real choice. Meta has paused the terms.",
   "short": "Britain's competition regulator opened a case into Meta's business terms on 30 October: the issue is whether Meta can reuse publishers' content for AI without giving them a choice.",
   "long": "Britain's Competition and Markets Authority opened a formal investigation into Meta's commercial terms for businesses on 30 October. ...",
-  "hashtags": ["Meta", "Competition", "AI"]
+  "hashtags": ["Meta", "Competition", "AI"],
+  "priority": 4
 }
 ```
 
@@ -87,6 +82,7 @@ synthetic (`SOCIAL_AI_LABEL=0` turns it off).
 | `short` | 60–240 characters, and short enough for Bluesky with the link (300 in all). X, Threads, Bluesky, Mastodon and Pinterest. The link is added for you. |
 | `long` | 300–1500 characters. Facebook, Instagram, LinkedIn and Substack. No link. |
 | `hashtags` | 0–4 tags, letters and digits only, without `#`: companies and topics (#OpenAI, #Robotics), never filler (#innovation, #tech). |
+| `priority` | 1–5: how much the story is worth a 15-second video for people who scroll Instagram. 5 = the story of the day, 3 = solid, 1–2 = never a reel. Most stories are 3; give 4 or 5 sparingly. |
 
 `scripts/validate.py` checks every rule below. Required for stories published from 1 November
 2026 04:00 UTC.

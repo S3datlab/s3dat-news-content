@@ -1,0 +1,120 @@
+name: Post the reel
+
+# Every five hours (UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00): pick the story of the last
+# 24 hours most worth a video, render its 9:16 cut with the voice-over, upload it and post it to
+# Instagram (and YouTube Shorts or TikTok if connected). Nothing worth a video: nothing posted.
+on:
+  schedule:
+    - cron: '20 1,6,11,16,21 * * *'
+  workflow_dispatch:
+    inputs:
+      story:
+        description: 'Story slug (empty: pick the next one)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Render and upload, but only print the posts'
+        type: boolean
+        default: true
+      force:
+        description: 'Ignore the four-hour guard and an earlier reel of the story'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-reel
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pick the story
+        id: pick
+        env:
+          STORY: ${{ inputs.story }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ -z "$BUFFER_API_KEY" ]; then echo "BUFFER_API_KEY is not set; nothing to post."; echo "slug=" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ -n "$STORY" ]; then
+            if ! printf '%s' "$STORY" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "Invalid slug"; exit 1; fi
+            folder=$(ls -d stories/*/*/*/"$STORY" 2>/dev/null | head -1)
+            if [ -z "$folder" ]; then echo "No story folder for $STORY"; exit 1; fi
+            echo "slug=$STORY" >> "$GITHUB_OUTPUT"
+            echo "folder=$folder" >> "$GITHUB_OUTPUT"
+          else
+            args=()
+            [ "$FORCE" = "true" ] && args+=(--force)
+            python scripts/social.py --pick "${args[@]}"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.pick.outputs.slug != ''
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/news-banner-v2/package-lock.json
+      - name: Render the 9:16 cut
+        if: steps.pick.outputs.slug != ''
+        env:
+          CHROME_CHANNEL: chrome
+          FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
+          FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
+          FOLDER: ${{ steps.pick.outputs.folder }}
+          SLUG: ${{ steps.pick.outputs.slug }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          npm ci --no-audit --no-fund --prefix tools/news-banner-v2
+          mkdir -p out/social
+          node tools/news-banner-v2/render.mjs "$FOLDER" --format social --out "out/social/$SLUG-tall.mp4"
+      - name: Upload it to news.s3dat.com
+        if: steps.pick.outputs.slug != ''
+        env:
+          NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
+          NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}
+          SLUG: ${{ steps.pick.outputs.slug }}
+        run: python scripts/publish.py --social "$SLUG" --tall "out/social/$SLUG-tall.mp4"
+      - name: Post the reel
+        if: steps.pick.outputs.slug != ''
+        env:
+          PINTEREST_BOARD: ${{ vars.PINTEREST_BOARD }}
+          SOCIAL_AI_LABEL: ${{ vars.SOCIAL_AI_LABEL }}
+          SLUG: ${{ steps.pick.outputs.slug }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          args=(--story "$SLUG" --group reel)
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          [ "$FORCE" = "true" ] && args+=(--force)
+          python scripts/social.py "${args[@]}"
+      - name: Commit the posting record
+        if: always() && steps.pick.outputs.slug != ''
+        run: |
+          if [ -z "$(git status --porcelain -- social/posted)" ]; then exit 0; fi
+          git config user.name 'S3DAT News'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add social/posted
+          git commit -q -m 'Social: posting record'
+          for attempt in 1 2 3; do
+            git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
+      - name: Keep the reel for review
+        if: always() && steps.pick.outputs.slug != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: reel-${{ steps.pick.outputs.slug }}-${{ github.run_id }}
+          path: out/social/
+          retention-days: 7
+          if-no-files-found: ignore

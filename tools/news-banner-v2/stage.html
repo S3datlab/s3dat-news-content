@@ -21,6 +21,7 @@
     <script type="module" src="templates/monolith.js"></script>
   </head>
   <body>
+    <div id="bg"></div>
     <div id="stage"></div>
     <div id="social"></div>
     <script>
@@ -36,13 +37,14 @@
       window.__setup = async (data) => {
         const B = window.BANNER;
         const W = data.format ? data.format.width : 1080, H = data.format ? data.format.height : 608;
-        // The social cut is 9:16; the template draws its 4:5 layout centred in it, then the cards take over.
+        // The social cut is 9:16: the template draws its 16:9 layout as a card near the top (social.js).
         const social = data.format && data.format.name === "social";
         const SH = social ? data.format.stageHeight : H;
         B.setFormat(W, SH);
         const stage = document.getElementById("stage");
         for (const n of [document.documentElement, document.body]) Object.assign(n.style, { width: W + "px", height: H + "px" });
-        Object.assign(stage.style, { width: W + "px", height: SH + "px", top: (H - SH) / 2 + "px" });
+        Object.assign(stage.style, { width: W + "px", height: SH + "px", top: "0px", left: "0px", transform: "", borderRadius: "", boxShadow: "" });
+
         window.__social = null;
         if (data.template === "monolith") await window.__monolithReady;
         const template = B.templates[data.template];
@@ -68,28 +70,49 @@
         await settle(stage);
         if (window.__instance.ready) await window.__instance.ready();
         if (social) {
+          // Templates measure text while they build and on their first frame: scale only afterwards.
+          window.__instance.frame(0);
+          const k = data.format.card.w / W;
+          Object.assign(stage.style, { transformOrigin: "0 0", transform: `translate(${data.format.card.x}px, ${data.format.card.y}px) scale(${k})`,
+            borderRadius: 30 / k + "px", boxShadow: "0 34px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.10)" });
+          // Behind the card the same banner runs again, scaled to cover the frame and blurred, so the
+          // background takes its colours from the video (not for the 3D template: one renderer only).
+          const bg = document.getElementById("bg");
+          bg.innerHTML = "";
+          Object.assign(bg.style, { width: W + "px", height: H + "px" });
+          window.__mirror = null;
+          let mirror = null;
+          if (data.template !== "monolith") {
+            const wrap = Object.assign(document.createElement("div"), { className: "mirror" });
+            Object.assign(wrap.style, { position: "absolute", left: "50%", top: "50%", width: W + "px", height: SH + "px", transform: "translate(-50%, -50%)" });
+            mirror = Object.assign(document.createElement("div"), { className: "mirror-stage" });
+            Object.assign(mirror.style, { position: "absolute", inset: "0", overflow: "hidden", filter: "blur(9px) saturate(1.45) brightness(0.62)" });
+            wrap.appendChild(mirror);
+            bg.appendChild(wrap);
+            const cues = B.cues;
+            window.__mirror = await template(mirror, data, B);
+            B.cues = cues;
+            await settle(mirror);
+            window.__mirror.frame(0);
+            wrap.style.transform = `translate(-50%, -50%) scale(${(H / SH) * 1.12})`;
+          }
           const root = document.getElementById("social");
           root.innerHTML = "";
           Object.assign(root.style, { width: W + "px", height: H + "px" });
-          window.__social = B.social(root, data, B);
+          window.__social = B.social(root, data, B, bg, mirror);
           await settle(root);
         }
         return { poster: window.__instance.poster || 2, cues: B.cues };
       };
-      // Loops are seamless: any time wraps into [0, 8). The social cut runs the banner once, then the cards.
+      // Loops are seamless: any time wraps into [0, 8). The social cut loops the banner for its whole length.
       window.__frame = (t) => {
+        const loop = ((t % 8) + 8) % 8;
+        window.__instance.frame(loop);
         const s = window.__social;
-        if (!s) return window.__instance.frame(((t % 8) + 8) % 8);
-        const stage = document.getElementById("stage");
-        if (t < 8) {
-          window.__instance.frame(Math.max(0, t));
-          // The bands above and below the 4:5 frame continue its background.
-          const bg = getComputedStyle(stage).backgroundColor;
-          document.body.style.background = bg && bg !== "rgba(0, 0, 0, 0)" ? bg : "#0a0a0a";
-        }
-        stage.style.visibility = t < 8 ? "visible" : "hidden";
-        document.getElementById("social").style.visibility = t >= 8 ? "visible" : "hidden";
-        s.frame(t - 8);
+        if (!s) return;
+        if (window.__mirror) window.__mirror.frame(loop);
+        document.getElementById("social").style.visibility = "visible";
+        s.frame(t);
       };
     </script>
   </body>
