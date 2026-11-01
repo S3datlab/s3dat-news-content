@@ -11,6 +11,7 @@ BANNER.templates.collage = (stage, d, B) => {
   stage.style.background = "#eeebe4";
   const cam = B.camera(stage, { push: 0.035, drift: 9, sway: 0.3 });
   const back = cam.layer(0.2), mid = cam.layer(0.6), front = cam.layer(1);
+  const amb = B.ambient(back, { bg: "#eeebe4", ink: "#111111", accent: c.vivid, text: d.headline.join(" "), y: H * 0.5, seed: d.seed });
   css(el("div", "layer", back), { inset: "-60px", backgroundImage: "radial-gradient(rgba(0,0,0,.07) 1px, transparent 1px)", backgroundSize: "6px 6px" });
 
   const tape = (node, w) => css(el("div", "abs", node), { left: "50%", top: "-12px", width: w + "px", height: "26px", marginLeft: -w / 2 + "px", background: "rgba(255,248,220,.72)", transform: `rotate(${(rand() - 0.5) * 10}deg)`, boxShadow: "0 1px 2px rgba(0,0,0,.08)" });
@@ -68,10 +69,13 @@ BANNER.templates.collage = (stage, d, B) => {
   B.cue("whoosh", shuffle, 0.6);
   B.cue("whoosh", 7.3, 0.7);
 
+  const holdA = B.hold(strip, 2.0, 7.3);
   return {
     poster: 2.4,
     frame(t) {
       cam.update(t);
+      amb(t);
+      holdA(t);
       const sh = Math.min(1.04, sp(t, shuffle, "heavy"));
       const leave = ease.inCubic(seg(t, 7.3, 7.85));
       items.forEach(({ node, w, h, actor }, i) => {

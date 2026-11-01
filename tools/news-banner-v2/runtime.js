@@ -146,7 +146,7 @@
         const ph = (TAU * t) / B.DURATION;
         // Depth reads from parallax: the layers drift half as far again as the camera moves.
         const cx = Math.sin(ph) * o.drift * 1.5, cy = Math.sin(ph * 2 + 1.1) * o.drift * 0.7;
-        const s = 1 + o.push * (0.5 - 0.5 * Math.cos(ph));
+        const s = 1 + o.push * 1.5 * (0.5 - 0.5 * Math.cos(ph));
         let sx = 0, sy = 0;
         for (const k of kicks) {
           const d = t - k.t0;
@@ -159,7 +159,7 @@
         for (const c of B.cues) {
           if (c.type !== "hit" && c.type !== "land" && c.type !== "pop") continue;
           const d = t - c.t;
-          if (d >= 0 && d < 0.6) punch += (c.type === "pop" ? 0.012 : 0.03) * Math.min(1, c.gain) * Math.exp(-d * 9) * Math.sin(Math.min(1, d * 14) * Math.PI / 2);
+          if (d >= 0 && d < 0.6) punch += (c.type === "pop" ? 0.016 : 0.045) * Math.min(1, c.gain) * Math.exp(-d * 9) * Math.sin(Math.min(1, d * 14) * Math.PI / 2);
         }
         world.style.transform = `translate(${sx}px, ${sy}px) scale(${s + punch}) rotate(${Math.sin(ph) * o.sway}deg)`;
         for (const { n, depth } of layers) n.style.transform = `translate(${cx * depth}px, ${cy * depth}px)`;
@@ -183,6 +183,52 @@
     }
     return css(el("div", "layer", parent), { backgroundImage: `url(${grainUrl})`, backgroundSize: "160px 160px", mixBlendMode: "overlay", opacity, pointerEvents: "none" });
   }
+  /* ---------- ambient motion: what keeps a held frame alive ---------- */
+  /**
+   * Behind the content: the headline as a giant outlined marquee that never stops scrolling, and a
+   * drift of small shapes in the accent colour. Both loop seamlessly over the 8 s (the marquee moves
+   * exactly one repeat, the shapes wrap exactly once). opts: bg, ink, accent (#hex), text, y (px of
+   * the marquee's centre), size (px), shapes (count), seed, marquee (false to skip it).
+   */
+  function ambient(parent, opts) {
+    const o = Object.assign({ y: B.H * 0.5, size: wide() ? 300 : 420, shapes: 14, seed: 7, marquee: true }, opts);
+    const root = css(el("div", "layer", parent), { pointerEvents: "none", overflow: "hidden" });
+    let row = null, unit = 0;
+    if (o.marquee && o.text) {
+      row = css(el("div", "abs", root), { left: 0, top: o.y - o.size * 0.55 + "px", whiteSpace: "nowrap", font: `900 ${o.size}px/1.1 Archivo`, fontStretch: "80%", textTransform: "uppercase", color: "transparent", WebkitTextStroke: `${Math.max(2, o.size * 0.012)}px ${mix(o.bg, o.ink, 0.16)}` });
+      const piece = el("span", "", row);
+      piece.textContent = `${o.text} ✦ `;
+      unit = piece.getBoundingClientRect().width;
+      const copies = Math.ceil((B.W * 2) / Math.max(1, unit)) + 1;
+      for (let i = 0; i < copies; i++) { const x = el("span", "", row); x.textContent = piece.textContent; }
+    }
+    const r = rng(o.seed * 131 + 9);
+    const shapes = Array.from({ length: o.shapes }, (_, i) => {
+      const size = 8 + r() * 22;
+      const kind = i % 3;
+      const n = css(el("div", "abs", root), { width: size + "px", height: size + "px", left: 0, top: 0, borderRadius: kind === 0 ? "50%" : kind === 1 ? "3px" : "0", background: kind === 2 ? "transparent" : o.accent, border: kind === 2 ? `3px solid ${o.accent}` : "none", opacity: 0.35 + r() * 0.4 });
+      return { n, x: r() * B.W, y: r() * B.H, wraps: 1 + Math.floor(r() * 2), sway: 10 + r() * 30, spin: (r() - 0.5) * 360, ph: r() * TAU };
+    });
+    return (t) => {
+      const k = (((t % B.DURATION) + B.DURATION) % B.DURATION) / B.DURATION;
+      if (row) row.style.transform = `translateX(${-k * unit}px)`;
+      for (const s of shapes) {
+        const y = (((s.y - k * s.wraps * (B.H + 60)) % (B.H + 60)) + B.H + 60) % (B.H + 60) - 30;
+        const x = s.x + Math.sin(k * TAU + s.ph) * s.sway;
+        s.n.style.transform = `translate(${x}px, ${y}px) rotate(${s.spin * k * s.wraps}deg)`;
+      }
+    };
+  }
+  /** A held block keeps moving: a slow push-in and drift from `a` until it leaves at `b`. */
+  function hold(node, a, b, amount = 0.06) {
+    node.style.transformOrigin = node.style.transformOrigin || "0% 50%";
+    return (t) => {
+      const k = ease.inOut(seg(t, a, b));
+      node.style.scale = String(1 + amount * k);
+      node.style.translate = `${k * 18}px ${-k * 6}px`;
+    };
+  }
+
   /** The finishing pass every banner gets on top (stage.html adds it after the template): a light
    *  band sweeps the frame on each whoosh or swish, a soft flash blooms on each hit, and the
    *  vignette breathes. It reads the template's sound cues, so picture and sound land together. */
@@ -572,7 +618,7 @@
   Object.assign(B, {
     clamp, seg, lerp, ease, rng, choose, beat, spring, sp, life, SPR,
     luminance, onColor, mix, alpha, brandColors, el, css, wide, pick,
-    fitLines, fitEach, line, cue, camera, grain, vignette, finish, sheenText, sheenMask,
+    fitLines, fitEach, line, cue, camera, grain, vignette, finish, ambient, hold, sheenText, sheenMask,
     logoNode, logoMask, logo, splitChars, maskWrap, animate, iris, bars, halftone, burst,
     bakeSticker, sticker, hero, parseStat, odometer, formatStat,
     setFormat(w, h) { B.W = w; B.H = h; },

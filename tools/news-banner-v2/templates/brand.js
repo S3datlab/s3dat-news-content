@@ -11,6 +11,7 @@ BANNER.templates.brand = (stage, d, B) => {
   stage.style.background = bg;
   const cam = B.camera(stage, { push: 0.05, drift: 12, sway: 0.4 });
   const back = cam.layer(0.25), mid = cam.layer(0.75);
+  const amb = B.ambient(back, { bg, ink, accent: mix(bg, ink, 0.4), text: d.headline.join(" "), y: H * 0.86, size: isWide ? 210 : 300, seed: d.seed });
 
   const GS = pick(780, 1100);
   const giant = css(B.logoNode(brand, ink, back), { position: "absolute", left: (isWide ? W - GS * 0.62 : W / 2 - GS / 2) + "px", top: (isWide ? -GS * 0.18 : H * 0.12) + "px", width: GS + "px", height: GS + "px", opacity: 0.08 });
@@ -42,10 +43,13 @@ BANNER.templates.brand = (stage, d, B) => {
   B.cue("whoosh", swap - 0.1, 0.9);
   B.cue("whoosh", back2 - 0.1, 0.8);
 
+  const holdA = B.hold(a, 1.6, swap + 0.2);
   return {
     poster: 2.0,
     frame(t) {
       cam.update(t);
+      amb(t);
+      holdA(t);
       giant.style.transform = `rotate(${t * 7}deg) scale(${lerp(1.25, 1, ease.outExpo(seg(t, 0, 1.8)))})`;
       animA(t);
       small.draw(t);

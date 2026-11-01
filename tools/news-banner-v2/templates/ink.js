@@ -12,6 +12,7 @@ BANNER.templates.ink = (stage, d, B) => {
   const tube = css(el("div", "layer", stage), { transformOrigin: "50% 50%" });
   const cam = B.camera(tube, { push: 0.05, drift: 9, sway: 0.35 });
   const back = cam.layer(0.25), mid = cam.layer(0.7);
+  const amb = B.ambient(back, { bg: "#030304", ink: "#ffffff", accent: c.vivid, text: d.headline.join(" "), y: H * 0.84, size: isWide ? 220 : 300, seed: d.seed });
 
   const glow = css(el("div", "abs", back), { width: pick(620, 820) + "px", height: pick(620, 820) + "px", borderRadius: "50%", background: `radial-gradient(closest-side, ${B.alpha(c.vivid, 0.38)}, transparent)` });
   css(el("div", "layer", tube), { backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px)", pointerEvents: "none" });
@@ -42,10 +43,13 @@ BANNER.templates.ink = (stage, d, B) => {
   B.cue("glitch", cut - 0.15, 1);
   B.cue("swish", 7.4, 0.7);
 
+  const holdA = B.hold(a, 1.5, cut);
   return {
     poster: 2.2,
     frame(t) {
       cam.update(t);
+      amb(t);
+      holdA(t);
       // CRT power on (0-0.3 s) and off (7.4-7.95 s).
       const on = ease.outExpo(seg(t, 0.0, 0.28));
       const offY = ease.inCubic(seg(t, 7.4, 7.7)), offX = ease.inCubic(seg(t, 7.65, 7.92));

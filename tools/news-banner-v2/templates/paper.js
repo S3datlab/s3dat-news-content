@@ -11,6 +11,7 @@ BANNER.templates.paper = (stage, d, B) => {
   stage.style.background = paper;
   const cam = B.camera(stage, { push: 0.035, drift: 8, sway: 0.25 });
   const back = cam.layer(0.3), mid = cam.layer(0.65), front = cam.layer(1);
+  const amb = B.ambient(back, { bg: paper, ink: "#0e0e0e", accent: c.vivid, text: d.headline.join(" "), y: H * 0.86, size: isWide ? 200 : 280, shapes: 10, seed: d.seed });
 
   const M = pick(60, 70);
   const rules = [0, 1].map((i) => css(el("div", "abs", back), { left: M + "px", right: M + "px", height: "2px", top: (i ? H - M : M) + "px", background: "#111", transformOrigin: i ? "right" : "left" }));
@@ -51,10 +52,13 @@ BANNER.templates.paper = (stage, d, B) => {
   B.cue("whoosh", swap, 0.9);
   B.cue("whoosh", back2, 0.7);
 
+  const holdA = B.hold(block, 1.6, swap + 0.1);
   return {
     poster: 2.4,
     frame(t) {
       cam.update(t);
+      amb(t);
+      holdA(t);
       const outro = ease.inCubic(seg(t, 7.3, 7.85));
       rules.forEach((r, i) => (r.style.transform = `scaleX(${Math.max(0, Math.min(1.02, sp(t, 0.05 + i * 0.12, "snap"))) * (1 - outro)})`));
       animA(t);

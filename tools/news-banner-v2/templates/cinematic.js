@@ -12,6 +12,7 @@ BANNER.templates.cinematic = (stage, d, B) => {
   stage.style.background = "#000";
   const cam = B.camera(stage, { push: 0.06, drift: 14, sway: 0.3 });
   const plate = cam.layer(0.4), fg = cam.layer(1.2), ui = cam.layer(0.8);
+  const amb = B.ambient(fg, { bg: "#000000", ink: "#ffffff", accent: "rgba(255,255,255,0.7)", marquee: false, shapes: 16, seed: d.seed });
   const shots = [0, 1].map(() => css(el("div", "layer", plate), { inset: "-8%", backgroundImage: `url(${d.art})`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }));
   css(el("div", "layer", plate), { background: isWide ? "linear-gradient(90deg, rgba(0,0,0,.6), rgba(0,0,0,0) 62%)" : "linear-gradient(0deg, rgba(0,0,0,.7), rgba(0,0,0,0) 55%)" });
 
@@ -44,6 +45,7 @@ BANNER.templates.cinematic = (stage, d, B) => {
     poster: 2.6,
     frame(t) {
       cam.update(t);
+      amb(t);
       // Shutter: bars open from the middle to letterbox (or nothing on 4:5), close at the end.
       const open = Math.min(1, ease.outExpo(seg(t, 0, 0.6))) * (1 - ease.inCubic(seg(t, 7.45, 7.95)));
       bars.forEach((b) => (b.style.height = lerp(H / 2 + 2, barH, open) + "px"));

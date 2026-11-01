@@ -14,6 +14,7 @@ BANNER.templates.portrait = (stage, d, B) => {
   stage.style.background = bg;
   const cam = B.camera(stage, { push: 0.04, drift: 9, sway: 0.25 });
   const back = cam.layer(0.3), mid = cam.layer(0.8);
+  const amb = B.ambient(back, { bg, ink: "#ffffff", accent: tint, text: d.headline.join(" "), y: H * 0.86, size: isWide ? 200 : 280, seed: d.seed });
   // Soft brand-tinted light behind everything.
   const halo = css(el("div", "abs", back), { width: pick(900, 1100) + "px", height: pick(900, 1100) + "px", borderRadius: "50%", background: `radial-gradient(closest-side, ${B.alpha(tint, 0.35)}, transparent)` });
 
@@ -48,10 +49,13 @@ BANNER.templates.portrait = (stage, d, B) => {
   B.cue("swish", swap + 0.5, 0.5);
   B.cue("whoosh", 7.35, 0.7);
 
+  const holdA = B.hold(text, 1.5, swap);
   return {
     poster: 2.3,
     frame(t) {
       cam.update(t);
+      amb(t);
+      holdA(t);
       const g = ease.inOut(seg(t, swap, swap + 0.75));
       const away = ease.inCubic(seg(t, 7.35, 7.85));
       const enter = Math.min(1.03, sp(t, 0.05, "heavy"));

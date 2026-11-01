@@ -23,6 +23,7 @@ BANNER.templates.cutout = (stage, d, B) => {
   stage.style.background = bgA;
   const cam = B.camera(stage, { push: 0.04, drift: isWide ? 10 : 12, sway: 0.4 });
   const back = cam.layer(0.35), mid = cam.layer(0.7), front = cam.layer(1.1);
+  const amb = B.ambient(back, { bg: bgA, ink: onColor(bgA), accent: pop, text: d.headline.join(" "), y: H * 0.5, seed: d.seed });
 
   // Geometry for both layouts.
   const G = isWide
@@ -73,6 +74,7 @@ BANNER.templates.cutout = (stage, d, B) => {
     poster: 2.6,
     frame(t) {
       cam.update(t);
+      amb(t);
       const k = ease.inOut(seg(t, swap, swap + 0.6));
       const leave = ease.inCubic(seg(t, outAt, outAt + 0.5));
       // Disc: grows in, becomes the iris that opens the second colour, then shrinks away.

@@ -14,6 +14,7 @@ BANNER.templates.data = (stage, d, B) => {
   stage.style.background = "#ffffff";
   const cam = B.camera(stage, { push: 0.04, drift: 10, sway: 0.2 });
   const grid = cam.layer(0.3), mid = cam.layer(0.8);
+  const amb = B.ambient(grid, { bg: "#ffffff", ink: "#111111", accent: color, text: d.headline.join(" "), y: H * 0.82, size: isWide ? 200 : 280, shapes: 10, seed: d.seed });
   css(grid, { backgroundImage: "linear-gradient(#e7e7e7 1px, transparent 1px), linear-gradient(90deg, #e7e7e7 1px, transparent 1px)", backgroundSize: "54px 54px", inset: "-60px" });
 
   // Chart across the lower frame.
@@ -58,10 +59,13 @@ BANNER.templates.data = (stage, d, B) => {
   B.cue("whoosh", dive, 0.9);
   B.cue("whoosh", back2, 0.7);
 
+  const holdA = B.hold(numBox, 1.4, 3.6);
   return {
     poster: 2.6,
     frame(t) {
       cam.update(t);
+      amb(t);
+      holdA(t);
       const draw = ease.inOut(seg(t, 0.25, 2.5));
       lineEl.setAttribute("stroke-dashoffset", String(1 - draw));
       area.setAttribute("fill-opacity", String(0.09 * draw));

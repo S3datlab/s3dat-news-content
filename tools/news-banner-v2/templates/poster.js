@@ -12,6 +12,7 @@ BANNER.templates.poster = (stage, d, B) => {
   stage.style.background = pop;
   const cam = B.camera(stage, { push: 0.03, drift: 6, sway: 0.2 });
   const back = cam.layer(0), mid = cam.layer(0.6);
+  const amb = B.ambient(mid, { bg: pop, ink: onColor(pop), accent: onColor(pop), marquee: false, shapes: 12, seed: d.seed });
 
   const words = d.headline.join(" ").split(/\s+/).filter(Boolean);
   // Words land on a 0.125 s grid: one, two or four sixteenths each, whatever fits in ~2.9 s.
@@ -54,6 +55,7 @@ BANNER.templates.poster = (stage, d, B) => {
     poster: Math.min(6.5, flashEnd + 1.4),
     frame(t) {
       cam.update(t);
+      amb(t);
       flash.forEach(({ card, n, start }, i) => {
         const on = t >= start && (i === flash.length - 1 ? t < flashEnd : t < flash[i + 1].start);
         card.style.visibility = on ? "visible" : "hidden";

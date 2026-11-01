@@ -13,6 +13,7 @@ BANNER.templates.versus = (stage, d, B) => {
   stage.style.background = "#000";
   const cam = B.camera(stage, { push: 0.03, drift: 8, sway: 0.3 });
   const field = cam.layer(0.4), mid = cam.layer(0.9);
+  const amb = B.ambient(field, { bg: "#000000", ink: "#ffffff", accent: "#ffffff", marquee: false, shapes: 14, seed: d.seed });
 
   const bandH = pick(190, 300);
   const fieldH = H - (isWide ? 0 : bandH);
@@ -45,6 +46,7 @@ BANNER.templates.versus = (stage, d, B) => {
     poster: 3.0,
     frame(t) {
       cam.update(t);
+      amb(t);
       const slide = Math.min(1.02, sp(t, 0, "snap"));
       const away = ease.inCubic(seg(t, 7.35, 7.9));
       const swing = Math.sin(seg(t, clash2, 7.3) * Math.PI) * 10;
