@@ -14,7 +14,7 @@
  *   (FISH_API_KEY, FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as
  *   [calm]; without a key the cut is silent apart from the soundtrack and the type is timed by estimate.
  * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8 for the
- * site banner, 6 for the social cuts).
+ * site banner, 6 for the hd cut, 4 for the reel).
  * --add-voice mixes the story's voice-over into a 9:16 cut rendered without one. The video is copied
  *   as is.
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
@@ -33,7 +33,7 @@ const FORMATS = {
     encode: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, maxrate: "1700k" } },
   hd: { layout: "wide", width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 6, sound: true,
     encode: { width: 1920, height: 1080, maxBytes: 24_000_000, crf: 17, maxrate: "16000k" } },
-  social: { layout: "social", width: 1080, height: 1920, stageHeight: 608, card: { x: 36, y: 300, w: 1008, h: 567 }, scale: 1, seconds: 15, blur: 6, sound: true,
+  social: { layout: "social", width: 1080, height: 1920, stageHeight: 608, card: { x: 36, y: 300, w: 1008, h: 567 }, scale: 1, seconds: 15, blur: 4, sound: true,
     encode: { width: 1080, height: 1920, maxBytes: 24_000_000, crf: 18, maxrate: "12000k" } },
 };
 export const TEMPLATES = ["paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith"];
