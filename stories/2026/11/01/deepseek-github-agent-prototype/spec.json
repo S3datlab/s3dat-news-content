@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "DEEPSEEK",
+    "AGENT",
+    "PROTOTYPE"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "DeepSeek",
+      "icon": "deepseek"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151,
+  "sources": {}
+}

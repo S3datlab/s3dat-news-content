@@ -1,0 +1,109 @@
+{
+  "format": 2,
+  "slug": "deepseek-github-agent-prototype",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "DeepSeek releases a GitHub coding-agent research prototype",
+  "titleAccent": "research prototype",
+  "dek": "DeepSeek's repository agent separates requests from inferred work, with operating-system isolation left to the operator.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-01T04:00:11Z",
+  "updatedAt": "2026-11-01T04:00:11Z",
+  "lede": "DeepSeek released a GitHub coding-agent research prototype on October 31 under the MIT license. The DeepSeek Harness bundle gives developers source code for handling team requests and returning work through existing conversations.",
+  "facts": [
+    {
+      "label": "Package",
+      "value": "dsh-superagent-prototype"
+    },
+    {
+      "label": "Repository scope",
+      "value": "1 GitHub repository"
+    },
+    {
+      "label": "License",
+      "value": "MIT"
+    },
+    {
+      "label": "Optional chat source",
+      "value": "Feishu"
+    },
+    {
+      "label": "Initial commit",
+      "value": "31 October 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Requests become tracked work",
+      "text": "The design separates incoming events, permission decisions and execution. An accepted request becomes a ticket with a recorded scope and authorization basis. A worker receives the assignment, while subscribed discussion threads supply further context. Results return through channels such as comments and review replies. Tickets retain their identity when execution ends, allowing a later human follow-up to resume the work. A person can stop a ticket, preventing further messages from restarting that work."
+    },
+    {
+      "heading": "Observation is the default",
+      "text": "The default observe mode assesses inferred opportunities and records which ones it would accept, without starting them. Explicit requests from permitted people still run. Switching to auto allows inferred work when an assessment matches an enabled rule. Context arriving from a subscribed thread grants no additional authority. Before ended work resumes, the system checks whether its authorization still holds under the current policy."
+    },
+    {
+      "heading": "The host remains the boundary",
+      "text": "Deployment requires a separate agent GitHub identity with repository write access and a configured model provider. The setup uses a dedicated Harness profile and a local web panel. Its documented runtime requirements include Node.js 22.19 or newer in that release line, or Node.js 24 and later. GitHub Enterprise Server is outside the supported setup; the repository must be on github.com."
+    }
+  ],
+  "buildersNote": "Trial it under a dedicated operating-system account containing only the agent's credentials. Use a test repository first, and review recorded decisions before enabling automatic acceptance.",
+  "claims": [
+    {
+      "text": "DeepSeek labels this research code, not an official product or production-ready release; some accompanying design ideas remain unimplemented.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Both agent presets use the operator's full operating-system access. Credential wrappers do not isolate workers from the home directory.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "dsh-superagent",
+      "publisher": "DeepSeek",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "001 Domain model",
+      "publisher": "DeepSeek",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/001-domain.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "002 Authorization",
+      "publisher": "DeepSeek",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "006 Deployment",
+      "publisher": "DeepSeek",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/006-deployment.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "feat: add the dsh-superagent research prototype",
+      "publisher": "DeepSeek Harness Team",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/commit/6337fc823ce20251c8de8085948165c81aaa701e",
+      "date": "2026-10-31"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] DeepSeek released a coding agent prototype for one GitHub repository. [break] It can handle team requests and return work through conversations. The company says the research code isn't ready for production.",
+    "short": "DeepSeek released a coding-agent prototype for one GitHub repository on October 31. It handles team requests, with research code that the company says is not production-ready.",
+    "long": "DeepSeek released a GitHub coding-agent prototype on October 31. Requests become tickets with a recorded scope, workers handle assignments, and results return through comments or review replies.\n\nAutomatic work needs a separate decision: observe mode logs inferred opportunities without accepting them, while permitted explicit requests still run. Turning on auto enables rule-based acceptance.\n\nOperators also own isolation. The deployment guide says workers have the operating-system user's access, so it recommends a dedicated account containing only agent credentials. Production reliability remains unestablished.",
+    "hashtags": [
+      "DeepSeek",
+      "CodingAgents"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
