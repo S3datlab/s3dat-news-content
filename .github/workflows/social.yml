@@ -1,10 +1,10 @@
 name: Post to social media
 
 # Five slots a day, five hours apart (24 is not a multiple of 5, so one gap is four hours).
-# UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00. Each slot picks one story, downloads the
-# two social cuts Makima rendered and put on Google Drive (ids in social/cuts/<slug>.json), adds
-# the voice-over, uploads them and posts to every Buffer channel. Stories without her cuts are
-# not posted: rendering here costs Actions minutes and runs only when asked (render_here).
+# UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00. Each slot picks one story whose two
+# social cuts the render PC has already put on news.s3dat.com (it renders every night, voice
+# included) and posts it to every Buffer channel. Stories without cuts are not posted: rendering
+# here costs Actions minutes and runs only when asked (render_here).
 on:
   schedule:
     - cron: '12 1,6,11,16,21 * * *'
@@ -23,7 +23,7 @@ on:
         type: boolean
         default: false
       render_here:
-        description: 'Render the cuts here if Makima has not (uses Actions minutes)'
+        description: 'Render and upload the cuts here (uses Actions minutes)'
         type: boolean
         default: false
       check_channels:
@@ -75,67 +75,22 @@ jobs:
             if [ -z "$folder" ]; then echo "No story folder for $STORY"; exit 1; fi
             echo "slug=$STORY" >> "$GITHUB_OUTPUT"
             echo "folder=$folder" >> "$GITHUB_OUTPUT"
-            echo "cuts=social/cuts/$STORY.json" >> "$GITHUB_OUTPUT"
           else
             args=()
             [ "$FORCE" = "true" ] && args+=(--force)
             python scripts/social.py --pick "${args[@]}"
           fi
       - name: Install ffmpeg
-        if: steps.pick.outputs.slug != ''
+        if: steps.pick.outputs.slug != '' && inputs.render_here
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
-      - name: Fetch Makima's cuts
-        id: fetch
-        if: steps.pick.outputs.slug != ''
-        env:
-          SLUG: ${{ steps.pick.outputs.slug }}
-          CUTS: ${{ steps.pick.outputs.cuts }}
-          RENDER_HERE: ${{ inputs.render_here }}
-        run: |
-          mkdir -p out/social
-          ok=true
-          if [ -f "$CUTS" ]; then
-            for kind in wide tall; do
-              id=$(python -c "import json, re, sys; v = json.load(open(sys.argv[1]))[sys.argv[2]]; print(v if re.fullmatch(r'[A-Za-z0-9_-]{20,100}', v) else '')" "$CUTS" "$kind" || true)
-              file="out/social/$SLUG-$kind.mp4"
-              if [ -z "$id" ] || ! curl -sSfL --retry 3 -o "$file" "https://drive.usercontent.google.com/download?id=$id&export=download&confirm=t"; then ok=false; continue; fi
-              size=$(ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0:s=x "$file" || true)
-              want=$([ "$kind" = wide ] && echo 1920x1080 || echo 1080x1920)
-              if [ "$size" != "$want" ]; then echo "$kind cut is '$size', expected $want"; ok=false; fi
-            done
-          else
-            ok=false
-          fi
-          if [ "$ok" = true ]; then
-            echo "Using Makima's cuts from Google Drive"
-            echo "mode=makima" >> "$GITHUB_OUTPUT"
-          elif [ "$RENDER_HERE" = "true" ]; then
-            rm -f out/social/*
-            echo "No usable cuts from Makima for $SLUG; rendering them here as asked"
-            echo "mode=render" >> "$GITHUB_OUTPUT"
-          else
-            rm -f out/social/*
-            echo "::warning::No usable cuts from Makima for $SLUG; not posted"
-            echo "mode=skip" >> "$GITHUB_OUTPUT"
-          fi
       - uses: actions/setup-node@v4
-        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
+        if: steps.pick.outputs.slug != '' && inputs.render_here
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/news-banner-v2/package-lock.json
-      - name: Add the voice-over to Makima's 9:16 cut
-        if: steps.fetch.outputs.mode == 'makima'
-        env:
-          FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
-          FISH_VOICE_ID: ${{ vars.FISH_VOICE_ID }}
-          FOLDER: ${{ steps.pick.outputs.folder }}
-          SLUG: ${{ steps.pick.outputs.slug }}
-        run: |
-          node tools/news-banner-v2/render.mjs "$FOLDER" --add-voice "out/social/$SLUG-tall.mp4" --out "out/social/$SLUG-voiced.mp4"
-          mv "out/social/$SLUG-voiced.mp4" "out/social/$SLUG-tall.mp4"
       - name: Render the social cuts here
-        if: steps.fetch.outputs.mode == 'render'
+        if: steps.pick.outputs.slug != '' && inputs.render_here
         env:
           CHROME_CHANNEL: chrome
           FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
@@ -145,7 +100,7 @@ jobs:
           npm ci --no-audit --no-fund --prefix tools/news-banner-v2
           python scripts/render.py --social "$FOLDER"
       - name: Upload them to news.s3dat.com
-        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
+        if: steps.pick.outputs.slug != '' && inputs.render_here
         env:
           NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
           NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}
@@ -153,7 +108,7 @@ jobs:
         run: python scripts/publish.py --social "$SLUG" --wide "out/social/$SLUG-wide.mp4" --tall "out/social/$SLUG-tall.mp4"
       - name: Post to every channel
         id: post
-        if: steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render'
+        if: steps.pick.outputs.slug != ''
         env:
           PINTEREST_BOARD: ${{ vars.PINTEREST_BOARD }}
           SOCIAL_AI_LABEL: ${{ vars.SOCIAL_AI_LABEL }}
@@ -180,7 +135,7 @@ jobs:
           done
           exit 1
       - name: Keep the social cuts for review
-        if: always() && (steps.fetch.outputs.mode == 'makima' || steps.fetch.outputs.mode == 'render')
+        if: always() && steps.pick.outputs.slug != '' && inputs.render_here
         uses: actions/upload-artifact@v4
         with:
           name: social-${{ steps.pick.outputs.slug }}-${{ github.run_id }}

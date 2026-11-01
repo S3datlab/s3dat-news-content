@@ -1,9 +1,9 @@
 # S3DAT News on social media
 
 Every story can leave the site as a video post on every channel connected to Buffer. You write
-the copy in `story.json` (`social`, below) and render its two videos on your computer (below).
-Five times a day the workflow `Post to social media` picks the best fresh story that has its
-videos, adds the voice-over and posts it. Nobody posts by hand.
+the copy in `story.json` (`social`, below); the render PC makes its two videos every night
+(below). Five times a day the workflow `Post to social media` picks the best fresh story that has
+its videos and posts it. Nobody posts by hand.
 
 ## The videos
 
@@ -20,35 +20,22 @@ Two cuts of every story, rendered with `tools/news-banner-v2`:
   14–15 s the S3DAT News end card with `news.s3dat.com`.
 - The voice is Ethan (Fish Audio, `FISH_VOICE_ID`), mixed over the soundtrack, which ducks under
   him; loudness is normalised to −14 LUFS.
-- Buffer cannot take a file, only a public link, so at posting time the workflow uploads both
-  cuts to `news.s3dat.com/news-media/news-social/<slug>/` (not shown on any page, deleted after
-  30 days).
+- Buffer cannot take a file, only a public link, so the render PC uploads both cuts to
+  `news.s3dat.com/news-media/news-social/<slug>/` (not shown on any page, deleted after 30 days).
 
-## Rendering the cuts (Makima)
+## Rendering the cuts (the render PC)
 
-The videos are rendered on Makima's computer, not in GitHub Actions (Actions minutes cost
-money). After a story is committed (briefs can be skipped; they are rarely posted):
+The videos are rendered on the S3DAT render PC (Windows, RTX GPU), not in GitHub Actions
+(Actions minutes cost money) and not by Makima. Makima only writes the stories.
 
-1. Render both cuts with Firefox (Chromium cannot start on Makima's computer):
-
-   ```sh
-   tools/news-banner-v2/social-cuts.sh stories/YYYY/MM/DD/<slug> /tmp/social-cuts
-   ```
-
-   It writes `/tmp/social-cuts/<slug>-wide.mp4` (1920×1080, 8 s) and `<slug>-tall.mp4`
-   (1080×1920, 15 s, no voice: the workflow adds Ethan). It takes about eight minutes.
-2. Upload both files to the Google Drive folder **S3DAT Social Cuts** (shared as "anyone with the
-   link can view", so the workflow can download them without a password).
-3. Commit `social/cuts/<slug>.json` with the two Drive file ids, as its own commit:
-
-   ```json
-   { "wide": "<drive file id of <slug>-wide.mp4>", "tall": "<drive file id of <slug>-tall.mp4>" }
-   ```
-
-The workflow posts only stories that have this file. It downloads both videos, checks their
-size (1920×1080 and 1080×1920), adds the voice-over to the tall cut with `render.mjs
---add-voice` and posts. Never commit the videos themselves. GitHub renders them only when a
-person runs the workflow with `render_here`.
+- The PC wakes at 03:00 Istanbul time (00:00 UTC), pulls this repository and renders every
+  story from the last 36 hours that has a `social` block, is live on news.s3dat.com and has no
+  cuts there yet: `python scripts/render.py --social <folder>` (voice included), then
+  `python scripts/publish.py --social <slug> --wide ... --tall ...`. Then it goes back to sleep.
+- Nothing is committed for this: a story is ready to post when both
+  `news-media/news-social/<slug>/wide.mp4` and `tall.mp4` answer on news.s3dat.com.
+- Never commit the videos. GitHub renders them only when a person runs the workflow with
+  `render_here`.
 
 ## When we post
 
@@ -56,7 +43,8 @@ person runs the workflow with `render_here`.
   21:00 UTC (04:00, 09:00, 14:00, 19:00 and 00:00 in Istanbul). A day has 24 hours, so one gap is
   four. The slots reach the European morning, noon and evening and the US East Coast morning,
   afternoon and evening.
-- Each slot picks the strongest story published in the last 12 hours that has not been posted:
+- Each slot picks the strongest story published in the last 36 hours that has not been posted
+  and has its cuts on the site:
   analysis first, then story and explained, then brief; the newest first; and not the same lead
   company as the previous post when there is a choice. Stories that miss the window are not
   posted later. Nothing is posted within three hours of the previous post.
