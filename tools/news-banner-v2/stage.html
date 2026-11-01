@@ -67,10 +67,15 @@
         window.__instance = await build();
         await settle(stage);
         if (window.__instance.ready) await window.__instance.ready();
+        window.__finish = social ? null : B.finish(stage);
         return { poster: window.__instance.poster || 2, cues: B.cues };
       };
       // Banners loop seamlessly: any time wraps into [0, 8). The reel runs once.
-      window.__frame = (t) => window.__instance.frame(window.__social ? t : ((t % 8) + 8) % 8);
+      window.__frame = (t) => {
+        const x = window.__social ? t : ((t % 8) + 8) % 8;
+        window.__instance.frame(x);
+        if (window.__finish) window.__finish(x);
+      };
     </script>
   </body>
 </html>

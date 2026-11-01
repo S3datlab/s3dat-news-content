@@ -144,7 +144,8 @@
       kick(t0, amp = 10, sound = true) { kicks.push({ t0, amp }); if (sound) cue("hit", t0, Math.min(1, amp / 14)); },
       update(t) {
         const ph = (TAU * t) / B.DURATION;
-        const cx = Math.sin(ph) * o.drift, cy = Math.sin(ph * 2 + 1.1) * o.drift * 0.45;
+        // Depth reads from parallax: the layers drift half as far again as the camera moves.
+        const cx = Math.sin(ph) * o.drift * 1.5, cy = Math.sin(ph * 2 + 1.1) * o.drift * 0.7;
         const s = 1 + o.push * (0.5 - 0.5 * Math.cos(ph));
         let sx = 0, sy = 0;
         for (const k of kicks) {
@@ -153,7 +154,14 @@
           const a = k.amp * Math.exp(-d * 9);
           sx += Math.sin(d * 95) * a; sy += Math.cos(d * 83) * a * 0.7;
         }
-        world.style.transform = `translate(${sx}px, ${sy}px) scale(${s}) rotate(${Math.sin(ph) * o.sway}deg)`;
+        // Every impact the template registered (hit, land, pop) punches the camera in a little.
+        let punch = 0;
+        for (const c of B.cues) {
+          if (c.type !== "hit" && c.type !== "land" && c.type !== "pop") continue;
+          const d = t - c.t;
+          if (d >= 0 && d < 0.6) punch += (c.type === "pop" ? 0.012 : 0.03) * Math.min(1, c.gain) * Math.exp(-d * 9) * Math.sin(Math.min(1, d * 14) * Math.PI / 2);
+        }
+        world.style.transform = `translate(${sx}px, ${sy}px) scale(${s + punch}) rotate(${Math.sin(ph) * o.sway}deg)`;
         for (const { n, depth } of layers) n.style.transform = `translate(${cx * depth}px, ${cy * depth}px)`;
       },
     };
@@ -174,6 +182,27 @@
       grainUrl = cv.toDataURL("image/png");
     }
     return css(el("div", "layer", parent), { backgroundImage: `url(${grainUrl})`, backgroundSize: "160px 160px", mixBlendMode: "overlay", opacity, pointerEvents: "none" });
+  }
+  /** The finishing pass every banner gets on top (stage.html adds it after the template): a light
+   *  band sweeps the frame on each whoosh or swish, a soft flash blooms on each hit, and the
+   *  vignette breathes. It reads the template's sound cues, so picture and sound land together. */
+  function finish(parent) {
+    const top = css(el("div", "layer", parent), { pointerEvents: "none", overflow: "hidden" });
+    const sweep = css(el("div", "abs", top), { top: "-30%", height: "160%", width: "38%", left: "-60%", background: "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.5) 48%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.5) 52%, rgba(255,255,255,0.12) 70%, rgba(255,255,255,0) 100%)", mixBlendMode: "screen", transform: "skewX(-20deg)", visibility: "hidden" });
+    const flash = css(el("div", "layer", top), { background: "radial-gradient(70% 90% at 50% 45%, rgba(255,255,255,0.9), rgba(255,255,255,0) 70%)", mixBlendMode: "soft-light", opacity: 0 });
+    const vig = css(el("div", "layer", top), { background: "radial-gradient(120% 100% at 50% 50%, transparent 58%, rgba(0,0,0,0.5))", mixBlendMode: "multiply" });
+    const sweeps = B.cues.filter((c) => c.type === "whoosh" || c.type === "swish").map((c) => c.t).sort((a, b) => a - b)
+      .filter((t, i, list) => i === 0 || t - list[i - 1] > 0.5);
+    const hits = B.cues.filter((c) => c.type === "hit" || c.type === "land").map((c) => ({ t: c.t, g: Math.min(1, c.gain) }));
+    return (t) => {
+      const near = sweeps.find((c) => t >= c - 0.18 && t <= c + 0.32);
+      sweep.style.visibility = near !== undefined ? "visible" : "hidden";
+      if (near !== undefined) sweep.style.left = `${lerp(-60, 125, ease.inOut(seg(t, near - 0.18, near + 0.32)))}%`;
+      let f = 0;
+      for (const h of hits) { const d = t - h.t; if (d >= 0 && d < 0.4) f = Math.max(f, h.g * Math.exp(-d * 11)); }
+      flash.style.opacity = String(0.75 * f);
+      vig.style.opacity = String(0.55 + 0.15 * Math.sin((TAU * t) / B.DURATION));
+    };
   }
   function vignette(parent, strength = 0.45) {
     return css(el("div", "layer", parent), { background: `radial-gradient(120% 95% at 50% 45%, transparent 55%, rgba(0,0,0,${strength}))`, pointerEvents: "none" });
@@ -543,7 +572,7 @@
   Object.assign(B, {
     clamp, seg, lerp, ease, rng, choose, beat, spring, sp, life, SPR,
     luminance, onColor, mix, alpha, brandColors, el, css, wide, pick,
-    fitLines, fitEach, line, cue, camera, grain, vignette, sheenText, sheenMask,
+    fitLines, fitEach, line, cue, camera, grain, vignette, finish, sheenText, sheenMask,
     logoNode, logoMask, logo, splitChars, maskWrap, animate, iris, bars, halftone, burst,
     bakeSticker, sticker, hero, parseStat, odometer, formatStat,
     setFormat(w, h) { B.W = w; B.H = h; },
