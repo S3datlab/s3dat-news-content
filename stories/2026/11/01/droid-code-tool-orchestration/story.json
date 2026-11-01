@@ -1,0 +1,143 @@
+{
+  "format": 2,
+  "slug": "droid-code-tool-orchestration",
+  "kind": "analysis",
+  "topic": "dev-tools",
+  "title": "Droid 1.0 puts tool orchestration into code",
+  "titleAccent": "into code",
+  "dek": "Factory’s updated coding agent makes a useful test case for separating smaller tool descriptions, cheaper workflows and the permissions behind them.",
+  "eventDate": "2026-10-29",
+  "publishedAt": "2026-11-01T09:10:02Z",
+  "lede": "Factory released Droid 1.0 on October 29, making JavaScript tool orchestration the default for supported models. Its design gives developers a practical reason to examine which work belongs in model context and which belongs in ordinary code.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "Droid 1.0; 29 October 2026"
+    },
+    {
+      "label": "Execution",
+      "value": "Sandboxed JavaScript calling tools"
+    },
+    {
+      "label": "Cloudflare approach",
+      "value": "Server-side search and execute tools"
+    },
+    {
+      "label": "Anthropic approach",
+      "value": "Code-based MCP discovery and execution"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Three layers of the same design problem",
+      "text": "Factory puts this machinery inside a complete coding agent. Cloudflare’s February 20 Code Mode announcement applies it to a server exposing Cloudflare’s own services. Anthropic’s November 4, 2025 engineering article describes an implementation pattern for agents using Model Context Protocol tools. These are different purchasing and engineering choices. Buying an agent delegates more of the execution loop to a vendor. Connecting a server leaves the surrounding agent intact. Adopting a pattern means maintaining that loop yourself."
+    },
+    {
+      "text": "The shared architectural question is where intermediate work happens. Anthropic describes discovering tool definitions as needed and processing results inside an execution environment. Cloudflare exposes search and execution through two tools, with code running in a Worker isolate. For a hypothetical report that reads many records and returns a total, the model needs the answer and relevant exceptions. Giving it every record introduces another interpretation step. That step is useful when judgment is required; arithmetic and pagination usually need a clearer contract."
+    },
+    {
+      "heading": "Three different meanings of efficiency",
+      "text": "Cloudflare’s roughly 1,000-token figure measures the tool-definition surface. Factory’s Linear example uses a modeled direct-calling baseline. Anthropic’s token-saving example illustrates a workflow design. None of those quantities is interchangeable. A smaller initial description can coexist with expensive retries. A large reduction in intermediate data can coexist with an unchanged final answer. The relevant comparison depends on whether the bottleneck is discovery, repeated model requests, execution time or correcting an unsuccessful result."
+    },
+    {
+      "text": "A useful evaluation therefore has several denominators. Cost per attempted task answers a budgeting question. Cost per correctly completed task answers an operational question. Time until the first result differs from time until a reviewer accepts it. If a script completes nine writes and fails on the tenth, a retry that repeats every write may look efficient in token accounting while creating cleanup work. This hypothetical failure belongs in the test design, alongside the successful batch."
+    },
+    {
+      "heading": "The sandbox is only one boundary",
+      "text": "Factory says Script has no direct filesystem, network or system access; it can invoke tools. Cloudflare’s execution uses authenticated requests under approved permissions. Anthropic assigns sandboxing, resource limits and monitoring to the implementation. The analytical distinction is between containing code and controlling consequences. An isolated program can still request an authorized change. Permission scope determines what that change can affect, while approval placement determines whether a person sees it before execution."
+    },
+    {
+      "text": "That distinction also changes what a useful trace contains. A final summary cannot explain which operation failed halfway through a batch. For a production evaluation, the interesting evidence includes attempted operations, returned identifiers, partial completion and the path used to resume. Logging everything is not automatically the right answer either: a trace can contain the same sensitive records that were deliberately kept outside model context. Retention and reviewer access are part of the design decision."
+    },
+    {
+      "text": "The practical choice is therefore about ownership as much as speed. A hosted integration suits a bounded service surface; a complete agent supplies a broader workflow; a custom execution layer offers control over both. More control also creates more places to maintain policy and diagnose failure. For teams choosing after Droid’s release, the useful comparison is the smallest system that can complete their real workflow with a recoverable record of its actions."
+    }
+  ],
+  "buildersNote": "Replay one read-only workflow and one reversible write workflow with the same model, permissions and inputs. Record accepted results, total tokens, retries and recovery time. Inject a failure halfway through the write batch before enabling it on production data.",
+  "comparison": {
+    "caption": "Published architectural approaches; these are different product layers, not a performance ranking.",
+    "columns": [
+      "Dimension",
+      "Droid 1.0",
+      "Cloudflare Code Mode",
+      "Anthropic pattern"
+    ],
+    "rows": [
+      [
+        "Layer",
+        "Coding-agent harness",
+        "Cloudflare API server",
+        "Agent implementation design"
+      ],
+      [
+        "Execution",
+        "Script JavaScript sandbox",
+        "Worker isolate",
+        "Developer-provided environment"
+      ],
+      [
+        "Discovery",
+        "Tools callable from Script",
+        "Search API definitions",
+        "Read tool files as needed"
+      ]
+    ]
+  },
+  "claims": [
+    {
+      "text": "Script is the default for supported models, not every model.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Factory’s Linear direct-calling baseline is modeled, not an observed paired run.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The three publications do not establish an equivalent cross-product performance comparison.",
+      "status": "unclear"
+    }
+  ],
+  "ourRead": "We favor code orchestration for repetitive operations with explicit success conditions and a manageable recovery path. The strongest reason is a clearer division between judgment and execution, not an impressive token ratio. For an initial deployment, we would prioritize a visible approval boundary and replayable failures over maximizing batch size. We would change our mind if matched workflow tests showed that extra debugging, approvals and recovery consistently erased the savings or reduced accepted-task reliability.",
+  "watching": [
+    "On November 8, we will check whether Factory publishes reproducible workflow traces beyond its modeled examples.",
+    "On November 15, we will review the three approaches for documented approval placement and partial-batch recovery."
+  ],
+  "sources": [
+    {
+      "title": "Droid 1.0: Building a Frontier Harness",
+      "publisher": "Factory",
+      "url": "https://factory.com/news/frontier-harness",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "Code Mode: give agents an entire API in 1,000 tokens",
+      "publisher": "Cloudflare",
+      "url": "https://blog.cloudflare.com/code-mode-mcp/",
+      "date": "2026-02-20"
+    },
+    {
+      "title": "Code execution with MCP: Building more efficient agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/code-execution-with-mcp",
+      "date": "2025-11-04"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Factory released Droid one point zero with tools orchestrated in code. [break] The useful test is completed work, including retries and recovery, rather than a smaller token count alone.",
+    "short": "Droid 1.0 puts tool orchestration into code. Our analysis separates smaller tool descriptions from cheaper completed work, with recovery and permissions included in the comparison.",
+    "long": "Factory released Droid 1.0 on October 29 with JavaScript tool orchestration for supported models. That makes execution design a concrete choice for teams adopting coding agents.\n\nOur analysis compares three architectural layers, not a performance leaderboard. A smaller tool description and a cheaper finished task measure different things. The practical test includes retries, approvals and recovery after a partial failure.",
+    "hashtags": [
+      "Factory",
+      "Agents"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T09:10:02Z"
+}

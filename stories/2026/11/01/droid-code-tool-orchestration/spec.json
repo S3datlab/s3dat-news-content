@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "DROID 1.0",
+    "TOOLS",
+    "IN CODE"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Factory",
+      "logo": "factory.svg",
+      "color": "#EF6F35"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 201,
+  "sources": {
+    "factory.svg": "https://factory.com/"
+  }
+}
