@@ -75,42 +75,31 @@
           const k = data.format.card.w / W;
           Object.assign(stage.style, { transformOrigin: "0 0", transform: `translate(${data.format.card.x}px, ${data.format.card.y}px) scale(${k})`,
             borderRadius: 30 / k + "px", boxShadow: "0 34px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.10)" });
-          // Behind the card the same banner runs again, scaled to cover the frame and blurred, so the
-          // background takes its colours from the video (not for the 3D template: one renderer only).
+          // Behind the card: a blurred still of the banner, set by render.mjs through __backdrop.
           const bg = document.getElementById("bg");
           bg.innerHTML = "";
           Object.assign(bg.style, { width: W + "px", height: H + "px" });
-          window.__mirror = null;
-          let mirror = null;
-          if (data.template !== "monolith") {
-            const wrap = Object.assign(document.createElement("div"), { className: "mirror" });
-            Object.assign(wrap.style, { position: "absolute", left: "50%", top: "50%", width: W + "px", height: SH + "px", transform: "translate(-50%, -50%)" });
-            mirror = Object.assign(document.createElement("div"), { className: "mirror-stage" });
-            Object.assign(mirror.style, { position: "absolute", inset: "0", overflow: "hidden", filter: "blur(9px) saturate(1.45) brightness(0.62)" });
-            wrap.appendChild(mirror);
-            bg.appendChild(wrap);
-            const cues = B.cues;
-            window.__mirror = await template(mirror, data, B);
-            B.cues = cues;
-            await settle(mirror);
-            window.__mirror.frame(0);
-            wrap.style.transform = `translate(-50%, -50%) scale(${(H / SH) * 1.12})`;
-          }
           const root = document.getElementById("social");
           root.innerHTML = "";
           Object.assign(root.style, { width: W + "px", height: H + "px" });
-          window.__social = B.social(root, data, B, bg, mirror);
+          window.__social = B.social(root, data, B, bg);
           await settle(root);
         }
         return { poster: window.__instance.poster || 2, cues: B.cues };
       };
       // Loops are seamless: any time wraps into [0, 8). The social cut loops the banner for its whole length.
+      // The social cut's background: a blurred still of the banner (rendered once, see render.mjs).
+      window.__backdrop = async (url) => {
+        const img = document.querySelector("#bg .backdrop");
+        img.src = url;
+        await img.decode();
+        img.style.visibility = "visible";
+      };
       window.__frame = (t) => {
         const loop = ((t % 8) + 8) % 8;
         window.__instance.frame(loop);
         const s = window.__social;
         if (!s) return;
-        if (window.__mirror) window.__mirror.frame(loop);
         document.getElementById("social").style.visibility = "visible";
         s.frame(t);
       };

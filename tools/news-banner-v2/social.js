@@ -1,15 +1,16 @@
 /* SOCIAL — the 15-second vertical cut for Instagram Reels (1080x1920).
  *
- * The 16:9 banner plays as a card near the top. Behind it the same banner runs again, scaled up and
- * blurred, so the whole frame takes its colours from the video. Below it the voice-over is set as
+ * The 16:9 banner plays as a card near the top. Behind it a blurred still of the same banner fills
+ * the frame (render.mjs sets it through window.__backdrop), so the whole frame takes its colours from
+ * the video. Below it the voice-over is set as
  * kinetic type: one phrase at a time, words rising in and lighting up as they are spoken (timings
  * from render.mjs, d.story.captions), numbers and [emphasis] words on a pill in the brand colour. It
  * ends on the S3DAT News sign-off. Everything sits inside the Reels safe zone: clear of the header
  * at the top, the caption and buttons at the bottom and the action column on the right.
  *
- * BANNER.social(root, d, B, bg, frame) fills root (above the banner) and bg (behind it; frame is the
- * blurred copy of the banner, or null) and returns frame(t) for t in seconds from the start. */
-BANNER.social = (root, d, B, bg, mirror) => {
+ * BANNER.social(root, d, B, bg) fills root (above the banner) and bg (behind it) and returns
+ * frame(t) for t in seconds from the start. */
+BANNER.social = (root, d, B, bg) => {
   const { el, css, seg, lerp, ease, sp, brandColors, onColor, alpha, mix } = B;
   const W = 1080, H = 1920;
   const card = d.format.card; // where the banner card sits: { x, y, w, h }
@@ -20,10 +21,9 @@ BANNER.social = (root, d, B, bg, mirror) => {
   const DURATION = d.format.seconds;
 
   /* ---------- background: the banner's own colours ---------- */
-  if (!mirror) {
-    // No blurred copy (the 3D template renders once): a field in the brand colour instead.
-    css(el("div", "layer", bg), { background: `radial-gradient(90% 60% at 30% 20%, ${alpha(pop, 0.55)}, transparent 70%), radial-gradient(80% 60% at 80% 85%, ${alpha(mix(pop, "#000000", 0.4), 0.7)}, transparent 70%), #07090c` });
-  }
+  // A field in the brand colour until (or unless) the blurred still arrives.
+  css(el("div", "layer", bg), { background: `radial-gradient(90% 60% at 30% 20%, ${alpha(pop, 0.55)}, transparent 70%), radial-gradient(80% 60% at 80% 85%, ${alpha(mix(pop, "#000000", 0.4), 0.7)}, transparent 70%), #07090c` });
+  const still = css(el("img", "backdrop", bg), { position: "absolute", left: "-6%", top: "-6%", width: "112%", height: "112%", objectFit: "cover", visibility: "hidden" });
   css(el("div", "layer", bg), { background: "linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.18) 22%, rgba(0,0,0,0.58) 50%, rgba(0,0,0,0.86) 100%)" });
   const glow = css(el("div", "layer", bg), { background: `radial-gradient(70% 38% at 18% 78%, ${alpha(pop, 0.32)}, transparent 72%)` });
   B.grain(bg, 0.07);
@@ -81,18 +81,20 @@ BANNER.social = (root, d, B, bg, mirror) => {
       headMark.style.transform = `rotate(${t * 24}deg)`;
       fill.style.transform = `scaleX(${seg(t, 0, DURATION)})`;
       glow.style.opacity = 0.75 + 0.25 * Math.sin(t * 1.3);
+      still.style.transform = `scale(${1 + 0.04 * Math.sin((t / DURATION) * Math.PI)}) translateY(${Math.sin(t * 0.4) * 14}px)`;
 
       // One phrase on screen at a time: words rise in, light up as spoken, then the phrase lifts away.
       phrases.forEach((p, i) => {
         const next = i < phrases.length - 1 ? phrases[i + 1].start : signAt;
-        const on = t >= p.start - 0.14 && t < next + 0.05 && t < signAt + 0.2;
+        // The phrase leaves before the next one rises, so two never overlap.
+        const on = t >= p.start - 0.08 && t < next - 0.06 && t < signAt;
         p.node.style.visibility = on ? "visible" : "hidden";
         if (!on) return;
-        const out = ease.inCubic(seg(t, next - 0.12, next + 0.05));
+        const out = ease.inCubic(seg(t, next - 0.26, next - 0.06));
         p.node.style.opacity = 1 - out;
         p.node.style.transform = `translateY(${-out * 70}px)`;
         p.words.forEach((w, j) => {
-          const rise = sp(t, p.start - 0.14 + j * 0.035, "snap");
+          const rise = sp(t, p.start - 0.06 + j * 0.035, "snap");
           w.inner.style.transform = `translateY(${(1 - Math.min(1.08, rise)) * 105}%)`;
           const lit = seg(t, w.start - 0.04, w.start + 0.08);
           if (w.accent) {

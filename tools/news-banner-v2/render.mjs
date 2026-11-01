@@ -339,6 +339,33 @@ async function main() {
   await page.goto(`${ORIGIN}/stage.html`);
   const { poster, cues } = await page.evaluate((d) => window.__setup(d), data).catch((e) => { throw new Error(`setup failed: ${e.message} ${errors.join(" | ")}`); });
   const shot = async (t, quality = 92) => { await page.evaluate((x) => window.__frame(x), t); return page.screenshot({ type: "jpeg", quality }); };
+  if (format === "social") {
+    // The background is a blurred still of the banner card at its poster moment: blurred once here,
+    // so the frames need no live blur (slow without a GPU).
+    await page.evaluate((x) => window.__frame(x), poster);
+    const c = F.card;
+    const card = (await page.screenshot({ type: "png", clip: { x: c.x, y: c.y, width: c.w, height: c.h } })).toString("base64");
+    const still = await page.evaluate(async ([b64, w, h]) => {
+      const img = new Image();
+      img.src = "data:image/png;base64," + b64;
+      await img.decode();
+      // Blur small, then scale up: cheap and smooth.
+      const small = document.createElement("canvas");
+      small.width = Math.round(w / 8); small.height = Math.round(h / 8);
+      const g = small.getContext("2d");
+      const k = Math.max(small.width / img.width, small.height / img.height);
+      g.filter = "blur(6px) saturate(1.45) brightness(0.62)";
+      g.drawImage(img, (small.width - img.width * k) / 2, (small.height - img.height * k) / 2, img.width * k, img.height * k);
+      const big = document.createElement("canvas");
+      big.width = w; big.height = h;
+      const G = big.getContext("2d");
+      G.imageSmoothingQuality = "high";
+      G.filter = "blur(18px)";
+      G.drawImage(small, -40, -40, w + 80, h + 80);
+      return big.toDataURL("image/jpeg", 0.9);
+    }, [card, F.width, F.height]);
+    await page.evaluate((u) => window.__backdrop(u), still);
+  }
   const done = async () => { await browser.close(); rmSync(tmp, { recursive: true, force: true }); };
 
   if (a.frames || a.frame !== undefined) {
