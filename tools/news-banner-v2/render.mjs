@@ -9,12 +9,12 @@
  * wide (site): 1080x608, 30 fps, 8 s, H.264, silent, at most 1.6 MB, plus a WebP poster.
  * hd (X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest, Substack): the same layout
  *   rendered at 1920x1080 device pixels (deviceScaleFactor 16/9), with the synthesised soundtrack.
- * social (Instagram Reels): 1080x1920 (9:16), 15 s: the 16:9 banner as a card over a blurred copy of
- *   itself, the voice-over set as kinetic type below it (social.js), with a Fish Audio voice-over
+ * social (Instagram Reels): 1080x1920 (9:16), 15 s: the reel, a composition of its own (social.js:
+ *   headline hook, beats cut to the voice-over, kinetic captions, sign-off), with a Fish Audio voice-over
  *   (FISH_API_KEY, FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as
  *   [calm]; without a key the cut is silent apart from the soundtrack and the type is timed by estimate.
  * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8 for the
- * site banner, 6 for the hd cut, 4 for the reel).
+ * site banner and the hd cut, 6 for the reel).
  * --add-voice mixes the story's voice-over into a 9:16 cut rendered without one. The video is copied
  *   as is.
  * Needs Node 20+, ffmpeg, Chrome or Chromium, and `npm ci` in this folder.
@@ -31,9 +31,9 @@ const FPS = 30;
 const FORMATS = {
   wide: { layout: "wide", width: 1080, height: 608, scale: 1, seconds: 8, blur: 8, sound: false,
     encode: { width: 1080, height: 608, maxBytes: 1_600_000, crf: 22, maxrate: "1700k" } },
-  hd: { layout: "wide", width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 6, sound: true,
+  hd: { layout: "wide", width: 1080, height: 608, scale: 16 / 9, seconds: 8, blur: 8, sound: true,
     encode: { width: 1920, height: 1080, maxBytes: 24_000_000, crf: 17, maxrate: "16000k" } },
-  social: { layout: "social", width: 1080, height: 1920, stageHeight: 608, card: { x: 36, y: 300, w: 1008, h: 567 }, scale: 1, seconds: 15, blur: 4, sound: true,
+  social: { layout: "social", width: 1080, height: 1920, scale: 1, seconds: 15, blur: 6, sound: true,
     encode: { width: 1080, height: 1920, maxBytes: 24_000_000, crf: 18, maxrate: "12000k" } },
 };
 export const TEMPLATES = ["paper", "ink", "brand", "collage", "versus", "portrait", "data", "poster", "cinematic", "cutout", "monolith"];
@@ -139,8 +139,7 @@ async function buildData(dir, override, format) {
   if (headline.length < 1 || headline.length > 3) throw new Error("headline needs 1-3 lines");
   return {
     template,
-    format: { name: FORMATS[format].layout, width: FORMATS[format].width, height: FORMATS[format].height, stageHeight: FORMATS[format].stageHeight,
-      card: FORMATS[format].card, seconds: FORMATS[format].seconds },
+    format: { name: FORMATS[format].layout, width: FORMATS[format].width, height: FORMATS[format].height, seconds: FORMATS[format].seconds },
     story: readStory(dir),
     headline,
     accent: Number.isInteger(spec.accent) ? spec.accent : headline.length - 1,
@@ -339,33 +338,6 @@ async function main() {
   await page.goto(`${ORIGIN}/stage.html`);
   const { poster, cues } = await page.evaluate((d) => window.__setup(d), data).catch((e) => { throw new Error(`setup failed: ${e.message} ${errors.join(" | ")}`); });
   const shot = async (t, quality = 92) => { await page.evaluate((x) => window.__frame(x), t); return page.screenshot({ type: "jpeg", quality }); };
-  if (format === "social") {
-    // The background is a blurred still of the banner card at its poster moment: blurred once here,
-    // so the frames need no live blur (slow without a GPU).
-    await page.evaluate((x) => window.__frame(x), poster);
-    const c = F.card;
-    const card = (await page.screenshot({ type: "png", clip: { x: c.x, y: c.y, width: c.w, height: c.h } })).toString("base64");
-    const still = await page.evaluate(async ([b64, w, h]) => {
-      const img = new Image();
-      img.src = "data:image/png;base64," + b64;
-      await img.decode();
-      // Blur small, then scale up: cheap and smooth.
-      const small = document.createElement("canvas");
-      small.width = Math.round(w / 8); small.height = Math.round(h / 8);
-      const g = small.getContext("2d");
-      const k = Math.max(small.width / img.width, small.height / img.height);
-      g.filter = "blur(6px) saturate(1.45) brightness(0.62)";
-      g.drawImage(img, (small.width - img.width * k) / 2, (small.height - img.height * k) / 2, img.width * k, img.height * k);
-      const big = document.createElement("canvas");
-      big.width = w; big.height = h;
-      const G = big.getContext("2d");
-      G.imageSmoothingQuality = "high";
-      G.filter = "blur(18px)";
-      G.drawImage(small, -40, -40, w + 80, h + 80);
-      return big.toDataURL("image/jpeg", 0.9);
-    }, [card, F.width, F.height]);
-    await page.evaluate((u) => window.__backdrop(u), still);
-  }
   const done = async () => { await browser.close(); rmSync(tmp, { recursive: true, force: true }); };
 
   if (a.frames || a.frame !== undefined) {

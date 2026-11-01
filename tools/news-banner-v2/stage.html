@@ -21,9 +21,7 @@
     <script type="module" src="templates/monolith.js"></script>
   </head>
   <body>
-    <div id="bg"></div>
     <div id="stage"></div>
-    <div id="social"></div>
     <script>
       // The renderer calls __setup once (with data URLs for every asset), then __frame(t) per frame.
       // Faces the templates use. Each is loaded explicitly and checked before anything is measured.
@@ -37,17 +35,17 @@
       window.__setup = async (data) => {
         const B = window.BANNER;
         const W = data.format ? data.format.width : 1080, H = data.format ? data.format.height : 608;
-        // The social cut is 9:16: the template draws its 16:9 layout as a card near the top (social.js).
+        // The social cut is the reel (social.js): its own 9:16 composition, not a banner template.
         const social = data.format && data.format.name === "social";
-        const SH = social ? data.format.stageHeight : H;
-        B.setFormat(W, SH);
+        B.setFormat(W, H);
+        B.DURATION = 8;
         const stage = document.getElementById("stage");
         for (const n of [document.documentElement, document.body]) Object.assign(n.style, { width: W + "px", height: H + "px" });
-        Object.assign(stage.style, { width: W + "px", height: SH + "px", top: "0px", left: "0px", transform: "", borderRadius: "", boxShadow: "" });
+        Object.assign(stage.style, { width: W + "px", height: H + "px" });
 
-        window.__social = null;
-        if (data.template === "monolith") await window.__monolithReady;
-        const template = B.templates[data.template];
+        window.__social = social;
+        if (!social && data.template === "monolith") await window.__monolithReady;
+        const template = social ? B.reel : B.templates[data.template];
         if (!template) throw new Error("Unknown template " + data.template);
         await Promise.all([...document.fonts].map((f) => f.load().catch(() => null)));
         await Promise.all(FACES.map((f) => document.fonts.load(f).catch(() => null)));
@@ -69,40 +67,10 @@
         window.__instance = await build();
         await settle(stage);
         if (window.__instance.ready) await window.__instance.ready();
-        if (social) {
-          // Templates measure text while they build and on their first frame: scale only afterwards.
-          window.__instance.frame(0);
-          const k = data.format.card.w / W;
-          Object.assign(stage.style, { transformOrigin: "0 0", transform: `translate(${data.format.card.x}px, ${data.format.card.y}px) scale(${k})`,
-            borderRadius: 30 / k + "px", boxShadow: "0 34px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.10)" });
-          // Behind the card: a blurred still of the banner, set by render.mjs through __backdrop.
-          const bg = document.getElementById("bg");
-          bg.innerHTML = "";
-          Object.assign(bg.style, { width: W + "px", height: H + "px" });
-          const root = document.getElementById("social");
-          root.innerHTML = "";
-          Object.assign(root.style, { width: W + "px", height: H + "px" });
-          window.__social = B.social(root, data, B, bg);
-          await settle(root);
-        }
         return { poster: window.__instance.poster || 2, cues: B.cues };
       };
-      // Loops are seamless: any time wraps into [0, 8). The social cut loops the banner for its whole length.
-      // The social cut's background: a blurred still of the banner (rendered once, see render.mjs).
-      window.__backdrop = async (url) => {
-        const img = document.querySelector("#bg .backdrop");
-        img.src = url;
-        await img.decode();
-        img.style.visibility = "visible";
-      };
-      window.__frame = (t) => {
-        const loop = ((t % 8) + 8) % 8;
-        window.__instance.frame(loop);
-        const s = window.__social;
-        if (!s) return;
-        document.getElementById("social").style.visibility = "visible";
-        s.frame(t);
-      };
+      // Banners loop seamlessly: any time wraps into [0, 8). The reel runs once.
+      window.__frame = (t) => window.__instance.frame(window.__social ? t : ((t % 8) + 8) % 8);
     </script>
   </body>
 </html>
