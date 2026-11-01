@@ -1,0 +1,66 @@
+{
+  "format": 2,
+  "slug": "sensenova-loop-shared-decoder",
+  "kind": "brief",
+  "topic": "models",
+  "title": "SenseNova releases a preview model that runs shared layers twice",
+  "dek": "SenseNova-Loop-9B-Preview accepts text and images, with Apache 2.0 weights and a repeated decoder block.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-11-01T14:07:23Z",
+  "lede": "SenseNova released SenseNova-Loop-9B-Preview on October 30. Its open weights let developers test a decoder that repeats computation using shared parameters.",
+  "facts": [
+    {
+      "label": "License",
+      "value": "Apache 2.0"
+    },
+    {
+      "label": "Input",
+      "value": "Text and images"
+    },
+    {
+      "label": "Output",
+      "value": "Text"
+    },
+    {
+      "label": "Decoder",
+      "value": "32 layers; 56 executions"
+    }
+  ],
+  "body": [
+    {
+      "text": "The model runs 24 layers twice, producing 56 layer executions from 32 distinct layers. The second pass processes the first pass’s output. Deployment requires its custom implementation; the card points SGLang and vLLM users to specific pull-request versions."
+    }
+  ],
+  "buildersNote": "Review the model code before loading it. In an isolated test environment, compare document extraction against your current model using identical inputs. For each document type, record peak memory, latency and extraction errors separately; decide your acceptable error rate before inspecting the results.",
+  "claims": [
+    {
+      "text": "Performance comparisons remain unestablished: the benchmark section is empty and the technical report is pending.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "SenseNova-Loop-9B-Preview",
+      "publisher": "SenseNova",
+      "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B-Preview",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] SenseNova released a model preview that runs twenty-four shared layers twice. [break] It accepts text and images, then produces text. Performance comparisons still await published benchmarks and a technical report.",
+    "short": "SenseNova released Loop-9B-Preview on October 30. Its decoder reuses 24 layers across two passes; the weights carry an Apache 2.0 license.",
+    "long": "SenseNova released Loop-9B-Preview with shared decoder layers on October 30. The architecture repeats a block instead of storing another copy of its weights.\n\nTest document extraction on your own examples before choosing a deployment. Record latency and memory alongside errors, and review the implementation before loading model code.",
+    "hashtags": [
+      "SenseNova",
+      "OpenWeights"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T14:07:23Z"
+}

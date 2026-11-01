@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "SENSENOVA",
+    "LOOPED",
+    "WEIGHTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "SenseNova",
+      "logo": "sensenova.webp",
+      "color": "#5725D8",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 231,
+  "sources": {
+    "sensenova.webp": "https://cdn-avatars.huggingface.co/v1/production/uploads/652d06833b5997ed71ce5c46/k66xcOMf4NVbMSFulUjHY.png"
+  }
+}
