@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "MISCHIEF 1",
+    "VIDEO FROM",
+    "$0.005/S"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "TBC",
+      "logo": "tbc.svg",
+      "color": "#111111"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 171,
+  "sources": {
+    "tbc.svg": "https://www.tbc.co/"
+  }
+}

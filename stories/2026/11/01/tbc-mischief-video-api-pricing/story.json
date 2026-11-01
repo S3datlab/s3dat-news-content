@@ -1,0 +1,86 @@
+{
+  "format": 2,
+  "slug": "tbc-mischief-video-api-pricing",
+  "kind": "brief",
+  "topic": "models",
+  "title": "TBC launches Mischief 1 video API from $0.005 per second",
+  "titleAccent": "$0.005 per second",
+  "dek": "The Wan 2.2-based model reaches fal and OpenRouter with separate 480p and 720p prices and software derived from laboratory neuron research.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-11-01T06:03:56Z",
+  "lede": "The Biological Computing Co. launched Mischief 1 on fal and OpenRouter on October 30. Developers can turn images into short videos with a starting generation price of half a cent per second.",
+  "facts": [
+    {
+      "label": "480p price",
+      "value": "$0.005 per generated second"
+    },
+    {
+      "label": "720p price",
+      "value": "$0.01 per generated second"
+    },
+    {
+      "label": "Clip lengths",
+      "value": "3 or 5 seconds"
+    },
+    {
+      "label": "OpenRouter routing",
+      "value": "EU in-region routing unavailable"
+    }
+  ],
+  "body": [
+    {
+      "text": "The model takes a first-frame image and a text prompt. A five-second generation costs $0.025 at 480p or $0.05 at 720p, based on OpenRouter\u2019s listed rates. Resolution therefore doubles the generation bill for the same clip length."
+    },
+    {
+      "text": "TBC built Mischief 1 on Wan 2.2. The company says measurements of laboratory-grown neurons informed its software optimizations. Those neurons remain in the lab; customer inference runs on standard AI hardware. The release makes that software available through hosted video endpoints."
+    }
+  ],
+  "buildersNote": "Budget $2.50 for 100 five-second clips at 480p, or $5 at 720p, before any other charges. Compare completed outputs on the same images before choosing a resolution.",
+  "claims": [
+    {
+      "text": "OpenRouter lists the October 30 release and both resolution-specific prices.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "TBC says Mischief 1 is five times faster than Wan 2.2 while matching its quality.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The launch notice supplies no independent benchmark or reproducible method for that speed-and-quality comparison.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Biological Computing Co. Launches World\u2019s First Publicly Available Neuron-Derived AI Video Model",
+      "publisher": "The Biological Computing Co.",
+      "url": "https://www.tbc.co/press-releases/neuron-derived-ai-video-model",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "TBC: mischief 1",
+      "publisher": "OpenRouter",
+      "url": "https://openrouter.ai/tbc/mischief-1",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Mischief One launched with image-to-video generation from half a cent per second. [break] Its software runs on ordinary AI hardware. The maker\u2019s fivefold speed claim still lacks an independent benchmark.",
+    "short": "Mischief 1 launched on fal and OpenRouter on October 30. Five seconds of 480p video costs $0.025. TBC\u2019s fivefold speed claim lacks an independent benchmark in its announcement.",
+    "long": "TBC launched Mischief 1 on October 30, bringing its Wan 2.2-based video model to fal and OpenRouter. The software draws on lab neuron research and runs on standard AI hardware.\n\nA five-second clip costs $0.025 at 480p or $0.05 at 720p. That sets a concrete budget for testing variations; the company\u2019s fivefold speed claim still lacks an independent benchmark in its launch notice.",
+    "hashtags": [
+      "TBC",
+      "VideoAI"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T06:03:56Z"
+}
