@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "LOBEHUB",
+    "BOTS",
+    "SPEAK UP"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "LobeHub",
+      "logo": "lobehub.svg",
+      "color": "#7C3AED"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 221,
+  "sources": {
+    "lobehub.svg": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/lobehub.svg"
+  }
+}

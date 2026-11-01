@@ -1,0 +1,62 @@
+{
+  "format": 2,
+  "slug": "lobehub-proactive-bot-default",
+  "kind": "brief",
+  "topic": "apps",
+  "title": "LobeHub 2.3.0 turns proactive bot participation on by default",
+  "dek": "Bots can initiate replies in watched channels, with owner controls and records explaining their decisions.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-01T13:05:34Z",
+  "lede": "LobeHub released version 2.3.0 on November 1 with proactive bot participation enabled by default. Bots can decide to respond to watched-channel messages without a direct mention.",
+  "facts": [
+    {
+      "label": "Version",
+      "value": "2.3.0"
+    },
+    {
+      "label": "Default",
+      "value": "Proactive participation on"
+    },
+    {
+      "label": "Wake summary",
+      "value": "30 days"
+    }
+  ],
+  "body": [
+    {
+      "text": "The feature leaves its earlier flagged preview. A Wake records tab exposes message-level decisions and reasons. Owners can rate those judgments, giving them a way to review when the bot intervenes."
+    }
+  ],
+  "buildersNote": "Before upgrading a shared workspace, test a channel containing an unanswered question, an ordinary remark and a reply addressed to another person. Compare the bot’s decisions with your team’s expectations. Assign one owner to review unwanted interventions before expanding the rollout to additional channels.",
+  "claims": [
+    {
+      "text": "Turning proactive participation off still allows watch-keyword wakes.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "🚀 Release v2.3.0",
+      "publisher": "LobeHub",
+      "url": "https://github.com/lobehub/lobehub/releases/tag/v2.3.0",
+      "date": "2026-11-01"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] LobeHub now enables proactive bots by default in version two point three. [break] Owners can switch participation off, but watched keywords can still wake the bot in its channels.",
+    "short": "LobeHub 2.3.0 enables proactive bots by default. Switching participation off still leaves watch-keyword wakes active.",
+    "long": "LobeHub released default-on proactive participation on November 1. Owners get a 30-day wake summary and individual decision records.\n\nTest the change in a small channel before rolling it out to a team. Include messages addressed to someone else, and agree who will review interventions that interrupt a conversation.",
+    "hashtags": [
+      "LobeHub",
+      "Agents"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T13:05:34Z"
+}
