@@ -1,0 +1,75 @@
+{
+  "format": 2,
+  "slug": "planassist-council-beta-expansion",
+  "kind": "story",
+  "topic": "apps",
+  "title": "England expands PlanAssist testing to 15 councils",
+  "titleAccent": "15 councils",
+  "dek": "A 12-month beta will test the planning assistant on live applications while officers retain responsibility for decisions.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-11-01T08:09:51Z",
+  "updatedAt": "2026-11-01T08:09:51Z",
+  "lede": "The UK government announced on October 30 that PlanAssist testing would expand to 15 English councils for 12 months. The assistant prepares planning assessments for officers, who remain responsible for reviewing applications and making decisions.",
+  "facts": [
+    {
+      "label": "Expanded trial",
+      "value": "15 English councils"
+    },
+    {
+      "label": "Additional authorities",
+      "value": "12"
+    },
+    {
+      "label": "Beta duration",
+      "value": "12 months"
+    }
+  ],
+  "body": [
+    {
+      "text": "The expansion follows initial work with Camden, Barnet and Dorset. Participating authorities will use PlanAssist alongside their normal process, giving the project a wider test of routine householder applications. The government says the software will not be mandatory. Its intended availability across England by the end of 2027 depends on further testing."
+    },
+    {
+      "text": "Google DeepMind\u2019s October 31 account describes a Gemini-based system developed with the government, Google Cloud and Faculty. It checks submitted documents and architectural drawings, then examines planning policies, heritage constraints and objections. The output is a cited report that an officer can edit. The additional councils will join in three cohorts, covering metropolitan and rural districts."
+    },
+    {
+      "text": "DeepMind reports a 58% reduction in average officer time spent on householder assessment tasks during the original pilot. It also says officers accepted more than 70% of generated reports without edits. The government has separately committed to requiring key planning documents to be digitised and published as open data by the end of 2027. That commitment is intended to support other property-technology tools, alongside PlanAssist."
+    }
+  ],
+  "buildersNote": "For a comparable review assistant, log drafting time separately from elapsed decision time. Track substantive corrections and rejected recommendations as well as unchanged reports, then compare results across offices before expanding the deployment. Keep the cited evidence attached to each recommendation throughout that review process.",
+  "claims": [
+    {
+      "text": "The pilot figures are partner-reported; the posts provide no sample size or independent accuracy assessment.",
+      "status": "claimed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Faster planning decisions as new rules and AI tackle delays",
+      "publisher": "Ministry of Housing, Communities and Local Government",
+      "url": "https://www.gov.uk/government/news/faster-planning-decisions-as-new-rules-and-ai-tackle-delays",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Speeding up planning decisions with AI",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/blog/speeding-up-planning-decisions-with-ai/",
+      "date": "2026-10-31"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] England is expanding PlanAssist testing to fifteen councils. [break] The assistant drafts planning assessments, while officers make the decisions. A twelve month trial will test it on live applications.",
+    "short": "England expanded PlanAssist testing to 15 councils. Planning officers keep responsibility for decisions.",
+    "long": "PlanAssist will reach twelve more English councils for a year of testing on live planning applications.\n\nGoogle DeepMind reports less officer assessment time in the initial pilot. That does not establish faster decisions nationwide. Officers still review the work, and wider availability depends on testing.",
+    "hashtags": [
+      "GoogleDeepMind",
+      "Planning"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

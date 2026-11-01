@@ -1,0 +1,36 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "PLANASSIST",
+    "15 COUNCILS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google DeepMind",
+      "icon": "deepmind"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    },
+    {
+      "src": "prop-2.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 191,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated",
+    "prop-2.webp": "generated"
+  }
+}
