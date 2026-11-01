@@ -23,6 +23,7 @@ BANNER.templates.ink = (stage, d, B) => {
   const a = css(el("div", "abs", mid), { left: aBox.x + "px", top: aBox.y + "px", width: aBox.w + "px", height: aBox.h + "px", display: "flex", flexDirection: "column", justifyContent: "center" });
   const aLines = d.headline.map((text, i) => B.line(a, text, { font: "800 80px/0.98 Bricolage", fontStretch: "85%", letterSpacing: "-0.02em", color: i === d.accent ? c.vivid : "#f4f4f4", textTransform: "uppercase", display: "block" }));
   B.fitLines(aLines, aBox.w, aBox.h - 80, isWide ? 160 : 210, 40, 1.0);
+  const under = B.underline(aLines[d.accent] || aLines[aLines.length - 1], c.vivid, 1.7, 0.07);
   const kindA = B.choose(d.seed, ["decode", "drop", "decode"]);
   const cut = beat(7);
   const animA = B.animate(aLines, kindA, { start: 0.45, out: null, seed: d.seed, color: c.vivid });
@@ -49,6 +50,7 @@ BANNER.templates.ink = (stage, d, B) => {
     frame(t) {
       cam.update(t);
       amb(t);
+      under(t);
       holdA(t);
       // CRT power on (0-0.3 s) and off (7.4-7.95 s).
       const on = ease.outExpo(seg(t, 0.0, 0.28));

@@ -34,6 +34,7 @@ BANNER.templates.versus = (stage, d, B) => {
   const band = css(el("div", "abs", mid), { left: "-40px", right: "-40px", bottom: "-40px", height: bandH + 40 + "px", background: "#0b0b0b", display: "flex", flexDirection: "column", justifyContent: "center", padding: `0 ${56 + 40}px 40px` });
   const lines = d.headline.map((text, i) => B.line(band, text, { font: "400 80px/0.95 Anton", color: i === d.accent ? "#f7ff3c" : "#fff", textTransform: "uppercase", letterSpacing: "0.005em", display: "block" }));
   B.fitEach(lines, W - 112, bandH - 40, pick(110, 150), 30, 0.98);
+  const under = B.underline(lines[d.accent] || lines[lines.length - 1], "#f7ff3c", 3.0, 0.07);
   const animL = B.animate(lines, B.choose(d.seed, ["skew", "rise", "slam"]), { start: 2.1, out: [7.35, 7.7], seed: d.seed, camera: cam });
   const clash2 = beat(9);
   cam.kick(clash2 + 0.3, 6);
@@ -47,6 +48,7 @@ BANNER.templates.versus = (stage, d, B) => {
     frame(t) {
       cam.update(t);
       amb(t);
+      under(t);
       const slide = Math.min(1.02, sp(t, 0, "snap"));
       const away = ease.inCubic(seg(t, 7.35, 7.9));
       const swing = Math.sin(seg(t, clash2, 7.3) * Math.PI) * 10;

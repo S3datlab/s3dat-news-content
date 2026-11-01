@@ -219,13 +219,21 @@
       }
     };
   }
+  /** A bar in `color` draws under a headline line at `at` and stays, so the news line keeps its
+   *  emphasis through the hold. It lives inside the line, so it follows the line's own motion. */
+  function underline(node, color, at, thickness = 0.09) {
+    node.style.position = "relative";
+    const bar = css(el("div", "abs", node), { left: "0", right: "0", bottom: -thickness * 0.6 + "em", height: thickness + "em", background: color, transformOrigin: "0 50%", transform: "scaleX(0)", borderRadius: thickness / 2 + "em" });
+    cue("swish", at, 0.4);
+    return (t) => { bar.style.transform = `scaleX(${Math.max(0, Math.min(1, sp(t, at, "snap")))})`; };
+  }
   /** A held block keeps moving: a slow push-in and drift from `a` until it leaves at `b`. */
   function hold(node, a, b, amount = 0.06) {
     node.style.transformOrigin = node.style.transformOrigin || "0% 50%";
     return (t) => {
       const k = ease.inOut(seg(t, a, b));
       node.style.scale = String(1 + amount * k);
-      node.style.translate = `${k * 18}px ${-k * 6}px`;
+      node.style.translate = `${k * 8}px ${-k * 6}px`;
     };
   }
 
@@ -618,7 +626,7 @@
   Object.assign(B, {
     clamp, seg, lerp, ease, rng, choose, beat, spring, sp, life, SPR,
     luminance, onColor, mix, alpha, brandColors, el, css, wide, pick,
-    fitLines, fitEach, line, cue, camera, grain, vignette, finish, ambient, hold, sheenText, sheenMask,
+    fitLines, fitEach, line, cue, camera, grain, vignette, finish, ambient, hold, underline, sheenText, sheenMask,
     logoNode, logoMask, logo, splitChars, maskWrap, animate, iris, bars, halftone, burst,
     bakeSticker, sticker, hero, parseStat, odometer, formatStat,
     setFormat(w, h) { B.W = w; B.H = h; },

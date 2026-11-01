@@ -19,11 +19,12 @@ BANNER.templates.brand = (stage, d, B) => {
   const aBox = isWide ? { x: 64, y: 0, w: 900, h: H } : { x: 70, y: 380, w: 940, h: 820 };
   const a = css(el("div", "abs", mid), { left: aBox.x + "px", top: aBox.y + "px", width: aBox.w + "px", height: aBox.h + "px", display: "flex", flexDirection: "column", justifyContent: "center" });
   const aLines = d.headline.map((text, i) => {
-    const n = B.line(a, text, { font: "900 80px/0.92 Archivo", fontStretch: "125%", letterSpacing: "-0.03em", color: ink, textTransform: "uppercase", display: "block" });
+    const n = B.line(a, text, { font: "900 80px/0.92 Archivo", fontStretch: "100%", letterSpacing: "-0.03em", color: ink, textTransform: "uppercase", display: "block" });
     if (i === d.accent) css(n, { color: "transparent", WebkitTextStroke: `0.045em ${ink}` });
     return n;
   });
-  B.fitEach(aLines, aBox.w, aBox.h - 120, isWide ? 140 : 190, 34, 0.94);
+  B.fitEach(aLines, aBox.w, aBox.h - 120, isWide ? 200 : 230, 34, 0.94);
+  const under = B.underline(aLines[d.accent] || aLines[aLines.length - 1], ink, 1.5);
   const swap = beat(7.5), back2 = beat(14.4);
   const animA = B.animate(aLines, B.choose(d.seed, ["slam", "weight", "skew"]), { start: 0.45, out: [swap + 0.2, swap + 0.4], seed: d.seed });
   const small = css(B.logo(brand, ink, mid, 0.25, 0.9), isWide ? { position: "absolute", left: "64px", top: "54px", width: "70px", height: "70px" } : { position: "absolute", left: W / 2 - 50 + "px", top: "150px", width: "100px", height: "100px" });
@@ -52,6 +53,7 @@ BANNER.templates.brand = (stage, d, B) => {
       holdA(t);
       giant.style.transform = `rotate(${t * 7}deg) scale(${lerp(1.25, 1, ease.outExpo(seg(t, 0, 1.8)))})`;
       animA(t);
+      under(t);
       small.draw(t);
       const showNeg = t >= swap + 0.25 && t < back2 + 0.25;
       neg.style.visibility = showNeg ? "visible" : "hidden";

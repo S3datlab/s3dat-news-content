@@ -61,7 +61,8 @@ BANNER.templates.collage = (stage, d, B) => {
   const lines = d.headline.map((text, i) => i === d.accent
     ? B.line(strip, text.charAt(0) + text.slice(1).toLowerCase(), { font: "italic 400 80px/0.95 'Instrument Serif'", color: c.dark ? "#d4361c" : c.vivid, letterSpacing: "-0.01em", display: "block" })
     : B.line(strip, text, { font: "900 80px/0.9 Archivo", fontStretch: "62%", color: "#111", textTransform: "uppercase", display: "block" }));
-  B.fitEach(lines, box.w - 20, box.h - 60, isWide ? 140 : 190, 34, 0.95);
+  B.fitEach(lines, box.w - 20, box.h - 60, isWide ? 200 : 230, 34, 0.95);
+  const under = B.underline(lines[d.accent] || lines[lines.length - 1], c.dark ? "#d4361c" : c.vivid, 2.0, 0.06);
   const plain = lines.filter((_, i) => i !== d.accent), accent = lines.filter((_, i) => i === d.accent);
   const animP = B.animate(plain, B.choose(d.seed, ["rise", "skew", "drop"]), { start: 0.9, out: [7.3, 7.75], seed: d.seed });
   const animA = B.animate(accent, "track", { start: 1.15, out: [7.35, 7.8], seed: d.seed + 1 });
@@ -75,6 +76,7 @@ BANNER.templates.collage = (stage, d, B) => {
     frame(t) {
       cam.update(t);
       amb(t);
+      under(t);
       holdA(t);
       const sh = Math.min(1.04, sp(t, shuffle, "heavy"));
       const leave = ease.inCubic(seg(t, 7.3, 7.85));

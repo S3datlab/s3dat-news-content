@@ -17,7 +17,7 @@ BANNER.templates.paper = (stage, d, B) => {
   const rules = [0, 1].map((i) => css(el("div", "abs", back), { left: M + "px", right: M + "px", height: "2px", top: (i ? H - M : M) + "px", background: "#111", transformOrigin: i ? "right" : "left" }));
 
   // Headline.
-  const box = isWide ? { x: 60, w: 620, h: 420 } : { x: 70, w: 940, h: 640 };
+  const box = isWide ? { x: 60, w: 660, h: 440 } : { x: 70, w: 940, h: 640 };
   const block = css(el("div", "abs", mid), { left: box.x + "px", width: box.w + "px", zIndex: 0 });
   const lines = d.headline.map((text, i) => B.line(block, text, { font: "900 80px/0.92 Archivo", fontStretch: "68%", letterSpacing: "-0.01em", color: i === d.accent ? c.vivid : "#0e0e0e", textTransform: "uppercase", position: "relative", display: "block" }));
   const size = B.fitLines(lines, box.w, box.h, isWide ? 170 : 230, 40, 0.94);
@@ -30,8 +30,8 @@ BANNER.templates.paper = (stage, d, B) => {
   const animA = B.animate(lines, kindA, { start: 0.5, out: [swap + 0.15, swap + 0.4], seed: d.seed, color: "#0e0e0e" });
 
   // Ring + logo.
-  const R = pick(155, 190);
-  const cx = isWide ? W - 60 - R - 30 : W / 2, cy = isWide ? H / 2 : H - 70 - R - 60;
+  const R = pick(130, 190);
+  const cx = isWide ? W - 44 - R : W / 2, cy = isWide ? H / 2 : H - 70 - R - 60;
   const ring = css(el("div", "abs", front), { left: cx - R + "px", top: cy - R + "px", width: 2 * R + "px", height: 2 * R + "px" });
   ring.innerHTML = `<svg viewBox="0 0 100 100" width="${2 * R}" height="${2 * R}" style="overflow:visible"><circle cx="50" cy="50" r="48" fill="none" stroke="#111" stroke-width="0.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 50 50)"/></svg>`;
   const circle = ring.querySelector("circle");

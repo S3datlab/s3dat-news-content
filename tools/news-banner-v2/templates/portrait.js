@@ -40,6 +40,7 @@ BANNER.templates.portrait = (stage, d, B) => {
   const accentColor = c.dark ? "#fff" : luminance(c.base) < 0.06 ? mix(c.base, "#ffffff", 0.45) : c.base;
   const lines = d.headline.map((t, i) => B.line(text, t, { font: "800 80px/0.94 Bricolage", fontStretch: "80%", letterSpacing: "-0.025em", color: i === d.accent ? accentColor : "#fff", textTransform: "uppercase", display: "block" }));
   B.fitEach(lines, TW - 20, pick(460, 440), pick(150, 170), 34, 0.96);
+  const under = B.underline(lines[d.accent] || lines[lines.length - 1], accentColor, 1.5, 0.07);
   const swap = beat(8.5);
   const anim1 = B.animate(lines, B.choose(d.seed, ["weight", "skew", "rise"]), { start: 0.5, out: [swap - 0.4, swap - 0.1], seed: d.seed });
   const anim2 = B.animate(lines.map((n) => n), "track", { start: 9, out: null, seed: d.seed + 1 });
@@ -49,12 +50,13 @@ BANNER.templates.portrait = (stage, d, B) => {
   B.cue("swish", swap + 0.5, 0.5);
   B.cue("whoosh", 7.35, 0.7);
 
-  const holdA = B.hold(text, 1.5, swap);
+  const holdA = B.hold(text, 1.5, swap, 0.025);
   return {
     poster: 2.3,
     frame(t) {
       cam.update(t);
       amb(t);
+      under(t);
       holdA(t);
       const g = ease.inOut(seg(t, swap, swap + 0.75));
       const away = ease.inCubic(seg(t, 7.35, 7.85));
