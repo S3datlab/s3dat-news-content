@@ -13,7 +13,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write  # commits the social posting records (social/posted)
 
 # One group per run: publishing is idempotent, and a shared group would cancel queued runs
 # (GitHub keeps only the newest pending run per group), silently skipping stories.
@@ -106,6 +106,67 @@ jobs:
           for folder in json.loads(os.environ['STORY_FOLDERS']):
               subprocess.run([sys.executable, 'scripts/publish.py', folder], check=True)
           PY
+      # The 16:9 cut goes to X, Threads, Bluesky and Mastodon as soon as the story is live; the
+      # 9:16 cut and the scheduled channels are the render PC's job at night (SOCIAL.md). A failure
+      # here never fails the publishing.
+      - name: Share the 16:9 cut now
+        id: share
+        if: steps.stories.outputs.folders != '[]'
+        continue-on-error: true
+        env:
+          CHROME_CHANNEL: chrome
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
+          NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}
+          STORY_FOLDERS: ${{ steps.stories.outputs.folders }}
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          failed = False
+          now = dt.datetime.now(dt.timezone.utc)
+          for folder in json.loads(os.environ['STORY_FOLDERS']):
+              story = json.loads((Path(folder) / 'story.json').read_text(encoding='utf-8'))
+              slug = story['slug']
+              published = dt.datetime.fromisoformat(story['publishedAt'].replace('Z', '+00:00'))
+              if 'social' not in story or now - published > dt.timedelta(hours=12):
+                  print(f'{slug}: no social block or not fresh; not shared')
+                  continue
+              if Path(f'social/posted/{slug}.json').is_file() and 'now' in json.loads(Path(f'social/posted/{slug}.json').read_text()):
+                  print(f'{slug}: already shared')
+                  continue
+              wide = f'out/social/{slug}-wide.mp4'
+              Path('out/social').mkdir(parents=True, exist_ok=True)
+              steps = [['node', 'tools/news-banner-v2/render.mjs', folder, '--format', 'hd', '--out', wide],
+                       [sys.executable, 'scripts/publish.py', '--social', slug, '--wide', wide]]
+              if os.environ.get('BUFFER_API_KEY'):
+                  steps.append([sys.executable, 'scripts/social.py', '--story', slug, '--group', 'now'])
+              for argv in steps:
+                  if subprocess.run(argv).returncode:
+                      print(f'::warning::{slug}: {argv[1]} failed; not shared')
+                      failed = True
+                      break
+          sys.exit(1 if failed else 0)
+          PY
+      - name: Commit the posting records
+        if: always() && steps.stories.outputs.folders != '[]'
+        run: |
+          if [ -z "$(git status --porcelain -- social/posted)" ]; then exit 0; fi
+          git config user.name 'S3DAT News'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add social/posted
+          git commit -q -m 'Social: posting record'
+          # Makima pushes stories to main every hour; rebase onto hers and retry.
+          for attempt in 1 2 3; do
+            git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
       - name: Keep rendered banners for download
         if: always() && steps.stories.outputs.folders != '[]'
         uses: actions/upload-artifact@v4

@@ -20,12 +20,12 @@ A story is a lede, a spec sheet and prose, plus the parts its kind calls for:
 | --- | --- |
 | `format` | Always `2`. |
 | `slug` | Lowercase words joined by hyphens, unique, no dates. |
-| `kind` | `brief`, `story`, `analysis` or `explained` (table below). |
+| `kind` | `story`, `analysis` or `explained` (table below). `brief` is retired from 1 November 2026 18:00 UTC. |
 | `topic` | One of `models`, `agents`, `dev-tools`, `research`, `hardware`, `policy`, `apps`. |
 | `title` | The headline: sentence case, at most 90 characters, an active verb, no question, no "X, but Y". |
 | `titleAccent` | Optional words of `title` to highlight. |
 | `dek` | One sentence, 60–260 characters, for cards, feeds and search results. Not repeated on the page. |
-| `eventDate` | `YYYY-MM-DD` of the announcement or event. A `brief` or `story` must be at most two days old. |
+| `eventDate` | `YYYY-MM-DD` of the announcement or event. A `story` must be at most two days old. |
 | `publishedAt` | When we publish, ISO 8601 in UTC. |
 | `lede` | Two or three sentences of prose. The first (at most 35 words) says who did what and when; the next says why it matters. |
 | `facts` | The spec sheet: 3–6 `{ "label", "value" }` pairs (labels up to 28 characters, values up to 120). At least one value carries a number. |
@@ -42,8 +42,8 @@ A story is a lede, a spec sheet and prose, plus the parts its kind calls for:
 
 | Kind | Prose words | Body paragraphs | Must also have |
 | --- | --- | --- | --- |
-| `brief` | 100–320 | 1–2 | facts. No `ourRead`, no `comparison`. |
-| `story` | 250–650 | 2–5 | facts, and a `buildersNote` or at least two `claims`. |
+| `brief` | retired | | Not accepted from 1 November 2026 18:00 UTC. |
+| `story` | 450–900 | 2–5 | facts, a `buildersNote` and at least two `claims`. |
 | `analysis` | 600–1300 | 3–8 | facts, `comparison`, 2+ `claims`, `ourRead`, 1–3 `watching`. |
 | `explained` | 450–1500 | 3–10, each with a question as its heading | facts optional. |
 

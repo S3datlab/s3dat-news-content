@@ -5,7 +5,7 @@
   python scripts/render.py --social FOLDER
                                           out/social/<slug>-wide.mp4 (1920x1080, sound) and
                                           out/social/<slug>-tall.mp4 (1080x1920, 15 s, voice-over),
-                                          rendered only for the story social.yml is about to post
+                                          (manual use; see SOCIAL.md for how the cuts are made)
 
 Folders whose spec.json is not engine 2 are skipped: they carry committed banners.
 Needs Node 20+, ffmpeg, Chrome/Chromium and `npm ci` in tools/news-banner-v2; the voice-over

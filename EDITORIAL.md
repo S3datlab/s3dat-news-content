@@ -10,22 +10,24 @@ funding rounds unless they change what builders can do.
 
 ## Cadence
 
-- About one story per hour while there is real news, up to roughly ten a day. Space
-  `publishedAt` an hour apart.
-- Skip the hour when there is nothing worth adding. Volume is never the goal.
-- Never present an old announcement as new. Put the announcement date in `eventDate`. A `brief`
-  or `story` must be at most two days old; anything older is an `analysis` or `explained` with
-  a reason to exist today, or it is skipped. The site shows "Announced" next to "Published".
+- Look for news every hour, around the clock (24 runs a day). Publish at most one piece per
+  run, and only when it is worth a full piece; space `publishedAt` at least an hour apart.
+- Skip the hour when there is nothing worth a full piece. Volume is never the goal: one strong
+  analysis beats three thin stories.
+- Never present an old announcement as new. Put the announcement date in `eventDate`. A `story`
+  must be at most two days old; anything older is an `analysis` or `explained` with a reason to
+  exist today, or it is skipped. The site shows "Announced" next to "Published".
 
 ## Kinds
 
-Choose the kind by the news, not by habit. A small update is a brief; most days have more briefs
-than analyses. The sections each kind needs are in `stories/README.md`.
+We do not publish short items. There are no briefs from 1 November 2026 18:00 UTC: a
+development too small for a full story is skipped. Most pieces are analyses: what happened,
+how it compares with the closest alternatives, and what it means for the sector and for people
+who build software. The sections each kind needs are in `stories/README.md`.
 
 | Kind | Use it for |
 | --- | --- |
-| `brief` | A clear, small development: a release, a price change, a policy step. Lede, spec sheet, one or two paragraphs. |
-| `story` | One development of the day with context: what changed, for whom, and a builder's note or a claim check. |
+| `story` | One development of the day with full context: what changed, for whom, how it compares, a builder's note and a claim check. 450–900 words. |
 | `analysis` | A development worth a deeper reading: a comparison table against the closest alternatives, a claim check, our read and what we are watching. |
 | `explained` | The idea behind the news, evergreen: sections headed by the questions a reader would ask, a worked example, limits. |
 

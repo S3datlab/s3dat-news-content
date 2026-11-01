@@ -1,18 +1,22 @@
 # S3DAT News on social media
 
-Every story can leave the site as a video post on every channel connected to Buffer. You write
-the copy in `story.json` (`social`, below); the render PC makes its two videos every night
-(below). Five times a day the workflow `Post to social media` picks the best fresh story that has
-its videos and posts it. Nobody posts by hand.
+Every story leaves the site as a video post on the channels connected to Buffer, in two groups.
+You write the copy in `story.json` (`social`, below); nobody posts by hand.
+
+- **Now:** the moment a story is published, `publish.yml` renders its 16:9 cut and shares it on
+  X, Threads, Bluesky and Mastodon.
+- **Planned:** every night at 03:00 Istanbul time the render PC picks the five strongest stories
+  of the day, renders their 9:16 cut with the voice-over and schedules them in Buffer for the
+  coming day, four hours apart, on Facebook, Instagram, LinkedIn, Pinterest and Substack.
 
 ## The videos
 
-Two cuts of every story, rendered with `tools/news-banner-v2`:
+Two cuts of a story, rendered with `tools/news-banner-v2`:
 
-| Cut | Size | Length | Sound | Goes to |
-| --- | --- | --- | --- | --- |
-| Wide | 1920×1080 (16:9) | 8 s loop | the banner's soundtrack | X, Threads, Bluesky, Mastodon, Substack |
-| Tall | 1080×1920 (9:16) | 15 s | voice-over over the soundtrack | Facebook, Instagram, LinkedIn, Pinterest (YouTube Shorts and TikTok when connected) |
+| Cut | Size | Length | Sound | Rendered by | Goes to |
+| --- | --- | --- | --- | --- | --- |
+| Wide | 1920×1080 (16:9) | 8 s loop | the banner's soundtrack | GitHub, when the story is published | X, Threads, Bluesky, Mastodon; Substack |
+| Tall | 1080×1920 (9:16) | 15 s | voice-over over the soundtrack | the render PC, at night, for the five planned stories | Facebook, Instagram, LinkedIn, Pinterest (YouTube Shorts and TikTok when connected) |
 
 - The wide cut is the site banner's layout rendered at full HD with its soundtrack.
 - The tall cut: 0–8 s the banner in a 4:5 frame centred in the picture (the part every feed shows
@@ -20,50 +24,48 @@ Two cuts of every story, rendered with `tools/news-banner-v2`:
   14–15 s the S3DAT News end card with `news.s3dat.com`.
 - The voice is Ethan (Fish Audio, `FISH_VOICE_ID`), mixed over the soundtrack, which ducks under
   him; loudness is normalised to −14 LUFS.
-- Buffer cannot take a file, only a public link, so the render PC uploads both cuts to
+- Buffer cannot take a file, only a public link, so both cuts are uploaded to
   `news.s3dat.com/news-media/news-social/<slug>/` (not shown on any page, deleted after 30 days).
+  Never commit the videos.
 
-## Rendering the cuts (the render PC)
+## Now: the 16:9 cut at publishing
 
-The videos are rendered on the S3DAT render PC (Windows, RTX GPU), not in GitHub Actions
-(Actions minutes cost money) and not by Makima. Makima only writes the stories.
+`publish.yml`, after a story is published: if it has a `social` block, is at most 12 hours old
+and has not been shared, it renders `--format hd`, uploads it (`publish.py --social --wide`) and
+runs `social.py --story <slug> --group now`. The result is committed to
+`social/posted/<slug>.json`. A failure here leaves the story published; the workflow
+`Post to social media` can share it by hand.
 
-- The PC wakes at 03:00 Istanbul time (00:00 UTC), pulls this repository and renders every
-  story from the last 36 hours that has a `social` block, is live on news.s3dat.com and has no
-  cuts there yet: `python scripts/render.py --social <folder>` (voice included), then
-  `python scripts/publish.py --social <slug> --wide ... --tall ...`. Then it goes back to sleep.
-- Nothing is committed for this: a story is ready to post when both
-  `news-media/news-social/<slug>/wide.mp4` and `tall.mp4` answer on news.s3dat.com.
-- Never commit the videos. GitHub renders them only when a person runs the workflow with
-  `render_here`.
+## Planned: the render PC at night
 
-## When we post
+The render PC (Windows, RTX GPU) wakes at 03:00 Istanbul time and, for this job:
 
-- Five slots a day, five hours apart, on every channel at once: 01:00, 06:00, 11:00, 16:00 and
-  21:00 UTC (04:00, 09:00, 14:00, 19:00 and 00:00 in Istanbul). A day has 24 hours, so one gap is
-  four. The slots reach the European morning, noon and evening and the US East Coast morning,
-  afternoon and evening.
-- Each slot picks the strongest story published in the last 36 hours that has not been posted
-  and has its cuts on the site:
-  analysis first, then story and explained, then brief; the newest first; and not the same lead
-  company as the previous post when there is a choice. Stories that miss the window are not
-  posted later. Nothing is posted within three hours of the previous post.
-- `social/state.json` records what went out, when, and any errors. Manual runs default to a dry
-  run that only prints the posts.
+1. `python scripts/social.py --select` picks the five strongest live stories of the last 30 hours
+   that are not planned yet (analysis first, then story and explained; the newest first; one
+   lead company at most twice) and gives each a time: 09:00, 13:00, 17:00, 21:00 and 01:00
+   Istanbul.
+2. For each, it renders the tall cut (`render.mjs --format social`, voice included) and uploads it
+   (`publish.py --social --tall`).
+3. `social.py --story <slug> --group planned --at <time>` schedules it in Buffer.
+4. It goes back to sleep. Buffer posts at the planned times on its own.
+
+The PC keeps its own records (`SOCIAL_RECORDS`). If it misses a night, the next run plans the
+newest stories again. For a withdrawn story, run `social.py --cancel <slug>` on the PC (planned
+posts) and delete the shared posts in Buffer.
 
 ## What each channel gets
 
-| Channel | Video | Text | Link |
-| --- | --- | --- | --- |
-| X (@s3datlab) | wide | `short` | none: X shows posts with links to fewer people |
-| Threads | wide | `short` + link; the first hashtag becomes the topic | in the post |
-| Bluesky | wide | `short` + link | in the post |
-| Mastodon | wide | `short` + link + hashtags | in the post |
-| Substack Notes | wide | `long` + link | in the post |
-| Facebook page | tall, as a reel | `long` | first comment (reel captions do not link) |
-| Instagram | tall, as a reel shared to the feed | `long` + hashtags | none: Instagram captions do not link |
-| LinkedIn page | tall | `long` | first comment (posts with links reach fewer people) |
-| Pinterest | tall | headline as the title, `short` as the description | the pin opens the story |
+| Channel | Group | Video | Text | Link |
+| --- | --- | --- | --- | --- |
+| X (@s3datlab) | now | wide | `short` | none: X shows posts with links to fewer people |
+| Threads | now | wide | `short` + link; the first hashtag becomes the topic | in the post |
+| Bluesky | now | wide | `short` + link (300 characters in all) | in the post |
+| Mastodon | now | wide | `short` + link + hashtags | in the post |
+| Substack Notes | planned | wide | `long` + link | in the post |
+| Facebook page | planned | tall, as a reel | `long` | first comment (reel captions do not link) |
+| Instagram | planned | tall, as a reel shared to the feed | `long` + hashtags | none: Instagram captions do not link |
+| LinkedIn page | planned | tall | `long` | first comment (posts with links reach fewer people) |
+| Pinterest | planned | tall | headline as the title, `short` as the description | the pin opens the story |
 
 Instagram and YouTube posts carry the platforms' AI disclosure, because the voice-over is
 synthetic (`SOCIAL_AI_LABEL=0` turns it off).
@@ -82,7 +84,7 @@ synthetic (`SOCIAL_AI_LABEL=0` turns it off).
 | Field | Rule |
 | --- | --- |
 | `voiceover` | 26–36 spoken words (cues not counted), written to be heard. It must stand alone. |
-| `short` | 60–240 characters. X, Threads, Bluesky, Mastodon and Pinterest. The link is added for you. |
+| `short` | 60–240 characters, and short enough for Bluesky with the link (300 in all). X, Threads, Bluesky, Mastodon and Pinterest. The link is added for you. |
 | `long` | 300–1500 characters. Facebook, Instagram, LinkedIn and Substack. No link. |
 | `hashtags` | 0–4 tags, letters and digits only, without `#`: companies and topics (#OpenAI, #Robotics), never filler (#innovation, #tech). |
 

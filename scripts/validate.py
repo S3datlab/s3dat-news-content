@@ -150,6 +150,11 @@ BANNED_RE = re.compile(r"(?<![\w-])(" + "|".join(re.escape(b) for b in sorted(BA
 PROCESS_RE = re.compile(r"\b(?:checked|verified|accessed|retrieved)\s+(?:on\s+)?(?:" + MONTHS + r"|\d{1,2}\s+(?:" + MONTHS + r"))|\bcomparison (?:as of|checked)\b", re.IGNORECASE)
 WORDS = {"brief": (100, 320), "story": (250, 650), "analysis": (600, 1300), "explained": (450, 1500)}
 BODY = {"brief": (1, 2), "story": (2, 5), "analysis": (3, 8), "explained": (3, 10)}
+# From here on there are no briefs, and a story carries more context (EDITORIAL.md).
+DEPTH_CUTOVER = dt.datetime(2026, 11, 1, 18, 0, tzinfo=dt.timezone.utc)
+DEPTH_WORDS = {"story": (450, 900)}
+# Bluesky allows 300 characters; its post is social.short, a blank line and the story link.
+BLUESKY_LIMIT = 300
 
 
 def calendar_date(value):
@@ -247,6 +252,9 @@ def validate_social(story, published):
                 errors.append(f"social.{key} must not contain emoji")
             if "#" in text:
                 errors.append(f"social.{key} must not contain hashtags; list them in social.hashtags")
+            room = BLUESKY_LIMIT - len(f"\n\nhttps://news.s3dat.com/stories/{story.get('slug', '')}")
+            if key == "short" and published is not None and published >= DEPTH_CUTOVER and len(text) > room:
+                errors.append(f"social.short must be at most {room} characters so it fits Bluesky with the story link (found {len(text)})")
             if "[" in text or "]" in text:
                 errors.append(f"social.{key} is read, not spoken: no [cues]")
     tags = social.get("hashtags", [])
@@ -374,7 +382,12 @@ def validate_format2(story):
     # What each kind must carry.
     if kind == "brief" and (our is not None or cmp is not None):
         errors.append("a brief has no ourRead or comparison")
-    if kind == "story" and note is None and len(claims) < 2:
+    deep = published is not None and published >= DEPTH_CUTOVER
+    if kind == "brief" and deep:
+        errors.append("briefs are retired from 1 November 2026 18:00 UTC: write a story or an analysis, or skip the news")
+    if kind == "story" and deep and (note is None or len(claims) < 2):
+        errors.append("a story needs a buildersNote and at least two claims")
+    elif kind == "story" and note is None and len(claims) < 2:
         errors.append("a story needs a buildersNote or at least two claims")
     if kind == "analysis":
         if cmp is None:
@@ -417,7 +430,7 @@ def validate_format2(story):
             errors.append(f"sources[{i}].title: drop the research note; the date field records when")
     errors.extend(validate_social(story, published))
     words = word_count(spoken)
-    lo, hi = WORDS.get(kind, (100, 1500))
+    lo, hi = (DEPTH_WORDS if deep else WORDS).get(kind) or WORDS.get(kind, (100, 1500))
     if not lo <= words <= hi:
         errors.append(f"a {kind} runs {lo}–{hi} words of prose (found {words})")
     return errors
