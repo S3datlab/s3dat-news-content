@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "NORTHFLANK",
+    "KEY",
+    "ROTATION"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Northflank",
+      "logo": "northflank.svg",
+      "color": "#668CFF",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 161,
+  "sources": {
+    "northflank.svg": "https://northflank.com/images/logo/logo.svg"
+  }
+}

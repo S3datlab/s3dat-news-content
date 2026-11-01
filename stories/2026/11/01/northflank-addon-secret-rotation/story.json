@@ -1,0 +1,69 @@
+{
+  "format": 2,
+  "slug": "northflank-addon-secret-rotation",
+  "kind": "brief",
+  "topic": "dev-tools",
+  "title": "Northflank expands secret rotation after reports of AI key abuse",
+  "titleAccent": "secret rotation",
+  "dek": "Minio and RabbitMQ users gain credential replacement tools as Northflank's security investigation continues.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-01T05:03:47Z",
+  "updatedAt": "2026-11-01T05:03:47Z",
+  "lede": "Northflank enabled Minio and RabbitMQ secret rotation for all customers on October 31. The additions follow reports of unauthorized AI key use during its security investigation.",
+  "facts": [
+    {
+      "label": "Minio enabled",
+      "value": "31 Oct, 22:32 UTC"
+    },
+    {
+      "label": "RabbitMQ enabled",
+      "value": "31 Oct, 23:31 UTC"
+    },
+    {
+      "label": "Investigation opened",
+      "value": "30 October 2026"
+    }
+  ],
+  "body": [
+    {
+      "text": "Separately, Wiz\u2019s October 30 research documented downstream abuse of credentials associated with a compromised vendor. One observed key generated approximately 800,000 Bedrock calls over 30 hours before remediation. Wiz did not identify the vendor behind that example as Northflank. Its broader review found no single vulnerability or dependency connecting the incidents it examined."
+    }
+  ],
+  "buildersNote": "Revoke existing credentials with their issuing providers, replace affected secrets in Northflank workloads, and review provider usage and billing for unexpected activity.",
+  "claims": [
+    {
+      "text": "Northflank has not declared the incident resolved.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Security incident",
+      "publisher": "Northflank",
+      "url": "https://status.northflank.com/",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "\u201cBlack October\u201d for AI Developer Platforms",
+      "publisher": "Wiz",
+      "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "voiceover": "[serious] Northflank added secret rotation for two more services after reports of unauthorized key use. [break] Customers should revoke old credentials with their providers. The investigation has not been declared resolved.",
+    "short": "Northflank added Minio and RabbitMQ secret rotation on October 31. Customers are still being told to rotate all secrets.",
+    "long": "Northflank customers gained Minio and RabbitMQ credential rotation on October 31, following reports of unauthorized AI key use.\n\nSeparately, Wiz documented a stolen key generating roughly 800,000 Bedrock calls in 30 hours. That example was not identified as Northflank. The finding illustrates how credential abuse can accumulate substantial usage before remediation.",
+    "hashtags": [
+      "Northflank",
+      "Security"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
