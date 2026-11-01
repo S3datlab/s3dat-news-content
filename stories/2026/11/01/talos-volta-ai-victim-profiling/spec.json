@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "cinematic",
+  "headline": [
+    "TALOS FINDS",
+    "AI AFTER",
+    "THEFT"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Cisco Talos (researcher)",
+      "icon": "cisco"
+    }
+  ],
+  "art": "art.jpg",
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 211,
+  "sources": {
+    "art.jpg": "generated"
+  }
+}

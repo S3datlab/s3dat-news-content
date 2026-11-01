@@ -1,0 +1,62 @@
+{
+  "format": 2,
+  "slug": "talos-volta-ai-victim-profiling",
+  "kind": "brief",
+  "topic": "research",
+  "title": "Talos finds AI-assisted victim profiling in Volta malware",
+  "dek": "The October 31 report examines optional post-theft analysis in a Windows infostealer.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-01T12:05:16Z",
+  "lede": "Cisco Talos reported on October 31 that Volta malware asks language models to appraise stolen data. The research describes automation of criminal triage after information has already been taken.",
+  "facts": [
+    {
+      "label": "Researcher",
+      "value": "Cisco Talos"
+    },
+    {
+      "label": "Samples listed",
+      "value": "1"
+    },
+    {
+      "label": "First seen",
+      "value": "11 October 2026"
+    }
+  ],
+  "body": [
+    {
+      "text": "Talos describes an optional analysis stage alongside conventional credential theft. Its report lists one Windows sample first seen on October 11. The model’s assigned job is to prioritize victims’ assets for the operator."
+    }
+  ],
+  "buildersNote": "Add a stolen-session scenario to your incident exercise. Assign an owner for each affected service and a separate person to verify recovery. Document which accounts and records the response team must review, and keep the exercise separate from production credentials.",
+  "claims": [
+    {
+      "text": "Campaign scale and successful model-safeguard bypass are not established.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Appraisal by AI: Model-driven victim prioritization in the VOLTA infostealer",
+      "publisher": "Cisco Talos",
+      "url": "https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
+      "date": "2026-10-31"
+    }
+  ],
+  "social": {
+    "voiceover": "[serious] Cisco Talos found malware with optional language-model victim profiling. [break] Its report lists one sample. The analysis does not establish campaign scale or show that model safeguards failed.",
+    "short": "Talos describes optional victim profiling in Volta malware. One analyzed sample does not establish a widespread campaign.",
+    "long": "Cisco Talos reported language-model victim profiling in Volta on October 31. The report does not establish campaign scale.\n\nFor a response exercise, start with a stolen session and name the owner responsible for each affected service. Give recovery verification its own checklist, separate from the initial cleanup.",
+    "hashtags": [
+      "Cisco",
+      "Security"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T12:05:16Z"
+}
