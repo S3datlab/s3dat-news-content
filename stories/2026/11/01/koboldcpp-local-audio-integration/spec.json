@@ -1,0 +1,34 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "KOBOLDCPP",
+    "LOCAL",
+    "AUDIO"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "KoboldCpp",
+      "logo": "koboldcpp.png",
+      "color": "#F66B73"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 181,
+  "sources": {
+    "koboldcpp.png": "https://koboldcpp.net/favicon-192x192.png",
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

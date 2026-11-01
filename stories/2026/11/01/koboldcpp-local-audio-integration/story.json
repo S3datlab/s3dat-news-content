@@ -1,0 +1,57 @@
+{
+  "format": 2,
+  "slug": "koboldcpp-local-audio-integration",
+  "kind": "brief",
+  "topic": "dev-tools",
+  "title": "KoboldCpp adds YuE2 music and more speech models",
+  "titleAccent": "YuE2 music",
+  "dek": "Version 1.124 integrates audio.cpp models and adds transcription to MusicUI.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-01T07:07:15Z",
+  "updatedAt": "2026-11-01T07:07:15Z",
+  "lede": "KoboldCpp released version 1.124 on October 31, adding YuE2 music generation and more speech models. Its MusicUI now brings transcription alongside generation.",
+  "facts": [
+    {
+      "label": "Version",
+      "value": "1.124"
+    },
+    {
+      "label": "Music",
+      "value": "YuE2"
+    },
+    {
+      "label": "Speech additions",
+      "value": "BreezeTTS 2, Qwen3-TTS, others"
+    }
+  ],
+  "body": [
+    {
+      "text": "The release incorporates selected audio.cpp integrations, including speech models supporting voice cloning or instructions. YuE2 configurations offer supplied lyrics or an accompanying language model that writes them. The new transcription tab uses Whisper models to produce reference transcripts for speech workflows."
+    }
+  ],
+  "buildersNote": "Before replacing an audio pipeline, test a fixed script and a consented voice sample on the deployment machine. Record pronunciation errors, generation time and peak memory so the integration decision rests on your workload. Keep the previous configuration available for rollback.",
+  "claims": [],
+  "sources": [
+    {
+      "title": "koboldcpp-1.124",
+      "publisher": "KoboldCpp",
+      "url": "https://github.com/LostRuins/koboldcpp/releases/tag/v1.124",
+      "date": "2026-10-31"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Kobold C P P added music and speech integrations on October thirty first. [break] The update supports Yu E two and puts transcription alongside generation in its audio interface.",
+    "short": "KoboldCpp 1.124 adds YuE2 music generation and more speech models.",
+    "long": "KoboldCpp expanded local audio generation with its October 31 release. Selected audio.cpp integrations bring YuE2 music and additional speech models into the application.\n\nThe audio interface also gains Whisper transcription. Test pronunciation and generation time on your target machine before changing an existing workflow.",
+    "hashtags": [
+      "KoboldCpp",
+      "Audio"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
