@@ -1,6 +1,6 @@
 # S3DAT News content
 
-Private working repository for news.s3dat.com. Stories are researched and drafted by Makima
+Working repository for news.s3dat.com. Stories are researched and drafted by Makima
 under S3DAT's editorial responsibility and reviewed before they go live.
 
 | Path | What lives there |
