@@ -1,0 +1,96 @@
+{
+  "format": 2,
+  "slug": "gemini-computer-use-ga-api-integration",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google makes Gemini Computer Use generally available across two APIs",
+  "titleAccent": "generally available",
+  "dek": "The October 30 release covers both Gemini API interfaces; developers still build the execution loop and choose how conversation state is retained.",
+  "eventDate": "2026-10-30",
+  "publishedAt": "2026-11-01T21:07:39Z",
+  "lede": "Google made Gemini Computer Use generally available on October 30 across its Interactions and GenerateContent APIs. Developers can adopt the tool through either interface, with execution and conversation management remaining separate integration decisions.",
+  "facts": [
+    {
+      "label": "Status",
+      "value": "Generally available; 30 October 2026"
+    },
+    {
+      "label": "API coverage",
+      "value": "Interactions and GenerateContent"
+    },
+    {
+      "label": "Action execution",
+      "value": "Developer-provided client environment"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The application runs the actions",
+      "text": "The Computer Use guide describes a screenshot-driven loop: the model proposes an action, the client executes it, then returns the resulting screen. Browser, mobile and desktop environments have distinct action sets. Mobile actions are Android-optimized. Responses can include an intent and a safety decision; the client is responsible for obtaining user confirmation before execution. The separation is practical: selecting the tool in a request does not supply the browser driver, device connection or desktop session that carries out the work."
+    },
+    {
+      "text": "Google’s documented screenshot injection detector is opt-in and defaults to false. Policy overrides also do not eliminate the need to process confirmation responses. These are integration requirements in the current guide, not a list of features first introduced by the October 30 announcement. The release note establishes the change in availability. For an application already using Gemini, that is a different change from replacing its model or rewriting its entire orchestration layer."
+    },
+    {
+      "heading": "Stored history does not preserve every setting",
+      "text": "The Interactions API can continue a conversation through previous_interaction_id instead of requiring the application to resend its history. That identifier preserves inputs and outputs, but tools, system instructions and generation configuration remain specific to each request. They must be supplied again when needed. The API also exposes a sequence of execution steps, including tool calls, results and model output. This gives the application more than a final text answer to process. In a multi-turn interface, conversation continuity and configuration continuity are therefore separate responsibilities."
+    },
+    {
+      "text": "The Interactions documentation lists storage as enabled by default, with retention of 55 days on the paid tier and one day on the free tier. Setting store=false prevents later chaining through the interaction identifier and is incompatible with background execution. Paid projects can select shorter retention windows. The same documentation calls GenerateContent fully supported, while recommending Interactions for new projects. It also lists feature differences: explicit caching and Python automatic function calling remain available through GenerateContent but not Interactions. Choosing an interface therefore involves existing application dependencies as well as access to this tool."
+    },
+    {
+      "heading": "An earlier storage change also matters",
+      "text": "A separate October 26 release changed GenerateContent storage defaults for new paid-tier projects. Those projects store requests by default; existing projects retain their previous setting. Developers can opt out per request or through logging settings. That earlier change is relevant when comparing the two routes, but it is not part of the Computer Use launch. Together, the documented choices separate three concerns: obtaining a proposed action, deciding whether to execute it, and retaining the conversation that produced it. General availability does not combine those responsibilities into a hosted desktop service."
+    }
+  ],
+  "buildersNote": "Before connecting a real account, test one task through the intended API and inspect the complete request and response trace. Verify that tool configuration is sent again on the second turn, a confirmation pauses execution, and the chosen storage setting matches the project’s data policy.",
+  "claims": [
+    {
+      "text": "The release note confirms general availability through both APIs.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Google does not claim Computer Use is free of errors or security vulnerabilities.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes",
+      "publisher": "Google AI for Developers",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Computer use",
+      "publisher": "Google AI for Developers",
+      "url": "https://ai.google.dev/gemini-api/docs/computer-use",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Interactions API",
+      "publisher": "Google AI for Developers",
+      "url": "https://ai.google.dev/gemini-api/docs/interactions-overview",
+      "date": "2026-10-15"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Google made Gemini Computer Use generally available through two developer interfaces. [break] The model proposes actions, while application code executes them. Choosing the interface also means choosing how conversation history is handled.",
+    "short": "Gemini Computer Use reached general availability on October 30 across two APIs. The integration still needs an execution loop and an explicit choice about conversation storage.",
+    "long": "Google made Computer Use generally available across both Gemini API interfaces on October 30. Existing integrations have two routes to the tool.\n\nThe practical choices sit in the application: executing actions, handling confirmations and deciding how to retain conversation state. A stored history does not automatically preserve every request setting.",
+    "hashtags": [
+      "Google",
+      "Gemini"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-01T21:07:39Z"
+}

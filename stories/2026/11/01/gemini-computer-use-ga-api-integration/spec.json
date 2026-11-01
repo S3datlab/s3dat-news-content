@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "GEMINI",
+    "COMPUTER USE",
+    "GOES GA"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Google Gemini",
+      "icon": "googlegemini"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 261,
+  "sources": {}
+}
