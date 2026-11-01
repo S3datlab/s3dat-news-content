@@ -2,7 +2,8 @@
  * Soundtrack for the social render, synthesised from the template's cues — no samples, so there is
  * nothing to license. A quiet 120 BPM bed (kick, offbeat hat, filtered pad, bass) carries the
  * clip; each cue adds a sound effect on its beat: whoosh, swish, hit, pop, tick, glitch, draw,
- * swell, riser, land. Output: 48 kHz 16-bit stereo WAV, peak-normalised to -1 dBFS.
+ * swell, riser, land, at 40% of their design level so they never cover the voice. Output: 48 kHz
+ * 16-bit stereo WAV, peak-normalised to -1 dBFS.
  */
 const SR = 48000;
 
@@ -23,7 +24,7 @@ function svf() {
   };
 }
 
-export function synthesize(cues, { seconds = 8, seed = 7 } = {}) {
+export function synthesize(cues, { seconds = 8, seed = 7, fx: fxLevel = 0.4 } = {}) {
   const n = Math.round(seconds * SR);
   const L = new Float32Array(n), R = new Float32Array(n);
   const noise = rng(seed * 7919 + 17);
@@ -65,7 +66,8 @@ export function synthesize(cues, { seconds = 8, seed = 7 } = {}) {
     swell(t0, g, pan) { const s0 = Math.round(t0 * SR), d = 0.45 * SR, f = svf(); for (let i = 0; i < d; i++) { const x = i / d; add(s0 + i, f(noise(), 6000, 0.5).high * Math.pow(x, 3) * 0.28 * g, pan); } },
     riser(t0, g, pan) { const s0 = Math.round(t0 * SR), d = 1.0 * SR, f = svf(); let ph = 0; for (let i = 0; i < d; i++) { const x = i / d; ph += (2 * Math.PI * (200 + 600 * x * x)) / SR; add(s0 + i, (f(noise(), 500 + 5000 * x * x, 0.6).band * 0.5 + Math.sin(ph) * 0.15) * Math.pow(x, 2) * 0.4 * g, pan); } },
   };
-  for (const c of cues || []) if (fx[c.type]) fx[c.type](c.t, Math.max(0, Math.min(1.2, c.gain ?? 1)), Math.max(-0.8, Math.min(0.8, c.pan || 0)));
+  // Effects sit under the bed and the voice, not over them: fxLevel scales every cue (0.4 by default).
+  for (const c of cues || []) if (fx[c.type]) fx[c.type](c.t, fxLevel * Math.max(0, Math.min(1.2, c.gain ?? 1)), Math.max(-0.8, Math.min(0.8, c.pan || 0)));
 
   // ---- master: soft clip, normalise to -1 dBFS ----
   let peak = 0;
