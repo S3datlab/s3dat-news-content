@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "CLAUDE-MEM",
+    "ADDS UPLOAD",
+    "CONSENT"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "claude-mem",
+      "logo": "cmem.svg",
+      "color": "#D86441",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 391,
+  "sources": {
+    "cmem.svg": "https://cmem.ai/assets/cmem/cmem-mark.svg"
+  }
+}

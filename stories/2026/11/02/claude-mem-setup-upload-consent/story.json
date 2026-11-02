@@ -1,0 +1,106 @@
+{
+  "format": 2,
+  "slug": "claude-mem-setup-upload-consent",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Claude-mem adds consent before setup uploads coding prompts",
+  "titleAccent": "adds consent",
+  "dek": "Version 15.8.3 separates local history scanning from cloud upload approval after the installer sent recent prompts without asking.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-02T20:05:27Z",
+  "lede": "Claude-mem released version 15.8.3 on November 2 to require permission before its browser setup uploads coding prompts. Users can now keep the scan local or select which tools’ histories leave their computer.",
+  "facts": [
+    {
+      "label": "Project",
+      "value": "Third-party claude-mem, not an Anthropic product"
+    },
+    {
+      "label": "Fixed release",
+      "value": "15.8.3; 2 November 2026"
+    },
+    {
+      "label": "Affected setup",
+      "value": "Interactive browser onboarding introduced in 15.2.0"
+    },
+    {
+      "label": "History window",
+      "value": "Last 30 days of user prompts"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The issue concerned browser onboarding",
+      "text": "An October 29 report described the interactive installer on computers where the new setup had not been completed. Opening its first browser screen collected recent user prompts from Claude Code, Codex, Gemini CLI, Antigravity CLI and OpenCode. It sent prompt text, session identifiers, project names, folder paths and timestamps to cmem.ai. The reporter said this happened across supported tools regardless of the tools selected earlier in installation. A checkbox about anonymized setup results did not control that transfer. The maintainers subsequently acknowledged the automatic upload in the release notes. Claude-mem is a third-party memory project; this change is not an update to Anthropic’s Claude Code."
+    },
+    {
+      "heading": "Consent now controls the upload",
+      "text": "Setup scans local history, then awaits consent. Its consent panel lists tools and prompt counts, and sends only the selected tools’ prompts. Declining or clearing every selection sends none. The optional analytics choice starts unchecked and remains separate from upload approval. The new consent endpoint accepts requests only from loopback with an origin check. Repeated start requests join the pending scan or upload, preventing duplicate transfers."
+    },
+    {
+      "heading": "The review corrected misleading completion screens",
+      "text": "The merged pull request also changed how the interface represents uncertain or empty results. An unsuccessful consent response cannot establish whether the server already received an upload, because the worker waits for that upload before replying. The revised error message tells users the transfer may have happened and directs them to reload for status. While a decision is being sent, both buttons are disabled. The worker records which tools were actually uploaded, so an empty generated result no longer implies that nothing was sent. Closing the tab while consent is pending no longer keeps local work paused; reopening it restores the question. On November 2, maintainer thedotmack reported a real-browser test against a substitute server that logged requests. It recorded zero requests before consent, zero after declining and one upload containing only the selected tool after approval. Those are the maintainer’s test results."
+    },
+    {
+      "heading": "The local viewer is a separate path",
+      "text": "The tagged My Work guide describes a viewer backed by the saved local memory database. Displaying recorded requests and results requires no cloud account, new model call or internet connection. Its local review notes live in a separate database and are excluded from cloud sync. Opening the viewer and changing pages can send two anonymous telemetry events carrying page names; the guide provides a separate telemetry-disable command. Optional cloud sync can transmit saved prompt text and observation narratives. The setup decision therefore sits alongside other independently configured sharing features, rather than acting as a universal network switch for the application."
+    }
+  ],
+  "buildersNote": "Before onboarding a work machine, test the patched setup with two disposable agent histories and select only one for upload. Record the choice and observed destination. If an older setup ran against sensitive projects, ask the service to identify recipients and confirm deletion separately from upgrading.",
+  "claims": [
+    {
+      "text": "Version 15.8.3 does not delete earlier uploads or change server-side handling and privacy-policy wording.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The consent gate controls upload, not permission to read local histories: scanning still happens before the choice.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "v15.8.3",
+      "publisher": "claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem/releases/tag/v15.8.3",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "fix(setup): require explicit consent before uploading prompts to cmem.ai",
+      "publisher": "claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem/pull/5220",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Installing claude-mem uploads your last 30 days of prompts to cmem.ai, no opt-in",
+      "publisher": "claude-mem issue tracker",
+      "url": "https://github.com/thedotmack/claude-mem/issues/5176",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "My Work: the local live viewer",
+      "publisher": "claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem/blob/v15.8.3/docs/public/usage/my-work.mdx",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Claude Mem now asks before its setup uploads coding prompts. [break] The third-party tool previously sent thirty days of user prompts without that choice. Updating does not remove earlier uploads.",
+    "short": "Claude-mem 15.8.3 adds consent before browser setup uploads coding prompts. Users can decline or choose which tools’ histories to send.",
+    "long": "Claude-mem changed its browser onboarding after a report that setup uploaded recent coding prompts without asking. The reported scope was interactive installation where the new setup had not been completed, including histories from five supported tools.\n\nThe local My Work viewer can display saved work without a cloud account or a new model call. Optional cloud sync remains a separate sharing feature; the setup choice is not a universal switch for every network operation.",
+    "hashtags": [
+      "ClaudeMem",
+      "CodingAgents",
+      "DataPrivacy",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T20:05:27Z"
+}
