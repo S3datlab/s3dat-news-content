@@ -282,12 +282,17 @@
   }
 
   /* ---------- logos ---------- */
+  let logoCopies = 0;
   function logoNode(brand, color, parent, cls = "logo") {
     const box = el("div", cls, parent);
     if (brand && brand.svgPath) {
       box.innerHTML = `<svg viewBox="0 0 24 24"><path fill="${color}" d="${brand.svgPath}"/></svg>`;
     } else if (brand && brand.svg) {
-      box.innerHTML = brand.svg;
+      // Each copy gets its own ids: a second copy would otherwise clip and fill by the first one's
+      // clipPath and defs, which vanish with it when its scene is hidden.
+      const tag = `-l${++logoCopies}`;
+      const ids = [...brand.svg.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+      box.innerHTML = ids.reduce((s, id) => s.split(`id="${id}"`).join(`id="${id}${tag}"`).split(`#${id})`).join(`#${id}${tag})`).split(`#${id}"`).join(`#${id}${tag}"`), brand.svg);
       const svg = box.querySelector("svg");
       const vb = svg && (svg.getAttribute("viewBox") || "").split(/[\s,]+/).map(Number);
       // Wide wordmarks: keep roughly the visual area of a square mark instead of shrinking to a

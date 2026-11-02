@@ -5,7 +5,7 @@ You write the copy in `story.json` (`social`, below); nobody posts by hand.
 
 - **Now:** the moment a story is published, `publish.yml` renders its 16:9 cut and shares it on
   X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack.
-- **Reel:** every five hours `reel.yml` picks the story of the last 24 hours most worth a video,
+- **Reel:** about every five hours (five a day) `reel.yml` picks the story of the last 24 hours most worth a video,
   renders its 9:16 cut with the voice-over and posts it to Instagram (and YouTube Shorts or TikTok
   when connected). Instagram is the one channel that needs the vertical video.
 
@@ -35,14 +35,14 @@ shared, `publish.yml` renders `--format hd`, uploads it (`publish.py --social --
 `social.py --story <slug> --group now`. The result is committed to `social/posted/<slug>.json`. A
 failure here leaves the story published; the workflow `Post to social media` can share it by hand.
 
-## Reel: the 9:16 cut every five hours
+## Reel: the 9:16 cut about every five hours
 
-At 01:20, 06:20, 11:20, 16:20 and 21:20 UTC (04:20, 09:20, 14:20, 19:20 and 00:20 in Istanbul)
+Every hour at :41 (GitHub delays scheduled runs and drops some, so fixed slots went missing)
 `reel.yml` runs `social.py --pick`: the live story of the last 24 hours without a reel, highest
 `social.priority` first, then analysis before story and explained, then the newest. Stories with
 priority 1 or 2 never get a reel; when nothing qualifies, nothing is posted. It renders the tall
-cut, uploads it and runs `social.py --story <slug> --group reel`. No reel within four hours of the
-previous one.
+cut, uploads it and runs `social.py --story <slug> --group reel`. A reel goes out only once the
+previous one is 4 h 30 min old, so the hourly checks give one every 4.5 to 5.5 hours, five a day.
 
 For a withdrawn story, run `social.py --cancel <slug>` with `BUFFER_API_KEY` (it deletes the posts
 recorded in `social/posted/<slug>.json`).

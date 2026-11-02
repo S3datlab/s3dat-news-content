@@ -3,7 +3,7 @@
 
   now   X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack: the 16:9 cut,
         shared the moment the story is published (.github/workflows/publish.yml)
-  reel  Instagram (and YouTube Shorts or TikTok if connected): the 9:16 cut. Every five hours
+  reel  Instagram (and YouTube Shorts or TikTok if connected): the 9:16 cut. About every five hours
         .github/workflows/reel.yml picks the story most worth a video and posts it
 
   python scripts/social.py --story SLUG --group now|reel [--dry-run] [--force]
@@ -43,7 +43,7 @@ SITE = "https://news.s3dat.com"
 API = "https://api.buffer.com"
 AGENT = "S3DAT-News-Social/1.0 (+https://news.s3dat.com/about)"
 WINDOW = dt.timedelta(hours=24)  # how far back a reel looks for its story
-REEL_GAP = dt.timedelta(hours=4)  # reels run every five hours; a manual run cannot crowd them
+REEL_GAP = dt.timedelta(hours=4, minutes=30)  # reel.yml checks hourly: a reel every 4.5-5.5 h, five a day
 RANK = {"analysis": 3, "story": 2, "explained": 2, "brief": 1}
 WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack", "facebook", "linkedin", "pinterest"}
 TALL = {"instagram", "youtube", "tiktok"}

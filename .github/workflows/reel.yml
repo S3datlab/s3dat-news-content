@@ -1,11 +1,13 @@
 name: Post the reel
 
-# Every five hours (UTC 01, 06, 11, 16, 21 = Istanbul 04, 09, 14, 19, 00): pick the story of the last
+# About every five hours (five a day): pick the story of the last
 # 24 hours most worth a video, render its 9:16 cut with the voice-over, upload it and post it to
 # Instagram (and YouTube Shorts or TikTok if connected). Nothing worth a video: nothing posted.
 on:
   schedule:
-    - cron: '20 1,6,11,16,21 * * *'
+    # GitHub delays scheduled runs and drops some outright, so this checks every hour and
+    # social.py --pick posts only once the last reel is 4 h 30 min old (SOCIAL.md).
+    - cron: '41 * * * *'
   workflow_dispatch:
     inputs:
       story:
@@ -17,7 +19,7 @@ on:
         type: boolean
         default: true
       force:
-        description: 'Ignore the four-hour guard and an earlier reel of the story'
+        description: 'Ignore the gap since the last reel and an earlier reel of the story'
         type: boolean
         default: false
 

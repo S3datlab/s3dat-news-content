@@ -107,7 +107,7 @@ jobs:
               subprocess.run([sys.executable, 'scripts/publish.py', folder], check=True)
           PY
       # The 16:9 cut goes to every channel but Instagram as soon as the story is live; the 9:16 reel
-      # is reel.yml's job every five hours (SOCIAL.md). A failure here never fails the publishing.
+      # is reel.yml's job about every five hours (SOCIAL.md). A failure here never fails the publishing.
       - name: Share the 16:9 cut now
         id: share
         if: steps.stories.outputs.folders != '[]'

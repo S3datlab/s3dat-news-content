@@ -1,7 +1,7 @@
 name: Post to social media
 
 # Manual tools only. Stories are shared automatically: the 16:9 cut by publish.yml the moment a
-# story is live, the 9:16 reel by reel.yml every five hours (SOCIAL.md).
+# story is live, the 9:16 reel by reel.yml about every five hours (SOCIAL.md).
 on:
   workflow_dispatch:
     inputs:

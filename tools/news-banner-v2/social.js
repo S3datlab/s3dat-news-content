@@ -9,8 +9,8 @@
  * Cuts land on phrase boundaries of the voice-over (d.story.captions, timed by render.mjs), so the
  * picture changes when the sentence does. Below the picture the voice-over runs as kinetic type,
  * words lighting up as they are spoken. A segmented progress bar and the S3DAT NEWS header sit at
- * the top; everything stays inside the Reels safe zone (clear of the header, the caption and the
- * buttons). The background is the brand colour, deepened, with drifting light and the story's art
+ * the top; everything stays inside the Reels safe zone: below the Reels/Friends tabs (about 210px),
+ * clear of the caption and the buttons, and at least 110px in from the sides, which tall phones crop. The background is the brand colour, deepened, with drifting light and the story's art
  * blurred in when it has one. Returns { poster, frame(t) } for t in seconds. */
 BANNER.reel = async (root, d, B) => {
   const { el, css, seg, lerp, ease, sp, brandColors, onColor, alpha, mix, clamp } = B;
@@ -24,8 +24,8 @@ BANNER.reel = async (root, d, B) => {
   const ink = onColor(pop);
   const deep = mix(pop, "#04060a", 0.86);
   const second = brands[1] ? brandColors(brands[1], "#ffd166").vivid : mix(pop, "#ffffff", 0.45);
-  const STAGE = { y: 300, h: 860 };
-  const CAP = { x: 64, y: 1206, w: 870, h: 270 };
+  const STAGE = { y: 350, h: 850 };
+  const CAP = { x: 110, y: 1232, w: 790, h: 270 };
   const hero = (d.cutouts || []).find((x) => x.role === "hero") || (d.cutouts || [])[0] || null;
   const logoColor = (br) => (B.luminance(br.color || "#111111") > 0.8 ? "#111111" : br.color || "#111111");
 
@@ -108,13 +108,13 @@ BANNER.reel = async (root, d, B) => {
       });
       B.cue("swish", 0.5, 0.6, 0.4);
     }
-    const head = css(el("div", "abs", s.node), { left: "60px", top: "40px", width: "960px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px" });
+    const head = css(el("div", "abs", s.node), { left: "110px", top: "40px", width: "860px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px" });
     const lines = d.headline.map((text, i) => {
       const n = B.line(head, text, { font: "900 100px/0.92 Archivo", fontStretch: "72%", color: "#ffffff", letterSpacing: "-0.01em", textShadow: "0 6px 30px rgba(0,0,0,0.35)" });
       if (i === d.accent) css(n, { background: pop, color: ink, padding: "0.04em 0.12em 0.02em", borderRadius: "0.08em", textShadow: "none" });
       return n;
     });
-    B.fitEach(lines, 940, hero ? 470 : brands[0] ? 440 : 640, 230, 80, 0.94);
+    B.fitEach(lines, 850, hero ? 470 : brands[0] ? 440 : 640, 230, 80, 0.94);
     const slam = B.animate(lines, "slam", { start: 0.12, stagger: 0.18, out: null, camera: cam });
     const landAt = 0.12 + (lines.length - 1) * 0.18 + 0.1;
     const boom = B.burst(s.node, 120, 120, pop, 12, 60, 200);
@@ -189,7 +189,7 @@ BANNER.reel = async (root, d, B) => {
     } else {
       // A fact without a number, or the accent line of the headline.
       const text = b.kind === "fact" ? b.value : d.headline[d.accent] || d.headline[0];
-      const panel = css(el("div", "abs", s.node), { left: "60px", top: "150px", width: "960px", padding: "56px 60px 60px 76px", borderRadius: "36px", background: "rgba(8,10,14,0.55)", boxShadow: "0 30px 80px rgba(0,0,0,0.35)", overflow: "hidden" });
+      const panel = css(el("div", "abs", s.node), { left: "100px", top: "150px", width: "880px", padding: "56px 56px 60px 72px", borderRadius: "36px", background: "rgba(8,10,14,0.55)", boxShadow: "0 30px 80px rgba(0,0,0,0.35)", overflow: "hidden" });
       const bar = css(el("div", "abs", panel), { left: 0, top: 0, bottom: 0, width: "16px", background: pop, transformOrigin: "50% 0" });
       const label = b.kind === "fact" ? B.line(panel, String(b.label).toUpperCase(), { font: "700 36px/1.1 'Space Grotesk'", color: pop, letterSpacing: "0.12em", display: "block", marginBottom: "26px", whiteSpace: "normal" }) : null;
       const body = css(el("div", "", panel), { font: "900 96px/1.0 Archivo", fontStretch: "74%", color: "#ffffff", textTransform: "uppercase" });
@@ -233,12 +233,12 @@ BANNER.reel = async (root, d, B) => {
   const cutTimes = cuts.slice(1);
 
   /* ---------- header and progress ---------- */
-  const segs = css(el("div", "abs", root), { left: "36px", right: "36px", top: "176px", height: "6px", display: "flex", gap: "8px" });
+  const segs = css(el("div", "abs", root), { left: "110px", right: "110px", top: "236px", height: "6px", display: "flex", gap: "8px" });
   const segFills = scenes.map((s) => {
     const track = css(el("div", "", segs), { flex: String(Math.max(0.5, Math.min(DURATION, s.t1) - s.t0)), height: "100%", borderRadius: "3px", background: "rgba(255,255,255,0.22)", overflow: "hidden" });
     return css(el("div", "", track), { width: "100%", height: "100%", background: "#ffffff", transformOrigin: "0 50%" });
   });
-  const header = css(el("div", "abs", root), { left: "36px", top: "212px", display: "flex", alignItems: "center", gap: "16px" });
+  const header = css(el("div", "abs", root), { left: "110px", top: "270px", display: "flex", alignItems: "center", gap: "16px" });
   const headMark = el("div", "", header, rotor(46, "rh"));
   B.line(header, "S3DAT NEWS", { font: "900 40px/1 Archivo", fontStretch: "80%", color: "#ffffff", letterSpacing: "0.01em" });
   if (story.topic) {
