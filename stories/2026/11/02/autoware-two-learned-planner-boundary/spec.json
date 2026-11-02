@@ -1,0 +1,35 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "AUTOWARE",
+    "PLANNER",
+    "CHOICE"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Autoware",
+      "logo": "autoware.svg",
+      "color": "#00C8FF",
+      "recolor": false
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 361,
+  "sources": {
+    "autoware.svg": "https://docs.autoware.org/_media/d3d9a8b84d16f8372496.svg",
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

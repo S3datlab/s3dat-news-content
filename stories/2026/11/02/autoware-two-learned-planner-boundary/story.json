@@ -1,0 +1,156 @@
+{
+  "format": 2,
+  "slug": "autoware-two-learned-planner-boundary",
+  "kind": "analysis",
+  "topic": "agents",
+  "title": "Autoware 2.0 makes learned planning a selectable component",
+  "titleAccent": "selectable component",
+  "dek": "The October 29 package offers a launch-time planner choice; the foundation’s November 2 announcement describes a broader architecture for combining driving systems.",
+  "eventDate": "2026-10-29",
+  "publishedAt": "2026-11-02T13:13:05Z",
+  "lede": "The Autoware Foundation announced Autoware 2.0 on November 2, following the software package’s October 29 release. Developers gain a learned-planner option inside an existing driving stack, with a narrower implementation than the complete generator-selector design.",
+  "facts": [
+    {
+      "label": "Package release",
+      "value": "Autoware 2.0.0; 29 October 2026"
+    },
+    {
+      "label": "Default planner",
+      "value": "Rule-based"
+    },
+    {
+      "label": "Learned option",
+      "value": "Diffusion Planner, selected at launch"
+    },
+    {
+      "label": "Model comparison",
+      "value": "NVIDIA Alpamayo 2 Super; 4 August 2026 release documentation"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A planner boundary comes first",
+      "text": "Autoware’s architecture separates trajectory generation from choosing the trajectory sent to vehicle control. A generator can be a conventional planner using maps and perception, or a learned model producing candidate paths. The intended selector checks proposals against constraints and ranks them. In the delivered configuration, the launch setting chooses between rule-based planning and the Diffusion Planner. The learned path runs through a trajectory modifier, which processes candidates and forwards the first to the planning validator. The rule-based path also reaches that validator. This gives developers a defined integration point for changing how a path is proposed while keeping the downstream control connection."
+    },
+    {
+      "heading": "A model package solves a different problem",
+      "text": "NVIDIA’s August 4 Alpamayo 2 Super documentation describes a model-centered alternative for autonomous-driving development. Its reasoner processes camera video, language context and prior motion; a diffusion-based Action Expert converts the representation into a future trajectory. The model can also produce reasoning traces, high-level maneuvers, grounded scene answers and training labels. NVIDIA describes uses as an offline teacher, evaluation critic and data engine, alongside customization. Its AlpaSim workflow repeatedly applies actions and generates new observations, exposing effects that recorded-scene comparisons miss. These are different starting points: Autoware organizes a vehicle software system, while Alpamayo supplies learned behavior and development outputs around a model."
+    },
+    {
+      "heading": "The upgrade includes model housekeeping",
+      "text": "The 2.0.0 release moves Foundation models and datasets to Hugging Face, with fixed versions downloaded through the artifacts installation role. Model variants now occupy separate directories. Existing files downloaded for version 1.9.0 or earlier do not match the new launch layout and need downloading again. The package also removes setup-dev-env.sh in favor of its Ansible installation flow. These changes make model provenance part of the software upgrade, not an unrelated folder copied between workstations. A reproducible experiment needs both the launch configuration and the actual model bundle that configuration expects."
+    },
+    {
+      "heading": "Workspaces carry their own dependency record",
+      "text": "The Autoware Index offers a second assembly layer for additional community packages. Its CLI or browser builder writes a repository manifest from a selection, including registered dependencies. A normal source installation does not require it. The documentation specifies Jazzy as the only registered distribution at the 2.0.0 release. Its check command compares the composed workspace with the registry and validation results, reporting failed packages, changed registrations or removed entries. Imported repositories can contain unselected packages, so the documented build can be scoped to the selected package and its dependencies. This is useful integration evidence: it records what was assembled and whether the registered components passed their software checks."
+    },
+    {
+      "heading": "A vehicle blueprint adds operating assumptions",
+      "text": "Reference Designs pair a deployment profile with a software stack. The profile records the vehicle, operating conditions and use case; the stack identifies modules, model versions and parameters. The privately owned vehicle guidance describes a phased progression from single-camera assistance toward a Level 4 target. Low-speed guidance covers indoor and outdoor platforms with configurable hardware. Separating these records matters because a successful software build says nothing about whether its sensors, actuators and operating environment match another vehicle. The same planner name can sit inside substantially different systems. For an integrator, the reproducible unit is therefore the configuration plus its operating assumptions, not just the neural-network checkpoint."
+    }
+  ],
+  "buildersNote": "Create a simulation-only test matrix with the same map, sensors and controller for each planner. Record the model version, launch choice and validation failures before changing any vehicle deployment.",
+  "claims": [
+    {
+      "text": "Autoware 2.0.0 runs one generator at launch; the selector packages are present but are not launched by this configuration.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The off-road Reference Design still has unwritten sections.",
+      "status": "confirmed",
+      "source": 5
+    },
+    {
+      "text": "The published design guidance does not establish completed road-safety validation for a particular vehicle deployment.",
+      "status": "unclear",
+      "source": 5
+    }
+  ],
+  "comparison": {
+    "caption": "Different development layers in the dated releases, not a driving-performance ranking",
+    "columns": [
+      "Layer",
+      "Autoware 2.0.0 · 29 Oct",
+      "Alpamayo 2 Super · 4 Aug"
+    ],
+    "rows": [
+      [
+        "Delivered unit",
+        "Vehicle software stack with selectable planner",
+        "Model weights and inference workflows"
+      ],
+      [
+        "Planning connection",
+        "Rule-based or Diffusion Planner at launch",
+        "Reasoner plus diffusion Action Expert"
+      ],
+      [
+        "Other development work",
+        "Workspace composition and Reference Designs",
+        "Reasoning, scene answers and auto-labeling"
+      ]
+    ]
+  },
+  "ourRead": "We favor Autoware’s explicit planner boundary for teams that already have a vehicle stack and need controlled experiments with learned planning. It makes the replacement point inspectable without requiring the team to adopt a whole model-centered development process. Alpamayo’s broader outputs are more relevant when the bottleneck is producing labels, teachers or scene explanations. We would change that preference if closed-loop tests on the same operating domain showed that the integration boundary obscures failures or costs more engineering work than the model-centered route.",
+  "watching": [
+    "By November 16, check whether a tagged Autoware release launches the selector and documents its candidate-ranking behavior.",
+    "By November 30, check for completed Reference Design evaluations that identify hardware, operating domain and observed failures."
+  ],
+  "sources": [
+    {
+      "title": "2.0.0",
+      "publisher": "Autoware Foundation",
+      "url": "https://github.com/autowarefoundation/autoware/releases/tag/2.0.0",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "Autoware Foundation releases Autoware 2.0 to Expand AI Support for Open-Source Autonomous Driving",
+      "publisher": "Autoware Foundation",
+      "url": "https://autoware.org/autoware-foundation-releases-autoware-2-0-to-expand-ai-support-for-open-source-autonomous-driving/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Architecture 2.0",
+      "publisher": "Autoware Foundation",
+      "url": "https://docs.autoware.org/main/design/autoware-architecture-v2/",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Autoware Index",
+      "publisher": "Autoware Foundation",
+      "url": "https://docs.autoware.org/main/installation/autoware/autoware-index/",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Generate Trajectories, Reasoning Traces, and Auto-Labels with NVIDIA Alpamayo 2 Super",
+      "publisher": "NVIDIA",
+      "url": "https://developer.nvidia.com/blog/generate-trajectories-reasoning-traces-and-auto-labels-with-nvidia-alpamayo-2-super/",
+      "date": "2026-08-04"
+    },
+    {
+      "title": "Reference design",
+      "publisher": "Autoware Foundation",
+      "url": "https://docs.autoware.org/main/reference-design/",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Autoware adds a learned driving planner alongside its rule-based option. Version two selects the planner at launch. [measured] The broader architecture for choosing between competing trajectories is not running in this configuration.",
+    "short": "Autoware 2.0 adds a learned driving planner selected at launch. The October 29 package keeps rule-based planning as its default; its broader trajectory-selection architecture is not yet running.",
+    "long": "Autoware 2.0 gives driving-software developers a launch-time choice between rule-based planning and a learned Diffusion Planner. The foundation announced the package on November 2, after its October 29 release.\n\nThe distinction is practical: this version runs one generator, not several competing planners with an active selector. Our analysis compares that integration approach with NVIDIA’s model-centered Alpamayo tooling, without treating the two as equivalent products or a performance ranking.",
+    "hashtags": [
+      "Autoware",
+      "Robotics",
+      "AI"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T13:13:05Z"
+}
