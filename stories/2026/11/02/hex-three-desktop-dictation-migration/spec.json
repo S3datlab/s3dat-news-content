@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "HEX",
+    "DICTATION",
+    "REDESIGN"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Anomaly",
+      "logo": "anomaly.svg",
+      "color": "#242424",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 321,
+  "sources": {
+    "anomaly.svg": "https://anoma.ly/hex/assets/footer-signature-z2S53VdL.svg"
+  }
+}

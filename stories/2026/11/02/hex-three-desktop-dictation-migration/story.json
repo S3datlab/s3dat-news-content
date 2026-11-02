@@ -1,0 +1,116 @@
+{
+  "format": 2,
+  "slug": "hex-three-desktop-dictation-migration",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Hex 3 rebuilds desktop dictation around a common settings interface",
+  "titleAccent": "common settings interface",
+  "dek": "The October 31 release replaces the old desktop interface and requires a manual migration; a November 1 update fixes truncated recordings.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-02T07:11:13Z",
+  "updatedAt": "2026-11-02T07:11:13Z",
+  "lede": "Anomaly released Hex 3 on October 31 with a common dictation settings interface across macOS, Windows and Linux. Existing users must install the replacement manually and rebuild their setup; version 3.1.2 followed on November 1.",
+  "facts": [
+    {
+      "label": "Major release",
+      "value": "Hex 3.0.0; 31 October 2026"
+    },
+    {
+      "label": "Follow-up",
+      "value": "3.1.2; 1 November 2026"
+    },
+    {
+      "label": "Transcription",
+      "value": "Local speech recognition"
+    },
+    {
+      "label": "Platform status",
+      "value": "Windows and Linux remain beta"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A replacement installation",
+      "text": "Version 3 replaces the settings interface with common General, Output and History sections. Output groups replacements, application-specific modes, OpenCode rewriting and transformations. The update removes Voice Action and spoken commands. Upgrading from 2.3.1 starts a separate data directory: settings, history, meeting recordings and downloaded models are not imported. Existing exported meeting notes remain in place. On macOS, the changed application identity requires fresh permissions and a new login-launch setting. Windows keeps the previous installation alongside the replacement."
+    },
+    {
+      "heading": "Local recognition and optional rewriting",
+      "text": "Ordinary dictation records speech, transcribes it locally and inserts text at the focused application. It does not require OpenCode. The optional rewriting path connects to an already-running OpenCode service; Hex neither launches its executable nor starts or restarts that service. The compatibility document describes authenticated loopback communication, model discovery and one-shot generation using the service’s configuration. That separates the desktop connection from the eventual model provider: a local connection to OpenCode does not establish that its selected model runs locally. If the service cannot be reached, the feature reports that OpenCode is not running."
+    },
+    {
+      "heading": "The same interface meets different desktops",
+      "text": "The Linux build uses desktop facilities for shortcuts and pasting. Wayland desktops can provide a global-shortcut portal; others require desktop keybindings. Its window needs a Vulkan driver even when speech inference falls back to the CPU. Published Linux packages require glibc 2.39 or later. Direct installations have a signed updater, while package installations leave executable replacement to the package route. On Windows, x64 inference uses Vulkan and requires a graphics driver; ARM64 inference uses the CPU. Its settings include retained transcript history, while captured audio is not retained by default. These differences make installation requirements part of the migration, despite the shared interface. On Linux, closing the window leaves dictation and model downloads running. Linux runs as one process per user and data directory, rather than a system-wide daemon."
+    },
+    {
+      "heading": "The next patch addresses lost speech and history",
+      "text": "The November 1 update fixes a recording problem described in the release notes: a quiet built-in microphone could leave only the first 2.5 seconds. It also fixes a history race in which background cleanup could restore cleared entries and discard newer ones. Escape no longer cancels dictation. The update adds Hebrew through an ivrit.ai Whisper fine-tune and the Nemotron 3.5 ASR Streaming 0.6B model. It can also reuse speech models already present on the computer. Windows shortcut handling and Linux background operation receive additional fixes, extending the follow-up beyond the recording fault."
+    }
+  ],
+  "buildersNote": "Before replacing 2.3.1, preserve its data directory and record your shortcuts. Test a 30-second dictation in two target applications, then clear History and reopen Hex. Check the selected OpenCode provider separately before enabling rewriting for sensitive text.",
+  "claims": [
+    {
+      "text": "Linux is documented as beta, despite the availability of stable-channel release packages.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The Windows beta guide says its replacement Rune app has only been cross-compiled and has not run on Windows. End-to-end validation is not established by that document.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Hex 3.0.0",
+      "publisher": "Anomaly / GitHub",
+      "url": "https://github.com/anomalyco/hex/releases/tag/v3.0.0",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "Hex 3.1.2",
+      "publisher": "Anomaly / GitHub",
+      "url": "https://github.com/anomalyco/hex/releases/tag/v3.1.2",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Install The Linux Beta",
+      "publisher": "Anomaly / GitHub",
+      "url": "https://github.com/anomalyco/hex/blob/v3.1.2/docs/linux.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Windows Beta",
+      "publisher": "Anomaly / GitHub",
+      "url": "https://github.com/anomalyco/hex/blob/v3.1.2/docs/windows.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "OpenCode V2 Compatibility",
+      "publisher": "Anomaly / GitHub",
+      "url": "https://github.com/anomalyco/hex/blob/v3.1.2/docs/opencode-compatibility.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Dictation",
+      "publisher": "Anomaly / GitHub",
+      "url": "https://github.com/anomalyco/hex/blob/v3.1.2/docs/features/dictation.md",
+      "date": "2026-11-01"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Hex rebuilt its desktop dictation interface across three operating systems. [break] Existing users must install the replacement manually. Windows and Linux remain beta, and optional rewriting has a separate model connection.",
+    "short": "Hex 3 replaces its desktop dictation interface with common settings controls. Upgrading from 2.3.1 requires a manual installation and fresh setup; Windows and Linux remain beta.",
+    "long": "Hex 3 reorganizes desktop dictation around a common settings interface. Its November 1 follow-up fixes a fault that could retain only the first 2.5 seconds of a recording from a quiet microphone.\n\nSpeech recognition runs locally. Optional rewriting connects to an existing OpenCode service, whose chosen model provider determines the next processing step. A local desktop connection alone does not establish local model inference.",
+    "hashtags": [
+      "Hex",
+      "SpeechRecognition"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
