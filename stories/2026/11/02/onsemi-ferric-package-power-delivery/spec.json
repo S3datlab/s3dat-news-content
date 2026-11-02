@@ -1,0 +1,26 @@
+{
+  "engine": 2,
+  "template": "cinematic",
+  "headline": [
+    "ONSEMI",
+    "AGREES TO",
+    "BUY FERRIC"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "onsemi",
+      "logo": "onsemi.svg",
+      "color": "#DA7F3A",
+      "recolor": true
+    }
+  ],
+  "cutouts": [],
+  "art": "art.jpg",
+  "mood": "calm",
+  "seed": 411,
+  "sources": {
+    "onsemi.svg": "https://www.onsemi.com/images/logo/onsemi_logo_full_color.svg",
+    "art.jpg": "generated"
+  }
+}

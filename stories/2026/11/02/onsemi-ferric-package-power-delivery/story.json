@@ -1,0 +1,146 @@
+{
+  "format": 2,
+  "slug": "onsemi-ferric-package-power-delivery",
+  "kind": "analysis",
+  "topic": "hardware",
+  "title": "Onsemi agrees to buy Ferric for package-level AI power delivery",
+  "titleAccent": "agrees to buy Ferric",
+  "dek": "The proposed acquisition follows Analog Devices’ move into integrated voltage regulation, as suppliers compete to serve increasingly crowded compute packages.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-02T23:11:53Z",
+  "lede": "Onsemi agreed on November 2 to acquire Ferric, a developer of integrated voltage regulators for AI processors. The deal targets the electrical path into a chip, where packaging and rapidly changing current demand shape usable compute capacity.",
+  "facts": [
+    {
+      "label": "Buyer and target",
+      "value": "Onsemi and Ferric"
+    },
+    {
+      "label": "Consideration",
+      "value": "$600 million cash plus up to $175 million tied to revenue milestones"
+    },
+    {
+      "label": "Expected closing",
+      "value": "By end of 2026, subject to conditions"
+    },
+    {
+      "label": "Product context",
+      "value": "Fe1767 Newport: 145 A thermal design current"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The purchase targets a shorter electrical path",
+      "text": "Onsemi says Ferric combines power controllers, switching transistors, inductors and capacitors in a compact package. It plans to pair that engineering with its manufacturing scale and customer relationships. Moving conversion into the processor package or substrate changes which parts of a system designer’s layout the power supplier must help engineer."
+    },
+    {
+      "heading": "Ferric already has a dual-sided part in sampling",
+      "text": "Ferric’s October 13 announcement describes Fe1767 Newport with input power entering its circuit-board-facing side and regulated output leaving toward the processor. The vertical path is intended to reduce power-network impedance and the voltage drop caused by sudden load changes. Ferric specifies a 5.6 by 8.9 by 1.2 millimeter package and up to 90.5% efficiency at 1.8 volts input and 0.75 volts output. It reports 19–30% less transient droop than competing integrated regulators under equivalent load-step conditions. Samples and evaluation boards were available to qualified customers at that announcement. Output spans 0.25–1.25 volts, with 1.2–2.0 volts input."
+    },
+    {
+      "heading": "Analog Devices bought a related capability earlier this year",
+      "text": "Analog Devices agreed in May to buy its own integrated-regulator supplier for $1.5 billion and completed the transaction on July 7. Its announcement identified two capabilities: integrated voltage regulation and silicon capacitors. The capacitors were already in production, while regulator programs were advancing with hyperscalers and AI silicon providers. ADI described shortening the power-delivery path to support denser systems. The two acquisitions therefore point toward a similar place in the computer, but not an interchangeable catalog. Ferric’s specified sampling part and the acquired company’s disclosed development programs describe different commercial stages. Purchase price measures the cost of acquiring the business; qualification tests decide whether its hardware fits a specific processor."
+    },
+    {
+      "heading": "Demand is growing before this deal contributes",
+      "text": "In its separate November 2 earnings release, Onsemi reported that AI data-center revenue increased 39% from the preceding quarter and 175% from a year earlier. That growth predates ownership of Ferric and establishes the buyer’s existing exposure to this market. It shows why the buyer wants more exposure to processor power delivery before the acquisition closes. The distinction matters for interpreting the transaction: buying engineering capacity can expand the range of designs a supplier pursues, while the economics of an installed server still depend on the components actually qualified for that system. A larger supplier’s sales channel cannot by itself substitute a new regulator into an existing processor package."
+    },
+    {
+      "heading": "The integration work moves toward the chip designer",
+      "text": "For a processor team, the relevant comparison is between complete power-delivery arrangements, including the regulator’s position and the conditions under which its efficiency was measured. A cloud customer buying accelerator time sits farther from those decisions. Cloud pricing depends on the operator’s complete system economics and commercial choices. The useful consequence of this consolidation would be a qualified design that preserves its electrical benefits after packaging, cooling and system integration. That is a different milestone from an acquisition closing, and a more useful one for judging whether the transaction changes available compute."
+    }
+  ],
+  "buildersNote": "For an accelerator design review, request efficiency curves at the intended input and output voltages, load-step traces and package constraints. Compare the complete power-delivery assembly under the same workload transitions, with the regulator, interconnect and supporting capacitance treated as one assembly.",
+  "claims": [
+    {
+      "text": "Ferric’s efficiency and droop figures are vendor-reported component results. They do not establish tokens-per-watt gains for a named AI workload.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "Closing by year-end is conditional, and Onsemi expects no meaningful near-term financial impact.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "comparison": {
+    "caption": "Dated supplier announcements distinguish acquisition status from product readiness.",
+    "columns": [
+      "Detail",
+      "Onsemi / Ferric",
+      "Analog Devices / Empower"
+    ],
+    "rows": [
+      [
+        "Transaction",
+        "Pending; expected by year-end",
+        "Completed 7 Jul 2026"
+      ],
+      [
+        "Disclosed capability",
+        "Integrated voltage regulation",
+        "Integrated regulation and silicon capacitors"
+      ],
+      [
+        "Product evidence",
+        "Fe1767 sampling, 13 Oct 2026",
+        "Capacitors in production; IVR programs advancing"
+      ]
+    ]
+  },
+  "ourRead": "We see this as a credible bet on package-level power engineering, not evidence that inference becomes cheaper when the deal closes. The strongest argument is that the purchase connects specialized regulator design with a supplier able to industrialize it. We would change that assessment if customer-qualified systems showed that packaging and cooling overhead erased the component-level gains, or if the acquired designs failed to progress beyond evaluation.",
+  "watching": [
+    "By December 31, 2026: whether Onsemi reports closing the Ferric acquisition or revises its timetable.",
+    "By March 31, 2027: whether either supplier publishes customer-qualified package results with comparable electrical conditions."
+  ],
+  "sources": [
+    {
+      "title": "onsemi to Acquire Ferric, Establishing Leadership in Power Delivery for Next-Generation AI Processors",
+      "publisher": "onsemi",
+      "url": "https://investor.onsemi.com/node/23396/pdf",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Ferric Launches Fe1767 Newport Dual-Sided IVR for AI and High-Performance Processors",
+      "publisher": "Ferric / Business Wire",
+      "url": "https://www.businesswire.com/news/home/20261012743019/en/Ferric-Launches-Fe1767-Newport-Dual-Sided-IVR-for-AI-and-High-Performance-Processors",
+      "date": "2026-10-13"
+    },
+    {
+      "title": "Analog Devices to Acquire Empower Semiconductor, Expanding its Next-Generation High-Density Power Portfolio for the AI Era",
+      "publisher": "Analog Devices",
+      "url": "https://www.analog.com/en/newsroom/press-releases/2026/5-19-2026-adi-to-acquire-empower-semiconductor.html",
+      "date": "2026-05-19"
+    },
+    {
+      "title": "Analog Devices Completes Acquisition of Empower Semiconductor",
+      "publisher": "Analog Devices",
+      "url": "https://www.analog.com/en/newsroom/press-releases/2026/7-7-26-adi-completes-acquisition-of-empower-semiconductor.html",
+      "date": "2026-07-07"
+    },
+    {
+      "title": "onsemi Reports Third Quarter 2026 Results",
+      "publisher": "onsemi",
+      "url": "https://investor.onsemi.com/static-files/9b9cbccc-1e4d-4ae6-be8c-87ffaf56243c",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Onsemi agreed to buy Ferric for power delivery closer to processors. [break] The deal targets chip packaging. It does not establish lower inference costs, and closing remains conditional.",
+    "short": "Onsemi agreed to acquire Ferric, targeting integrated power delivery for AI processors. Closing is expected by the end of 2026, subject to conditions.",
+    "long": "Onsemi agreed to acquire Ferric. It follows Analog Devices’ acquisition of a supplier whose silicon capacitors were already in production while integrated regulator programs were advancing.\n\nFerric’s Fe1767 was sampling in October, with voltage-specific efficiency. Those component results do not establish a saving on an inference bill. Customer-qualified systems are the more useful test.",
+    "hashtags": [
+      "Onsemi",
+      "Ferric",
+      "PowerElectronics",
+      "AIHardware"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T23:11:53Z"
+}
