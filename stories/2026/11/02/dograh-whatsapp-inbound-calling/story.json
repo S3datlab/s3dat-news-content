@@ -1,0 +1,99 @@
+{
+  "format": 2,
+  "slug": "dograh-whatsapp-inbound-calling",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Dograh 1.50 packages WhatsApp inbound calling for voice agents",
+  "titleAccent": "WhatsApp inbound calling",
+  "dek": "The October 31 release combines inbound call handling with business-account setup, number synchronization and a migration step for earlier configurations.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-02T01:08:23Z",
+  "updatedAt": "2026-11-02T01:08:23Z",
+  "lede": "Dograh released version 1.50.0 on October 31, packaging WhatsApp inbound calling for its voice agents. The integration gives developers a call path from a business number into an assigned agent, alongside account-level configuration and number management.",
+  "facts": [
+    {
+      "label": "Packaged release",
+      "value": "1.50.0; 31 October 2026"
+    },
+    {
+      "label": "Call direction",
+      "value": "Inbound only"
+    },
+    {
+      "label": "Configuration",
+      "value": "WhatsApp Business Account"
+    }
+  ],
+  "body": [
+    {
+      "heading": "From a caller to an agent",
+      "text": "A WhatsApp user calls the business number, and Meta sends Dograh a webhook containing the connection offer. Dograh answers through Pipecat’s WhatsApp client over WebRTC and starts the number’s inbound agent. The implementation separates that transport from the application workflow: the incoming number determines which agent receives the conversation. The provider verifies webhook signatures and generates a verification token on the server. Call termination also crosses that boundary. When the agent hangs up, the integration tells Meta to terminate the call; callbacks arriving on another worker use Redis to reach the active connection. That makes call setup, conversation handling and hang-up separate parts of the deployment."
+    },
+    {
+      "heading": "The account owns the configuration",
+      "text": "The account-management change replaces a single Phone Number ID with a WhatsApp Business Account ID, access token and app secret. Saving the configuration lists the account’s numbers to validate the token and subscribes the token’s app to the account. Only one active configuration can use a given business account. Incoming webhooks identify the account, while individual calls retain Meta’s number identifier. Operators can refresh the imported numbers from the configuration page. Refreshing merges provider metadata while retaining operator labels. Numbers that disappear from Meta’s response are flagged for attention instead of being deleted. That preserves the distinction between a provider’s current inventory and the operator’s saved routing records."
+    },
+    {
+      "heading": "A release containing earlier implementation work",
+      "text": "The inbound integration merged on October 13; account-level configuration followed on October 14. Those changes are now included in the October 31 package. The release also updates the voice stack to Pipecat 1.15.0 and lists changes to opening playback, early caller speech and final extraction after hang-up. Other listed fixes keep internal model output out of speech, transcripts and context. These address different stages of a voice session: connecting the caller, keeping the conversation intelligible and finishing its records. A working connection is only the first of those stages. The tagged package brings these changes together for developers upgrading a deployed installation."
+    },
+    {
+      "text": "The post-call change moves final variable and disposition extraction into a completion worker. Previously, that model work could keep a finished call connected. The worker now performs extraction before downstream quality checks, integrations, webhooks and billing. Conversations and pending extraction requests are saved before the job is queued. This separates the caller’s connection from the processing needed to finish its record. The implementation also specifies a deployment order: the database migration and updated workers precede the API change."
+    }
+  ],
+  "buildersNote": "Before upgrading, inventory any phone-number-keyed WhatsApp configurations. On a test business account, refresh its numbers, assign an inbound workflow, then place two test calls, ending one from each side. Check the resulting call record before moving the production number.",
+  "claims": [
+    {
+      "text": "WhatsApp support is inbound-only; the provider rejects outbound call initiation.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Earlier phone-number-keyed configurations need re-saving with a Business Account ID before calls can route; there is no automatic backfill.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "dograh: v1.50.0",
+      "publisher": "Dograh / GitHub",
+      "url": "https://github.com/dograh-hq/dograh/releases/tag/dograh-v1.50.0",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "feat(telephony): add WhatsApp inbound calling integration",
+      "publisher": "Dograh / GitHub",
+      "url": "https://github.com/dograh-hq/dograh/pull/732",
+      "date": "2026-10-13"
+    },
+    {
+      "title": "feat(telephony): key WhatsApp on the Business Account and sync its numbers from Meta",
+      "publisher": "Dograh / GitHub",
+      "url": "https://github.com/dograh-hq/dograh/pull/901",
+      "date": "2026-10-14"
+    },
+    {
+      "title": "fix(voice): run final extraction after hangup",
+      "publisher": "Dograh / GitHub",
+      "url": "https://github.com/dograh-hq/dograh/pull/915",
+      "date": "2026-10-17"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Dograh has packaged WhatsApp inbound calling for voice agents. [break] Its October thirty-first release connects business numbers to an assigned agent. Existing account configuration matters as much as answering the call.",
+    "short": "Dograh 1.50 packages WhatsApp inbound calling for voice agents. The October 31 release includes business-account setup and number synchronization.",
+    "long": "WhatsApp inbound calling ships in Dograh 1.50, released October 31. A business number can route a caller into an assigned voice agent.\n\nAccount credentials and number inventory now sit together. Earlier configurations keyed to a phone number need re-saving with the business account identifier before incoming calls can route.",
+    "hashtags": [
+      "Dograh",
+      "WhatsApp"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "DOGRAH",
+    "WHATSAPP",
+    "CALLS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "WhatsApp",
+      "icon": "whatsapp"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 281,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
