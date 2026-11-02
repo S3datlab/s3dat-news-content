@@ -1,0 +1,138 @@
+{
+  "format": 2,
+  "slug": "gdpx-agent-benchmark-acceptance-tests",
+  "kind": "analysis",
+  "topic": "research",
+  "title": "GDPx tests agents against demanding specialist workflows",
+  "titleAccent": "specialist workflows",
+  "dek": "SemiAnalysis’s new benchmark tests specialist agent work; its low aggregate scores measure different acceptance rules from the original GDPval.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-02T09:14:59Z",
+  "lede": "SemiAnalysis introduced GDPx on November 2 to test agents across specialist workflows. Its results give builders evidence about task completion under demanding acceptance rules, alongside the broader occupational coverage of OpenAI’s original GDPval.",
+  "facts": [
+    {
+      "label": "GDPx scope",
+      "value": "11 domains; 206 tasks; 14 partners"
+    },
+    {
+      "label": "Leading reported score",
+      "value": "Claude Opus 5.5: 12.0% aggregate"
+    },
+    {
+      "label": "Original GDPval",
+      "value": "Released 25 September 2025; 44 occupations"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Different work, different acceptance rules",
+      "text": "GDPx selects domains that SemiAnalysis expects to benefit most from frontier AI, including chip design, biology and software engineering. Tasks normally allow eight hours, with shorter limits for some. Models use their native agent harness when available and OpenCode otherwise. The headline averages three attempts per task using each task’s intended binary or continuous grading. Domains receive equal weight, as do partners within each domain. These choices make the result a measure of the tested model-and-harness combination."
+    },
+    {
+      "heading": "The original occupational benchmark asks another question",
+      "text": "OpenAI introduced GDPval on September 25, 2025, with 1,320 tasks spanning 44 occupations in nine economically significant industries. Its public gold subset contains 220 tasks. Experienced professionals compare model deliverables with human-produced work, without knowing which is which, and judge whether the model’s output is better, equivalent or worse. The initial evaluation is one-shot. OpenAI explicitly identifies missing iteration, client feedback and ambiguous task discovery as limitations. A finished document can therefore be the unit of comparison without representing an entire working relationship."
+    },
+    {
+      "heading": "A smaller score can come from a different test",
+      "text": "The comparison changes both the work sampled and the meaning of success. A preference judgment asks which deliverable a reviewer would choose. An acceptance test can reject an otherwise useful artifact for failing one required condition. Neither ordering is inherently wrong: a draft for human revision and an unattended production handoff have different buyers. Comparing their percentages directly would discard that distinction. The relevant question is whether a benchmark’s rejection rule resembles the failure that would stop the intended deployment."
+    },
+    {
+      "heading": "An apparently complete workbook can still fail",
+      "text": "The launch report describes Living Context’s finance task, which requires completing a quality-of-earnings workbook while reconciling supporting records. None of the 25 selected attempts passed; the strongest individual attempt met eight of eleven checks. Reported errors include treating an email or schedule as more authoritative than an executed agreement. That is a failure of evidence selection, not simply calculation. A spreadsheet can remain internally consistent after the wrong source supplies its assumptions. More polished formatting would not repair that dependency."
+    },
+    {
+      "heading": "Public traces expose the work behind the score",
+      "text": "The rollout site publishes examples for one task per partner and keeps the remaining tasks private to discourage repeated tuning against them. Its launch collection offers 168 transcripts. Examples range from completing an unfinished acquisition workbook to modifying a startup’s financing charter and designing a compressor housing. The page pairs task descriptions with recorded actions and run outcomes. These records make it possible to inspect how an agent approached a problem, rather than inferring its behavior from a model name. They also separate evidence of an attempted workflow from a screenshot of its final artifact."
+    },
+    {
+      "heading": "Acceptance rules belong in the purchasing decision",
+      "text": "Equal domain weighting gives a specialist field the same influence regardless of its share of a particular customer’s workload. A company buying a document assistant and one buying a chip-design agent therefore need different slices of the result. The strongest aggregate entry is not automatically the most relevant candidate for either deployment. Cost also needs a denominator: spending less on an attempt is different from spending less on an accepted result. Procurement based on successful handoffs would reward dependable completion, while a drafting assistant might justify its cost through useful partial work."
+    }
+  ],
+  "buildersNote": "Choose three representative internal tasks and specify acceptance criteria before testing models. Record rejected outputs as well as accepted ones, and separate inference cost from human review time.",
+  "comparison": {
+    "caption": "Published designs: GDPx, 2 November 2026; original GDPval, 25 September 2025",
+    "columns": [
+      "Dimension",
+      "GDPx",
+      "Original GDPval"
+    ],
+    "rows": [
+      [
+        "Sampling",
+        "11 selected specialist domains",
+        "44 occupations across 9 industries"
+      ],
+      [
+        "Judgment",
+        "Domain-specific binary and partial scores",
+        "Expert comparison with human deliverables"
+      ],
+      [
+        "Task setting",
+        "Agent harnesses; usually up to 8 hours",
+        "One-shot occupational deliverables"
+      ]
+    ]
+  },
+  "claims": [
+    {
+      "text": "GDPx reports a weighted aggregate of task scores; it does not measure the fraction of jobs automated.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "SemiAnalysis attributes some low scores to safety classifiers; the launch does not establish that removing safeguards would improve deployable reliability.",
+      "status": "claimed",
+      "source": 0
+    }
+  ],
+  "ourRead": "We would use GDPx as an acceptance-test catalogue before using it as a model ranking. Its useful contribution is to make the last failed requirement visible, where a deployment owner must decide whether to reject the work or pay for correction. We would keep occupational preference tests alongside it for drafting products. A controlled comparison showing that the aggregate reliably predicts accepted outcomes across unrelated customer workloads would change our preference for task-specific selection.",
+  "watching": [
+    "On 9 November 2026, check whether GDPx publishes fuller per-task grading and harness configuration details.",
+    "On 16 November 2026, check for independent reproductions using the public task transcripts and the same acceptance rules."
+  ],
+  "sources": [
+    {
+      "title": "GDPx: Measuring Frontier Model Capabilities Across the Most Valuable Domains",
+      "publisher": "SemiAnalysis",
+      "url": "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "GDPx",
+      "publisher": "SemiAnalysis",
+      "url": "https://gdpx.semianalysis.com/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Measuring the performance of our models on real-world tasks",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/gdpval/",
+      "date": "2025-09-25"
+    },
+    {
+      "title": "Rollouts",
+      "publisher": "SemiAnalysis",
+      "url": "https://gdpx.semianalysis.com/rollouts",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] SemiAnalysis released an agent benchmark across eleven specialist domains. [break] Its leading score is twelve percent. That measures performance under its grading rules, not the share of jobs an agent can replace.",
+    "short": "GDPx tests agents across 11 specialist domains. Claude Opus 5.5 leads at 12%, a weighted benchmark score, not a measure of jobs automated.",
+    "long": "SemiAnalysis launched GDPx with 206 tasks from 14 specialist partners. Its leaderboard puts Claude Opus 5.5 first at a 12% aggregate score.\n\nThe public rollout collection exposes attempted workflows, from acquisition accounting to engineering design. Choosing a model still requires matching the acceptance rules to the work it will actually handle.",
+    "hashtags": [
+      "GDPx",
+      "AIEvaluation"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T09:14:59Z"
+}

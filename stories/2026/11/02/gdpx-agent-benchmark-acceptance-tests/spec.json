@@ -1,0 +1,26 @@
+{
+  "engine": 2,
+  "template": "cinematic",
+  "headline": [
+    "GDPX",
+    "TESTS",
+    "AI WORK"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "SemiAnalysis",
+      "logo": "semianalysis.svg",
+      "color": "#0B86D1",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "art": "art.jpg",
+  "mood": "calm",
+  "seed": 341,
+  "sources": {
+    "semianalysis.svg": "https://gdpx.semianalysis.com/brand/sa-lettermark.svg",
+    "art.jpg": "generated"
+  }
+}
