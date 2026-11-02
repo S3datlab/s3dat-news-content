@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "MARVELL",
+    "TO ACQUIRE",
+    "LUMENTUM"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Marvell",
+      "logo": "marvell.svg",
+      "color": "#0072CE",
+      "recolor": true
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 381,
+  "sources": {
+    "marvell.svg": "https://www.marvell.com/content/dam/marvell/en/global/marvell-logo.svg"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "format": 2,
+  "slug": "marvell-lumentum-optical-acquisition",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "Marvell agrees to acquire Lumentum for AI optical connections",
+  "titleAccent": "acquire Lumentum",
+  "dek": "The proposed combination joins networking chips with lasers and optical manufacturing. Existing customer orders and support arrangements remain with the separate companies.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-02T17:11:02Z",
+  "lede": "Marvell announced an agreement to acquire Lumentum on November 2, in a transaction with an implied enterprise value of $115 billion. The proposed combination connects networking silicon with optical components and manufacturing.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "2 November 2026"
+    },
+    {
+      "label": "Enterprise value",
+      "value": "Approximately $115 billion"
+    },
+    {
+      "label": "Exchange ratio",
+      "value": "4.500 Marvell shares per Lumentum share"
+    },
+    {
+      "label": "Existing customers",
+      "value": "Orders and support arrangements unchanged"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Chips and optical manufacturing",
+      "text": "Marvell contributes switching silicon, custom compute designs and electrical interconnect technology. Lumentum brings lasers, optical transceivers, optical circuit switches and indium phosphide manufacturing. The companies intend to coordinate design across the electrical and optical signal chain, from connections between data centers to links within advanced chip packages."
+    },
+    {
+      "heading": "Where the optical engine sits",
+      "text": "Lumentum’s August 25 technical account describes several architectures operating alongside each other. Pluggable optics sit at the front panel. Near-packaged optics move the optical engine closer to switch silicon while retaining modular replacement. Co-packaged optics integrate that engine more tightly with the switch package, addressing electrical reach, port density and power constraints. These choices concern physical layout and maintenance as well as bandwidth. In silicon-photonics engines, a continuous-wave laser supplies steady light and a separate modulator encodes the data. An external, faceplate-mounted laser source can move laser heat away from the switch chip and allow replacement of the light source. That does not make the tightly integrated optical engine equally replaceable. Scale-out networks connect accelerators across racks and rows through a switched fabric. During training or inference, collective communication makes many accelerators exchange data together, so congestion and link reliability affect the shared workload. Manufacturing must sustain consistent yield and performance across volume, through repeated production runs."
+    },
+    {
+      "heading": "Existing demand, not acquisition revenue",
+      "text": "In separate results published on November 2, Lumentum reported $1.2626 billion in revenue for the quarter ended September 26. Revenue increased 25.5 percent from the preceding quarter. Chief executive Michael Hurlston said its second major near-packaged and co-packaged optics win carried purchase commitments above $5 billion. Those commitments describe future customer purchases, not revenue recognized in that quarter. Components contributed $754.2 million to the reported total, while systems contributed $508.4 million. The company identified pump lasers and optical circuit switching as leading contributors to growth. These disclosures describe Lumentum’s existing business before the proposed ownership change, spanning both individual optical components and systems."
+    },
+    {
+      "heading": "Customers still deal with separate companies",
+      "text": "Lumentum’s November 2 customer communication says both companies will operate independently until closing. It says existing commercial agreements, orders and support arrangements remain in place, with the same customer contacts. Customers do not need to take action because of the announcement. Lumentum also says its product roadmaps and delivery schedules remain on track. A separate supplier communication preserves current agreements, purchase orders, payment processes and points of contact. That leaves current procurement attached to existing suppliers through their established ordering systems."
+    }
+  ],
+  "buildersNote": "For a planned cluster purchase, list the optical module, switch and laser supplier separately. Ask each vendor to confirm qualification status, replacement procedures and lead times for the exact parts in the design, rather than treating a proposed combined roadmap as a shipping specification.",
+  "claims": [
+    {
+      "text": "Closing is expected in the first half of 2028, subject to shareholder and regulatory approvals and other conditions. The acquisition has not completed.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Keeping customer roadmaps and delivery schedules on track is Lumentum’s stated commitment, not an independently verified delivery guarantee.",
+      "status": "claimed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Marvell and Lumentum to Combine, Creating a Category Leader in AI Connectivity",
+      "publisher": "Marvell and Lumentum",
+      "url": "https://investor.marvell.com/_assets/_4b2ef940d8378f4928a6a90255e70f76/marvell/news/2026-11-02_Marvell_and_Lumentum_to_Combine_Creating_a_1040.pdf",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "How Optical Connectivity Is Evolving in Scale-Out AI Networks",
+      "publisher": "Lumentum",
+      "url": "https://www.lumentum.com/en/blog/how-optical-connectivity-evolving-scale-out-ai-networks",
+      "date": "2026-08-25"
+    },
+    {
+      "title": "Lumentum Announces First Quarter of Fiscal Year 2027 Financial Results",
+      "publisher": "Lumentum",
+      "url": "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "The Complete AI Data Center Platform: Lumentum to Join Forces with Marvell Technology",
+      "publisher": "Lumentum",
+      "url": "https://www.sec.gov/Archives/edgar/data/1633978/000119312526442765/d162314d425.htm",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "The Complete AI Data Center Platform: Lumentum to Join Forces with Marvell",
+      "publisher": "Lumentum",
+      "url": "https://www.sec.gov/Archives/edgar/data/1633978/000119312526442762/d148401d425.htm",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Marvell has agreed to acquire Lumentum, combining networking chips with optical components. [break] Customers keep their existing orders and support arrangements while the companies remain separate until the transaction closes.",
+    "short": "Marvell agreed to acquire Lumentum in a roughly $115 billion enterprise-value deal. The companies remain separate until closing.",
+    "long": "Lumentum says customer orders and support continue unchanged after its November 2 acquisition announcement with Marvell. The same contacts and commercial agreements remain in place during the transaction.\n\nSeparately, Lumentum reported more than $5 billion in purchase commitments for a near-packaged and co-packaged optics win. That is future demand, not quarterly recognized revenue. Bringing the businesses together would not itself qualify a new optical component for an existing cluster.",
+    "hashtags": [
+      "Marvell",
+      "Lumentum",
+      "OpticalNetworking",
+      "AIInfrastructure"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T17:11:02Z"
+}
