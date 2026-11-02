@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "COCOINDEX",
+    "CONNECTOR",
+    "KEY FIXES"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "CocoIndex",
+      "logo": "cocoindex.svg",
+      "color": "#BE5133",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 331,
+  "sources": {
+    "cocoindex.svg": "https://raw.githubusercontent.com/cocoindex-io/cocoindex-brand/main/design_guidelines/assets/cocoindex.svg"
+  }
+}

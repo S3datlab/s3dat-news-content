@@ -1,0 +1,125 @@
+{
+  "format": 2,
+  "slug": "cocoindex-connector-keys-graph-migration",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "CocoIndex 1.1 fixes connector key collisions",
+  "titleAccent": "connector key collisions",
+  "dek": "The November 1 release repairs colliding connector keys; switching existing Neo4j or FalkorDB targets to the new APIs requires two updates.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-02T08:11:33Z",
+  "lede": "CocoIndex released version 1.1.0 on November 1 with connector fixes that prevent distinct records from sharing an identity. For existing graph pipelines, adopting its replacement target APIs requires a staged migration to preserve data.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "CocoIndex 1.1.0; 1 November 2026"
+    },
+    {
+      "label": "Graph API switch",
+      "value": "2 updates for Neo4j or FalkorDB tables"
+    },
+    {
+      "label": "Drive identity",
+      "value": "File ID replaces filename-based keys"
+    },
+    {
+      "label": "Kafka map feeds",
+      "value": "One topic per feed"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Identity controls updates and deletions",
+      "text": "CocoIndex matches source items and target states against previous runs using their keys. A collision can therefore overwrite a different object or remove its output. The release repairs collisions across storage, graph and vector-database connectors. It also fixes deletion failures that left stale rows behind. Object-storage prefixes now identify folders: a prefix of docs includes docs/a.md, but excludes docsa.md. Outputs previously included by that broader match are removed on the next update. Filename-prefix filtering remains available through path_matcher."
+    },
+    {
+      "heading": "Drive files keep their own identity",
+      "text": "The Google Drive connector now keys iteration by file ID, which stays stable when a file is renamed. Two files can share a display name, including inside the same folder, without sharing that key. When configured roots overlap, the connector emits a reachable file once. It chooses the first path encountered in breadth-first traversal, with children ordered by name and then ID. Binary-file change detection uses Drive’s MD5 checksum. Workspace documents have no such checksum, so exported content is hashed instead."
+    },
+    {
+      "heading": "Switching graph APIs takes two updates",
+      "text": "The Neo4j and FalkorDB guides describe the transition from table and relation targets to node and relationship targets. First, an update records declarations as user-managed. That changes CocoIndex’s ownership state without changing the database. A second update replaces the old declarations with the new APIs and restores system management. Constraints and indexes remain; records are rewritten once, vector indexes rebuilt, and derived edge IDs replaced. Tables can move individually because new relationship targets accept endpoint tables from either API."
+    },
+    {
+      "heading": "Kafka migration includes replay",
+      "text": "Kafka’s replacement map-feed pattern separates topics into individual consumers and component paths. Previously, identical message keys on different topics could refer to one item; a deletion on either topic could remove the other’s output. The documented switch changes item keys. Committed offsets alone would leave old components behind and populate new ones only with subsequent messages. The migration therefore removes the old app’s outputs and replays retained topic history from the earliest offsets. Replacing a one-element topic list with a single topic string preserves keys and needs no such replay."
+    },
+    {
+      "heading": "Reprocessing is connector-specific",
+      "text": "The release identifies several first-update effects. Google Drive components receive new keys and are reprocessed. SurrealDB relationships without explicit IDs are recreated under different record IDs. Local directory outputs with newly normalized names are written once. Separate memoization changes can also alter generated IDs for values containing shared subobjects, affecting row keys built from those IDs."
+    }
+  ],
+  "buildersNote": "Before switching graph APIs, snapshot the database and record node and edge counts. Rehearse both updates on a copy, checking counts after each. For Kafka, confirm retained history covers the intended rebuild before removing existing outputs.",
+  "claims": [
+    {
+      "text": "Deprecated graph APIs continue working with their previous keys; installing 1.1.0 alone does not require the two-update conversion.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Skipping the first graph migration update can delete existing nodes or edges, potentially after replacement writes.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Connector fixes cannot detect every user configuration in which two chosen keys address the same external object.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "v1.1.0",
+      "publisher": "CocoIndex / GitHub",
+      "url": "https://github.com/cocoindex-io/cocoindex/releases/tag/v1.1.0",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Neo4j connector",
+      "publisher": "CocoIndex / GitHub",
+      "url": "https://github.com/cocoindex-io/cocoindex/blob/v1.1.0/docs/src/content/docs/connectors/neo4j.mdx",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "FalkorDB connector",
+      "publisher": "CocoIndex / GitHub",
+      "url": "https://github.com/cocoindex-io/cocoindex/blob/v1.1.0/docs/src/content/docs/connectors/falkordb.mdx",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Google Drive connector",
+      "publisher": "CocoIndex / GitHub",
+      "url": "https://github.com/cocoindex-io/cocoindex/blob/v1.1.0/docs/src/content/docs/connectors/google_drive.mdx",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Kafka connector",
+      "publisher": "CocoIndex / GitHub",
+      "url": "https://github.com/cocoindex-io/cocoindex/blob/v1.1.0/docs/src/content/docs/connectors/kafka.mdx",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "fix(sources): collision-free object-store keys and same-mtime change detection",
+      "publisher": "CocoIndex / GitHub",
+      "url": "https://github.com/cocoindex-io/cocoindex/pull/2601",
+      "date": "2026-10-27"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] CocoIndex fixed connector identity errors in version one point one. [break] Switching existing graph targets to its new interfaces takes two updates. Installing the package alone does not require that conversion.",
+    "short": "CocoIndex 1.1 fixes connector key collisions. Existing Neo4j and FalkorDB targets need two updates when switching APIs; deprecated interfaces still work.",
+    "long": "CocoIndex changed how its Drive connector identifies files: file IDs keep same-name documents separate and remain stable across renames. The November 1 release also repairs other connector identity errors.\n\nKafka users switching from a multi-topic map feed to separate feeds must rebuild from retained topic history. Changing the code without replay would leave the new components missing earlier messages.",
+    "hashtags": [
+      "CocoIndex",
+      "DataEngineering"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T08:11:33Z"
+}
