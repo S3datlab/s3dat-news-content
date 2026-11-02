@@ -49,17 +49,25 @@ recorded in `social/posted/<slug>.json`).
 
 ## What each channel gets
 
-| Channel | Group | Video | Text | Link |
-| --- | --- | --- | --- | --- |
-| X (@s3datlab) | now | wide | `short` | none: X shows posts with links to fewer people |
-| Threads | now | wide | `short` + link; the first hashtag becomes the topic | in the post |
-| Bluesky | now | wide | `short` + link (300 characters in all) | in the post |
-| Mastodon | now | wide | `short` + link + hashtags | in the post |
-| Facebook page | now | wide, as a video post | `long` + link | in the post |
-| LinkedIn page | now | wide | `long` | first comment (posts with links reach fewer people) |
-| Pinterest | now | wide | headline as the title, `short` as the description | the pin opens the story |
-| Substack Notes | now | wide | `long` + link | in the post |
-| Instagram | reel | tall, as a reel shared to the feed | `long` + hashtags | none: Instagram captions do not link |
+Every post ends the same way, in this order: the story link ("Full story: <link>"), a follow line
+and the story's own hashtags. A part that does not fit the channel's limit is left out.
+
+| Channel | Group | Video | Text | Link | Hashtags |
+| --- | --- | --- | --- | --- | --- |
+| X (@s3datlab) | now | wide | `short` + "Follow @s3datlab…" | none: X shows posts with links to fewer people | first 2 |
+| Threads | now | wide | `short` + link + follow line | in the post | none; the first tag becomes the topic |
+| Bluesky | now | wide | `short` + link (300 characters in all), follow line if it fits | in the post | first 2, if they fit |
+| Mastodon | now | wide | `short` + link + follow line | in the post | all 5 |
+| Facebook page | now | wide, as a video post | `long` + link + follow line | in the post | none |
+| LinkedIn page | now | wide | `long` + link + follow line | in the post (LinkedIn turns it into a clickable lnkd.in link) | first 3 |
+| Pinterest | now | wide | headline as the title, `short` as the description | the pin opens the story | none |
+| Substack Notes | now | wide | `long` + link + follow line | in the post | none |
+| Instagram | reel | tall, as a reel shared to the feed | `long` + "Follow for daily AI news. Full story: link in bio." | none: captions do not link; the profile link does | all 5 |
+| YouTube Shorts | reel | tall | `long` + link + "Subscribe…" | in the description | first 3 (shown above the title) |
+| TikTok | reel | tall | `short` + "…link in bio." | none: captions do not link | all 5 |
+
+The posts have two jobs: bring readers to news.s3dat.com and win followers. Keep the profile link
+of Instagram and TikTok on https://news.s3dat.com.
 
 Instagram and YouTube posts carry the platforms' AI disclosure, because the voice-over is
 synthetic (`SOCIAL_AI_LABEL=0` turns it off).
@@ -71,7 +79,7 @@ synthetic (`SOCIAL_AI_LABEL=0` turns it off).
   "voiceover": "[matter-of-fact] Britain's competition regulator has opened a case into Meta's business terms. [break] The question is whether Meta can reuse publishers' content for AI without giving them a real choice. Meta has paused the terms.",
   "short": "Britain's competition regulator opened a case into Meta's business terms on 30 October: the issue is whether Meta can reuse publishers' content for AI without giving them a choice.",
   "long": "Britain's Competition and Markets Authority opened a formal investigation into Meta's commercial terms for businesses on 30 October. ...",
-  "hashtags": ["Meta", "Competition", "AI"],
+  "hashtags": ["Meta", "CMA", "CompetitionLaw", "Publishers", "AIRegulation"],
   "priority": 4
 }
 ```
@@ -81,7 +89,7 @@ synthetic (`SOCIAL_AI_LABEL=0` turns it off).
 | `voiceover` | 26–36 spoken words (cues not counted), written to be heard. It must stand alone. |
 | `short` | 60–240 characters, and short enough for Bluesky with the link (300 in all). X, Threads, Bluesky, Mastodon and Pinterest. The link is added for you. |
 | `long` | 300–1500 characters. Facebook, Instagram, LinkedIn and Substack. No link. |
-| `hashtags` | 0–4 tags, letters and digits only, without `#`: companies and topics (#OpenAI, #Robotics), never filler (#innovation, #tech). |
+| `hashtags` | 3–5 tags about this story, most important first, letters and digits only, without `#`. First the product or company the story is about (#Claude, #Gemini, #Anthropic), then the field the story belongs to (#AIAgents, #CodingAgents, #OpenWeights, #AIRegulation). People follow these tags, so each one should be a tag the people who care about this story actually follow. Never tags that fit any story (#AI, #AINews, #Tech, #Innovation): the validator rejects them. Channels take tags from the front of the list (X 2, LinkedIn 3, Instagram 5), so order matters. Required from 2 November 2026 18:00 UTC. |
 | `priority` | 1–5: how much the story is worth a 15-second video for people who scroll Instagram. 5 = the story of the day, 3 = solid, 1–2 = never a reel. Most stories are 3; give 4 or 5 sparingly. |
 
 `scripts/validate.py` checks every rule below. Required for stories published from 1 November

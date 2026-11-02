@@ -178,6 +178,14 @@ def word_count(text):
 # Every story published from here on carries its social copy and voice-over script.
 SOCIAL_CUTOVER = dt.datetime(2026, 11, 1, 4, 0, tzinfo=dt.timezone.utc)
 HASHTAG = re.compile(r"[A-Za-z][A-Za-z0-9]{1,29}")
+# From here on every story carries 3-5 hashtags of its own, most important first (SOCIAL.md).
+HASHTAG_CUTOVER = dt.datetime(2026, 11, 2, 18, 0, tzinfo=dt.timezone.utc)
+# Tags that would fit any story reach nobody in particular.
+FILLER_TAGS = {
+    "ai", "artificialintelligence", "ainews", "technews", "tech", "technology", "news", "innovation",
+    "future", "trending", "viral", "fyp", "foryou", "foryoupage", "breaking", "update", "update2026",
+    "s3dat", "s3datnews",
+}
 EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF]")
 # Fish Audio S2 reads [bracket] cues as delivery directions. The house set suits a news read:
 # one tone per sentence at most, no laughs, sighs or shouting.
@@ -260,8 +268,17 @@ def validate_social(story, published):
     if "priority" in social and (type(social["priority"]) is not int or not 1 <= social["priority"] <= 5):
         errors.append("social.priority must be a whole number from 1 to 5 (how much the story is worth a video; 1 and 2 never get one)")
     tags = social.get("hashtags", [])
-    if not isinstance(tags, list) or len(tags) > 4 or not all(isinstance(t, str) and HASHTAG.fullmatch(t) for t in tags):
-        errors.append("social.hashtags must list 0–4 tags of letters and digits, without #")
+    strict = published is not None and published >= HASHTAG_CUTOVER
+    low, high = (3, 5) if strict else (0, 5)
+    if not isinstance(tags, list) or not low <= len(tags) <= high or not all(isinstance(t, str) and HASHTAG.fullmatch(t) for t in tags):
+        errors.append(f"social.hashtags must list {low}–{high} tags of letters and digits, without #, most important first")
+    elif strict:
+        lowered = [t.lower() for t in tags]
+        for tag in tags:
+            if tag.lower() in FILLER_TAGS:
+                errors.append(f"social.hashtags: #{tag} fits any story; use tags about this one (the product, the company, the field)")
+        if len(set(lowered)) != len(lowered):
+            errors.append("social.hashtags lists the same tag twice")
     for key in ("voiceover", "short", "long"):
         text = social.get(key)
         if not isinstance(text, str):

@@ -49,6 +49,17 @@ WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack", "facebook", "li
 TALL = {"instagram", "youtube", "tiktok"}
 GROUPS = {"now": WIDE, "reel": TALL}
 THUMB_MS = 2500  # a frame where the banner headline is fully on screen
+# How many of the story's own hashtags (social.hashtags, most important first) each channel shows.
+# Hashtags are discovery on Mastodon, Instagram, TikTok and YouTube; a few help on LinkedIn, X and
+# Bluesky; Threads takes one topic instead, and Facebook, Pinterest and Substack ignore them.
+TAGS = {"mastodon": 5, "instagram": 5, "tiktok": 5, "youtube": 3, "linkedin": 3, "twitter": 2, "bluesky": 2}
+# Character limits for the text (Mastodon reads its own from the channel). X counts 280 for
+# accounts without Premium; Bluesky 300.
+LIMITS = {"twitter": 280, "bluesky": 300, "threads": 500, "mastodon": 500}
+FOLLOW = "Follow S3DAT News for daily AI analysis."
+FOLLOW_X = "Follow @s3datlab for daily AI analysis."
+FOLLOW_BIO = "Follow for daily AI news. Full story: link in bio."
+FOLLOW_YOUTUBE = "Subscribe for daily AI analysis."
 
 
 def now() -> dt.datetime:
@@ -226,34 +237,53 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
         video["metadata"] = {"thumbnailOffset": THUMB_MS}
     post = {"channelId": channel["id"], "schedulingType": "automatic", "mode": "shareNow", "needsApproval": False,
             "assets": [{"video": video}]}
-    hashtags = " ".join("#" + t for t in tags)
+    hashtags = " ".join("#" + t for t in tags[: TAGS.get(service, 0)])
+    read = f"Full story: {url}"
+    limit = LIMITS.get(service)
+    if service == "mastodon":
+        limit = (channel.get("metadata") or {}).get("maxCharacters") or limit
+
+    def fits(text: str) -> bool:
+        # Mastodon counts every link as 23 characters.
+        size = len(text) - (len(url) - 23 if service == "mastodon" and url in text else 0)
+        return limit is None or size <= limit
+
+    def compose(*required: str, optional: tuple[str, ...] = ()) -> str:
+        """The required paragraphs, then each optional one (link, follow line, hashtags) that fits."""
+        text = "\n\n".join(p for p in required if p)
+        for extra in optional:
+            if extra and fits(f"{text}\n\n{extra}"):
+                text = f"{text}\n\n{extra}"
+        return text
+
     if service == "twitter":
-        # X ranks posts with links lower: the text carries the news, no link.
-        post["text"] = short
-    elif service in ("threads", "bluesky"):
-        post["text"] = f"{short}\n\n{url}"
-        if service == "bluesky" and len(post["text"]) > 300:
-            # Bluesky allows 300 characters; validate.py keeps new stories within it.
-            post["text"] = short
-        if service == "threads" and tags:
+        # X shows posts with links to fewer people: the news, then a follow line instead of the link.
+        post["text"] = compose(short, optional=(FOLLOW_X, hashtags))
+    elif service == "threads":
+        post["text"] = compose(short, read, optional=(FOLLOW,))
+        if tags:
             post["metadata"] = {"threads": {"topic": tags[0][:50]}}
+    elif service == "bluesky":
+        # validate.py keeps social.short short enough for the bare link; the rest comes if it fits.
+        post["text"] = compose(short, url, optional=(FOLLOW, hashtags))
+        if not fits(post["text"]):
+            post["text"] = short
     elif service == "mastodon":
-        post["text"] = f"{short}\n\n{url}" + (f"\n\n{hashtags}" if hashtags else "")
-        limit = (channel.get("metadata") or {}).get("maxCharacters") or 500
-        if len(short) + 2 + 23 + (len(hashtags) + 2 if hashtags else 0) > limit:
-            post["text"] = f"{short}\n\n{url}"
+        post["text"] = compose(short, read, optional=(FOLLOW, hashtags))
     elif service == "substack":
-        post["text"] = f"{long}\n\n{url}"
+        post["text"] = compose(long, read, FOLLOW)
     elif service == "facebook":
         # A regular video post (the 16:9 cut), so the link in the text is clickable.
-        post["text"] = f"{long}\n\n{url}"
+        post["text"] = compose(long, read, FOLLOW)
         post["metadata"] = {"facebook": {"type": "post"}}
     elif service == "instagram":
-        post["text"] = long + (f"\n\n{hashtags}" if hashtags else "")
+        # Instagram captions never link: the profile link carries readers to the site.
+        post["text"] = compose(long, FOLLOW_BIO, hashtags)
         post["metadata"] = {"instagram": {"type": "reel", "shouldShareToFeed": True, "isAiGenerated": label}}
     elif service == "linkedin":
-        post["text"] = long
-        post["metadata"] = {"linkedin": {"firstComment": f"Full story: {url}"}}
+        # The link sits in the post (LinkedIn turns it into a clickable lnkd.in link): a first
+        # comment kept reach but few people opened it, and the posts are here to bring readers.
+        post["text"] = compose(long, read, FOLLOW, hashtags)
     elif service == "pinterest":
         board_id = board(channel)
         if not board_id:
@@ -261,11 +291,12 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
         post["text"] = short
         post["metadata"] = {"pinterest": {"title": story["title"][:100], "url": url, "boardServiceId": board_id}}
     elif service == "youtube":
-        post["text"] = f"{long}\n\n{url}"
+        # The first three hashtags in the description show above the title.
+        post["text"] = compose(long, read, FOLLOW_YOUTUBE, hashtags)
         post["metadata"] = {"youtube": {"title": story["title"][:100], "categoryId": "25", "privacy": "public",
                                         "madeForKids": False, "isAiGenerated": label}}
     elif service == "tiktok":
-        post["text"] = short + (f"\n\n{hashtags}" if hashtags else "")
+        post["text"] = compose(short, FOLLOW_BIO, hashtags)
     return post
 
 
