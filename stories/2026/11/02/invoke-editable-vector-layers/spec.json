@@ -11,7 +11,8 @@
     {
       "name": "InvokeAI",
       "logo": "invoke.svg",
-      "color": "#181818"
+      "color": "#181818",
+      "recolor": false
     }
   ],
   "cutouts": [
