@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "AGENT ZERO",
+    "ACTION-LEVEL",
+    "PERMISSIONS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Agent Zero",
+      "logo": "agentzero.svg",
+      "color": "#383838",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 351,
+  "sources": {
+    "agentzero.svg": "https://www.agent-zero.ai/res/lightSymbol.svg"
+  }
+}

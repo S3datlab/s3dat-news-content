@@ -1,0 +1,108 @@
+{
+  "format": 2,
+  "slug": "agent-zero-action-permissions-admin-controls",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Agent Zero 2.15 separates permissions for individual tool actions",
+  "titleAccent": "individual tool actions",
+  "dek": "Version 2.15 separates individual tool operations and messaging administrators, with migration steps for Telegram settings and connected browsers.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-02T10:15:16Z",
+  "lede": "Agent Zero released version 2.15 on November 1 with action-level permissions across 12 bundled multi-action tools. Operators can separate permitted operations within a tool and restrict who changes an agent’s settings through messaging channels.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "Agent Zero 2.15; 1 November 2026"
+    },
+    {
+      "label": "Action controls",
+      "value": "12 bundled multi-action tools"
+    },
+    {
+      "label": "Telegram settings",
+      "value": "Global scope only"
+    },
+    {
+      "label": "Channel administration",
+      "value": "Separate Telegram and WhatsApp administrator lists"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A tool can expose reads without writes",
+      "text": "The Agent Editor now expands tools into individual operations. An operator can allow the text editor’s read action while blocking write and patch actions. Each operation has an explicit allow, explicit block or inherited default. Category defaults affect entries that still inherit them, while pinned choices remain unchanged. Whole-tool controls apply to every action, including those hidden by a search filter. Explicit blocks take precedence across tool and action rules. The editor records overrides in the selected global or project profile, shows the exact file changes before saving, and leaves bundled profile definitions untouched. Saving a profile can open a fresh test chat without changing the old chat’s history."
+    },
+    {
+      "heading": "The plugin boundary changes too",
+      "text": "The release moves several bundled capabilities, including search, notifications and scheduling, into standalone plugins. Four memory tools become one tool with an action argument. Legacy memory calls remain compatible, while custom integrations are directed toward the new interface. Remote input also gains an additional permission check: enabling input_remote alone no longer permits terminal access when the remote terminal permission is blocked."
+    },
+    {
+      "heading": "Telegram separates conversation access from administration",
+      "text": "Telegram now requires a separate administrator list for plugin and permission changes. An administrator must also pass the bot’s ordinary sender allowlist. An empty administrator list gives nobody access to those settings. The handler uses the current bot configuration for each message and callback, so removing an administrator also invalidates previously displayed menu buttons. Bot activation and access rules apply globally. Older project or profile overrides pause delivery until reviewed and removed. Existing files are preserved without automatic merging; the settings interface exposes those copies for inspection before the intended global rules are applied."
+    },
+    {
+      "heading": "WhatsApp checks the current sender",
+      "text": "WhatsApp similarly separates allowed correspondents from administrators through admin_numbers. Administrative access also depends on sender and group checks. Membership comes from the current message’s normalized number, rather than the previous participant in that chat. The integration reserves plugin changes, tool policies, profile definitions and browser-runtime changes for administrators. Permission edits use the Agent Editor’s writer and require the active run to stop. Ordinary conversation commands remain available through text menus. Sender and group authorization checks run before media downloads and again before dispatch, separating message admission from later administrative operations."
+    },
+    {
+      "heading": "Connected browsers need a fresh session",
+      "text": "The browser helper moves to version 2 with same-origin enforcement for its message channel. Existing host browsers must restart and reconnect so their old initialization scripts are discarded."
+    }
+  ],
+  "buildersNote": "Test two accounts before reopening messaging access: one ordinary sender and one administrator. Confirm the first can converse but cannot change permissions. For a read-only profile, test editor writes and terminal writes separately, then restart and reconnect any existing host browser.",
+  "claims": [
+    {
+      "text": "Action-level tool permissions are not a filesystem sandbox; permitted terminal execution can still modify files when editor writes are blocked.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "An allowed Telegram sender is not automatically an administrator. Empty administrator lists grant no settings-change rights.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "v2.15",
+      "publisher": "Agent Zero / GitHub",
+      "url": "https://github.com/agent0ai/agent-zero/releases/tag/v2.15",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Agent Profiles and the Agent Editor",
+      "publisher": "Agent Zero / GitHub",
+      "url": "https://github.com/agent0ai/agent-zero/blob/v2.15/docs/guides/agent-profiles.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Telegram Integration",
+      "publisher": "Agent Zero / GitHub",
+      "url": "https://github.com/agent0ai/agent-zero/blob/v2.15/plugins/_telegram_integration/README.md",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "WhatsApp Integration Plugin",
+      "publisher": "Agent Zero / GitHub",
+      "url": "https://github.com/agent0ai/agent-zero/blob/v2.15/plugins/_whatsapp_integration/README.md",
+      "date": "2026-11-01"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Agent Zero added individual permissions across twelve bundled tools. [break] Messaging administrators now have separate access lists. Those controls restrict tool calls, but they do not make the agent’s filesystem a sandbox.",
+    "short": "Agent Zero 2.15 adds action-level permissions across 12 tools. Telegram and WhatsApp settings changes require separately designated administrators.",
+    "long": "Agent Zero separates messaging access from administrative control in version 2.15. A WhatsApp sender must pass both ordinary access checks and the separate administrator list before changing tool policies.\n\nTelegram installations with older project-specific settings pause until those configurations are reviewed. Allowing someone to talk to the agent does not give them permission to change its controls.",
+    "hashtags": [
+      "AgentZero",
+      "AIAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T10:15:16Z"
+}
