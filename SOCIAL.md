@@ -37,8 +37,8 @@ failure here leaves the story published; the workflow `Post to social media` can
 
 ## Reel: the 9:16 cut about every five hours
 
-Every hour at :41 (GitHub delays scheduled runs and drops some, so fixed slots went missing)
-`reel.yml` runs `social.py --pick`: the live story of the last 24 hours without a reel, highest
+Every hour at :41, and after every publish run (GitHub delays scheduled runs and drops some, on
+2 November seven hours of them, so fixed slots went missing) `reel.yml` runs `social.py --pick`: the live story of the last 24 hours without a reel, highest
 `social.priority` first, then analysis before story and explained, then the newest. Stories with
 priority 1 or 2 never get a reel; when nothing qualifies, nothing is posted. It renders the tall
 cut, uploads it and runs `social.py --story <slug> --group reel`. A reel goes out only once the

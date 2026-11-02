@@ -8,6 +8,11 @@ on:
     # GitHub delays scheduled runs and drops some outright, so this checks every hour and
     # social.py --pick posts only once the last reel is 4 h 30 min old (SOCIAL.md).
     - cron: '41 * * * *'
+  # GitHub skipped the hourly schedule for seven hours on 2 November, so every finished publish
+  # run (about one an hour) also checks; the 4 h 30 min gap still decides whether to post.
+  workflow_run:
+    workflows: ['Publish news stories']
+    types: [completed]
   workflow_dispatch:
     inputs:
       story:
@@ -39,6 +44,10 @@ jobs:
       BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The branch tip when the job starts, not the event's commit: a run that waited in the
+          # queue must see the posting record of the reel before it.
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
