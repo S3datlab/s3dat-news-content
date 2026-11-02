@@ -1,0 +1,106 @@
+{
+  "format": 2,
+  "slug": "browserskill-target-control-context",
+  "kind": "story",
+  "topic": "agents",
+  "title": "BrowserSkill lets agents reuse control across targeted browser actions",
+  "titleAccent": "reuse control",
+  "dek": "BrowserSkill replaces one-action control with a reusable context for targeted operations.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-02T22:11:30Z",
+  "lede": "Tencent released BrowserSkill 0.4.1 on November 1, allowing agents to reuse control across targeted browser actions. The change reduces repeated page synchronization while making callers responsible for declaring the facts behind a decision.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "BrowserSkill CLI 0.4.1"
+    },
+    {
+      "label": "Published",
+      "value": "1 November 2026"
+    },
+    {
+      "label": "Peer protocol",
+      "value": "1.8 for the new target policy"
+    },
+    {
+      "label": "Condition limit",
+      "value": "16 literal checks before input"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A different default for shared control",
+      "text": "New unconfigured sessions use a target-based policy: completed actions and additional reads can retain the same control context. Human intervention or navigation revokes that context. Scripts, untargeted keystrokes and visual actions still need an observation receipt and stricter freshness checks. Deploying the new behavior requires updating the command-line client, its running daemon, the extension and the DeepSeek Harness plugin together. Extension-store review can delay the browser component. A successful connection between mixed versions does not establish support for the new policy."
+    },
+    {
+      "heading": "A node is not a business record",
+      "text": "The cooperation guide distinguishes an element’s identity from its meaning. A virtualized table can reuse the same row for a different record; the same button can change from Save to Delete. Callers can attach expected text, values, checked states, attributes or existence to an action. Conditions use literal comparisons, without pattern matching or whitespace normalization. Selectors search the main document; references can address elements inside frames or shadow roots. The parser rejects unknown fields and values of the wrong type. Target names are capped at 1,024 Unicode code points; attribute names at 256. A tool receipt confirms the browser operation; application evidence establishes whether the business task succeeded. The extension implements these checks with fixed, read-only probes. Supplied text stays data rather than executable code, and mismatch diagnostics redact sensitive input values."
+    },
+    {
+      "heading": "Coordination also observes human activity",
+      "text": "BrowserSkill’s privacy policy explains that shared control observes page changes and supported manual activity even when debugging, audit and video recording are off. That observation supports handover within controlled task tabs; it does not start those optional recording features. The extension normally sends automation results to a local daemon, with an explicitly paired remote gateway available. It does not independently call an AI provider. The chosen agent or gateway can process or retain returned evidence under its own policies. Explicitly saved observation files contain the complete response before display filtering, so a shortened view does not remove content from the saved file."
+    },
+    {
+      "heading": "Failure handling preserves the action’s history",
+      "text": "An unknown outcome requires checking application records before retrying, because input may already have taken effect. Waiting for human control to end cannot repair a changed price or a missing element. Completed operations retain their receipts through ordinary page changes. After navigation, the next action needs a new synchronization. These distinctions separate permission to act, evidence used to choose an action and evidence of its result."
+    }
+  ],
+  "buildersNote": "Test a disposable form with three interruptions: change its price, replace its target row, then take manual control. Record which action is rejected and whether an earlier submission already reached the application. Repeat under the legacy strict policy before changing a production agent’s integration.",
+  "claims": [
+    {
+      "text": "Expected-value checks happen before browser input; they are not an atomic transaction with the website’s server.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Automation uses the existing browser profile and its signed-in website sessions; pairing with a server gives its agent access to controlled pages.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "bsk CLI 0.4.1",
+      "publisher": "Tencent BrowserSkill",
+      "url": "https://github.com/Tencent/BrowserSkill/releases/tag/cli-v0.4.1",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "Shared browser control",
+      "publisher": "Tencent BrowserSkill",
+      "url": "https://github.com/Tencent/BrowserSkill/blob/cli-v0.4.1/crates/bsk-cli/skill/references/cooperation.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "BrowserSkill — Privacy Policy",
+      "publisher": "Tencent BrowserSkill",
+      "url": "https://github.com/Tencent/BrowserSkill/blob/cli-v0.4.1/apps/extension/PRIVACY.md",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "action-checks.ts",
+      "publisher": "Tencent BrowserSkill",
+      "url": "https://github.com/Tencent/BrowserSkill/blob/cli-v0.4.1/apps/extension/src/cooperation/action-checks.ts",
+      "date": "2026-11-01"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] BrowserSkill lets agents reuse control across targeted browser actions. [break] Version zero point four point one changes the default. Browser evidence still goes to the selected agent, which may retain it.",
+    "short": "BrowserSkill 0.4.1 changes its default control policy. Targeted actions reuse their context until human intervention or navigation revokes it.",
+    "long": "BrowserSkill 0.4.1 changes how agents share browser control with people.\n\nAn unchanged page element can represent a different record. Callers can check up to 16 specific facts before input, but those checks do not lock the website’s server state. Shared control observes supported manual activity even with optional debugging and recording switched off.",
+    "hashtags": [
+      "BrowserSkill",
+      "Tencent",
+      "BrowserAutomation",
+      "AIAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T22:11:30Z"
+}

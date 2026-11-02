@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "BROWSERSKILL",
+    "REUSES",
+    "CONTROL"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Tencent",
+      "logo": "tencent.svg",
+      "color": "#111111",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 401,
+  "sources": {
+    "tencent.svg": "https://upload.wikimedia.org/wikipedia/commons/archive/6/6a/20230918213234%21Tencent_logo_2017.svg"
+  }
+}
