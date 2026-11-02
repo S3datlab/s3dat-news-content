@@ -1,0 +1,115 @@
+{
+  "format": 2,
+  "slug": "invoke-editable-vector-layers",
+  "kind": "story",
+  "topic": "apps",
+  "title": "InvokeAI adds editable vector layers to its image-generation canvas",
+  "titleAccent": "editable vector layers",
+  "dek": "The November 1 stable release preserves editable paths while turning their outlines and fills into raster inputs and inpainting masks.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-02T06:10:48Z",
+  "updatedAt": "2026-11-02T06:10:48Z",
+  "lede": "InvokeAI released version 6.14.3 on November 1 with editable vector layers in its image-generation canvas. Creators can adjust paths before converting them into image inputs or inpainting masks, keeping the original geometry available for further changes.",
+  "facts": [
+    {
+      "label": "Stable release",
+      "value": "InvokeAI 6.14.3; 1 November 2026"
+    },
+    {
+      "label": "Geometry",
+      "value": "Open or closed cubic Bézier paths"
+    },
+    {
+      "label": "Generation input",
+      "value": "Explicit raster trace, fill or inpainting mask"
+    },
+    {
+      "label": "Also fixed",
+      "value": "Restarting restored partial model downloads"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Shapes stay editable before generation",
+      "text": "The Shapes tool changes behavior according to the active layer. On a raster layer it paints filled pixels; on an inpainting layer it draws into the mask. On a vector layer it stores editable outlines. Rectangles and ovals become closed paths, polygon tools place anchors, and freehand drawing is fitted to cubic curves. The current color is applied later when those outlines are traced or filled. Polygon and freehand sessions also allow viewport panning without discarding the unfinished shape. Raster transparency lock restricts painting to pixels that already have opacity, while subtractive mode clears pixels. The vector implementation keeps geometry in the frontend and saves it with the project. Users can transform a whole layer or an individual path before producing raster output, avoiding resampling already-painted pixels."
+    },
+    {
+      "heading": "Editing has its own commit point",
+      "text": "The editor keeps one path active while displaying the layer’s other anchors. Users can move anchors together, insert points, split paths or join two open endpoints. Corner handles move independently; smooth handles remain aligned; symmetric handles also share their length. Apply commits the session, while Cancel restores its starting geometry. An edit-session history supports undo and redo before those changes become a grouped Canvas-history operation. Switching to another layer or an incompatible tool presents a choice to keep or discard the edits, or remain in the editor."
+    },
+    {
+      "heading": "Trace, fill and masks preserve the source",
+      "text": "Conversion creates a new raster or mask layer and leaves the source paths editable. Tracing uses the current canvas color, with adjustable width and optional tapering at the ends of open strokes. Filling and mask creation operate on closed paths. Operations can target one path or the whole layer. An extracted path can also be copied to a separate vector layer while the original remains in place. "
+    },
+    {
+      "heading": "The patch also repairs interrupted model installation",
+      "text": "The second functional change concerns downloads restored after a crash or termination. Its pull request describes a failure before the first download-started signal: newly created file-part information was not yet available on the public installation job. The fix exposes those parts before queue submission and preserves the resume-required state through serialization and the installation marker. That gives the restart path the information it needs to restart. A regression test follows the sequence through enqueueing, cancellation before transfer begins, saved state and restart. The vector feature and this installation repair are packaged together in the stable patch."
+    }
+  ],
+  "buildersNote": "Draw one closed outline, convert it to a mask, then resize the original and create a second mask. Compare both boundaries at full resolution. Save and reopen the project to verify that the paths, handles and generated mask layers remain separate.",
+  "claims": [
+    {
+      "text": "Vector geometry does not directly enter generation or raster compositing; users must explicitly convert it to pixels or a mask.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Compound-path holes and winding-rule controls are not implemented. The contributor has not benchmarked large-layer performance.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "A visually overlapping pair of endpoints is still open unless the path is explicitly closed; filling and mask creation require closure.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "InvokeAI 6.14.3",
+      "publisher": "InvokeAI / GitHub",
+      "url": "https://github.com/invoke-ai/InvokeAI/releases/tag/v6.14.3",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "feat(canvas): add editable vector layers and spline workflows",
+      "publisher": "InvokeAI / GitHub",
+      "url": "https://github.com/invoke-ai/InvokeAI/pull/9194",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "Vector Layers",
+      "publisher": "InvokeAI / GitHub",
+      "url": "https://github.com/invoke-ai/InvokeAI/blob/v6.14.3/docs/src/content/docs/features/Canvas/vector-layers.mdx",
+      "date": "2026-10-04"
+    },
+    {
+      "title": "fix(model-install): keep restored downloads restartable",
+      "publisher": "InvokeAI / GitHub",
+      "url": "https://github.com/invoke-ai/InvokeAI/pull/9521",
+      "date": "2026-10-01"
+    },
+    {
+      "title": "Shapes Tool",
+      "publisher": "InvokeAI / GitHub",
+      "url": "https://github.com/invoke-ai/InvokeAI/blob/v6.14.3/docs/src/content/docs/features/Canvas/shapes-tool.mdx",
+      "date": "2026-09-20"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Invoke adds editable vector layers to its image canvas. [break] Version six point fourteen point three lets creators reshape paths, then turn them into pixels or masks while keeping the original geometry.",
+    "short": "InvokeAI 6.14.3 adds editable vector layers. Its Shapes tool now makes reusable outlines alongside existing raster fills and masks.",
+    "long": "The InvokeAI canvas now keeps drawing geometry separate from generation inputs. Its November 1 stable release adds editable paths that can be reshaped before creating raster layers or inpainting masks.\n\nAnchor editing and path transforms preserve the source drawing for another pass. The implementation does not support compound-path holes, and large-layer performance remains unbenchmarked.",
+    "hashtags": [
+      "InvokeAI",
+      "GenerativeAI"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

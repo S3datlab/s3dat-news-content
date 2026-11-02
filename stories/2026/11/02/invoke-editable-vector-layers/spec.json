@@ -1,0 +1,39 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "INVOKEAI",
+    "EDITABLE",
+    "VECTOR LAYERS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "InvokeAI",
+      "logo": "invoke.svg",
+      "color": "#181818"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    },
+    {
+      "src": "prop-2.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 311,
+  "sources": {
+    "invoke.svg": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/v6.14.3/invokeai/frontend/web/public/assets/images/invoke-symbol-char-lrg.svg",
+    "hero.webp": "generated",
+    "prop-1.webp": "generated",
+    "prop-2.webp": "generated"
+  }
+}
