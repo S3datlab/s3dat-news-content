@@ -1,0 +1,108 @@
+{
+  "format": 2,
+  "slug": "longcat-two-five-native-multimodal",
+  "kind": "story",
+  "topic": "models",
+  "title": "Meituan releases LongCat-2.5 for visual coding and longer agent tasks",
+  "titleAccent": "LongCat-2.5",
+  "dek": "The November 1 announcement adds native visual inputs and longer coding trajectories; API availability follows November 2.",
+  "eventDate": "2026-11-01",
+  "publishedAt": "2026-11-02T04:09:35Z",
+  "updatedAt": "2026-11-02T04:09:35Z",
+  "lede": "Meituan introduced LongCat-2.5 on November 1, and its API changelog lists the model as available on November 2. The release combines visual understanding with coding agents that work through complex repositories and complete project builds.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "LongCat-2.5"
+    },
+    {
+      "label": "Announcement",
+      "value": "1 November 2026"
+    },
+    {
+      "label": "API release entry",
+      "value": "2 November 2026"
+    },
+    {
+      "label": "Parameters, company figures",
+      "value": "1.6 trillion total; about 48 billion active per token"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Visual inputs join the coding workflow",
+      "text": "Meituan describes a shared backbone that processes visual and textual inputs as tokens. Its training pipeline adds longer agent trajectories, reinforcement learning over extended tasks and training across different agent harnesses. Failed agent attempts become reproducible tasks with verifiable outcomes, feeding further training. The training targets successive tool calls and code changes."
+    },
+    {
+      "heading": "The parameter count carries over from LongCat-2.0",
+      "text": "The preceding LongCat-2.0 announcement, dated June 30, reported the same total and active parameter counts. That model used a mixture-of-experts architecture and LongCat Sparse Attention, with dedicated training on million-token sequences. Meituan also described repository edits, automated task execution and integrations with existing agent harnesses. The comparison locates the new release more precisely: agentic coding and large-scale model capacity already belonged to the family. The 2.5 announcement emphasizes visual understanding and longer engineering trajectories."
+    },
+    {
+      "heading": "Long context depends on selecting what to read",
+      "text": "An August 3 paper explains the sparse-attention system behind LongCat-2.0. It combines predictable contiguous regions of cached tokens with dynamically selected tokens, reducing scattered memory access. Adjacent layers can reuse an earlier layer’s token selection, with distillation training that selection to serve the whole group. A separate hierarchical selector first narrows the search to blocks, then scores tokens inside them. These mechanisms address the cost of finding relevant history before attention processes it. The paper identifies long coding sessions and extended reasoning as uses for this work. It documents the predecessor’s long-context foundation, separately from the new release’s visual and agent-training changes."
+    },
+    {
+      "heading": "The infrastructure work targets long runs",
+      "text": "The technical report describes long-sequence training and inference on domestic AI accelerators. Its inference system quantizes expert weights and activations to four bits and coordinates communication with computation. During long-context rollouts, adjacent layers reuse selected token indices while cached data is prefetched from host memory. The earlier 2.0 report already described training and deployment on large ASIC superpods, including substantial work on memory and communication. Its serving system separated prompt processing from token generation, assigning different parallelism arrangements to each. That earlier deployment also distributed cached attention data across devices to reduce each accelerator’s memory burden."
+    },
+    {
+      "heading": "Availability follows a separate preview",
+      "text": "The platform changelog names Claude Code, Codex and Hermes among compatible harnesses. It places the final release after a separate September 25 entry for LongCat-2.5-Preview, which already advertised image understanding and coding. The November entry focuses on visual coding, creative design, three-dimensional tasks and extended engineering workflows."
+    }
+  ],
+  "buildersNote": "Compare the preview and final model on the same small repository: include one screenshot-dependent change and one multi-file repair. Keep tool permissions and the test suite fixed. Record completed tests, unintended edits, elapsed time and billed usage separately. Save the prompts and tool traces so a failed edit can be separated from a failed integration.",
+  "claims": [
+    {
+      "text": "The API platform lists LongCat-2.5 as available on November 2.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The reported visual and engineering gains are company claims, not independent measurements of production task success.",
+      "status": "claimed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "LongCat-2.5 Native Multimodality for Agentic Tasks",
+      "publisher": "Meituan LongCat",
+      "url": "https://longcat.ai/blog/longcat-2.5",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "LongCat API Platform Change Log",
+      "publisher": "Meituan LongCat",
+      "url": "https://longcat.ai/platform/docs/ChangeLog.html",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Introducing LongCat-2.0",
+      "publisher": "Meituan LongCat",
+      "url": "https://longcat.ai/blog/longcat-2.0/",
+      "date": "2026-06-30"
+    },
+    {
+      "title": "LongCat Sparse Attention: Taming the Lightning via Streaming-aware Hierarchical Cross-Layer Indexing",
+      "publisher": "Meituan LongCat Team / arXiv",
+      "url": "https://arxiv.org/html/2608.01662v1",
+      "date": "2026-08-03"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Meituan released LongCat two point five for visual coding and longer agent tasks. [break] Its platform lists availability on November second, with support for existing coding tools. Independent task results remain open.",
+    "short": "LongCat-2.5 reached Meituan’s API release log on November 2. It combines visual understanding with longer coding tasks and supports Claude Code, Codex and Hermes.",
+    "long": "Meituan has moved LongCat-2.5 beyond its September preview. The November 2 platform entry lists the model for visual coding and longer engineering workflows.\n\nThe earlier LongCat-2.0 already targeted repository edits and automated tasks. The new release extends that direction with visual inputs and longer training trajectories; parameter count alone does not establish software-task success.",
+    "hashtags": [
+      "LongCat",
+      "Models"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

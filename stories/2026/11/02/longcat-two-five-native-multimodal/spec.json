@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "LONGCAT 2.5",
+    "VISION AND",
+    "CODE"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "LongCat",
+      "logo": "longcat.svg",
+      "color": "#29E154",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 291,
+  "sources": {
+    "longcat.svg": "https://s3plus.meituan.net/aigc-media-resources/longcat/yeqian-logo.svg"
+  }
+}
