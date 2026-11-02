@@ -1,0 +1,37 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "JENNY",
+    "APPROVED",
+    "AGENT PLANS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Android",
+      "icon": "android"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    },
+    {
+      "src": "prop-2.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 301,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated",
+    "prop-2.webp": "generated"
+  }
+}

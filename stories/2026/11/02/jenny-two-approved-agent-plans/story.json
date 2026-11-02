@@ -1,0 +1,115 @@
+{
+  "format": 2,
+  "slug": "jenny-two-approved-agent-plans",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Jenny 2.0 adds approved agent plans to Android notebooks",
+  "titleAccent": "approved agent plans",
+  "dek": "The October 31 release adds sequential notebook plans, helper rollback and a remote browser interface hosted by the phone.",
+  "eventDate": "2026-10-31",
+  "publishedAt": "2026-11-02T05:10:24Z",
+  "updatedAt": "2026-11-02T05:10:24Z",
+  "lede": "Independent developer flagDiZero released Jenny 2.0 on October 31 with approval-based plans for its Android notebook agent. The app takes responsibility for advancing each step, giving users a defined execution sequence instead of relying on conversational delegation alone.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "Jenny 2.0.0; 31 October 2026"
+    },
+    {
+      "label": "Plan size",
+      "value": "2–12 steps before execution"
+    },
+    {
+      "label": "Remote interface",
+      "value": "Browser access through Tailscale; phone remains host"
+    },
+    {
+      "label": "Screen reading",
+      "value": "Read-only capture on Android 14+"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Approval comes before notebook changes",
+      "text": "Planning starts inside a notebook chat. Jenny reads its contents and can ask clarifying questions before presenting a proposed sequence. That stage is read-only and excludes web searches; research belongs to later execution steps. Users can remove proposed steps or request a revision before approval. The app then records the notebook’s starting state and advances one step at a time, waiting for each to finish. Other views cannot edit the notebook during execution. A final application-level check looks for broken links, empty pages and missing facts, with up to two repair rounds. Unresolved gaps are recorded separately."
+    },
+    {
+      "heading": "Helpers keep a record of their changes",
+      "text": "Outside a running plan, Jenny delegates work to helpers while leaving the main conversation available. Each helper records files before its first write and the content it leaves behind. Stopping a helper presents separate choices to preserve its work or reverse its changes. Notebook boards and reminders are tracked at the individual-card level. A stopped helper can also be left in place while the user decides later whether to undo it. For interrupted work, the continuation mechanism restores the helper’s conversation and recorded activity. A plan manages its own helper continuation, so the user deals with the plan’s controls instead of restarting each worker."
+    },
+    {
+      "heading": "Another browser reaches the same phone",
+      "text": "The new remote interface exposes the phone’s existing web interface through Tailscale. Both devices join the same tailnet, and a separate access key travels in the browser link. The listener binds to the phone’s Tailscale addresses instead of every network interface. Users can disconnect remote sessions and rotate the key from the phone. The other device displays the same chats, notebooks and Jenny apps; it does not become a second agent host. Turning remote access off from the browser disconnects that window, and re-enabling it requires access to the phone."
+    },
+    {
+      "heading": "Phone hosting and model hosting are separate",
+      "text": "Jenny embeds a Python runtime in an Android application and keeps its agent service running in the foreground. It can also act as the phone’s launcher. Users choose a model provider with their own key, or connect a model server on their own hardware. The project distributes source code and a signed installation package. Version 2 keeps the signing key used by earlier releases, allowing an in-place upgrade that preserves chats, notebooks and settings. Notebook boards replace the previous opening view, arranging subjects, notes, reminders and automations as cards. Android’s cloud backup now excludes Jenny’s data; the release directs users to the app’s backup mechanism."
+    }
+  ],
+  "buildersNote": "Try a three-step plan in a disposable notebook before migrating important notes. Pause after one step, restart the app, then inspect the resumed work. Test rollback on two files, editing one yourself first, and verify that your later edit survives.",
+  "claims": [
+    {
+      "text": "Plans require approval; after an app restart, resuming repeats the interrupted step from its beginning.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Helper undo preserves subsequently edited files. It cannot reverse sent messages, searches, fired reminders or scheduled jobs; files over 5 MB are excluded.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Phone-hosted storage does not imply local inference: hosted providers receive prompts. Python execution is not sandboxed, and provider keys remain plaintext inside app storage.",
+      "status": "confirmed",
+      "source": 4
+    }
+  ],
+  "sources": [
+    {
+      "title": "Jenny 2.0.0",
+      "publisher": "flagDiZero / GitHub",
+      "url": "https://github.com/flagdizero/jenny-android-ai-agent/releases/tag/v2.0.0",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "Plans",
+      "publisher": "Jenny / GitHub",
+      "url": "https://github.com/flagdizero/jenny-android-ai-agent/blob/v2.0.0/docs/using/plans.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "Helpers: stop, undo, continue",
+      "publisher": "Jenny / GitHub",
+      "url": "https://github.com/flagdizero/jenny-android-ai-agent/blob/v2.0.0/docs/using/helpers.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "Jenny from your other devices",
+      "publisher": "Jenny / GitHub",
+      "url": "https://github.com/flagdizero/jenny-android-ai-agent/blob/v2.0.0/docs/using/remote-access.md",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "A local-first personal AI agent that lives on your Android phone",
+      "publisher": "Jenny / GitHub",
+      "url": "https://github.com/flagdizero/jenny-android-ai-agent/blob/v2.0.0/README.md",
+      "date": "2026-10-31"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Jenny two adds approved plans to its Android agent. [break] A notebook job can have two to twelve steps, run in sequence. Undo protects later file edits, but cannot take back sent messages.",
+    "short": "Jenny 2.0 adds approved plans with 2–12 steps to its Android agent. The app advances the work and records notebook changes; helper undo leaves later edits alone.",
+    "long": "The Jenny Android agent now separates planning from execution. Users review the proposed notebook work before the app advances its steps, and helpers keep records of the files they change.\n\nVersion 2 also adds a browser interface over Tailscale while the phone remains the host. Undo covers eligible file changes, not external actions such as messages already sent.",
+    "hashtags": [
+      "Android",
+      "Agents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
