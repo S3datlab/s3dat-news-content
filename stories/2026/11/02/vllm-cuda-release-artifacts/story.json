@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "vllm-cuda-release-artifacts",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "vLLM 0.33 drops CUDA 12.9 release artifacts",
+  "titleAccent": "drops CUDA 12.9",
+  "dek": "The inference server stops publishing its CUDA 12.9 builds and adds a separate AWS networking image, while changing how paused engines handle new requests.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-02T16:10:47Z",
+  "lede": "vLLM published version 0.33.0 on November 2, ending its CUDA 12.9 release wheels and container images. Operators upgrading the inference server need to change affected artifact references and account for new request handling during generation pauses.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "vLLM 0.33.0; 2 November 2026"
+    },
+    {
+      "label": "CUDA release builds",
+      "value": "13.0; no new 12.9 wheels or images"
+    },
+    {
+      "label": "AWS networking image",
+      "value": "vllm/vllm-openai:v0.33.0-efa"
+    },
+    {
+      "label": "Paused admission",
+      "value": "New requests rejected in abort and wait modes"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An artifact change, not the first CUDA 13 default",
+      "text": "CUDA 13.0 was already the default build before this removal. The merged pipeline change deletes nine jobs that built or published the additional CUDA 12.9 variants. Those jobs covered x86 and Arm wheels, standard and Ubuntu 24.04 containers, multi-architecture manifests and nightly publication. The cu129 wheel variant and container tags ending in -cu129 or -cu129-ubuntu2404 stop receiving new builds. The change removes distribution machinery instead of introducing a new execution engine. It leaves the other platform build steps in place. For deployments pinned to those suffixes, upgrading the version number alone no longer identifies a published replacement."
+    },
+    {
+      "heading": "A separate image for AWS networking",
+      "text": "The new EFA container packages the user-space libraries for Amazon’s Elastic Fabric Adapter alongside an EFA-specific Mooncake transfer engine. Its implementation uses a separate build target because the EFA installer supplies a different rdma-core version from the distribution package. Keeping that dependency in its own image avoids changing the networking library underneath existing container users. The contributor tested disaggregated inference across two p5en.48xlarge instances with Qwen3-32B, using NIXL’s LIBFABRIC backend and the EFA provider. That setup separates prompt processing from token generation. The release publishes the EFA image for both x86 and Arm hosts, making the networking choice explicit in the artifact name."
+    },
+    {
+      "heading": "Pause now changes request admission",
+      "text": "The paused-generation change addresses requests arriving during a model transition. Previously, newly submitted work could sit in a paused engine and run after it resumed with different weights. Under abort and wait modes, the engine now rejects new arrivals between completion of the pause and completion of the resume. The shared engine enforces admission across its API servers. The keep mode continues to accept queued work. Rejection is retryable: ordinary HTTP responses use status 503, while the Rust frontend maps the condition to UNAVAILABLE over gRPC. A streaming-input session ends when its next input is rejected."
+    },
+    {
+      "heading": "What the release label identifies",
+      "text": "GitHub names the release v0.33.0 and marks it as a normal release, although its underlying tag remains v0.33.0rc3. The downloadable artifact names use 0.33.0. The package also moves to PyTorch 2.14.0, torchvision 0.29.0 and Triton 3.8.0. The installation guide explains why that dependency combination matters: compiled kernels can be incompatible across CUDA versions and PyTorch build configurations. It recommends a fresh environment for packaged installation and a source build when retaining a different PyTorch installation. Its Python-only development path instead reuses compiled libraries from a matching upstream wheel, so it still depends on the availability of that wheel."
+    }
+  ],
+  "buildersNote": "Before rollout, compare the old and new image references in one staging deployment. Submit one request before pausing, one during the pause and one after resuming; record status codes and whether any work executes twice.",
+  "claims": [
+    {
+      "text": "CUDA 12.9 release artifacts stop being published; this pipeline removal does not establish a blanket ban on building from source with CUDA 12.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The EFA pull request reports a NIXL test, but lists its Mooncake EFA transport test as pending. Packaging both libraries is not proof of equivalent validation.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The tagged installation guide still describes CUDA 12.9 as the default, conflicting with the release artifact list.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "Streaming HTTP can deliver rejection as an SSE error after headers are sent. In-process engines with multiprocessing disabled still queue requests while paused.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "v0.33.0",
+      "publisher": "vLLM",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.33.0rc3",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "[CI/Build] Drop CUDA 12.9 from the release pipeline",
+      "publisher": "vLLM",
+      "url": "https://github.com/vllm-project/vllm/pull/62575",
+      "date": "2026-10-20"
+    },
+    {
+      "title": "[docker] add vllm-openai-efa target",
+      "publisher": "vLLM",
+      "url": "https://github.com/vllm-project/vllm/pull/58768",
+      "date": "2026-10-26"
+    },
+    {
+      "title": "[Core] Reject new requests while generation is paused",
+      "publisher": "vLLM",
+      "url": "https://github.com/vllm-project/vllm/pull/51488",
+      "date": "2026-10-19"
+    },
+    {
+      "title": "gpu.cuda.inc.md",
+      "publisher": "vLLM",
+      "url": "https://github.com/vllm-project/vllm/blob/v0.33.0rc3/docs/getting_started/installation/gpu.cuda.inc.md",
+      "date": "2026-10-23"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] V L L M has stopped publishing Cuda twelve point nine builds in version zero point thirty-three. [break] Existing deployments using those images need a different artifact when they upgrade.",
+    "short": "vLLM 0.33 stops publishing CUDA 12.9 wheels and images. Deployments pinned to those variants need a different build reference for the upgrade.",
+    "long": "vLLM changed its packaged deployment options on November 2. Version 0.33.0 removes CUDA 12.9 artifacts and adds a dedicated image for AWS EFA networking.\n\nThe server also rejects new requests during abort and wait pauses instead of silently holding them until generation resumes. The keep mode still queues work. The networking image bundles two transfer options, but the implementation report does not establish equal testing of both.",
+    "hashtags": [
+      "vLLM",
+      "ModelServing",
+      "CUDA",
+      "Inference"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-02T16:10:47Z"
+}

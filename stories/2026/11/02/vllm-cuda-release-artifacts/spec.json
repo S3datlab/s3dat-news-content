@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "VLLM",
+    "DROPS CUDA",
+    "12.9 BUILDS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "vLLM",
+      "logo": "vllm.svg",
+      "color": "#111111",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 371,
+  "sources": {
+    "vllm.svg": "https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Logo.svg"
+  }
+}
