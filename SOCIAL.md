@@ -201,9 +201,57 @@ One desk, a different register per room. The fields are shared; the posts assemb
 
 ## Replies
 
-Answer every real comment within a day, as the desk: the fact they asked about, or our reason.
-Drafts of replies go to Sedat for approval; we never post automated replies, and we never reply
-to strangers' posts automatically (X's automation rules forbid it).
+Someone who answers a post is the reaction the post was for; answer every real comment within a
+day, as the desk. You write the draft, Sedat approves and posts it. We never post automated
+replies, and we never reply to strangers' posts automatically (X's automation rules forbid it).
+
+**How a comment reaches you.** Every hour `replies.yml` reads the comments on our Mastodon and
+Bluesky posts of the last seven days (their public APIs) and writes each new one to
+`replies/inbox/<platform>-<id>.json`: the comment, the conversation above it (`thread`, our post
+first), the story's slug (`story`), the character `limit` for the reply and `answered` (the link
+to our reply once there is one). It opens a GitHub issue for Sedat; your draft is added to it.
+Comments on the other channels are only in Buffer; Sedat pastes them to you when they need a
+draft.
+
+**Every run, before the story:** for each file in `replies/inbox` that has no `answered` and no
+file of the same name in `replies/drafts`, write `replies/drafts/<the same name>.json`:
+
+```json
+{
+  "draft": "the reply, exactly as it should be posted",
+  "note": "what you checked: the story, the source page and its date"
+}
+```
+
+or, for spam, abuse, a bot, or a comment with nothing to answer, `{"skip": "the reason"}`. Run
+`python3 scripts/replies.py --check`, then commit the draft alone to `main` with the message
+`Reply draft: <platform> <author>`. Never post anything yourself, and never change files in
+`replies/inbox`.
+
+**How a reply reads:**
+
+- Answer what they asked in the first sentence: the fact, the number, the date. Check it in the
+  story's sources, and in the source itself when the story doesn't cover it. Never guess: if
+  nobody knows yet, say so, and what would settle it.
+- One to three sentences, within `limit`. No @mention at the start (Buffer adds it), no hashtags,
+  no "!", no emoji, at most one link: the page that answers the question.
+- No help-desk openers ("Great question", "Thanks for asking") and no bait ("Let us know").
+  The validator's house-style phrases apply.
+- Write as the desk: "we", contractions, plain words. Disagree when we disagree, and give the
+  reason. When they're right and the story is wrong, say so plainly and correct the story
+  (EDITORIAL.md, Corrections).
+- Reply in English, or in the commenter's language when it is one we write well.
+
+Before and after, for "does the 24 hours default mean citations can point at a page version up
+to a day stale?":
+
+- Before: "Great question! It depends on your setup, so we'd recommend testing it. Let us know
+  what you find!"
+- After: "Yes, for website and R2 sources: until the next sync job runs, search returns the
+  version it last indexed, so on the 24-hour default a citation can be up to a day stale, plus
+  processing time. Two ways around it: trigger a job from your deploy step (npx wrangler
+  ai-search jobs create, allowed every 30 seconds), or put those pages in built-in storage, which
+  indexes each file as it's uploaded. We haven't timed the gap ourselves yet."
 
 ## The voice-over
 

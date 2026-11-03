@@ -1,15 +1,15 @@
 name: Post the reel
 
-# About every five hours (five a day): pick the story of the last
-# 24 hours most worth a video, render its 9:16 cut with the voice-over, upload it and post it to
-# Instagram (and YouTube Shorts or TikTok if connected). Nothing worth a video: nothing posted.
+# Four or five times a day: pick the strongest story of the last 24 hours, render its 9:16 cut
+# with the voice-over, upload it and post it to Instagram (and YouTube Shorts or TikTok if
+# connected). Nothing worth a video: nothing posted.
 on:
   schedule:
     # GitHub delays scheduled runs and drops some outright, so this checks every hour and
-    # social.py --pick posts only once the last reel is 4 h 30 min old (SOCIAL.md).
+    # social.py --pick decides whether a reel is due (SOCIAL.md: 4 h or 6 h after the last one).
     - cron: '41 * * * *'
   # GitHub skipped the hourly schedule for seven hours on 2 November, so every finished publish
-  # run (about one an hour) also checks; the 4 h 30 min gap still decides whether to post.
+  # run (about one an hour) also checks; social.py --pick still decides whether to post.
   workflow_run:
     workflows: ['Publish news stories']
     types: [completed]

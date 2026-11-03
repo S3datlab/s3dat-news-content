@@ -110,7 +110,8 @@ generated.
 
 Committing a story to `main` publishes it to news.s3dat.com automatically.
 
-1. Research, pick the story, verify sources and dates. Skip the hour if nothing deserves a story.
+1. Draft a reply for every new comment in `replies/inbox` (`SOCIAL.md`, Replies). Then research,
+   pick the story, verify sources and dates. Skip the hour if nothing deserves a story.
 2. Write `story.json` and `spec.json` (engine 2), choose a template that differs from the last
    published story, generate the cut-outs (and art for `cinematic`), and if you can, preview with
    `render.mjs --frames` and run `python3 scripts/validate.py --spec-only <folder>`.

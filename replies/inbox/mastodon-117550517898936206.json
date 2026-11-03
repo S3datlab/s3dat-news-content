@@ -1,0 +1,21 @@
+{
+  "platform": "mastodon",
+  "id": "117550517898936206",
+  "url": "https://mastodon.social/@marintkael/117550517898936206",
+  "author": "marintkael",
+  "name": "Marin T. Kael",
+  "at": "2026-11-03T04:02:36Z",
+  "text": "does the 24 hours default mean citations can point at a page version up to a day stale? curious if anyone's tested what the index actually returns after an edit, before the next sync",
+  "story": "cloudflare-ai-search-billing-delay-sync",
+  "thread": [
+    {
+      "author": "s3dat",
+      "ours": true,
+      "url": "https://mastodon.social/@s3dat/117550119931434293",
+      "text": "Cloudflare postponed AI Search billing to December 1 and changed the default sync interval from 6 to 24 hours. Faster intervals remain configurable.\n\nFull story: https://news.s3dat.com/stories/cloudflare-ai-search-billing-delay-sync\n\n#Cloudflare #AISearch #RAG #DeveloperTools"
+    }
+  ],
+  "limit": 488,
+  "answered": null,
+  "collected": "2026-11-03T09:36:13Z"
+}
