@@ -1,0 +1,101 @@
+{
+  "format": 2,
+  "slug": "hydrogen-scientific-model-open-weights",
+  "kind": "story",
+  "topic": "models",
+  "title": "Deep Principle introduces Hydrogen-1.0 for scientific research",
+  "dek": "Hydrogen combines scientific post-training with downloadable weights and hardware-specific deployment options.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T03:12:38Z",
+  "lede": "Deep Principle announced Hydrogen-1.0 on November 2, a scientific model built from GLM-5.3. Researchers can obtain its weights or use the access routes listed by the company.",
+  "facts": [
+    {
+      "label": "Full model",
+      "value": "753 billion parameters"
+    },
+    {
+      "label": "Weights license",
+      "value": "MIT"
+    },
+    {
+      "label": "Tested quantized setup",
+      "value": "8 NVIDIA B300 GPUs"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Learning from experiments",
+      "text": "The company describes supervised fine-tuning and reinforcement learning using scientific knowledge, laboratory records and sequences of research decisions. Those sequences preserve what a researcher tried, what happened and how the next choice changed. One demonstration writes and repairs a molecular-dynamics workflow before examining a 40-nanosecond simulation. Another rehearses a laboratory protocol virtually, catches an ordering mistake and corrects it within the virtual rehearsal. The announcement lists downloads through Hugging Face and ModelScope, API access through NeuroSpark, and integration into its Mira research assistant."
+    },
+    {
+      "heading": "Weights are not the complete training recipe",
+      "text": "The unquantized model card lists 753 billion parameters and MIT-licensed weights. Hugging Face requires users to accept access conditions and share account information before downloading that repository. The card lists a million-token context and a 128,000-token output ceiling, while making their usable size dependent on the serving configuration and resources. Deep Principle reports testing the unquantized model with SGLang across eight GPUs. Its client example connects to an existing inference service rather than loading the model. Independently authored code and documentation carry Apache 2.0 terms; third-party files retain their own licenses."
+    },
+    {
+      "heading": "The smaller format still needs substantial hardware",
+      "text": "The separate NVIDIA quantized checkpoint has a more specific deployment description: eight B300 GPUs running SGLang. It uses four-bit routed experts, eight-bit dense feed-forward layers near the beginning, and retains higher precision for other components, including attention and shared experts. The supplied server example limits the deployed context to 262,144 tokens, below the model card’s headline capacity. Input and generated text must fit that configured window together. Its cache also uses eight-bit precision. The documentation keeps the tokenizer, chat template, generation settings, quantization files and weight index together so serving uses matching stopping rules."
+    },
+    {
+      "heading": "Research questions and research projects differ",
+      "text": "Some internal evaluation questions were adapted from the team’s earlier Scientific Discovery Evaluation work. That paper, revised May 8, separates question-level accuracy from project outcomes. Experts built scenarios around real research projects, reviewed questions for correctness and assembled 1,125 items across biology, chemistry, materials and physics. Project tests instead require hypotheses, simulation or experimental feedback, and subsequent revision. The researchers found that scenario scores did not always predict project performance, with different models leading different projects. This distinction explains why a science quiz and a completed investigation are separate tests: identifying the right answer once does not measure how a system responds when an experiment changes the available evidence."
+    }
+  ],
+  "buildersNote": "Start with three completed, non-sensitive research cases whose conclusions your team can independently check. Keep the supplied evidence fixed, record the deployed checkpoint and context setting, and have a domain reviewer compare both the answer and the proposed next experiment. Do not connect the first evaluation to live laboratory equipment.",
+  "claims": [
+    {
+      "text": "Deep Principle reports gains on selected scientific tests, not a universal lead. Its cost charts substitute GLM-5.3 prices for Hydrogen pricing.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The weights do not include the complete training datasets or recipes, and model outputs require scientific verification.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Hydrogen-1.0",
+      "publisher": "Deep Principle",
+      "url": "https://blog.deepprinciple.com/introducing-hydrogen-1.0/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "deep-principle/Hydrogen-1.0",
+      "publisher": "Deep Principle",
+      "url": "https://huggingface.co/deep-principle/Hydrogen-1.0",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "deep-principle/Hydrogen-1.0-NVFP4",
+      "publisher": "Deep Principle",
+      "url": "https://huggingface.co/deep-principle/Hydrogen-1.0-NVFP4",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Evaluating Large Language Models in Scientific Discovery",
+      "publisher": "Song et al. / arXiv",
+      "url": "https://arxiv.org/html/2512.15567v2",
+      "date": "2026-05-08"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Deep Principle introduced Hydrogen for scientific research. [break] The model learns from laboratory records and research trajectories. Its weights are available, but the published examples still require scientific review.",
+    "short": "Deep Principle announced Hydrogen-1.0 on November 2, with downloadable scientific-model weights and hardware-specific versions.",
+    "long": "Hydrogen learns from laboratory records and decisions.\n\nIts unquantized weights have an MIT license, while downloading that Hugging Face repository requires accepting access conditions. A separate quantized deployment example uses eight NVIDIA B300 GPUs; this is not a small-device research assistant.",
+    "hashtags": [
+      "Hydrogen",
+      "ScientificAI",
+      "OpenWeights",
+      "ResearchModels"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T03:12:38Z"
+}
