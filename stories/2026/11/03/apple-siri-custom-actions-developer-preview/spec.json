@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "APPLE",
+    "OPENS SIRI",
+    "DEV PREVIEW"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Apple",
+      "icon": "apple"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2103,
+  "sources": {}
+}

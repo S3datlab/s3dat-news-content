@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "apple-siri-custom-actions-developer-preview",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Apple opens Siri AI developer preview to custom app actions",
+  "titleAccent": "opens Siri AI developer preview",
+  "dek": "The new integration path expands beyond fixed action schemas, with internal testing available before customer distribution.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T21:13:05Z",
+  "lede": "Apple opened a Siri AI developer preview for custom app actions on November 3. Developers can connect app-specific operations and content without fitting everything into predefined system categories.",
+  "facts": [
+    {
+      "label": "Developer betas",
+      "value": "iOS, iPadOS, macOS and visionOS 27.3"
+    },
+    {
+      "label": "Skill instructions",
+      "value": "10,000 characters maximum per body"
+    },
+    {
+      "label": "Distribution",
+      "value": "Development builds and internal TestFlight only"
+    },
+    {
+      "label": "App Store submissions",
+      "value": "Opening in spring; no exact date announced"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Custom operations become assistant tools",
+      "text": "Apple’s implementation guide adds a tool annotation to an eligible custom App Intent. An intent already exposed through a Siri-compatible schema needs no extra annotation. A configuration-only intent cannot become a tool without an operation to perform. The distinction separates an app’s executable capabilities from metadata used to configure interfaces."
+    },
+    {
+      "heading": "Testing starts inside the development team",
+      "text": "Apple’s preview guide limits distribution to development-signed Xcode builds and internal TestFlight testers. External TestFlight testers and App Store versions cannot use these new integrations. The device must support Apple Intelligence. There is no separate developer program or new entitlement to obtain. Requests also depend on context. In the background, the person names the app; that is unnecessary when the app is foregrounded, has an active Live Activity, or the user continues a Siri conversation that already names the app. The guide describes custom content moving between apps and appearing in developer-provided card snippets. These are explicit integrations: Siri only accesses the content and actions the app exposes."
+    },
+    {
+      "heading": "Skills guide a model, not a script runner",
+      "text": "The skills guide describes one skills bundle per app target, containing a separate Markdown file for each skill. Each file has a name, description and instruction body. Xcode validates and compiles the bundle, then the device indexes it. Siri first matches the metadata to a request and reads the instructions after selecting a skill. Supporting scripts and reference files are not accepted. A skill can explain which operation to prefer, what to avoid and which questions need clarification. Apple explicitly says this guidance cannot enforce deterministic behavior or make Siri execute a listed sequence in order."
+    },
+    {
+      "heading": "Private fields need explicit protection",
+      "text": "The custom-actions guide distinguishes an exposed operation from the information it returns. Developers mark eligible intents as tools and supply descriptions for their parameters. Presenting entity information requires no authentication by default. An entity-level policy can protect the whole entity, while individual properties can have their own requirements. Property policies apply to Siri responses; sensitive intent results need authentication on the intent itself. Internal visibility hides a property from Siri, Shortcuts and other system features. For cross-app tasks, custom entities also need transferable representations that the receiving app can handle."
+    },
+    {
+      "heading": "Preview access does not settle the launch terms",
+      "text": "Apple says customers will receive the new integrations in a few months, with App Store submissions opening in spring. Terms and usage policies for these experiences will follow. Siri AI excludes under-thirteen users and remains unavailable in the European Union on iOS, iPadOS and watchOS. Server-model features have variable daily limits; expanded paid access is planned, without a price here."
+    }
+  ],
+  "buildersNote": "Test three requests against an internal build: a background request naming the app, a foreground request without its name, and a sensitive result requiring authentication. Record the selected action and returned fields before enabling a multi-action skill.",
+  "claims": [
+    {
+      "text": "Custom integrations work in development builds and internal TestFlight, not external TestFlight or App Store versions.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Apple documents skill guidance as nondeterministic, not an enforceable sequence of operations.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Final commercial terms and the price of expanded server-model access remain unspecified in the announcement.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Siri AI is now open to all developers",
+      "publisher": "Apple Developer",
+      "url": "https://developer.apple.com/news/?id=gdk2umrf",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Siri AI Developer Preview",
+      "publisher": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/appintents/siri-ai-developer-preview",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Orchestrating complex actions with app skills",
+      "publisher": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/appintents/orchestrating-complex-actions-with-app-skills",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Bringing custom actions and content to Siri",
+      "publisher": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/appintents/bringing-custom-actions-and-content-to-siri",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "hook": "An app’s private fields need more than a voice prompt.",
+    "voiceover": "[measured] An app’s private fields need more than a voice prompt. Apple opened its Siri developer preview on November third. Internal testers can try custom actions, with authentication policies protecting sensitive responses.",
+    "short": "Apple opened its Siri AI developer preview on November 3. Skills accept instructions up to 10,000 characters, but cannot enforce a fixed execution sequence.",
+    "long": "Apple is opening custom app actions to Siri through a developer preview. Testing is limited to development builds and internal TestFlight; external testers and App Store users cannot access these integrations yet.\n\nSkills use a name, description and Markdown instructions, with no supporting scripts. The model uses that guidance to choose actions; the file is not a deterministic workflow.",
+    "take": "For our team, preventing an incorrect action matters more than exposing another command. A useful integration must keep private fields private even when a request is ambiguous.",
+    "keyFacts": [
+      "27.3 betas open the developer preview",
+      "10,000-character limit per skill instruction body",
+      "1 skills bundle per app target"
+    ],
+    "hashtags": [
+      "Siri",
+      "Apple",
+      "AppIntents",
+      "AIAgents"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
