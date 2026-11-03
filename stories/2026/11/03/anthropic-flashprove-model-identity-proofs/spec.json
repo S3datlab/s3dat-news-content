@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "FLASHPROVE",
+    "CHECKS MODEL",
+    "IDENTITY"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 511,
+  "sources": {}
+}

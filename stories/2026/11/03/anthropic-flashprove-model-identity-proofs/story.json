@@ -1,0 +1,113 @@
+{
+  "format": 2,
+  "slug": "anthropic-flashprove-model-identity-proofs",
+  "kind": "story",
+  "topic": "research",
+  "title": "Anthropic announces FlashProve for checking model identity",
+  "titleAccent": "checking model identity",
+  "dek": "The research prototype ties responses to committed weights, while leaving clients responsible for identifying the model they intended to use.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T10:14:26Z",
+  "lede": "Anthropic announced FlashProve on November 2, a research prototype for checking whether an AI response came from specified model weights. It addresses a trust problem for customers buying inference through providers and intermediaries.",
+  "facts": [
+    {
+      "label": "Artifact",
+      "value": "Version 0.16.0; Apache 2.0"
+    },
+    {
+      "label": "Demonstration",
+      "value": "Llama 4 Maverick; 1,024-token context"
+    },
+    {
+      "label": "Reported GPU-time overhead",
+      "value": "70–95× versus the tested FP8 vLLM setup"
+    },
+    {
+      "label": "Maintenance",
+      "value": "Research artifact; not maintained"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A receipt for the computation",
+      "text": "Anthropic reports 110 prefill tokens per second at 24 requests per batch on one H100, using a quantized Llama 4 Maverick model. Proofs cover completed requests after the fact, instead of accompanying live generation."
+    },
+    {
+      "heading": "The trusted identifier comes first",
+      "text": "The verification guide separates the server supplying a proof from the party identifying the intended model. Clients obtain the commitment identifier and configuration through a trusted channel before sending their prompt. They construct their own request and token files from what they actually sent and received. The verifier does not know the original conversation independently. Acceptance also depends on the reported token range, policy and reply ending. A shortened reply can pass as a shorter sequence, so an end-token check matters when the client needs the complete answer. Changing commitment identifiers introduces another boundary: the public proofs do not establish that two different identifiers represent identical weights. Repeating prompts under both identifiers compares those examples only."
+    },
+    {
+      "heading": "Different routes into the artifact",
+      "text": "The repository separates checking an existing example from proving a full model. Its stored demonstration uses synthetic weights and can be checked on a Linux CPU with less than two gigabytes of memory. A separate small-model route exercises eight synthetic layers on a GPU. The full Maverick route downloads a 232-gigabyte public four-bit conversion and lists 330 gigabytes of host memory and 245 gigabytes of disk. The supported prover configuration specifies an otherwise unused H100 with 80 gigabytes of memory and a particular CUDA compiler release. Those requirements describe the supplied research setup, not a lightweight feature that a browser can independently generate. Checking the stored synthetic example establishes that the verifier runs; it does not establish anything about a commercially served model."
+    },
+    {
+      "heading": "What an accepted result establishes",
+      "text": "The project distinguishes exact matching from a more permissive policy called clipped gap. Exact matching checks the integer model’s preferred tokens. The looser policy instead evaluates token costs against limits chosen beforehand; its successful result does not establish identical output. The documented mathematical guarantees concern the Lean verifier and protocol under stated assumptions. The commonly used C++ verifier and CUDA prover are tested implementations, not themselves formally verified. This separation matters because a correct mathematical statement and software that faithfully implements it are different things. The repository also reports that it has not undergone an independent security audit. Both acceptance policies return the same successful exit code, making the final result text part of the client’s decision."
+    }
+  ],
+  "buildersNote": "Before considering a pilot, write down who will supply the trusted model identifier and what counts as a complete reply. Test one valid sample, one altered token and one truncated answer. Record both rejection behavior and verification cost separately from normal inference latency.",
+  "claims": [
+    {
+      "text": "The reported throughput and GPU-time comparison are Anthropic’s measurements, not an independent benchmark.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "A proof does not establish that an answer is sensible or that the provider selected the model a customer intended.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Progress on provable inference for large language models",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/provable-inference",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "FlashProve",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/FlashProve/blob/9e2bdd8ff5bf9c62f18263d7dac189b0400b260c/README.md",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Verify a proof",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/FlashProve/blob/9e2bdd8ff5bf9c62f18263d7dac189b0400b260c/guide/verify-a-proof.md",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Known limits",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/FlashProve/blob/9e2bdd8ff5bf9c62f18263d7dac189b0400b260c/guide/known-limits.md",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "hook": "An answer can carry proof of its model.",
+    "voiceover": "[measured] An answer can carry proof of its model. Anthropic introduced FlashProve, a research prototype tested on a quantized model with a one thousand twenty four token context.",
+    "short": "Anthropic announced FlashProve on November 2, a research prototype for checking responses against committed model weights.",
+    "long": "Anthropic’s FlashProve repository contains several routes into its research artifact. The public repository includes a small synthetic example that a CPU can verify, alongside a much heavier full-model route.\n\nClients must obtain the model identifier through a trusted channel before sending their prompt. A server handing back its own identifier has not independently established which model the customer meant to buy.",
+    "take": "We see a useful audit mechanism, not a replacement for evaluating answers. A model receipt becomes valuable only when the buyer can independently trust the identity printed on it.",
+    "keyFacts": [
+      "Research artifact: version 0.16.0",
+      "Stored-proof route: under 2 GB RAM",
+      "Full-model route lists 330 GB host memory"
+    ],
+    "hashtags": [
+      "Anthropic",
+      "FlashProve",
+      "ModelVerification",
+      "Cryptography"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T10:14:26Z"
+}
