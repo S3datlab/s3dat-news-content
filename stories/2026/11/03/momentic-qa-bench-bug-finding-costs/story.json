@@ -1,0 +1,109 @@
+{
+  "format": 2,
+  "slug": "momentic-qa-bench-bug-finding-costs",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Momentic compares AI testers against 1,396 known bugs",
+  "titleAccent": "1,396 known bugs",
+  "dek": "The evaluation separates bug coverage from testing spend and records changes to its methods.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T09:14:10Z",
+  "lede": "Momentic published its QA Bench report on November 2 to compare AI agents finding web-application defects. Teams can compare coverage with spending.",
+  "facts": [
+    {
+      "label": "Runs per area",
+      "value": "3 per budget; Devin has 1"
+    },
+    {
+      "label": "Rerun export",
+      "value": "400 rows across 10 configurations"
+    },
+    {
+      "label": "Time budgets",
+      "value": "30 and 60 minutes per product area"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Coverage and cost pull in different directions",
+      "text": "Momentic reports that Mo matched 19.3% of labeled bugs in its 60-minute condition, against 6.2% for Codex with GPT-6.1 Sol and Playwright MCP. Cost per match was $2.67 for Mo and $0.80 for that Codex configuration. Time was allocated separately to each product area. Momentic builds Mo and ran the evaluation. Candidate labels came from agent runs, followed by reproduction, independent checks and human review. A model judge matches submitted reports to those labels. Equal time budgets did not cap spending. Individual runs and dispersion were not published, limiting comparisons of small differences."
+    },
+    {
+      "heading": "The published numbers have a version history",
+      "text": "A November 2 repository change published a second set of results while retaining older exports. Its accompanying change note says the rerun used new rows for every configuration except Devin, whose original results remained. It also removed an earlier denominator of 1,346 bugs across nineteen areas. The updated table covers all twenty areas and the same 1,396 reference labels. Most configurations have three runs per area and budget; Devin has one. The change also revised the data-card recall figures, making the version attached to a comparison consequential."
+    },
+    {
+      "heading": "The bill depends on what the harness counts",
+      "text": "The repository accounts for Codex using token consumption at list prices plus estimated Browserbase time. Claude Code uses the cost reported by its agent SDK plus the browser estimate. Mo uses its session spend, while Devin’s costs were calculated separately. Sandbox infrastructure from E2B and grading are excluded. Execution arrangements also vary. Playwright MCP gives the parent and each subagent their own browser, while agent-browser shares one browser within a run. Choosing a local browser changes the setup again: Playwright runs then have no subagents and receive separate labels in merged results. Mo manages its own subagents, with a configurable cap; Devin runs without child sessions."
+    },
+    {
+      "heading": "What the judge actually matches",
+      "text": "The grading contract defines the judge’s job as matching reports to references, not independently reproducing a defect. It withholds source-cause and review-evidence fields from the matching inputs. A report can match when it describes the same observable failure under compatible conditions, without repeating every reference reproduction step. Conversely, different interface failures remain separate even when they share a root cause. A finding absent from the reference set cannot be rejected for that reason alone. Conflicts between positive and negative references are left unverified. Severity is excluded as matching evidence. These rules make the match decision about the behavior described in a report, rather than the apparent importance or internal explanation of the defect."
+    }
+  ],
+  "buildersNote": "Compare a testing agent against your existing process on two disposable product areas. Keep the application snapshot, labels, browser integration and spending cap fixed. Record reviewer time separately from model cost, and retain both valid findings and false reports. A coverage gain only helps your release process if someone can reproduce and prioritize the additional defects.",
+  "claims": [
+    {
+      "text": "Reviewed labels can share the label-building agents’ blind spots; recall does not measure all defects in an application.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The browser restriction flag does not provide a network firewall for agent-browser runs.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "QA Bench: Evaluating QA Agents on Real Web Applications",
+      "publisher": "Momentic",
+      "url": "https://momentic.ai/blog/qa-bench",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "QA bench",
+      "publisher": "Momentic",
+      "url": "https://github.com/momentic-ai/qa-bench/blob/a4dc8987edab813482e5f849c9a85eb7780f6979/README.md",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Publish the v2 rerun results",
+      "publisher": "Momentic",
+      "url": "https://github.com/momentic-ai/qa-bench/pull/120",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "grading-contract.ts",
+      "publisher": "Momentic",
+      "url": "https://github.com/momentic-ai/qa-bench/blob/a4dc8987edab813482e5f849c9a85eb7780f6979/src/evals/grading-contract.ts",
+      "date": "2026-10-28"
+    }
+  ],
+  "social": {
+    "hook": "Average test runs missed most labeled bugs.",
+    "voiceover": "[measured] Average test runs missed most labeled bugs. Momentic compared testing tools in thirty and sixty minute conditions. The updated report covers twenty product areas, with repeated runs for most configurations.",
+    "short": "Momentic compared AI testers across 1,396 reviewed bugs, exposing a coverage-and-cost tradeoff.",
+    "long": "Momentic’s QA Bench results come with a revision history. A November 2 update retained older exports and carried forward Devin’s original results.\n\nThe judge matches descriptions to known references; it does not independently reproduce each defect. Reports absent from the reference set are not automatically rejected. Reported agent costs also exclude sandbox infrastructure and grading, so they are not a complete testing budget.",
+    "take": "We would use this benchmark to choose a pilot, not to sign off a release. Paying for more findings only makes sense when the extra defects justify the review work.",
+    "keyFacts": [
+      "Rerun export: 400 rows",
+      "10 configurations across 20 product areas",
+      "Time budgets: 30 and 60 minutes per area"
+    ],
+    "hashtags": [
+      "Momentic",
+      "QABench",
+      "SoftwareTesting",
+      "CodingAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T09:14:10Z"
+}

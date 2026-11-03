@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "MOMENTIC",
+    "TESTS AGENTS",
+    "ON 1,396 BUGS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Momentic",
+      "logo": "momentic.svg",
+      "color": "#1C1C1C",
+      "recolor": true
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 501,
+  "sources": {
+    "momentic.svg": "https://momentic.ai/momentic-logo.svg"
+  }
+}
