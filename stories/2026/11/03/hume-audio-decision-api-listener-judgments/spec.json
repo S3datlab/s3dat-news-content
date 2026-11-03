@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "HUME",
+    "INTRODUCES",
+    "AUDIO API"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Hume",
+      "logo": "hume.svg",
+      "color": "#1B1918",
+      "recolor": true
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 421,
+  "sources": {
+    "hume.svg": "https://www.hume.ai/"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "hume-audio-decision-api-listener-judgments",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Hume introduces an API for questions about speech and sound",
+  "dek": "Hume’s new API answers developer-defined audio questions; access is offered through a waitlist.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T01:11:52Z",
+  "lede": "Hume introduced its Audio Decision API on November 2, with developer access offered through a waitlist. Applications can ask about vocal delivery, interruptions or background sounds without reducing the input to a transcript.",
+  "facts": [
+    {
+      "label": "Product",
+      "value": "Hume Audio Decision API"
+    },
+    {
+      "label": "Announced",
+      "value": "2 November 2026"
+    },
+    {
+      "label": "Access",
+      "value": "Request access through the waitlist"
+    },
+    {
+      "label": "Python SDK",
+      "value": "v0.2.0; Python 3.10 or later"
+    },
+    {
+      "label": "Recording limit",
+      "value": "One MP3 or WAV file, up to 5 minutes per request"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Questions replace fixed labels",
+      "text": "Developers supply the question and its possible answers. Supported forms cover yes-or-no judgments, multiple choices, ordered scales and the timing of sounds. Hume describes a workflow in which a voice agent combines these judgments with a separate transcript and its business rules."
+    },
+    {
+      "heading": "Probabilities describe listeners",
+      "text": "The Python SDK defines a probability as the estimated share of human raters who would choose an answer. A value around 0.5 represents divided listeners, not an uncertain model. All questions in a request share one model inference. Adding, removing or reordering them can change an answer. Each response associates answers with the question identifiers and includes a run identifier. Run-history endpoints expose the status and original request, but do not recover the answers. An application that needs an audit trail must therefore retain the returned results itself."
+    },
+    {
+      "heading": "Long calls become separate inputs",
+      "text": "The Python SDK can resample and mix supported WAV recordings before upload, matching the service’s single-channel, 16-kilohertz input. It also offers a first-channel option for recordings that isolate a speaker there. Longer recordings are divided into separately billed requests. Each part receives the same questions and context, but the model hears only that part; the SDK does not combine their judgments. Its default even split avoids a short final remainder. A 32-minute recording becomes seven roughly equal pieces at the maximum five-minute chunk setting. MP3 cuts can repeat frames needed for decoding, so an event near a boundary can appear in two parts."
+    },
+    {
+      "heading": "Partial completion is visible",
+      "text": "The SDK records success or failure separately for each chunk. Once one part has succeeded, an audio-decoding failure can be isolated to a later damaged section while processing continues. Other failures stop the job and leave subsequent parts marked as not attempted. The completion flag is true only when every requested part succeeds. A resume position identifies where to restart after a stopping error, but earlier decoding failures are not retried by that operation. This lets applications distinguish a complete review from a successful response covering only part of a call."
+    },
+    {
+      "heading": "A different role from voice generation",
+      "text": "The launch follows Hume’s October 2 notice that its text-to-speech and Empathic Voice Interface APIs will end access on November 13 at 12:01 a.m. Eastern Standard Time. Those services remain supported until that deadline. Audio judgments occupy a different part of an application from generating a spoken answer. Adopting this new service does not replace a voice-generation integration affected by that earlier notice."
+    }
+  ],
+  "buildersNote": "Build a reference set of 20 consented test clips with human ratings. Save the exact questions, their order and every returned answer. Repeat that set before changing routing thresholds or replacing an evaluation model.",
+  "claims": [
+    {
+      "text": "Access requires joining Hume’s waitlist; availability is restricted.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Hume reports 70.7% human-panel agreement; an independent advantage is not established.",
+      "status": "claimed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Hume's Audio Decision API: A decision layer for speech and sound",
+      "publisher": "Hume AI",
+      "url": "https://www.hume.ai/blog/introducing-hume-audio-decision-api",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Audio Decisions Python SDK",
+      "publisher": "Hume AI",
+      "url": "https://github.com/HumeAI/hume-audio-decisions-python-sdk/blob/v0.2.0/README.md",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "_chunks.py",
+      "publisher": "Hume AI",
+      "url": "https://github.com/HumeAI/hume-audio-decisions-python-sdk/blob/v0.2.0/src/hume_audio_decisions/audio_helpers/_chunks.py",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "_results.py",
+      "publisher": "Hume AI",
+      "url": "https://github.com/HumeAI/hume-audio-decisions-python-sdk/blob/v0.2.0/src/hume_audio_decisions/audio_helpers/_results.py",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Changelog",
+      "publisher": "Hume AI",
+      "url": "https://dev.hume.ai/voice/changelog",
+      "date": "2026-10-02"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Hume introduced an audio decision service with access offered through a waitlist. [break] Its software divides long recordings into smaller inputs. Applications still need to combine the answers across those separate requests.",
+    "short": "Hume introduced an API on November 2 for questions about speech and sound. Access is through a waitlist.",
+    "long": "Hume introduced a decision service for developer-defined questions about speech and sound. Access is offered through a waitlist.\n\nThe Python SDK splits long recordings into independent requests of up to five minutes. The model hears each part separately, so callers must combine the results themselves. A partial processing failure can leave later parts unattempted.",
+    "hashtags": [
+      "HumeAI",
+      "AudioAI",
+      "VoiceAgents",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T01:11:52Z"
+}
