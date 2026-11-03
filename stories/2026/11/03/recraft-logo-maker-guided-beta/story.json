@@ -1,0 +1,108 @@
+{
+  "format": 2,
+  "slug": "recraft-logo-maker-guided-beta",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Recraft launches a guided Logo Maker beta",
+  "titleAccent": "guided Logo Maker beta",
+  "dek": "A separate web app turns business details into editable logo directions. Commercial use and the handling of reference images depend on account terms.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T06:13:23Z",
+  "lede": "Recraft introduced Logo Maker on November 2, a public beta for desktop and mobile web. It replaces an open-ended design prompt with a business brief and a choice of visual directions.",
+  "facts": [
+    {
+      "label": "Stage",
+      "value": "Public beta"
+    },
+    {
+      "label": "Concepts",
+      "value": "4 directions"
+    },
+    {
+      "label": "Export",
+      "value": "SVG vector file"
+    }
+  ],
+  "body": [
+    {
+      "heading": "From a business brief to a file",
+      "text": "Users supply a name, description, logo type and brand traits, then choose a curated style or upload references. Recraft selects a model suited to each direction. Users can recolor a concept, request variations, switch styles or regenerate the set. Packaging, clothing and storefront mockups cost no additional generation credits. The workflow ends with an SVG download, outside the broader Studio canvas."
+    },
+    {
+      "heading": "A different route from Studio",
+      "text": "Vector editing was already available in Recraft Studio. Its July 23 update let users double-click a shape to move anchor points, adjust curves, recolor individual shapes and refine paths on the canvas. Elements could also be duplicated across frames before export. Those controls work on the individual elements of a vector image, giving designers a route to changing a particular curve or shape instead of generating another complete concept."
+    },
+    {
+      "heading": "Commercial rights depend on the plan",
+      "text": "Recraft’s October 21 terms distinguish generated assets by subscription tier. Free-tier creations remain owned by Recraft and carry a personal-use license. They cannot be sold, licensed or transferred. Paid subscribers own the assets they create, with Recraft assigning whatever copyright rights it holds, subject to the terms and applicable law. Both tiers prohibit using outputs to train AI models. Brand references introduce a separate obligation: users must hold the necessary rights and consents for references to another company’s marks or design system and remain responsible for resulting infringement or consumer confusion. A file download and commercial permission are separate parts of the purchase."
+    },
+    {
+      "heading": "Reference images enter an account workflow",
+      "text": "The privacy policy, modified October 20 and effective for existing accounts on November 3, covers uploaded images and other reference material. Files are stored in the account for reuse, subject to its retention provisions. The policy also covers answers entered on acquisition or landing pages, together with an email address. Prompts and related context are processed by Recraft and the AI providers supporting the requested feature. Recraft distinguishes its own model training from processing by outside providers: users can opt out of training its proprietary models in account settings. Content submitted through the API or a Group Workspace is excluded from that training without requiring an opt-out. The policy also says external image, video, chat and voice providers operate under contractual restrictions against training on customer inputs and outputs. These are service-wide rules, rather than features introduced by the logo beta."
+    }
+  ],
+  "buildersNote": "Before using a generated identity for a client, keep a record of the account tier, source references and approved final file. Test two exports in the actual delivery workflow: one for the website and one for a print supplier. Include the client’s sign-off and the intended uses in the handover, rather than treating a mockup as approval.",
+  "claims": [
+    {
+      "text": "Free-tier assets cannot be used commercially; paid ownership does not itself clear third-party trademarks.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Free-tier assets placed in the community gallery may remain there after account deletion.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Meet Recraft Logo Maker",
+      "publisher": "Recraft",
+      "url": "https://feedback.recraft.ai/changelog/meet-recraft-logo-maker",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Recraft Logo Maker: How to Create a Logo with an AI Logo Generator",
+      "publisher": "Recraft",
+      "url": "https://www.recraft.ai/blog/ai-logo-maker-guide",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Terms of Service",
+      "publisher": "Recraft",
+      "url": "https://www.recraft.ai/legal/terms",
+      "date": "2026-10-21"
+    },
+    {
+      "title": "Privacy Policy",
+      "publisher": "Recraft",
+      "url": "https://www.recraft.ai/legal/privacy",
+      "date": "2026-10-20"
+    },
+    {
+      "title": "Edit vectors directly in Recraft Studio",
+      "publisher": "Recraft",
+      "url": "https://feedback.recraft.ai/changelog/edit-vectors-directly-in-recraft-studio",
+      "date": "2026-07-23"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Recraft launched a guided logo maker with four design directions. The free plan allows personal use, while commercial rights require a paid plan. Downloading a logo does not clear trademarks.",
+    "short": "Recraft introduced Logo Maker on November 2, a guided web beta that produces four logo directions from business details.",
+    "long": "Recraft introduced Logo Maker, a separate app for business owners.\n\nIts October 21 terms reserve commercial use for paid subscribers. Those rights do not remove the customer’s responsibility for trademarks or permissions for supplied brand references. A finished-looking logo still needs a rights review before a business adopts it.",
+    "hashtags": [
+      "Recraft",
+      "LogoMaker",
+      "BrandDesign",
+      "VectorGraphics"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T06:13:23Z"
+}

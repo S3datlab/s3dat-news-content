@@ -1,0 +1,35 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "RECRAFT",
+    "LAUNCHES",
+    "LOGO MAKER"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Recraft",
+      "logo": "recraft.svg",
+      "color": "#111111",
+      "recolor": true
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 471,
+  "sources": {
+    "recraft.svg": "https://www.recraft.ai/",
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
