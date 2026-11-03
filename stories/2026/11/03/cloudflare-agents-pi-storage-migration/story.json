@@ -1,0 +1,98 @@
+{
+  "format": 2,
+  "slug": "cloudflare-agents-pi-storage-migration",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Cloudflare Agents adopts Pi 1.5 with a one-way conversation migration",
+  "titleAccent": "adopts Pi 1.5",
+  "dek": "The upgrade changes session views and recovery controls, while streamed progress persists in batches.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T23:06:32Z",
+  "lede": "Cloudflare released Agents 0.33.0 on November 3 with Pi 1.5 support. Developers using its Pi integration face a conversation-format migration that prevents returning upgraded conversations to the previous version.",
+  "facts": [
+    {
+      "label": "Cloudflare release",
+      "value": "Agents 0.33.0"
+    },
+    {
+      "label": "Pi Durable",
+      "value": "1.5.0, November 2"
+    },
+    {
+      "label": "Progress persistence",
+      "value": "1,000 ms default; 0 stores every update"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The upgrade changes the application interface",
+      "text": "The breaking changes apply to users of the Pi harness, Pi model adapter or Pi tools. Cloudflare directs them to update the Pi packages and add pi-schema. Session consumers replace events() with watch(), rendering the current conversation view when it changes. Older transcript entries are retrieved separately. Tool schemas also move away from pi-ai’s TypeBox export. The new object schema rejects unlisted properties unless explicitly opened. Session retry calls and parked-state handling disappear. Applications continue an unanswered conversation through continue(), without adding another message. These are changes to the integration code as well as the stored conversation format."
+    },
+    {
+      "heading": "Immediate display and durable storage separate",
+      "text": "Pi Durable’s November 2 changelog explains the storage trade-off behind the update. Partial answers and running tool output appear immediately in live views, while persistence waits for dependent work or the configured deadline. The default crash-loss window grows from roughly one hundred milliseconds to one second. Setting the interval to zero restores per-update persistence and its write cost. Custom storage adapters also receive batches instead of individual commits. Each batch remains atomic. When a consistency check refuses a batch, earlier accepted batches remain stored and later ones are skipped. A database or input/output failure instead rejects the call as an uncertain outcome, rolling back what the backend can. The changelog distinguishes these failures because adapters must report accepted work accurately. A receipt is delivered for each stored batch, in order, before the next storage call starts."
+    },
+    {
+      "heading": "Recovery does not repeat every tool",
+      "text": "Cloudflare’s current recovery documentation describes how the updated harness behaves after eviction or failure. A heartbeat checks active work every thirty seconds and restarts a crashed object from its last checkpoint. A streaming model request counts as a failed attempt and follows retry policy. Tools marked safe for replay run again; other interrupted tools return an interruption to the model instead. Repeated crashes eventually end the affected task, with five consecutive interruptions as the default limit. Tool failures can then be shown to the model while its run continues. A model request reaching that limit leaves the run unanswered. Separately, defaults.maxTurns applies only to new sessions and counts tool rounds. At the limit, the current round’s tools finish before the run ends. Existing sessions do not inherit later changes to that default. The documented recovery behavior therefore distinguishes failed model work, interrupted tool work and exhausted run limits."
+    }
+  ],
+  "buildersNote": "Before deploying, copy a representative conversation into staging and exercise an interrupted stream, a replay-safe read and a non-repeatable write. Record the saved transcript and external side effects after each restart. Test the repair deployment against that same conversation, and preserve the results with the release checklist.",
+  "claims": [
+    {
+      "text": "Pi 1.5 conversations cannot reopen under Pi 1.4.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Pi Durable does not yet provide a tool-call approval or permission step.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "agents@0.33.0",
+      "publisher": "Cloudflare",
+      "url": "https://github.com/cloudflare/agents/releases/tag/agents@0.33.0",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Changelog",
+      "publisher": "Earendil",
+      "url": "https://github.com/earendil-works/pi/blob/v1.5.0/packages/durable/CHANGELOG.md",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Pi",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/agents/harnesses/pi/",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "A live answer can be ahead of its saved copy.",
+    "voiceover": "[measured] A live answer can be ahead of its saved copy. Cloudflare added Pi one point five support. Streamed progress now has a default persistence window of one second.",
+    "short": "Cloudflare’s Pi 1.5 upgrade changes agent storage and recovery.",
+    "long": "Cloudflare adopted Pi 1.5 on November 3.\n\nAfter a crash, replay-safe tools run again. Other interrupted tools report the interruption to the model. We would judge recovery by the final external state: a completed answer alone is insufficient evidence that a payment or database update happened exactly once.",
+    "take": "We would make the restart test a release gate. Fewer writes are useful only if the application can explain what was saved, what ran twice and what still needs attention.",
+    "keyFacts": [
+      "Pi 1.5 integration",
+      "1-second persistence window",
+      "5 consecutive task interruptions by default"
+    ],
+    "hashtags": [
+      "Cloudflare",
+      "PiAgents",
+      "AgentInfrastructure",
+      "DurableObjects"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
