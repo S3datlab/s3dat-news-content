@@ -36,7 +36,7 @@ A story is a lede, a spec sheet and prose, plus the parts its kind calls for:
 | `ourRead` | Our opinion, one paragraph (120–1200 characters), ending with what would change our mind. |
 | `watching` | 1–3 concrete, dated things we will check next. |
 | `sources` | 1–8 `{ "title", "publisher", "url", "date" }`; primary sources first; `date` is `YYYY-MM-DD`. |
-| `social` | The copy and voice-over for social media: `{ "voiceover", "short", "long", "hashtags", "priority" }`; `hashtags` are 3–5 tags about this story, most important first (from 2 November 2026 18:00 UTC). The voice-over may carry Fish Audio delivery cues such as `[matter-of-fact]`. Rules and the house voice in `SOCIAL.md`; required from 1 November 2026 04:00 UTC. |
+| `social` | The copy and voice-over for social media: `{ "hook", "voiceover", "short", "long", "take", "keyFacts", "question"?, "options"?, "hashtags", "priority" }`. `hook` is the stake in the first line, `take` our position, `keyFacts` 3–5 exact facts worth saving, `question` an optional real choice. The voice-over opens with the hook and may carry Fish Audio delivery cues such as `[matter-of-fact]`. Rules, examples and the house voice in `SOCIAL.md`; `hook`, `take` and `keyFacts` are required from 3 November 2026 09:00 UTC. |
 | `video.titleInVideo` | `true` (the banner carries the headline). |
 | `corrections` | `[{ "date": "...", "note": "..." }]` when a published fact changes. |
 

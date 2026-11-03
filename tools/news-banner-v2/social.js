@@ -1,10 +1,12 @@
 /* REEL — the 15-second vertical video for Instagram Reels (1080x1920), made for the format rather
  * than cut down from the banner. It is edited like a short news clip:
  *
- *   hook      the headline slams in over the story's hero (or its logo), with an impact
+ *   hook      the story's hook (social.hook; the headline before it existed) slams in over the hero
+ *             (or its logo), with an impact, while the voice says it
  *   beats     one visual per idea while the voice-over runs: a number counting up on a card in the
- *             brand colour, the hero on a disc, the logos (face to face when there are two), a fact
- *   sign-off  the S3DAT rotor, the wordmark and news.s3dat.com
+ *             brand colour, the hero on a disc, the logos (face to face when there are two), a key fact
+ *   question  social.question fills the screen as the voice asks it, its options as pills below,
+ *             over the S3DAT NEWS line; without a question, the sign-off: rotor, wordmark, news.s3dat.com
  *
  * Cuts land on phrase boundaries of the voice-over (d.story.captions, timed by render.mjs), so the
  * picture changes when the sentence does. Below the picture the voice-over runs as kinetic type,
@@ -57,12 +59,29 @@ BANNER.reel = async (root, d, B) => {
   const cam = B.camera(stageBox, { push: 0.035, drift: 10, sway: 0.4 });
   const sceneLayer = cam.layer(0.4);
 
-  // Timeline: the hook, then a cut at a phrase boundary every 2.2 s or more, then the sign-off.
+  // Timeline: the hook, then a cut at a phrase boundary every 2.2 s or more, then the question
+  // (from the moment the voice starts asking it) or the sign-off.
   const phrases = story.captions || [];
+  const words = phrases.flatMap((p) => p.words);
   const lastWord = phrases.length ? phrases[phrases.length - 1].end : 0;
-  const signAt = Math.min(DURATION - 1.6, Math.max(lastWord + 0.15, DURATION - 2.6));
+  const question = story.question || "";
+  let asked = null;
+  if (question) {
+    // The question is the voice-over's last sentence: from the word after the previous sentence end.
+    const q = words.map((w) => /\?["”’)]?$/.test(w.text)).lastIndexOf(true);
+    let k = q;
+    while (k > 0 && !/[.!]["”’)]?$/.test(words[k - 1].text)) k--;
+    if (q >= 0) asked = words[k].start - 0.12;
+  }
+  const signAt = question
+    ? Math.min(DURATION - 2.8, Math.max(6, asked ?? lastWord + 0.15))
+    : Math.min(DURATION - 1.6, Math.max(lastWord + 0.15, DURATION - 2.6));
   const starts = phrases.map((p) => p.start);
-  const hookEnd = starts.find((s) => s >= 2.3 && s <= 3.6) || Math.min(2.9, signAt - 0.5);
+  // With a hook, the hook scene lasts as long as the voice says it; its words are not captioned.
+  const hookWords = story.hook && story.hookWords && words[story.hookWords] ? story.hookWords : 0;
+  const hookEnd = hookWords
+    ? clamp(words[hookWords].start - 0.08, 1.6, Math.min(5, signAt - 2))
+    : starts.find((s) => s >= 2.3 && s <= 3.6) || Math.min(2.9, signAt - 0.5);
   const cuts = [0, hookEnd];
   for (const s of starts) if (s > cuts[cuts.length - 1] + 2.2 && s < signAt - 1.8) cuts.push(s);
   cuts.push(signAt);
@@ -77,7 +96,9 @@ BANNER.reel = async (root, d, B) => {
   for (const f of numeric) if (!pool.some((p) => p.value === f.value) && pool.filter((p) => p.kind === "number").length < 2) pool.push({ kind: "number", label: f.label, value: f.value });
   if (hero) pool.push({ kind: "hero" });
   if (brands.length) pool.push({ kind: "logos" });
-  for (const f of facts) if (!numeric.includes(f) && f.value.length <= 70) pool.push({ kind: "fact", label: f.label, value: f.value });
+  const keyFacts = (story.keyFacts || []).filter((f) => f.length <= 70);
+  for (const f of keyFacts) pool.push({ kind: "fact", label: "", value: f });
+  if (!keyFacts.length) for (const f of facts) if (!numeric.includes(f) && f.value.length <= 70) pool.push({ kind: "fact", label: f.label, value: f.value });
   if (!pool.length) pool.push({ kind: "headline" });
   const beats = cuts.slice(1, -1).map((t0, i) => ({ ...pool[i % pool.length], t0, t1: cuts[i + 2] }));
 
@@ -109,12 +130,37 @@ BANNER.reel = async (root, d, B) => {
       B.cue("swish", 0.5, 0.6, 0.4);
     }
     const head = css(el("div", "abs", s.node), { left: "110px", top: "40px", width: "860px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px" });
-    const lines = d.headline.map((text, i) => {
+    // The hook, broken into short lines for a poster stack; its last line carries the accent.
+    // Balanced: as few lines as `width` allows, of about equal length, so no word is left alone.
+    const wrap = (text, width) => {
+      const k = Math.max(1, Math.ceil(text.length / width));
+      const out = [""];
+      for (const w of text.split(/\s+/)) {
+        const cur = out[out.length - 1];
+        if (cur && (cur + " " + w).length > text.length / k + 3 && out.length < k) out.push(w);
+        else out[out.length - 1] = cur ? cur + " " + w : w;
+      }
+      return out;
+    };
+    // Each sentence starts a line; as narrow as it can be in at most four lines, so short lines set
+    // bigger. The last sentence of a two-sentence hook is the turn and carries the accent.
+    let hookLines = d.headline, accented = [d.accent];
+    if (story.hook) {
+      const parts = story.hook.toUpperCase().split(/(?<=[.!?])\s+/).filter(Boolean);
+      for (let width = 11; width <= 30; width++) {
+        const wrapped = parts.map((part) => wrap(part, width));
+        hookLines = wrapped.flat();
+        const tail = wrapped[wrapped.length - 1].length;
+        accented = parts.length > 1 ? hookLines.map((_, i) => i).slice(-tail) : [hookLines.length - 1];
+        if (hookLines.length <= 4) break;
+      }
+    }
+    const lines = hookLines.map((text, i) => {
       const n = B.line(head, text, { font: "900 100px/0.92 Archivo", fontStretch: "72%", color: "#ffffff", letterSpacing: "-0.01em", textShadow: "0 6px 30px rgba(0,0,0,0.35)" });
-      if (i === d.accent) css(n, { background: pop, color: ink, padding: "0.04em 0.12em 0.02em", borderRadius: "0.08em", textShadow: "none" });
+      if (accented.includes(i)) css(n, { background: pop, color: ink, padding: "0.04em 0.12em 0.02em", borderRadius: "0.08em", textShadow: "none" });
       return n;
     });
-    B.fitEach(lines, 850, hero ? 470 : brands[0] ? 440 : 640, 230, 80, 0.94);
+    B.fitEach(lines, 850, hero ? 470 : brands[0] ? 440 : 640, story.hook ? 150 : 230, 80, 0.94);
     const slam = B.animate(lines, "slam", { start: 0.12, stagger: 0.18, out: null, camera: cam });
     const landAt = 0.12 + (lines.length - 1) * 0.18 + 0.1;
     const boom = B.burst(s.node, 120, 120, pop, 12, 60, 200);
@@ -191,7 +237,7 @@ BANNER.reel = async (root, d, B) => {
       const text = b.kind === "fact" ? b.value : d.headline[d.accent] || d.headline[0];
       const panel = css(el("div", "abs", s.node), { left: "100px", top: "150px", width: "880px", padding: "56px 56px 60px 72px", borderRadius: "36px", background: "rgba(8,10,14,0.55)", boxShadow: "0 30px 80px rgba(0,0,0,0.35)", overflow: "hidden" });
       const bar = css(el("div", "abs", panel), { left: 0, top: 0, bottom: 0, width: "16px", background: pop, transformOrigin: "50% 0" });
-      const label = b.kind === "fact" ? B.line(panel, String(b.label).toUpperCase(), { font: "700 36px/1.1 'Space Grotesk'", color: pop, letterSpacing: "0.12em", display: "block", marginBottom: "26px", whiteSpace: "normal" }) : null;
+      const label = b.kind === "fact" && b.label ? B.line(panel, String(b.label).toUpperCase(), { font: "700 36px/1.1 'Space Grotesk'", color: pop, letterSpacing: "0.12em", display: "block", marginBottom: "26px", whiteSpace: "normal" }) : null;
       const body = css(el("div", "", panel), { font: "900 96px/1.0 Archivo", fontStretch: "74%", color: "#ffffff", textTransform: "uppercase" });
       body.textContent = text;
       for (let size = 110; size >= 56; size -= 4) { body.style.fontSize = size + "px"; if (body.getBoundingClientRect().height <= 420) break; }
@@ -209,7 +255,46 @@ BANNER.reel = async (root, d, B) => {
   /* sign-off */
   const blade = "M250.5 65.1 C196.8 69.9 139.7 101.4 106.8 144.2 C90.7 164.9 70.2 213.0 64.4 243.7 C44.0 349.7 95.9 454.2 193.3 503.5 C247.0 530.6 329.8 543.9 382.3 533.9 C393.1 531.9 407.0 529.4 413.0 528.5 C421.6 527.2 473.0 511.7 473.0 510.4 C473.0 510.2 464.9 509.9 455.1 509.8 C399.6 508.8 355.1 488.3 329.0 451.8 C300.3 411.6 300.5 360.5 329.5 317.4 C344.6 295.0 356.9 285.3 383.5 273.7 C409.5 262.6 446.3 232.0 458.8 211.7 C471.5 190.8 471.8 189.5 471.2 145.6 C470.8 106.8 470.8 106.8 465.8 95.4 C459.8 81.2 448.4 68.6 440.6 67.4 C415.5 63.8 284.8 62.2 250.5 65.1 Z";
   const rotor = (size, id) => `<svg viewBox="0 0 1000 1000" width="${size}" height="${size}"><defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="160" y1="175" x2="505" y2="570"><stop offset="0" stop-color="#afceeb"/><stop offset="0.52" stop-color="#6790bd"/><stop offset="1" stop-color="#2d4f76"/></linearGradient></defs>${[0, 90, 180, 270].map((r) => `<path d="${blade}" transform="rotate(${r} 500 500)" fill="url(#${id})"/>`).join("")}</svg>`;
-  {
+  let ask = null;
+  if (question) {
+    // The question: big in the picture, the options as pills where the captions were, and the
+    // S3DAT NEWS line under them. It stays to the end, so the reel stops on something to answer.
+    const s = newScene(signAt, DURATION + 1);
+    const a = signAt;
+    const col = css(el("div", "abs", s.node), { left: "110px", top: "90px", width: "860px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "34px" });
+    const tag = css(B.line(col, "YOUR CALL", { font: "700 40px/1 'Space Grotesk'", color: ink, letterSpacing: "0.14em" }), { background: pop, padding: "14px 22px 12px", borderRadius: "12px" });
+    const body = css(el("div", "", col), { font: "900 100px/1.0 Archivo", fontStretch: "74%", color: "#ffffff", textTransform: "uppercase", width: "860px", letterSpacing: "-0.005em" });
+    const qWords = question.split(/\s+/).map((w) => {
+      const mask = css(el("span", "", body), { display: "inline-block", overflow: "hidden", verticalAlign: "top", padding: "0.04em 0.04em 0", margin: "0 0.12em 0.02em 0" });
+      const inner = css(el("span", "", mask), { display: "inline-block", whiteSpace: "nowrap" });
+      inner.textContent = w;
+      return inner;
+    });
+    for (let size = 124; size >= 60; size -= 4) { body.style.fontSize = size + "px"; if (body.getBoundingClientRect().height <= 560) break; }
+    const foot = css(el("div", "abs", root), { left: "110px", top: CAP.y + 10 + "px", width: CAP.w + "px", display: "flex", flexDirection: "column", gap: "44px", visibility: "hidden" });
+    const row = css(el("div", "", foot), { display: "flex", gap: "22px", flexWrap: "wrap" });
+    const pills = (story.options || []).map((o, i) => css(B.line(row, o.toUpperCase(), { font: "900 64px/1 Archivo", fontStretch: "78%", color: i % 2 ? "#04060a" : ink }),
+      { background: i % 2 ? "#ffffff" : pop, padding: "18px 34px 14px", borderRadius: "999px", boxShadow: "0 18px 40px rgba(0,0,0,0.35)" }));
+    const sign = css(el("div", "", foot), { display: "flex", alignItems: "center", gap: "16px" });
+    const signMark = el("div", "", sign, rotor(52, "rq"));
+    B.line(sign, "S3DAT NEWS", { font: "900 44px/1 Archivo", fontStretch: "80%", color: "#ffffff" });
+    B.line(sign, "news.s3dat.com", { font: "600 34px/1 'Space Grotesk'", color: "rgba(255,255,255,0.75)", marginLeft: "8px" });
+    B.cue("whoosh", a - 0.1, 0.6); B.cue("pop", a + 0.1, 0.7);
+    pills.forEach((_, i) => B.cue("pop", a + 0.9 + i * 0.18, 0.6));
+    s.parts.push((t) => {
+      tag.style.opacity = seg(t, a, a + 0.15);
+      tag.style.transform = `translateX(${(1 - ease.outExpo(seg(t, a, a + 0.4))) * -200}px)`;
+      qWords.forEach((w, j) => { w.style.transform = `translateY(${(1 - Math.min(1.08, sp(t, a + 0.1 + j * 0.05, "snap"))) * 105}%)`; });
+    });
+    ask = (t) => {
+      const on = t >= a - 0.06;
+      foot.style.visibility = on ? "visible" : "hidden";
+      if (!on) return;
+      pills.forEach((pill, i) => { const q = sp(t, a + 0.9 + i * 0.18, "pop"); pill.style.transform = `scale(${clamp(q, 0, 1.08)})`; pill.style.opacity = seg(t, a + 0.9 + i * 0.18, a + 1.0 + i * 0.18); });
+      sign.style.opacity = seg(t, a + 0.5, a + 0.8);
+      signMark.style.transform = `rotate(${t * 40}deg)`;
+    };
+  } else {
     const s = newScene(signAt, DURATION + 1);
     const a = signAt;
     const col = css(el("div", "abs", s.node), { left: 0, right: 0, top: "120px", display: "flex", flexDirection: "column", alignItems: "center", gap: "34px" });
@@ -286,6 +371,7 @@ BANNER.reel = async (root, d, B) => {
         }
         segFills[i].style.transform = `scaleX(${seg(t, s.t0, Math.min(DURATION, s.t1))})`;
       });
+      if (ask) ask(t);
       const near = cutTimes.find((ct) => t >= ct - 0.2 && t <= ct + 0.2);
       slab.style.visibility = near !== undefined ? "visible" : "hidden";
       if (near !== undefined) slab.style.left = `${lerp(-70, 120, ease.inOut(seg(t, near - 0.2, near + 0.2)))}%`;
@@ -293,7 +379,7 @@ BANNER.reel = async (root, d, B) => {
       // Captions: one phrase at a time; it leaves before the next rises.
       caps.forEach((p, i) => {
         const next = i < caps.length - 1 ? caps[i + 1].start : signAt;
-        const on = t >= p.start - 0.08 && t < next - 0.06 && t < signAt;
+        const on = t >= p.start - 0.08 && t < next - 0.06 && t < signAt && (p.words[p.words.length - 1].index ?? Infinity) >= hookWords;
         p.node.style.visibility = on ? "visible" : "hidden";
         if (!on) return;
         const out = ease.inCubic(seg(t, next - 0.26, next - 0.06));

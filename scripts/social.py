@@ -3,8 +3,8 @@
 
   now   X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack: the 16:9 cut,
         shared the moment the story is published (.github/workflows/publish.yml)
-  reel  Instagram (and YouTube Shorts or TikTok if connected): the 9:16 cut. About every five hours
-        .github/workflows/reel.yml picks the story most worth a video and posts it
+  reel  Instagram (and YouTube Shorts or TikTok if connected): the 9:16 cut. Four or five times a
+        day .github/workflows/reel.yml picks the strongest story and posts it
 
   python scripts/social.py --story SLUG --group now|reel [--dry-run] [--force]
   python scripts/social.py --pick      choose the story for the next reel; writes slug= and folder=
@@ -17,7 +17,8 @@
 
 --pick takes the strongest live story of the last 24 hours that has no reel yet, by the writer's
 social.priority (1-5; 1 and 2 never get a reel), then analysis before story and explained, then
-the newest. Each posting is recorded in social/posted/<slug>.json (SOCIAL_RECORDS overrides the
+the newest: priority 4-5 four hours after the last reel, priority 3 only after six, at most five
+reels in 24 hours. Each posting is recorded in social/posted/<slug>.json (SOCIAL_RECORDS overrides the
 folder), so a story goes to each group once unless --force is given.
 
 BUFFER_API_KEY is required except with --offline. PINTEREST_BOARD picks the board by name or
@@ -43,7 +44,11 @@ SITE = "https://news.s3dat.com"
 API = "https://api.buffer.com"
 AGENT = "S3DAT-News-Social/1.0 (+https://news.s3dat.com/about)"
 WINDOW = dt.timedelta(hours=24)  # how far back a reel looks for its story
-REEL_GAP = dt.timedelta(hours=4, minutes=30)  # reel.yml checks hourly: a reel every 4.5-5.5 h, five a day
+# Four or five reels a day, the strongest stories only (SOCIAL.md): a priority 4-5 story once the
+# last reel is 4 h old, a priority 3 story only after 6 h without one, never more than 5 in 24 h.
+REEL_GAP = dt.timedelta(hours=4)
+REEL_GAP_SOLID = dt.timedelta(hours=6)
+REELS_PER_DAY = 5
 RANK = {"analysis": 3, "story": 2, "explained": 2, "brief": 1}
 WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack", "facebook", "linkedin", "pinterest"}
 TALL = {"instagram", "youtube", "tiktok"}
@@ -56,10 +61,6 @@ TAGS = {"mastodon": 5, "instagram": 5, "tiktok": 5, "youtube": 3, "linkedin": 3,
 # Character limits for the text (Mastodon reads its own from the channel). X counts 280 for
 # accounts without Premium; Bluesky 300.
 LIMITS = {"twitter": 280, "bluesky": 300, "threads": 500, "mastodon": 500}
-FOLLOW = "Follow S3DAT News for daily AI analysis."
-FOLLOW_X = "Follow @s3datlab for daily AI analysis."
-FOLLOW_BIO = "Follow for daily AI news. Full story: link in bio."
-FOLLOW_YOUTUBE = "Subscribe for daily AI analysis."
 
 
 def now() -> dt.datetime:
@@ -129,19 +130,30 @@ def media_ready(slug: str, shapes: tuple[str, ...] = ("wide", "tall"), tries: in
     return False
 
 
-def last_reel() -> dt.datetime | None:
+def reel_times() -> list[dt.datetime]:
     times = []
     for path in RECORDS.glob("*.json"):
         try:
             times.append(parse_time(json.loads(path.read_text(encoding="utf-8")).get("reel", {}).get("at")))
         except (OSError, ValueError, AttributeError):
             continue
-    return max((t for t in times if t), default=None)
+    return sorted(t for t in times if t)
 
 
-def pick(candidates: list[dict], at: dt.datetime) -> dict | None:
+def lowest_priority(at: dt.datetime, force: bool = False) -> int | None:
+    """The lowest priority a reel may have now, or None when it is too soon for any."""
+    times = reel_times()
+    if force or not times:
+        return 3
+    if sum(t > at - WINDOW for t in times) >= REELS_PER_DAY:
+        return None
+    since = at - times[-1]
+    return 3 if since >= REEL_GAP_SOLID else 4 if since >= REEL_GAP else None
+
+
+def pick(candidates: list[dict], at: dt.datetime, lowest: int = 3) -> dict | None:
     """The live story of the last WINDOW most worth a reel, or None."""
-    fresh = [s for s in candidates if at - WINDOW <= s["published"] <= at and s["priority"] >= 3 and "reel" not in record(s["slug"])]
+    fresh = [s for s in candidates if at - WINDOW <= s["published"] <= at and s["priority"] >= max(3, lowest) and "reel" not in record(s["slug"])]
     fresh.sort(key=lambda s: (s["priority"], RANK.get(s["kind"], 1), s["published"]), reverse=True)
     for story in fresh:
         if reachable(story_url(story["slug"]), "GET"):
@@ -228,6 +240,11 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
     service, social, slug = channel["service"], story["social"], story["slug"]
     url, tags = story_url(slug), [t for t in social.get("hashtags", []) if isinstance(t, str)]
     short, long = social["short"].strip(), social["long"].strip()
+    # The v2 fields (SOCIAL.md): the stake, our position, the facts people save, one real question.
+    hook = (social.get("hook") or "").strip()
+    take = f"Our read: {social['take'].strip()}" if social.get("take") else ""
+    question = (social.get("question") or "").strip()
+    facts = [f.strip() for f in social.get("keyFacts") or [] if isinstance(f, str) and f.strip()]
     label = os.environ.get("SOCIAL_AI_LABEL", "1") != "0"
     shape = "wide" if service in WIDE else "tall" if service in TALL else None
     if shape is None or service not in GROUPS[group]:
@@ -244,46 +261,77 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
         limit = (channel.get("metadata") or {}).get("maxCharacters") or limit
 
     def fits(text: str) -> bool:
-        # Mastodon counts every link as 23 characters.
-        size = len(text) - (len(url) - 23 if service == "mastodon" and url in text else 0)
+        # Mastodon and X count every link as 23 characters.
+        size = len(text) - (len(url) - 23 if service in ("mastodon", "twitter") and url in text else 0)
         return limit is None or size <= limit
 
     def compose(*required: str, optional: tuple[str, ...] = ()) -> str:
-        """The required paragraphs, then each optional one (link, follow line, hashtags) that fits."""
+        """The required paragraphs, then each optional one (take, question, link, hashtags) that fits."""
         text = "\n\n".join(p for p in required if p)
         for extra in optional:
-            if extra and fits(f"{text}\n\n{extra}"):
-                text = f"{text}\n\n{extra}"
+            if extra and fits(f"{text}\n\n{extra}" if text else extra):
+                text = f"{text}\n\n{extra}" if text else extra
         return text
 
+    def listed(heading: str) -> str:
+        """The key facts as a list under a heading, as many lines as fit."""
+        text = heading
+        for fact in facts:
+            if fits(f"{text}\n· {fact}"):
+                text = f"{text}\n· {fact}"
+        return text if text != heading else ""
+
+    def thread(*texts: str) -> list[dict]:
+        """Buffer's thread: the first post carries the video, the replies text only."""
+        items = [t for t in texts if t]
+        return [{"text": t, "assets": post["assets"] if i == 0 else []} for i, t in enumerate(items)]
+
+    opening = hook if hook and fits(f"{hook}\n\n{short}") else ""
     if service == "twitter":
-        # X shows posts with links to fewer people: the news, then a follow line instead of the link.
-        post["text"] = compose(short, optional=(FOLLOW_X, hashtags))
+        # X shows posts with links to fewer people: the news first, the facts people bookmark and
+        # our read with the link in the replies.
+        first = compose(opening, short, optional=(hashtags,))
+        if take:
+            post["text"] = first
+            post["metadata"] = {"twitter": {"thread": thread(first, listed("Key facts:"), compose(take, optional=(question, read)))}}
+        else:
+            post["text"] = first
     elif service == "threads":
-        post["text"] = compose(short, read, optional=(FOLLOW,))
-        if tags:
-            post["metadata"] = {"threads": {"topic": tags[0][:50]}}
+        # Threads ranks conversations: the question sits in the first post, the link in the reply.
+        first = compose(opening, short, optional=(question,))
+        post["text"] = first
+        meta = {"topic": tags[0][:50]} if tags else {}
+        if take:
+            meta["thread"] = thread(first, compose(take, read))
+        else:
+            post["text"] = compose(short, read)
+        if meta:
+            post["metadata"] = {"threads": meta}
     elif service == "bluesky":
         # validate.py keeps social.short short enough for the bare link; the rest comes if it fits.
-        post["text"] = compose(short, url, optional=(FOLLOW, hashtags))
-        if not fits(post["text"]):
-            post["text"] = short
+        first = compose(short, url, optional=(hashtags,))
+        if not fits(first):
+            first = short
+        post["text"] = first
+        if take:
+            post["metadata"] = {"bluesky": {"thread": thread(first, compose(take, optional=(question,)))}}
     elif service == "mastodon":
-        post["text"] = compose(short, read, optional=(FOLLOW, hashtags))
+        post["text"] = compose(short, optional=(take, read, hashtags))
     elif service == "substack":
-        post["text"] = compose(long, read, FOLLOW)
+        post["text"] = compose(long, take, read)
     elif service == "facebook":
         # A regular video post (the 16:9 cut), so the link in the text is clickable.
-        post["text"] = compose(long, read, FOLLOW)
+        post["text"] = compose(hook, long, take, question, read)
         post["metadata"] = {"facebook": {"type": "post"}}
     elif service == "instagram":
-        # Instagram captions never link: the profile link carries readers to the site.
-        post["text"] = compose(long, FOLLOW_BIO, hashtags)
+        # Instagram captions never link: the profile link carries readers to the site. The hook is
+        # the line people see before "more".
+        post["text"] = compose(hook, long, take, question, "Full story: link in bio.", hashtags)
         post["metadata"] = {"instagram": {"type": "reel", "shouldShareToFeed": True, "isAiGenerated": label}}
     elif service == "linkedin":
-        # The link sits in the post (LinkedIn turns it into a clickable lnkd.in link): a first
-        # comment kept reach but few people opened it, and the posts are here to bring readers.
-        post["text"] = compose(long, read, FOLLOW, hashtags)
+        # The link sits in the post (LinkedIn turns it into a clickable lnkd.in link). The hook and
+        # the first lines show before "see more"; the list is what people skim.
+        post["text"] = compose(hook, long, listed("Key facts:") if facts else "", take, question, read, hashtags)
     elif service == "pinterest":
         board_id = board(channel)
         if not board_id:
@@ -292,11 +340,11 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
         post["metadata"] = {"pinterest": {"title": story["title"][:100], "url": url, "boardServiceId": board_id}}
     elif service == "youtube":
         # The first three hashtags in the description show above the title.
-        post["text"] = compose(long, read, FOLLOW_YOUTUBE, hashtags)
-        post["metadata"] = {"youtube": {"title": story["title"][:100], "categoryId": "25", "privacy": "public",
+        post["text"] = compose(long, take, read, hashtags)
+        post["metadata"] = {"youtube": {"title": (hook or story["title"])[:100], "categoryId": "25", "privacy": "public",
                                         "madeForKids": False, "isAiGenerated": label}}
     elif service == "tiktok":
-        post["text"] = compose(short, FOLLOW_BIO, hashtags)
+        post["text"] = compose(hook, short, question, "Full story: link in bio.", hashtags)
     return post
 
 
@@ -339,14 +387,15 @@ def main() -> int:
     candidates = stories()
 
     if args.pick:
-        last = last_reel()
-        if last and at - last < REEL_GAP and not args.force:
-            print(f"Last reel at {iso(last)}, less than {REEL_GAP} ago; nothing picked.")
+        lowest = lowest_priority(at, args.force)
+        if lowest is None:
+            times = reel_times()
+            print(f"Last reel at {iso(times[-1])}; {sum(t > at - WINDOW for t in times)} in the last 24 h; nothing picked.")
             output(slug="", folder="")
             return 0
-        story = pick(candidates, at)
+        story = pick(candidates, at, lowest)
         if not story:
-            print("No story worth a reel.")
+            print(f"No story of priority {lowest} or more worth a reel.")
             output(slug="", folder="")
             return 0
         print(f"Picked {story['slug']} ({story['kind']}, priority {story['priority']}, published {iso(story['published'])})")
@@ -428,6 +477,17 @@ def main() -> int:
             post_id, error = buffer.create(post)
         except RuntimeError as exc:
             post_id, error = None, str(exc)
+        meta = (post.get("metadata") or {}).get(channel["service"])
+        if error and isinstance(meta, dict) and meta.get("thread"):
+            # A thread Buffer refuses still goes out as its first post.
+            warn(f"{story['slug']} on {name}: the thread failed ({error}); posting the first post alone")
+            meta.pop("thread")
+            if not meta:
+                post.pop("metadata")
+            try:
+                post_id, error = buffer.create(post)
+            except RuntimeError as exc:
+                post_id, error = None, str(exc)
         results[name] = {"id": post_id, "error": error}
         print(f"  {'ok  ' if post_id else 'FAIL'} {name}" + (f": {error}" if error else ""))
         if error:

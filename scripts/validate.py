@@ -200,8 +200,36 @@ SOCIAL_BANNED = [
     "the race is on", "heats up", "makes waves", "takes aim", "doubles down", "set to", "poised to", "unveils",
     "unveiled", "unleash", "unleashes", "just dropped", "in a move", "thread", "game on", "big moment",
 ]
+# Calls to act that the platforms push down as engagement bait, and that read like a bot (SOCIAL.md).
+BAIT = [
+    "what do you think", "what are your thoughts", "thoughts?", "let us know", "let me know", "comment below",
+    "drop a comment", "tag a friend", "tag someone", "share this", "like if",
+    "double tap", "follow us", "follow for", "comment yes", "agree?", "who else", "sound off",
+]
+BAIT_RE = re.compile(r"(?<![\w-])(" + "|".join(re.escape(b) for b in sorted(BAIT, key=len, reverse=True)) + r")", re.IGNORECASE)
+# From here on every story carries a hook, our take and the key facts people save (SOCIAL.md).
+SOCIAL_V2_CUTOVER = dt.datetime(2026, 11, 3, 9, 0, tzinfo=dt.timezone.utc)
 SOCIAL_BANNED_RE = re.compile(r"(?<![\w-])(" + "|".join(re.escape(b) for b in sorted(SOCIAL_BANNED, key=len, reverse=True)) + r")(?![\w-])", re.IGNORECASE)
 STORIES = Path(__file__).resolve().parent.parent / "stories"
+
+
+def spoken_words(text):
+    return re.findall(r"[a-z0-9$%]+(?:['’][a-z]+)?", CUE.sub(" ", text).lower().replace("’", "'"))
+
+
+# The voice says numbers as words ("$600M" is "six hundred million dollars"), so the hook and the
+# start of the voice-over are compared without them.
+NUMBER_WORDS = set("""zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen
+sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million
+billion trillion dollars dollar percent euros pounds point and a half""".split())
+
+
+def said_alike(hook, voice):
+    """Whether the voice-over's first sentences say the hook (numbers may be spelled out)."""
+    n = max(1, len(sentences(hook.strip())))
+    opening = " ".join(sentences(CUE.sub(" ", voice).strip())[:n])
+    words = lambda t: [w for w in spoken_words(t) if not re.search(r"\d", w) and w not in NUMBER_WORDS]
+    return words(hook) == words(opening)
 
 
 def opener(text, n=3):
@@ -231,10 +259,21 @@ def validate_social(story, published):
     social = story.get("social")
     if social is None:
         if published is not None and published >= SOCIAL_CUTOVER:
-            errors.append("social is required: voiceover, short, long and hashtags (see stories/README.md)")
+            errors.append("social is required: hook, voiceover, short, long, take, keyFacts and hashtags (see SOCIAL.md)")
         return errors
     if not isinstance(social, dict):
         return ["social must be an object"]
+    v2 = published is not None and published >= SOCIAL_V2_CUTOVER
+    question = social.get("question")
+    if question is not None and check_text(question, "social.question", 20, 110, errors):
+        if not question.rstrip().endswith("?") or question.count("?") != 1:
+            errors.append("social.question is one question and ends with ?")
+    options = social.get("options")
+    if options is not None:
+        if question is None:
+            errors.append("social.options needs a social.question")
+        elif not isinstance(options, list) or not 2 <= len(options) <= 3 or not all(isinstance(o, str) and 1 <= len(o.strip()) <= 18 for o in options):
+            errors.append("social.options lists two or three short answers, up to 18 characters each")
     vo = social.get("voiceover")
     if check_text(vo, "social.voiceover", 60, 360, errors):
         cues = [c.strip().lower() for c in CUE.findall(vo)]
@@ -247,12 +286,25 @@ def validate_social(story, published):
         if re.search(r"\[|\]", CUE.sub("", vo)):
             errors.append("social.voiceover has an unmatched [ or ]")
         n = word_count(CUE.sub(" ", vo))
-        if not 26 <= n <= 36:
-            errors.append(f"social.voiceover must be 26–36 spoken words, cues not counted, so it fits the 15-second video (found {n})")
+        high = 38 if v2 else 36
+        if not 26 <= n <= high:
+            errors.append(f"social.voiceover must be 26–{high} spoken words, cues not counted, so it fits the 15-second video (found {n})")
         if re.search(r"https?://|www\.|\b[a-z0-9-]+\.(com|ai|io|org)\b", vo, re.IGNORECASE):
             errors.append("social.voiceover is read aloud: no links or domains")
-    for key, low, high in (("short", 60, 240), ("long", 300, 1500)):
+        hook = social.get("hook")
+        if isinstance(hook, str) and hook.strip():
+            if not said_alike(hook, vo):
+                errors.append("social.voiceover opens with the hook, word for word, so the reel can show it as it is spoken")
+        if "?" in vo:
+            last = sentences(CUE.sub(" ", vo).strip())[-1:]
+            if question is None or vo.count("?") != 1 or not (last and last[0].rstrip().endswith("?")):
+                errors.append("social.voiceover may ask one question, the social.question, and only at its end")
+    for key, low, high in (("short", 60, 240), ("long", 300, 1500), ("hook", 20, 70), ("take", 60, 260)):
         text = social.get(key)
+        if text is None and key in ("hook", "take"):
+            if v2:
+                errors.append(f"social.{key} is required from 3 November 2026 09:00 UTC (SOCIAL.md)")
+            continue
         if check_text(text, f"social.{key}", low, high, errors):
             if re.search(r"https?://|www\.", text):
                 errors.append(f"social.{key} must not contain links; the story link is added when posting")
@@ -265,6 +317,26 @@ def validate_social(story, published):
                 errors.append(f"social.short must be at most {room} characters so it fits Bluesky with the story link (found {len(text)})")
             if "[" in text or "]" in text:
                 errors.append(f"social.{key} is read, not spoken: no [cues]")
+    hook, take = social.get("hook"), social.get("take")
+    if isinstance(hook, str) and isinstance(story.get("title"), str) and spoken_words(hook) == spoken_words(story["title"]):
+        errors.append("social.hook repeats the title; give the stake a stranger would stop for")
+    if isinstance(take, str):
+        if re.match(r"\s*our (?:read|take)\b", take, re.IGNORECASE):
+            errors.append('social.take: leave out "Our read:"; the posts add it')
+        if not re.search(r"\b(?:we|we're|we've|we'd|our|us)\b", take.replace("’", "'"), re.IGNORECASE):
+            errors.append('social.take is our position: say it with "we"')
+    facts = social.get("keyFacts")
+    if facts is None:
+        if v2:
+            errors.append("social.keyFacts is required from 3 November 2026 09:00 UTC: 3–5 exact facts worth saving (SOCIAL.md)")
+    elif not isinstance(facts, list) or not 3 <= len(facts) <= 5 or not all(isinstance(f, str) and 12 <= len(f.strip()) <= 80 for f in facts):
+        errors.append("social.keyFacts lists 3–5 facts of 12–80 characters each")
+    else:
+        if sum(bool(re.search(r"\d", f)) for f in facts) < 2:
+            errors.append("social.keyFacts: at least two lines carry a number (a price, a limit, a date, a version)")
+        for i, f in enumerate(facts):
+            if re.search(r"https?://|www\.|#", f) or EMOJI.search(f) or "?" in f or "!" in f:
+                errors.append(f"social.keyFacts[{i}] is a plain fact: no links, hashtags, emoji, questions or exclamation marks")
     if "priority" in social and (type(social["priority"]) is not int or not 1 <= social["priority"] <= 5):
         errors.append("social.priority must be a whole number from 1 to 5 (how much the story is worth a video; 1 and 2 never get one)")
     tags = social.get("hashtags", [])
@@ -279,16 +351,22 @@ def validate_social(story, published):
                 errors.append(f"social.hashtags: #{tag} fits any story; use tags about this one (the product, the company, the field)")
         if len(set(lowered)) != len(lowered):
             errors.append("social.hashtags lists the same tag twice")
-    for key in ("voiceover", "short", "long"):
-        text = social.get(key)
+    texts = {key: social.get(key) for key in ("hook", "voiceover", "short", "long", "take", "question")}
+    if isinstance(facts, list):
+        texts["keyFacts"] = " ".join(f for f in facts if isinstance(f, str))
+    if isinstance(options, list):
+        texts["options"] = " ".join(o for o in options if isinstance(o, str))
+    for key, text in texts.items():
         if not isinstance(text, str):
             continue
         for phrase in dict.fromkeys(m.group(0).lower() for m in BANNED_RE.finditer(text)):
             errors.append(f'social.{key}: "{phrase}" reads like generated copy; say it plainly')
         for phrase in dict.fromkeys(m.group(0).lower() for m in SOCIAL_BANNED_RE.finditer(text)):
             errors.append(f'social.{key}: "{phrase}" is a social-media formula; state the news instead')
-        if "?" in text:
-            errors.append(f"social.{key}: no questions; state what happened and what is still open")
+        for phrase in dict.fromkeys(m.group(0).lower() for m in BAIT_RE.finditer(text)):
+            errors.append(f'social.{key}: "{phrase}" is engagement bait; give people something to answer instead')
+        if "?" in text and key not in ("voiceover", "question"):
+            errors.append(f"social.{key}: no questions; the one question goes in social.question")
         if "!" in text:
             errors.append(f"social.{key}: no exclamation marks")
     short, long = social.get("short"), social.get("long")
@@ -296,7 +374,7 @@ def validate_social(story, published):
         errors.append("social.long starts like social.short; write it for its own readers")
     # A recognisable voice, not a template: no opening the last ten posts already used.
     recent = recent_social(story)
-    for key in ("voiceover", "short", "long"):
+    for key in ("hook", "voiceover", "short", "long", "take"):
         text = social.get(key)
         mine = opener(text) if isinstance(text, str) else None
         if mine and any(isinstance(r.get(key), str) and opener(r[key]) == mine for r in recent):

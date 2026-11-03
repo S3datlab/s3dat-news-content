@@ -8,6 +8,12 @@ AI and developer tooling, seen by a team that builds software: models, agents, d
 research, hardware, policy and the apps people use. Not general tech news, not gossip, not
 funding rounds unless they change what builders can do.
 
+Every day, at least four pieces cover what the wider AI audience is talking about that day: the
+big labs and platforms (OpenAI, Anthropic, Google, Meta, Apple, Microsoft, Nvidia, xAI, Mistral),
+the apps people use, prices, lawsuits and rules. Small releases still have their place, but they
+rarely earn a reel, and a day of only small releases leaves the social channels with nothing
+people stop for (`SOCIAL.md`, priority).
+
 ## Cadence
 
 - Look for news every hour, around the clock (24 runs a day). Publish at most one piece per
@@ -78,6 +84,10 @@ numerate, a little dry. English only. The validator rejects copy that breaks the
 12. **Paraphrase.** Never copy paragraphs from sources. At most one short quote per story, in
     quotation marks, attributed. No invented quotes, people, numbers, dates or links.
 13. S3DAT's own products appear only when genuinely relevant, and the link is disclosed.
+
+The social copy in `story.json` (`social`) follows `SOCIAL.md`: read it every run too. On social
+media we also say what we think: every post carries a `hook`, our `take` and the `keyFacts`
+people save, and about half carry a real `question`.
 
 Before and after:
 

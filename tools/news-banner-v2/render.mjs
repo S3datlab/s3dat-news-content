@@ -10,7 +10,7 @@
  * hd (X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest, Substack): the same layout
  *   rendered at 1920x1080 device pixels (deviceScaleFactor 16/9), with the synthesised soundtrack.
  * social (Instagram Reels): 1080x1920 (9:16), 15 s: the reel, a composition of its own (social.js:
- *   headline hook, beats cut to the voice-over, kinetic captions, sign-off), with a Fish Audio voice-over
+ *   hook, beats cut to the voice-over, kinetic captions, the question or the sign-off), with a Fish Audio voice-over
  *   (FISH_API_KEY, FISH_VOICE_ID) over the soundtrack. The script may carry S2 delivery cues such as
  *   [calm]; without a key the cut is silent apart from the soundtrack and the type is timed by estimate.
  * Motion blur: every frame is the average of --blur samples across a 180° shutter (default 8 for the
@@ -158,10 +158,11 @@ async function buildData(dir, override, format) {
   };
 }
 
-/** The parts of story.json the social cut uses: topic, spec-sheet facts and the voice-over script. */
+/** The parts of story.json the social cut uses: topic, spec-sheet facts, the voice-over script and
+ *  the v2 social fields (SOCIAL.md): the hook it opens on, the key facts, the question it ends on. */
 function readStory(dir) {
   const file = join(dir, "story.json");
-  if (!existsSync(file)) return { facts: [], voiceover: "", topic: "" };
+  if (!existsSync(file)) return { facts: [], voiceover: "", topic: "", hook: "", hookWords: 0, keyFacts: [], question: "", options: [] };
   const story = JSON.parse(readFileSync(file, "utf8"));
   const facts = Array.isArray(story.facts) ? story.facts.slice(0, 6).map((f) => ({ label: String(f.label || ""), value: String(f.value || "") })) : [];
   let voiceover = story.social && typeof story.social.voiceover === "string" ? story.social.voiceover : "";
@@ -170,7 +171,24 @@ function readStory(dir) {
     const sentences = story.lede.split(/(?<=[.!?])\s+/);
     for (const sentence of sentences) { if ((voiceover + " " + sentence).trim().split(/\s+/).length > 36) break; voiceover = (voiceover + " " + sentence).trim(); }
   }
-  return { facts, voiceover, topic: typeof story.topic === "string" ? story.topic.replace(/-/g, " ") : "" };
+  const social = story.social && typeof story.social === "object" ? story.social : {};
+  const text = (v) => (typeof v === "string" ? v.trim() : "");
+  const hook = text(social.hook);
+  // The reel shows the hook in big type while it is spoken: the voice-over opens with it (numbers
+  // spelled out), as many sentences long, so hookWords counts the words of those first sentences.
+  const ends = (t) => (t.match(/[.!?]["”’)]?(?=\s|$)/g) || []).length;
+  const tokens = voiceover.replace(/\[[^\]]*\]/g, " ").split(/\s+/).filter(Boolean);
+  let hookWords = 0;
+  for (let i = 0, seen = 0, need = Math.max(1, ends(hook)); hook && i < tokens.length; i++) {
+    if (/[.!?]["”’)]?$/.test(tokens[i]) && ++seen === need) { hookWords = i + 1; break; }
+  }
+  return {
+    facts, voiceover, topic: typeof story.topic === "string" ? story.topic.replace(/-/g, " ") : "",
+    hook, hookWords,
+    keyFacts: Array.isArray(social.keyFacts) ? social.keyFacts.filter((f) => typeof f === "string" && f.trim()).map((f) => f.trim()) : [],
+    question: text(social.question),
+    options: Array.isArray(social.options) ? social.options.filter((o) => typeof o === "string" && o.trim()).slice(0, 3).map((o) => o.trim()) : [],
+  };
 }
 
 /** Phrase-by-phrase timings for the kinetic captions. The voice starts at 0.4 s and runs `spoken`
@@ -210,7 +228,7 @@ function captions(script, seconds) {
     cur.push(w);
     const nextPause = i + 1 < words.length && words[i + 1].pause > 0;
     if (/[.!?]["”’)]?$/.test(w.text) || cur.length >= 7 || (cur.length >= 3 && (/[,;:—]$/.test(w.text) || nextPause)) || i === words.length - 1) {
-      phrases.push({ start: cur[0].start, end: cur[cur.length - 1].end, words: cur.map(({ text, accent, start }) => ({ text, accent, start })) });
+      phrases.push({ start: cur[0].start, end: cur[cur.length - 1].end, words: cur.map(({ text, accent, start }, k) => ({ text, accent, start, index: i - cur.length + 1 + k })) });
       cur = [];
     }
   });
