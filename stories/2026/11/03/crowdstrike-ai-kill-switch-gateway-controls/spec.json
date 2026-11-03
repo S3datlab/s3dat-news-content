@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "CROWDSTRIKE",
+    "ADDS AI",
+    "KILL SWITCH"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "CrowdStrike",
+      "logo": "crowdstrike.svg",
+      "color": "#000000",
+      "recolor": false
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 1303,
+  "sources": {
+    "crowdstrike.svg": "https://www.crowdstrike.com/content/dam/crowdstrike/marketing/en-us/images/graphics-and-illustrations/marketplace/CS_Logo_Falcon.svg"
+  }
+}

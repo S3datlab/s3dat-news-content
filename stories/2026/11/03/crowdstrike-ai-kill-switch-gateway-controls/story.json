@@ -1,0 +1,117 @@
+{
+  "format": 2,
+  "slug": "crowdstrike-ai-kill-switch-gateway-controls",
+  "kind": "story",
+  "topic": "agents",
+  "title": "CrowdStrike adds a kill switch for agent model access",
+  "titleAccent": "agent model access",
+  "dek": "New agent controls arrive alongside a Cowork monitoring integration and a proposed Fiddler acquisition, with different deployment stages across the package.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T13:03:22Z",
+  "lede": "CrowdStrike introduced AI Kill Switch on November 3, letting Falcon Guardian customers block agents’ access to models through connected gateways. Security teams gain a central intervention point when an agent goes off course.",
+  "facts": [
+    {
+      "label": "Current enforcement",
+      "value": "Connected AI gateways"
+    },
+    {
+      "label": "Managed monitoring",
+      "value": "24/7 with Falcon Complete for Guardian"
+    },
+    {
+      "label": "Cowork integration",
+      "value": "Dedicated post: macOS beta; Windows expected later in November 2026"
+    },
+    {
+      "label": "Fiddler deal",
+      "value": "Proposed closing in Q4 FY27, subject to conditions"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Gateway enforcement",
+      "text": "The control works through connected third-party gateways or CrowdStrike’s native gateway. The latter is generally available and included with Guardian at no additional charge, centralizing model credentials, security policies and spending controls."
+    },
+    {
+      "heading": "Instructions and execution are separate signals",
+      "text": "The accompanying Guardian update connects three kinds of evidence: instructions given to an agent, its network communications and its operating-system activity. CrowdStrike describes current runtime visibility into processes, commands and accessed resources. Available hooks inspect prompts inside Claude Code, Codex, GitHub Copilot, OpenCode and Cursor, while Agent Graph links instructions with subsequent execution. The company also made Falcon Complete for Guardian generally available, adding managed monitoring, investigation and response. Other expansion work remains pre-beta, including AI-specific coverage for Linux, Kubernetes and cloud workloads. Planned AgentCore support would expose managed-agent components and interactions without requiring access to the provider’s infrastructure. These are separate deployment tracks, with different prerequisites and release stages. The release also adds prompt-activity export through Falcon Data Replicator and token-consumption dashboards. Agent insider-threat detection is also pre-beta: it would compare agent and owner behavior with established baselines, including actions within granted permissions."
+    },
+    {
+      "heading": "Monitoring inside Cowork’s virtual machine",
+      "text": "A separate integration developed with Anthropic places the Falcon Linux sensor inside the virtual machine used for local Claude Cowork execution. CrowdStrike explains that the host normally sees that machine as one process, obscuring activity within it. Mounted host folders can still expose company data to the agent. The integration is intended to reveal spawned processes, installed packages and network connections inside the guest. Customers deploy the sensor through existing device-management tools. The dedicated announcement describes a macOS beta and expects Windows support later in November. Its focus is visibility and detection within that execution environment, alongside Cowork’s own permissions and administrative controls."
+    },
+    {
+      "heading": "Observability remains a proposed acquisition",
+      "text": "CrowdStrike also signed an agreement to acquire Fiddler, with closing expected during Q4 FY27, subject to customary conditions. The planned Falcon Observe offering would add evaluation before deployment and trace agent decisions and tool calls through production workflows. Intended capabilities include checking task completion and policy compliance, identifying behavioral drift, and recording evidence for audits. The announcement describes OpenTelemetry instrumentation and support for LangGraph, Amazon Bedrock, AWS Strands and Google ADK. It also proposes tracking token consumption and spend across agents. This would bring application-level evaluation together with Falcon’s security telemetry, giving investigators another record of how an agent reached an outcome."
+    }
+  ],
+  "buildersNote": "Test the switch in a staging workflow with two model routes: one through the configured gateway and one outside it. Record which requests stop, whether already-running tools continue, and how the application handles denied calls. A response plan needs those observations before an emergency.",
+  "claims": [
+    {
+      "text": "Broader endpoint, identity, cloud, SaaS and browser containment remains planned.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The proposed Fiddler acquisition and Falcon Observe availability remain conditional future plans, not completed integration.",
+      "status": "claimed",
+      "source": 3
+    },
+    {
+      "text": "The Cowork-specific announcement says macOS beta; the broader Guardian post labels the integration pre-beta.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing AI Kill Switch: Taking Control When AI Agents Go Rogue",
+      "publisher": "CrowdStrike",
+      "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-introduces-ai-kill-switch/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "CrowdStrike Advances AI Security and Safety from Endpoint to Cloud",
+      "publisher": "CrowdStrike",
+      "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-advances-ai-security-and-safety-falcon-guardian/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "CrowdStrike Secures AI Agents Inside Claude Cowork",
+      "publisher": "CrowdStrike",
+      "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-secures-ai-agents-inside-claude-cowork/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "CrowdStrike to Acquire Fiddler to Deliver Agent Observability for AI Trust",
+      "publisher": "CrowdStrike",
+      "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-to-acquire-fiddler-to-deliver-agent-observability/",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "Cutting model access is one way to interrupt an agent.",
+    "voiceover": "[measured] Cutting model access is one way to interrupt an agent. CrowdStrike introduced a gateway kill switch for Guardian customers on November third. Broader containment is still planned.",
+    "short": "CrowdStrike introduced AI Kill Switch on November 3. It blocks model access through connected gateways.",
+    "long": "CrowdStrike released a kill switch on November 3 that blocks model access through connected gateways. Broader endpoint, identity and cloud containment remains planned.\n\nThe company is also adding visibility inside Claude Cowork’s local virtual machine. Its dedicated announcement describes a macOS beta, with Windows support expected later this month. The sensor observes processes, packages and network activity inside the guest.",
+    "take": "We would judge a kill switch by the routes it actually blocks. A staging test is more useful than assuming every agent action stops when model access is cut.",
+    "keyFacts": [
+      "Guardian managed monitoring: 24/7",
+      "November 3 Cowork post describes macOS beta",
+      "Fiddler closing expected in Q4 FY27"
+    ],
+    "hashtags": [
+      "CrowdStrike",
+      "AIAgents",
+      "AgentSecurity",
+      "ClaudeCowork"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
