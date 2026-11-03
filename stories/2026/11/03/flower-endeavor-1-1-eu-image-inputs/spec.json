@@ -1,0 +1,31 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "ENDEAVOR",
+    "ADDS IMAGES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Flower",
+      "icon": "flower"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 491,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

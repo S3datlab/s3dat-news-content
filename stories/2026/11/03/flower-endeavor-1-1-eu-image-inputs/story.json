@@ -1,0 +1,108 @@
+{
+  "format": 2,
+  "slug": "flower-endeavor-1-1-eu-image-inputs",
+  "kind": "story",
+  "topic": "models",
+  "title": "Flower adds EU inference and image inputs to Endeavor 1.1",
+  "titleAccent": "EU inference",
+  "dek": "The release pairs regional deployment with coding-client integrations and reusable reasoning traces.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T08:13:53Z",
+  "lede": "Flower introduced Endeavor 1.1 on November 3, adding image inputs and an EU inference option. Customers can request managed access or private deployment, with permission to retain outputs and reasoning traces for training their own models.",
+  "facts": [
+    {
+      "label": "Version",
+      "value": "Endeavor 1.1"
+    },
+    {
+      "label": "Client context",
+      "value": "128,000 tokens in supplied Codex configuration"
+    },
+    {
+      "label": "Compaction threshold",
+      "value": "96,000 tokens in supplied Codex configuration"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Regional deployment and reusable outputs",
+      "text": "Flower says the EU option runs inference on GPUs within the European Union, alongside its global service. It also offers deployment in a customer’s private cloud or on premises. Customers can inspect readable reasoning traces and use generated material to train specialist models. UK-only inference and additional regional options remain planned expansions. Flower reports GPQA rising from 92.0 to 94.4 and HumanEval from 98.2 to 99.9 against version 1.0. Its composite equally weights four selected benchmarks."
+    },
+    {
+      "heading": "Model limits and client settings differ",
+      "text": "The model documentation lists a maximum context length of one million tokens. Effective request limits depend on the deployment, upstream route, output budget and internal processing overhead. Flower supplies the complete technical contract during onboarding, including the supported interfaces and usage limits. Model artifacts are privately distributed, with formats and availability settled during that process. The documentation describes development across different coding and agent harnesses, tool sets and execution environments. Its training approach combines existing open-weight capabilities with continual pretraining, targeted post-training and model integration."
+    },
+    {
+      "heading": "A catalog connects the coding client",
+      "text": "Flower’s Codex guide provides a model catalog that exposes Endeavor in the selector and defines its capabilities. The setup uses the Responses interface, a Flower provider entry and an API key passed through an environment variable. The CLI and desktop application share their configuration file, so the guide calls for preserving unrelated settings rather than replacing the entire file. Its example selects low reasoning effort. For local desktop tasks on macOS, the instructions launch the application from a terminal carrying the key. The guide warns that opening the application from the Dock may not supply that credential. This setup sends local coding tasks to Flower using a Flower API key."
+    },
+    {
+      "heading": "Enterprise tasks add a different evaluation signal",
+      "text": "Flower’s model documentation also identifies FlowerBench as an input to its development process. The company introduced that evaluation program on July 6. Participating enterprises contribute tasks involving their own tools and proprietary context. Evaluations remain inside those organizations; sanitized results are shared outside. Its insurance example combines extracting policy terms, cleaning a statement of values, running a rating model and producing quote tables and a final report. Verifiers check the required deliverables. The program measures intermediate artifacts as well as completed work, execution time, token consumption and cost. These workflow measurements address a different question from whether a model answers a public benchmark prompt correctly."
+    }
+  ],
+  "buildersNote": "Test one existing coding task and one image-based task before changing a production route. Record the endpoint, region, actual request limit and client compaction settings separately. Confirm which traces your workflow retains and who can read them before collecting examples for training; a reusable output is not automatically a reviewed training example.",
+  "claims": [
+    {
+      "text": "Flower’s cross-model benchmark table uses scores from different harnesses and settings, rather than a controlled head-to-head test.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The one-million-token maximum is not a promise that every configured client or deployment accepts that request size.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Endeavor 1.1",
+      "publisher": "Flower Labs",
+      "url": "https://flower.ai/blog/2026-11-03-introducing-endeavor-1.1",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Endeavor",
+      "publisher": "Flower Labs",
+      "url": "https://flower.ai/docs/model/endeavor.html",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Use Endeavor with ChatGPT/Codex",
+      "publisher": "Flower Labs",
+      "url": "https://flower.ai/docs/model/endeavor-chatgpt-codex.html",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Use Endeavor with OpenCode",
+      "publisher": "Flower Labs",
+      "url": "https://flower.ai/docs/model/endeavor-opencode.html",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "FlowerBench: Benchmarking AI Agents on Real Enterprise Work",
+      "publisher": "Flower Labs",
+      "url": "https://flower.ai/blog/2026-07-06-flowerbench",
+      "date": "2026-07-06"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Flower introduced Endeavor one point one with image inputs and European Union inference. Access is by request, with managed or private deployment and permission to reuse outputs for training.",
+    "short": "Flower introduced Endeavor 1.1 on November 3 with image inputs and EU inference. Access is available by request.",
+    "long": "Flower’s Endeavor 1.1 documentation separates the model’s maximum context from coding-client settings. Its supplied Codex configuration uses a 128,000-token window and starts compaction at 96,000 tokens.\n\nThe coding-client integration uses a model catalog, a provider configuration and an environment-supplied key. OpenCode has its own shared CLI and desktop settings. These integrations route requests to Flower’s service; the effective request limit still depends on the chosen deployment.",
+    "hashtags": [
+      "FlowerLabs",
+      "Endeavor",
+      "ModelDeployment",
+      "EUInference"
+    ],
+    "priority": 2
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T08:13:53Z"
+}
