@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "NORDIC NRF71",
+    "WI-FI + EDGE AI",
+    "NOW SAMPLING"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Nordic Semiconductor",
+      "icon": "nordicsemiconductor"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 1803,
+  "sources": {}
+}

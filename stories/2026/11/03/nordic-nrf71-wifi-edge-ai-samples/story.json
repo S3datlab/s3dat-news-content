@@ -1,0 +1,112 @@
+{
+  "format": 2,
+  "slug": "nordic-nrf71-wifi-edge-ai-samples",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "Nordic samples nRF71 chips for Wi-Fi devices with local AI",
+  "titleAccent": "Wi-Fi devices with local AI",
+  "dek": "The architecture divides application work, peripheral tasks and wireless processing across separate domains linked through shared memory.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T18:11:29Z",
+  "lede": "Nordic Semiconductor announced its nRF71 chip family on November 3, with samples going to selected customers. The devices combine wireless connectivity and local processing for battery-powered products.",
+  "facts": [
+    {
+      "label": "nRF7120",
+      "value": "Dual-band Wi-Fi 6"
+    },
+    {
+      "label": "nRF7120E",
+      "value": "Tri-band Wi-Fi 6E and Axon NPU"
+    },
+    {
+      "label": "Memory, both variants",
+      "value": "4 MB non-volatile memory; 1 MB user RAM"
+    },
+    {
+      "label": "Availability",
+      "value": "Selected-customer samples"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Two radios, one application chip",
+      "text": "Nordic's design lets a Wi-Fi radio receive alongside a separate Bluetooth LE and Thread radio. A device can maintain its cloud connection while listening for nearby wireless traffic. Its higher-end part adds hardware acceleration for inference, while small Neuton models can run on the processor alone."
+    },
+    {
+      "heading": "How software shares the hardware",
+      "text": "The SDK architecture documentation describes three processing domains. A 256 MHz Arm Cortex-M33 runs the application, Wi-Fi host driver and internet networking stack. It also runs the software stacks for the separate multiprotocol radio. A 256 MHz RISC-V coprocessor can take tasks off that main core, while a dedicated Wi-Fi subsystem handles the wireless medium-access layer. The domains exchange data through shared memory and an interprocessor communication service. Security functions include TrustZone isolation, a cryptographic accelerator and a key-management unit. With Trusted Firmware-M enabled, part of the memory and peripherals is configured as non-secure before control passes to the application. Separate board targets select builds with or without that separation. The documented Wi-Fi modes include operation as a client, scanning, and radio characterization. This gives firmware teams several distinct execution and communication boundaries to account for when placing application work."
+    },
+    {
+      "heading": "An existing AI platform gains another wireless option",
+      "text": "Nordic had already announced its Axon-equipped nRF54LM20B on January 6. That device paired a 128 MHz application core with 2 MB of non-volatile memory and 512 KB of RAM. The same announcement introduced Nordic Edge AI Lab and custom Neuton models for tasks such as anomaly detection and gesture recognition. Nordic described Neuton models as typically smaller than 5 KB. It also reported a supply-chain deployment that detected shock, shaking and transportation on nRF54L devices, distributing that capability through its cloud lifecycle services. The earlier platform establishes a separate baseline for the new hardware's memory and processing specifications."
+    },
+    {
+      "heading": "A module offers two integration paths",
+      "text": "Also on November 3, u-blox announced ALMA-W1 modules based on the new chips. Customers can choose a wireless microcontroller configuration for custom application development or a network-processor configuration using u-connectXpress. The latter arrives with AT-command software covering the Wi-Fi driver, Bluetooth stack, communications protocols and security libraries. The family offers internal or external antennas and optional additional flash memory. Embedded-antenna versions measure 10.4 by 14.3 millimeters; external-antenna versions measure 10.4 by 11.2 by 1.9 millimeters. Those options let a product team choose between putting its application on the module and controlling wireless connectivity from another processor. Initial module samples are available to selected customers, with a wider sampling program planned."
+    }
+  ],
+  "buildersNote": "For a battery prototype, measure three states separately: connected idle, inference and transmission. Repeat the test with both radios active. Record the model, firmware revision and duty cycle alongside average current before using a standby figure to estimate battery replacement intervals.",
+  "claims": [
+    {
+      "text": "Nordic claims up to 20 times lower standby power than nRF70 products; the announcement does not provide detailed test conditions.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The dated SDK documentation labels nRF71 Wi-Fi support experimental.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nordic brings edge AI to battery-powered Wi-Fi devices, achieving twenty times lower standby power with new nRF71 Series",
+      "publisher": "Nordic Semiconductor",
+      "url": "https://www.nordicsemi.com/Nordic-news/2026/11/Nordic-brings-edge-AI-to-battery-powered-WiFi-devices-20-times-lower-standby-power-with-nRF71-Series?lang=en",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Features of nRF71 Series",
+      "publisher": "Nordic Semiconductor",
+      "url": "https://github.com/nrfconnect/sdk-nrf/blob/877f0eced1a48bbd2b9a41bd3650b2ca4f512bf3/doc/nrf/app_dev/device_guides/nrf71/features.rst",
+      "date": "2026-09-30"
+    },
+    {
+      "title": "Nordic Semiconductor simplifies edge AI for billions of IoT devices",
+      "publisher": "Nordic Semiconductor",
+      "url": "https://www.nordicsemi.com/Nordic-news/2026/01/nRF54L-Series-SoC-with-NPU-and-Nordic-Edge-AI-Lab-make-on-device-intelligence-easily-accessible",
+      "date": "2026-01-06"
+    },
+    {
+      "title": "u-blox introduces the ALMA-W1, a compact ultra-low power Wi-Fi 6/6E module series for IoT devices",
+      "publisher": "u-blox",
+      "url": "https://www.u-blox.com/en/alma-w1-ultra-low-power-wi-fi-6-6e-modules",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "Standby power is only part of a battery's workload.",
+    "voiceover": "[measured] Standby power is only part of a battery's workload. Nordic announced new Wi-Fi chips on November third. Its selected-customer samples combine wireless connectivity with local processing for battery-powered devices.",
+    "short": "Nordic announced nRF71 chips on November 3, with selected-customer sampling and AI acceleration in the nRF7120E.",
+    "long": "Nordic's new chip family also has a module route: u-blox announced ALMA-W1 on November 3. It offers either custom application development or a network-processor configuration with pre-flashed wireless software.\n\nThat choice changes where a product's application runs. Internal and external antenna options and extra flash are available across the family, while initial samples are limited to selected customers.",
+    "take": "We care about energy per completed sensing task, including radio traffic. A favorable idle figure alone is not enough to size the battery.",
+    "keyFacts": [
+      "nRF7120E adds Wi-Fi 6E and an Axon NPU",
+      "256 MHz application core and 256 MHz RISC-V coprocessor",
+      "ALMA-W1 announced November 3; selected-customer samples"
+    ],
+    "hashtags": [
+      "NordicSemiconductor",
+      "EdgeAI",
+      "EmbeddedSystems",
+      "WiFi6"
+    ],
+    "priority": 2
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
