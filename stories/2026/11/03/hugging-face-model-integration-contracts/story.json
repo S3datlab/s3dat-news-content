@@ -1,0 +1,101 @@
+{
+  "format": 2,
+  "slug": "hugging-face-model-integration-contracts",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Hugging Face proposes smaller models to catch silent Transformers bugs",
+  "dek": "Evidence records missed regressions, false alarms and limits of miniature tests.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T15:07:33Z",
+  "lede": "Hugging Face proposed Model Integration Contracts on November 3 to test Transformers changes using smaller models. The approach checks behavior on inexpensive processors before maintainers schedule full-checkpoint tests.",
+  "facts": [
+    {
+      "label": "Status",
+      "value": "Proposed testing standard"
+    },
+    {
+      "label": "Pull-request enforcement",
+      "value": "Reports failures without blocking merges"
+    },
+    {
+      "label": "Historical repair",
+      "value": "UMT5 causal-attention fix, September 28"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A model that runs can still be wrong",
+      "text": "A contract combines a fixed miniature model, an executable usage example and human-reviewed expected results. The smaller configuration keeps different layer types, while tokenizer and processor files stay unchanged. An agent can draft the example, but people approve changed expectations. Hugging Face demonstrates the approach by replaying a repaired UMT5 regression that let its decoder inspect future tokens during training. That replay is evidence about a historical bug, rather than a newly discovered vulnerability."
+    },
+    {
+      "heading": "The early measurements include misses",
+      "text": "The accompanying evidence report describes an initial five-month replay with one detected regression, four misses and one false alarm. The missed cases involved calls absent from the contracts. Adding those calls caught all five in the historical sample without another false alarm. This is a useful diagnosis of missing coverage, not a prospective detection rate. The report also shows why smaller weights do not always mean shorter local waits: process startup dominates several cached-model checks. Running eight fixtures in one process took 4.9 seconds, compared with 27.4 seconds in separate processes on the reported Mac setup. Its November 2 status records six control contracts and 180 prototypes. The live job resolves the fleet's current revision at startup and logs it; it does not yet read Transformers' separate lock file."
+    },
+    {
+      "heading": "The original repair exposes the testing problem",
+      "text": "The September 28 UMT5 repair supplies a concrete example of what a test must distinguish. It marks decoder self-attention as causal while leaving encoder-decoder cross-attention noncausal. Its regression test changes the final decoder input token and checks that earlier output states remain unchanged. Otherwise, information has traveled backward from a token the decoder should not yet see. The patch also changes the test's weight-initialization scale. The old value made the measured violation smaller than the test tolerance. That detail matters because a test can express the correct property and still fail to notice its violation."
+    },
+    {
+      "heading": "A passing fixture has a limited meaning",
+      "text": "The report compares SmolLM checkpoints across processors with different support for reduced-precision arithmetic. Generated tokens differed for one real checkpoint while its smaller fixture agreed across both CPUs. Platform-specific baselines therefore address a separate question from whether a model loads. An identical package version can still leave teams comparing different execution conditions. The practical choice is what a passing check certifies: a named usage path, on a recorded environment, against reviewed expectations. That is a more useful engineering promise than treating a green result as approval for every downstream deployment."
+    }
+  ],
+  "buildersNote": "Start with one regression your project has already fixed. Confirm that the contract fails on the broken revision and passes on the repair. Record the execution backend and retain a full-checkpoint test before considering whether the smaller check should block merges.",
+  "claims": [
+    {
+      "text": "The current contracts job is nonblocking; real-world detection rate and review burden remain unestablished.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "The September repair changed attention behavior and strengthened its regression test.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Transformers Model Integration Contracts",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/blog/transformers-mic",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "MICs: evidence so far",
+      "publisher": "Hugging Face",
+      "url": "https://github.com/huggingface/transformers-mic/blob/3e8943213d8c2159e74dadd73d15d8e21864509d/docs/evidence.md",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Fix UMT5 decoder self-attention not being causal (#49135)",
+      "publisher": "Hugging Face Transformers",
+      "url": "https://github.com/huggingface/transformers/commit/d7ba937671edb174fd80d33f9ecbd38f6559dfca",
+      "date": "2026-09-28"
+    }
+  ],
+  "social": {
+    "hook": "A model can run without crashing and still be wrong.",
+    "voiceover": "[measured] A model can run without crashing and still be wrong. Hugging Face proposed testing models on November third. An earlier repair needed a stronger test to expose information leaking between tokens.",
+    "short": "Hugging Face proposed Model Integration Contracts on November 3: smaller test models paired with reviewed outputs.",
+    "long": "Hugging Face proposed a testing contract for Transformers models. Small fixtures can exercise behavior cheaply while reviewers decide whether changed outputs are acceptable.\n\nThe historical repair behind its UMT5 example changed both an attention setting and a test's sensitivity. Passing a test depends on what it measures, as well as whether the code runs.",
+    "take": "We favor keeping these checks advisory until their prospective record is clear. Smaller models earn a place in CI by finding real bugs without overwhelming maintainers with false alarms.",
+    "keyFacts": [
+      "Initial replay: 1 catch, 4 misses, 1 false alarm",
+      "November 2 fleet: 6 control contracts, 180 prototypes",
+      "UMT5 repair committed September 28, 2026"
+    ],
+    "hashtags": [
+      "HuggingFace",
+      "Transformers",
+      "ModelTesting",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

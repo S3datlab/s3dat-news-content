@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "HUGGING FACE",
+    "PROPOSES",
+    "MODEL TEST CONTRACTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Hugging Face",
+      "icon": "huggingface"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 1511,
+  "sources": {}
+}
