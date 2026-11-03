@@ -1,0 +1,141 @@
+{
+  "format": 2,
+  "slug": "openai-activation-probes-agent-safety",
+  "kind": "analysis",
+  "topic": "research",
+  "title": "OpenAI explains how internal probes interrupt model responses",
+  "dek": "Safety monitors differ in when they act, what they inspect and who decides whether an agent can continue.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T16:10:05Z",
+  "lede": "OpenAI disclosed its activation-classifier methods on November 2. The report explains how internal model signals can interrupt responses before a separate reviewer decides whether generation should continue.",
+  "facts": [
+    {
+      "label": "Disclosure",
+      "value": "November 2; previously deployed"
+    },
+    {
+      "label": "Training scale",
+      "value": "OpenAI reports up to 1 million messages"
+    },
+    {
+      "label": "Comparison",
+      "value": "Anthropic research from January 9 and October 16"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A signal inside the generation loop",
+      "text": "OpenAI says its probes score each generated token using internal activations. Crossing a threshold pauses the response and holds tool calls for a reasoning model’s judgment. Training uses synthetic and de-identified conversations labeled by reasoning models. Their method maintains a small moving summary of activations rather than retaining a rolling token window. This places the first decision inside inference, where it can interrupt an output before a slower review finishes."
+    },
+    {
+      "heading": "Escalation is part of the design",
+      "text": "Anthropic described a related cascade on January 9. A cheap linear probe screens traffic, then a probe-and-classifier ensemble judges suspicious exchanges. The second stage considers the input together with the output, addressing cases where either looks harmless alone. Anthropic reported 0.05% refusals on harmless requests during a month of Sonnet 4.5 traffic, and roughly 1% compute overhead if applied to Opus 4.0 traffic. Those are different evaluation settings, not a single cost-and-accuracy measurement. Escalating an uncertain signal also separates suspicion from the final decision to refuse. A sensitive first stage need not automatically turn every false alarm into a blocked user request."
+    },
+    {
+      "heading": "An assessment after the answer serves another purpose",
+      "text": "Anthropic’s October 16 self-assessment report describes an offline alternative. After responding, Claude receives a short reflection instruction and produces a structured safety assessment. Reusing the conversation’s cached computation makes the extra work small: Anthropic estimates fewer than 2% additional inference compute. Flags feed later investigation rather than blocking the current response. On Fable 5, the method recovered 94% of high-priority flags from a stronger prompted classifier at a 1% false-positive rate. That denominator is agreement with another model’s judgments. It does not measure the share of all harmful activity caught. The distinction matters when choosing between preventing one action and discovering patterns across many conversations."
+    },
+    {
+      "heading": "An alert still needs an operational response",
+      "text": "OpenAI’s October 29 monitoring report explains what happens beyond screening. Investigative agents can inspect full transcripts, reconstruct incidents and compare conversations with network logs. Response coverage varies: frontier training can page humans around the clock, while most other traffic has business-hours paging. Internal Codex paging was disabled in that disclosure. Some critical alerts can pause a workload automatically. The report also describes sampling 5% of traffic that probes did not flag to look for misses. These arrangements determine what an alert accomplishes after detection. A favorable classification result alone says little about whether someone receives the alert before a consequential action finishes."
+    },
+    {
+      "heading": "Detection and authorization answer different questions",
+      "text": "Consider an agent preparing to send a customer file. A safety monitor might recognize a dangerous request, while the application still needs the intended recipient, approved attachment and permitted destination. A message can be benign in content and still exceed the user’s instruction. Conversely, a legitimate security task can contain language that warrants a closer look. These are different reasons to stop an action. The useful comparison is therefore the decision each layer owns: classify content, investigate behavior or enforce the scope of a specific task. Treating every favorable model judgment as permission would collapse those separate responsibilities."
+    }
+  ],
+  "buildersNote": "Test three cases at your tool boundary: an explicitly approved action, a benign-looking action outside the task, and a delayed safety review. Record whether execution waits, who can release it and what evidence survives a timeout.",
+  "comparison": {
+    "caption": "Dated disclosures describe different intervention points, not a shared safety benchmark.",
+    "columns": [
+      "Method",
+      "Signal",
+      "Intervention"
+    ],
+    "rows": [
+      [
+        "OpenAI probes, Nov 2",
+        "Internal activations",
+        "Pause generation; escalate"
+      ],
+      [
+        "Anthropic classifiers++, Jan 9",
+        "Probe plus exchange classifier",
+        "Escalate suspicious exchanges"
+      ],
+      [
+        "Anthropic self-assessment, Oct 16",
+        "Post-response reflection",
+        "Offline review"
+      ]
+    ]
+  },
+  "claims": [
+    {
+      "text": "OpenAI’s figures describe internal experiments, not necessarily deployed classifiers; probes require training for the harms they detect.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Self-assessment inherits its teacher’s blind spots and is not a reliable standalone defense against an adaptive attacker.",
+      "status": "claimed",
+      "source": 2
+    }
+  ],
+  "ourRead": "We favor explicit application permission checks for consequential tools, with model-based monitors supplying additional reasons to pause. The disclosures make a persuasive case for combining cheap screening with deeper review, but they do not transfer responsibility for task scope to the model provider. A buyer needs to know which layer can stop execution and which only produces evidence afterward. We would change this position if independent, adversarial evaluations showed a monitor reliably enforcing user-specific authorization across changing tools and model versions, including failures of its own review service.",
+  "watching": [
+    "Our November 30, 2026 check: whether OpenAI publishes deployment-level false-alarm and checkpoint-transfer results, separate from research experiments.",
+    "Our December 15, 2026 check: whether either lab reports matched evaluations of synchronous blocking and offline review under adaptive attacks."
+  ],
+  "sources": [
+    {
+      "title": "Training activation classifiers for safety and alignment",
+      "publisher": "OpenAI",
+      "url": "https://alignment.openai.com/training-activation-classifiers/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Next-generation Constitutional Classifiers: More efficient protection against universal jailbreaks",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/next-generation-constitutional-classifiers",
+      "date": "2026-01-09"
+    },
+    {
+      "title": "Scaling Misuse Detection with Self-Assessment",
+      "publisher": "Anthropic",
+      "url": "https://safeguards.anthropic.com/2026/self-assessment/",
+      "date": "2026-10-16"
+    },
+    {
+      "title": "How we detect frontier model misalignment",
+      "publisher": "OpenAI",
+      "url": "https://alignment.openai.com/how-we-detect-frontier-model-misalignment",
+      "date": "2026-10-29"
+    }
+  ],
+  "social": {
+    "hook": "An unflagged AI action still needs permission.",
+    "voiceover": "[measured] An unflagged AI action still needs permission. OpenAI explained its internal safety probes on November second. We would keep the decision to authorize a consequential tool call inside the application.",
+    "short": "OpenAI detailed its safety probes on November 2. They pause flagged responses for review.",
+    "long": "OpenAI disclosed its probe methods on November 2. Its earlier monitoring report described investigative agents checking transcripts against network logs, with human paging varying by workload.\n\nAnthropic’s January cascade also escalates suspicious exchanges, while its October self-assessment runs after responses for offline review. These designs put intervention at different points. An application still needs a clear rule for who may authorize a consequential tool action.",
+    "take": "We would keep tool authorization separate from model safety scores. A monitor can justify stopping an action without proving that every unflagged action was requested.",
+    "keyFacts": [
+      "OpenAI methodology disclosed November 2, 2026",
+      "Anthropic cascade described January 9, 2026",
+      "Self-assessment report: October 16, 2026"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "AIAgents",
+      "ModelSafety",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
