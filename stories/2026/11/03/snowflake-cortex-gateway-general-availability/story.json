@@ -1,0 +1,112 @@
+{
+  "format": 2,
+  "slug": "snowflake-cortex-gateway-general-availability",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Snowflake makes Cortex AI Gateway cost controls generally available",
+  "titleAccent": "cost controls generally available",
+  "dek": "The release combines model access, request traces and spending controls, while broader agent features remain at different preview stages.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T17:10:28Z",
+  "lede": "Snowflake made Cortex AI Gateway inference, observability and cost management generally available on November 3. Organizations can route model requests through one endpoint and connect their usage records to individual users.",
+  "facts": [
+    {
+      "label": "Released",
+      "value": "November 3, 2026"
+    },
+    {
+      "label": "Inference formats",
+      "value": "OpenAI Chat Completions and Anthropic Messages"
+    },
+    {
+      "label": "Budget evaluation",
+      "value": "Up to 6.5 hours; one hour with low-latency option"
+    },
+    {
+      "label": "Tools and analytics",
+      "value": "Both in preview"
+    }
+  ],
+  "body": [
+    {
+      "heading": "One request path for models and accounting",
+      "text": "The gateway accepts calls from model SDKs and coding agents. Its trace table exposes models, timing, token counts and errors, and applications can export OpenTelemetry traces into the same system. A usage-history view supplies the spending record. The release also introduces preview charts for failures, latency, tool calls and conversation length in Snowsight. A trace connects the charge to the work that produced it."
+    },
+    {
+      "heading": "A budget and a quota stop different things",
+      "text": "Snowflake's October 29 engineering explanation separates team budgets from individual quotas. Shared budgets group consumption through user tags and can notify an owner or run a customer-written stored procedure. A procedure can revoke gateway access when spending crosses a threshold. Per-user quotas instead provide built-in blocking for daily, weekly or monthly limits, releasing the block when the period resets. The limits apply separately to each person. A group of ten users with a 100-credit quota therefore has a combined potential allowance of 1,000 credits. The gateway also separates permission to make requests from permission to inspect their costs. A finance role can receive monitoring access without receiving inference access."
+    },
+    {
+      "heading": "Background Bots are a separate announcement",
+      "text": "At the same event, Snowflake announced CoCo and CoWork Bots for a forthcoming private preview. The proposed Bots accept broad goals, such as preparing customer-meeting briefings, and continue working until they need a decision or approval. Snowflake says they inherit the user's permissions and role context. The announcement also distinguishes profile behavior: CoCo profiles suggest defaults users can change, while CoWork profiles let administrators impose routing instructions and agent access that users cannot remove. Both profile features are in public preview. Scheduled CoCo Automations and the asynchronous agent API are generally available, a different availability category from the planned Bots."
+    },
+    {
+      "heading": "Tool permissions are a separate decision",
+      "text": "The gateway also has a tool-access layer, introduced in preview on October 19. That release lets account administrators choose which MCP servers users can reach and which operations those servers expose. A team can offer read-only operations while leaving write and delete operations unavailable. The catalog includes services such as GitHub, Google Workspace and Salesforce; administrators can also register an internal server by URL. Enabling a server does not replace authorization with the third-party service, which users still complete where required. Snowflake clients can discover enabled servers automatically after the necessary database-role grant. This separates permission to consume model tokens from permission to change information in another application. It also leaves an administrator with a concrete choice about which operations to expose."
+    }
+  ],
+  "buildersNote": "Before moving a production agent, test two users against the same quota and run a request near the threshold. Measure additional spend before blocking. Keep the threshold timestamp, first rejected request and final credit total together so another operator can reproduce the result.",
+  "claims": [
+    {
+      "text": "Quota blocks apply within minutes after spending, so requests can exceed a limit before enforcement arrives; shared-budget evaluation is slower.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The newly announced CoCo and CoWork Bots are scheduled for private preview, not generally available.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nov 3, 2026: Cortex AI Gateway inference, observability, and cost management (General availability)",
+      "publisher": "Snowflake",
+      "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-11-03-cortex-ai-gateway-ga",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Govern Your AI Spend With Snowflake Cortex AI Gateway",
+      "publisher": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/engineering/ai-cost-governance-cortex-ai-gateway/",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "Snowflake CoCo and CoWork Power the Agentic Enterprise, Grounded in Governed Data and Built for Autonomous Action",
+      "publisher": "Snowflake",
+      "url": "https://www.snowflake.com/en/news/press-releases/expedition-2026-coco-cowork/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Oct 19, 2026: Tools for Cortex AI Gateway (Preview)",
+      "publisher": "Snowflake",
+      "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-19-cortex-ai-gateway-tools",
+      "date": "2026-10-19"
+    }
+  ],
+  "social": {
+    "hook": "An AI spending limit can still be exceeded.",
+    "voiceover": "[measured] An AI spending limit can still be exceeded. Snowflake made its gateway cost controls generally available on November third. Individual quota blocks take effect after spending, within minutes.",
+    "short": "Snowflake made core AI Gateway services generally available on November 3. Tool governance remains in preview.",
+    "long": "Snowflake announced its gateway general availability on November 3. The launch sits alongside plans for always-on CoCo and CoWork Bots, whose private preview is still ahead.\n\nThe distinction matters for buyers: today's gateway release and the promised background workers have different availability. Snowflake also distinguishes user-editable CoCo profiles from administrator-controlled CoWork profiles, both in public preview.",
+    "take": "We would test a spending limit under a burst of concurrent requests before relying on it. The useful measure is the final bill after enforcement, not just the configured threshold.",
+    "keyFacts": [
+      "Core gateway capabilities reached GA on November 3",
+      "Team-budget evaluation can take up to 6.5 hours",
+      "3 quota cycles: daily, weekly and monthly"
+    ],
+    "hashtags": [
+      "Snowflake",
+      "AIAgents",
+      "CloudCosts",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

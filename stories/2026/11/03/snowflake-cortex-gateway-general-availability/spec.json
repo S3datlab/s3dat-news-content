@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "SNOWFLAKE",
+    "AI GATEWAY",
+    "GOES GA"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Snowflake",
+      "icon": "snowflake"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 1703,
+  "sources": {}
+}
