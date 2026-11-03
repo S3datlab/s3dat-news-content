@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "PAGERDUTY",
+    "LAUNCHES",
+    "RELIABILITY PLATFORM"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "PagerDuty",
+      "icon": "pagerduty"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2003,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

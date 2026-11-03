@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "pagerduty-paige-reliability-platform-availability",
+  "kind": "story",
+  "topic": "agents",
+  "title": "PagerDuty launches PD Reliability Platform with Paige",
+  "titleAccent": "launches PD Reliability Platform",
+  "dek": "The November release combines incident tooling and agent capacity, while deeper investigation features remain experiments.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T20:12:39Z",
+  "lede": "PagerDuty launched its PD Reliability Platform with Paige on November 3, announcing general availability of both. The release combines incident response, signal intelligence and automation, with separate preview features for deeper investigations.",
+  "facts": [
+    {
+      "label": "Availability announcement",
+      "value": "3 November 2026"
+    },
+    {
+      "label": "Investigation experiments",
+      "value": "Deep Investigation and SRE Workbench: preview"
+    },
+    {
+      "label": "Autonomous resolution",
+      "value": "Coming soon for defined, well-understood incidents"
+    },
+    {
+      "label": "Launch offer deadline",
+      "value": "15 January 2027 for qualifying plans"
+    }
+  ],
+  "body": [
+    {
+      "heading": "One platform, different release stages",
+      "text": "The platform replaces the Operations Cloud name and offers purchasing across events, actions and seats. Customers can buy flexible credits and allocate spending between human users and agent actions. The launch offer includes additional AI Actions capacity for the first subscription year for qualifying Essential, Plus and Ultimate customers who purchase before January 15, 2027."
+    },
+    {
+      "heading": "Approval stays in the incident path",
+      "text": "Paige suggests resolutions using similar previous incidents and can run specific available runbooks, including service restarts or Kubernetes remediation. The explainer distinguishes approved resolutions from planned autonomy. Teams choose whether to investigate further, apply a recommendation or take another path. Deep Investigation and SRE Workbench sit in PD Labs as previews. The first tests competing root-cause explanations; the second gives responders and the agent a shared investigation space."
+    },
+    {
+      "heading": "Evidence is more than a matching timestamp",
+      "text": "PagerDuty’s engineering account describes a diagnosis as two steps: locating the failing component and explaining what failed inside it. The investigation records both direct and circumstantial evidence. A configuration change that removed a required setting directly supports a failure mechanism; simultaneous alerts only suggest a place to investigate. It also keeps rejected explanations and counter-evidence. Investigations update as logs and notes arrive. Responders can redirect an active investigation."
+    },
+    {
+      "heading": "Connecting the services behind an alert",
+      "text": "The same engineering post describes topology collection from source code, deployment configuration and infrastructure definitions. Extractors record dependencies with file and line references, then a central engine resolves links across repositories. The collector can run through a GitHub integration or inside a customer’s own continuous-integration system. This supplies relationships that an alerting service alone cannot explain, such as its dependence on another team’s queue or database."
+    },
+    {
+      "heading": "An established operations-agent market",
+      "text": "PagerDuty already described its agent-assisted Slack incident workflow on September 16. The new platform also enters a market with AWS DevOps Agent, which became generally available on March 31. AWS describes investigations across its cloud, other clouds and on-premises environments, correlating telemetry with code and deployment data. Its service connects to observability tools, runbooks, repositories and delivery pipelines. AWS also links monthly usage credits to the previous month’s AWS support plan bill: 100% for Unified Operations, 75% for Enterprise Support and 30% for Business Support+, under its published program. The AWS release also describes custom agent skills to extend capabilities, plus custom charts and reports for operational insights. AWS also directs preview customers to migration documentation for access to its new capabilities."
+    }
+  ],
+  "buildersNote": "Replay three resolved incidents before enabling production actions. Include a misleading simultaneous alert, a missing dependency and a known restart case; record whether the proposed fix matches the incident evidence. Score diagnosis and mitigation separately, and record unsupported root-cause claims.",
+  "claims": [
+    {
+      "text": "PagerDuty announced general availability of Paige and the PD Reliability Platform on November 3.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Autonomous handling of defined, well-understood incidents remains coming soon; Deep Investigation and SRE Workbench are previews.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The engineering descriptions explain the design, not an independently established reduction in production outages.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "PagerDuty Unveils Paige, an SRE Agent, and the PD Reliability Platform - Establishes PD Labs to Power Open AI Innovation in Reliability Engineering",
+      "publisher": "PagerDuty via Business Wire",
+      "url": "https://www.pagerduty.com/fr/newsroom/pagerduty-2026-fall-launch/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Meet Paige, PagerDuty’s SRE Agent: Faster Fixes Today, Fewer Incidents Tomorrow",
+      "publisher": "PagerDuty",
+      "url": "https://www.pagerduty.com/blog/ai/meet-paige-sre-agent/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Lessons from PD Labs: From experimentation to a production-ready SRE Agent",
+      "publisher": "PagerDuty Engineering",
+      "url": "https://www.pagerduty.com/eng/lessons-from-pd-labs-from-experimentation-to-a-production-ready-sre-agent/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Automate Incident Management with PagerDuty Slack",
+      "publisher": "PagerDuty",
+      "url": "https://www.pagerduty.com/blog/chatops/automate-incident-management-with-pagerduty-slack/",
+      "date": "2026-09-16"
+    },
+    {
+      "title": "AWS DevOps Agent is now generally available",
+      "publisher": "Amazon Web Services",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/03/aws-devops-agent-generally-available/",
+      "date": "2026-03-31"
+    }
+  ],
+  "social": {
+    "hook": "An incident diagnosis still needs evidence, not confidence.",
+    "voiceover": "[measured] An incident diagnosis still needs evidence, not confidence. PagerDuty launched its Reliability Platform on November third. Investigation previews expose competing explanations, while autonomous resolution remains a future capability.",
+    "short": "PagerDuty launched PD Reliability Platform with Paige on November 3. Deep Investigation and SRE Workbench remain previews; autonomous resolution is coming soon.",
+    "long": "PagerDuty announced its new reliability platform on November 3. It builds on incident workflows described in September, including dedicated responder channels and separate stakeholder updates.\n\nApplying an approved fix is available, while autonomous resolution of defined incidents is still coming soon. General availability of the platform does not mean every agent capability has left preview.",
+    "take": "For us, the test is how many bad fixes an incident agent prevents. A useful investigation must survive contradictory evidence from the responder, even when that means abandoning its first diagnosis.",
+    "keyFacts": [
+      "3 November: platform availability announced",
+      "2 investigation features remain previews",
+      "15 January 2027: qualifying launch-offer deadline"
+    ],
+    "hashtags": [
+      "PagerDuty",
+      "Paige",
+      "IncidentResponse",
+      "SREAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
