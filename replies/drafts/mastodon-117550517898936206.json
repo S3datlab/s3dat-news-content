@@ -1,4 +1,0 @@
-{
-  "draft": "Yes, for website and R2 sources: until the next sync job runs, search returns the version it last indexed, so on the 24-hour default a citation can be up to a day stale, plus processing time. Two ways around it: trigger a job from your deploy step (npx wrangler ai-search jobs create, allowed every 30 seconds), or put those pages in built-in storage, which indexes each file as it's uploaded. We haven't timed the gap ourselves yet.",
-  "note": "Checked against Cloudflare's AI Search syncing page (updated 2 November): scheduled jobs every 24 hours by default, manual or API-triggered jobs at most every 30 seconds, built-in storage indexed on upload."
-}
