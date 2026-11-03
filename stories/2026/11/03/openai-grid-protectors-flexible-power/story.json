@@ -1,0 +1,115 @@
+{
+  "format": 2,
+  "slug": "openai-grid-protectors-flexible-power",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "OpenAI launches Grid Protectors for flexible campus power demand",
+  "titleAccent": "flexible campus power demand",
+  "dek": "The national program builds on a Georgia agreement that lets the utility reduce electricity delivered to a planned AI campus during high demand.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T05:13:09Z",
+  "lede": "OpenAI launched its Grid Protectors Program on November 2 to negotiate flexible electricity demand at future compute campuses. It puts the timing of AI power consumption alongside the cost of building supply.",
+  "facts": [
+    {
+      "label": "Program",
+      "value": "Grid Protectors"
+    },
+    {
+      "label": "Starting site",
+      "value": "Planned Effingham County campus, Georgia"
+    },
+    {
+      "label": "Existing agreement",
+      "value": "25 years; announced July 22"
+    },
+    {
+      "label": "Flexible demand",
+      "value": "Up to 1,000 MW"
+    },
+    {
+      "label": "Expected campus demand",
+      "value": "Approximately 3,200 MW"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A program for future sites",
+      "text": "OpenAI plans to negotiate how much electricity each campus can stop drawing, how quickly it can respond and how long reductions can last. Depending on local equipment, on-site generation or storage could supply power to grid operators. Batteries and power controls could smooth changes in consumption. It also argues that steady consumption outside peak periods can spread the fixed costs of substations and other infrastructure across more electricity sales. New generation and transmission remain part of its plan alongside flexible demand."
+    },
+    {
+      "heading": "Georgia's agreement came first",
+      "text": "Georgia Power announced the Effingham arrangement on July 22. The utility described a 25-year agreement for a facility expected to require approximately 3,200 megawatts. It can reduce electricity delivered to the site at times, with up to 1,000 megawatts of flexible demand response. That is a reduction in consumption, not a new power station's output. OpenAI agreed to cover the infrastructure and electric-service costs needed for its facility, with long-term contracts and financial assurances. The utility said these obligations were designed to protect other customers as the project developed."
+    },
+    {
+      "heading": "Who carries the infrastructure risk",
+      "text": "The regulatory framework predates both announcements. On January 23, 2025, Georgia's Public Service Commission unanimously approved special billing terms for new customers using more than 100 megawatts. Its notice describes charges for site-specific work and upstream generation, transmission and distribution as construction progresses. The rule also permits longer contracts and minimum billing requirements, addressing the risk that a large customer leaves before paying for infrastructure built to serve it. New contracts in the covered category must go to the commission for review. These billing terms address who pays if expected electricity demand fails to materialize. The commission traced the change to an April 2024 interim resource-plan decision that added capacity to the grid."
+    },
+    {
+      "heading": "Savings cover a wider portfolio",
+      "text": "Georgia Power announced approval of the OpenAI contract on August 26. Its accompanying savings projection covers large-load agreements and expected growth across its portfolio. The utility forecast approximately $950 million annually from 2029, or $2.847 billion over 2029–2031. For a residential customer using 1,000 kilowatt-hours monthly, it estimated a benefit of at least $15 per month. That increased its earlier projection of $102 annually to $180. The utility linked the projected benefit to additional revenue from large customers, alongside an earlier base-rate freeze and a separate plan to lower overall rates."
+    }
+  ],
+  "buildersNote": "For a compute contract with interruptible power, specify two workload classes: jobs that can pause and services that must continue. Test checkpoint recovery and document the maximum tolerated interruption before pricing the capacity as interchangeable with uninterrupted service. Record which requests need replay after recovery. Include the recovery time in the comparison.",
+  "claims": [
+    {
+      "text": "The Effingham campus remains in development. The agreement's capacity is not an operating record of delivered reductions.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The utility's projected savings cover its wider portfolio and future growth, not OpenAI alone; they are not guaranteed household bill reductions.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The announcement does not publish response times or curtailment durations for future national agreements.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing the Grid Protectors Program",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/grid-protectors-program/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Georgia Power to serve OpenAI project in Effingham County",
+      "publisher": "Georgia Power",
+      "url": "https://www.georgiapower.com/news-hub/press-releases/georgia-power-to-serve-openai-project-in-effingham-county.html",
+      "date": "2026-07-22"
+    },
+    {
+      "title": "Georgia Power’s contract with OpenAI approved; Latest approval part of portfolio of large-load contracts delivering approximately $950 million in annual savings beginning in 2029",
+      "publisher": "Georgia Power",
+      "url": "https://www.georgiapower.com/news-hub/press-releases/contract-openai-approved-part-portfolio-delivering-950-million-annual-savings.html",
+      "date": "2026-08-26"
+    },
+    {
+      "title": "PSC Approves Rule to Allow New Power Usage Terms for Data Centers",
+      "publisher": "Georgia Public Service Commission",
+      "url": "https://psc.ga.gov/site/assets/files/8617/media_advisory_data_centers_rule_1-23-2025.pdf",
+      "date": "2025-01-23"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] OpenAI launched a program for flexible electricity demand. Its planned Georgia campus already has an agreement to cut consumption by up to one thousand megawatts when the grid needs it.",
+    "short": "OpenAI launched Grid Protectors on November 2. Its planned Georgia campus has an existing agreement for up to 1,000 megawatts of demand reduction during grid strain.",
+    "long": "OpenAI launched a national program for flexible campus electricity use. Its Georgia pilot has a 25-year power agreement.\n\nGeorgia Power projected $180 in annual savings for a typical residential customer from 2029. That forecast covers its broader large-load portfolio and expected growth. It is not a measured saving from the planned OpenAI campus.",
+    "hashtags": [
+      "OpenAI",
+      "GridProtectors",
+      "DataCenters",
+      "DemandResponse"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T05:13:09Z"
+}
