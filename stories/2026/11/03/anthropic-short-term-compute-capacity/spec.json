@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "ANTHROPIC",
+    "USED $5B IN",
+    "STOPGAP COMPUTE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 451,
+  "sources": {}
+}

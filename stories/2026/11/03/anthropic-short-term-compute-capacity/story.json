@@ -1,0 +1,106 @@
+{
+  "format": 2,
+  "slug": "anthropic-short-term-compute-capacity",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "Anthropic discloses $5 billion of short-term compute",
+  "dek": "A new filing shows the cost of meeting compute demand before longer-term infrastructure becomes available.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T04:12:56Z",
+  "lede": "Anthropic disclosed $5 billion of third-quarter compute under short-term commitments in a November 2 securities filing. The company says this capacity costs more than comparable multiyear arrangements.",
+  "facts": [
+    {
+      "label": "Temporary compute",
+      "value": "$5 billion in Q3 2026"
+    },
+    {
+      "label": "AWS expansion target",
+      "value": "Nearly 1 GW by end of 2026"
+    },
+    {
+      "label": "New TPU capacity",
+      "value": "Expected from 2027"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Buying time for dedicated infrastructure",
+      "text": "The filing describes Anthropic Direct, a procurement approach that separates data-center capacity from the chips installed inside it. Facilities take longer to prepare, so Anthropic can secure space earlier and defer accelerator commitments until its needs are clearer. It expects dedicated infrastructure to replace temporary capacity over time. Total purchase and lease commitments reach $895.4 billion, substantially for compute and infrastructure. The commitments extend through 2045."
+    },
+    {
+      "heading": "Amazon’s expansion has several stages",
+      "text": "The supply timetable predates the filing. On April 20, Anthropic announced an Amazon agreement covering up to five gigawatts of new capacity and more than $100 billion of AWS spending over ten years. It expected nearly one gigawatt of combined Trainium2 and Trainium3 capacity by the end of 2026. The agreement spans successive chip generations, with options for future hardware, rather than one immediate delivery. Anthropic also said it already used more than a million Trainium2 chips for training and serving Claude. The planned expansion included additional inference capacity in Asia and Europe. At that announcement, the company acknowledged that rapid consumer growth had affected reliability and performance for Free, Pro, Max and Team users, particularly at peak hours."
+    },
+    {
+      "heading": "Google’s next expansion starts later",
+      "text": "Google’s April 6 announcement put a different part of the buildout on a later schedule. Multiple gigawatts of additional TPU capacity were expected to begin coming online in 2027. The arrangement combines Google Cloud services with access to Google-designed processors supplied through Broadcom. Google described this expansion as supporting Anthropic’s growing model workloads. Those deliveries follow a different timetable from the Claude services that customers already access through Google Cloud. The supplier also identified BigQuery, Cloud Run and AlloyDB as services supporting Anthropic’s data, development and applications. It named Cursor, Replit and Shopify among customers accessing Claude through Google Cloud. Those examples show the cloud relationship includes application delivery as well as future processor supply."
+    },
+    {
+      "heading": "A supplier describes the same pressure",
+      "text": "Amazon provided a separate indication of pressure on immediately available hardware in an October 30 post reproducing earnings-call remarks. Chief executive Andy Jassy said short-term capacity on older Trainium generations sold at a premium to the first half of the year. The company described inference as accounting for well over half of AWS’s AI revenue. It intends to offer Trainium outside AWS in late 2027. The distinction between training and serving matters here: demand for current inference capacity continues while suppliers prepare later chip generations."
+    }
+  ],
+  "buildersNote": "Run the same non-sensitive workload through your primary and fallback routes during two peak periods. Record latency, rejected requests and total token cost, then set a retry budget and queue limit that keep a temporary slowdown from multiplying paid requests. Keep human approval in the loop for any retried action with external effects.",
+  "claims": [
+    {
+      "text": "The filing attributes higher temporary-compute costs to short-term arrangements; it does not announce a Claude price increase.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The April capacity schedules are announced expectations, not confirmation that all planned hardware has been delivered.",
+      "status": "unclear",
+      "source": 1
+    },
+    {
+      "text": "Amazon’s remarks do not identify which suppliers provided Anthropic’s temporary compute, or quantify Anthropic’s price premium.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Anthropic, PBC — Amendment No. 1 to Form S-1",
+      "publisher": "Anthropic / SEC",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+      "date": "2026-04-20"
+    },
+    {
+      "title": "Anthropic Expands Use of Google Cloud and TPUs",
+      "publisher": "Google Cloud",
+      "url": "https://www.googlecloudpresscorner.com/2026-04-06-Anthropic-Expands-Use-of-Google-Cloud-and-TPUs",
+      "date": "2026-04-06"
+    },
+    {
+      "title": "Q3 Earnings: Andy Jassy on why demand for Amazon’s custom chips keeps growing",
+      "publisher": "Amazon",
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-custom-chips-demand-q3-2026-earnings",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Anthropic disclosed five billion dollars of temporary compute in its latest quarter. [break] Larger capacity agreements arrive in stages, while Claude users depend on the infrastructure available today.",
+    "short": "Anthropic disclosed $5 billion of short-term compute in Q3. Its filing says that capacity costs more than comparable multiyear arrangements.",
+    "long": "Anthropic reported temporary-compute costs in a November 2 filing. Its earlier April Amazon agreement targeted nearly one gigawatt by year-end 2026, across Trainium2 and Trainium3.\n\nGoogle’s separate expansion was expected to start in 2027. Those schedules explain why a large infrastructure commitment is different from capacity already available to serve an app. They do not establish that every planned delivery has arrived.",
+    "hashtags": [
+      "Anthropic",
+      "Claude",
+      "AIInfrastructure",
+      "CloudComputing"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T04:12:56Z"
+}
