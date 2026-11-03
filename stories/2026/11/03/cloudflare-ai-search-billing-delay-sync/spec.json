@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "CLOUDFLARE",
+    "DELAYS SEARCH",
+    "BILLING"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Cloudflare",
+      "icon": "cloudflare"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 431,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "format": 2,
+  "slug": "cloudflare-ai-search-billing-delay-sync",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Cloudflare postpones AI Search billing and changes its default sync interval",
+  "dek": "Cloudflare delays AI Search charges until December 1 and lengthens the default refresh schedule.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T02:12:15Z",
+  "lede": "Cloudflare announced on November 2 that AI Search billing will begin December 1 instead of November 1. It also changed the default synchronization interval from six hours to 24, affecting how frequently external content is checked for updates.",
+  "facts": [
+    {
+      "label": "Billing starts",
+      "value": "1 December 2026"
+    },
+    {
+      "label": "Default sync",
+      "value": "24 hours, previously 6 hours"
+    },
+    {
+      "label": "Configurable range",
+      "value": "15 minutes to 24 hours"
+    },
+    {
+      "label": "Included ingestion",
+      "value": "5 million tokens per account per month"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The grace period has boundaries",
+      "text": "The pricing documentation separates AI Search’s included infrastructure from charges elsewhere in an application. Workers AI embedding and reranking do not appear as separate Workers AI charges or in AI Gateway logs. Generation and query rewriting continue through the account and gateway instead. There is also a historical storage detail: website pages now use built-in storage, but objects left in the older dedicated R2 bucket can still contribute to storage usage. AI Search no longer writes to that bucket."
+    },
+    {
+      "heading": "What the December bill covers",
+      "text": "Each account receives five million ingestion tokens, 10 gigabyte-months of storage, 1,000 semantic queries and 1,000 full-text queries monthly. Beyond those allowances, base ingestion costs $0.75 per million tokens and storage costs $2 per gigabyte-month. Semantic, vector and hybrid queries cost $0.75 per thousand; full-text queries cost $0.10 per thousand. Image processing adds $0.50 per million tokens. Ingestion is measured after parsing and chunking, so text repeated across overlapping chunks counts each time. Embedding and reranking are included, along with vector indexing and website crawling. Generation, query rewriting and external model providers remain separately billed through the applicable service."
+    },
+    {
+      "heading": "Scheduled refresh has alternatives",
+      "text": "Website and R2 sources use synchronization jobs to process additions, changes and deletions. A deployment pipeline or content-management webhook can trigger a job instead of waiting for the scheduled run, with triggers permitted every 30 seconds. Dashboard controls also support cancelling jobs, pausing indexing and re-indexing individual files. Processing time depends on the number, size and format of files, plus model latency. An interval therefore describes the schedule, not a promise that every document becomes searchable within that period. After 31 days without search requests, external-source instances pause scheduled jobs. They remain searchable. After renewed search or chat traffic, activity checks resume synchronization; manual resumption is also available."
+    },
+    {
+      "heading": "Direct uploads follow a different path",
+      "text": "AI Search already includes storage and a vector index without requiring a separate R2 or Vectorize setup. Files sent through the Items API or dashboard are indexed immediately rather than waiting for scheduled synchronization. An instance can combine that upload path with a website or R2 source. For example, shared website documentation can coexist with additional uploaded files in the same instance. This distinction matters for applications that mix published reference material with documents supplied by their users: the two inputs do not share one refresh schedule."
+    }
+  ],
+  "buildersNote": "Inspect the saved sync interval before changing production settings. Edit one non-sensitive test document and record when search returns its new contents and timestamp, then repeat with a manually triggered job. Keep both timings with the instance configuration so the team can distinguish scheduled waiting from processing time.",
+  "claims": [
+    {
+      "text": "The postponement does not change AI Search rates or included usage.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The announcement does not establish that existing explicitly configured six-hour intervals will be overwritten.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "AI Search billing postponed to December 1, 2026, and default sync interval is now 24 hours",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-11-02-billing-postponed-default-sync-interval/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Limits & pricing",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/ai-search/platform/limits-pricing/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Syncing",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/ai-search/configuration/indexing/syncing/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Built-in storage",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/ai-search/configuration/data-source/built-in-storage/",
+      "date": "2026-10-01"
+    }
+  ],
+  "social": {
+    "voiceover": "[matter-of-fact] Cloudflare postponed AI Search billing until December first. [break] The default refresh interval becomes twenty four hours. Direct uploads follow a different path, and developers can choose faster scheduled updates.",
+    "short": "Cloudflare postponed AI Search billing to December 1 and changed the default sync interval from 6 to 24 hours. Faster intervals remain configurable.",
+    "long": "Cloudflare moved AI Search billing back by a month without changing the published rates. Charges now begin December 1.\n\nThe refresh change concerns scheduled indexing of external sources. Direct uploads are indexed immediately. Developers can trigger jobs from a publishing pipeline instead of waiting for the next scheduled run; the announcement does not say existing custom intervals are overwritten.",
+    "hashtags": [
+      "Cloudflare",
+      "AISearch",
+      "RAG",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T02:12:15Z"
+}
