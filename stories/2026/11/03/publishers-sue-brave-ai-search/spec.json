@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "versus",
+  "headline": [
+    "PUBLISHERS",
+    "SUE BRAVE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "The New York Times",
+      "icon": "newyorktimes"
+    },
+    {
+      "name": "Brave",
+      "icon": "brave"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 481,
+  "sources": {}
+}

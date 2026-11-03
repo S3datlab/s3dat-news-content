@@ -1,0 +1,106 @@
+{
+  "format": 2,
+  "slug": "publishers-sue-brave-ai-search",
+  "kind": "story",
+  "topic": "policy",
+  "title": "Publishers sue Brave over AI search",
+  "titleAccent": "sue Brave",
+  "dek": "The cases challenge a search supplier’s distribution of journalism to AI products.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-03T07:13:38Z",
+  "lede": "The New York Times and three other newspapers sued Brave on November 2 over its use of their journalism. The cases reach the search infrastructure that supplies material to AI applications.",
+  "facts": [
+    {
+      "label": "Defendant",
+      "value": "Brave Software"
+    },
+    {
+      "label": "Times case",
+      "value": "26-cv-9549"
+    },
+    {
+      "label": "Other publishers’ case",
+      "value": "26-cv-9554"
+    },
+    {
+      "label": "Court",
+      "value": "Southern District of New York"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A challenge to retrieval and reuse",
+      "text": "The Times alleges that Brave copied articles into its index and supplied unlicensed text through Ask Brave and its search API. Its complaint also challenges paywall circumvention and the substitution of advertising. It seeks damages, restitution and a permanent injunction. In one cited test, the Times says the LLM Context endpoint returned 1,291 of an article’s 1,295 words. The publisher also describes cease-and-desist letters sent in August 2025 and April 2026. It alleges Brave ignored both."
+    },
+    {
+      "heading": "A second complaint provides different examples",
+      "text": "The Daily News, Chicago Tribune and Orlando Sentinel filed their own action against Brave the same day. Their complaint describes a conversation in which Ask Brave offered to retrieve more Daily News articles, then produced nearly 600 words about New York horse carriages. Another example concerns a Tribune report about data-center tax breaks near O’Hare: the publishers say the answer reproduced more than 1,200 words. The filing includes screenshots and side-by-side comparisons, with a fuller comparison for the Tribune example in an exhibit. The same complaint describes an Orlando Sentinel example in which the answer combined verbatim passages and close paraphrases."
+    },
+    {
+      "heading": "How Brave described the product",
+      "text": "Brave’s February 12 product announcement described LLM Context as a way to give a model relevant material from the web. The service searches its independent index, extracts content from selected pages and ranks passages for the requested query. Its supported extraction includes tables, structured data, code, forum discussions and YouTube captions. Developers can set a token budget and adjust how many URLs contribute. Brave also described Goggles controls that filter or change the ranking of sources by domain or URL pattern. This puts the choice of retrieved material between the publisher’s page and the application’s own model."
+    },
+    {
+      "heading": "Brave’s earlier legal position",
+      "text": "Brave argued for fair use in a separate complaint against News Corp entities filed on March 12, 2025. It argued indexing, summarizing and producing limited excerpts served a different purpose from publishing the underlying articles. Its argument emphasized the factual nature of news, the limited material it said it used and links that send readers to publishers. Brave sought declarations of non-infringement, copyright misuse and no breach of contract. It also disputed that it had agreed to the publishers’ website terms. That filing sets out the company’s earlier legal theory in a different dispute; it is not an answer to the November 2 complaints."
+    }
+  ],
+  "buildersNote": "For a search-backed assistant, retain a source URL and retrieval record for each passage sent to the model. Review two output paths separately: material shown verbatim and material summarized. Ask the supplier which rights its contract provides, and have counsel assess the intended reuse before relying on an API purchase as authorization.",
+  "claims": [
+    {
+      "text": "These complaints have not established copyright infringement or unlawful paywall circumvention.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "The cited output examples are publisher-reported tests, not an independently measured rate of article reproduction.",
+      "status": "claimed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "The New York Times Company v. Brave Software, Inc. — Complaint",
+      "publisher": "U.S. District Court, Southern District of New York",
+      "url": "https://storage.courtlistener.com/recap/gov.uscourts.nysd.676306/gov.uscourts.nysd.676306.1.0.pdf",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Daily News, LP; Chicago Tribune Company, LLC; and Orlando Sentinel Communications Company, LLC v. Brave Software, Inc. — Complaint",
+      "publisher": "U.S. District Court, Southern District of New York",
+      "url": "https://storage.courtlistener.com/recap/gov.uscourts.nysd.676310/gov.uscourts.nysd.676310.1.0.pdf",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Brave launches most powerful search API for AI to date",
+      "publisher": "Brave",
+      "url": "https://brave.com/blog/most-powerful-search-api-for-ai/",
+      "date": "2026-02-12"
+    },
+    {
+      "title": "Brave’s complaint for declaratory judgment of non-infringement, copyright misuse, and no breach of contract",
+      "publisher": "U.S. District Court, Northern District of California",
+      "url": "https://business.cch.com/ipld/BravevNewsCorpcomplaint20250312docx.pdf",
+      "date": "2025-03-12"
+    }
+  ],
+  "social": {
+    "voiceover": "[serious] Publishers filed two lawsuits against Brave over AI search. They seek damages and an injunction. The cases concern article reuse, with liability still unresolved in court.",
+    "short": "Publishers sued Brave on November 2 over AI search, seeking damages and an injunction.",
+    "long": "The Daily News, Chicago Tribune and Orlando Sentinel filed a joint case against Brave, alongside a separate Times lawsuit. Their complaint includes an alleged reproduction of more than 1,200 words from a Tribune report.\n\nBrave previously defended search indexing and limited excerpts as fair use in a March 2025 dispute with News Corp entities. That earlier argument is not a response to the new cases, whose allegations still require a court decision.",
+    "hashtags": [
+      "Brave",
+      "NewYorkTimes",
+      "Copyright",
+      "AISearch"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T07:13:38Z"
+}
