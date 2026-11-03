@@ -1,0 +1,117 @@
+{
+  "format": 2,
+  "slug": "hindsight-models-agent-memory-inference",
+  "kind": "story",
+  "topic": "models",
+  "title": "Vectorize introduces three Hindsight models for agent memory",
+  "titleAccent": "three Hindsight models",
+  "dek": "The open-weight models separate memory judgments, document ranking and reusable text representations.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-03T19:11:44Z",
+  "lede": "Vectorize introduced three Hindsight memory models and a hosted inference service on November 3. Developers can move memory decisions, document ranking and text embeddings into specialized models while keeping a separate language model for writing.",
+  "facts": [
+    {
+      "label": "Decision model",
+      "value": "hs-decide-1-flash: 0.8B parameters"
+    },
+    {
+      "label": "Reranker",
+      "value": "hs-rerank-1: 114M parameters"
+    },
+    {
+      "label": "Embedding model",
+      "value": "hs-embed-1: 112M parameters"
+    },
+    {
+      "label": "Hosted input pricing",
+      "value": "$0.02 decisions; $0.015 reranking; $0.005 embeddings per million tokens"
+    },
+    {
+      "label": "Licenses",
+      "value": "Decision: Apache 2.0; reranker and embeddings: MIT"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Separating judgment from writing",
+      "text": "The decision model handles choices that previously required generated answers. Within Hindsight, it helps judge whether evidence is sufficient, a fact is new or a knowledge page needs updating. The language model still writes the resulting text. Hindsight 1.2 leaves the decision model disabled until configured. Recall pruning and duplicate removal are separate optional settings."
+    },
+    {
+      "heading": "A typed interface instead of generated text",
+      "text": "The decision model's card specifies three question types. A choice question offers between two and 255 answers; a score question uses two to ten ordered levels. The third type returns a yes-or-no probability. Multiple questions about the same supplied state run in one forward pass, with probabilities for the answer options. This gives an application structured decisions without parsing a paragraph of generated prose. The model was trained on requests up to 65,536 tokens. Longer requests return an error instead of silently fitting into that limit. Self-hosting uses a repository-supplied plugin for vLLM, which adds a dedicated System One endpoint. The documented setup pins vLLM to version 0.32.0."
+    },
+    {
+      "heading": "Ranking pairs or encoding text",
+      "text": "The reranker reads a query and document together, returning one relevance score per pair. Its model card allows 8,192 tokens for that combined input. The Sentence Transformers interface returns values between zero and one by default, while callers can request raw logits. CPU deployment uses an ONNX export; GPU deployment uses FP16 weights. The published Text Embeddings Inference examples provide separate CPU and GPU images. That is a different interface from asking the decision model several typed questions about a shared state. Reranking evaluates the relationship between the query and each candidate document. Its card lists eight languages, including Japanese, Korean and Chinese. The CPU example sets a maximum client batch size of 128, giving deployment operators an explicit request-batching setting."
+    },
+    {
+      "heading": "Smaller vectors have a storage consequence",
+      "text": "The embedding model encodes queries and documents the same way, without different prefixes. Its normal output contains 384 dimensions, with supported reductions to 256, 128 or 64. The card instructs users who truncate vectors to normalize them again. It specifies mean pooling and cosine similarity, alongside an 8,192-token input limit. Its supported languages include English, Spanish, French, German, Portuguese, Japanese, Korean and Chinese. CPU and GPU serving options are both documented, including local Sentence Transformers and a separate inference server. These outputs are reusable numeric representations, whereas the reranker scores a particular query-document pair. Switching an existing Hindsight bank to a different embedding model requires re-embedding its stored vectors; changing the provider setting alone does not complete that migration."
+    }
+  ],
+  "buildersNote": "Keep 100 representative queries and their expected memories before changing providers. Compare the old and new retrieval results, including duplicate and outdated facts, before routing production traffic through a different configuration.",
+  "claims": [
+    {
+      "text": "The decision model card documents Apache 2.0 weights and a typed question interface.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Vectorize's reported savings are vendor evaluations of selected operations. Model-call timing is not end-to-end latency; some tested configurations cost more or lose answer quality.",
+      "status": "claimed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Hindsight Models: memory 2.5x cheaper and 2x faster, with better answers",
+      "publisher": "Vectorize",
+      "url": "https://hindsight.vectorize.io/blog/2026/11/03/hindsight-models",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "hs-decide-1-flash",
+      "publisher": "Hindsight AI",
+      "url": "https://huggingface.co/hindsight-ai/hs-decide-1-flash/blob/b90a2f5eaafb19b73c694e02463e29ebace7871e/README.md",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "hs-rerank-1",
+      "publisher": "Hindsight AI",
+      "url": "https://huggingface.co/hindsight-ai/hs-rerank-1/blob/927f5be31280298a51cf29af8a29cb111ed812c5/README.md",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "hs-embed-1",
+      "publisher": "Hindsight AI",
+      "url": "https://huggingface.co/hindsight-ai/hs-embed-1/blob/3164caa4db95a03faac8a327f914f7c8f42d2f98/README.md",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "hook": "Memory work does not always need generated text.",
+    "voiceover": "[measured] Memory work does not always need generated text. Vectorize introduced three memory models. The decision model answers typed questions with probabilities, leaving the language model to write the response.",
+    "short": "Vectorize introduced Hindsight memory models. The embedding model produces 384-dimensional vectors, with supported reductions to 256, 128 or 64.",
+    "long": "Hindsight’s reranker reads a query and document together, returning a relevance score. Its documented interface accepts up to 8,192 tokens for the pair, with CPU and GPU serving options.\n\nThe embedding model works differently: it encodes queries and documents without separate prefixes. After truncating its vectors to a supported smaller size, users must normalize them again.",
+    "take": "We would prioritize recall quality over a cheaper memory bill. A model switch earns its place only if it preserves the facts an agent needs.",
+    "keyFacts": [
+      "Decision model: 0.8B parameters",
+      "Reranker input: up to 8,192 tokens per pair",
+      "Embeddings: 384, 256, 128 or 64 dimensions"
+    ],
+    "hashtags": [
+      "Hindsight",
+      "AgentMemory",
+      "OpenWeights",
+      "ModelInference"
+    ],
+    "priority": 2
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "updatedAt": "2026-11-03T19:11:44Z"
+}
