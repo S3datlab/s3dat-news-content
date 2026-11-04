@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "SONIOX",
+    "ADDS AGENT",
+    "VOICE CONTEXT"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Soniox",
+      "logo": "soniox.svg",
+      "color": "#111111",
+      "recolor": false
+    }
+  ],
+  "mood": "calm",
+  "seed": 2507,
+  "sources": {
+    "soniox.svg": "https://soniox.com/images/compare/provider-icons/soniox-icon.svg"
+  }
+}

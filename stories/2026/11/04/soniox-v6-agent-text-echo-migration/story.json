@@ -1,0 +1,97 @@
+{
+  "format": 2,
+  "slug": "soniox-v6-agent-text-echo-migration",
+  "kind": "story",
+  "topic": "models",
+  "title": "Soniox adds agent speech context to its v6 recognition models",
+  "titleAccent": "agent speech context",
+  "dek": "A voice upgrade needs tests for interrupted playback and downstream parsers, alongside the words it recognizes.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T07:16:58Z",
+  "lede": "Soniox released its v6 speech recognition models on November 3, adding agent text input and agent voice echo cancellation. The real-time model can use the agent’s spoken words when recognizing a caller’s response.",
+  "facts": [
+    {
+      "label": "Models",
+      "value": "stt-rt-v6 and stt-async-v6"
+    },
+    {
+      "label": "Previous models",
+      "value": "v5 retires December 15, 2026"
+    },
+    {
+      "label": "Text timing",
+      "value": "500 ms to 1 second before playback"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Context from the agent",
+      "text": "Soniox lets developers supply the agent’s outgoing words alongside microphone audio, giving recognition access to that conversational context. The company also says the model can exclude the agent’s playback from the transcript while continuing to recognize a caller who interrupts. Existing acoustic echo cancellation should remain enabled. These two features are available in the real-time model across supported languages. An asynchronous model handles recordings. The launch also describes improvements to dictation, translation and speaker identification, without supplying a comparative accuracy result in the announcement."
+    },
+    {
+      "heading": "Playback controls the text stream",
+      "text": "The dated JavaScript client makes timing part of the interface. Soniox places each text message among the incoming audio frames. Developers send words shortly before they play, rather than forwarding a whole response as soon as the language model generates it. Speech synthesis can also run ahead of playback. The client’s documentation specifies a lead of 500 milliseconds to one second, paced against how much audio has actually played. At an interruption, the application sends any already-played text still outstanding, marks the segment finished and discards the unspoken remainder. Each segment represents an agent turn, not an individual sentence. Spaces must remain intact because the service joins text pieces exactly as supplied. The core session method rejects a send if agent text input was not enabled in its configuration. It also rejects calls while the session is disconnected. Applications therefore need to handle client state as well as scheduling the text against playback."
+    },
+    {
+      "heading": "Compatible requests, different written output",
+      "text": "The model changelog lists changes that matter beyond recognition quality. Currency amounts retain spoken currency words instead of automatically becoming a symbol-and-decimal representation. Alphanumeric identifiers receive hyphens only when those hyphens were spoken. Dictation commands for punctuation or editing remain words, leaving the application to apply them. A parser that expects a normalized amount or a particular identifier layout therefore needs more than a successful request as its acceptance test. Soniox says v6 uses the existing interface: an application can switch by changing the requested model name. The old real-time and asynchronous v5 models are scheduled for removal on December 15. After that date, requests naming v5 automatically route to the corresponding v6 model. Keeping the old name will consequently not preserve the old transcription behavior. The transition is an output-contract change even where request syntax remains compatible."
+    }
+  ],
+  "buildersNote": "Replay 30 recorded exchanges with interruptions, short answers and spoken amounts. Compare transcripts and parsed fields separately. Log what actually played before each interruption, then check that unheard words do not become assumed context. Keep recognition quality and application correctness as separate pass criteria.",
+  "claims": [
+    {
+      "text": "Soniox says agent text helps exclude playback while preserving caller interruptions.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Requests naming v5 will route to v6 after December 15.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Soniox STT v6",
+      "publisher": "Soniox",
+      "url": "https://soniox.com/blog/soniox-stt-v6",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Models",
+      "publisher": "Soniox",
+      "url": "https://docs.soniox.com/stt/models#november-3-2026",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "stt.ts",
+      "publisher": "Soniox",
+      "url": "https://github.com/soniox/soniox-js/blob/38f21eaf29b7e86725563fc7839b65ae97e2d19c/packages/core/src/realtime/stt.ts",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "A voice upgrade needs a conversation-level test.",
+    "voiceover": "[measured] A voice upgrade needs a conversation-level test. Soniox released version six on November third. We would test interruptions and parsed amounts before trusting the upgrade in production.",
+    "short": "Soniox released v6 speech recognition. We would test interruptions before upgrading.",
+    "long": "Soniox introduced speech recognition v6.\n\nWe would judge the upgrade by the entire interaction, not the cleanest transcript. An interruption can change what a caller heard, and a correct spoken amount can still break a parser expecting another format. Our acceptance test would cover both. We would score these failures separately.",
+    "take": "We would log played audio before comparing recognition results. Include downstream actions in the acceptance test.",
+    "keyFacts": [
+      "v6 release: November 3",
+      "v5 retirement: December 15",
+      "Agent text: real-time v6"
+    ],
+    "hashtags": [
+      "Soniox",
+      "VoiceAgents",
+      "SpeechRecognition"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
