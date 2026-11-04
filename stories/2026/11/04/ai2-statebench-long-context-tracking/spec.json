@@ -2,11 +2,11 @@
   "engine": 2,
   "template": "ink",
   "headline": [
-    "AI2",
-    "TESTS STATE",
+    "AI2 TESTS",
+    "STATE",
     "TRACKING"
   ],
-  "accent": 1,
+  "accent": 0,
   "brands": [
     {
       "name": "Ai2",
