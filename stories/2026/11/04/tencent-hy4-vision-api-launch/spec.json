@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "TENCENT",
+    "ADDS VISION",
+    "TO HY4"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Tencent Hy",
+      "icon": "tencenthy",
+      "color": "#0052D9"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2513
+}

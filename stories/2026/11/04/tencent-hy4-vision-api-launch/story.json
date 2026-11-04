@@ -1,0 +1,107 @@
+{
+  "format": 2,
+  "slug": "tencent-hy4-vision-api-launch",
+  "kind": "story",
+  "topic": "models",
+  "title": "Tencent launches Hy4 with image understanding",
+  "titleAccent": "image understanding",
+  "dek": "We would price a visual workflow at its normal rate and test its smallest text before committing to a model migration.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-04T13:21:30Z",
+  "lede": "Tencent launched Hy4 on November 4, adding image understanding and broader agent capabilities. The company says model weights and system cards will follow in the coming days.",
+  "facts": [
+    {
+      "label": "Context window",
+      "value": "1M tokens"
+    },
+    {
+      "label": "List price per 1M tokens",
+      "value": "RMB 6 input / 18 output"
+    },
+    {
+      "label": "TokenHub promotion",
+      "value": "50% through December 31, Beijing time"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Hosted access comes first",
+      "text": "Tencent reports computer use through command-line and graphical interfaces, with targeted training on Blender and CAD. The company describes applications in chart analysis and visual mathematics. Hy4 is available through TokenHub, WorkBuddy and CodeBuddy, with API access through platforms including OpenRouter."
+    },
+    {
+      "heading": "The context ceiling is unchanged",
+      "text": "Tencent Cloud’s catalog lists separate hy4 and hy4-preview identifiers. Both have a one-million-token context window, a 960k-token maximum input and a 64k-token maximum output. Both entries retain structured output, function calling, caching and preserved thinking. The published input and output caps are separate limits, not permission to fill the entire context with input. The catalog does not list video understanding for Hy4."
+    },
+    {
+      "heading": "A temporary discount changes the bill",
+      "text": "Tencent Cloud’s Chinese-language pricing table lists RMB 6 per million input tokens, RMB 18 per million output tokens and RMB 0.30 per million cache-hit tokens. These are the same list rates shown for the preview. Hy4 usage is billed at half the listed price through December 31 at 23:59:59 Beijing time, then returns to the standard rate. Applying that discount gives RMB 3, RMB 9 and RMB 0.15 respectively. A hypothetical workload of one million uncached input tokens and one million output tokens therefore costs RMB 12 during the promotion, versus RMB 24 afterward. That calculation excludes cache hits and describes token charges, not a measured task-completion cost."
+    },
+    {
+      "heading": "Image delivery has its own limits",
+      "text": "The Hy4 integration guide supports image input through Chat Completions, Responses and Anthropic-compatible protocols. Images can be mixed with text across multiple turns. Each downloaded or Base64-decoded image file may be at most ten megabytes; a request may include six hundred images, counting conversation history. The detail setting also matters. Low detail scales an image within 512 by 512 pixels, while the original setting is available only through Responses. The guide recommends higher detail for small text, tables and screenshots. It says images ultimately scale within roughly 2048 by 2048 pixels, so sending a larger file does not expose additional detail to the model. Inputs exceeding the documented 5500-by-5500 resolution boundary are rejected. Supported formats are PNG, JPEG, WEBP and non-animated GIF. Historical image messages must be resent on subsequent turns; the service downloads URL images or decodes Base64 again on each request. For streamed Chat Completions calls, include_usage must be enabled to receive complete usage statistics in the final chunk."
+    }
+  ],
+  "buildersNote": "We would compare the same chart and screenshot tasks with the existing workflow, including small labels, ambiguous legends and cropped evidence. Record extraction errors separately from tool-action errors. Budget at the normal rate, then treat promotional savings as temporary. Keep a human approval step for consequential actions until the application passes those tests.",
+  "claims": [
+    {
+      "text": "Tencent plans to release Hy4 weights and system cards.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The promotion ends before standard pricing resumes.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Tencent Launches Hy4: Joining the Ranks of the World's Leading Open-Source AI Models",
+      "publisher": "Tencent",
+      "url": "https://en.prnasia.com/releases/apac/tencent-launches-hy4-joining-the-ranks-of-the-world-s-leading-open-source-ai-models-554689.shtml",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "模型列表",
+      "publisher": "Tencent Cloud",
+      "url": "https://cloud.tencent.com/document/product/1823/130051",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "模型价格",
+      "publisher": "Tencent Cloud",
+      "url": "https://cloud.tencent.com/document/product/1823/130055",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "混元调用指南",
+      "publisher": "Tencent Cloud",
+      "url": "https://cloud.tencent.com/document/product/1823/132252",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "A launch discount should not set the production budget.",
+    "voiceover": "[measured] A launch discount should not set the production budget. Tencent added vision to Hy four on November fourth. We would test small labels and budget beyond the temporary half-price offer.",
+    "short": "Tencent launched Hy4 with image understanding and a 1M-token context. The company says weights will follow.",
+    "long": "Hy4 adds visual input to Tencent’s hosted offering, with a 1M-token context window.\n\nWe would evaluate the charts and screenshots that actually drive the application, especially small labels and missing context. Separate an incorrect reading from an unsafe action, and calculate the operating budget without depending on a launch promotion.",
+    "take": "We think fewer document errors should decide this upgrade. Temporary pricing is a reason to test, not a substitute for evidence from the application.",
+    "keyFacts": [
+      "Context: 1M tokens",
+      "Maximum input: 960k tokens",
+      "Maximum output: 64k tokens"
+    ],
+    "hashtags": [
+      "Tencent",
+      "Hy4",
+      "VisionModels"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
