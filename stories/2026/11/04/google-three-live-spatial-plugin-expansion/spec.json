@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "THREE-LIVE",
+    "EXPANDS",
+    "SPATIAL TOOLS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2405,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

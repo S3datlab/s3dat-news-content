@@ -1,0 +1,118 @@
+{
+  "format": 2,
+  "slug": "google-three-live-spatial-plugin-expansion",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google expands Three-Live with tools for shared spatial scenes",
+  "titleAccent": "shared spatial scenes",
+  "dek": "The integration test should follow an object from one viewer to another, including what happens when both people grab it.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T05:16:40Z",
+  "lede": "Google released Three-Live 1.2.0 on November 3, expanding its spatial plugin suite to 14. The update adds ways to inspect, arrange and share interactive scenes.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "1.2.0, November 3"
+    },
+    {
+      "label": "Spatial plugins",
+      "value": "14, individually optional"
+    },
+    {
+      "label": "Shared-room tracking",
+      "value": "Up to 16 remote peers"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Tools for manipulating a scene",
+      "text": "The additions include measurement, magnetic snapping, gaze selection, exploded assembly views, persistent anchors, locomotion and shared rooms. They extend a project whose initial developer preview appeared on October 6. Measuring and separating components gives the viewer more to do than rotate a finished model. The release also provides native counterparts for Android and Apple platforms, alongside the web implementations."
+    },
+    {
+      "heading": "A file handoff is not an interactive runtime",
+      "text": "Quick Look and Scene Viewer can display exported geometry, but that route loses JavaScript animation, behavior graphs and spatial plugins. On iPhone and iPad, Safari cannot start a WebXR session; embedded mobile WebViews also lack that route. The project instead supplies native Filament and RealityKit runtimes for interactive applications. Scene traits travel with the exported model as metadata, so the application has both geometry and instructions describing its spatial behavior. On the web, developers can register only the plugins their scene needs instead of loading the complete bundle."
+    },
+    {
+      "heading": "Shared rooms coordinate competing changes",
+      "text": "The tagged shared-room implementation makes the collaboration contract more concrete. A room identifier uses a same-origin BroadcastChannel, while cross-device connections use a WebSocket relay. Remote relay URLs must use an encrypted connection; unencrypted sockets are accepted only on loopback addresses. Each client tracks at most 16 remote peers and rate-limits head and pointer updates to at most 20 per second. Object manipulation uses renewable two-second ownership leases. The synchronization layer rejects conflicting updates while another participant holds an unexpired lease. Near-simultaneous grabs resolve through a deterministic peer-identifier comparison, and the losing client releases its local hold. The implementation also separates synchronized objects from local-only ones. Explicit synchronization settings override the default for grabbable objects. Exploded-view changes and painted strokes have their own message types. Incoming payloads are bounded, malformed messages are rejected, and silent peers are removed after five seconds. These are client-side implementation rules, not evidence of measured performance across every supported device."
+    },
+    {
+      "heading": "Execution still needs a host boundary",
+      "text": "The existing native compiler runs scene-building scripts in the Boa JavaScript engine. Its pinned implementation limits individual ArrayBuffer allocations, but explicitly warns that this is not a general heap ceiling. Other allocations can grow between deadline checks. The code recommends process-level memory limits when deployments accept hostile input. These are existing operating constraints, not new security fixes in the plugin release. It also disables dynamic code evaluation and bounds loop iterations, recursion and stack size, alongside its execution deadline."
+    }
+  ],
+  "buildersNote": "Test one assembly in two clients before enabling a shared review. Grab the same part simultaneously, disconnect one client, and confirm the remaining viewer recovers control. Compare native interaction with static export separately. Record which features survive each route rather than accepting a successful file load as the test.",
+  "claims": [
+    {
+      "text": "Static viewer handoff does not preserve the interactive runtime.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Shared-room clients resolve competing grabs using ownership leases.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The project is not an officially supported Google product.",
+      "status": "confirmed",
+      "source": 4
+    }
+  ],
+  "sources": [
+    {
+      "title": "v1.2.0",
+      "publisher": "Google",
+      "url": "https://github.com/google/three-live/releases/tag/v1.2.0",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "<xr-live> spatial computing and plugins guide",
+      "publisher": "Google",
+      "url": "https://github.com/google/three-live/blob/9b215fb45d4285da5275814b4a7c32cb9996300e/docs/xr-live.md",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "shared-room.ts",
+      "publisher": "Google",
+      "url": "https://github.com/google/three-live/blob/9b215fb45d4285da5275814b4a7c32cb9996300e/xr-live/src/plugins/shared-room.ts",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "engine.rs",
+      "publisher": "Google",
+      "url": "https://github.com/google/three-live/blob/9b215fb45d4285da5275814b4a7c32cb9996300e/compiler/src/engine.rs",
+      "date": "2026-10-21"
+    },
+    {
+      "title": "Three-Live",
+      "publisher": "Google",
+      "url": "https://github.com/google/three-live/blob/9b215fb45d4285da5275814b4a7c32cb9996300e/README.md",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "hook": "A shared scene needs more than a working export.",
+    "voiceover": "[measured] A shared scene needs more than a working export. Google expanded Three Live to fourteen spatial plugins. We would test competing grabs and a dropped connection before trusting a shared review.",
+    "short": "Google expanded Three-Live to 14 spatial plugins, adding tools for shared scenes.",
+    "long": "Google released Three-Live 1.2.0 on November 3.\n\nWe would judge a shared review by what happens when participants disagree or disconnect. Test competing grabs, then reopen the same assembly through a static viewer. A successful export is a useful checkpoint, but the interaction itself needs a separate acceptance test.",
+    "take": "We value reliable handoffs over a longer feature list. The useful test is whether another person can continue the review after a client drops out.",
+    "keyFacts": [
+      "Version 1.2.0: November 3",
+      "14 optional spatial plugins",
+      "Static handoff omits interactive plugins"
+    ],
+    "hashtags": [
+      "ThreeLive",
+      "SpatialComputing",
+      "DeveloperTools"
+    ],
+    "priority": 2
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
