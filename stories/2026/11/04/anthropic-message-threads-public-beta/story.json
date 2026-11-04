@@ -1,0 +1,103 @@
+{
+  "format": 2,
+  "slug": "anthropic-message-threads-public-beta",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Anthropic opens message threads beta for smaller agent requests",
+  "titleAccent": "smaller agent requests",
+  "dek": "Recovery belongs in the first integration test, before a smaller request becomes a reason to trust the next action.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-04T04:16:28Z",
+  "lede": "Anthropic opened message threads in public beta on November 2. Agents can send new messages after the first request, reducing repeated uploads during long conversations.",
+  "facts": [
+    {
+      "label": "Status",
+      "value": "Public beta"
+    },
+    {
+      "label": "Thread expiry",
+      "value": "5 minutes after the last request"
+    },
+    {
+      "label": "Deletion",
+      "value": "Within 1 hour of last use"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Short-lived state for active sessions",
+      "text": "The first request sends the conversation; later turns reference the previous response. Anthropic says the state stays encrypted in memory and is not written to disk. Claude still reads the complete conversation, so token usage is unchanged. The public beta follows earlier client-library work, rather than introducing every supporting component at once."
+    },
+    {
+      "heading": "The client still owns recovery",
+      "text": "Anthropic’s Python implementation, committed on October 22, keeps a local view of the complete conversation and tracks which response the server holds. It rejects overlapping send, parse or stream operations on one helper. A fork copies the history into a new thread instead of continuing the old response. Interrupted streaming receives separate treatment: the helper retains completed blocks and any unfinished text, while dropping an incomplete tool call. Its next turn rebuilds the thread because the client cannot assume the server saved exactly the partial response it received. If a fallback model produced the answer, the helper also starts a new thread on the following turn. An optional continuation setting can stop using threads after an immediate repeat loss after replay. These behaviors make local conversation management part of the feature’s operating contract. A server-side shortcut does not remove the application’s responsibility for deciding which complete results its own tools can act on."
+    },
+    {
+      "heading": "Caching remains separate",
+      "text": "Anthropic’s prompt-caching cookbook provides a concrete comparison. Its multi-turn example continues sending the accumulated conversation list, even when caching is enabled. A top-level cache-control setting moves the cache breakpoint forward as the conversation grows. Earlier context can be read from cache while the newly added turn is written. The notebook reports cache-read and cache-creation tokens separately, alongside ordinary input and output usage. It also compares a baseline call, a cache write and a subsequent cache hit, distinguishing the cost of establishing reusable context from benefiting from it. Developers can instead place explicit breakpoints on content blocks, or combine those with automatic handling. The notebook supports up to four explicit breakpoints, with automatic caching consuming one slot. This is existing caching behavior, illustrated in an October 24 revision, not an additional feature announced with threads. The cache has its own five-minute default lifetime, refreshed by hits, and an optional one-hour lifetime with different pricing. Five-minute cache writes cost 1.25 times the base input price; reads use a model-dependent fraction of that rate."
+    }
+  ],
+  "buildersNote": "Run the same three-turn workload with and without threads. Measure request bytes, time to first token and token usage separately. Then interrupt one streamed response and verify recovery before allowing a tool to act. Keep incomplete tool arguments out of execution, and record whether a replay creates duplicate application work.",
+  "claims": [
+    {
+      "text": "Message threads leave token usage unchanged.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The Python helper rejects overlapping sends on the same thread.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Make long-running agents faster with message threads",
+      "publisher": "Anthropic",
+      "url": "https://claude.com/resources/articles/message-threads",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Claude Platform release notes",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview#november-2-2026",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "_thread_state.py",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/anthropic-sdk-python/blob/dd58d8f5c8fc30ec98ca2617dd410441a87ab73b/src/anthropic/lib/threads/_thread_state.py",
+      "date": "2026-10-22"
+    },
+    {
+      "title": "Prompt caching with the Claude API",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/claude-cookbooks/blob/bfe50e59dbb4f5546a0af9ca36ebb77e637c9ce1/misc/prompt_caching.ipynb",
+      "date": "2026-10-24"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "social": {
+    "hook": "A smaller request does not automatically mean cheaper work.",
+    "voiceover": "[measured] A smaller request does not automatically mean cheaper work. Anthropic opened message threads on November second. We would compare three turns and a broken stream before relying on the shortcut.",
+    "short": "Anthropic opened message threads in public beta. Smaller requests leave token usage unchanged.",
+    "long": "Anthropic opened message threads beta on November 2.\n\nWe would measure transport and model work separately. A smaller upload is useful, but a recovery test matters too: interrupt a stream before trusting a faster conversation loop with actions. Record which application steps completed before deciding what can safely run again.",
+    "take": "We would judge this by reliable completed turns, not request size alone. An integration earns the shortcut when it can recover without acting on incomplete output.",
+    "keyFacts": [
+      "Public beta: November 2, 2026",
+      "State expires after 5 minutes",
+      "Deletion within 1 hour of last use"
+    ],
+    "hashtags": [
+      "ClaudeAPI",
+      "AgentInfrastructure",
+      "PromptCaching"
+    ],
+    "priority": 3
+  }
+}

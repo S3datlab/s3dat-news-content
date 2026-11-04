@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "ANTHROPIC",
+    "SHRINKS AGENT",
+    "REQUESTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic",
+      "color": "#D97757"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2404,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
