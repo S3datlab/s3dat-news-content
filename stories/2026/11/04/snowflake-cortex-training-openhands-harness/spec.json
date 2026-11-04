@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "SNOWFLAKE",
+    "PREVIEWS MODEL",
+    "TRAINING"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Snowflake",
+      "icon": "snowflake",
+      "color": "#29B5E8"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2510
+}

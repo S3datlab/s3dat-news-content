@@ -1,0 +1,97 @@
+{
+  "format": 2,
+  "slug": "snowflake-cortex-training-openhands-harness",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Snowflake previews Cortex Training with OpenHands",
+  "titleAccent": "Cortex Training",
+  "dek": "We would judge a training run by held-out tasks and failed executions, not just the reward curve shown at the end.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T10:17:45Z",
+  "lede": "Snowflake announced Cortex Training in public preview on November 3 with an OpenHands integration for training models inside configured agent workflows. Training uses the agent’s configured tools.",
+  "facts": [
+    {
+      "label": "Availability",
+      "value": "Public preview"
+    },
+    {
+      "label": "Demonstration",
+      "value": "Qwen3.5-4B, 25 training steps"
+    },
+    {
+      "label": "Training reward",
+      "value": "File, module and function F1; maximum 3.0"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The training loop stays configurable",
+      "text": "Cortex Training supports supervised fine-tuning and reinforcement learning, with either full-parameter updates or LoRA adapters. Snowflake names TRL, veRL and SkyRL among the supported frameworks. Developers can also write custom loops using APIs for generation, forward and backward passes, optimizer steps and weight synchronization. The service manages the underlying GPUs and checkpoints, while the training script retains control over learning. Its open-source backend is Arctic Platform. Trained checkpoints can be loaded for evaluation or deployed through OpenAI-compatible endpoints backed by dedicated GPUs. Snowflake bills by GPU time. Server-side checkpoints persist so teams can resume training or launch further experiments from earlier states."
+    },
+    {
+      "heading": "Train inside the configured harness",
+      "text": "OpenHands describes rollouts that retain the agent’s prompts, tools, skills and execution limits. A proxy records the exact tokens sampled across chat-completion turns. Assistant outputs contribute to the training loss; prompts and tool results do not. Harbor tasks supply instructions, an environment and a test script whose result becomes the reward. In the companies’ demonstration, Qwen3.5-4B located relevant code in Python repositories over twenty-five steps, with sixty-four rollouts per step. The score combined file, module and function F1. This measures code localization within the configured harness. Compatibility has limits: the file editor is unavailable during training. Terminal commands use fresh shells, retaining the working directory but losing exported variables and background jobs."
+    },
+    {
+      "heading": "Evaluation is an explicit setting",
+      "text": "The supporting Harbor recipe, revised November 1, documents operating conditions that affect how a run should be read. Before allocating GPUs, the launcher exercises the first task with a do-nothing agent, checking sandbox startup, environment preparation and grading. Evaluation during training is disabled unless requested. Its evaluation-task path defaults to the training tasks, so a separate held-out directory must be supplied for an independent test set. A rollout that ends without a verifier result is recorded as an error and excluded from the loss, rather than assigned a zero reward. If every rollout in a step fails, the recipe retries up to three times before stopping. The default run also makes one pass over the task set. A larger requested step count does not override that dataset limit; additional epochs require a separate setting. Installed Harbor agents are refused because they would expose the model endpoint key inside task environments; the recipe instead requires a driver-side agent."
+    }
+  ],
+  "buildersNote": "Before a paid run, we would reserve a held-out repository set and save the base model’s results. Compare the same prompts, tools and turn budget after training. Log failed executions alongside graded attempts, then inspect several improved and worsened tasks manually. A rising reward curve alone would not justify changing the production model.",
+  "claims": [
+    {
+      "text": "The demonstrated reward measures code localization, not general coding ability.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Evaluation during training must be enabled explicitly.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Own Your Intelligence with Cortex Training",
+      "publisher": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/cortex-training-fine-tune-open-weight-llms/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Post-Train a Model for Your Own Agent Harness with OpenHands and Snowflake",
+      "publisher": "OpenHands",
+      "url": "https://www.openhands.dev/blog/post-train-ai-models-openhands-snowflake",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Harbor RL Post-Training on Cortex Training (recipes/rl/harbor)",
+      "publisher": "Snowflake AI Research",
+      "url": "https://github.com/Snowflake-AI-Research/Arctic-Platform/blob/b45b28c23b56179cf41c615bc490ec09d2c6b9f9/recipes/rl/harbor/README.md",
+      "date": "2026-11-01"
+    }
+  ],
+  "social": {
+    "hook": "A better reward curve still needs a held-out test.",
+    "voiceover": "[measured] A better reward curve still needs a held-out test. Snowflake opened Cortex Training in public preview on November third. We would test unseen repositories before trusting a model trained in its own workflow.",
+    "short": "Snowflake opened Cortex Training in preview. OpenHands’ 25-step demonstration tests code localization, not general coding ability.",
+    "long": "Snowflake introduced Cortex Training in preview on November 3. The supporting OpenHands recipe leaves evaluation off by default.\n\nWe would reserve unseen tasks before starting a run, then compare the original and trained models under the same tool settings. The result worth shipping is a repeatable improvement on those tasks. Training metrics alone would not settle that decision.",
+    "take": "We would fund a small held-out trial before a larger training run. A model that only improves its training score has not earned a production switch.",
+    "keyFacts": [
+      "Public preview: November 3",
+      "Demonstration: 25 steps, 64 rollouts per step",
+      "Localization reward maximum: 3.0"
+    ],
+    "hashtags": [
+      "Snowflake",
+      "OpenHands",
+      "AgentTraining"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
