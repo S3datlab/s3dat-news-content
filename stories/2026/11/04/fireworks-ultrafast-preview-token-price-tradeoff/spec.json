@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "FIREWORKS",
+    "PREVIEWS",
+    "ULTRA-FAST"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Fireworks",
+      "logo": "fireworks.svg",
+      "color": "#280016",
+      "recolor": false
+    }
+  ],
+  "mood": "calm",
+  "seed": 2406,
+  "sources": {
+    "fireworks.svg": "https://fireworks.ai/icon.svg"
+  }
+}

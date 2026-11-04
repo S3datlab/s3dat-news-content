@@ -1,0 +1,102 @@
+{
+  "format": 2,
+  "slug": "fireworks-ultrafast-preview-token-price-tradeoff",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Fireworks opens Ultra-fast preview at eight times standard token prices",
+  "titleAccent": "eight times standard token prices",
+  "dek": "A latency upgrade deserves a workload test that accounts for the bill, failed requests and time spent outside the model.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T06:16:48Z",
+  "lede": "Fireworks opened Ultra-fast in preview on November 3 for DeepSeek V4.1 Flash 1017. The mode trades a higher token bill and lower rate limits for faster generation.",
+  "facts": [
+    {
+      "label": "Status",
+      "value": "Preview"
+    },
+    {
+      "label": "Input / output",
+      "value": "$2.40 / $9.60 per million tokens"
+    },
+    {
+      "label": "Cached input",
+      "value": "$0.048 per million tokens"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A serving mode for an existing model",
+      "text": "Ultra-fast serves an existing model. Applications select its dedicated router name in the model field. Fireworks positions it for latency-sensitive work and says output quality remains the same. The company targets generation speeds six to eight times higher, with larger gains for agentic coding. Generation speed describes the time spent producing tokens; it does not measure an entire workflow that also waits for tools or external services. Preview conditions may change."
+    },
+    {
+      "heading": "The same token mix costs more",
+      "text": "The published standard prices for the same 1017 model are $0.30 per million uncached input tokens and $1.20 per million output tokens. Its cached-input price is $0.006 per million. Each corresponding Ultra-fast rate is exactly eight times higher. For a hypothetical workload containing one million uncached input tokens and one million output tokens, the token bill is $12 instead of $1.50. That calculation holds token counts fixed; it is not a measured coding task or a claim about how many attempts an agent needs. Cache hits reduce the absolute input charge, but the eightfold ratio also applies to cached tokens. For this hypothetical fixed workload, shortening completion by one minute would cost an extra $10.50 for that minute saved. The pricing table also lists no Priority option for Ultra-fast."
+    },
+    {
+      "heading": "Faster generation has a smaller capacity envelope",
+      "text": "Fireworks places Ultra-fast in its Medium rate-limit tier. The maximum base ceilings are 43.2 million total prompt tokens, 10.8 million uncached prompt tokens and 432,000 generated tokens per minute. Those maxima apply at spending Tier 3 and above; lower spending tiers have lower ceilings. Actual adaptive limits start below the ceiling and grow with usage. When one-minute usage exceeds half the current limit, that allowance can rise 25 percent at most once every 15 minutes. Each account and model has separate limits for the three token measures. A busy model cannot borrow another model’s allowance. The published ceiling is therefore neither an immediate allocation nor a guaranteed level of successful traffic. The general Elastic Burst policy offers eligible accounts temporary spare capacity, without guaranteeing that every mode or account receives it. A request can still receive an overload response while below its rate limit. Response headers can expose the latest known effective limits, although values may lag changes and are not included on every response."
+    }
+  ],
+  "buildersNote": "Run 30 representative tasks through both modes with the same prompts, tools and success criteria. Record completed-task latency, token charges, retries and tool-wait time. Start below the current account limit, then test the expected peak. Reject a comparison that counts faster failed attempts as productivity. Keep the standard route available until the preview passes the same acceptance tests.",
+  "claims": [
+    {
+      "text": "The generation-speed improvement is Fireworks’ target, not our measurement.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Each corresponding Ultra-fast token rate is eight times standard.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Published rate ceilings do not guarantee successful requests.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Changelog",
+      "publisher": "Fireworks",
+      "url": "https://docs.fireworks.ai/updates/changelog#2026-11-03",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Serverless Pricing",
+      "publisher": "Fireworks",
+      "url": "https://docs.fireworks.ai/serverless/pricing",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Serverless Rate Limits",
+      "publisher": "Fireworks",
+      "url": "https://docs.fireworks.ai/serverless/rate-limits",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "Faster tokens come with an eightfold price.",
+    "voiceover": "[measured] Faster tokens come with an eightfold price. Fireworks opened its ultra fast preview on November third. We would compare completed tasks, including retries, before paying to shorten the wait.",
+    "short": "Fireworks opened Ultra-fast preview for DeepSeek V4.1 Flash 1017, with premium token prices.",
+    "long": "Fireworks introduced Ultra-fast in preview on November 3.\n\nWe would price the completed job, not celebrate the quickest stream. Test the same workload through both routes and count retries as well as successful answers. The upgrade earns its place only if saved waiting time matters more than the additional bill.",
+    "take": "We would reserve this mode for work where waiting has a measurable cost. A fast failed attempt is still a failed attempt, so completion quality belongs beside latency in the decision.",
+    "keyFacts": [
+      "Ultra-fast preview: November 3",
+      "Token prices: 8 times standard",
+      "Priority tier: unavailable"
+    ],
+    "hashtags": [
+      "FireworksAI",
+      "DeepSeek",
+      "InferencePricing"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
