@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "SARVAM",
+    "RELEASES",
+    "PRISM"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Sarvam",
+      "logo": "sarvam.svg",
+      "color": "#242424",
+      "recolor": true
+    }
+  ],
+  "mood": "calm",
+  "seed": 2511,
+  "sources": {
+    "sarvam.svg": "https://assets.sarvam.ai/assets/brand/logos/sarvam-logo-black.svg"
+  }
+}

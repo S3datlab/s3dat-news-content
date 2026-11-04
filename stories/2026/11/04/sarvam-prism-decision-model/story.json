@@ -1,0 +1,97 @@
+{
+  "format": 2,
+  "slug": "sarvam-prism-decision-model",
+  "kind": "story",
+  "topic": "models",
+  "title": "Sarvam releases Prism for fixed-choice decisions",
+  "titleAccent": "Prism",
+  "dek": "We would test the decision threshold and the deployment path separately before giving a new classifier control of a consequential action.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T11:20:50Z",
+  "lede": "Sarvam released Prism on November 3, a model that scores supplied answers instead of generating text. Its weights are available under Apache 2.0, alongside a hosted API.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "November 3"
+    },
+    {
+      "label": "Local storage",
+      "value": "About 106 GB for weights"
+    },
+    {
+      "label": "Hosted context",
+      "value": "32,768 tokens per question"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Scoring options",
+      "text": "Prism builds on Sarvam’s 105B model with a decision head that produces option probabilities in one forward pass. Its training combines cross-entropy with five-percent label smoothing and a Brier loss, which penalizes errors in the probabilities themselves. In backbone attention, options see the shared context and their own contents, but not competing options. Sarvam measured a 44 ms median across 1,000 sequential requests on one B200 after loading, not a hosted latency guarantee."
+    },
+    {
+      "heading": "Self-hosting uses a dedicated loader",
+      "text": "The released model card specifies about 120 GB of free memory on an FP8-capable NVIDIA GPU, plus Python 3.10 or newer and a C compiler for Triton kernels. Its custom FP8 weight layout cannot be loaded through AutoModelForCausalLM or general-purpose inference servers. Developers instead use the repository’s prism.py loader. Local requests accept text or JSON state and a map of questions, processed independently in batches of sixteen by default. A choice result returns the selected key and probabilities. A yes-or-no result supplies the probability of yes. An ordered score returns both the expected level index and the most likely level, which need not be identical. The local context limit is 131,072 tokens per question. The embeddings and normalization layers remain in bfloat16; the mixture-of-experts router retains float32 rather than applying FP8 throughout the model. The card reports loading takes about two minutes on a B200; CUDA graph capture at startup can be disabled."
+    },
+    {
+      "heading": "The hosted confidence field has a different meaning",
+      "text": "The hosted service has a smaller per-question context ceiling. It does not truncate oversized inputs: one question exceeding the limit causes the entire request to fail with a 422 response. Requests also have a sixty-second timeout, after which no questions are answered and a 503 error is returned. Its choice response separates option probabilities from a rescaled confidence value. With three options, a top probability of 0.80 becomes confidence of 0.70, because the latter measures distance above uniform chance. The documentation says calibration findings apply to the top probability, not that rescaled field. Teams porting a threshold should therefore check which value their application reads. Hosted inference is synchronous and accepts text or JSON, without image input or streamed output. These are separate deployment contracts, despite using the same model name. Hosted choice questions accept 2–255 options; ordered scores accept 2–10 levels."
+    }
+  ],
+  "buildersNote": "We would begin with a labeled sample from the intended workflow, including ambiguous cases and an explicit escalation path. Record the selected answer and the downstream action separately. Then test both deployment paths against the same examples, counting rejected requests alongside incorrect decisions. A fast response is useful only when the application can handle uncertainty and failure.",
+  "claims": [
+    {
+      "text": "The released weights require a custom loader.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Hosted confidence is distinct from the top option probability.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Sarvam Prism",
+      "publisher": "Sarvam",
+      "url": "https://www.sarvam.ai/blogs/sarvam-prism",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Sarvam-Prism",
+      "publisher": "Sarvam",
+      "url": "https://huggingface.co/sarvamai/prism/blob/417cf26c2eea27286a803dd721b4e78698bdb875/README.md",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Sarvam Prism",
+      "publisher": "Sarvam",
+      "url": "https://docs.sarvam.ai/api/token-factory/models/sarvam-prism",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "A decision threshold needs a test before it gets control.",
+    "voiceover": "[measured] A decision threshold needs a test before it gets control. Sarvam released Prism on November third. We would check uncertain cases before letting a fixed-choice model trigger actions without review.",
+    "short": "Sarvam released Prism for fixed-choice decisions. Its 44 ms median is a local test result, not a hosted latency guarantee.",
+    "long": "Prism arrived as Sarvam’s decision model. The local deployment uses a custom loader.\n\nWe would start with examples from the intended workflow and decide when a result should go to a person. Test the selected label and the resulting action separately. A convincing demonstration would preserve that behavior on ambiguous inputs, not just complete the easy examples quickly.",
+    "take": "We would choose the escalation policy before tuning a decision threshold. A model should earn permission to act through measured results on the actual workflow.",
+    "keyFacts": [
+      "Release: November 3",
+      "Local weights: about 106 GB",
+      "Hosted limit: 32,768 tokens per question"
+    ],
+    "hashtags": [
+      "Sarvam",
+      "Prism",
+      "DecisionModels"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
