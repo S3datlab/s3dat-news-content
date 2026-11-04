@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "OPENAI",
+    "TESTS",
+    "EVERYDAY TASKS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai",
+      "color": "#111111"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2403
+}

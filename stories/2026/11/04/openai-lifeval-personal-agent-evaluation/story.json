@@ -1,0 +1,101 @@
+{
+  "format": 2,
+  "slug": "openai-lifeval-personal-agent-evaluation",
+  "kind": "story",
+  "topic": "research",
+  "title": "OpenAI introduces LifeVal to evaluate everyday personal agent tasks",
+  "titleAccent": "everyday personal agent tasks",
+  "dek": "The research separates completing a computer workflow from completing it for a particular person, making grading and comparison limits as important as the examples.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-04T03:11:12Z",
+  "lede": "OpenAI introduced LifeVal on November 2, describing an evaluation of everyday assistance. A paper dated November 3 explains how personal context and completed actions are checked, against evidence of success.",
+  "facts": [
+    {
+      "label": "Evaluation",
+      "value": "169 tasks"
+    },
+    {
+      "label": "Grader",
+      "value": "GPT-5.6"
+    },
+    {
+      "label": "Comparator",
+      "value": "OSWorld: 369 computer tasks"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Personal usefulness is the target",
+      "text": "OpenAI says it has used LifeVal internally over the past year to guide model improvements. The announcement focuses on responsibilities such as finding childcare, preparing for school, managing household administration and accessing government services. It starts from time-use studies, then asks where people would value assistance to prioritize practical help. Its examples show models helping with decisions and practical workflows, alongside answers to factual questions. The displayed percentages describe individual examples; they are not a single overall success rate for every kind of personal assistance. One school-selection example explicitly leaves two preferences for the user to decide, before enrollment can be considered finished."
+    },
+    {
+      "heading": "Completion is checked against evidence",
+      "text": "Task writers supplied deidentified personal context and their own rubrics. The paper describes at least three human review rounds before acceptance. A primary grader based on GPT-5.6 examines the response, created artifacts and changes to the environment’s backend state. A separate grader assigns zero when a model accesses internal environment interfaces that would not normally be available on real sites. Runs have an eight-hour timeout. Incorrect information or recommendations remain a persistent failure mode, often involving facts missed in personal conversations. The comparison covers OpenAI models, with both grading systems supplied by OpenAI."
+    },
+    {
+      "heading": "A different question from desktop execution",
+      "text": "OSWorld, introduced in April 2024, offers a useful methodological comparison. Its tasks involve actual web and desktop applications, file operations and workflows spanning several programs. Each example includes an initial-state configuration and a custom execution-based checker. The project makes its code, environment and data available for other researchers to use. That setup helps distinguish a completed operation from a plausible description of one. The useful comparison concerns the unit being tested. A desktop task can have a precise target state; a personal assistant also needs a defensible account of whose preferences determine the right result. A successful action and a useful outcome should not be treated as interchangeable measurements. A separate question is whether an agent recognizes missing preferences before committing its user to an irreversible choice."
+    },
+    {
+      "heading": "Sampling limits",
+      "text": "LifeVal’s willingness-to-pay survey was US-centered and conducted in English. Those hypothetical valuations do not establish revenue or realized savings. The paper also warns that its browsing cache is not frozen, so information changes can affect scores across runs."
+    }
+  ],
+  "buildersNote": "Build a small evaluation with two versions of the same request and different user constraints. Check the resulting files or account changes, then score whether each version respects its intended person. Keep those scores separate from response fluency. Record missing context, unauthorized actions and incorrect facts as different failures, so an improvement in one category cannot hide a regression in another.",
+  "claims": [
+    {
+      "text": "The examples are not an overall success rate.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The browsing cache can change between runs.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "LifeVal",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/lifeval/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "LifeVal: Evaluating AI Model Performance on Personalized Agentic Consumer Tasks",
+      "publisher": "OpenAI",
+      "url": "https://cdn.openai.com/pdf/lifeval.pdf",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+      "publisher": "OSWorld authors",
+      "url": "https://arxiv.org/abs/2404.07972",
+      "date": "2024-04-11"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "social": {
+    "hook": "A completed task can still be wrong for its user.",
+    "voiceover": "[measured] A completed task can still be wrong for its user. OpenAI introduced LifeVal on November second. We would test two different people’s constraints before trusting one polished answer as a useful outcome.",
+    "short": "OpenAI introduced LifeVal for personal assistance. Example scores aren’t an overall result.",
+    "long": "OpenAI introduced LifeVal on November 2 to study everyday assistance.\n\nWe would separate completing an action from producing the right outcome for its user. A fluent answer is not enough evidence for either. Testing the same request against two different sets of personal constraints would make that distinction concrete.",
+    "take": "We see personal usefulness as a separate acceptance test. A tool can finish its operation while still delivering something the intended person cannot use.",
+    "keyFacts": [
+      "Announcement: November 2, 2026",
+      "OSWorld introduced April 11, 2024",
+      "169 evaluation tasks"
+    ],
+    "hashtags": [
+      "LifeVal",
+      "AgentEvaluation",
+      "PersonalAssistants"
+    ],
+    "priority": 3
+  }
+}
