@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "portrait",
+  "headline": [
+    "CLAUDE EXTENDS",
+    "TEXT",
+    "WATERMARKS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Claude",
+      "icon": "claude"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 46927,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  }
+}

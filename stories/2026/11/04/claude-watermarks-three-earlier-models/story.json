@@ -1,0 +1,131 @@
+{
+  "format": 2,
+  "slug": "claude-watermarks-three-earlier-models",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Anthropic adds text watermarks to three earlier Claude models",
+  "titleAccent": "text watermarks",
+  "dek": "Mythos 5, Opus 4.7 and Sonnet 4.6 join the rollout, with a Bedrock deadline and a sampling exception developers need to account for.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T23:08:33Z",
+  "lede": "Anthropic added text watermarking for Claude Mythos 5, Opus 4.7 and Sonnet 4.6 in its November 3 platform release notes. The change extends machine-readable provenance to applications still using those models, including writing and coding workflows.",
+  "facts": [
+    {
+      "label": "Models added",
+      "value": "Mythos 5, Opus 4.7, Sonnet 4.6"
+    },
+    {
+      "label": "Release note",
+      "value": "3 November 2026"
+    },
+    {
+      "label": "Bedrock completion",
+      "value": "By 10 November, according to Anthropic"
+    },
+    {
+      "label": "Text detection",
+      "value": "Private preview for eligible organizations"
+    },
+    {
+      "label": "Extra tokens",
+      "value": "None, according to Anthropic"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Earlier models enter an existing rollout",
+      "text": "This is an extension of an established program. Anthropic described its approach in August and has been adding support to earlier models. The November release names three additional models. Its support table gives Amazon Bedrock a completion deadline of November 10 for those entries. The listed coverage includes first-party products and cloud partners, with availability depending on the model and platform. For an application developer, the important unit is therefore the deployed model and route, not simply the Claude brand. A product can retain the same user interface while its output gains a provenance signal underneath."
+    },
+    {
+      "heading": "The signal lives in word choices",
+      "text": "Anthropic says its system uses a version of Google DeepMind’s SynthID-Text method. It changes the randomness used when selecting among suitable words, leaving a pattern that a keyed detector can assess. The company says it adds neither hidden characters nor extra tokens, and does not encode a customer’s identity. That makes the mechanism different from a visible label pasted onto an answer. It also differs from a generic detector looking for familiar AI phrasing. The producer embeds a signal during generation, instead of an outside service guessing solely from the style of a finished passage."
+    },
+    {
+      "heading": "Sampling settings become an integration detail",
+      "text": "The release note identifies Sonnet 4.6 sampling settings as a dependency for applications that rely on the mark. Temperature, top_p and top_k are named explicitly. This moves a seemingly small generation option into the provenance design. A team documenting where content came from now has another reason to record its effective model configuration. A saved response alone does not describe the settings used to produce it. Keeping those settings with the output gives a reviewer more context when interpreting a later detection result."
+    },
+    {
+      "heading": "The underlying research separates generation from detection",
+      "text": "Google DeepMind’s SynthID-Text paper appeared in Nature on October 23, 2024. Its design changes sampling without changing model training, and detection does not require running the underlying language model. That separation explains how a provenance check can sit downstream from the service that produced a document. The paper describes quality preservation and computational efficiency as requirements for production use."
+    },
+    {
+      "heading": "Text marks and file credentials answer different questions",
+      "text": "Anthropic also attaches C2PA Content Credentials to supported generated files. Those are signed metadata, separate from the pattern inside generated text. Its public file checker handles those credentials; text-watermark detection remains a separate private preview. This distinction matters for a publishing pipeline that moves between chat, plain text and exported files. Each stage can expose a different provenance signal. A review process needs to distinguish the type of evidence it received before treating a result as an authorship decision."
+    }
+  ],
+  "buildersNote": "For Sonnet 4.6 integrations that rely on marking, audit all 3 sampling parameters: temperature, top_p and top_k. Record their effective values, the model and provider route beside each saved output. Keep provenance results separate from authorship decisions.",
+  "claims": [
+    {
+      "text": "The November 3 release notes list text watermarking for Mythos 5, Opus 4.7 and Sonnet 4.6.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Anthropic says marking adds no tokens or hidden characters and carries no user or organization information.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "Sonnet 4.6 output may lack a reliable mark with non-default sampling settings; Bedrock rollout for the three models completes by November 10.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "A detected mark cannot establish sole authorship. A missing mark does not establish human authorship, particularly after editing or with short passages.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Claude Platform release notes",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "How Claude marks AI-generated content",
+      "publisher": "Anthropic",
+      "url": "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "How Claude’s text watermark works",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/claude-text-watermark",
+      "date": "2026-08-14"
+    },
+    {
+      "title": "Scalable watermarking for identifying large language model outputs",
+      "publisher": "Nature / Google DeepMind",
+      "url": "https://www.nature.com/articles/s41586-024-08025-4",
+      "date": "2024-10-23"
+    }
+  ],
+  "social": {
+    "hook": "Your writing can carry an invisible provenance signal.",
+    "voiceover": "[measured] Your writing can carry an invisible provenance signal. Anthropic extended text watermarks to three earlier Claude models. Detection remains in private preview, and a mark does not establish sole authorship.",
+    "short": "Anthropic added text watermarks to 3 earlier Claude models. Bedrock rollout finishes by November 10; a detected mark signals involvement, not sole authorship.",
+    "long": "Anthropic extended its text watermark rollout to Mythos 5, Opus 4.7 and Sonnet 4.6. Amazon Bedrock completion is listed for no later than November 10.\n\nThe mark is a pattern in generated word choices, separate from the signed metadata attached to files. Applications that rely on Sonnet 4.6 marking need to account for non-default sampling settings. Text detection is still in private preview, and its result cannot establish who originally authored the underlying material.",
+    "take": "We think provenance tools should report what they detected, without turning a model’s involvement into an authorship verdict. That distinction matters when Claude edits someone’s own writing.",
+    "keyFacts": [
+      "3 earlier models added in the November 3 release note",
+      "Amazon Bedrock rollout completion: by November 10",
+      "Sonnet 4.6 has 3 sampling parameters to audit",
+      "0 extra tokens, according to Anthropic"
+    ],
+    "hashtags": [
+      "Claude",
+      "Anthropic",
+      "AIWatermarking",
+      "ContentProvenance"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
