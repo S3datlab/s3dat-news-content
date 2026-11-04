@@ -69,14 +69,30 @@ jobs:
             [ "$FORCE" = "true" ] && args+=(--force)
             python scripts/social.py --pick "${args[@]}"
           fi
-      - uses: actions/setup-node@v4
+      - name: Check for an Oracle Vibes reel
+        id: media
         if: steps.pick.outputs.slug != ''
+        env:
+          FOLDER: ${{ steps.pick.outputs.folder }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          spec = json.loads((Path(os.environ['FOLDER']) / 'spec.json').read_text(encoding='utf-8'))
+          ready = spec.get('vibes', {}).get('reel') is True
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'vibes_reel={str(ready).lower()}\n')
+          PY
+      - uses: actions/setup-node@v4
+        if: steps.pick.outputs.slug != '' && steps.media.outputs.vibes_reel != 'true'
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/news-banner-v2/package-lock.json
       - name: Render the 9:16 cut
-        if: steps.pick.outputs.slug != ''
+        if: steps.pick.outputs.slug != '' && steps.media.outputs.vibes_reel != 'true'
         env:
           CHROME_CHANNEL: chrome
           FISH_API_KEY: ${{ secrets.FISH_API_KEY }}
@@ -89,7 +105,7 @@ jobs:
           mkdir -p out/social
           node tools/news-banner-v2/render.mjs "$FOLDER" --format social --out "out/social/$SLUG-tall.mp4"
       - name: Upload it to news.s3dat.com
-        if: steps.pick.outputs.slug != ''
+        if: steps.pick.outputs.slug != '' && steps.media.outputs.vibes_reel != 'true'
         env:
           NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
           NEWS_INGEST_URL: ${{ vars.NEWS_INGEST_URL || 'https://s3dat.com/api/news/ingest' }}

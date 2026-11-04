@@ -7,7 +7,16 @@ One folder per story: `stories/YYYY/MM/DD/<slug>/`
 | `story.json` | The story (schema below). |
 | `spec.json` | Banner spec for engine 2, `tools/news-banner-v2` (see its README). |
 | Asset files | The cut-outs, art and logo files named in `spec.json`, at most 1.6 MB together. |
-| `banner.mp4`, `poster.webp` | Rendered by GitHub Actions. Do not commit them for engine-2 stories. |
+| `banner.mp4`, `poster.webp` | Rendered by GitHub Actions, or committed only by the Oracle Vibes pipeline (below). |
+
+Only the Oracle Meta Vibes pipeline writes `spec.json`'s `vibes` object, with required boolean
+`banner` and optional boolean `reel` and no other keys: `"vibes": {"banner": true, "reel": true}`
+(`reel: false` when no reel was made). It commits `banner.mp4` and `poster.webp`, uploads the
+social cuts and shares the story now. Makima never edits `vibes`, `banner.mp4` or `poster.webp`
+for such a story and never sets `engine` back from `2`. With `vibes.banner: true`, rendering is
+skipped and the banner must be 1080×608 H.264 yuv420p, silent, constant 23.976–30 fps
+(`r_frame_rate == avg_frame_rate`), 3.0–12.0 s and at most 1,600,000 bytes. Other banners keep
+the 30 fps, 8.0 s ± 0.05 rules. `video.titleInVideo: true` remains required.
 
 ## story.json — the S3DAT story format (`"format": 2`)
 

@@ -9,6 +9,17 @@ You write the copy in `story.json` (`social`, below); nobody posts by hand.
   renders its 9:16 cut with the voice-over and posts it to Instagram (and YouTube Shorts or
   TikTok when connected). Instagram is the one channel that needs the vertical video.
 
+Only the Oracle Meta Vibes pipeline writes `spec.json`'s `vibes` object: required boolean
+`banner` and optional boolean `reel`, with no other keys (for example,
+`"vibes": {"banner": true, "reel": true}`). It commits `banner.mp4` and `poster.webp`, uploads
+the social cuts and shares the story now; with repository variable `VIBES_PIPELINE=on`,
+`publish.yml` skips sharing. When `vibes.reel` is true, `reel.yml` posts the uploaded reel
+without rendering or uploading it again. Makima never edits `vibes`, `banner.mp4` or
+`poster.webp` for such a story and never sets `engine` back from `2`. With `vibes.banner: true`,
+the site banner must be 1080×608 H.264 yuv420p, silent, constant 23.976–30 fps
+(`r_frame_rate == avg_frame_rate`), 3.0–12.0 s and at most 1,600,000 bytes; it still carries the
+headline (`titleInVideo: true`). Other banners keep the 30 fps, 8.0 s ± 0.05 rules.
+
 ## What the posts are for
 
 A post that only reports the news gives nobody a reason to stop, answer, save or send it: the

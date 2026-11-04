@@ -113,6 +113,7 @@ jobs:
         if: steps.stories.outputs.folders != '[]'
         continue-on-error: true
         env:
+          VIBES_PIPELINE: ${{ vars.VIBES_PIPELINE }}
           CHROME_CHANNEL: chrome
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           NEWS_INGEST_SECRET: ${{ secrets.NEWS_INGEST_SECRET }}
@@ -132,6 +133,9 @@ jobs:
           for folder in json.loads(os.environ['STORY_FOLDERS']):
               story = json.loads((Path(folder) / 'story.json').read_text(encoding='utf-8'))
               slug = story['slug']
+              if os.environ.get('VIBES_PIPELINE') == 'on':
+                  print(f'{slug}: shared by the Oracle Vibes pipeline')
+                  continue
               published = dt.datetime.fromisoformat(story['publishedAt'].replace('Z', '+00:00'))
               if 'social' not in story or now - published > dt.timedelta(hours=12):
                   print(f'{slug}: no social block or not fresh; not shared')

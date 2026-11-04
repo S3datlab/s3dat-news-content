@@ -533,10 +533,27 @@ def validate_format2(story):
     return errors
 
 
+def validate_vibes(spec):
+    if "vibes" not in spec:
+        return []
+    vibes = spec["vibes"]
+    if not isinstance(vibes, dict):
+        return ["spec.vibes must be an object"]
+    errors = []
+    if type(vibes.get("banner")) is not bool:
+        errors.append("spec.vibes.banner must be boolean")
+    if "reel" in vibes and type(vibes["reel"]) is not bool:
+        errors.append("spec.vibes.reel must be boolean")
+    for key in sorted(vibes.keys() - {"banner", "reel"}):
+        errors.append(f"spec.vibes has unknown key {key!r}")
+    return errors
+
+
 def validate_spec(spec, story):
     errors = []
     if not isinstance(spec, dict):
         return ["spec must be an object"]
+    errors.extend(validate_vibes(spec))
     lines = spec.get("title")
     if not isinstance(lines, list) or not 1 <= len(lines) <= 3:
         errors.append("spec.title must contain 1–3 lines")
@@ -630,7 +647,7 @@ def check_asset(folder, name, label, kinds, maximum, sources, errors):
 
 
 def validate_spec_v2(spec, story, folder):
-    errors = []
+    errors = validate_vibes(spec)
     template = spec.get("template")
     if template not in TEMPLATES:
         errors.append(f"spec.template must be one of {', '.join(TEMPLATES)}")
@@ -732,8 +749,10 @@ def probe(path):
     return json.loads(result.stdout)
 
 
-def validate_media(folder):
+def validate_media(folder, spec):
     errors = []
+    vibes = spec.get("vibes") if isinstance(spec, dict) else None
+    vibes_banner = isinstance(vibes, dict) and vibes.get("banner") is True
     for name, maximum in (("banner.mp4", 1_600_000), ("poster.webp", 400_000)):
         path = folder / name
         if not path.is_file():
@@ -765,10 +784,18 @@ def validate_media(folder):
                 errors.append("banner.mp4 must be H.264 yuv420p")
             if any(s.get("codec_type") == "audio" for s in streams):
                 errors.append("banner.mp4 must have no audio track")
-            if Fraction(video.get("avg_frame_rate", "0/1")) != 30 or Fraction(video.get("r_frame_rate", "0/1")) != 30:
+            avg_rate = Fraction(video.get("avg_frame_rate", "0/1"))
+            frame_rate = Fraction(video.get("r_frame_rate", "0/1"))
+            if vibes_banner:
+                if frame_rate != avg_rate or not Fraction("23.976") <= avg_rate <= 30:
+                    errors.append("banner.mp4 must be constant 23.976–30 fps (r_frame_rate == avg_frame_rate)")
+            elif avg_rate != 30 or frame_rate != 30:
                 errors.append("banner.mp4 must be 30 fps")
             duration = float(info.get("format", {}).get("duration", video.get("duration", "nan")))
-            if not 7.95 <= duration <= 8.05:
+            if vibes_banner:
+                if not 3.0 <= duration <= 12.0:
+                    errors.append(f"banner.mp4 must last 3.0–12.0 s (got {duration})")
+            elif not 7.95 <= duration <= 8.05:
                 errors.append(f"banner.mp4 must last 8.0 s ± 0.05 (got {duration})")
         except (OSError, ValueError, ZeroDivisionError, subprocess.TimeoutExpired) as error:
             errors.append(f"{name}: media inspection failed ({error})")
@@ -802,7 +829,7 @@ def main():
                 errors.append('new stories must use banner engine 2 (spec.json "engine": 2)')
             errors.extend(validate_spec(spec, story))
         if not args.spec_only:
-            errors.extend(validate_media(folder))
+            errors.extend(validate_media(folder, spec))
         print(f"{'FAIL' if errors else 'PASS'} {folder}")
         for error in errors:
             print(f"  - {error}")
