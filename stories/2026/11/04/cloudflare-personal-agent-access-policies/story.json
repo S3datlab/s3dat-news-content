@@ -1,0 +1,107 @@
+{
+  "format": 2,
+  "slug": "cloudflare-personal-agent-access-policies",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Cloudflare adds per-agent website access controls",
+  "titleAccent": "per-agent website access",
+  "dek": "We would test the same customer journey through an agent and a browser before deciding which automated requests to admit.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-04T17:23:10Z",
+  "lede": "Cloudflare launched personal-agent analytics and access controls on November 4. Website owners can distinguish supported assistants and choose their access.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "November 4, 2026"
+    },
+    {
+      "label": "Agent policy choices",
+      "value": "3: allow, block ads pages, block"
+    },
+    {
+      "label": "User ID setting",
+      "value": "Opt-in"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Requests become attributable traffic",
+      "text": "Security Analytics adds a Personal Assistants category and a widget showing agent request counts. Selecting an assistant filters paths, response codes and networks across the other widgets. Account Abuse Protection adds agent attribution to login and signup events and individual account views. Cloudflare says an analyst can mitigate a suspicious account through its hashed user identifier, without blocking the same agent for everyone. Existing Search and Training policies remain separate from the expanded Agents setting."
+    },
+    {
+      "heading": "Overrides can change with the parent policy",
+      "text": "The policy guide says individual personal agents inherit the overall Agents policy. Changing that parent setting updates each personal agent, after which an owner can choose individual actions again. An exception therefore needs checking after a broader policy change. Policies cover verified bots with the relevant behavior and matching unverified bots. Blocking on advertising pages depends on Cloudflare detecting ads, rather than a blanket restriction across the zone. For new domains, Search, Agent and Training currently default to Allow. Owners can change those defaults after onboarding. Allow means these policies do not block matching requests. We would not treat that setting as a blanket exception to other security checks."
+    },
+    {
+      "heading": "Account attribution has prerequisites",
+      "text": "The existing Account Abuse Protection documentation limits early access to Enterprise Bot Management customers, who must request it through their account team. User ID is opt-in. It produces an opaque identifier scoped to a zone, and other Cloudflare customers cannot access that zone’s profiles. Detection also depends on recognizing the application’s login and signup traffic. Nonstandard endpoints may need explicit labels; the guide gives cf-log-in as the login label. Profiles can aggregate locations, devices, browsers and event types to help an analyst investigate an account."
+    },
+    {
+      "heading": "A verified operator is not every user",
+      "text": "Cloudflare’s bot documentation distinguishes direct operators from intermediary services used by many people. Verification checks honest identification and non-abusive behavior. Identification can use a cryptographic Web Bot Auth signature, a published IP list with a stable user agent, or reverse DNS. An intermediary’s operator and the person directing a request are different parties. Trust in the operator does not establish trust in every user. The documentation describes forwarding end-user context as experimental. Its newer behavior classifications also are not individual WAF custom-rule fields; existing categories remain available for those rules. Verified status can be revoked for policy violations; repeated misconduct can cost an organization verification for all its bots and agents."
+    }
+  ],
+  "buildersNote": "We would test one permitted assistant against a browser baseline on login, product pages and checkout. Change the parent policy, then verify the intended exceptions still apply. Include an account with suspicious activity and a legitimate account using the same assistant. Record which rule acted and whether the customer could finish the task before expanding enforcement.",
+  "claims": [
+    {
+      "text": "Changing the overall Agents policy updates individual personal-agent settings.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Account Abuse Protection early access is available to Enterprise Bot Management customers.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "See the agents, set the terms: new visibility and control for personal agents",
+      "publisher": "Cloudflare Blog",
+      "date": "2026-11-04",
+      "url": "https://blog.cloudflare.com/personal-agents-visibility-control/"
+    },
+    {
+      "title": "AI Crawler and Agent access policies",
+      "publisher": "Cloudflare Docs",
+      "date": "2026-11-02",
+      "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+    },
+    {
+      "title": "Account Abuse Protection (Early Access)",
+      "publisher": "Cloudflare Docs",
+      "date": "2026-10-22",
+      "url": "https://developers.cloudflare.com/bots/account-abuse-protection/"
+    },
+    {
+      "title": "Verified bots",
+      "publisher": "Cloudflare Docs",
+      "date": "2026-11-02",
+      "url": "https://developers.cloudflare.com/bots/concepts/bot/verified-bots/"
+    }
+  ],
+  "social": {
+    "hook": "An agent’s identity does not settle who should get access.",
+    "voiceover": "[measured] An agent’s identity does not settle who should get access. Cloudflare added personal-agent controls on November fourth. We would test account boundaries before treating a recognized assistant as a trusted customer.",
+    "short": "Cloudflare added 3 personal-agent policy choices. Account views require Enterprise Bot Management and early-access Account Abuse Protection.",
+    "long": "Cloudflare launched personal-agent visibility and access controls. Changing the parent Agents policy also updates individual agent settings.\n\nWe would test a legitimate customer and a suspicious account using the same assistant. Then check the exceptions again. A useful control should preserve the intended customer journey without silently widening access.",
+    "take": "We think the deciding test is whether a legitimate customer can finish the task while a suspicious account is contained. We would favor broader agent access only after that distinction survives deliberate failure tests.",
+    "keyFacts": [
+      "Announced November 4",
+      "3 personal-agent policy choices",
+      "3 behaviors default to Allow on new domains"
+    ],
+    "hashtags": [
+      "Cloudflare",
+      "PersonalAgents",
+      "WebSecurity"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

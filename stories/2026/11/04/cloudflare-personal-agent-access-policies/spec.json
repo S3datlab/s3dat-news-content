@@ -1,0 +1,18 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "CLOUDFLARE ADDS",
+    "PERSONAL AGENT",
+    "CONTROLS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Cloudflare",
+      "icon": "cloudflare"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2617
+}
