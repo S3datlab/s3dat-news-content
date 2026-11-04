@@ -293,11 +293,9 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
         first = compose(opening, short, optional=(hashtags,))
         if take:
             post["text"] = first
-            post["metadata"] = {"twitter": {"thread": thread(first, listed("Key facts:"), compose(take, optional=(question, read))),
-                                            "isAiGenerated": label}}
+            post["metadata"] = {"twitter": {"thread": thread(first, listed("Key facts:"), compose(take, optional=(question, read)))}}
         else:
             post["text"] = first
-            post["metadata"] = {"twitter": {"isAiGenerated": label}}
     elif service == "threads":
         # Threads ranks conversations: the question sits in the first post, the link in the reply.
         first = compose(opening, short, optional=(question,))

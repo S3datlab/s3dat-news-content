@@ -99,10 +99,11 @@ Stories published before the v2 fields (3 November 2026 09:00 UTC) post as befor
 
 Keep the profile link of Instagram and TikTok on https://news.s3dat.com.
 
-Instagram, YouTube, TikTok and X posts carry the platforms' own AI disclosure (Buffer's
+Instagram, YouTube and TikTok posts carry the platforms' own AI disclosure (Buffer's
 `isAiGenerated`), because the voice-over and the AI video are synthetic, so the videos need no
-"AI illustration" text of their own. Buffer offers no such flag for Facebook, LinkedIn, Threads,
-Bluesky, Mastodon or Pinterest. `SOCIAL_AI_LABEL=0` turns it off.
+"AI illustration" text of their own. X posts go out without it (Sedat, 2026-11-05: almost no one
+on X uses the label). Buffer offers no such flag for Facebook, LinkedIn, Threads, Bluesky,
+Mastodon or Pinterest. `SOCIAL_AI_LABEL=0` turns it off.
 
 ## What you write: `social` in story.json
 
