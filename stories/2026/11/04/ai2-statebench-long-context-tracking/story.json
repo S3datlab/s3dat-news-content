@@ -1,0 +1,103 @@
+{
+  "format": 2,
+  "slug": "ai2-statebench-long-context-tracking",
+  "kind": "story",
+  "topic": "research",
+  "title": "Ai2 tests how language models follow changing state in long contexts",
+  "titleAccent": "follow changing state",
+  "dek": "StateBench separates retrieving a fixed value from following dependent updates, while its generator checks for semantic overlap between configured data splits.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T01:04:40Z",
+  "lede": "Ai2 presented StateBench findings on November 3, testing how language models follow changing information across long inputs. The research separates remembering a value from correctly carrying a sequence of updates forward.",
+  "facts": [
+    {
+      "label": "Research report",
+      "value": "November 2, 2026"
+    },
+    {
+      "label": "Difficulty tiers",
+      "value": "4 state-tracking classes"
+    },
+    {
+      "label": "Generation",
+      "value": "Paired traces with semantic identifiers"
+    },
+    {
+      "label": "Code",
+      "value": "Reproducible trace generator"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Retrieval is only the easiest case",
+      "text": "The four tiers move from immutable assignments through replacement values and self-referential updates to dependencies between variables. Ai2 tested Gemini 3.8 Flash, Claude Opus 5.5, and GPT-6 Sol and Luna. The researchers report strong results on the first two tiers, followed by sharp deterioration on harder, longer sequences. Accuracy reached 13% or less on the longest general-finite problems. Separately, recurrent and hybrid models trained directly on these tasks generalized farther than transformers. That experiment distinguishes learning a task from having acquired the capability during general pretraining."
+    },
+    {
+      "heading": "The scoring protocol changes the comparison",
+      "text": "The paper reports open pretrained models’ best result across six surface formats, rather than their average. Its frontier evaluation asks for the complete final state instead of selecting among five answers. Those protocols measure different response requirements. The researchers also analyzed CruxEval Python programs by asking how many execution steps could change the output if a variable changed. Those programs contained both high- and low-sensitivity cases, connecting the synthetic hierarchy to variation in actual code. Sorting training examples by increasing sensitivity barely affected Gated DeltaNet, hybrid, or position-free transformer models. It produced only a weak benefit for rotary-position transformers within the training distribution. A simple easy-to-hard curriculum therefore did not remove the measured difficulty. In that analysis, loops were unrolled along the path taken for a particular input. Sensitivity describes the consequences of changing intermediate values, not simply the number of tokens in a prompt."
+    },
+    {
+      "heading": "Hold the underlying problem still",
+      "text": "The generator’s identifiers let experimenters join corresponding examples instead of comparing unrelated samples. Copy operations read a variable’s current value; they do not create a persistent alias. The repository separately controls non-operative filler and the number of real updates. Inserting filler leaves the underlying trace and answer unchanged, allowing input length to grow without adding state transitions. For multiple-choice output, incorrect answers preserve the correct answer’s pattern of equal values. That blocks an answer-selection shortcut based solely on which variables match. Configured train/test separation checks semantic identifiers, then deterministically resamples collisions. A later split cannot be built before the split it must exclude. These controls make prompt appearance and semantic duplication explicit experimental choices. Configuration validation rejects unknown keys and insufficient value vocabularies before generation. Token-length bands are measured with a specified tokenizer, and empty bands are omitted. A formatter therefore need not supply every nominal context-length split."
+    }
+  ],
+  "buildersNote": "Build a small test from your own workflow’s changing records. Score final-state correctness separately from answer fluency, then repeat the same cases with different wording and distracting text. Record the first update that changes a correct answer into an incorrect one.",
+  "claims": [
+    {
+      "text": "Configured split exclusions reject matching semantic traces.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "These synthetic results establish better performance in deployed coding agents.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "StateBench: Testing how language models track state changes over long documents",
+      "publisher": "Ai2",
+      "url": "https://allenai.org/blog/statebench",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "A Fine-Grained Hierarchy and Benchmark for State Tracking in Language Models",
+      "publisher": "Ai2 researchers",
+      "url": "https://arxiv.org/html/2611.03094v1",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "state-bench",
+      "publisher": "Ai2",
+      "url": "https://github.com/allenai/state-bench/blob/1d9a68ccabb0d365ab09f86923aa5da4cd7e3ad7/README.md",
+      "date": "2026-10-19"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "social": {
+    "hook": "A larger context window still needs a correctness test.",
+    "voiceover": "[measured] A larger context window still needs a correctness test. The Allen Institute presented StateBench with four levels of state tracking. We would test a changing record before trusting an assistant with one.",
+    "short": "Ai2 presented StateBench findings on November 3, examining four levels of state tracking in language models.",
+    "long": "Ai2 reported StateBench results across different evaluation protocols.\n\nWe would avoid buying a long-context assistant on a single aggregate score. Our acceptance test would replay changes from a real workflow, check the final record, and keep each response format separate. A product earns a place when its mistakes are visible and recoverable, not when its context window sounds impressive.",
+    "take": "We favor tests that preserve changing records over bigger advertised context windows. Extra room earns trust only when the important updates survive.",
+    "keyFacts": [
+      "4 state-tracking difficulty tiers",
+      "6 formats in the open-model comparison",
+      "Paper submitted November 2, 2026"
+    ],
+    "hashtags": [
+      "Ai2",
+      "StateBench",
+      "LongContext",
+      "AIEvaluation"
+    ],
+    "priority": 3
+  },
+  "updatedAt": "2026-11-04T01:04:40Z"
+}

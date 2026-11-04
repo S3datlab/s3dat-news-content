@@ -1,0 +1,22 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "AI2",
+    "TESTS STATE",
+    "TRACKING"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Ai2",
+      "logo": "ai2.svg",
+      "color": "#F0529C"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2401,
+  "sources": {
+    "ai2.svg": "https://commons.wikimedia.org/wiki/File:Allen_Institute_for_Artificial_Intelligence.svg"
+  }
+}
