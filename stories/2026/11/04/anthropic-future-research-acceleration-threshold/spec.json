@@ -1,0 +1,18 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "ANTHROPIC",
+    "FLAGS POSSIBLE",
+    "AI ACCELERATION"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2614
+}

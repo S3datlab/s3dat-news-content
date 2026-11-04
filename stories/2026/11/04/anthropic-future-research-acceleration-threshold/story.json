@@ -1,0 +1,103 @@
+{
+  "format": 2,
+  "slug": "anthropic-future-research-acceleration-threshold",
+  "kind": "story",
+  "topic": "research",
+  "title": "Anthropic flags possible AI research acceleration",
+  "titleAccent": "possible AI research acceleration",
+  "dek": "We would separate a forecast about model development from evidence that a deployed system can safely run research without supervision.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-04T14:21:56Z",
+  "lede": "In its November 2 amendment, Anthropic says expectations for future models suggest it may soon reach its AI research-acceleration threshold. It had not designated any current model above that threshold.",
+  "facts": [
+    {
+      "label": "Disclosure",
+      "value": "November 2 amended S-1"
+    },
+    {
+      "label": "Policy version",
+      "value": "3.4, effective July 8"
+    },
+    {
+      "label": "Earlier report coverage",
+      "value": "July 15, 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A forecast, not a designation",
+      "text": "The estimate was absent from the October 26 filing. Anthropic is still assessing the data. It also says it does not anticipate safely using Claude to build successive frontier models fully autonomously, without meaningful human supervision or understanding, if that becomes technically possible. It is considering policy changes to retain human control. The amendment also acknowledges that past acceleration became apparent only afterward."
+    },
+    {
+      "heading": "What the threshold actually measures",
+      "text": "The July policy defines two routes to its automated research threshold. One requires models able to replace all Anthropic research scientists and engineers at costs within a factor of five. The other is an observed or expected doubling of aggregate capability progress. The doubling is relative to both the expected rate and the fastest extended pre-automation rate, the latter spanning at least three model generations. Automation must plausibly explain a substantial share of the acceleration, rather than extra staff, compute or general productivity. Continued progress must also appear likely to accelerate further. The policy explicitly distinguishes this from doubling an individual researcher’s productivity. It separates Anthropic’s own mitigation plans from broader industry recommendations. Its company plans include centralized development logs, alignment assessments and security research. Full external review is required when a risk report covers a model assessed above the automated-research threshold and is significantly redacted."
+    },
+    {
+      "heading": "The earlier measurement had limits",
+      "text": "Anthropic’s August risk report covered activity through July 15, so it cannot establish the state described in November. It treated the acceleration threshold as an early warning, not proof that the feared outcome had materialized. Its principal published measure was Anthropic ECI, an internal adaptation of Epoch’s capability index using internal benchmark results. Those scores are not directly comparable with the public Epoch leaderboard. The report also used leading indicators whose details and trends were withheld as sensitive. At that earlier coverage date, Anthropic concluded progress remained below the threshold, with uncertainty and a measurement lag. It attributed an earlier capability jump to specific research advances that it did not believe AI had substantially accelerated. It separately found less than twofold acceleration beginning in early-to-mid 2025, crediting non-AI factors for the onset but AI tools for helping the faster pace persist through its coverage date. Distinguishing faster results from their cause is therefore part of the assessment itself."
+    }
+  ],
+  "buildersNote": "We would require a reviewable record for any research agent: its proposed change, evidence, approvals and rollback path. Test whether it stops when evidence is missing and whether another reviewer can reproduce its conclusion. Keep performance measurements separate from permission to alter training, evaluations or deployment. A vendor forecast should not replace those application-level acceptance tests.",
+  "claims": [
+    {
+      "text": "Anthropic estimates it may imminently meet its AI R&D threshold with future models.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The policy distinguishes progress from researcher productivity.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Amendment No. 1 to Form S-1",
+      "publisher": "Anthropic",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Form S-1",
+      "publisher": "Anthropic",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "date": "2026-10-26"
+    },
+    {
+      "title": "Responsible Scaling Policy, Version 3.4",
+      "publisher": "Anthropic",
+      "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
+      "date": "2026-07-08"
+    },
+    {
+      "title": "Risk Report: August 2026",
+      "publisher": "Anthropic",
+      "url": "https://anthropic.com/aug-2026-risk-report",
+      "date": "2026-08-14"
+    }
+  ],
+  "social": {
+    "hook": "A research forecast is not permission to remove supervision.",
+    "voiceover": "[measured] A research forecast is not permission to remove supervision. Anthropic’s November second filing flags possible future acceleration. We would demand reproducible evidence before changing what an agent can control.",
+    "short": "Anthropic forecasts possible AI research acceleration. Its policy includes a 2× progress test; the November 2 filing designated no current model above it.",
+    "long": "Anthropic’s November 2 filing flags possible future research acceleration. Its threshold includes doubled aggregate capability progress.\n\nWe would ask for the evidence behind any change in research-agent permissions. A persuasive forecast should not replace a reproducible test, an accountable reviewer or a way to undo a bad change. Record the model version, evaluation conditions, human interventions and unsuccessful runs alongside the result.",
+    "take": "We think supervision should follow demonstrated reliability, not a forecast. We would change that position only when independent reviewers can reproduce the evidence and explain the failures.",
+    "keyFacts": [
+      "Amended filing: November 2",
+      "Policy version: 3.4",
+      "Earlier report covered July 15"
+    ],
+    "hashtags": [
+      "Anthropic",
+      "AISafety",
+      "AIResearch"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
