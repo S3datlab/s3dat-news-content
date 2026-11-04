@@ -116,6 +116,10 @@ Instagram, YouTube and TikTok posts carry the platforms' own AI disclosure (Buff
 on X uses the label). Buffer offers no such flag for Facebook, LinkedIn, Threads, Bluesky,
 Mastodon or Pinterest. `SOCIAL_AI_LABEL=0` turns it off.
 
+Stories whose video comes from the Oracle Vibes pipeline (`spec.vibes.banner`) also end every
+post text with "AI-generated video." on every channel except Instagram (which carries the
+platform label instead); a full post drops its hashtags for it, or the note ends the thread.
+
 ## What you write: `social` in story.json
 
 ```json

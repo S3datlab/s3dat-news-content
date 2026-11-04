@@ -100,6 +100,8 @@ def stories() -> list[dict]:
         priority = social.get("priority") if type(social.get("priority")) is int else 3
         found.append({"slug": story["slug"], "title": story.get("title", ""), "kind": story.get("kind", "story"), "priority": priority,
                       "published": published, "social": social, "lead": lead,
+                      # Videos made by the Oracle Vibes pipeline are AI video: posts say so (AI_NOTE).
+                      "aiVideo": isinstance(spec, dict) and isinstance(spec.get("vibes"), dict) and spec["vibes"].get("banner") is True,
                       "folder": str(path.parent.relative_to(ROOT))})
     return found
 
@@ -346,7 +348,45 @@ def build(channel: dict, story: dict, group: str) -> dict | None:
     elif service == "tiktok":
         post["text"] = compose(hook, short, question, "Full story: link in bio.", hashtags)
         post["metadata"] = {"tiktok": {"isAiGenerated": label}}
+    if story.get("aiVideo") and service != "instagram":
+        add_ai_note(post, service, fits)
     return post
+
+
+# Sedat (2026-11-05): every post of an AI-made video says so in its text, except on Instagram,
+# where the platform's own AI label is switched on instead.
+AI_NOTE = "AI-generated video."
+
+
+def add_ai_note(post: dict, service: str, fits) -> None:
+    """Put AI_NOTE at the end of the post that carries the video; if that post is full, drop its
+    trailing hashtag paragraph first; if it still does not fit, end the reply thread with it."""
+    meta = (post.get("metadata") or {}).get(service) or {}
+    items = meta.get("thread") if isinstance(meta.get("thread"), list) else None
+
+    def ended(text: str) -> str | None:
+        candidate = f"{text}\n\n{AI_NOTE}" if text else AI_NOTE
+        return candidate if fits(candidate) else None
+
+    text = post.get("text", "")
+    new = ended(text)
+    if new is None:
+        parts = text.split("\n\n")
+        if len(parts) > 2 and parts[-1].startswith("#"):
+            new = ended("\n\n".join(parts[:-1]))
+    if new is not None:
+        post["text"] = new
+        if items:
+            items[0]["text"] = new
+        return
+    if items:
+        last = ended(items[-1]["text"])
+        if last is not None:
+            items[-1]["text"] = last
+            return
+        items.append({"text": AI_NOTE, "assets": []})
+        return
+    print(f"  warning: no room for the AI note on {service}", file=sys.stderr)
 
 
 # ------------------------------------------------------------------ records
