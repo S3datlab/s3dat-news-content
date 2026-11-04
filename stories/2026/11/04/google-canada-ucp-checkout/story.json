@@ -1,0 +1,138 @@
+{
+  "format": 2,
+  "slug": "google-canada-ucp-checkout",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Google brings AI checkout to Canada",
+  "titleAccent": "AI checkout",
+  "dek": "Canadian shoppers gain direct checkout in Search and Gemini, while merchants face a separate integration and approval process.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-04T19:03:28Z",
+  "lede": "Google began rolling out direct checkout in Canada on November 4 through AI Mode in Search and the Gemini app. The expansion brings purchases into the conversation where shoppers research products.",
+  "facts": [
+    {
+      "label": "Protocol",
+      "value": "Universal Commerce Protocol"
+    },
+    {
+      "label": "Shopper rollout",
+      "value": "4 November 2026"
+    },
+    {
+      "label": "Canadian onboarding hub",
+      "value": "Planned for early 2027"
+    },
+    {
+      "label": "Completion API target",
+      "value": "95th percentile: 10 seconds"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Retailers keep the sale",
+      "text": "Eligible sellers include lululemon, select Shopify merchants, Shoppers Drug Mart and Simons. Google Pay uses payment and shipping details saved in Wallet. The retailer remains the seller of record."
+    },
+    {
+      "heading": "Two onboarding timetables",
+      "text": "Consumer availability and merchant onboarding follow different schedules. Google’s Merchant Center documentation describes its integration hub as an early-access rollout for the United States. Canada and Australia are scheduled for early next year. The hub combines account setup, endpoint testing and a declaration that the merchant is ready to launch. It checks operations such as creating a checkout, changing shipping details and completing a transaction. Eligible product listings need a checkout-eligibility attribute to display the purchase button. The distinction matters for a Canadian shop evaluating the announcement: a shopper-facing launch does not make the self-service merchant interface available to every seller."
+    },
+    {
+      "heading": "Checkout reaches the tax calculation",
+      "text": "Google’s existing direct-integration guide offers two implementation paths. Native checkout completes a purchase on Google’s surfaces; the cart path transfers a shopping basket to the merchant’s website. Google approval is required before an integration goes live. The implementation contract includes Canadian tax breakdowns: individual federal and provincial amounts can appear beneath an aggregate tax line. Those components must add up to the parent total. When the shipping address changes, the merchant must recalculate taxes and shipping options. The merchant’s commerce backend therefore remains responsible for the destination-sensitive calculations that determine what the buyer actually pays."
+    },
+    {
+      "heading": "The buyer submits the order",
+      "text": "The native checkout design separates assembling a basket from submitting payment. A user and an optional agent can add items to a session. When checkout begins, control passes to Google’s interface. The buyer then supplies fulfillment and payment details and submits the order without the agent participating in that step. The completion API request has a ten-second latency target at the ninety-fifth percentile, measured over a rolling twenty-four-hour period. That target describes an integration requirement, not a measured result from this rollout."
+    },
+    {
+      "heading": "Checkout is only part of the integration",
+      "text": "After purchase, merchants must push order updates to Google so its order page reflects fulfillment. Required events cover order creation, shipment and delivery. Shipment updates include a tracking number and link, and the shipped state must precede delivered. The service rejects updates with timestamps older than the latest recorded update. Refunds, returns and cancellations use adjustment records, while packages are grouped by tracking link. Temporary server failures can be retried with exponential backoff; client errors require investigation and a modified request before retrying. Reusing an event’s idempotency key prevents duplicate processing during retries. These requirements connect the shopping interface to the merchant’s ongoing order operations."
+    }
+  ],
+  "buildersNote": "Test 3 order events before launch: creation, shipment and delivery. Replay one webhook with the same idempotency key, then send an older timestamp. Confirm duplicate handling and rejection behavior before connecting real fulfillment traffic.",
+  "claims": [
+    {
+      "text": "Google announced the Canadian shopper rollout on November 4.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Canadian access to the Merchant Center integration hub is planned for early 2027.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The native checkout flow assigns payment submission to the buyer, outside the agent.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "Rollout completion timing and any reduction in abandoned carts are not established.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "A new way to shop: Introducing a more intuitive, agentic shopping experience for consumers and retailers in Canada",
+      "publisher": "Google Canada",
+      "url": "https://blog.google/intl/en-ca/products/explore-get-answers/a-new-way-to-shop-introducing-a-more-intuitive-agentic-shopping-experience-for-consumers-and-retailers-in-canada/",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "About Universal Commerce Protocol (UCP) integration hub in Merchant Center",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/merchant/ucp/guides/merchant-center/overview",
+      "date": "2026-10-19"
+    },
+    {
+      "title": "Overview",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/merchant/ucp/guides/overview",
+      "date": "2026-10-19"
+    },
+    {
+      "title": "Native checkout REST API implementation",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/merchant/ucp/implementation/2026-04-08/native-checkout-api",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Native checkout overview",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/merchant/ucp/guides/overview/native-checkout",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Order lifecycle (post-purchase)",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/merchant/ucp/guides/overview/order-lifecycle",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "The buyer still presses pay.",
+    "voiceover": "[matter-of-fact] The buyer still presses pay. Google is bringing checkout to Canadian shoppers in Search and Gemini. The checkout design keeps payment submission outside the agent. Merchant onboarding expands next year.",
+    "short": "Google started Canada’s checkout rollout on November 4. Shoppers can buy inside Search and Gemini; the merchant integration hub is planned for early 2027.",
+    "long": "Google began rolling out checkout in Canada. Its checkout flow hands payment submission to the buyer in Google’s interface.\n\nThe merchant’s backend still calculates the bill. Google’s implementation guide supports Canadian federal and provincial tax breakdowns, with each component required to add up to the total. A shipping-address change triggers fresh tax and shipping calculations. Rollout completion timing remains unspecified.",
+    "take": "We favor keeping payment submission with the buyer. Product discovery needs more freedom than spending money.",
+    "keyFacts": [
+      "Canadian shopper rollout began 4 November 2026",
+      "Merchant Center hub planned for Canada in early 2027",
+      "Completion API target: 10 seconds at the 95th percentile"
+    ],
+    "hashtags": [
+      "Google",
+      "AgenticCommerce",
+      "Gemini",
+      "Ecommerce"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

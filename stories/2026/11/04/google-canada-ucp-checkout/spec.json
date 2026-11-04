@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "GOOGLE BRINGS",
+    "AI CHECKOUT",
+    "TO CANADA"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 1904,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
