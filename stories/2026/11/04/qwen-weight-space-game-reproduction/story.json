@@ -1,0 +1,107 @@
+{
+  "format": 2,
+  "slug": "qwen-weight-space-game-reproduction",
+  "kind": "story",
+  "topic": "research",
+  "title": "Local Qwen test identifies games from network weights",
+  "titleAccent": "network weights",
+  "dek": "We would test recognizing a network, discovering an edit and replaying that edit separately before treating them as one capability.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T12:21:19Z",
+  "lede": "Simon Willison reported November 3 that a local Qwen model identified three of four game-playing networks from their weights. His test reproduces one narrow part of a broader weight-space programming study.",
+  "facts": [
+    {
+      "label": "Local model",
+      "value": "Qwen 3.8 27B"
+    },
+    {
+      "label": "Games",
+      "value": "3 of 4"
+    },
+    {
+      "label": "Rebuilt checkpoint",
+      "value": "2,000 math generations"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Local reading test",
+      "text": "Willison ran a quantized model through LM Studio using the researchers’ four game prompts. Apart from their weight values, he found those prompts identical. His model recognized Pac-Man, Pong and Breakout, while mistaking Freeway for a Pac-Man-like game. The successful runs took roughly forty-six minutes, sixty-five minutes and fifty-two minutes respectively. He increased the context allocation and request timeout to accommodate the work."
+    },
+    {
+      "heading": "Reading and editing used different procedures",
+      "text": "The original November 2 research blog describes eight main experiments. For the game test, GPT-6 Astra received numerical weights and a description of the grid and actions, without tools or network execution. The policies shared a 17,253-weight architecture. Other experiments allowed different forms of assistance. Editing Qwen3.5-0.8B involved a Python kernel, practice mathematics problems and up to fifty batched forward passes. A pass could generate answers for up to 512 practice problems. The authors attribute the resulting improvement largely to reducing repetitive reasoning loops. They explicitly distinguish that repair from adding mathematical capability. Their post labels the larger-model section as involving tool use. A follow-up on Gemma 3 270M, which rarely looped, did not establish a mathematics gain."
+    },
+    {
+      "heading": "The criticism concerns what the experiments establish",
+      "text": "In a November 3 response, spaCy creator Matthew Honnibal argued that presenting these results as one capability encourages readers to combine unlike evidence. Inspecting raw numbers and conducting code-assisted experiments pose different problems. His objection is to the broader inference, rather than a claim that the engineering work has no value. He acknowledges that the assisted editing itself represents useful work. A unified method that could both interpret and improve networks would support a stronger conclusion than a collection of procedures with different access to tools and feedback."
+    },
+    {
+      "heading": "A rebuild adds evidence with a smaller baseline",
+      "text": "A separately published Hugging Face checkpoint documents a November 2 rebuild by akhaliq using an AI assistant called ML Intern. It reconstructs the released edit and checks tensor hashes against the authors’ checkpoint. The rebuilt package contains a full multimodal model instead of the original text-only export; its language-model tensors match. Its evaluation reports 51 percent accuracy across five hundred MATH500 problems, sampled four times each. The comparison run for the unedited model covers only twenty-five problems. That is not a matched full-benchmark baseline. Replaying a published edit also differs from independently discovering it. The card supplies useful reproduction evidence without closing either gap."
+    }
+  ],
+  "buildersNote": "We would preregister separate tests for recognition, edit discovery and replay. Keep the prompts, tool permissions and evaluation budget fixed within each comparison. Run the original and edited checkpoints on the same complete test set. Publish failures alongside successful examples, and preserve the exact artifacts needed to rerun each stage.",
+  "claims": [
+    {
+      "text": "Willison identified three of four games.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The checkpoint rerun uses a smaller unedited baseline.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Qwen 3.8 27B on my laptop can interpret model weights, too",
+      "publisher": "Simon Willison",
+      "url": "https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights",
+      "publisher": "Rikiya Takehi et al.",
+      "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "The 'Astra can read and write weights to improve Qwen' post is misleading",
+      "publisher": "Matthew Honnibal",
+      "url": "https://honnibal.dev/blog/astra-read-write-misleading",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Qwen3.5-0.8B, edited by an LLM with no training (Weight-Space Programming)",
+      "publisher": "RikiyaT / akhaliq",
+      "url": "https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming/blob/d1671a178705bcab7644806d23c535517f35723b/README.md",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "hook": "A reconstruction and a discovery deserve separate tests.",
+    "voiceover": "[measured] A reconstruction and a discovery deserve separate tests. Simon Willison identified three of four games from network weights. We would test recognition and editing separately before treating them as one capability.",
+    "short": "Simon Willison’s local Qwen test identified 3 of 4 games from weights.",
+    "long": "Willison tested Qwen on game-network weights, identifying three of four.\n\nWe would keep those claims on separate scorecards. For an editing demonstration, compare both checkpoints on the same complete test set and retain unsuccessful attempts. Replaying a supplied edit is a useful check, but a fresh discovery needs its own record.",
+    "take": "We would reward reproducible narrow results before drawing a broad conclusion. Separate recognition, discovery and replay, then demand a matched comparison for each claim.",
+    "keyFacts": [
+      "Local test: 3 of 4 games",
+      "Checkpoint rerun: 2,000 generations",
+      "Unedited smoke test: 25 problems"
+    ],
+    "hashtags": [
+      "Qwen",
+      "WeightSpaceProgramming",
+      "ModelEvaluation"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
