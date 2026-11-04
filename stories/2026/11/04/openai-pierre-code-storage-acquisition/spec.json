@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "OPENAI PLANS",
+    "TO ACQUIRE",
+    "PIERRE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "bg": "white",
+  "seed": 2615,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

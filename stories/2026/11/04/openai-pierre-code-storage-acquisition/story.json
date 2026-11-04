@@ -1,0 +1,97 @@
+{
+  "format": 2,
+  "slug": "openai-pierre-code-storage-acquisition",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "OpenAI plans to acquire Pierre for Codex code workflows",
+  "titleAccent": "acquire Pierre",
+  "dek": "We would evaluate code storage by the changes it preserves under concurrent work, then test how reviewers recover from a bad merge.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-04T15:22:21Z",
+  "lede": "OpenAI announced on November 4 that it will acquire Pierre Computer Company, subject to closing conditions. The planned deal brings code-storage infrastructure and review tools closer to Codex.",
+  "facts": [
+    {
+      "label": "Deal status",
+      "value": "Pending closing and regulatory approvals"
+    },
+    {
+      "label": "Pierre SDK release",
+      "value": "November 3; TypeScript, Python and Go"
+    },
+    {
+      "label": "Request credentials",
+      "value": "5-minute, operation-scoped tokens"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Existing libraries, planned integration",
+      "text": "Pierre’s Trees and Diffs already power file navigation and change review in the Codex app. OpenAI says the open-source projects will stay open-source and receive further contributions. Code Storage customers can keep using the service after closing while its capabilities are incorporated into Codex. Until then, the companies remain independent. The announcement also highlights Diffs’ Edit mode for fixing individual lines and Highlights, Pierre’s syntax highlighter. Highlights updates as developers type or agents stream code."
+    },
+    {
+      "heading": "A current migration path for customers",
+      "text": "Pierre released SDKs and a command-line tool on November 3. The SDKs are generated from its non-deprecated HTTP API, with a common operation catalog across reference pages, language clients and commands. Wire-level field names carry across the interfaces. The SDK signs a five-minute token scoped to each request’s operation. The CLI also supplies Git credentials without putting tokens into remote URLs or files. Existing applications using older Code Storage kits continue working because their routes are unchanged, but those packages will receive no new releases. Pierre supplies a migration skill that moves applications to the new interfaces and asks before changing behavior. TypeScript and CLI users need a current Node.js 22, 24 or 26 release; Python requires version 3.10 or later, and Go requires 1.25 or later."
+    },
+    {
+      "heading": "Storage scale comes with a consistency choice",
+      "text": "OpenAI’s November 2 account of Pando supplies the infrastructure context. Its internal Git backend now serves all development in the company’s monorepo. OpenAI reports nearly fivefold lower median push latency and almost a petabyte of Git data served daily. These are measurements from its own deployment. Pando coordinates branch updates independently, allowing unrelated branches to progress in parallel. A reader fetching several branches cannot assume they represent one repository-wide moment. It also reuses compressed object packs across readers instead of rebuilding a tailored response for every client. That can transfer objects a client already holds, while reducing repeated server work. Incoming pushes are validated while their packs stream directly into blob storage. Fetches return packfile addresses served through regional caches, rather than requiring every server to reconstruct a local repository. The design retains the Git protocol and client, so the internal migration did not require engineers to adopt a different version-control workflow. Pando is OpenAI’s existing backend, not a newly delivered feature of Pierre’s service. Its published results do not establish the performance of the proposed combined product."
+    }
+  ],
+  "buildersNote": "We would test an agent workflow with two concurrent branches, a moved review target and an interrupted push. Record the exact commits reviewed and merged, then verify rollback restores the intended files. Check credential handling and migration failures separately from generation quality.",
+  "claims": [
+    {
+      "text": "OpenAI plans to integrate Code Storage into Codex.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Older Pierre SDK routes remain operational, but their packages stop receiving releases.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "OpenAI to acquire Pierre Computer Company, Inc.",
+      "publisher": "OpenAI",
+      "date": "2026-11-04",
+      "url": "https://openai.com/index/openai-to-acquire-pierre/"
+    },
+    {
+      "title": "Pierre SDK and CLI",
+      "publisher": "Pierre Computer Company",
+      "date": "2026-11-03",
+      "url": "https://code.storage/changelog/pierre-sdk-and-cli"
+    },
+    {
+      "title": "Scaling Git at OpenAI",
+      "publisher": "OpenAI",
+      "date": "2026-11-02",
+      "url": "https://openai.com/index/scaling-git-at-openai/"
+    }
+  ],
+  "social": {
+    "hook": "The code an agent writes still needs a safe home.",
+    "voiceover": "[measured] The code an agent writes still needs a safe home. OpenAI announced plans to acquire Pierre on November fourth. We would test review and rollback before moving production repositories.",
+    "short": "OpenAI plans to acquire Pierre. Pierre’s SDK uses 5-minute, operation-scoped tokens; the deal still needs closing approvals.",
+    "long": "OpenAI announced plans to acquire Pierre, whose Trees and Diffs already support Codex.\n\nWe would test the repository workflow before treating it as a reason to migrate. Preserve the reviewed commit, interrupt an update and confirm the recovery path. A faster coding agent should not make an unreviewed merge easier to miss.",
+    "take": "We think review and recovery will decide the value of tighter code-storage integration. We would change that view if teams can demonstrate safer concurrent work without adding review overhead.",
+    "keyFacts": [
+      "Acquisition announced November 4",
+      "New Pierre SDKs: November 3",
+      "Request tokens last 5 minutes"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "Codex",
+      "DeveloperTools"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
