@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "GOOGLE PREVIEWS",
+    "ALLOYDB",
+    "EXPRESS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "bg": "white",
+  "seed": 2616,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

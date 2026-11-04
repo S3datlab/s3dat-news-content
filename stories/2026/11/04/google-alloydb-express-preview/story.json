@@ -1,0 +1,97 @@
+{
+  "format": 2,
+  "slug": "google-alloydb-express-preview",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google previews AlloyDB Express for coding-agent databases",
+  "titleAccent": "AlloyDB Express",
+  "dek": "We would test the first request after an idle period before choosing a database for an interactive agent workflow.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-04T16:22:37Z",
+  "lede": "Google announced AlloyDB Express in preview on November 4, offering small PostgreSQL databases for developers and coding agents. Its fast-start design comes with capacity limits and a separate production upgrade path.",
+  "facts": [
+    {
+      "label": "Launch stage",
+      "value": "Preview, November 4"
+    },
+    {
+      "label": "Idle pause",
+      "value": "After 15 minutes"
+    },
+    {
+      "label": "Resume time",
+      "value": "Approximately 20 seconds"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Development databases",
+      "text": "Express automatically pauses unused compute and wakes when a connection or query arrives. The instances retain AlloyDB’s vector, text and hybrid search capabilities, alongside Gemini functions callable from SQL. Google offers natural-language SQL tooling for developers working through database queries. An in-place upgrade preserves data, schemas, users and connection details, allowing an application to move beyond the development configuration without changing its connection string."
+    },
+    {
+      "heading": "Creation speed is not wake-up speed",
+      "text": "Google’s overview distinguishes approximately two-second provisioning through public DNS from roughly twenty seconds through Private Service Connect. Resuming a paused instance also takes about twenty seconds. Express supports PostgreSQL 18 and a single zonal primary, with no standby. Storage grows automatically to 20 GB, at which point further writes are blocked. The connection ceiling is fixed at 200; changing the corresponding database flag has no effect. Backups, point-in-time recovery, cross-region disaster recovery and high availability are unavailable, and Express has no service-level agreement. Memory-intensive extensions can exhaust the instance’s four or eight gigabytes of memory. Maintenance normally occurs when an instance resumes or during low usage. The documentation lists seven supported regions, rather than worldwide availability. Once upgraded to standard AlloyDB, a cluster cannot return to Express."
+    },
+    {
+      "heading": "Network and upgrade choices need explicit handling",
+      "text": "Creation requires one vCPU; requesting two initially fails, although resizing to two is supported afterward. The console enables both public DNS and Private Service Connect, while CLI, API and MCP creation defaults to private connectivity. Public DNS must be enabled separately in those flows. The MCP instance-creation tool automatically enables Data API access and IAM database authentication. Direct PostgreSQL clients using public DNS need an external-IP allowlist. The authenticated proxy and language connectors do not require that list. Updating authorized networks replaces the entire existing list, so an automation must preserve entries it still needs. The management guide also places conditions on the production upgrade. Keeping a one-vCPU instance requires a region supporting C4A machines; otherwise, resize to two first. Upgrading disables scale-to-zero and switches the database to always-on AlloyDB billing. It opens access to production features rather than automatically configuring them. Customer-managed encryption keys cannot be introduced as part of that upgrade. The upgrade keeps the vCPU count but doubles memory per vCPU from four to eight gigabytes."
+    }
+  ],
+  "buildersNote": "We would test a complete development lifecycle before adopting the preview: create a database, load representative data, let it idle and reconnect through the application’s actual connection pool. Record failed requests and retries separately from provisioning time. Rehearse the production transition with disposable data, verify network access afterward and require an explicit owner decision before changing the deployment’s operating costs.",
+  "claims": [
+    {
+      "text": "Express blocks additional writes when storage reaches 20 GB.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Upgrading disables scale-to-zero and changes billing to always-on AlloyDB.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "AlloyDB Express: Instant, scale-to-zero PostgreSQL for developers and coding agents",
+      "publisher": "Google Cloud Blog",
+      "date": "2026-11-04",
+      "url": "https://cloud.google.com/blog/products/databases/introducing-alloydb-express-for-rapid-testing-and-prototyping"
+    },
+    {
+      "title": "AlloyDB Express overview",
+      "publisher": "Google Cloud Documentation",
+      "date": "2026-11-04",
+      "url": "https://docs.cloud.google.com/alloydb/docs/express-overview"
+    },
+    {
+      "title": "Create and manage AlloyDB Express clusters",
+      "publisher": "Google Cloud Documentation",
+      "date": "2026-11-04",
+      "url": "https://docs.cloud.google.com/alloydb/docs/create-manage-express-clusters"
+    }
+  ],
+  "social": {
+    "hook": "The next database test should start after a quiet period.",
+    "voiceover": "[measured] The next database test should start after a quiet period. Google announced AlloyDB Express preview on November fourth. We would measure reconnect failures before putting an interactive agent on it.",
+    "short": "Google previews AlloyDB Express for coding agents. Compute pauses after 15 idle minutes; we would test the first request after that pause.",
+    "long": "Google announced AlloyDB Express preview for development and coding agents, with compute pausing after 15 idle minutes.\n\nWe would evaluate the whole lifecycle, not just creation speed. Let a realistic application go quiet, reconnect through its connection pool and record retries. Require an owner to approve the production transition instead of letting an agent make that decision silently.",
+    "take": "We think disposable development databases should be judged by recovery and cleanup as well as setup. A successful demo should include a failed request and a clear explanation of what the application does next.",
+    "keyFacts": [
+      "Preview announced November 4",
+      "Compute pauses after 15 idle minutes",
+      "PostgreSQL 18 only"
+    ],
+    "hashtags": [
+      "GoogleCloud",
+      "AlloyDB",
+      "CodingAgents"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
