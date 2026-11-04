@@ -1,0 +1,103 @@
+{
+  "format": 2,
+  "slug": "jetbrains-air-copilot-cloud-tasks",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "JetBrains Air adds cloud tasks on existing Copilot subscriptions",
+  "titleAccent": "cloud tasks",
+  "dek": "For teams trying unattended coding, the useful test is reviewed fixes per billed run, with a named owner for recurring work.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-04T02:08:59Z",
+  "lede": "JetBrains Air added Copilot cloud tasks on November 3, using existing subscriptions. The practical test for teams is whether unattended work produces changes that are worth reviewing.",
+  "facts": [
+    {
+      "label": "Cloud access",
+      "value": "Air Teams business organization"
+    },
+    {
+      "label": "Execution",
+      "value": "1 fresh virtual machine per task"
+    },
+    {
+      "label": "Secrets",
+      "value": "Encrypted storage; environment-variable delivery"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A cloud option alongside existing integrations",
+      "text": "Cloud access requires a Copilot subscription, an Air Teams-enabled JetBrains business account, and administrator permission. Developers can start tasks in a browser or select the cloud environment inside their IDE. Copilot support in JetBrains IDEs predates this announcement: GitHub’s June update already described an integrated agent picker and earlier Agent Client Protocol support. November’s change concerns where the task runs and which subscription pays for it. A task cannot select personal versus organization Copilot billing."
+    },
+    {
+      "heading": "The remote branch is the starting point",
+      "text": "Air’s task list can hold Copilot alongside Claude, Codex and Junie. The integration runs the official Copilot command-line agent and offers its models. Changes must be pushed before the agent can work from them. The GitHub connection under Air’s version-control settings also authenticates the official Copilot command-line agent when its cloud machine starts. There is no separate cloud Copilot sign-in step. The authorization page does not mention Copilot, even though Air reuses the connection to authenticate both services. Tasks appear under their repository in both the IDE and browser, where developers can review the resulting changes. Work can continue after the laptop closes. Air also supports scheduled tasks and repository-triggered automations, including runs started by a new pull request. Selecting Copilot for those automations consumes the same Copilot plan. JetBrains warns that busy pull-request automation can consume credits faster than a weekly maintenance task. Exhausted credits cause runs to fail without an Air warning; usage tracking remains on GitHub."
+    },
+    {
+      "heading": "Isolation has concrete boundaries",
+      "text": "Air’s October architecture explanation describes each task as a Docker container inside a new virtual machine. The machine is treated as untrusted, not reused for later tasks, and given limited access to internal resources. Its proxy initially permits a preset set of source-control and package-registry domains. Administrators can add required destinations, allow all domains, or disable internet access. Secrets are encrypted at rest and delivered as environment variables. A teammate can use a shared secret without seeing its value, while personal secrets remain private. Repository access follows the developer’s own permissions. Compared with a Git worktree, which separates file changes on the same machine, this arrangement also separates execution from the developer’s host. These are existing Air isolation controls applied to the new integration, not newly announced sandbox technology."
+    }
+  ],
+  "buildersNote": "Trial two small fixes against the same repository before enabling recurring jobs. Record review time, failed runs and billed usage for each. Assign one owner to stop an automation that repeatedly fails, and check that the reviewed branch contains the intended starting changes. Separate passing tests from useful work: record whether each patch actually resolves the assigned problem and how much correction it needs.",
+  "claims": [
+    {
+      "text": "Copilot spending limits cannot be set in Air.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Teammates can use shared secrets without seeing their values.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "GitHub Copilot is now available in JetBrains Air",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-03-github-copilot-is-now-available-in-jetbrains-air/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Use Your GitHub Copilot Plan in JetBrains Air – in Your IDE and in the Cloud",
+      "publisher": "JetBrains",
+      "url": "https://blog.jetbrains.com/air/2026/11/github-copilot-in-air/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "How Cloud-Based Agent Sandboxing Works in Air",
+      "publisher": "JetBrains",
+      "url": "https://blog.jetbrains.com/air/2026/10/cloud-agent-sandboxing/",
+      "date": "2026-10-14"
+    },
+    {
+      "title": "Copilot Agent is now available in JetBrains AI Assistant",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-06-30-copilot-agent-is-now-available-in-jetbrains-ai-assistant/",
+      "date": "2026-06-30"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "social": {
+    "hook": "An unattended agent still needs a budget owner.",
+    "voiceover": "[measured] An unattended agent still needs a budget owner. JetBrains Air added Copilot cloud tasks on November third. We would trial two small fixes before making recurring work somebody else’s surprise bill.",
+    "short": "JetBrains Air added cloud tasks billed to existing Copilot subscriptions.",
+    "long": "JetBrains added Copilot cloud tasks on November 3. Recurring jobs use scheduled or repository triggers.\n\nAir cannot set Copilot spending limits. We would judge this by reviewed fixes per billed run, not by how many tasks a team can start. A recurring job needs a named owner before it needs a busier schedule.",
+    "take": "We see cost ownership as part of the first trial. Adding another place to start an agent is useful only when someone reviews its work and stops wasteful runs.",
+    "keyFacts": [
+      "Announced November 3, 2026",
+      "1 fresh virtual machine per cloud task",
+      "Pushed remote branches required"
+    ],
+    "hashtags": [
+      "GitHubCopilot",
+      "JetBrains",
+      "CodingAgents"
+    ],
+    "priority": 4
+  }
+}
