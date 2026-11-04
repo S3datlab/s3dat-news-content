@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "mlflow-agent-quality-checks",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "MLflow expands agent quality checks",
+  "titleAccent": "quality checks",
+  "dek": "MLflow 3.18 pairs issue triage with online checks, whose judge activation looks back at most one hour.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-04T20:10:31Z",
+  "lede": "MLflow announced 3.18 on November 2; its GitHub release followed November 4. It expands issue triage and checks on incoming agent traces.",
+  "facts": [
+    {
+      "label": "Version",
+      "value": "3.18.0"
+    },
+    {
+      "label": "Announcement",
+      "value": "2 November 2026"
+    },
+    {
+      "label": "GitHub release",
+      "value": "4 November 2026"
+    },
+    {
+      "label": "Code-check status",
+      "value": "Experimental"
+    },
+    {
+      "label": "Container defaults",
+      "value": "1 CPU and 1 GiB memory"
+    }
+  ],
+  "body": [
+    {
+      "heading": "From traces to issues",
+      "text": "A dedicated Issues tab groups related failures and links findings to trace evidence. Experimental code-based online evaluation runs custom checks in job containers on a configured self-hosted server."
+    },
+    {
+      "heading": "Analysis has an operating cost",
+      "text": "Issue detection needs a Linux or macOS tracking server with a SQL backend and background jobs enabled. The selected provider model performs the analysis, so trace size, sample count and model pricing affect cost. The interface shows an estimate before execution and records cost afterward. Session identifiers preserve conversation context when several traces belong to one exchange. Matching findings keep the status of existing Open or Not an issue entries. Detection priorities and category controls let operators define what matters for their application. Scheduled runs additionally depend on periodic tasks. These requirements make the analysis an operated service with recurring model usage, not a passive view of stored logs."
+    },
+    {
+      "heading": "A narrow execution path",
+      "text": "The container route accepts functions written with the scorer decorator, while Scorer-class implementations are unsupported. Network access is disabled, so code scorers cannot call external services. Dependencies must already be installed in the job image, using matching MLflow and Python versions. Imports belong inside the function because MLflow stores its source. Functions taking an expectations argument and ensembles containing code scorers are excluded from automatic evaluation. Existing traces need an offline evaluation call rather than the interface’s run dialog. Docker must be local. Rootless operation is unsupported for either Docker or Podman. The output folder has no aggregate size cap, even though individual files are limited. A failed image build can stop the tracking server as well as scoring. Only one server replica is supported. Job inputs reach the container through temporary-folder bind mounts. A scorer that raises an exception produces an error assessment."
+    },
+    {
+      "heading": "The monitoring window matters",
+      "text": "MLflow’s existing automatic-evaluation contract also affects how teams interpret results. Enabling a judge considers traces and sessions no more than one hour old. Editing its configuration does not rerun previously assessed traces. Session filters inspect the first trace. A conversation becomes ready after five minutes without another trace by default. Later activity causes another evaluation and replaces the earlier automatic result. These mechanics matter when an application pauses between tool calls or resumes a conversation later. Monitoring results can change as the session grows, so they are not an immutable snapshot of the first answer. Failed evaluations are not automatically retried. That makes an execution error a separate operational problem from an agent receiving a low quality score."
+    }
+  ],
+  "buildersNote": "Before enabling a code scorer, test 3 cases in staging: a valid result, an exception and a missing dependency. Verify that each trace receives the intended assessment. Keep the server and job-image versions aligned.",
+  "claims": [
+    {
+      "text": "MLflow announced 3.18 on November 2.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Code-based online evaluation remains experimental.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The issue-detection guide does not report production false-positive rates or fix-quality measurements.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "MLflow 3.18.0 Highlights: Automatic Issue Detection, Agent Skill Registry, and Better Evaluations",
+      "publisher": "MLflow",
+      "url": "https://mlflow.org/releases/3.18.0/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "MLflow 3.18.0",
+      "publisher": "MLflow",
+      "url": "https://github.com/mlflow/mlflow/releases/tag/v3.18.0",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Automatic Issue Detection",
+      "publisher": "MLflow",
+      "url": "https://github.com/mlflow/mlflow/blob/3ca7961aeffa1ec4885406cbebaf5787a24ef437/docs/docs/genai/eval-monitor/ai-insights/detect-issues.mdx",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Run code-based scorers in job containers",
+      "publisher": "MLflow",
+      "url": "https://github.com/mlflow/mlflow/blob/b209b1be7ccea69463447098ef4fd8cc597ace7f/docs/docs/self-hosting/job-containers.mdx",
+      "date": "2026-10-24"
+    },
+    {
+      "title": "Automatic Evaluation",
+      "publisher": "MLflow",
+      "url": "https://github.com/mlflow/mlflow/blob/0404845dff84fac05b14f1fd5c362495c06fca84/docs/docs/genai/eval-monitor/automatic-evaluations/index.mdx",
+      "date": "2026-10-21"
+    }
+  ],
+  "social": {
+    "hook": "A failed check still needs an owner.",
+    "voiceover": "[matter-of-fact] A failed check still needs an owner. M L flow expanded agent quality checks. Its automatic evaluation considers up to one hour of earlier traffic when a judge is enabled.",
+    "short": "MLflow expanded agent quality checks. Job containers default to 1 CPU and 1 GiB but cannot run Scorer-class implementations.",
+    "long": "MLflow 3.18 expands quality checks. Issue detection runs on the selected provider model, and each scheduled analysis incurs usage costs. Its interface shows an estimate before execution.\n\nOperators can set detection priorities and focus areas. Session identifiers preserve the context of multi-turn conversations. The issue-detection guide does not quantify false positives.",
+    "take": "We favor testing the failure path before adding more scorers. A dashboard is useful only when someone notices the checks that stopped running.",
+    "keyFacts": [
+      "Version 3.18.0 released on GitHub on 4 November",
+      "Default job container: 1 CPU and 1 GiB memory",
+      "Judge activation looks back at most 1 hour"
+    ],
+    "hashtags": [
+      "MLflow",
+      "AgentEvaluation",
+      "MLOps",
+      "AIAgents"
+    ],
+    "priority": 2
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

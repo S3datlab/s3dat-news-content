@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "MLFLOW EXPANDS",
+    "AGENT QUALITY",
+    "CHECKS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "MLflow",
+      "icon": "mlflow"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 2004,
+  "sources": {}
+}
