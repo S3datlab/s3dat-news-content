@@ -14,5 +14,9 @@
     }
   ],
   "mood": "calm",
-  "seed": 2617
+  "seed": 2617,
+  "vibes": {
+    "banner": true,
+    "reel": true
+  }
 }
