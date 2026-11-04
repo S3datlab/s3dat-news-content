@@ -1,0 +1,100 @@
+{
+  "format": 2,
+  "slug": "vercel-security-review-github-pushes",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Vercel Security Review scans GitHub pushes",
+  "titleAccent": "Security Review",
+  "dek": "We would measure this review layer by the bugs it catches and the evidence behind each closed finding.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-04T09:17:29Z",
+  "lede": "Vercel launched Security Review in public beta on November 2. It checks code pushed to connected GitHub repositories, including changes sent directly to production branches.",
+  "facts": [
+    {
+      "label": "Availability",
+      "value": "Public beta, Pro and Enterprise"
+    },
+    {
+      "label": "Introductory offer",
+      "value": "Reviews free until November 10; fixes billed"
+    },
+    {
+      "label": "Policy limit",
+      "value": "32,000 characters"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Review follows the push",
+      "text": "The service examines changed code against a base, usually the branch’s preceding deployment. Vercel says the agent follows reachable code and checks existing protections before reporting a potential vulnerability. The company charges provider inference costs without a markup, plus twenty-five cents per million tokens."
+    },
+    {
+      "heading": "Scope and disclosure differ by repository",
+      "text": "The operational documentation gives the first review a different scope: when no comparison base exists, it reads the full source. In a monorepo, each project’s root directory bounds its review. Administrators can select all projects or a list of up to one hundred. Enabling reviews requires the Owner role. The documentation distinguishes a missing deployment from a missing comparison base. If no previous deployment exists, it falls back to GitHub’s API. Pull-request reviews without a deployment are tracked against the branch and pull request. Fixing findings through Vercel Agent also requires its chat capability to be enabled in team settings."
+    },
+    {
+      "text": "Findings may contain confidential code and other sensitive information from the reviewed files. Owners, Members, Developers and the Security role can see findings across projects. Contributors are limited to assigned projects, while Billing and Viewer roles see none. Repository access creates another audience: private or internal pull-request comments can reveal finding details to anyone who can read that repository. Public repositories receive a check and dashboard link instead of public vulnerability details. That distinction matters when a repository’s readership is broader than the team that normally triages security reports."
+    },
+    {
+      "heading": "A closed finding is not a verified fix",
+      "text": "The management guide separates dismissal from closure. Dismissal records a human decision that a finding does not need action. Closure happens when a subsequent review stops detecting the issue; it is not confirmation that the vulnerability has been repaired. Severity labels are also generated estimates, not scores from a fixed rubric. Agent-assisted remediation opens a pull request against the affected branch, and does not merge it automatically. Team and project policies add plain-language review context, with project instructions supplementing the team policy. They can describe a threat model, focus attention on sensitive areas or exclude irrelevant issues. They do not override the reviewer’s core vulnerability-finding behavior. A changed policy only affects reviews started after it was saved. Because policy changes can suppress findings, a cleaner dashboard after an instruction change is not necessarily evidence of a safer application."
+    }
+  ],
+  "buildersNote": "Pilot on one project with a small set of known defects and clean changes. Record missed issues, false alarms and review costs separately. For each closed finding, retain a reproduction test and the relevant fix. Review who can read repository comments before enabling the integration across a team. Keep the pilot’s acceptance criteria unchanged when comparing successive review runs.",
+  "claims": [
+    {
+      "text": "The service analyzes source code, not the running application.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Closed means a later review no longer detects the finding, not a verified fix.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Vercel Security Review",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/blog/vercel-security-review",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Security Review",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/docs/agent/security-review",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Managing Security Reviews",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/docs/agent/security-review/usage",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "hook": "A closed finding still needs evidence of a fix.",
+    "voiceover": "[measured] A closed finding still needs evidence of a fix. Vercel opened Security Review on November second. We would keep reproduction tests beside the dashboard before trusting a clean report.",
+    "short": "Vercel opened Security Review for GitHub pushes. We would start with one project and inspect access.",
+    "long": "Vercel launched Security Review on November 2, adding vulnerability checks for GitHub pushes.\n\nWe would treat a cleaner dashboard as the start of verification, not its conclusion. Keep a small test set of known defects and retain evidence for each repair. Count false alarms and missed bugs separately, so a quiet review does not become a substitute for checking the application.",
+    "take": "We want review automation to reduce investigation work, not erase it. A closed finding should come with a reproducible reason to trust the repair.",
+    "keyFacts": [
+      "Public beta: November 2",
+      "Policy changes affect future reviews",
+      "Policies: 32,000 characters"
+    ],
+    "hashtags": [
+      "Vercel",
+      "ApplicationSecurity",
+      "CodeReview"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

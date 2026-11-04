@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "VERCEL",
+    "SCANS GITHUB",
+    "PUSHES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Vercel",
+      "icon": "vercel",
+      "color": "#FFFFFF"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2509
+}
