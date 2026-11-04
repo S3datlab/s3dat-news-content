@@ -1,0 +1,109 @@
+{
+  "format": 2,
+  "slug": "comfyui-video-export-context-precision",
+  "kind": "story",
+  "topic": "apps",
+  "title": "ComfyUI 0.44 adds controls for video export and model processing",
+  "titleAccent": "video export",
+  "dek": "We would test the file an editor receives separately from the frames a workflow generates.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-04T08:17:16Z",
+  "lede": "ComfyUI released version 0.44.0 on November 4. The stable release brings ProRes export, MiniMax H3 context windows and a node for controlling variational autoencoder (VAE) compute precision.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "0.44.0, November 4"
+    },
+    {
+      "label": "H3 defaults",
+      "value": "124-frame window, 39-frame overlap"
+    },
+    {
+      "label": "ProRes containers",
+      "value": "MOV or MKV"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Export settings can fall back",
+      "text": "The video nodes separate the image representation from the file container. Create Video offers full-resolution color or subsampling that reduces color detail horizontally, or along both axes. Save Video then chooses the codec and container. Its automatic setting selects MOV for ProRes, WebM for AV1 and MP4 otherwise. ProRes is not offered inside MP4. The underlying encoder checks whether a requested color sampling mode is supported. If it is not, it chooses a supported alternative and logs a warning. Transparency can likewise be discarded, with a warning, when the selected output cannot preserve it. A saved file therefore does not by itself establish that every requested property survived. The implementation selects a ProRes HQ profile for 4:2:2 output and a 4444 profile otherwise."
+    },
+    {
+      "heading": "Windows follow the model’s frame structure",
+      "text": "The MiniMax H3 node applies context windows during sampling. Its interface expresses length and overlap in real frames, with both following a seventeen-times-an-integer-plus-five pattern. Window starts align with the model’s seventeen-frame chunks to keep audio and video synchronized. The default window is 124 frames, with 39 frames of overlap. The node uses a static schedule and defaults to pyramid fusion, with FreeNoise noise shuffling enabled. Splitting multiple conditionings across windows is disabled by default. Its implementation converts the frame counts into latent units and caps overlap below the window length. The node inherits an experimental designation. These controls describe how a workflow divides and combines processing; they do not establish a measured memory saving or guarantee that joins will be invisible."
+    },
+    {
+      "heading": "Compute precision stays on its branch",
+      "text": "The VAE Compute Dtype node controls the numerical type used for encoding and decoding. It offers default, fp32, fp16 and bf16 choices. Default preserves the incoming VAE setting. For an explicit selection, the node clones the VAE and updates both its compute type and the associated model patcher. Other branches retain their own settings. That separation lets a workflow compare precision choices without changing every consumer of the original VAE. It is different from choosing the bit depth of an encoded video file: one concerns model computation, the other the saved representation. The node lives in the advanced debugging category, making it an explicit intervention rather than an automatic quality upgrade. These implementation changes landed before the versioned release; the announcement does not make each underlying model newly available."
+    }
+  ],
+  "buildersNote": "Export a short test clip containing fine colored edges and transparency, then inspect it in the receiving editor. Keep the original workflow and compare one setting at a time. For a longer clip, review audio alignment and window boundaries separately. Record warnings alongside the output instead of treating successful completion as the only acceptance criterion.",
+  "claims": [
+    {
+      "text": "Unsupported output sampling can fall back with a console warning.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The precision node clones the VAE rather than changing other branches.",
+      "status": "confirmed",
+      "source": 4
+    }
+  ],
+  "sources": [
+    {
+      "title": "v0.44.0",
+      "publisher": "Comfy-Org",
+      "url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.44.0",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "nodes_video.py",
+      "publisher": "Comfy-Org",
+      "url": "https://github.com/Comfy-Org/ComfyUI/blob/2c75dc1b379a59e0880619d029607af5169a62ef/comfy_extras/nodes_video.py",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "video_types.py",
+      "publisher": "Comfy-Org",
+      "url": "https://github.com/Comfy-Org/ComfyUI/blob/2c75dc1b379a59e0880619d029607af5169a62ef/comfy_api/latest/_input_impl/video_types.py",
+      "date": "2026-11-01"
+    },
+    {
+      "title": "nodes_context_windows.py",
+      "publisher": "Comfy-Org",
+      "url": "https://github.com/Comfy-Org/ComfyUI/blob/2c75dc1b379a59e0880619d029607af5169a62ef/comfy_extras/nodes_context_windows.py",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "nodes_model_advanced.py",
+      "publisher": "Comfy-Org",
+      "url": "https://github.com/Comfy-Org/ComfyUI/blob/2c75dc1b379a59e0880619d029607af5169a62ef/comfy_extras/nodes_model_advanced.py",
+      "date": "2026-10-31"
+    }
+  ],
+  "social": {
+    "hook": "A completed video export still needs a receiving-editor test.",
+    "voiceover": "[measured] A completed video export still needs a receiving-editor test. Comfy released version zero point forty four with new video controls. We would inspect the saved file before accepting a workflow upgrade.",
+    "short": "ComfyUI released 0.44 with new video workflow controls. We would inspect exported files before upgrading a production graph.",
+    "long": "ComfyUI’s 0.44 release expands video workflow controls.\n\nWe would separate acceptance tests for generation and delivery. A useful review starts with the file in the receiving editor, then works backward through the graph. Keep warnings with the output and change one setting at a time, so a successful run does not hide a regression at the handoff.",
+    "take": "We favor a known-good graph over a blanket upgrade. Compare settings individually and judge the output that survives the entire workflow.",
+    "keyFacts": [
+      "Release: November 4",
+      "H3 window default: 124 frames",
+      "ProRes: MOV or MKV"
+    ],
+    "hashtags": [
+      "ComfyUI",
+      "VideoWorkflows",
+      "GenerativeVideo"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

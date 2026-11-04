@@ -1,0 +1,35 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "COMFYUI",
+    "ADDS VIDEO",
+    "CONTROLS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "ComfyUI",
+      "logo": "comfy.svg",
+      "color": "#F2FF59",
+      "recolor": false
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 2508,
+  "sources": {
+    "comfy.svg": "https://www.comfy.org/icons/logomark.svg",
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
