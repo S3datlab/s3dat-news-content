@@ -8,7 +8,7 @@ AI and developer tooling, seen by a team that builds software: models, agents, d
 research, hardware, policy and the apps people use. Not general tech news, not gossip, not
 funding rounds unless they change what builders can do.
 
-Every day, at least four pieces cover what the wider AI audience is talking about that day: the
+Every day, at least four of the eight pieces cover what the wider AI audience is talking about that day: the
 big labs and platforms (OpenAI, Anthropic, Google, Meta, Apple, Microsoft, Nvidia, xAI, Mistral),
 the apps people use, prices, lawsuits and rules. Small releases still have their place, but they
 rarely earn a reel, and a day of only small releases leaves the social channels with nothing
@@ -16,9 +16,12 @@ people stop for (`SOCIAL.md`, priority).
 
 ## Cadence
 
-- Look for news every hour, around the clock (24 runs a day). Publish at most one piece per
-  run, and only when it is worth a full piece; space `publishedAt` at least an hour apart.
-- Skip the hour when there is nothing worth a full piece. Volume is never the goal: one strong
+- One run every three hours, around the clock: 00, 03, 06, 09, 12, 15, 18 and 21 UTC (eight runs
+  a day; Sedat's decision, 5 November 2026). Each run picks the single strongest development of the
+  last three hours and publishes at most one piece; space `publishedAt` at least three hours apart.
+  The video pipeline makes one Meta Vibes video per piece, and Meta's generation limit was hit at
+  about 30 generations in 15 hours, so never publish more often than this.
+- Skip the run when there is nothing worth a full piece. Volume is never the goal: one strong
   analysis beats three thin stories.
 - Never present an old announcement as new. Put the announcement date in `eventDate`. A `story`
   must be at most two days old; anything older is an `analysis` or `explained` with a reason to
@@ -110,7 +113,7 @@ generated.
 
 Committing a story to `main` publishes it to news.s3dat.com automatically.
 
-1. Research, pick the story, verify sources and dates. Skip the hour if nothing deserves a story.
+1. Research, pick the story, verify sources and dates. Skip the run if nothing deserves a story.
 2. Write `story.json` and `spec.json` (engine 2), choose a template that differs from the last
    published story, generate the cut-outs (and art for `cinematic`), and if you can, preview with
    `render.mjs --frames` and run `python3 scripts/validate.py --spec-only <folder>`.
