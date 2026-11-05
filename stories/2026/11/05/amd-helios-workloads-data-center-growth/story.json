@@ -1,0 +1,131 @@
+{
+  "format": 2,
+  "slug": "amd-helios-workloads-data-center-growth",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "AMD reports 97% Data Center growth as Helios racks come online",
+  "titleAccent": "97% Data Center growth",
+  "dek": "AMD expects manufacturers to ship finished systems this quarter, while its latest filing details the supply risks behind the rack design.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-05T14:14:55Z",
+  "lede": "AMD reported 97% annual growth in Data Center revenue on November 3, alongside Helios workloads at five major customers. The update distinguishes early customer deployments from finished systems available to buyers.",
+  "facts": [
+    {
+      "label": "Data Center revenue",
+      "value": "$8.5 billion in Q3; up 97% year over year"
+    },
+    {
+      "label": "Named users",
+      "value": "Anthropic, Meta, Microsoft, OpenAI, Oracle Cloud Infrastructure"
+    },
+    {
+      "label": "Manufacturer shipments",
+      "value": "Expected in Q4 2026, AMD says"
+    },
+    {
+      "label": "Rack design",
+      "value": "72 MI455X GPUs and 18 Venice CPUs"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Chips, racks and cloud instances",
+      "text": "The revenue figure includes EPYC processors as well as Instinct accelerators; it does not measure Helios sales alone. In prepared earnings remarks, AMD said volume shipments of MI455X chips began during the third quarter. HPE, Dell, Lenovo and Supermicro are expected to begin shipping Helios systems in the fourth quarter. Venice processor shipments also started in the third quarter, with cloud instances planned for early 2027. These are separate delivery milestones: a chip shipment does not establish when a developer can rent a machine."
+    },
+    {
+      "heading": "An update to an existing rollout",
+      "text": "AMD’s July 23 launch described Helios as an integrated architecture: 72 MI455X accelerators, 18 sixth-generation EPYC Venice processors, networking and ROCm software. It already reported Meta testing workloads, while OpenAI expected to bring systems online in the fourth quarter. November’s customer list is therefore an update to a rollout already under way. The practical difference from buying individual accelerators is the surrounding system. Processing, communication and software have to operate together, and the company’s partners turn that design into deployable equipment."
+    },
+    {
+      "heading": "What the manufacturer supplies",
+      "text": "HPE’s September 30 announcement illustrates that division of work. Vultr placed a $1.2 billion order for Helios systems at US data centres. HPE’s design includes six Juniper QFX5252 scale-up Ethernet switch trays per rack, alongside direct liquid cooling and deployment services. The order describes a provider building capacity; it supplies no rental price for an application team. Buying a rack and renting compute also put different work on the buyer. A system operator takes responsibility for installation and maintenance, while a cloud customer buys access under the provider’s service terms."
+    },
+    {
+      "heading": "Components can hold back capacity",
+      "text": "AMD’s November 4 quarterly filing makes the boundary explicit: the company supplies products and licenses the design, but does not manufacture or sell completed Helios racks. It warns that shortages, long lead times or quality problems in third-party components could delay completed systems and AMD’s associated revenue. AMD also says it has supported procurement of some outside components, taking on additional inventory and financial risk. A rollout therefore depends on more than accelerator supply. One missing component can hold back a complete system even when the main chips are ready."
+    },
+    {
+      "text": "The earnings remarks describe the cost of preparing for expansion. Inventory rose by roughly $3 billion during the quarter to $11.5 billion, which AMD attributed to Data Center demand. Management expects Data Center revenue to grow about 50% sequentially in the fourth quarter. For developers, the useful evidence will be an available configuration with a quoted price and delivery date, followed by results from their own workload."
+    }
+  ],
+  "buildersNote": "Before reserving capacity, request the exact rack or instance configuration, software image, delivery date and cancellation terms. Test one representative model against your current host, measuring p95 latency and cost per accepted response, including failed requests and retries.",
+  "claims": [
+    {
+      "text": "AMD says five companies are running Helios workloads.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Manufacturer system shipments in Q4 and 50% sequential Data Center growth are AMD forecasts.",
+      "status": "claimed",
+      "source": 3
+    },
+    {
+      "text": "AMD’s filing says it does not manufacture or sell completed Helios racks.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "The earnings materials do not establish generally rentable capacity or comparative application costs.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "AMD Reports Third Quarter 2026 Financial Results",
+      "publisher": "AMD",
+      "url": "https://newsroom.amd.com/news/amd-reports-third-quarter-2026-earnings/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "AAI 2026: AMD Delivers Full-Stack Compute for the Agentic AI Era",
+      "publisher": "AMD",
+      "url": "https://newsroom.amd.com/news/aai-2026-full-stack-compute-agentic-ai/",
+      "date": "2026-07-23"
+    },
+    {
+      "title": "HPE secures its first AMD Helios order in $1.2 billion deal with Vultr",
+      "publisher": "HPE",
+      "url": "https://www.hpe.com/us/en/newsroom/press-release/2026/09/hpe-secures-its-first-amd-helios-order-in-12-billion-deal-with-vultr.html",
+      "date": "2026-09-30"
+    },
+    {
+      "title": "AMD Third Quarter 2026 Financial Results: Prepared Remarks",
+      "publisher": "AMD",
+      "url": "https://newsroom.amd.com/documents/2026/11/84f4476b-f064-4f0f-957c-fe484853e178.pdf?download=1",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "AMD Form 10-Q for the quarter ended September 26, 2026",
+      "publisher": "AMD",
+      "url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000191/amd-20260926.htm",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "An AI chip shipment isn't a finished rack.",
+    "voiceover": "[matter-of-fact] An AI chip shipment isn't a finished rack. AMD reports ninety-seven percent Data Center growth. Helios customers are running workloads, while server makers prepare broader shipments this quarter.",
+    "short": "AMD reports 97% Data Center sales growth and Helios workloads at five major customers. Manufacturer system shipments are expected this quarter.",
+    "long": "AMD reported Helios workloads at five customers. HPE’s $1.2 billion Vultr order includes rack-scale Ethernet switching, liquid cooling and deployment services.\n\nThat is the equipment behind future cloud capacity. For an application team, a usable offer still needs a configuration, a price and an availability date.",
+    "take": "We think delivery dates and usable configurations now matter more than customer names. A chip shipment is progress; a service that meets its workload target is the proof developers need.",
+    "keyFacts": [
+      "Data Center revenue: $8.5B, up 97% year over year",
+      "HPE Vultr order: $1.2B for Helios systems",
+      "72 MI455X GPUs in the Helios rack design"
+    ],
+    "hashtags": [
+      "AMD",
+      "Helios",
+      "AIHardware",
+      "AIInfrastructure"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

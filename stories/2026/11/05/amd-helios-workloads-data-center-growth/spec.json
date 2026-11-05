@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "AMD DATA CENTER",
+    "REVENUE UP 97%"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "AMD",
+      "icon": "amd",
+      "color": "#ED1C24"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "stat": {
+    "value": "97%",
+    "label": "Data Center revenue growth"
+  },
+  "seed": 1405,
+  "sources": {}
+}
