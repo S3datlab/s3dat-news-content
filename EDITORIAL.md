@@ -131,7 +131,7 @@ to `corrections` with the date and what changed. Never silently rewrite a publis
 
 ## Scene plan for the video (from 2026-11-05)
 Every story commit also carries `scene.md` in the story folder, written by the rules in
-`SCENES.md`: the stake, a physical real-world scene already in motion, the cast, one or two
+`SCENES.md`: first the visual concept (one of the twelve in `CONCEPTS.md`, rotated), then the stake, a physical real-world scene already in motion, the cast, one or two
 attention ingredients, the logo surface, the banner moment, and for priority 4-5 the four reel
 moments. It goes in the same commit as story.json and spec.json. Learn from the `health`
-branch's METRICS.md which scenes and ingredients get watched, and vary them.
+branch's METRICS.md which concepts, scenes and ingredients get watched, and vary them.
