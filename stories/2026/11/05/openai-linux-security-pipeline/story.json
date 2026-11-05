@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "openai-linux-security-pipeline",
+  "kind": "story",
+  "topic": "research",
+  "title": "OpenAI reports 948 Linux privilege-escalation flaws",
+  "dek": "A large automated security run puts patch review and deployment at the center of the result. Earlier disclosure programs show the work after discovery.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T11:14:17Z",
+  "lede": "OpenAI reported 948 Linux privilege-escalation vulnerabilities on November 4, following an October research run. The result brings automated discovery and human-reviewed repairs into the same security workflow.",
+  "facts": [
+    {
+      "label": "Reported vulnerabilities",
+      "value": "948 local privilege escalations"
+    },
+    {
+      "label": "Experiment",
+      "value": "Mid-October 2026"
+    },
+    {
+      "label": "API credits",
+      "value": "$1,213,430"
+    },
+    {
+      "label": "Follow-through",
+      "value": "Candidate patches and human review"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The count measures a research result",
+      "text": "OpenAI counted distinct patches to consolidate exploit variants. Its pipeline combines reproduction, exploitability checks and proposed repairs, followed by human review."
+    },
+    {
+      "heading": "Maintainer support predates this run",
+      "text": "OpenAI and Trail of Bits launched Patch the Planet on June 22. Engagements begin with a project’s maintainers, who identify useful work and establish the project’s patching and disclosure practices. Security engineers can contribute validation, tests, release-process improvements and longer-term engineering. HackerOne and Calif also participate. This arrangement puts a recipient on the other end of an automated finding. A report enters an existing project with its own compatibility requirements, release schedule and limited review time. The June program explicitly treats reducing that workload as part of the service, alongside finding problems. The program also supports reusable workflows and broader test coverage, so participating projects can continue investigating issues after the initial fixes land."
+    },
+    {
+      "heading": "Google’s earlier program tested defenses",
+      "text": "Google introduced kernelCTF on June 14, 2023, with a focus on current stable kernels and testing mitigations. Its launch offered rewards of up to $133,337 per submission. The program grew from work that examined how kernel vulnerabilities interact with practical defenses. That provides a different way to read a security result: the test configuration and the barrier it measures matter alongside the count. A reward program can encourage researchers to demonstrate where a defense fails. A patching program then needs a repair that survives review. Those objectives overlap, while producing different evidence for the people operating affected software."
+    },
+    {
+      "heading": "A patch’s route to production",
+      "text": "OpenAI’s October 21 disclosure proposal describes the stages after a serious finding. Maintainers and researchers validate the issue and test a fix. Distributors may adapt that fix for older supported releases, while providers prepare protections for their own services. Public guidance follows with instructions for assessing exposure and checking deployed updates. The proposal draws on a maintainer-led response to PHP vulnerabilities. It makes coordination part of the engineering work: several organizations can depend on the same component while shipping different versions. The handoff therefore includes both a code change and an explanation of where it belongs. The process continues after disclosure as operators install updates and report deployment problems, extending the response beyond publication."
+    }
+  ],
+  "buildersNote": "For 1 representative Linux host, record the running kernel, its distribution’s security-update status and whether a reboot is needed to activate an update. Keep proposed source patches separate from your approved deployment path.",
+  "ourRead": "We value accepted repairs and verified deployments more than a growing discovery total. Automated research becomes useful infrastructure when its outputs fit the people responsible for releases. We would change our assessment if independent follow-up showed that review and deployment costs outweighed the protection delivered.",
+  "claims": [
+    {
+      "text": "OpenAI’s figures have not been independently audited here.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Acceptance and deployment of every repair remain unestablished.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "The June program begins with maintainer consultation and follows projects’ established disclosure channels.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The kernelCTF reward figure describes its June 2023 launch, not current program terms.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "A thousand fewer paths to root",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/a-thousand-fewer-paths-to-root/",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Patch the Planet: a Daybreak initiative to support open source maintainers",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/patch-the-planet/",
+      "date": "2026-06-22"
+    },
+    {
+      "title": "Learnings from kCTF VRP's 42 Linux kernel exploits submissions",
+      "publisher": "Google Security Blog",
+      "url": "https://security.googleblog.com/2023/06/learnings-from-kctf-vrps-42-linux.html",
+      "date": "2023-06-14"
+    },
+    {
+      "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/",
+      "date": "2026-10-21"
+    }
+  ],
+  "social": {
+    "priority": 4,
+    "hook": "Finding a flaw starts the repair job.",
+    "voiceover": "[matter-of-fact] Finding a flaw starts the repair job. OpenAI reports nine hundred forty-eight Linux privilege-escalation flaws. Its earlier disclosure plan follows repairs through maintainers, distributors and operators. Deployment is the useful finish line.",
+    "short": "OpenAI reports 948 Linux privilege-escalation flaws from an October run. The count does not establish that every repair is deployed.",
+    "long": "OpenAI published its Linux security findings following an October 21 disclosure proposal. That earlier plan follows repairs from upstream validation to deployment guidance.\n\nA finding leaves several jobs open: reviewing the change, fitting it to supported software and checking running systems. We would track those outcomes alongside discovery totals.",
+    "take": "We would judge this work by accepted repairs and verified deployments. Finding more problems only helps when the repair process can absorb them.",
+    "keyFacts": [
+      "948 privilege-escalation flaws reported",
+      "Patch the Planet began June 22, 2026",
+      "Disclosure framework published October 21, 2026"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "Cybersecurity",
+      "Linux",
+      "AIAgents"
+    ]
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}

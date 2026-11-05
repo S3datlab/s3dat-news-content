@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "OPENAI REPORTS",
+    "948 LINUX",
+    "SECURITY FLAWS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "key.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 110526,
+  "sources": {
+    "hero.webp": "generated",
+    "key.webp": "generated"
+  }
+}
