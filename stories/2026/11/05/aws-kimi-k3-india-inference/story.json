@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "aws-kimi-k3-india-inference",
+  "kind": "story",
+  "topic": "models",
+  "title": "AWS adds India-only inference for Kimi K3",
+  "titleAccent": "India-only inference",
+  "dek": "A geographic Bedrock profile gives teams a narrower processing boundary for Moonshot’s model, alongside its existing global option.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-05T06:11:18Z",
+  "lede": "AWS introduced India-only inference for Kimi K3 on November 3. The new Amazon Bedrock profile limits processing to Mumbai and Hyderabad, giving developers a domestic deployment option.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "Moonshot AI Kimi K3"
+    },
+    {
+      "label": "Destination regions",
+      "value": "2: Mumbai and Hyderabad"
+    },
+    {
+      "label": "India profile",
+      "value": "in.moonshotai.kimi-k3"
+    },
+    {
+      "label": "Bedrock model launch",
+      "value": "September 18, 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The profile sets the boundary",
+      "text": "The India profile joins the existing global route. The destination set follows the profile selected in the request. A source endpoint and a processing destination are separate parts of the configuration."
+    },
+    {
+      "heading": "The model was already available",
+      "text": "Kimi K3 reached general availability on Bedrock on September 18. That release brought Moonshot’s open-weight model into a managed service with native vision and a one-million-token context window. AWS described coding and knowledge work as target uses. The model can work with visual material alongside text, making document-heavy applications relevant to its deployment footprint. The September release also identified Kimi K3 as Bedrock’s first open-weight model with explicit prompt caching. Those capabilities predate the India profile. The November change concerns where requests run rather than a new model version or a larger context window."
+    },
+    {
+      "heading": "Routing is a managed service",
+      "text": "Bedrock introduced cross-region inference in August 2024 to handle traffic bursts and capacity constraints. Instead of an application distributing requests itself, the service can use capacity within a predefined group of regions. Its launch announcement described prioritizing the source region when possible and routing elsewhere when needed. That design separates the application’s request destination from the infrastructure that completes the work. It also puts the eligible region group alongside model selection as an operational choice. A team can keep a familiar API integration while changing the geographic scope of the capacity available behind it."
+    },
+    {
+      "heading": "Logs expose the second location",
+      "text": "AWS’s cross-region implementation guide explains how an inference profile groups model resources behind one identifier. Applications pass that identifier instead of an individual model ID. Requests routed between regions travel over AWS’s backbone with encryption. The guide distinguishes this processing path from logging: CloudWatch and CloudTrail records stay in the source region. A rerouted CloudTrail event includes an inferenceRegion field identifying where processing occurred. Model invocation logs can also include that field when enabled. These records give operators a way to distinguish the endpoint they called from the region that actually served a request. The guide also warns that data can be processed and transmitted across the regions configured in a profile."
+    },
+    {
+      "heading": "Caching is a separate control",
+      "text": "The September Kimi K3 launch guide described explicit caching for repeated prompt prefixes. Stable instructions, shared context and tool definitions can be reused across requests rather than processed afresh each time. Cache writes and reads have different billing treatment, so the benefit depends on reuse. AWS also described access through its Bedrock Runtime APIs, including OpenAI-compatible interfaces. These are separate decisions from geographic routing: an application chooses how to send a request, what context can repeat and which profile may serve it. Keeping those choices distinct makes a deployment easier to inspect."
+    }
+  ],
+  "buildersNote": "Before switching production, run 20 synthetic requests through the India profile. Record destination regions, latency and cache usage. Review where application logs are stored as well as where inference runs; a model profile is only one part of the data path.",
+  "claims": [
+    {
+      "text": "The India profile names Mumbai and Hyderabad as its processing destinations.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Kimi K3 launched on Bedrock on September 18, 2026.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The launch does not establish whether a particular application meets its legal data-residency obligations.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing India-based inference for Kimi K3 on Amazon Bedrock",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-india-based-inference-for-kimi-k3-on-amazon-bedrock/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Kimi K3 by Moonshot AI is now generally available on Amazon Bedrock",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/moonshot-ai-kimi-k3-on-amazon-bedrock/",
+      "date": "2026-09-18"
+    },
+    {
+      "title": "Amazon Bedrock now supports cross-region inference",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2024/08/amazon-bedrock-cross-region-inference/",
+      "date": "2024-08-27"
+    },
+    {
+      "title": "Getting started with cross-region inference in Amazon Bedrock",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/blogs/machine-learning/getting-started-with-cross-region-inference-in-amazon-bedrock/",
+      "date": "2024-08-27"
+    },
+    {
+      "title": "Introducing Kimi K3 on Amazon Bedrock",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-on-amazon-bedrock/",
+      "date": "2026-09-18"
+    }
+  ],
+  "social": {
+    "hook": "Your model’s processing region is a deployment choice.",
+    "voiceover": "[matter-of-fact] Your model’s processing region is a deployment choice. Amazon added India-only inference for Kimi K three. [calm] Two regions can serve requests. Application logs still need their own review.",
+    "short": "AWS added India-only inference for Kimi K3. Two regions can serve requests through the new Bedrock profile. Application-wide compliance still needs a separate review.",
+    "long": "AWS gives Kimi K3 an India-only processing option. The model arrived on Bedrock on September 18 with a one-million-token context window and explicit prompt caching. This update changes its deployment choices.\n\nCross-region inference separates the endpoint an application calls from the region serving the request. AWS’s implementation guide describes destination information in rerouted CloudTrail events. We would test that record alongside latency and cache usage before switching production. The profile alone does not establish application-wide compliance.",
+    "take": "We would treat this profile as one deployment control, then review logs and the rest of the application separately.",
+    "keyFacts": [
+      "India profile has 2 destination regions",
+      "Kimi K3 reached Bedrock September 18, 2026",
+      "The model has a 1-million-token context window"
+    ],
+    "hashtags": [
+      "AmazonBedrock",
+      "DataResidency",
+      "OpenWeights",
+      "KimiK3"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
