@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "nvidia-nemo-agent-consent-tests",
+  "kind": "story",
+  "topic": "agents",
+  "title": "NVIDIA turns agent consent failures into tests",
+  "titleAccent": "consent failures",
+  "dek": "A NeMo tutorial connects recorded mistakes to custom evaluations and a changed instruction, while its research tools separate missing evidence from missing coverage.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T10:14:05Z",
+  "lede": "NVIDIA documented a NeMo trace-to-test workflow on November 4. Its example addresses an assistant sending a message when asked only for a draft.",
+  "facts": [
+    {
+      "label": "Example evidence",
+      "value": "42 recorded agent traces"
+    },
+    {
+      "label": "Test design",
+      "value": "4 tasks, including 2 held-out tasks"
+    },
+    {
+      "label": "Evaluation formats",
+      "value": "Harbor and NeMo Gym"
+    },
+    {
+      "label": "Tools",
+      "value": "NeMo Compass and NeMo Eval Author"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The trace supplies the failure",
+      "text": "The demonstration uses Hermes with a fictional company's communication and work tools. A changed instruction separates preparation from permission to send. NVIDIA reports six successful held-out runs, compared with four before the change. The deliverable is a testable distinction between two actions that can look similar in a conversation."
+    },
+    {
+      "heading": "Compass sorts several kinds of evidence",
+      "text": "NeMo Compass examines traces using five kinds of signals. These cover unusual behavior, tool problems, user complaints, divergence from declared rules and poor evaluation results. Its anomaly detector uses an Isolation Forest, while tool checks look for invalid arguments, failures and unproductive retries. The resulting findings point back to recorded runs. That connection lets a reviewer inspect the action sequence behind an issue rather than accepting a generated diagnosis on its wording alone."
+    },
+    {
+      "heading": "The test needs a definition of success",
+      "text": "NeMo Eval Author supplies skills for a coding assistant working with an agent's repository and intended behavior. It can help build an initial suite without production traces. Harbor and NeMo Gym are the supported evaluation formats. Its setup reviews or creates an ETHOS.md document describing purpose, boundaries and success criteria. This makes the expected behavior an input to the evaluation rather than something inferred only from whatever the agent happened to do."
+    },
+    {
+      "heading": "Missing evidence has a narrower meaning",
+      "text": "The Eval Author documentation distinguishes an unobserved behavior from an absent test. An audit might find no recorded recovery from rejected tool arguments. That finding alone does not establish that the suite lacks a recovery case. A full coverage audit needs traces from completed evaluation runs. The distinction matters when deciding whether to write another case or collect another run: those are different repairs to an evaluation process."
+    },
+    {
+      "heading": "Validation and evaluation answer different questions",
+      "text": "Eval Author's known-issues guide separates checking a task's environment and grader from measuring the target agent. The first establishes that the machinery for a test works. The second examines the agent's actual behavior inside that machinery. The guide describes inspecting inputs, variations, success criteria and completed runs as distinct steps. A test can execute correctly while still asking the wrong thing. That distinction gives reviewers a specific place to investigate a surprisingly clean score."
+    }
+  ],
+  "buildersNote": "Start with 1 unauthorized-action failure and a separate held-out wording of the request. Save the tool trace and define failure as an unapproved send, even when the drafted message itself is correct.",
+  "ourRead": "We favor keeping the acceptance test after the prompt repair. A better instruction can be useful, but a saved check makes a later regression visible. The lasting asset is the description of an unwanted action and a repeatable way to detect it. We would change our view if maintaining these checks cost more than reviewing the same failures directly.",
+  "claims": [
+    {
+      "text": "NVIDIA reports held-out passes rising from 4/6 to 6/6 in its small demonstration, not a production reliability guarantee.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Compass is a research preview, is not intended for production use and may change interfaces without backward compatibility.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Eval Author asks reviewers to check generated cases, graders and coverage findings before relying on them.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Generated tasks may be too easy; a high pass rate on a small suite does not establish performance on realistic variations.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Use NVIDIA NeMo to Turn Agent Failures into Tests and Harness Fixes",
+      "publisher": "NVIDIA",
+      "url": "https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes/",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "NeMo Compass",
+      "publisher": "NVIDIA",
+      "url": "https://github.com/NVIDIA-NeMo/nemo-compass/blob/09d6a71064d123d65473b1434d1f05e54861721c/README.md",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "NeMo Eval Author",
+      "publisher": "NVIDIA",
+      "url": "https://github.com/NVIDIA-NeMo/eval-author/blob/c166423737ac0fca7cb4f95570d799d7495c516b/README.md",
+      "date": "2026-10-27"
+    },
+    {
+      "title": "Known issues",
+      "publisher": "NVIDIA",
+      "url": "https://github.com/NVIDIA-NeMo/eval-author/blob/dc24d388a72f1e3e4e40d0dd7cd534edec8731a2/KNOWN_ISSUES.md",
+      "date": "2026-10-12"
+    }
+  ],
+  "social": {
+    "hook": "A draft is not permission to send.",
+    "voiceover": "[matter-of-fact] A draft is not permission to send. NVIDIA tested an instruction change against four tasks. Its example shows how recorded agent mistakes become checks that a later change can face again.",
+    "short": "NVIDIA uses NeMo Compass to find agent mistakes across 5 kinds of trace signals. Findings link back to recorded runs, giving developers evidence for targeted tests. Compass remains a research preview.",
+    "long": "NVIDIA published a workflow for testing agent mistakes. Its Eval Author guide separates checking that an environment and grader work from calibrating difficulty for an agent. A case can execute successfully without exercising its intended behavior. We would inspect an actual run before treating a clean score as progress.",
+    "take": "We would keep the consent test after changing the instruction. A saved check makes the same mistake visible when someone edits the agent again.",
+    "keyFacts": [
+      "42 traces in the workplace example",
+      "4 tasks, including 2 held-out tasks",
+      "5 kinds of Compass signals"
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "NeMo",
+      "AIAgents",
+      "AgentEvaluation"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "NVIDIA TESTS",
+    "AGENT CONSENT"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
+  "mood": "calm",
+  "stat": {
+    "value": "6/6",
+    "label": "Demo: 2 tasks, 6 runs passed"
+  },
+  "seed": 511510,
+  "sources": {}
+}
