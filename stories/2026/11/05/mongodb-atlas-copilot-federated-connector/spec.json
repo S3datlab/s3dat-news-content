@@ -1,0 +1,35 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "COPILOT GETS",
+    "LIVE ATLAS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "MongoDB",
+      "icon": "mongodb"
+    },
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 405,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

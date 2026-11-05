@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "mongodb-atlas-copilot-federated-connector",
+  "kind": "story",
+  "topic": "agents",
+  "title": "MongoDB brings live Atlas queries to Microsoft 365 Copilot",
+  "titleAccent": "live Atlas queries",
+  "dek": "The federated connector queries operational records on demand and keeps access read-only within each user’s database permissions.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-05T04:10:50Z",
+  "lede": "MongoDB made its federated Atlas connector for Microsoft 365 Copilot generally available on November 3. It brings live database queries into a workplace assistant without first copying records into a search index.",
+  "facts": [
+    {
+      "label": "Connector",
+      "value": "MongoDB Atlas for Microsoft 365 Copilot"
+    },
+    {
+      "label": "Announced",
+      "value": "3 November 2026"
+    },
+    {
+      "label": "Interaction",
+      "value": "Read-only"
+    },
+    {
+      "label": "Transport",
+      "value": "Managed remote MCP server"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An assistant at the database door",
+      "text": "Administrators enable the connector before users sign in with Atlas identities. Microsoft Purview provides audit visibility. This makes rollout an access-management decision as well as a choice of interface for employees."
+    },
+    {
+      "heading": "Two different routes to outside data",
+      "text": "Microsoft’s September connector overview distinguishes this approach from synced connectors. A synced connector ingests external content into Microsoft Graph, where it becomes available for search and semantic indexing. A federated connector instead exposes tools through the Model Context Protocol and fetches information when requested. The distinction matters for records that change frequently. A query can use the current source state rather than a previously indexed copy. It also puts the source system on the request path: the assistant needs that service to answer when the question arrives."
+    },
+    {
+      "heading": "The connector defines the boundary",
+      "text": "Microsoft’s October federation documentation describes a wider platform than this particular integration. Depending on the tools exposed, a connector can offer actions that create, update or delete information, subject to user approval. Researcher remains read-only. That platform capability does not mean every connected database accepts writes from chat. Publishers choose which tools exist, administrators govern access, and the source enforces permissions. Those are separate controls. A successful sign-in establishes identity; it does not establish that every requested operation is available. For this Atlas connector, the advertised interaction is reading data."
+    },
+    {
+      "heading": "A hosted service behind the connection",
+      "text": "MongoDB introduced its Atlas Managed MCP Server and App Connections on August 13. The hosted server removes the need to operate a local MCP process for supported integrations. App Connections use delegated authorization rather than a shared service identity, with administrative controls over access and revocation. Organizations can restrict operations to reading data. That earlier work supplies the connection infrastructure for additional assistant clients. The practical change is where the integration is maintained: a managed service handles the connector endpoint, while database owners retain responsibility for the permissions granted to each user."
+    },
+    {
+      "heading": "Copilot follows another workplace client",
+      "text": "On September 10, MongoDB announced Atlas access through OpenAI’s Data Plugin in ChatGPT Work. That integration also uses the managed MCP service and supports operational analysis, including reports and charts. Its announcement described organization-level opt-in and user-specific permissions. The two integrations place the same database service within different workplace assistants. For a team already storing operational records in Atlas, the choice now includes the application where colleagues ask questions. Adding another client does not eliminate the need to understand which collections and operations that client can reach."
+    }
+  ],
+  "buildersNote": "Test with two users whose permissions differ. Ask both for the same collection, then change one record and repeat the permitted query. Check the returned value and audit trail before extending access to a larger team.",
+  "claims": [
+    {
+      "text": "The Atlas federated connector became generally available on November 3.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Federated connectors retrieve external data at request time rather than indexing it in Microsoft Graph.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The launch does not publish measured query latency or answer-accuracy results.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Bring Live MongoDB Atlas Data Into Microsoft 365 Copilot",
+      "publisher": "MongoDB",
+      "url": "https://www.mongodb.com/company/blog/product-release-announcements/bring-live-atlas-data-into-microsoft-365-copilot",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Federated connectors overview",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/connectors/federated-connectors-overview",
+      "date": "2026-10-19"
+    },
+    {
+      "title": "Microsoft 365 Copilot connectors overview",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/overview-copilot-connector",
+      "date": "2026-09-30"
+    },
+    {
+      "title": "Analyze MongoDB Atlas Data in OpenAI ChatGPT Work",
+      "publisher": "MongoDB",
+      "url": "https://www.mongodb.com/company/blog/product-release-announcements/analyze-atlas-data-openai-chatgpt-work",
+      "date": "2026-09-10"
+    },
+    {
+      "title": "MongoDB for the Agentic Era: Built for Developers and AI Agents",
+      "publisher": "MongoDB",
+      "url": "https://www.mongodb.com/company/blog/product-release-announcements/mongodb-for-agentic-era-built-for-developers-ai-agents",
+      "date": "2026-08-13"
+    }
+  ],
+  "social": {
+    "hook": "Your database permissions now follow you into chat.",
+    "voiceover": "[matter-of-fact] Your database permissions now follow you into chat. MongoDB brought Atlas to Microsoft Copilot on November third. [calm] The connector reads live records using each person’s existing access rights.",
+    "short": "MongoDB made its Atlas connector for Microsoft 365 Copilot generally available November 3. It reads live records using each user’s permissions.",
+    "long": "MongoDB connects Atlas to Microsoft 365 Copilot through a managed MCP service. Microsoft distinguishes federation from synced connectors: one retrieves data when requested, while the other indexes outside content in Microsoft Graph.\n\nThat difference changes where freshness is handled. The database stays on the request path, so access controls and source availability become part of the assistant experience.",
+    "take": "We think permission failures matter more than smooth demos when a workplace assistant queries production records.",
+    "keyFacts": [
+      "Atlas Copilot connector announced November 3, 2026",
+      "Managed MCP Server announced August 13, 2026",
+      "ChatGPT Work integration announced September 10, 2026"
+    ],
+    "hashtags": [
+      "MongoDB",
+      "MicrosoftCopilot",
+      "AIAgents",
+      "DatabaseSecurity"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
