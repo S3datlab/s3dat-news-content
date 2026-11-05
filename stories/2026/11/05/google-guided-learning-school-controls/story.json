@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "google-guided-learning-school-controls",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Google brings Guided Learning into Classroom",
+  "titleAccent": "Guided Learning",
+  "dek": "Teacher-assigned tutoring reaches Classroom worldwide as Google plans opt-in access for school accounts and a Search pilot.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-05T07:11:37Z",
+  "lede": "Google launched Guided Learning in Classroom globally on November 3. Teachers can assign tutoring grounded in their course materials and see how students engage with it.",
+  "facts": [
+    {
+      "label": "Classroom rollout",
+      "value": "Global, starting November 3"
+    },
+    {
+      "label": "Search pilot",
+      "value": "Select US schools later in November"
+    },
+    {
+      "label": "Tokyo study",
+      "value": "More than 300 university students"
+    },
+    {
+      "label": "UK Classroom pilot",
+      "value": "4 weeks, 3 secondary schools"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Two products, different schedules",
+      "text": "Google plans a Search pilot that recognizes certain homework requests and offers guided steps. Separately, access to Gemini, Gemini Notebook, Gemini in Classroom and Search will default to off for K–12 student accounts until administrators enable it. Google plans to give schools more details before those control changes arrive."
+    },
+    {
+      "heading": "A short study measured a gain",
+      "text": "Google tested Guided Learning with more than 300 University of Tokyo students in a randomized statistics study. Students with standard web tools improved by 5.3 percentage points between tests. Those given Guided Learning improved by 8.1 points, Google reports. The intervention lasted half a day. Participants requested quizzes and visual aids."
+    },
+    {
+      "heading": "Teachers shaped the controls",
+      "text": "A separate four-week pilot with Ark covered three UK secondary schools and four subjects. Teachers asked for clearer insight into student activity and tighter focus on assigned material. Google says that feedback led to educator insights and stronger grounding in uploaded curriculum. The resulting Classroom workflow lets a teacher set the learning activity instead of leaving students to start an unrestricted conversation."
+    },
+    {
+      "heading": "Longer trials measured something different",
+      "text": "Google published a separate ten-week UK trial on October 29, involving more than 1,100 students using Eedi’s mathematics platform. Incorrect answers triggered a static hint, human tutoring or AI tutoring built with Gemini. Human experts reviewed every AI response before students saw it. Google reported similar performance for AI and human tutoring on platform exercises and intermediate quizzes. Standardized STAR scores did not show the same gains. Students with AI tutoring completed about 14 problems per session, compared with 19 for static hints. Google attributed the difference to the time spent working through each problem. That study makes the measurement choice visible: completing more material, answering immediate questions and improving a broad test score are distinct outcomes. The supervised design also puts the review process inside the intervention being evaluated."
+    },
+    {
+      "heading": "The research has an earlier baseline",
+      "text": "In November 2025, Google described an exploratory Eedi trial with 165 UK students aged 13 to 15. It used LearnLM, then incorporated into Gemini 2.5, in chat-based mathematics tutoring under teacher supervision. Google reported a 5.5-percentage-point advantage on novel problems for students receiving short AI tutoring sessions compared with those working with human tutors alone. It also announced plans for further randomized trials across several countries. The new Classroom release follows that progression from bounded tutoring studies to a product teachers can assign. For education software builders, the work unit now includes lesson material, the tutoring conversation and information returned to the teacher."
+    }
+  ],
+  "buildersNote": "Before connecting a school workflow, test 10 teacher-assigned activities with synthetic accounts. Record whether answers stay within the uploaded lesson and whether teacher insights reveal where help was needed. Keep school access settings in a separate deployment checklist.",
+  "claims": [
+    {
+      "text": "Google announced a global Guided Learning rollout in Classroom on November 3.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The Tokyo study found gains of 8.1 versus 5.3 percentage points after one study session.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The ten-week Eedi study used human review of every AI response.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "These studies do not establish lasting learning gains across every age group or unsupervised classroom deployment.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Designing responsible AI for learning",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "New research shows how Guided Learning supports students",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/education/guided-learning-uk-japan/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "How Gemini is helping students and teachers in the classroom",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/education/impact-studies-uk-italy/",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "Our latest commitments in AI and learning",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/education/ai-learning-commitments/",
+      "date": "2025-11-11"
+    }
+  ],
+  "social": {
+    "hook": "The teacher now sets the tutoring assignment.",
+    "voiceover": "[matter-of-fact] The teacher now sets the tutoring assignment. Google brought Guided Learning into Classroom. [measured] A four-week school pilot shaped the controls. Longer-term learning outcomes still need evidence beyond short sessions.",
+    "short": "Google launched Guided Learning in Classroom on November 3. Teachers can assign lesson-grounded tutoring. The release does not establish lasting learning gains.",
+    "long": "Google brings teacher-assigned tutoring to Classroom worldwide. A four-week UK pilot shaped the course-material controls.\n\nThe product gives educators a defined activity to assign and insight into student use. We see that workflow as more useful than an open chat window. Whether short-session learning gains persist across a school year remains an open question.",
+    "take": "We prefer teacher-assigned tutoring to an open chat window: a defined lesson gives the interaction a useful boundary.",
+    "keyFacts": [
+      "Classroom rollout began November 3, 2026",
+      "UK Classroom pilot ran 4 weeks in 3 schools",
+      "Separate UK Eedi study ran for 10 weeks"
+    ],
+    "hashtags": [
+      "GoogleClassroom",
+      "EdTech",
+      "AILiteracy",
+      "GuidedLearning"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}

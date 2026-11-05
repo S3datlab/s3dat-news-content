@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "GOOGLE",
+    "GUIDES",
+    "CLASSWORK"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google",
+      "color": "#4285f4"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 110507,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
