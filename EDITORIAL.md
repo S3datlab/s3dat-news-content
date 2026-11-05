@@ -128,3 +128,10 @@ Committing a story to `main` publishes it to news.s3dat.com automatically.
 
 If a published fact turns out wrong, open a pull request that fixes the story and adds an entry
 to `corrections` with the date and what changed. Never silently rewrite a published story.
+
+## Scene plan for the video (from 2026-11-05)
+Every story commit also carries `scene.md` in the story folder, written by the rules in
+`SCENES.md`: the stake, a physical real-world scene already in motion, the cast, one or two
+attention ingredients, the logo surface, the banner moment, and for priority 4-5 the four reel
+moments. It goes in the same commit as story.json and spec.json. Learn from the `health`
+branch's METRICS.md which scenes and ingredients get watched, and vary them.
