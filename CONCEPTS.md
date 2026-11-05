@@ -14,6 +14,9 @@ style of each video are logged, and the `health` branch's METRICS.md shows them 
 - A concept used in any of the last 4 videos is not used again.
 - `people` appears at most once in any 6 videos.
 - `spectacle` only for `social.priority` 5.
+- Animals are only cats (the `pet` concept, or a cat as a background detail) and the wild
+  animals of `documentary`. Never dogs or any other animal that can read as an insult, and an
+  animal never stands for a company, a product, a person or a rival (Sedat, 2026-11-05).
 - Never children, real disasters or victims, animals in distress, gore. Famous people only as AAA
   game-cinematic CG characters (and then everyone in the frame is CG). Logos are never painted:
   name a large, flat, blank surface for each one; the real logo is added in code.
@@ -23,7 +26,7 @@ style of each video are logged, and the `health` branch's METRICS.md shows them 
 | id | Concept | Fits best |
 |---|---|---|
 | `people` | People at work | funding, hiring, launches with a famous leader |
-| `pet` | A pet takes the lead | consumer apps, home, entertainment, assistants |
+| `pet` | A cat takes the lead | consumer apps, home, entertainment, assistants |
 | `miniature` | Miniature world | infrastructure, cloud regions, factories, logistics |
 | `object` | The object is the hero | chips, devices, hardware, a single product |
 | `metaphor` | One physical metaphor | security features, policy, abstract model features |
@@ -38,7 +41,8 @@ style of each video are logged, and the `health` branch's METRICS.md shows them 
 1. **`people` - People at work.** Real people doing the thing that happened. The cast is free:
    one person, a crowd, an older craftsman, a team of five; not the default "one woman and one
    man at a bench". Example: a funding story as a packed trading floor erupting.
-2. **`pet` - A pet takes the lead.** A cat or dog acts the story out in a real home. Example
+2. **`pet` - A cat takes the lead.** Only cats, never dogs or other pets. A cat acts the story out
+   in a real home, as the viewer or user, never as a company or a person. Example
    (Netflix AI Discovery): a cute cat on the sofa, paw on the remote, the TV shows the Netflix
    logo; every press changes the glow on the screen. A TV or tablet as an object in the room is
    fine here; a person staring at a monitor is not.

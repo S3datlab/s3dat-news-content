@@ -22,8 +22,8 @@ plan with the story, so the server only paints and animates it.
 Pick the concept before anything else: read `CONCEPTS.md` (twelve concepts, rotation rules) and
 the last videos' concepts in the `health` branch's METRICS.md. Choose the concept that tells THIS
 story best and is allowed by the rotation (not used in the last 4 videos; `people` at most once
-in 6; `spectacle` only for priority 5). Then write the scene inside that concept: a pet concept
-is a pet scene, a miniature concept is a tabletop model, and so on. Cast, ingredients and logo
+in 6; `spectacle` only for priority 5). Then write the scene inside that concept: a `pet` concept
+is a cat scene, a miniature concept is a tabletop model, and so on. Cast, ingredients and logo
 surface follow from the concept; many concepts have no people at all. If the pick breaks a
 rotation rule, the server replaces it and plans the scene itself.
 
@@ -48,7 +48,7 @@ rotation rule, the server replaces it and plans the scene itself.
   top with a neckline, mini skirt, leggings, a blazer over a crop top); the camera stays on the
   action and faces, never on bodies.
 - **Attention ingredients** (vary them; ingredients of recent stories are in the `health`
-  branch, METRICS.md): animals (cats work), attractive people, giant scale, money made
+  branch, METRICS.md): cats (the only pets; never dogs; an animal never stands for a company or person), attractive people, giant scale, money made
   physical, satisfying physics (glass cracking, a stack toppling, a perfect fit clicking), speed
   and machines, weather (lightning, rain, sparks), one impossible detail, a stage and crowd, a face
   looking straight at the camera with a clear reaction. Never children, real disasters or
