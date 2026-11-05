@@ -1,0 +1,31 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "NETFLIX TESTS",
+    "AI DISCOVERY"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Netflix",
+      "icon": "netflix"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 305,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

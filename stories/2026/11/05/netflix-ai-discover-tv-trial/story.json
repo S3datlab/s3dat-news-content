@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "netflix-ai-discover-tv-trial",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Netflix tests AI Discover for choosing what to watch",
+  "titleAccent": "AI Discover",
+  "dek": "Better recommendations require three separate checks: whether they understand intent, choose valid titles and give accurate explanations.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-05T03:10:37Z",
+  "lede": "Netflix announced AI Discover on November 3, opening a limited television trial for English-language members in the United States. The experiment lets viewers steer recommendations through themes and explicit feedback.",
+  "facts": [
+    {
+      "label": "Product",
+      "value": "AI Discover"
+    },
+    {
+      "label": "Announced",
+      "value": "3 November 2026"
+    },
+    {
+      "label": "Initial access",
+      "value": "Limited US TV trial, in English"
+    },
+    {
+      "label": "Earlier search beta",
+      "value": "iOS, May 2025"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A choice that can be corrected",
+      "text": "Viewers select a theme, narrow the choices or request a different set. They can also reject a title from future AI Discover recommendations. Netflix says AI helps create the themes. This makes the correction visible to the viewer: a recommendation becomes something they can reshape, instead of simply accepting or scrolling past."
+    },
+    {
+      "heading": "The earlier discovery experiments",
+      "text": "Netflix had already announced a different generative search experiment on May 7, 2025. That small, opt-in iOS beta accepted conversational requests for a particular kind of entertainment. The same announcement described a redesigned television homepage with more visible search and list shortcuts, plus recommendations responding to immediate interests. It also outlined a mobile feed of clips with routes to playback, saving and sharing. Those changes put several discovery methods beside each other. A viewer could begin with a description, a clip or the familiar homepage, depending on how much they already knew about what they wanted."
+    },
+    {
+      "heading": "Ranking still needs a catalog",
+      "text": "The company\u2019s July 30 GenRec research offers technical context for this direction. Netflix described adapting a foundation language model to rank its own catalog, using viewing histories, item information and request context expressed as text. A catalog-aware scoring head produces rankings without generating a conversational answer token by token. Netflix reported an online test covering roughly ten percent of traffic over about four weeks. For builders, that design separates language understanding from the shape of the output. A system can interpret rich context while returning valid items from a bounded inventory, rather than inventing recommendations outside it."
+    },
+    {
+      "heading": "Explanations have their own checks",
+      "text": "A September 4 engineering post addressed another part of discovery: generated explanations connecting a suggested title with something a member had watched. Netflix described using a second language model to assess those explanations, with human writers and reviewers defining quality. Reviewers also examined live samples and approved rubric changes. The work included a month-long mobile experiment. This matters because an explanation is itself a product claim about why an item belongs in front of someone. Evaluating the ranking alone leaves that separate claim unchecked, even when the underlying title is a legitimate catalog entry."
+    },
+    {
+      "heading": "A product test with several moving parts",
+      "text": "Taken together, these projects show three distinct engineering problems: collecting useful intent, ranking a constrained catalog and explaining the result. Improvements in one do not automatically settle the other two. One useful test would compare people who use the controls with people browsing normally, while checking for repeated unwanted suggestions. Its value will depend on whether that control helps people choose, not merely whether the interface produces plausible categories."
+    }
+  ],
+  "buildersNote": "Test three paths separately: choosing a theme, rejecting a suggestion and returning later. Record whether rejected items recur. Keep recommendation quality and explanation accuracy as separate evaluation measures.",
+  "claims": [
+    {
+      "text": "Netflix announced a limited US television trial on November 3.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "GenRec improved online metrics in Netflix\u2019s reported experiment.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The AI Discover announcement does not identify its underlying model or report effects on viewing time.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing AI Discover: A New Place to Find Your Next Great Watch",
+      "publisher": "Netflix",
+      "url": "https://about.netflix.com/en/news/introducing-ai-discover",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Unveiling Our Innovative New TV Experience Featuring Enhanced Design, Responsive Recommendations and a New Way to Search",
+      "publisher": "Netflix",
+      "url": "https://about.netflix.com/en/news/unveiling-our-innovative-new-tv-experience",
+      "date": "2025-05-07"
+    },
+    {
+      "title": "GenRec: Towards LLM-Native Recommendation at Netflix",
+      "publisher": "Netflix Technology Blog",
+      "url": "https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3",
+      "date": "2026-07-30"
+    },
+    {
+      "title": "The Lifecycle of LLM-as-a-Judge: Building, Aligning, and Monitoring at scale",
+      "publisher": "Netflix Technology Blog",
+      "url": "https://netflixtechblog.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508",
+      "date": "2026-09-04"
+    }
+  ],
+  "social": {
+    "hook": "Your next watch comes with a way to say no.",
+    "voiceover": "[matter-of-fact] Your next watch comes with a way to say no. Netflix announced a TV trial on November third. [calm] Viewers can reject titles from future recommendations within AI Discover.",
+    "short": "Netflix\u2019s limited US TV trial, announced November 3, lets viewers reject titles within AI Discover.",
+    "long": "Netflix is testing AI Discover on TVs. Its earlier GenRec research used a catalog-aware scoring head to rank titles without decoding a chat response. Netflix reported a roughly four-week online test of that separate ranker.\n\nThe engineering lesson is practical: understanding someone\u2019s intent and choosing a valid item are different jobs. A new interface still needs both.",
+    "take": "We think visible rejection controls matter more than clever category names. A recommendation earns trust when it remembers a clear no.",
+    "keyFacts": [
+      "AI Discover announced November 3, 2026",
+      "GenRec research published July 30, 2026",
+      "Earlier iOS search beta announced May 7, 2025"
+    ],
+    "hashtags": [
+      "Netflix",
+      "AIDiscover",
+      "RecommendationSystems",
+      "Streaming"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
