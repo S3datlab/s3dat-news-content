@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "CUDA 13.5",
+    "RUBIN GOES",
+    "GA"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 511052,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  }
+}

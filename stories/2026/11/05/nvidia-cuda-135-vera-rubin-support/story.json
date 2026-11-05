@@ -1,0 +1,116 @@
+{
+  "format": 2,
+  "slug": "nvidia-cuda-135-vera-rubin-support",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "NVIDIA makes Vera Rubin support generally available in CUDA 13.5",
+  "titleAccent": "CUDA 13.5",
+  "dek": "The toolkit moves Rubin beyond early access, while driver requirements and new library controls shape the deployment work.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T02:10:26Z",
+  "lede": "NVIDIA released CUDA 13.5 on November 4, moving Vera Rubin support from early access to general availability. The update gives platform teams a supported software path for the new hardware, alongside changes to GPU sharing and application packaging.",
+  "facts": [
+    {
+      "label": "Toolkit",
+      "value": "CUDA 13.5"
+    },
+    {
+      "label": "Rubin support",
+      "value": "Generally available"
+    },
+    {
+      "label": "New-feature driver branch",
+      "value": "R620 or newer, with feature support"
+    },
+    {
+      "label": "Included C++ libraries",
+      "value": "CCCL 3.5"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A toolkit upgrade has a driver counterpart",
+      "text": "The release notes distinguish support for existing CUDA applications from access to new platform features. CUDA 13.x applications can use minor-version compatibility with drivers from branch 580 onward. CUDA 13.5 features and new platforms require R620 or newer drivers that support them. The toolkit no longer bundles a driver on Windows or Linux, so installing development tools and updating a machine's driver are separate operations. That distinction matters for a fleet with a shared operating-system image: changing the compiler package alone does not establish that a server supports the new hardware path."
+    },
+    {
+      "heading": "Sharing builds on an earlier memory boundary",
+      "text": "NVIDIA's October 27 description of CUDA 13.4 already covered memory-enforced sharing through its GPU Fractioning Operator and KAI Scheduler. Administrators could assign fixed memory or a guaranteed minimum with additional burst capacity. Its two execution modes made different trade-offs: time-slicing separated workload error domains, while streaming-multiprocessor sharing used one error domain. CUDA 13.5 adds weighted time-slicing and borrowing between multiprocessor partitions in MPS v3. These controls address how several jobs occupy a device after memory has been divided. For shared inference services, a memory allowance and a scheduling policy describe different parts of the same resource allocation. A single GPU uses one execution mode at a time, although different GPUs on a node can use different modes."
+    },
+    {
+      "heading": "Library updates reach application code",
+      "text": "The toolkit includes CCCL 3.5, whose standalone release appeared on October 7. It introduces public tuning interfaces for CUB algorithms, including choices about block size and vectorization for different GPU architectures. The release also adds reproducible floating-point scans for a fixed device, input and build configuration. Batched TopK can handle segments of different sizes and a separate selection count for each segment. Device-side reduction counts remove a host round trip when the amount of work is already known on the GPU. These are application-level changes: they affect how a developer expresses selection, aggregation and numerical work inside a larger pipeline."
+    },
+    {
+      "heading": "Compilation moves earlier in the delivery process",
+      "text": "CUDA 13.5 also extends nvprune with a precompile option that can turn intermediate GPU code into native machine code during packaging. That gives software distributors another place to perform compilation before an application starts. CUDA Tile gains multi-GPU communication through NVLink, and calls from Tile code into SIMT functions enter public preview. Together, these additions touch both the code a developer writes and the artifact shipped to a server."
+    }
+  ],
+  "buildersNote": "Test two builds of one representative workload before changing a shared image. Record the driver branch, toolkit version, output checks and p95 latency for each. Include a cold start and a run beside another job so compilation time and sharing behavior have separate measurements.",
+  "claims": [
+    {
+      "text": "NVIDIA's November 4 release announcement moves Vera Rubin support to general availability.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The release notes separate CUDA 13.x minor-version compatibility from the driver requirements of new 13.5 features and platforms.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The release does not establish a universal throughput improvement for an existing application.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NVIDIA CUDA 13.5 Brings NVIDIA Vera Rubin GA Support",
+      "publisher": "NVIDIA",
+      "url": "https://developer.nvidia.com/blog/nvidia-cuda-13-5-brings-nvidia-vera-rubin-ga-support/",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "CUDA Toolkit 13.5 - Release Notes",
+      "publisher": "NVIDIA",
+      "url": "https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "v3.5.0",
+      "publisher": "NVIDIA CCCL",
+      "url": "https://github.com/NVIDIA/cccl/releases/tag/v3.5.0",
+      "date": "2026-10-07"
+    },
+    {
+      "title": "Memory-Enforced GPU Sharing in Kubernetes with NVIDIA CUDA 13.4",
+      "publisher": "NVIDIA",
+      "url": "https://developer.nvidia.com/blog/memory-enforced-gpu-sharing-in-kubernetes-with-nvidia-cuda-13-4",
+      "date": "2026-10-27"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "New hardware needs more than a toolkit install.",
+    "voiceover": "[measured] New hardware needs more than a toolkit install. NVIDIA released CUDA thirteen point five with general availability for Vera Rubin. Driver requirements still matter, and application speed needs its own test.",
+    "short": "NVIDIA released CUDA 13.5 with general availability for Vera Rubin. The toolkit also includes CCCL 3.5. Existing application speed still needs testing.",
+    "long": "NVIDIA made Vera Rubin support generally available in CUDA 13.5 on November 4. The release puts hardware support, GPU sharing and application packaging into the same upgrade decision.\n\nCCCL 3.5 adds public algorithm-tuning controls and reproducible scans for a fixed GPU, input and build configuration. A team can change its tools without getting the same result from every workload. Application-level throughput remains unestablished.",
+    "take": "We treat the driver, toolkit and application as one deployment. A compiler upgrade alone is a weak acceptance test for a shared GPU fleet.",
+    "keyFacts": [
+      "CUDA 13.5 announced on November 4",
+      "Vera Rubin support moves to general availability",
+      "CCCL 3.5 is included in the toolkit"
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "GPUComputing",
+      "CUDA",
+      "AIInfrastructure"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
