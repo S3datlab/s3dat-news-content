@@ -1,0 +1,37 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "COPILOT JOINS",
+    "XCODE’S",
+    "OWN ASSISTANT"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "GitHub Copilot",
+      "icon": "githubcopilot",
+      "color": "#0969da"
+    },
+    {
+      "name": "Apple",
+      "icon": "apple"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 110505,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

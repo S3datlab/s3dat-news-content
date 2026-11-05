@@ -1,0 +1,6 @@
+Stake: Apple developers gain a native route to their existing coding assistant while the separate extension remains an option.
+Scene: In a modern industrial design workshop, a technician is already sliding a fitted tool tray into an open blue workbench cabinet at frame 0; a second matching tray remains on its own trolley nearby.
+Cast: Two invented stylish adult technicians in practical modern workwear; one guides the tray while the other steadies the cabinet and watches the fit. Photorealistic cinematic treatment, no real people.
+Attention: Satisfying physics makes the tray click exactly into its cabinet rails, explaining native integration; the nearby independent trolley preserves the visual distinction of the existing extension.
+Logo: A large flat blank panel on the upper cabinet door faces the camera for the real GitHub Copilot logo, added in code. A separate blank wall panel above the workbench is reserved for Apple’s real logo.
+Banner: A continuous 16:9 close medium view loops the final few centimetres of tray movement and the technicians’ small hand adjustments. Faces and action occupy centre/right; the lower-left third stays calm. No screens, printed words, painted logos or numbers.

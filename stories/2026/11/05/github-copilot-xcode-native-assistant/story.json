@@ -1,0 +1,137 @@
+{
+  "format": 2,
+  "slug": "github-copilot-xcode-native-assistant",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "GitHub brings Copilot into Xcode’s built-in coding assistant",
+  "titleAccent": "Xcode’s built-in coding assistant",
+  "dek": "A public preview adds a native route for Copilot users in Xcode 27.3 beta, alongside the existing extension.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T05:11:17Z",
+  "lede": "GitHub introduced Copilot in Xcode’s built-in coding assistant on November 4, starting with a public preview. Apple developers gain another way to use their existing coding assistant inside the development environment.",
+  "facts": [
+    {
+      "label": "Integration",
+      "value": "Xcode coding assistant"
+    },
+    {
+      "label": "Required Xcode",
+      "value": "27.3 beta"
+    },
+    {
+      "label": "Required macOS",
+      "value": "Tahoe 26.6 or later"
+    },
+    {
+      "label": "Status",
+      "value": "Public preview"
+    },
+    {
+      "label": "Eligibility",
+      "value": "All Copilot plans"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Two routes into the same editor",
+      "text": "The integration is configured in Xcode’s Intelligence settings. The separate Copilot extension remains available. Developers now have a choice of client for the same service. An account identifies the provider; the client determines where requests are entered and responses appear."
+    },
+    {
+      "heading": "The beta brings a broader toolchain update",
+      "text": "Apple released Xcode 27.3 beta on November 3. Its release notes list Copilot under Coding Intelligence and include Swift 6.4 alongside new platform software development kits. The same release adds support for writing interface tests with Swift Testing and XCUIAutomation. It also changes preview tooling, including interactive delayed snapshots for macOS previews. These are toolchain changes beyond the assistant itself. Trying the new integration therefore means working with a beta development environment that contains changes to testing, previews and supported platform APIs."
+    },
+    {
+      "heading": "Chat already had a place in Xcode",
+      "text": "GitHub made its extension’s chat generally available in March 2025. That release offered explanations, debugging assistance and implementation suggestions alongside code completions. Developers could attach particular files to a conversation, switch models and keep separate conversation threads. Those controls gave existing users ways to scope a request and preserve context for different tasks. The November announcement expands the choice of interface within Xcode; the earlier release explains why long-time users may already have established Copilot workflows in the editor."
+    },
+    {
+      "heading": "Existing workflows include visual context",
+      "text": "The extension gained image uploads through Copilot Vision in June 2025. GitHub described using screenshots, diagrams and interface mockups as conversation inputs. The same update added instructions at both global and workspace levels, plus a preferred response language. Its chat window could also attach automatically to an Xcode workspace. For an app team, these features connect the assistant to more than source files. A design image can supply visual context, while workspace instructions describe conventions that apply to a particular project."
+    },
+    {
+      "heading": "Agent work raises a different comparison",
+      "text": "GitHub’s July 2025 agent-mode release covered Xcode, JetBrains and Eclipse. It described planning a request, changing several files and creating new ones. The agent could suggest terminal commands or tool calls and ask the developer to run them. GitHub also described handling runtime errors during that process. This history makes a useful distinction between conversational help and a multi-step editing workflow. The relevant comparison for an existing user includes the changes an assistant can propose, the context it receives and the points where the developer remains involved. A chat response and a set of applied edits leave different work for a developer to review. That distinction matters when comparing interfaces under the same product name."
+    }
+  ],
+  "buildersNote": "Compare both routes on one disposable branch with three tasks: explain a file, change two related files and diagnose a failing test. Record context access, approval prompts and passing tests before changing the team’s default setup.",
+  "claims": [
+    {
+      "text": "Copilot is available in Xcode’s native coding assistant as a public preview.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Xcode 27.3 beta requires macOS Tahoe 26.6 or later.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Feature parity with the separate extension, including its visual and agent workflows, is not established by the launch announcement.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "GitHub Copilot is now available in Xcode’s coding assistant",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-04-github-copilot-is-now-available-in-xcodes-coding-assistant/",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Xcode 27.3 Beta Release Notes",
+      "publisher": "Apple",
+      "url": "https://developer.apple.com/documentation/xcode-release-notes/xcode-27_3-release-notes",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "GitHub Copilot for Xcode Chat is now generally available",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2025-03-11-github-copilot-for-xcode-chat-is-now-generally-available/",
+      "date": "2025-03-11"
+    },
+    {
+      "title": "GitHub Copilot in Xcode: Explore with Copilot Vision, custom instructions, and locale response support",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2025-06-30-github-copilot-in-xcode-explore-with-copilot-vision-custom-instructions-and-locale-response-support/",
+      "date": "2025-06-30"
+    },
+    {
+      "title": "Agent mode for JetBrains, Eclipse, and Xcode is now generally available",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2025-07-16-agent-mode-for-jetbrains-eclipse-and-xcode-is-now-generally-available/",
+      "date": "2025-07-16"
+    },
+    {
+      "title": "Releases",
+      "publisher": "Apple",
+      "url": "https://developer.apple.com/news/releases/",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "Your coding assistant gets another door into Xcode.",
+    "voiceover": "[matter-of-fact] Your coding assistant gets another door into Xcode. GitHub added Copilot to Apple’s built-in assistant. [calm] The beta includes Swift six point four. Existing extension workflows deserve a separate comparison.",
+    "short": "GitHub added Copilot to Xcode’s built-in assistant in public preview. Xcode 27.3 beta is required; the separate extension remains available. Feature parity is not established.",
+    "long": "GitHub brings Copilot into Apple’s native coding assistant. Xcode 27.3 beta also includes Swift 6.4 and changes to testing and previews. Trying the integration means trying that broader beta toolchain.\n\nThe existing extension has its own history: GitHub added image uploads and workspace instructions in June 2025, then made agent mode generally available that July. We would compare familiar tasks before changing clients. The launch does not establish feature parity between the two routes.",
+    "keyFacts": [
+      "Xcode 27.3 beta includes Swift 6.4",
+      "Extension image uploads arrived June 30, 2025",
+      "Extension agent mode reached general availability July 16, 2025"
+    ],
+    "take": "We think native placement is useful, but task-level behavior is the better reason to switch clients.",
+    "hashtags": [
+      "GitHubCopilot",
+      "CodingAgents",
+      "Xcode",
+      "Swift"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
