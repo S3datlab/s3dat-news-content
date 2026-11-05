@@ -28,5 +28,9 @@
   "sources": {
     "hero.webp": "generated",
     "headphones.webp": "generated"
+  },
+  "vibes": {
+    "banner": true,
+    "reel": true
   }
 }
