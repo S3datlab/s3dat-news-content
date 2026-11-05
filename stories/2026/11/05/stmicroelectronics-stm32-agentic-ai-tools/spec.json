@@ -1,11 +1,35 @@
 {
   "engine": 2,
   "template": "collage",
-  "headline": ["STM32 GETS", "CODING AGENTS"],
+  "headline": [
+    "STM32 GETS",
+    "CODING AGENTS"
+  ],
   "accent": 1,
-  "brands": [{"name": "STMicroelectronics", "icon": "stmicroelectronics"}],
-  "cutouts": [{"src": "hero.webp", "role": "hero"}, {"src": "prop.webp", "role": "prop"}],
+  "brands": [
+    {
+      "name": "STMicroelectronics",
+      "icon": "stmicroelectronics"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
   "mood": "calm",
   "seed": 511058,
-  "sources": {"hero.webp": "generated", "prop.webp": "generated"}
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  },
+  "vibes": {
+    "banner": true,
+    "reel": false
+  }
 }
