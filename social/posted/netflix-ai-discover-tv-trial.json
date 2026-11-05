@@ -1,0 +1,39 @@
+{
+  "now": {
+    "at": "2026-11-05T03:21:44Z",
+    "results": {
+      "threads:s3datlab": {
+        "id": "6aebf64ae95790cd46b38c26",
+        "error": null
+      },
+      "pinterest:sustunova": {
+        "id": "6aebf655e95790cd46b38dc5",
+        "error": null
+      },
+      "mastodon:s3dat": {
+        "id": "6aebf6610d0de73ccefc0366",
+        "error": null
+      },
+      "substack:S3dat": {
+        "id": "6aebf6670d0de73ccefc06a5",
+        "error": null
+      },
+      "bluesky:S3dat": {
+        "id": "6aebf672e95790cd46b392e3",
+        "error": null
+      },
+      "facebook:S3dat": {
+        "id": "6aebf67dff03f6944a1f3fb2",
+        "error": null
+      },
+      "linkedin:S3DAT": {
+        "id": "6aebf683bc551efdea3d1122",
+        "error": null
+      },
+      "twitter:s3datlab": {
+        "id": "6aebf68f0d0de73ccefc0d8c",
+        "error": null
+      }
+    }
+  }
+}
