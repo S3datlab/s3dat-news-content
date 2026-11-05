@@ -627,6 +627,31 @@ def has_alpha(path):
     return False
 
 
+def svg_backdrop(svg: str) -> bool:
+    """True when an SVG starts with an opaque <rect> covering its whole canvas (a backdrop, not
+    part of the mark): the templates tint the logo, which turns that rect into a solid square."""
+    root = re.search(r"<svg\b[^>]*>", svg, re.I)
+    if not root:
+        return False
+    num = lambda v: float(re.match(r"\s*([\d.]+)", v).group(1)) if v and re.match(r"\s*[\d.]+", v) else None
+    attr = lambda tag, k: (re.search(rf"\b{k}\s*=\s*[\x22\x27]([^\x22\x27]*)", tag) or [None, None])[1]
+    box = attr(root.group(0), "viewBox")
+    if box and len(box.replace(",", " ").split()) == 4:
+        x0, y0, w, h = (float(v) for v in box.replace(",", " ").split())
+    else:
+        x0, y0, w, h = 0.0, 0.0, num(attr(root.group(0), "width")), num(attr(root.group(0), "height"))
+    first = re.search(r"<(?!svg\b|\?|!|defs\b|title\b|desc\b|/)(\w+)\b[^>]*>", svg[root.end():], re.I)
+    if not first or first.group(1).lower() != "rect":
+        return False
+    tag = first.group(0)
+    fill = (attr(tag, "fill") or (re.search(r"fill\s*:\s*([^;\x22\x27]+)", attr(tag, "style") or "") or [None, ""])[1] or "black").strip().lower()
+    if fill in ("none", "transparent") or (num(attr(tag, "opacity")) == 0) or (num(attr(tag, "fill-opacity")) == 0):
+        return False
+    full = lambda v, size: v is not None and (v.strip() == "100%" or (size and num(v) is not None and num(v) >= size * 0.98))
+    at = lambda v, o: v is None or num(v) is None or abs(num(v) - o) <= 1
+    return full(attr(tag, "width"), w) and full(attr(tag, "height"), h) and at(attr(tag, "x"), x0) and at(attr(tag, "y"), y0)
+
+
 def check_asset(folder, name, label, kinds, maximum, sources, errors):
     if not isinstance(name, str) or not ASSET.fullmatch(name):
         errors.append(f"{label} must be a plain file name in the story folder")
@@ -680,7 +705,10 @@ def validate_spec_v2(spec, story, folder):
         elif "icon" in brand and not (isinstance(brand["icon"], str) and ICON.fullmatch(brand["icon"])):
             errors.append(f"{label}.icon must be a simple-icons slug")
         elif "logo" in brand:
-            check_asset(folder, brand["logo"], f"{label}.logo", (".svg", ".png", ".webp"), 300_000, sources, errors)
+            path = check_asset(folder, brand["logo"], f"{label}.logo", (".svg", ".png", ".webp"), 300_000, sources, errors)
+            if path is not None and path.suffix.lower() == ".svg" and svg_backdrop(path.read_text(errors="replace")):
+                errors.append(f"{label}.logo {brand['logo']} has a filled background rectangle covering the whole "
+                              "logo; remove it (a tinted logo would render as a solid square)")
         if "color" in brand and not (isinstance(brand["color"], str) and HEX.fullmatch(brand["color"])):
             errors.append(f"{label}.color must be #rrggbb")
     cutouts = spec.get("cutouts", [])
