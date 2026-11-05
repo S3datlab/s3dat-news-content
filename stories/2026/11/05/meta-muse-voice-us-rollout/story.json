@@ -1,0 +1,117 @@
+{
+  "format": 2,
+  "slug": "meta-muse-voice-us-rollout",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Meta rolls out Muse voice and animated avatars in the US",
+  "titleAccent": "Muse voice",
+  "dek": "Muse adds spoken conversations across mobile, web and Mac, bringing another consumer agent into competition over how people delegate work.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-05T21:10:01Z",
+  "lede": "Meta announced the US rollout of Muse voice and expressive avatars on November 5. The update gives users another way to direct an agent without typing.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "5 November 2026"
+    },
+    {
+      "label": "Initial market",
+      "value": "United States"
+    },
+    {
+      "label": "Platforms",
+      "value": "Mobile, web, Mac"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An agent with a speaking face",
+      "text": "Users start a conversation through the phone icon. Meta offers voice-only, alongside-chat and full-screen views, with animated expressions and gestures. The company says people can interrupt responses. Support for AI Glasses and Muse Charm is still forthcoming."
+    },
+    {
+      "heading": "The September preview becomes an app feature",
+      "text": "Meta presented the broader plan at Connect in September. Its September 24 recap described conversations continuing while Muse worked on tasks in the background. It also named Notion, Granola, GitHub and Box among work connections, alongside shopping and payment partners. That context matters because spoken requests need somewhere useful to go. A conversational interface can collect instructions, while a connected service supplies the document, repository or purchase workflow. The Connect presentation tied the same agent to glasses and a pocket-sized Charm device, putting conversation at the center of its proposed hardware family."
+    },
+    {
+      "heading": "Google puts the camera into the conversation",
+      "text": "Google took a different route with Guided Vision in Gemini Live, announced October 1 for compatible Android devices. Users share a camera view and receive spoken descriptions, follow-up answers and instructions for reframing the image. Google developed it with blind and low-vision users and reports participation by more than 1,000 Aira testers. Its examples include reading labels and finding misplaced objects. That makes the camera an input to a practical task. Google explicitly excludes navigation, obstacle detection and replacement of established mobility aids from the feature’s intended use."
+    },
+    {
+      "heading": "OpenAI connects speech to existing work",
+      "text": "OpenAI’s September 23 release notes described plugin support during Voice conversations on web, iOS and Android. They also described Voice in Work, including document, presentation and spreadsheet creation, connected apps and browser tasks. Unfinished work can continue in text after a call ends. Access still follows the account’s available plugins, permissions and usage limits; Voice in Work requires both capabilities. The distinction gives this comparison a useful baseline: speaking to an assistant, granting it access to a service and reviewing its output are separate parts of the experience."
+    },
+    {
+      "heading": "The result needs to survive the conversation",
+      "text": "These releases make different choices about what speech controls: an agent’s tasks, a live camera interpretation or an existing workspace. For software teams, that shifts attention toward the transition between a conversation and a lasting result. A pleasant exchange supplies little evidence about whether a file was created correctly. The artifact, transaction or recorded change remains the thing a user can inspect."
+    }
+  ],
+  "buildersNote": "Test one spoken task from request to saved result. Interrupt midway, change a detail, end the call, then inspect the artifact and permissions used. Record completion separately from response speed. That separates conversational polish from dependable execution.",
+  "claims": [
+    {
+      "text": "Meta announced the US app rollout on November 5.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Muse supports interruptions during spoken responses, according to Meta.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Comparative task-completion reliability is not established by these announcements.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Give Your Muse a Voice",
+      "publisher": "Meta",
+      "url": "https://about.fb.com/news/2026/11/introducing-muse-ai-voice-expressive-avatars/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "The Biggest News From Connect 2026",
+      "publisher": "Meta",
+      "url": "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/",
+      "date": "2026-09-24"
+    },
+    {
+      "title": "Guided Vision in Gemini Live: built for accessibility",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/guided-vision-gemini-live/",
+      "date": "2026-10-01"
+    },
+    {
+      "title": "ChatGPT release notes",
+      "publisher": "OpenAI",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "date": "2026-09-23"
+    }
+  ],
+  "social": {
+    "hook": "The voice is only the start of the task.",
+    "voiceover": "[measured] The voice is only the start of the task. Meta is rolling out Muse voice in the US. [thoughtful] Three platforms get it, but we care more about the work left behind.",
+    "short": "Meta is rolling out Muse voice and animated avatars in the US across mobile, web and Mac. The test is what gets done after the conversation.",
+    "long": "Meta brings spoken requests to its Muse agent. The comparison already goes beyond conversation: Google’s Guided Vision interprets a camera view, while ChatGPT Voice can use connected plugins. We think the useful measure is the result someone can inspect afterward. A convincing speaking character is easy to notice; a correctly finished task is what earns a return visit.",
+    "take": "We think completed work will decide the voice-agent contest. Personality can win the first conversation; reliable execution has to win the second.",
+    "keyFacts": [
+      "Muse rollout: 5 November 2026",
+      "Google Guided Vision: 1 October 2026",
+      "ChatGPT Voice plugins: 23 September 2026"
+    ],
+    "hashtags": [
+      "Meta",
+      "Muse",
+      "AIAgents",
+      "VoiceAI"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "ourRead": "We think voice agents will compete on continuity: whether the instruction, permissions and finished result remain understandable after the call. An expressive character can improve the invitation to speak. Evidence that avatar design itself materially improves task completion would change our view of its importance."
+}
