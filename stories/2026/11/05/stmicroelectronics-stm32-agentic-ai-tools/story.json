@@ -1,0 +1,130 @@
+{
+  "format": 2,
+  "slug": "stmicroelectronics-stm32-agentic-ai-tools",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "ST brings coding agents to STM32 firmware",
+  "titleAccent": "coding agents",
+  "dek": "STM32Cube for Agentic AI enters beta, connecting existing coding assistants to chip documentation, configuration tools and board-level development workflows.",
+  "eventDate": "2026-11-03",
+  "publishedAt": "2026-11-05T08:19:30Z",
+  "lede": "STMicroelectronics introduced the STM32Cube for Agentic AI beta on November 3, then detailed it in a November 4 announcement. The toolkit connects coding assistants to the manufacturer's embedded-development tools and technical material.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "Beta introduced 3 November 2026"
+    },
+    {
+      "label": "Host configurations",
+      "value": "6 editor-and-agent combinations"
+    },
+    {
+      "label": "Coding agents",
+      "value": "GitHub Copilot, Claude Code and Cursor"
+    },
+    {
+      "label": "Deployment",
+      "value": "Contexts selected per project"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The chip vendor supplies the context",
+      "text": "The framework helps agents choose between ST reference examples and STM32CubeMX code generation. It also reviews generated code for API use and hardware interactions. The important division is between the assistant proposing a program and the manufacturer supplying information about the chip. That gives an embedded project a more specific starting point than a general coding conversation. In its release announcement, ST described agents using its context to produce working code in a test where unassisted agents failed."
+    },
+    {
+      "heading": "A board is part of the workflow",
+      "text": "ST's documentation demonstrates the intended workflow with a temperature logger on an STM32C5 Nucleo board. The example combines sensor sampling, data transfer, a blinking indicator and a button that pauses output. It also asks the agent to account for documented silicon errata and demonstrate the result on the connected hardware. This makes the deliverable observable outside the editor. The proposed program has several behaviors that can be tested separately, rather than treating successful compilation as the whole result. Each project records the versions and services deployed into it."
+    },
+    {
+      "heading": "The host determines the available tools",
+      "text": "The installer accepts six combinations across GitHub Copilot, Claude Code and Cursor, including editor-based and terminal workflows. It writes the configuration files each agent expects. The build and DAP debugging contexts are delivered specifically through STM32CubeIDE for Visual Studio Code. That dependency makes the editor choice operational: it determines which parts of the documented workflow are present. Projects have one selected target. Moving an existing project to a different editor-and-agent pairing involves removing its deployed contexts and deploying them again for the new target."
+    },
+    {
+      "heading": "Installation includes a licensing decision",
+      "text": "The installation guide offers an agent-led route and a manual route. Its setup command installs compatible contexts into a chosen project, while a dry run previews the installation. ST documents separate agreements for the command-line tool, context bundles and dependent tools. Running setup, or sending the installation prompt, constitutes acceptance of the relevant agreements. The agent-led path therefore asks for the target, project folder, profile and consent before setup runs. The toolkit supplies context and tools; the chosen coding agent remains responsible for the conversation and approved actions."
+    }
+  ],
+  "buildersNote": "Start with 1 disposable board project and a read-only documentation request. Preview the installation with the documented dry-run option, review its licenses, and save a board-level acceptance test before granting programming access.",
+  "ourRead": "We think the useful unit here is a reproducible board experiment, not a larger pile of generated firmware. A context package earns its place when another developer can repeat the configuration, build and observed behavior. We would change our view if changing context versions made those experiments harder to reproduce than the existing manual workflow.",
+  "claims": [
+    {
+      "text": "ST's technical team introduced the beta on November 3.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The toolkit accepts six editor-and-agent combinations, but acceptance does not mean every pairing has been integration-tested.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The toolkit is for evaluation; no target is production-validated.",
+      "status": "confirmed",
+      "source": 5
+    }
+  ],
+  "sources": [
+    {
+      "title": "STMicroelectronics sharpens agentic-AI coding with new STM32 tools",
+      "publisher": "STMicroelectronics",
+      "url": "https://newsroom.st.com/media-center/press-item.html/stmicroelectronics-sharpens-agentic-ai-coding-with-new-stm32-tools-n4799.html",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Welcome to the STM32Cube for Agentic AI forum – start here",
+      "publisher": "STMicroelectronics",
+      "url": "https://community.st.com/stm32cube-for-agentic-ai-186/welcome-to-the-stm32cube-for-agentic-ai-forum-start-here-169244",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "STM32Cube for Agentic AI",
+      "publisher": "STMicroelectronics",
+      "url": "https://dev.st.com/stm32cube-agentic-ai/stm32cube-agentic-ai-doc/index.html",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Supported IDEs and AI coding agents",
+      "publisher": "STMicroelectronics",
+      "url": "https://dev.st.com/stm32cube-agentic-ai/stm32cube-agentic-ai-doc/supported-environments.html",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Install STM32Cube for Agentic AI",
+      "publisher": "STMicroelectronics",
+      "url": "https://dev.st.com/stm32cube-agentic-ai/stm32cube-agentic-ai-start/index.html",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Why is STM32Cube for Agentic AI released as a beta?",
+      "publisher": "STMicroelectronics",
+      "url": "https://dev.st.com/stm32cube-agentic-ai/stm32cube-agentic-ai-doc/why-beta.html",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "Firmware needs a test beyond the editor.",
+    "voiceover": "[matter-of-fact] Firmware needs a test beyond the editor. ST introduced tools connecting coding agents to its chips. The beta accepts six host combinations. Developers can test generated programs on connected boards.",
+    "short": "ST introduced STM32Cube for Agentic AI, connecting coding assistants to firmware tools. The beta accepts 6 host combinations, with no production-validated target yet.",
+    "long": "ST released a beta installer that connects coding agents to STM32 development tools. Its dry-run option previews the setup, and the agent-led route asks for consent before installation. Running setup also accepts the relevant software licenses.\n\nThat makes installation an approval decision, not just a command to paste. We would test the workflow on a disposable board project before adding it to a shared firmware environment. No target is production-validated yet.",
+    "take": "We think a repeatable board experiment is worth more than a larger code diff. The useful test is whether a second developer can reproduce the program's behavior.",
+    "keyFacts": [
+      "Beta introduced 3 November 2026",
+      "6 accepted editor-and-agent combinations",
+      "3 coding-agent families: Copilot, Claude Code, Cursor"
+    ],
+    "hashtags": [
+      "STM32",
+      "CodingAgents",
+      "EmbeddedSystems",
+      "Firmware"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

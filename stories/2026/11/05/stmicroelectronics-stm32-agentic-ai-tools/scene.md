@@ -1,0 +1,6 @@
+Stake: Embedded developers gain an AI-assisted path to firmware, while a human still has to validate the physical board.
+Scene: In a modern electronics lab, a technician is already sliding a small unmarked development board into a safe desktop test fixture as a miniature conveyor beside it begins carrying plain metal blocks.
+Cast: Two invented stylish adults: a woman with short dark hair, navy blazer over an ivory fitted top and trousers guides the board; a man in a teal overshirt and dark trousers steadies the fixture and watches the moving belt. No screens or phones.
+Attention: Speed and machines make software's physical consequence visible; the second technician's focused expression shows inspection rather than a claim of effortless autonomy.
+Logo: A large flat blank white vertical panel behind the fixture faces the camera, reserved for the real STMicroelectronics logo added in code; all components and clothing remain unmarked.
+Banner: Loop the steady belt motion and a small forward-and-back inspection movement of the board tray in 16:9. Keep faces, fixture and motion centre/right and the lower-left third calm. Photorealistic contemporary lab, no painted text, logos, sparks or unsafe contact.
