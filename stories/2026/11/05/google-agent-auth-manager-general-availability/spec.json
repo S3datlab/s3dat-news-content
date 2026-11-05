@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "GOOGLE OPENS",
+    "AGENT AUTH",
+    "MANAGER"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 51105,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  }
+}

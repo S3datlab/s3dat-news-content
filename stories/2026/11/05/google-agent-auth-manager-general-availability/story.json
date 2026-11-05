@@ -1,0 +1,130 @@
+{
+  "format": 2,
+  "slug": "google-agent-auth-manager-general-availability",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Google makes agent Auth Manager generally available",
+  "titleAccent": "generally available",
+  "dek": "A managed credential vault leaves preview while separate identity tokens let agents authenticate to external services without a permanent API key.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T00:08:56Z",
+  "lede": "Google announced general availability for Agent Identity Auth Manager on November 4, alongside a preview of external identity tokens. The change gives agent developers a managed credential service while separating user-delegated access from an agent’s own authority.",
+  "facts": [
+    {
+      "label": "Auth Manager",
+      "value": "Generally available"
+    },
+    {
+      "label": "External identity tokens",
+      "value": "Preview; OpenID Connect JWTs"
+    },
+    {
+      "label": "Announcement",
+      "value": "4 November 2026"
+    },
+    {
+      "label": "Identity contexts",
+      "value": "3: user, agent and delegated"
+    },
+    {
+      "label": "Vault access control",
+      "value": "Google Cloud IAM"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Credentials move into a managed service",
+      "text": "Auth Manager centralizes credentials in a Google-managed vault controlled through Identity and Access Management. Google says it automates OAuth authorization flows and refreshes tokens delegated by users. The service had appeared in preview in Google’s May security announcement. Its move to general availability changes the launch stage for that credential-management component. The separate token preview covers agents proving their own identity to systems outside Google Cloud, including other clouds and privately operated services."
+    },
+    {
+      "heading": "The identity belongs to a particular agent",
+      "text": "Google’s identity documentation describes a cryptographic identity based on the SPIFFE standard for each agent. Auth providers within the manager define the credential type and destination application. They can manage API keys, OAuth client credentials and user-delegated tokens. This gives an application different routes for different integrations, rather than one shared credential for every call. The documented model distinguishes an agent reading a user’s tasks from an autonomous workload accessing infrastructure. Those calls can originate in the same product while carrying different authority and appearing differently in audit records."
+    },
+    {
+      "heading": "Delegation keeps both parties in the record",
+      "text": "The delegation architecture separates three contexts: the person making a request, the agent running it and the combined authority used downstream. For a user-delegated call, Google says the request must satisfy the agent’s outbound policies and the user’s permissions and consented OAuth scopes. Logs record both identities. That structure makes the authorization decision more specific than recognizing the software alone. An agent’s identity answers which workload called. The delegated context additionally identifies whose access it is exercising, so a later investigation can distinguish the two."
+    },
+    {
+      "heading": "External services still make an access decision",
+      "text": "The external-token preview uses OpenID Connect identity tokens signed for the agent’s trust domain. Google publishes discovery metadata and public verification keys, so a receiving service can check them without Google Cloud credentials. Its guide separates signature validation from authorization. After checking the issuer, intended audience and time claims, the receiver evaluates the agent identifier against its own trusted set. That final check matters: a valid token identifies its caller, but the application still decides which protected resources that caller may use."
+    },
+    {
+      "heading": "Shared service accounts are a different model",
+      "text": "Google contrasts agent identities with conventional service accounts. The identities are not shared across workloads by default, cannot be impersonated and do not allow developers to create long-lived service-account keys. The documentation also describes certificate-bound access tokens for Google Cloud calls. These properties put the workload itself into the authentication design. For an application with several agents, that means their identities can remain distinct even when they serve the same user."
+    }
+  ],
+  "buildersNote": "Before a pilot, classify 3 tool calls: one using the agent’s authority, one using a user’s delegated access and one calling an external API. Record the required scope and receiver-side authorization rule for each.",
+  "claims": [
+    {
+      "text": "Google announced Auth Manager as generally available on November 4; external Agent Identity JWT support remains in preview.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Delegated requests are governed by both agent policies and the user’s permissions and consented OAuth scopes.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The announcement does not establish that adopting the service eliminates credential theft or incorrect authorization.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Helping you build and defend at machine-speed in the agentic era",
+      "publisher": "Google Cloud",
+      "url": "https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "What's new in IAM: Security, governance, and runtime defense",
+      "publisher": "Google Cloud",
+      "url": "https://cloud.google.com/blog/products/identity-security/whats-new-in-iam-security-governance-and-runtime-defense",
+      "date": "2026-05-06"
+    },
+    {
+      "title": "Agent Identity overview",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/iam/docs/agent-identity-overview",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Identity delegation architecture",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/iam/docs/identity-delegation-architecture",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Authenticate to external services using an agent's own identity",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/iam/docs/auth-agent-own-identity-external",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "Your agent needs its own identity.",
+    "voiceover": "[matter-of-fact] Your agent needs its own identity. Google made Auth Manager generally available. Its design separates three identity contexts, while external identity tokens remain in preview. Access still needs authorization.",
+    "short": "Google made agent Auth Manager generally available on November 4. Its design separates 3 identity contexts; external identity tokens remain in preview.",
+    "long": "Google moved agent Auth Manager to general availability, with a managed credential vault controlled through cloud permissions. The design separates 3 contexts: the user, the agent and delegated access.\n\nExternal identity tokens are a separate preview. A receiving service can verify an agent’s signed identity without a permanent API key, then apply its own access rules. Credential management and authorization remain distinct decisions.",
+    "take": "We think agent access should be traceable to a specific workload and, when relevant, a consenting user. A valid identity token is evidence of who called, not permission to do anything.",
+    "keyFacts": [
+      "Auth Manager: generally available from the November 4 announcement",
+      "3 identity contexts: user, agent and delegated",
+      "External JWT identity support: November 4 preview"
+    ],
+    "hashtags": [
+      "GoogleCloud",
+      "AgentIdentity",
+      "AIAgents",
+      "CloudSecurity"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
