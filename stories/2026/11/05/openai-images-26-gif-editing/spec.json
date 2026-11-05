@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "portrait",
+  "headline": [
+    "OPENAI ADDS",
+    "GIFS TO",
+    "IMAGES 2.6"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 51105,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "format": 2,
+  "slug": "openai-images-26-gif-editing",
+  "kind": "story",
+  "topic": "models",
+  "title": "OpenAI adds GIFs and editing controls with Images 2.6",
+  "titleAccent": "Images 2.6",
+  "dek": "Two API models split speed from precision, while animated output and markup-guided edits extend the image workflow.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T01:10:14Z",
+  "lede": "OpenAI released Images 2.6 on November 4 across ChatGPT, Codex and its API, adding GIF creation and new editing controls. The update gives creative applications more output formats and a separate choice between fast drafts and detailed work.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "4 November 2026"
+    },
+    {
+      "label": "API models",
+      "value": "Flare and Sunburst"
+    },
+    {
+      "label": "New generation formats",
+      "value": "SVG and animated GIF"
+    },
+    {
+      "label": "Editing control",
+      "value": "Image markup"
+    },
+    {
+      "label": "Speed claim",
+      "value": "50% faster, according to OpenAI"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Two models divide the workload",
+      "text": "OpenAI positions Flare for quick generation and Sunburst for more demanding work. It says Flare can produce a low-quality image in as little as six seconds. Sunburst targets detail and consistency at medium and high quality. The company also reports a fifty-percent speed improvement for Images 2.6. These choices matter in an image editor because waiting happens repeatedly: a draft becomes a reference, a reference receives an edit, and the result needs another review."
+    },
+    {
+      "heading": "The API gains more than a model name",
+      "text": "The November 4 API changelog lists adjustable complexity alongside the two new model releases. It also records SVG and animated GIF generation, extending the kinds of assets an application can request. Markup-guided editing gives developers a way to direct changes visually. That feature also supports specified Images 2.5 models, so it is not exclusive to the new generation. For an existing integration, these are separate decisions: changing the model, exposing an editing control and supporting another output format each affect different parts of the product. A static image preview and an animation player serve different review tasks."
+    },
+    {
+      "heading": "Editing was already the direction of travel",
+      "text": "The preceding Images 2.5 release, announced September 8, introduced more precise edits and stronger consistency across successive changes. OpenAI also added Sketch, image comments, templates and prompt sharing in ChatGPT. Those features let people communicate a composition or point to a change without describing everything in a fresh paragraph. Its earlier API family already separated Flare from Sunburst. The November release therefore continues an established split between quick iteration and detailed production work. The difference now includes animated output and additional controls, alongside the model update. The product is moving through a sequence of editing steps rather than ending with the first generated picture."
+    },
+    {
+      "heading": "Competing families also separate precision and throughput",
+      "text": "Microsoft outlined a similar division on September 4 when it expanded MAI-Image-2.6 with a Flash version. Its announcement positioned the main model for precision and Flash for latency-sensitive, high-throughput applications. Both supported editing with multiple reference images, web grounding and dynamic aspect ratios. Microsoft offered them through its playground and in public preview through Foundry. The shared direction is a choice of operating modes within one image family. OpenAI’s November addition puts animated GIF generation into that discussion as well. For software builders, model selection now sits alongside asset format, editing controls and the number of revision steps a user needs."
+    }
+  ],
+  "buildersNote": "Run a 20-image pilot with the same reference assets: 10 fast drafts and 10 detailed edits. Record time to an accepted result and the number of retries. Review animation playback separately from still-image quality. Keep a separate count of edits that changed an element meant to stay fixed.",
+  "claims": [
+    {
+      "text": "The November 4 API changelog lists Flare, Sunburst, adjustable complexity, SVG generation and animated GIF generation.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "OpenAI reports Images 2.6 is 50% faster and says low-quality Flare output can take as little as six seconds.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The launch does not establish those latency figures for a particular application, nor specify a detailed benchmark baseline.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Images 2.6",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-images-2-6/",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Changelog",
+      "publisher": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Introducing ChatGPT Images 2.5",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+      "date": "2026-09-08"
+    },
+    {
+      "title": "Pushing the quality-cost frontier with MAI-Image-2.6",
+      "publisher": "Microsoft AI",
+      "url": "https://microsoft.ai/news/pushing-the-quality-cost-frontier-with-mai-image-2-6/",
+      "date": "2026-09-04"
+    }
+  ],
+  "social": {
+    "priority": 4,
+    "hook": "The next image can move.",
+    "voiceover": "[matter-of-fact] The next image can move. OpenAI released Images two point six with animated GIF generation. Two API models separate speed from detail. Application-level latency still needs testing.",
+    "short": "OpenAI adds GIF generation and more editing controls with Images 2.6. Application-level latency still needs testing.",
+    "long": "OpenAI’s Images 2.6 release adds GIF generation and adjustable complexity. Markup-guided editing also supports selected 2.5 models.\n\nSeptember’s Images 2.5 launch had already introduced Sketch and image comments. The new release extends that editing workflow into moving assets. Application-level latency remains unestablished.",
+    "take": "We see the useful change in the whole editing workflow: choosing a model, directing a revision and producing the format the application needs. Time to an accepted asset matters more than time to a first draft.",
+    "keyFacts": [
+      "2 API models: Flare and Sunburst",
+      "November 4 release adds animated GIF and SVG generation",
+      "Markup-guided editing also supports selected Images 2.5 models"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "ImageGeneration",
+      "CreativeTools",
+      "GenerativeMedia"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
