@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "COGNITION",
+    "CHEAPER",
+    "CODING"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Cognition",
+      "logo": "cognition.svg"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 51113,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated",
+    "cognition.svg": "https://devin.ai/assets/brand/logos/cognition/symbol-light.svg"
+  }
+}

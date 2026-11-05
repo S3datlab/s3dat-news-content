@@ -1,0 +1,116 @@
+{
+  "format": 2,
+  "slug": "cognition-swe2-flash-cost",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Cognition releases SWE-2 Flash for cheaper coding",
+  "titleAccent": "cheaper coding",
+  "dek": "The new model adds a lower-cost option in Devin. Its release separates access to a coding assistant from access to the model weights.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T13:14:47Z",
+  "lede": "Cognition released SWE-2 Flash in Devin Desktop and CLI on November 4. The company is offering the coding model free through November 30.",
+  "facts": [
+    {
+      "label": "Base model",
+      "value": "Inkling-Small"
+    },
+    {
+      "label": "Parameters",
+      "value": "276B total, 12B active"
+    },
+    {
+      "label": "Predecessor",
+      "value": "SWE-2, launched September 10"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A smaller model with restricted weights",
+      "text": "Cognition says Flash costs one-fifth as much as SWE-2. It cites cybersecurity risks in withholding public weights. Cognition added mid-training before reinforcement learning, then trained on a broader set of software tasks. The launch distinguishes product access from model ownership. A planned program would share weights with selected partners and researchers, rather than providing a public download."
+    },
+    {
+      "heading": "The starting model was released in July",
+      "text": "Thinking Machines Lab released Inkling-Small on July 30 with publicly available weights and fine-tuning through Tinker. Its architecture activates a fraction of its parameters for each token. That design separates the total model size from the portion doing work on a particular step. The release also exposed adjustable thinking effort, letting users trade additional computation for more deliberation. Flash builds on that starting point through Cognition’s additional training. The distinction matters for provenance: a base model supplies the initial capabilities, while subsequent training changes the behavior offered in a finished coding product."
+    },
+    {
+      "heading": "The predecessor made efficiency part of training",
+      "text": "Cognition introduced SWE-2 on September 10 using Kimi K3 as its base. That larger model has 2.8 trillion parameters. Its training included a penalty for computational expense, making efficiency part of the objective rather than only an inference setting. The company also described different behavior at medium, high and maximum effort. More effort can buy additional exploration and planning instead of merely producing a longer answer. This history puts the new release in a continuing product direction: engineering assistants need a range of cost and capability choices, because a small edit and a difficult investigation are different workloads."
+    },
+    {
+      "heading": "Devin supplies the working environment",
+      "text": "Devin Desktop launched on June 2 with an Agent Command Center for local and cloud agents. Spaces group related work and share context, while the retained editor supports the existing Windsurf workflow. The command center also connects compatible agents through the Agent Client Protocol. That puts model selection inside an environment containing repositories, running sessions and review work. A coding model is therefore only one part of what a developer uses. The surrounding software still determines where a task runs, how its changes appear and how another person can inspect the result."
+    },
+    {
+      "heading": "Completed work is the useful unit",
+      "text": "Cognition’s September 11 Fusion announcement explains another part of this cost problem. A lead model plans and reviews, while a sidekick implements and tests with its own persistent context. That division makes the expense of retries and review visible alongside generation. A cheap implementation that repeatedly returns to the lead can consume more expensive work elsewhere. The relevant comparison is the cost of reaching an accepted change, not just the cost of producing its first attempt."
+    }
+  ],
+  "buildersNote": "Use 10 representative repository tasks for a trial. Record accepted changes, elapsed time, retries and review minutes. Keep the same tests and acceptance criteria for each model, then compare cost per accepted change.",
+  "claims": [
+    {
+      "text": "Cognition claims one-fifth the price and three times the speed of SWE-2; its displayed speed replay is simulated, not independent task-latency evidence.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "An exact partner-access date is unspecified; public weights are not available.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing SWE-2 Flash",
+      "publisher": "Cognition",
+      "url": "https://cognition.com/blog/swe-2-flash",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Introducing Inkling-Small",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/news/inkling-small/",
+      "date": "2026-07-30"
+    },
+    {
+      "title": "Introducing SWE-2: Pushing the Pareto Frontier",
+      "publisher": "Cognition",
+      "url": "https://cognition.com/blog/swe-2",
+      "date": "2026-09-10"
+    },
+    {
+      "title": "Introducing Devin Desktop",
+      "publisher": "Cognition",
+      "url": "https://cognition.com/blog/introducing-devin-desktop",
+      "date": "2026-06-02"
+    },
+    {
+      "title": "Introducing Fusion in Devin Desktop & CLI",
+      "publisher": "Cognition",
+      "url": "https://cognition.com/blog/local-fusion",
+      "date": "2026-09-11"
+    }
+  ],
+  "social": {
+    "hook": "A cheap first attempt can still cost more to finish.",
+    "voiceover": "[matter-of-fact] A cheap first attempt can still cost more to finish. Cognition released a smaller coding model. Its earlier two-model workflow shows why retries and review belong in the same budget.",
+    "short": "Cognition released SWE-2 Flash in Devin on November 4. The coding model is available to use; public weights remain unavailable.",
+    "long": "Cognition added a smaller coding model to Devin. Its September 11 Fusion announcement explains why model prices need context: one model plans and reviews while another implements and tests.\n\nRetries can shift expense between those jobs. We would measure the cost of an accepted change before choosing a model for recurring work.",
+    "take": "We would compare accepted changes. Cheap generation is useful only when the code passes the same tests.",
+    "keyFacts": [
+      "Free trial through November 30",
+      "276B parameters, 12B active in Inkling-Small",
+      "SWE-2 predecessor launched September 10"
+    ],
+    "hashtags": [
+      "Cognition",
+      "CodingAgents",
+      "Devin"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}
