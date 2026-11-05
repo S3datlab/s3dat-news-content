@@ -42,7 +42,8 @@ plan with the story, so the server only paints and animates it.
 - **No text or logos are painted.** Name only a blank surface for each logo; the real logo is
   added in code. Screens and papers stay blank.
 - **Reels:** a medium shot with the cast large (faces in the upper half); the captions cover the
-  lower part of the frame.
+  lower part of the frame, so the logo surface sits in the upper half too (a sign or panel behind
+  the cast), never on a foreground desk or floor.
 
 The server may correct a plan that breaks these rules. Without `scene.md` the server plans the
 scene itself (slower and it uses more of its quota).
