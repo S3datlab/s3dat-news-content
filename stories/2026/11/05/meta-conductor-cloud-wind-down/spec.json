@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "CONDUCTOR",
+    "JOINS META",
+    "CLOUD CLOSES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Meta",
+      "icon": "meta"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 1205,
+  "sources": {}
+}

@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "meta-conductor-cloud-wind-down",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Conductor joins Meta and sets a November 20 cloud shutdown",
+  "titleAccent": "joins Meta",
+  "dek": "Conductor is closing its hosted coding workspaces, with a read-only week before deletion begins and a longer transition for local users.",
+  "eventDate": "2026-11-04",
+  "publishedAt": "2026-11-05T12:14:35Z",
+  "lede": "Conductor announced on November 4 that it is joining Meta and will shut down Conductor Cloud on November 20. Developers face an earlier deadline for active work: hosted workspaces become read-only on November 13.",
+  "facts": [
+    {
+      "label": "Company",
+      "value": "Conductor joins Meta"
+    },
+    {
+      "label": "Cloud read-only",
+      "value": "13 November 2026"
+    },
+    {
+      "label": "Cloud shutdown",
+      "value": "20 November 2026"
+    },
+    {
+      "label": "Local app support",
+      "value": "New models and critical fixes until early 2027"
+    }
+  ],
+  "body": [
+    {
+      "text": "The transition has already closed the front door. New users can no longer register or download the app, and existing free users cannot upgrade. Current Pro users retain their paid features without charge. Active subscribers will receive refunds. During the read-only period, users can inspect old chats and export their data, while new messages stop. Cloud data deletion begins with the shutdown. The local application has a longer runway, with new models and critical fixes continuing until early 2027. The local app starts winding down then too. Conductor hopes to offer a replacement."
+    },
+    {
+      "heading": "A workspace is more than a model",
+      "text": "Conductor’s March 30 company update described its original product as a way to coordinate several coding agents on a MacBook. Each agent worked in an isolated copy of the codebase. Developers could inspect the changes and merge the results, without several agents writing into the same working files. That arrangement put the application between the developer, the repository and the agents doing the work. The interface organized parallel tasks and their review. Moving away from it therefore changes the place where work is coordinated, even when the underlying coding agent remains familiar."
+    },
+    {
+      "heading": "What the hosted service supplied",
+      "text": "The July 30 cloud launch moved that work into isolated microVMs with repositories and dependencies already installed. Agents could continue while a laptop was closed. Shared workspace links let teammates see activity and prompt agents together. An accompanying API could create workspaces, send prompts and read replies, giving teams a way to build their own interfaces or start tasks from bots. Those capabilities explain why copying a repository is only part of replacing the service. A working replacement also needs somewhere to run the application, the dependencies that make its tests meaningful and the integrations that start or observe agent work."
+    },
+    {
+      "heading": "An alternative has to run the project",
+      "text": "Boxes.dev responded on November 4 with a migration offer and a different environment model. It says a prepared Template box holds the application, tools, databases and services, then becomes the snapshot copied for each task. Its migration guide separates the initial environment setup from startup commands run on each new devbox. It also calls for preserving install scripts, repository setup commands and environment requirements. That is a useful distinction for the transition: saving code preserves the project, while reproducing its execution environment determines whether an agent can actually build and test it elsewhere."
+    }
+  ],
+  "buildersNote": "Before November 13, test one representative project and its automated task triggers in its replacement environment. Keep a separate export before November 20. Release 0.93.0 documents Transfer to local for a workspace and its chats, plus Settings → Account → Export data for the full archive.",
+  "claims": [
+    {
+      "text": "Conductor published November 13 and November 20 as its cloud transition deadlines.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Release 0.93.0 documents workspace transfer and a full-data export route.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The replacement product’s features, price and firm launch date remain unspecified.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Conductor is joining Meta",
+      "publisher": "Conductor",
+      "url": "https://www.conductor.build/announcement",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Conductor is joining Meta",
+      "publisher": "Conductor",
+      "url": "https://www.conductor.build/changelog/0.93.0-conductor-is-joining-meta",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Conductor’s Series A",
+      "publisher": "Conductor",
+      "url": "https://www.conductor.build/blog/series-a",
+      "date": "2026-03-30"
+    },
+    {
+      "title": "Introducing Conductor Cloud",
+      "publisher": "Conductor",
+      "url": "https://www.conductor.build/changelog/0.78.0-introducing-conductor-cloud",
+      "date": "2026-07-30"
+    },
+    {
+      "title": "Conductor Cloud is shutting down: how to move to boxes.dev",
+      "publisher": "Boxes.dev",
+      "url": "https://boxes.dev/blog/conductor-cloud-shutdown",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "Your coding workspace now has a shutdown date.",
+    "voiceover": "[matter-of-fact] Your coding workspace now has a shutdown date. Conductor is joining Meta. Its cloud stops accepting messages on November thirteenth. Exporting the project is only part of moving the work.",
+    "short": "Conductor joins Meta and will close its cloud on November 20. Release 0.93.0 includes a local transfer route. The successor’s features remain unspecified.",
+    "long": "Conductor is winding down its cloud after joining Meta. Its July cloud launch put agents in isolated microVMs, with repositories and dependencies installed. Work could continue after the laptop closed, and teammates could prompt agents together.\n\nThat is the capability a replacement must reproduce. A saved repository alone does not preserve the environment or the workflow around it. The successor’s features remain unspecified.",
+    "take": "We think the migration test is a running project, not a downloaded archive. A replacement earns its place when the same build and tests work there.",
+    "keyFacts": [
+      "13 November: cloud becomes read-only",
+      "20 November: cloud shuts down",
+      "0.93.0 documents local workspace transfer"
+    ],
+    "hashtags": [
+      "Conductor",
+      "CodingAgents",
+      "DeveloperTools",
+      "Meta"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
