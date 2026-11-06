@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "GOOGLE CUTS",
+    "VIDEO PRICES",
+    "30%"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 61115,
+  "sources": {}
+}

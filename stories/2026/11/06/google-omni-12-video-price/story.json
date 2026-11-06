@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "google-omni-12-video-price",
+  "kind": "story",
+  "topic": "models",
+  "title": "Google cuts Omni video pricing 30% and extends clips to 15 seconds",
+  "titleAccent": "cuts Omni video pricing 30%",
+  "dek": "Omni 1.2 Flash reaches general availability with a lower 720p rate, conversational editing and separate duration rules for keyframes and extensions.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-06T15:10:07Z",
+  "lede": "Google released Gemini Omni 1.2 Flash on November 5, cutting its published 720p video price by 30%. The model also raises the ordinary generation limit from ten to fifteen seconds, giving developers a longer clip per request.",
+  "facts": [
+    {
+      "label": "720p generation",
+      "value": "$0.07 per second"
+    },
+    {
+      "label": "Standard duration",
+      "value": "3–15 seconds"
+    },
+    {
+      "label": "Extension segment",
+      "value": "Adds 3–10 seconds"
+    },
+    {
+      "label": "Cloud API",
+      "value": "Interactions API"
+    },
+    {
+      "label": "Vids free allocation",
+      "value": "Up to three 15-second videos monthly"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A longer clip changes the unit of work",
+      "text": "The new release lets callers choose duration in one-second increments. Google also offers follow-up instructions for changing an existing clip, including its lighting, background or product. That separates the initial generation from later revisions. A fifteen-second spot can now fit inside one ordinary generation, while the previous model stopped at ten seconds. This reduces the need to join shorter clips for that particular length. It does not turn a series of unrelated prompts into a continuous production. The practical change is a larger single-shot allowance alongside an editing conversation that can retain the earlier clip as its starting point."
+    },
+    {
+      "heading": "Cloud access has a specific interface",
+      "text": "The model documentation identifies gemini-omni-1.2-flash as a generally available release. It supports the Interactions API, with horizontal 16:9 and vertical 9:16 output. A prompt can include up to ten reference images, while an input video for editing can run up to fifteen seconds. These are separate controls: reference count describes how much visual guidance enters a request, and duration describes how long the resulting shot can run. The published model table also separates ordinary generation from first-and-last-frame generation and extensions. That distinction matters for applications which already assemble videos around fixed endpoints. A longer headline duration does not automatically lengthen every stage of such a pipeline."
+    },
+    {
+      "heading": "Resolution and capacity remain separate choices",
+      "text": "Google Cloud describes a workflow that starts with 360p or 720p drafts and upscales selected results to 1080p or 4K. This makes resolution another production decision after the initial composition. The service offers both usage-based access and Provisioned Throughput, giving applications distinct ways to obtain capacity. Google also applies SynthID watermarking to generated output. Its launch post includes endorsements from creative platforms already using the model. Those examples describe commercial integrations, rather than a controlled comparison of the quality or expense of finished videos."
+    },
+    {
+      "heading": "Vids supplies a smaller entry point",
+      "text": "Google is putting the release inside Vids as well as developer services. Its November 5 announcement gives Google-account holders and Workspace subscribers up to three fifteen-second generations per month at no cost. This allocation belongs to the video-creation application; it is not an API credit. For someone making an occasional presentation clip, that provides a different entry point from building a generation service. The distinction also changes the relevant purchase decision. A small monthly allowance can cover an experiment inside an editor, while recurring software-generated video depends on the paid model interface and its published limits."
+    }
+  ],
+  "buildersNote": "At $0.07 per second, 100 fifteen-second 720p outputs imply about $105 in video-output charges before inputs and other operations. Test ten representative shots and count accepted results, revisions and total charges before budgeting production.",
+  "claims": [
+    {
+      "text": "The announced 720p rate is $0.07 per second, 30% below Omni 1.1.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "First-and-last-frame generation caps at ten seconds; extensions add 3–10 seconds. On Google Cloud, GenerateContent, batch inference and function calling are unsupported.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "Audio references require allowlisting. Better consistency and speech quality are Google claims, not independently established results.",
+      "status": "claimed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Gemini Omni 1.2 Flash: Fast, cost-effective, and reliable video generation and editing now generally available",
+      "publisher": "Google Cloud",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Generate longer AI videos with Omni 1.2 Flash in Google Vids at no cost.",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/workspace/omni-1-2-flash-google-vids/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Gemini Omni 1.2 Flash",
+      "publisher": "Google Cloud Documentation",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/omni-1-2-flash",
+      "date": "2026-11-06"
+    }
+  ],
+  "social": {
+    "hook": "Longer clips now cost less per second.",
+    "voiceover": "[matter-of-fact] Longer clips now cost less per second. Google cut Omni video pricing by thirty percent. Ordinary generation reaches fifteen seconds. Keyframe shots cap at ten, while extensions add shorter segments.",
+    "short": "Google cut Omni 1.2 Flash video pricing to $0.07 per second at 720p. Ordinary clips reach 15 seconds; first-and-last-frame shots cap at 10, and extensions add 3–10 seconds.",
+    "long": "Google released Omni 1.2 Flash with a 30% lower 720p generation rate. A fifteen-second output works out to about $1.05 in video-output charges before inputs and other operations. The model is generally available through the Gemini API and Google Cloud.\n\nThe integration details matter: Cloud documents Interactions API support, while first-and-last-frame shots retain a ten-second ceiling and extensions add three to ten seconds. Google claims better consistency, which we have not independently tested.",
+    "take": "We would budget around accepted clips, not generated seconds. Revisions and rejected outputs can consume the savings from a lower headline rate.",
+    "keyFacts": [
+      "720p generation: $0.07 per second",
+      "Ordinary generation: 3–15 seconds",
+      "Extensions add 3–10 seconds"
+    ],
+    "hashtags": [
+      "GeminiOmni",
+      "VideoGeneration",
+      "GoogleVids"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}
