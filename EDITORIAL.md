@@ -17,20 +17,33 @@ people stop for (`SOCIAL.md`, priority).
 ## Cadence
 
 - One run every three hours, around the clock: 00, 03, 06, 09, 12, 15, 18 and 21 UTC (eight runs
-  a day; Sedat's decision, 5 November 2026). Each run picks the single strongest development of the
-  last three hours and publishes at most one piece; space `publishedAt` at least three hours apart.
+  a day; Sedat's decision, 5 November 2026).
+- **Every run publishes exactly one piece. A run is never skipped** (Sedat's decision, 6 November
+  2026). Gather the candidates, compare them and publish the best one.
+- Candidates, in this order of preference:
+  1. Developments announced since the last published piece, up to 48 hours back, that we have not
+     covered yet.
+  2. A development from the last two days that we have not covered yet, even if it was announced
+     before the last piece.
+  3. An `analysis` or `explained` piece that today's news makes timely: a comparison across
+     recent releases, a pattern over the last weeks, or the idea behind a current story.
+  There is always a best candidate. A quiet stretch means a smaller story or an analysis, not an
+  empty run. The quality rules below still apply in full: pick a candidate you can source and
+  write properly.
+- Never publish twice about the same development unless something new happened; check the last
+  published pieces before choosing.
+- Space `publishedAt` at least three hours apart and never publish more than one piece per run.
   The video pipeline makes one Meta Vibes video per piece, and Meta's generation limit was hit at
   about 30 generations in 15 hours, so never publish more often than this.
-- Skip the run when there is nothing worth a full piece. Volume is never the goal: one strong
-  analysis beats three thin stories.
 - Never present an old announcement as new. Put the announcement date in `eventDate`. A `story`
   must be at most two days old; anything older is an `analysis` or `explained` with a reason to
-  exist today, or it is skipped. The site shows "Announced" next to "Published".
+  exist today, or it is not a candidate. The site shows "Announced" next to "Published".
 
 ## Kinds
 
 We do not publish short items. There are no briefs from 1 November 2026 18:00 UTC: a
-development too small for a full story is skipped. Most pieces are analyses: what happened,
+development too small for a full story is not a candidate on its own (it can still feed an
+analysis). Most pieces are analyses: what happened,
 how it compares with the closest alternatives, and what it means for the sector and for people
 who build software. The sections each kind needs are in `stories/README.md`.
 
@@ -113,7 +126,8 @@ generated.
 
 Committing a story to `main` publishes it to news.s3dat.com automatically.
 
-1. Research, pick the story, verify sources and dates. Skip the run if nothing deserves a story.
+1. Research, compare the candidates (see Cadence), pick the best one, verify sources and dates.
+   Every run publishes one piece; never skip a run.
 2. Write `story.json` and `spec.json` (engine 2), choose a template that differs from the last
    published story, generate the cut-outs (and art for `cinematic`), and if you can, preview with
    `render.mjs --frames` and run `python3 scripts/validate.py --spec-only <folder>`.
