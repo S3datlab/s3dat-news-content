@@ -17,5 +17,9 @@
   "cutouts": [],
   "mood": "calm",
   "seed": 61118,
-  "sources": {}
+  "sources": {},
+  "vibes": {
+    "banner": true,
+    "reel": false
+  }
 }
