@@ -1,0 +1,124 @@
+{
+  "format": 2,
+  "slug": "openai-gpt6-cyber-approved-access",
+  "kind": "story",
+  "topic": "models",
+  "title": "OpenAI restricts GPT-6 Cyber to approved security teams",
+  "titleAccent": "approved security teams",
+  "dek": "The security model adds separate approval and infrastructure controls, with published API prices of $20 for input and $100 for output per million tokens.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-06T21:10:24Z",
+  "lede": "OpenAI released GPT-6 Cyber on November 5 to selected security customers, with separate model approval required through Daybreak Red. The launch pairs stronger vulnerability-testing capabilities with controls over who can use them and where their requests originate.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "November 5, 2026"
+    },
+    {
+      "label": "Access",
+      "value": "Daybreak Red plus model approval"
+    },
+    {
+      "label": "Input / output",
+      "value": "$20 / $100 per million tokens, short context"
+    },
+    {
+      "label": "Context window",
+      "value": "1,050,000 tokens"
+    },
+    {
+      "label": "Output limit",
+      "value": "128,000 tokens"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A model release behind two approvals",
+      "text": "Daybreak's access guide separates membership in the security program from permission to use this particular model. Red approval covers GPT-5.6 Cyber, while GPT-6 Cyber needs an additional decision. The program is intended for work on systems a customer owns, operates or has explicit permission to test. It excludes customer-facing applications, downstream product traffic and third-party access. That distinction affects how a security team can integrate the model: an internal investigation and a public scanning service are different deployment cases. Blue remains a separate tier for defensive workflows on supported general-purpose models, without access to the specialized Cyber models."
+    },
+    {
+      "heading": "Capabilities and boundaries are tested separately",
+      "text": "OpenAI reports a 48.5% score on ExploitGym, compared with 32.1% for GPT-5.6 Cyber. That benchmark tests exploitation of specified vulnerabilities. A separate test places tempting, out-of-scope supporting services beside an assigned target. The company reports that the new model avoided exploiting those services in 99.93% of cases without its deployment prompt, and in every tested case with the prompt. These measurements answer different questions: whether a system can complete a security task, and whether it stays inside the task's boundaries. Improving the first does not establish the second."
+    },
+    {
+      "heading": "The controls extend beyond the prompt",
+      "text": "The November 5 system card classifies GPT-6 Cyber as Critical for cybersecurity under OpenAI's Preparedness Framework. It describes identity checks and organizational requirements including single sign-on, multifactor authentication and an API IP allowlist. Customers using Zero Data Retention generally also need Private Safety Processing for automated review. The card describes training designed to preserve the researcher's scope and discourage unrequested actions. It also reports uneven alignment results against GPT-6 Astra: better performance on some behaviors does not carry across every test. Access restrictions and evaluation results therefore sit alongside each other in the deployment account."
+    },
+    {
+      "heading": "The API exposes a separate cost profile",
+      "text": "The model page lists a 1,050,000-token context window and up to 128,000 output tokens. Standard short-context pricing is $20 per million input tokens and $100 per million output tokens, with cached input priced separately at $2. Those rates distinguish reading a large case file from generating a long investigation. The page lists text output, text and image input, function calling and structured outputs. It does not offer fine-tuning. Teams can therefore connect the model to a defined tool workflow and request structured findings, with the scope of each operation defined by the surrounding application."
+    }
+  ],
+  "buildersNote": "For an approved pilot, budget one million uncached input tokens and 100,000 output tokens at $30 in standard short-context token charges, before tools or other fees. Test ten authorized cases in an isolated environment and record boundary violations separately from valid findings.",
+  "claims": [
+    {
+      "text": "The access guide requires separate GPT-6 Cyber approval beyond Daybreak Red membership.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "OpenAI reports 48.5% on ExploitGym and 100% scope adherence with the deployment prompt in its test, not a guarantee for arbitrary deployments.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The system card specifies single sign-on, multifactor authentication and API IP allowlisting for access.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Independent production reliability and the timing of broader access are not established by the launch materials.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "GPT‑6 Cyber: Advancing the frontier of aligned cybersecurity agents",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-gpt-6-cyber/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "GPT-6-Cyber Model",
+      "publisher": "OpenAI API",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-cyber",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "GPT-6 Cyber System Card",
+      "publisher": "OpenAI",
+      "url": "https://deploymentsafety.openai.com/gpt-6-cyber",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "OpenAI Daybreak - Trusted Access for Cyber overview",
+      "publisher": "OpenAI Help Center",
+      "url": "https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview",
+      "date": "2026-11-05"
+    }
+  ],
+  "social": {
+    "hook": "A stronger security model needs a narrower permission slip.",
+    "voiceover": "[measured] A stronger security model needs a narrower permission slip. OpenAI released its new Cyber model to approved teams. It requires two approvals. Production reliability remains unproven independently.",
+    "short": "OpenAI released GPT-6 Cyber to selected Daybreak Red teams. Separate model approval is required; the company reports 48.5% on its ExploitGym security benchmark.",
+    "long": "OpenAI restricted its new security model to approved organizations. GPT-6 Cyber requires Daybreak Red access and a separate model approval, with organizational security controls alongside the model's instructions.\n\nThe system card names single sign-on, multifactor authentication and API IP allowlisting. We see the access boundary as part of the product. Independent production reliability is still unestablished.",
+    "take": "We put verified findings and respected boundaries ahead of a higher exploit score. Capability alone does not make a security agent ready for unattended work.",
+    "keyFacts": [
+      "November 5: GPT-6 Cyber announced",
+      "Daybreak Red plus separate GPT-6 Cyber approval",
+      "48.5% on OpenAI’s ExploitGym evaluation",
+      "November 5 system card: Critical cybersecurity rating"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "Cybersecurity",
+      "SecurityAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}

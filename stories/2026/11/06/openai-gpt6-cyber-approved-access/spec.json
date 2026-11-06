@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "GPT-6 CYBER",
+    "ACCESS BY",
+    "APPROVAL"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "mood": "calm",
+  "seed": 610621,
+  "sources": {}
+}
