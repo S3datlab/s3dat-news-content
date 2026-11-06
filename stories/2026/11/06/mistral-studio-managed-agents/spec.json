@@ -1,0 +1,21 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "MISTRAL",
+    "MANAGED",
+    "AGENTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Mistral",
+      "icon": "mistralai",
+      "color": "#FF7000"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 61118,
+  "sources": {}
+}

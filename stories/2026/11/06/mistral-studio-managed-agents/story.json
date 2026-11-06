@@ -1,0 +1,120 @@
+{
+  "format": 2,
+  "slug": "mistral-studio-managed-agents",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Mistral opens managed agents with three execution modes",
+  "titleAccent": "three execution modes",
+  "dek": "Studio adds durable agent execution, deployment tools and evaluations. Existing connector and prompt controls determine how those agents reach company systems.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-06T18:10:08Z",
+  "lede": "Mistral opened a public preview of Managed Agents on November 5, with one Python codebase supporting three execution modes. The Studio expansion moves long-running agent execution into a managed service while retaining local and self-hosted options.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "November 5, 2026"
+    },
+    {
+      "label": "Execution modes",
+      "value": "3: in-process, self-hosted, managed"
+    },
+    {
+      "label": "Agent package",
+      "value": "mistralai-agents"
+    },
+    {
+      "label": "Release stage",
+      "value": "Public preview"
+    },
+    {
+      "label": "HTTP connectors",
+      "value": "Separate private preview"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Execution becomes a deployment choice",
+      "text": "The Agents SDK separates an agent definition from where it runs. Developers can execute it inside their application, serve a worker themselves, or deploy it to Mistral. For deployed agents, the release notes describe persistent sessions that continue after an application exits and recover from the last completed step after a crash. A tool call can wait for approval, then continue later. This changes the unit a developer operates: a stored task with a lifecycle, rather than a single model response. Studio also records model and tool calls as traces, making individual turns inspectable. Local development remains a separate execution choice."
+    },
+    {
+      "heading": "The platform connects actions to applications",
+      "text": "The broader Studio announcement connects agents, workflows and employee-facing applications. Agents can use skills, code sandboxes and delegated subagents, while workflows coordinate fixed steps and human decisions. Applications provide the interface through which staff use those processes. Mistral supplies hosting, authentication and access controls, and describes deployments across its own infrastructure, customer clouds and on-premises environments. That brings several operational responsibilities into the platform instead of leaving every application team to assemble them separately."
+    },
+    {
+      "heading": "Permissions predate the new runtime",
+      "text": "The access controls underneath this release have their own history. On June 24, Mistral introduced organization and workspace controls that can disable individual connector tools. An administrator can leave a connection available while blocking its write operations. Scoped keys and service accounts distinguish automated work from a developer’s personal identity. Multi-account connectors also separate logins to the same service. These controls matter when an agent continues running after its initiating user leaves: connectivity alone does not establish which identity should act or which operations it should perform. The June release also introduced a connector debugger that checks eleven stages of establishing an MCP connection."
+    },
+    {
+      "heading": "Instructions have a deployment history too",
+      "text": "Mistral added versioned prompts and skills to Studio on July 9. Each version is fixed, attributed to an owner and recorded in a change history. Teams can compare versions, roll back a change and promote assets through staging and production labels. The company describes links between operational traces and the instruction version behind an output. This supplies a second record alongside the new execution history: what the agent was told, as well as which tools it called. For an investigation into unexpected behavior, both records matter. A successful tool call can still carry out the wrong instruction, and an instruction change can affect many sessions without changing application code."
+    }
+  ],
+  "buildersNote": "Before moving a worker, run ten saved tasks in two modes and compare outputs, approval pauses and recovery after interruption. Keep one task with a blocked write operation. Record runtime and model charges separately.",
+  "claims": [
+    {
+      "text": "The November 5 release notes mark Managed Agents as public preview and list three execution modes.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The HTTP API connector release is private preview, unlike Managed Agents; the two availability labels are distinct.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Durable recovery and deployment flexibility are documented vendor capabilities, not independently tested reliability or performance results.",
+      "status": "claimed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Le Chonk brings the brains. Studio puts it to work.",
+      "publisher": "Mistral",
+      "url": "https://mistral.ai/news/build-with-studio/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Release notes",
+      "publisher": "Mistral Docs",
+      "url": "https://docs.mistral.ai/resources/release-notes",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Bringing more control over your connectors",
+      "publisher": "Mistral",
+      "url": "https://mistral.ai/news/more-control-over-connectors/",
+      "date": "2026-06-24"
+    },
+    {
+      "title": "Your Prompts and Skills need a system of record.",
+      "publisher": "Mistral",
+      "url": "https://mistral.ai/news/manage-prompts-and-skills-in-studio/",
+      "date": "2026-07-09"
+    }
+  ],
+  "social": {
+    "hook": "The agent keeps running after your app closes.",
+    "voiceover": "[measured] The agent keeps running after your app closes. Mistral opened managed agents in public preview, with three execution modes. Approval pauses and recovery are documented capabilities, not an independent reliability test.",
+    "short": "Mistral opened Studio Managed Agents in public preview: one Python codebase, three execution modes. Sessions can pause for approval and resume; reliability remains untested independently.",
+    "long": "Mistral added managed agent execution to Studio on November 5. The Python SDK supports running inside an application, on a self-hosted worker or on Mistral infrastructure.\n\nThe deployment choice sits above existing controls: June’s connector permissions restrict individual tools, while July’s versioned prompts identify the instructions behind an output. We have not independently tested the new runtime’s recovery behavior.",
+    "take": "We value recovery that preserves permissions and instruction versions more than a one-command deployment. Moving the worker is only one part of that decision.",
+    "keyFacts": [
+      "November 5: Managed Agents public preview",
+      "3 execution modes from one Python codebase",
+      "June 24: connector tool controls introduced",
+      "July 9: versioned prompts and skills introduced"
+    ],
+    "hashtags": [
+      "Mistral",
+      "AIAgents",
+      "AgentInfrastructure"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}
