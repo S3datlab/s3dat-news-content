@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "inkling-two-small-hosted-release",
+  "kind": "story",
+  "topic": "models",
+  "title": "Thinking Machines releases Inkling 2 Small on Tinker",
+  "titleAccent": "Inkling 2 Small",
+  "dek": "The second-generation model brings image input and hosted fine-tuning, while downloadable weights remain subject to further safety testing.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-07T21:14:15Z",
+  "lede": "Thinking Machines released Inkling 2 Small through Tinker on November 5, with inference and fine-tuning available before downloadable weights. Developers can try the new model now, while deployment outside the hosted service depends on a later release.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "Inkling 2 Small"
+    },
+    {
+      "label": "Parameters",
+      "value": "594B total; 17B active"
+    },
+    {
+      "label": "Context",
+      "value": "Up to 1 million tokens"
+    },
+    {
+      "label": "Inputs and outputs",
+      "value": "Text and images in; text out"
+    },
+    {
+      "label": "Current access",
+      "value": "Tinker inference and fine-tuning"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The size behind the name",
+      "text": "The model card describes a sparse mixture-of-experts transformer with 48 layers, routing each token through eight of 384 experts. Active parameters describe computation for a token; storage must accommodate the full model. Text and images share a representation. Developers therefore face separate decisions about input support, context length and eventual infrastructure. A smaller active count alone does not answer all three."
+    },
+    {
+      "heading": "Customization comes before export",
+      "text": "The launch gives Tinker users a path to test and adapt the model without first operating their own inference infrastructure. The announcement says downloadable checkpoints will arrive alongside the full weights. That makes training access and model portability separate milestones. Thinking Machines intends an Apache 2.0 weight release. For teams that already use Tinker, this preserves the service as the place where an initial evaluation and a customization job can happen."
+    },
+    {
+      "heading": "A change from the first Inkling",
+      "text": "The July 15 Inkling announcement presented a different starting point: full weights were available at launch. That model had 975 billion total parameters and 41 billion active parameters, with native text, image and audio reasoning. Its stated context window already reached one million tokens. Hosted customization therefore predates this release; it is not a new capability invented for the second generation. The older announcement also positioned the family as a base for adaptation across workflows rather than the strongest model on every task. The new release makes the access sequence more important than the family label alone. The original launch demonstrated a model writing a fine-tuning job, running it through Tinker and evaluating the adapted behavior. It also described training across different agent harnesses and randomized tool schemas. Those choices explain why customization belongs in the product story alongside benchmark gains: the intended workflow includes adapting behavior, not simply replacing one chat endpoint."
+    },
+    {
+      "heading": "Why the release is staged",
+      "text": "Thinking Machines' July 31 policy explains why it separates hosted access from public weights. Once distributed, weights cannot be recalled from everyone who downloaded them. Its framework weighs both model capabilities and the surrounding defensive ecosystem. Monitored access and hosted fine-tuning are intermediate steps in that approach. The policy also treats removable refusal behavior differently from durable limits on harmful capabilities. That distinction changes what an open release promises: access to inspect and adapt a model comes with fewer controls over subsequent use. The policy makes testing a release condition, rather than treating a calendar target as sufficient evidence."
+    }
+  ],
+  "buildersNote": "Separate your evaluation into two gates: test hosted task quality now, then check weight availability and export rights before committing to self-hosting. Keep the one-million-token context ceiling separate from your measured memory budget.",
+  "claims": [
+    {
+      "text": "The model card lists 594B total parameters and 17B active parameters",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The new generation improves coding and vision performance",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Downloadable-weight availability and its exact date remain conditional on further safety testing",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Inkling 2 Small",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/news/inkling-2-small/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Inkling 2 Small Model Card",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/model-card/inkling-2-small/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Inkling: Our Open-Weights Model",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/news/introducing-inkling/",
+      "date": "2026-07-15"
+    },
+    {
+      "title": "A Safe Path to Open Weights",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/",
+      "date": "2026-07-31"
+    }
+  ],
+  "social": {
+    "hook": "You can tune it before you can take it home.",
+    "voiceover": "[measured] You can tune it before you can take it home. Thinking Machines released Inkling Two Small for hosted use. Seventeen billion active parameters sit inside a larger model. Downloadable weights come later.",
+    "short": "Thinking Machines released Inkling 2 Small on Tinker: 17B active parameters, image input and hosted tuning. Downloadable weights remain conditional on safety testing.",
+    "long": "Thinking Machines opened hosted access to Inkling 2 Small before releasing its weights. Developers can try and customize the second-generation model through Tinker.\n\nThe original Inkling launched with downloadable weights in July. Its announcement demonstrated a model writing and evaluating its own fine-tuning job. The new release separates that customization workflow from operating the result elsewhere. Weight availability remains conditional on further safety testing.",
+    "take": "We would treat hosted tuning and self-hosting as separate procurement decisions. A planned weight release is not an exportable deployment today.",
+    "keyFacts": [
+      "594B total parameters, 17B active",
+      "Up to 1 million context tokens",
+      "Text and image inputs; text output",
+      "Nov 5 launch through Tinker"
+    ],
+    "hashtags": [
+      "Inkling",
+      "ThinkingMachines",
+      "OpenWeights",
+      "ModelFineTuning"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}

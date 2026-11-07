@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "INKLING 2",
+    "GOES LIVE",
+    "ON TINKER"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Tinker",
+      "logo": "tinker.svg",
+      "color": "#0155bf"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 110721,
+  "sources": {
+    "tinker.svg": "https://github.com/thinking-machines-lab/tinker/blob/main/docs/images/logo.svg"
+  }
+}
