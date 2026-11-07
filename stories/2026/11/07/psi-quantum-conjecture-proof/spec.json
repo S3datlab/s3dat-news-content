@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "PSI REPORTS",
+    "QUANTUM PROOF"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "PSI",
+      "logo": "psi.svg",
+      "color": "#2457b5"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "inspection.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 117151,
+  "sources": {
+    "hero.webp": "generated",
+    "inspection.webp": "generated",
+    "psi.svg": "https://psi.inc/icon.svg"
+  }
+}

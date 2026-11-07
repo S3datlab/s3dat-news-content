@@ -1,0 +1,144 @@
+{
+  "format": 2,
+  "slug": "psi-quantum-conjecture-proof",
+  "kind": "story",
+  "topic": "research",
+  "title": "PSI reports an AI-assisted proof of a quantum speedup conjecture",
+  "titleAccent": "AI-assisted proof",
+  "dek": "PSI released a manuscript and Lean proof files for the Aaronson–Ambainis conjecture, separating a discovery claim from reproducible checks.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-07T15:12:44Z",
+  "lede": "Physical Superintelligence reported an AI-assisted proof of the Aaronson–Ambainis conjecture on November 6, alongside a manuscript and Lean formalization. The result concerns the conditions for large quantum speedups and gives other researchers concrete proof artifacts to inspect.",
+  "facts": [
+    {
+      "label": "Organization",
+      "value": "Physical Superintelligence, or PSI"
+    },
+    {
+      "label": "Released",
+      "value": "6 November 2026"
+    },
+    {
+      "label": "Model",
+      "value": "Non-public Anthropic model, according to PSI"
+    },
+    {
+      "label": "Formalization",
+      "value": "Lean 4.33.0; Mathlib v4.33.0"
+    },
+    {
+      "label": "Scope",
+      "value": "Quantum query complexity on most uniformly random inputs"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A research system with a human author",
+      "text": "PSI says its internal system reached a complete proof during the third day of a run, then improved the result twice. The manuscript describes multiple model instances searching existing work, proposing ideas and coordinating other instances. David Turturean developed the research harness and selected the problem. He also reviewed and edited the model-produced paper and accepts responsibility for its correctness. This is a reported research workflow with a named author, rather than a benchmark score or a public model release. The published materials make the output available even though the model behind the work remains private."
+    },
+    {
+      "heading": "The result measures access to inputs",
+      "text": "The underlying question concerns how often a computer must inspect its input to answer a yes-or-no question. Aaronson and Ambainis linked that question to the influence of individual variables in bounded, low-degree polynomials. Their original paper appeared on arXiv in November 2009. The new manuscript presents a bound that would let an ordinary algorithm approximate a quantum algorithm’s acceptance probability on most uniformly random inputs. The required number of input queries grows polynomially with the quantum query count, for fixed error parameters. That is a statement about access to information; it is not a measurement of a computer’s total running time."
+    },
+    {
+      "heading": "The release includes a verification route",
+      "text": "The repository separates the mathematical statement from the larger proof development. Its statement file imports Mathlib alone, giving reviewers a compact place to compare the encoded claim with the original conjecture. It also supplies source audits, axiom reports and recorded kernel checks. PSI reports that independent implementations of the proof checker accepted its declarations. Those are different checker implementations, not a claim that an outside research group has reproduced the release. Published comparator records identify a private staging repository as the origin of the recorded November 6 runs."
+    },
+    {
+      "heading": "A proof package, not a hardware result",
+      "text": "The comparison with familiar quantum examples matters. Shor’s algorithm exploits periodic structure; the original conjecture examines why special structure enables dramatic query savings. PSI’s package targets the mathematical boundary underlying that distinction. For developers building research agents, the useful artifact is the combination of a precise claim, proof code and a documented replay path. A reader can inspect what was proved before relying on the surrounding explanation. The release also records a deliberately invalid control that a normal build accepted and the replay checkers rejected. That example explains why a successful compilation alone is a weaker check."
+    }
+  ],
+  "buildersNote": "Start with the stated conjecture, then reproduce the pinned checks separately from reading the paper. For a smaller machine, the repository reports that single-threaded replay used 7.4 GB and took 11 minutes; budget memory before running parallel checks.",
+  "claims": [
+    {
+      "text": "A manuscript, Lean source files and verification records are publicly available.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The internal system found a complete proof during day three using a non-public Anthropic model.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The claimed quantum consequence bounds input queries on most uniformly random inputs, not general simulation time.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Recorded machine checks do not establish that the formal statement matches the intended conjecture or verify the prose paper; independent reproduction and full mathematical validation are not established here.",
+      "status": "unclear",
+      "source": 6
+    }
+  ],
+  "sources": [
+    {
+      "title": "A proof of the Aaronson-Ambainis conjecture",
+      "publisher": "Physical Superintelligence",
+      "url": "https://psi.inc/research/aaronson-ambainis/",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "A proof of the Aaronson–Ambainis conjecture",
+      "publisher": "David Turturean / PSI",
+      "url": "https://github.com/physical-superintelligence/aaronson-ambainis/blob/main/paper/aaronson_ambainis_paper.pdf",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "The Aaronson–Ambainis conjecture",
+      "publisher": "Physical Superintelligence",
+      "url": "https://github.com/physical-superintelligence/aaronson-ambainis",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "The Need for Structure in Quantum Speedups",
+      "publisher": "Scott Aaronson and Andris Ambainis / arXiv",
+      "url": "https://arxiv.org/abs/0911.0996",
+      "date": "2009-11-05"
+    },
+    {
+      "title": "Comparator verification",
+      "publisher": "Physical Superintelligence",
+      "url": "https://github.com/physical-superintelligence/aaronson-ambainis/blob/main/verification/comparator/README.md",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Verification",
+      "publisher": "Physical Superintelligence",
+      "url": "https://github.com/physical-superintelligence/aaronson-ambainis/blob/main/notes/VERIFICATION.md",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Axiom audit",
+      "publisher": "Physical Superintelligence",
+      "url": "https://github.com/physical-superintelligence/aaronson-ambainis/blob/main/notes/AXIOM_AUDIT.md",
+      "date": "2026-11-06"
+    }
+  ],
+  "social": {
+    "hook": "A claimed AI proof comes with files you can check.",
+    "voiceover": "[measured] A claimed AI proof comes with files you can check. PSI reports solving a quantum conjecture on day three. The public proof files allow inspection; the mathematical statement still needs human scrutiny.",
+    "short": "PSI released a claimed quantum conjecture proof with Lean 4 files. Its system used a non-public Anthropic model. The statement still needs human scrutiny.",
+    "long": "Physical Superintelligence released its claimed proof of the Aaronson–Ambainis conjecture on November 6. PSI says a research system using a non-public Anthropic model reached a complete proof during day three.\n\nThe package includes the manuscript, Lean code and recorded verification runs. The quantum consequence concerns input queries on most random inputs, not the total time needed to simulate any quantum computer.\n\nPSI’s records report successful checks of the encoded statements. Whether that statement captures the intended conjecture remains a human review task; the prose paper is not itself machine-checked.",
+    "take": "We think the inspectable proof package matters more than the day-three claim. It gives reviewers a specific statement and replay path instead of asking them to trust the model.",
+    "keyFacts": [
+      "Announcement: 6 November 2026",
+      "Pinned toolchain: Lean 4.33.0",
+      "Reported single-thread replay: 7.4 GB, 11 minutes"
+    ],
+    "hashtags": [
+      "PSI",
+      "QuantumComputing",
+      "AIResearch",
+      "FormalVerification"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
