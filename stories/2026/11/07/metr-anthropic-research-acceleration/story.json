@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "metr-anthropic-research-acceleration",
+  "kind": "story",
+  "topic": "research",
+  "title": "METR finds Anthropic’s model progress accelerating",
+  "titleAccent": "model progress accelerating",
+  "dek": "An outside assessment reports faster progress inside Anthropic. Earlier developer experiments show why that finding is different from a productivity guarantee.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-07T00:10:59Z",
+  "lede": "METR published an assessment on November 5 estimating that Anthropic’s model capabilities are improving roughly twice as fast as their earlier trend. The finding concerns progress inside a laboratory, with different implications from faster everyday coding.",
+  "facts": [
+    {
+      "label": "Assessment",
+      "value": "METR, published November 5"
+    },
+    {
+      "label": "Organization studied",
+      "value": "Anthropic"
+    },
+    {
+      "label": "Benchmark trend",
+      "value": "Estimated 1.9× earlier growth rate"
+    },
+    {
+      "label": "Metric",
+      "value": "Anthropic Epoch Capabilities Index"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What the outside assessment found",
+      "text": "METR attributes much of the acceleration to AI assistance, drawing on internal results and researcher access. This moves the discussion toward how research is already changing. The object being measured is a development process, rather than an application ticket."
+    },
+    {
+      "heading": "The risk report received a separate review",
+      "text": "A companion review examines Anthropic’s August risk report, which covered the period through July 15. METR accepts the argument that models had not reached full replacement of the company’s researchers. It disputes the confidence attached to a separate threshold: doubling research progress through AI assistance. In METR’s reading, the public document gives a firmer impression than the underlying private assessment. The reviewer also distinguishes crossing a warning threshold from directly enabling the severe outcomes described in Anthropic’s threat model. Those are separate propositions. A measurement can warrant additional scrutiny without establishing the worst outcome. The review therefore concerns both the evidence and how a company communicates what that evidence supports."
+    },
+    {
+      "heading": "A faster lab is a different measurement",
+      "text": "METR’s July 10, 2025 developer study supplies a useful contrast in method. Sixteen experienced contributors completed 246 real tasks in repositories they knew. Random assignment determined whether AI tools were allowed. Work took nineteen percent longer with access, although participants believed they had saved time. That experiment measured completion of actual software changes, including the quality expected in familiar projects. It did not measure improvements in a laboratory’s model capabilities. Its value here is methodological: a feeling of greater productivity and a measured result can diverge. It also shows why results need a specified population, task and definition of completion."
+    },
+    {
+      "heading": "The follow-up changed the experiment",
+      "text": "The February 24, 2026 update added another complication. Developers increasingly declined participation because they wanted to keep using AI. Some withheld tasks they expected AI to handle particularly well. METR also identified difficulty recording time when developers ran agents alongside unrelated work. Participant pay also fell from $150 to $50 an hour, which could affect who enrolled. Recruitment conditions changed alongside the tools. Its next experiment therefore faced selection and measurement problems that were less prominent before. The organization proposed several alternatives, including fixed-task studies, observational evidence and randomizing whole developers instead of individual tasks. These designs answer different questions about adoption and output. Together, the studies explain why a single productivity percentage cannot describe every setting where software teams use models."
+    }
+  ],
+  "buildersNote": "For a two-week trial, record accepted changes, review time and rework alongside model spending. Keep elapsed time separate from hands-on time when agents run concurrently. Log which tasks were excluded and why. Compare similar tasks before treating a lab’s capability trend as an estimate for your own delivery schedule.",
+  "claims": [
+    {
+      "text": "The assessment reports a 1.9× benchmark growth-rate estimate.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "AI explains most acceleration: METR’s judgment, not a controlled causal estimate.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Effects on ordinary software teams remain unestablished; key evidence was redacted.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "METR disputes the public August report’s confidence about the acceleration threshold.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Independent Assessment of AI R&D Acceleration at Anthropic in October 2026",
+      "publisher": "METR",
+      "url": "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Review of the \"Risks from automated R&D\" section in Anthropic's Risk Report (August 2026)",
+      "publisher": "METR",
+      "url": "https://evals.alignment.org/blog/2026-11-05-rd-section-anthropic-risk-report-august-2026-review/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "publisher": "METR",
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "date": "2025-07-10"
+    },
+    {
+      "title": "We are Changing our Developer Productivity Experiment Design",
+      "publisher": "METR",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "date": "2026-02-24"
+    }
+  ],
+  "social": {
+    "hook": "Faster research needs a different productivity test.",
+    "voiceover": "[measured] Faster research needs a different productivity test. METR reviewed Anthropic’s internal progress. Its separate review challenges the August risk report. A warning threshold and a demonstrated harmful outcome remain different claims.",
+    "short": "METR assessed Anthropic’s internal research acceleration. Its separate review of the August risk report disputes the confidence around a doubling threshold.",
+    "long": "METR challenged the confidence in Anthropic’s August risk report. Its November 5 review distinguishes replacing researchers from accelerating their work, and a warning threshold from a demonstrated severe outcome.\n\nEarlier coding experiments explain why the measurement matters. Developers’ impressions diverged from recorded completion time in 2025; a 2026 follow-up faced selection problems as enthusiastic AI users avoided the study. We would measure accepted work locally.",
+    "take": "We favor separate scorecards for lab progress and team productivity. A stronger model is useful evidence, not a delivery estimate for a different workflow.",
+    "keyFacts": [
+      "November 5: independent Anthropic assessment",
+      "August report covers activity through July 15",
+      "2025 developer trial: 16 contributors, 246 tasks"
+    ],
+    "hashtags": [
+      "Anthropic",
+      "AIResearch",
+      "ModelEvaluation",
+      "DeveloperProductivity"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
