@@ -1,0 +1,130 @@
+{
+  "format": 2,
+  "slug": "google-substrate-one-ga",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Google brings Agent Substrate 1.0 to general availability on GKE",
+  "dek": "The runtime separates saved agent state from active compute. Cluster sizing and application-triggered suspension still determine the practical savings.",
+  "eventDate": "2026-11-05",
+  "publishedAt": "2026-11-07T12:12:36Z",
+  "lede": "Google announced Agent Substrate 1.0 and general availability on Google Kubernetes Engine on November 5. The runtime lets platforms preserve an agent’s state while releasing the compute reserved for its next action.",
+  "facts": [
+    {
+      "label": "Milestone",
+      "value": "Agent Substrate 1.0; GA on GKE"
+    },
+    {
+      "label": "Announcement",
+      "value": "5 November 2026"
+    },
+    {
+      "label": "Deployment",
+      "value": "Customer-operated GKE Standard clusters, version 1.37+"
+    },
+    {
+      "label": "Saved state",
+      "value": "Memory and local files"
+    },
+    {
+      "label": "Suspension trigger",
+      "value": "Application or orchestrator"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A production milestone for an existing runtime",
+      "text": "Google first announced Substrate availability on GKE on September 15. That announcement already described reusable execution environments, isolated code execution and a runtime portable across Kubernetes installations. The November release advances that existing project to its 1.0 and general-availability milestones. Its purpose remains concrete: coding and personal agents alternate between short bursts of work and pauses for a model, an external tool or a person. Holding a dedicated execution environment through those pauses consumes resources even when no useful work is happening. The runtime separates the agent’s continuing session from the machine that performs its next turn."
+    },
+    {
+      "heading": "State moves between workers",
+      "text": "The current product documentation calls an agent instance an Actor and its execution environment a Worker. A request for a suspended Actor claims available capacity and restores the saved session. When the application suspends it again, memory and local files become a snapshot and capacity returns to the shared pool. This changes the deployment model from keeping one Pod attached to each agent. Google supplies installation tooling for customers’ own clusters, so general availability still involves operating infrastructure. A platform now manages two connected resources: stored sessions that can wait and execution capacity that must be ready when requests arrive."
+    },
+    {
+      "heading": "The idle policy belongs to the application",
+      "text": "Google’s infrastructure guide explicitly assigns the suspension decision to the application or orchestrator. Substrate does not automatically put every inactive agent to sleep. The guide sizes capacity around peak concurrent activity and peak resume traffic. Its worked example starts with 100,000 registered Actors, ten percent active on average and a twofold burst. That produces 20,000 simultaneously running Actors; at 100 seconds per turn, the system needs 200 resumes and suspends per second. These are planning inputs, not measurements of a customer deployment. The example shows why registered session count alone says little about the hardware a service needs."
+    },
+    {
+      "heading": "The governance change has its own timeline",
+      "text": "The release also sits within a broader transfer of agent infrastructure to the Cloud Native Computing Foundation. The gVisor project had already announced its donation on October 2, after acceptance of its application on September 28. Its published plan described external maintainers, independent build systems and a staged change in governance. That history matters because a new umbrella announcement does not make every component a new launch. For infrastructure buyers, governance affects who can review changes and set priorities. Runtime maturity, project ownership and the operating responsibilities of a particular deployment remain separate parts of the purchasing decision."
+    }
+  ],
+  "buildersNote": "Test one representative workflow through 100 suspend/resume cycles. Measure recovery time, reconnection success and total worker-plus-storage cost. Compare that result with keeping the same workflow running continuously.",
+  "claims": [
+    {
+      "text": "Google announced the 1.0 and GKE general-availability milestones on November 5.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Google reports restoration below 500 milliseconds and tenfold container density; these are vendor performance claims.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "GKE Autopilot and GPU passthrough into Actors are unsupported. Open database or MCP connections require reconnection after suspension.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Lower total cost for a particular application is not established by the release announcement.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Powering open infrastructure for autonomous agents",
+      "publisher": "Google Cloud",
+      "url": "https://cloud.google.com/blog/products/containers-kubernetes/open-infrastructure-for-autonomous-agents-comes-to-cncf",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "About Agent Substrate on GKE",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/kubernetes-engine/ai-ml/about-agent-substrate",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Agent Substrate brings high-density, scalable, trusted infrastructure to GKE",
+      "publisher": "Google Cloud",
+      "url": "https://cloud.google.com/blog/products/containers-kubernetes/agent-substrate-available-on-gke",
+      "date": "2026-09-15"
+    },
+    {
+      "title": "gVisor is being donated to CNCF",
+      "publisher": "gVisor",
+      "url": "https://gvisor.dev/blog/2026/10/02/gvisor-cncf/",
+      "date": "2026-10-02"
+    },
+    {
+      "title": "Design your infrastructure for Agent Substrate on GKE",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/design-substrate-infrastructure",
+      "date": "2026-11-07"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "An idle agent can keep its work without occupying a worker.",
+    "voiceover": "[measured] An idle agent can keep its work without occupying a worker. Google made Substrate one point zero generally available. The application still decides when to suspend it. Savings need a workload test.",
+    "short": "Google made Agent Substrate 1.0 generally available on GKE. Applications trigger suspension and reuse workers; actual savings depend on the workload.",
+    "long": "Google moved its agent runtime to version 1.0 and general availability on November 5. Its infrastructure guide makes the operating choice explicit: the application or orchestrator must request suspension.\n\nThe sizing example separates 100,000 registered sessions from 20,000 active at a burst peak. That distinction is the point of pooling workers. A real deployment still needs a measured capacity and storage budget.",
+    "take": "We would choose a suspension policy before choosing a fleet size. The useful number is total cost per completed workflow, including storage and recovery.",
+    "keyFacts": [
+      "1.0 and GKE general availability: November 5",
+      "GKE Standard 1.37+ required",
+      "Sizing example: 100,000 registered, 20,000 active at peak"
+    ],
+    "hashtags": [
+      "GoogleCloud",
+      "AIAgents",
+      "Kubernetes",
+      "AgentInfrastructure"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

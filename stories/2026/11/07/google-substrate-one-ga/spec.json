@@ -1,0 +1,31 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "SUBSTRATE 1.0",
+    "GOES GA"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "seed": 11712,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  }
+}
