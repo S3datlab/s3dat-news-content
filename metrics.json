@@ -1,0 +1,7536 @@
+{
+  "updated": "2026-11-07T13:05:15Z",
+  "days": 7,
+  "stories": [
+    {
+      "slug": "google-substrate-one-ga",
+      "title": "Google brings Agent Substrate 1.0 to general availability on GKE",
+      "publishedAt": "2026-11-07T12:12:36Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        }
+      },
+      "scene": "An automated textile cabinet holds a cobalt fabric bundle on fixed shelf fingers while its reusable steel tray withdraws beneath it.",
+      "ingredients": [
+        "satisfying physics: fixed shelf fingers preserve the folded bundle while an empty tray withdraws for reuse",
+        "strong cobalt-versus-amber contrast: preserved cloth stands apart from the moving steel"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "object",
+      "textStyle": "giant",
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-07T12:22:57Z"
+    },
+    {
+      "slug": "claude-code-account-email-removal",
+      "title": "Anthropic plans to remove account emails from Claude Code context",
+      "publishedAt": "2026-11-07T09:12:25Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        },
+        "reel:instagram": {}
+      },
+      "scene": "In a rain-lit mailroom, a privacy inspector removes a blank identity tag from an outbound envelope, notices its lingering tag-shaped shadow, and stops the envelope before dispatch.",
+      "ingredients": [
+        "one impossible detail: an envelope retains a dangling identity-tag shadow after the real tag is removed, revealing residual privacy risk",
+        "weather and elements: rain on a high mailroom window motivates the restrained noir light"
+      ],
+      "people": [
+        "One invented adult woman privacy inspector, 30, olive skin, dark chin-length bob, fitted charcoal blazer over a cream open-collar shirt, dark trousers and black gloves"
+      ],
+      "reelMade": true,
+      "concept": "noir",
+      "textStyle": "blur",
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-07T12:15:57Z"
+    },
+    {
+      "slug": "microsoft-pdd-kit-proof-boundaries",
+      "title": "Microsoft’s PDD Kit moves code review toward proof contracts",
+      "publishedAt": "2026-11-07T06:11:31Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 89,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 2.36,
+          "averageTimeWatched": 1.68,
+          "reach": 84
+        }
+      },
+      "scene": "In a motorsport scrutineering bay, an official slides a rigid inspection gauge over a stationary racing wheel, with one contact edge still awaiting a check.",
+      "ingredients": [
+        "satisfying physics: a rigid gauge fits one edge of a racing wheel while a remaining gap demands another check",
+        "focused human inspection: the official watches physical contact points before accepting the work"
+      ],
+      "people": [
+        "One invented adult woman motorsport technical official, about 30, tied-back copper-brown curls, fitted navy team jacket and black work gloves"
+      ],
+      "reelMade": false,
+      "concept": "sport",
+      "textStyle": "slam",
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 89,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "reach": 84,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-07T06:26:41Z"
+    },
+    {
+      "slug": "google-wyoming-site-acquisition",
+      "title": "Google buys Crusoe’s Wyoming site for its data center buildout",
+      "publishedAt": "2026-11-07T03:11:30Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        }
+      },
+      "scene": "At dawn in a Wyoming industrial yard, a rigging engineer guides a crane-suspended power connector above an unconnected socket.",
+      "ingredients": [
+        "satisfying physics: precise alignment of a giant connector above its matching socket makes unfinished power delivery tangible",
+        "weather and elements: wind moves the tag line while the connection remains incomplete"
+      ],
+      "people": [
+        "One invented adult woman rigging engineer, 30, dark hair under a plain hard hat, fitted blue work jacket, dark trousers and gloves"
+      ],
+      "reelMade": false,
+      "concept": "metaphor",
+      "textStyle": "stamp",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-07T03:19:04Z"
+    },
+    {
+      "slug": "metr-anthropic-research-acceleration",
+      "title": "METR finds Anthropic’s model progress accelerating",
+      "publishedAt": "2026-11-07T00:10:59Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 55,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 1.74,
+          "averageTimeWatched": 2,
+          "reach": 51
+        },
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        }
+      },
+      "scene": "In a 1950s instrument workshop, an inspector checks a moving brass test carriage against a separate mechanical reference.",
+      "ingredients": [
+        "speed and machines: motor-driven brass test carriage makes faster research physical",
+        "precise mechanical contact: independent reference arm checks motion rather than trusting impressions"
+      ],
+      "people": [
+        "One invented adult woman inspector, silver period bob, fitted navy work jacket and cream blouse"
+      ],
+      "reelMade": false,
+      "concept": "period",
+      "textStyle": "type",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 56,
+        "shares": 0,
+        "saves": 0,
+        "reach": 51,
+        "reposts": 0,
+        "clicks": 0,
+        "impressions": 2
+      },
+      "sharedAt": "2026-11-07T00:21:09Z"
+    },
+    {
+      "slug": "openai-gpt6-cyber-approved-access",
+      "title": "OpenAI restricts GPT-6 Cyber to approved security teams",
+      "publishedAt": "2026-11-06T21:10:24Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 14.29,
+          "views": 7,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        }
+      },
+      "scene": "A steel actuator tests a closed brass lock inside a transparent laboratory enclosure while matching locks outside remain untouched.",
+      "ingredients": [
+        "satisfying physics: precision actuator presses and releases one closed test lock inside an intact transparent boundary",
+        "shallow-focus object detail: brass, brushed steel and glass make the controlled test tactile"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "object",
+      "textStyle": "giant",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 7,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-06T21:18:17Z"
+    },
+    {
+      "slug": "mistral-studio-managed-agents",
+      "title": "Mistral opens managed agents with three execution modes",
+      "publishedAt": "2026-11-06T18:10:08Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 11.11,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        }
+      },
+      "scene": "A tabletop warehouse trolley carrying a sealed blank crate approaches and stops before a closed brass approval gate.",
+      "ingredients": [
+        "speed and machines: powered miniature rail trolley makes continuing agent work physical",
+        "satisfying physics: trolley brakes precisely before a latched brass approval gate"
+      ],
+      "people": [
+        "one stationary miniature adult male dispatcher in a navy work jacket and trousers; painted scale-model figure"
+      ],
+      "reelMade": false,
+      "concept": "miniature",
+      "textStyle": "wipe",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 9,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-06T18:19:06Z"
+    },
+    {
+      "slug": "google-omni-12-video-price",
+      "title": "Google cuts Omni video pricing 30% and extends clips to 15 seconds",
+      "publishedAt": "2026-11-06T15:10:07Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 75,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 4.89,
+          "averageTimeWatched": 4.25,
+          "reach": 67
+        },
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 75,
+        "shares": 0,
+        "saves": 0,
+        "reach": 67,
+        "reposts": 0,
+        "clicks": 0,
+        "impressions": 6
+      },
+      "sharedAt": "2026-11-06T15:59:58Z"
+    },
+    {
+      "slug": "openai-linux-security-pipeline",
+      "title": "OpenAI reports 948 Linux privilege-escalation flaws",
+      "publishedAt": "2026-11-05T11:14:17Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 9.09,
+          "reposts": 0,
+          "impressions": 11,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 40,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.81,
+          "averageTimeWatched": 1.32,
+          "reach": 36
+        }
+      },
+      "scene": "In a rain-lit modern vault workshop at night, a locksmith fits a replacement bolt and tests the exposed mechanism, leaving the inspection in progress.",
+      "ingredients": [
+        "satisfying physics: replacement vault bolt seats precisely and linked bolts move during a hands-on repair test",
+        "weather and elements: rain-streaked window and hard work-light sidelight create a restrained noir inspection mood"
+      ],
+      "people": [
+        "Invented adult woman locksmith, 32, short silver pixie hair, fitted charcoal work jacket over ivory scoop-neck top, dark trousers"
+      ],
+      "reelMade": true,
+      "concept": "noir",
+      "textStyle": "glitch",
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 40,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 11,
+        "reach": 36,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-06T07:21:09Z"
+    },
+    {
+      "slug": "meta-muse-voice-us-rollout",
+      "title": "Meta rolls out Muse voice and animated avatars in the US",
+      "publishedAt": "2026-11-05T21:10:01Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 9.09,
+          "reposts": 0,
+          "impressions": 11,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 2,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.03,
+          "averageTimeWatched": 1.05,
+          "reach": 2
+        }
+      },
+      "scene": "In a warm home kitchen, a cook rolls pastry while a small unbranded robot replaces a rejected blank recipe card and seats the corrected card in a wooden holder.",
+      "ingredients": [
+        "satisfying physics: a corrected blank recipe card seats neatly in a wooden holder",
+        "focused facial reaction: a home cook corrects the robot aloud while both hands keep rolling pastry"
+      ],
+      "people": [
+        "Invented adult woman home cook, 30, olive skin, dark curly hair loosely tied back, fitted cobalt-blue shirt, flour-dusted sand linen apron"
+      ],
+      "reelMade": true,
+      "concept": "everyday",
+      "textStyle": "blur",
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 3,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 13,
+        "reach": 2,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T23:44:46Z"
+    },
+    {
+      "slug": "amd-helios-workloads-data-center-growth",
+      "title": "AMD reports 97% Data Center growth as Helios racks come online",
+      "publishedAt": "2026-11-05T14:14:55Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 20,
+          "reposts": 0,
+          "impressions": 5,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 7,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T21:47:52Z"
+    },
+    {
+      "slug": "meta-conductor-cloud-wind-down",
+      "title": "Conductor joins Meta and sets a November 20 cloud shutdown",
+      "publishedAt": "2026-11-05T12:14:35Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 74,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 2.09,
+          "averageTimeWatched": 1.79,
+          "reach": 69
+        },
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "views": 3,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 77,
+        "shares": 0,
+        "saves": 0,
+        "reach": 69,
+        "reposts": 0,
+        "clicks": 0,
+        "impressions": 4
+      },
+      "sharedAt": "2026-11-05T20:52:56Z"
+    },
+    {
+      "slug": "cognition-swe2-flash-cost",
+      "title": "Cognition releases SWE-2 Flash for cheaper coding",
+      "publishedAt": "2026-11-05T13:14:47Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 72,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 1.63,
+          "averageTimeWatched": 1.55,
+          "reach": 57
+        },
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 11.11,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 72,
+        "shares": 0,
+        "saves": 0,
+        "reach": 57,
+        "reposts": 0,
+        "clicks": 0,
+        "impressions": 9
+      },
+      "sharedAt": "2026-11-05T14:13:19Z"
+    },
+    {
+      "slug": "nvidia-nemo-agent-consent-tests",
+      "title": "NVIDIA turns agent consent failures into tests",
+      "publishedAt": "2026-11-05T10:14:05Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "reposts": 0,
+          "impressions": 1,
+          "clicks": 0
+        }
+      },
+      "scene": "A blank cream envelope rides a sorting belt into a closed clear inspection gate and remains safely unsent.",
+      "ingredients": [
+        "speed and machines: moving conveyor and brisk steel rollers make the permission boundary visible"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "metaphor",
+      "textStyle": "stamp",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 2,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T10:44:56Z"
+    },
+    {
+      "slug": "google-guided-learning-school-controls",
+      "title": "Google brings Guided Learning into Classroom",
+      "publishedAt": "2026-11-05T07:11:37Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 11,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 14.29,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 6,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.13,
+          "averageTimeWatched": 1.57,
+          "reach": 5
+        }
+      },
+      "scene": "At an adult educator training demonstration, a teacher hands a blank lesson folder to a robot tutor, directs it to one workbench, and supervises the participant beginning the assigned activity.",
+      "ingredients": [
+        "direct-to-camera reaction: confident teacher visibly sets the tutor's assignment",
+        "status and spectacle: small stage and adult audience make the classroom demonstration legible"
+      ],
+      "people": [
+        "Invented adult woman teacher, 30, dark wavy shoulder-length hair, fitted navy blazer and trousers, ivory scoop-neck blouse",
+        "Invented adult male participant, 32, short curly dark hair, sage-green rolled-sleeve shirt",
+        "Two invented adult seated observers",
+        "Compact unbranded silver humanoid teaching robot with cyan eye lights"
+      ],
+      "reelMade": true,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 6,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 18,
+        "reach": 5,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T08:32:48Z"
+    },
+    {
+      "slug": "stmicroelectronics-stm32-agentic-ai-tools",
+      "title": "ST brings coding agents to STM32 firmware",
+      "publishedAt": "2026-11-05T08:19:30Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 16.67,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        }
+      },
+      "scene": "Two technicians guide an unmarked development board into a guarded desktop test fixture beside a miniature conveyor in a modern electronics lab.",
+      "ingredients": [
+        "speed and machines: miniature conveyor makes firmware behavior visible",
+        "focused human inspection: a second technician verifies the physical result"
+      ],
+      "people": [
+        "invented adult woman technician, 30, short dark hair, navy blazer, fitted ivory top and navy trousers",
+        "invented adult man technician, 30, short brown hair, teal overshirt and dark trousers"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 10,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T08:32:04Z"
+    },
+    {
+      "slug": "aws-kimi-k3-india-inference",
+      "title": "AWS adds India-only inference for Kimi K3",
+      "publishedAt": "2026-11-05T06:11:18Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        }
+      },
+      "scene": "Two technicians close a physical safety boundary around a connected pair of server racks in a modern Indian data centre.",
+      "ingredients": [
+        "satisfying physics: sliding safety gate latches precisely around two connected racks"
+      ],
+      "people": [
+        "invented Indian adult male technician, 32, short black hair, fitted navy work jacket and navy trousers",
+        "invented Indian adult female technician, 30, dark ponytail, fitted navy work jacket over ivory scoop-neck top and navy work trousers"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T06:21:25Z"
+    },
+    {
+      "slug": "github-copilot-xcode-native-assistant",
+      "title": "GitHub brings Copilot into Xcode’s built-in coding assistant",
+      "publishedAt": "2026-11-05T05:11:17Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 11,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 14.29,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        }
+      },
+      "scene": "Two technicians slide a fitted tool tray into a blue workshop cabinet while a matching tray remains on a separate trolley.",
+      "ingredients": [
+        "satisfying physics: fitted tool tray clicks into cabinet rails while a second tray remains independent"
+      ],
+      "people": [
+        "invented adult male technician, 32, short dark hair, charcoal overshirt with rolled sleeves",
+        "invented adult female technician, 30, dark tied-back hair, cropped work jacket, ivory scoop-neck top, dark trousers"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 18,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T05:25:59Z"
+    },
+    {
+      "slug": "mongodb-atlas-copilot-federated-connector",
+      "title": "MongoDB brings live Atlas queries to Microsoft 365 Copilot",
+      "publishedAt": "2026-11-05T04:10:50Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "reach": 1,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.07,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        }
+      },
+      "scene": "In a modern warehouse records room, a manager unlocks one drawer for a courier holding a blank folder while the adjacent drawer remains locked.",
+      "ingredients": [
+        "satisfying physics: physical key turns and a permitted records drawer slides precisely while the adjacent locked drawer stays shut",
+        "attractive adults with a role: operations manager grants limited access and courier receives a blank folder"
+      ],
+      "people": [
+        "invented adult woman operations manager, 30, dark wavy shoulder-length hair, forest-green blazer, ivory scoop-neck top, charcoal trousers",
+        "invented adult male courier, 32, short dark hair, cream work jacket, dark trousers"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 1,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 6,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T04:19:38Z"
+    },
+    {
+      "slug": "netflix-ai-discover-tv-trial",
+      "title": "Netflix tests AI Discover for choosing what to watch",
+      "publishedAt": "2026-11-05T03:10:37Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        }
+      },
+      "scene": "In a contemporary cinema lobby, a concierge rolls one red cinema chair away and presents its replacement to a waiting viewer.",
+      "ingredients": [
+        "satisfying physics: replacement red cinema chair glides precisely into place",
+        "animal: relaxed ginger cat adds warmth beside the viewer’s choice"
+      ],
+      "people": [
+        "invented adult female concierge, 30, dark wavy bob, tailored red blazer, ivory scoop-neck top, black trousers",
+        "invented adult male viewer, 32, casual cream jacket and dark shirt"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T03:21:44Z"
+    },
+    {
+      "slug": "openai-images-26-gif-editing",
+      "title": "OpenAI adds GIFs and editing controls with Images 2.6",
+      "publishedAt": "2026-11-05T01:10:14Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 27,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.64,
+          "averageTimeWatched": 1.53,
+          "reach": 21
+        }
+      },
+      "scene": "Two designers guide teal silk around a cream vase and through a suspended glass frame in a modern photography studio.",
+      "ingredients": [
+        "speed and machines: motorized product turntable makes image iteration physical",
+        "one impossible detail: flowing silk continues outside glass while its reflection stays still"
+      ],
+      "people": [
+        "invented adult woman designer, 30, dark wavy hair, coral blazer, ivory scoop-neck top, dark tailored trousers",
+        "invented adult man designer, 32, short dark hair, charcoal shirt"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 27,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 6,
+        "reach": 21,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T02:33:34Z"
+    },
+    {
+      "slug": "nvidia-cuda-135-vera-rubin-support",
+      "title": "NVIDIA makes Vera Rubin support generally available in CUDA 13.5",
+      "publishedAt": "2026-11-05T02:10:26Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 9.09,
+          "reposts": 0,
+          "impressions": 11,
+          "clicks": 0
+        }
+      },
+      "scene": "Two technicians align a modular server tray and rock its locking lever into place in a modern data centre.",
+      "ingredients": [
+        "satisfying physics: server tray aligns on rails and locking lever clicks into its seat",
+        "scale: imposing neighbouring server rack frames the practical installation"
+      ],
+      "people": [
+        "invented adult woman technician, 30, dark ponytail, fitted graphite work jacket, ivory scoop-neck top, charcoal work trousers",
+        "invented adult man technician, 32, short dark hair, fitted graphite work jacket and charcoal trousers"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 13,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T02:22:09Z"
+    },
+    {
+      "slug": "google-agent-auth-manager-general-availability",
+      "title": "Google makes agent Auth Manager generally available",
+      "publishedAt": "2026-11-05T00:08:56Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": "On a modern launch stage, Sundar Pichai pulls a satin drape off an open credential vault while an unbranded robot reaches toward its separate compartments.",
+      "ingredients": [
+        "status and spectacle: technology launch-stage vault unveiling",
+        "scale: person-sized credential vault makes centralized custody visible"
+      ],
+      "people": [
+        "Sundar Pichai, clearly rendered AAA game-cinematic CG; salt-and-pepper hair, short beard, rectangular glasses, charcoal crewneck",
+        "unbranded silver humanoid robot representing an individual software agent"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 2,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 2,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-05T00:19:36Z"
+    },
+    {
+      "slug": "claude-watermarks-three-earlier-models",
+      "title": "Anthropic adds text watermarks to three earlier Claude models",
+      "publishedAt": "2026-11-04T23:08:33Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 14.29,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        }
+      },
+      "scene": "In a modern provenance lab, Dario and a developer inspect paper beside three model cubes; an invisible signal appears under a violet beam and disappears when the sheet is withdrawn.",
+      "ingredients": [
+        "one impossible detail: blank paper reveals an abstract provenance pattern only inside an inspection beam",
+        "direct-to-camera reaction: developer discovers the hidden signal"
+      ],
+      "people": [
+        "Dario Amodei, clearly rendered AAA game-cinematic CG, dense dark curls, strong eyebrows, navy crewneck",
+        "invented adult woman developer, 30, auburn bob, green tailored blazer, ivory scoop-neck top, charcoal skirt; AAA game-cinematic CG"
+      ],
+      "reelMade": true,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 2,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 7,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T23:38:24Z"
+    },
+    {
+      "slug": "openai-physical-engineering-collaborations",
+      "title": "OpenAI expands hardware engineering research with Mazda and Ganassi",
+      "publishedAt": "2026-11-04T21:10:54Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        }
+      },
+      "scene": "In a motorsport engineering workshop, a robot presents a machined suspension bracket while an engineer measures it beside Sam Altman and an exposed racing prototype.",
+      "ingredients": [
+        "speed and machines: exposed racing prototype and precise industrial robot arm presenting a machined part"
+      ],
+      "people": [
+        "Sam Altman, clearly rendered AAA game-cinematic CG character, short brown hair, long face, navy crewneck",
+        "invented adult female engineer, 32, dark curly ponytail, terracotta short-sleeve work top and charcoal trousers; AAA game-cinematic CG character"
+      ],
+      "reelMade": false,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T22:56:49Z"
+    },
+    {
+      "slug": "google-alloydb-express-preview",
+      "title": "Google previews AlloyDB Express for coding-agent databases",
+      "publishedAt": "2026-11-04T16:22:37Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 20,
+          "reposts": 0,
+          "impressions": 5,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 68,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 1.6,
+          "averageTimeWatched": 1.46,
+          "reach": 64
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 68,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 6,
+        "reach": 64,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T22:15:25Z"
+    },
+    {
+      "slug": "mlflow-agent-quality-checks",
+      "title": "MLflow expands agent quality checks",
+      "publishedAt": "2026-11-04T20:10:31Z",
+      "priority": 2,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 3,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 5,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T20:19:50Z"
+    },
+    {
+      "slug": "google-canada-ucp-checkout",
+      "title": "Google brings AI checkout to Canada",
+      "publishedAt": "2026-11-04T19:03:28Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 2,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 5,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 2,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T19:10:33Z"
+    },
+    {
+      "slug": "cloudflare-personal-agent-access-policies",
+      "title": "Cloudflare adds per-agent website access controls",
+      "publishedAt": "2026-11-04T17:23:10Z",
+      "priority": 4,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 9,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.12,
+          "averageTimeWatched": 0.82,
+          "reach": 9
+        }
+      },
+      "scene": "A website owner opens a brass-and-velvet lobby boundary for one robot assistant while another waits outside.",
+      "ingredients": [
+        "attractive adult woman acting as the website owner and doorman",
+        "satisfying physics: brass velvet-rope clasp releases and clicks closed"
+      ],
+      "people": [
+        "invented adult woman, 30, dark bob, navy blazer, ivory scoop-neck top, navy mini skirt, white sneakers",
+        "unbranded silver humanoid assistant",
+        "unbranded graphite humanoid assistant"
+      ],
+      "reelMade": true,
+      "concept": "people",
+      "textStyle": "band",
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 10,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 4,
+        "reach": 9,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T17:47:48Z"
+    },
+    {
+      "slug": "openai-pierre-code-storage-acquisition",
+      "title": "OpenAI plans to acquire Pierre for Codex code workflows",
+      "publishedAt": "2026-11-04T15:22:21Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T15:29:59Z"
+    },
+    {
+      "slug": "anthropic-future-research-acceleration-threshold",
+      "title": "Anthropic flags possible AI research acceleration",
+      "publishedAt": "2026-11-04T14:21:56Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T14:27:09Z"
+    },
+    {
+      "slug": "tencent-hy4-vision-api-launch",
+      "title": "Tencent launches Hy4 with image understanding",
+      "publishedAt": "2026-11-04T13:21:30Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 16.67,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 6,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T13:44:12Z"
+    },
+    {
+      "slug": "qwen-weight-space-game-reproduction",
+      "title": "Local Qwen test identifies games from network weights",
+      "publishedAt": "2026-11-04T12:21:19Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 3,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 50,
+          "impressions": 2,
+          "reach": 1,
+          "shares": 0,
+          "views": 2,
+          "totalTimeWatched": 0.31,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 16.67,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 20,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.3,
+          "averageTimeWatched": 0.91,
+          "reach": 20
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 23,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 11,
+        "reach": 21,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T12:36:43Z"
+    },
+    {
+      "slug": "sarvam-prism-decision-model",
+      "title": "Sarvam releases Prism for fixed-choice decisions",
+      "publishedAt": "2026-11-04T11:20:50Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.24,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 1,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T11:26:55Z"
+    },
+    {
+      "slug": "snowflake-cortex-training-openhands-harness",
+      "title": "Snowflake previews Cortex Training with OpenHands",
+      "publishedAt": "2026-11-04T10:17:45Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "reach": 1,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.07,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 1,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 4,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T10:23:13Z"
+    },
+    {
+      "slug": "vercel-security-review-github-pushes",
+      "title": "Vercel Security Review scans GitHub pushes",
+      "publishedAt": "2026-11-04T09:17:29Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "reach": 1,
+          "shares": 0,
+          "views": 4,
+          "totalTimeWatched": 0.67,
+          "viewers": 4
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "reposts": 0,
+          "impressions": 1,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 4,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T09:26:00Z"
+    },
+    {
+      "slug": "openai-activation-probes-agent-safety",
+      "title": "OpenAI explains how internal probes interrupt model responses",
+      "publishedAt": "2026-11-03T16:10:05Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 3,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "reach": 3,
+          "shares": 0,
+          "views": 2,
+          "totalTimeWatched": 0.57,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 43,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 1.28,
+          "averageTimeWatched": 1.92,
+          "reach": 40
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 4,
+        "views": 45,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 10,
+        "reach": 43,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T08:31:29Z"
+    },
+    {
+      "slug": "comfyui-video-export-context-precision",
+      "title": "ComfyUI 0.44 adds controls for video export and model processing",
+      "publishedAt": "2026-11-04T08:17:16Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "reach": 1,
+          "shares": 0,
+          "views": 11,
+          "totalTimeWatched": 2.15,
+          "viewers": 9
+        },
+        "now:twitter": {
+          "reactions": 1,
+          "comments": 1,
+          "engagementRate": 42.86,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 11,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 13,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T08:25:18Z"
+    },
+    {
+      "slug": "soniox-v6-agent-text-echo-migration",
+      "title": "Soniox adds agent speech context to its v6 recognition models",
+      "publishedAt": "2026-11-04T07:16:58Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "views": 3,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 40,
+          "impressions": 5,
+          "reach": 1,
+          "shares": 0,
+          "views": 11,
+          "totalTimeWatched": 2.45,
+          "viewers": 9
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 14,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 8,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T07:22:47Z"
+    },
+    {
+      "slug": "fireworks-ultrafast-preview-token-price-tradeoff",
+      "title": "Fireworks opens Ultra-fast preview at eight times standard token prices",
+      "publishedAt": "2026-11-04T06:16:48Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "reach": 1,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 21.51,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 40,
+          "reposts": 0,
+          "impressions": 5,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 1,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 9,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T06:22:45Z"
+    },
+    {
+      "slug": "google-three-live-spatial-plugin-expansion",
+      "title": "Google expands Three-Live with tools for shared spatial scenes",
+      "publishedAt": "2026-11-04T05:16:40Z",
+      "priority": 2,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "views": 4,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.12,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 5,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 7,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T05:23:44Z"
+    },
+    {
+      "slug": "anthropic-message-threads-public-beta",
+      "title": "Anthropic opens message threads beta for smaller agent requests",
+      "publishedAt": "2026-11-04T04:16:28Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.13,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 3,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 3,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T04:22:55Z"
+    },
+    {
+      "slug": "openai-lifeval-personal-agent-evaluation",
+      "title": "OpenAI introduces LifeVal to evaluate everyday personal agent tasks",
+      "publishedAt": "2026-11-04T03:11:12Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 33.33333333333333,
+          "impressions": 3,
+          "reach": 2,
+          "shares": 0,
+          "views": 3,
+          "totalTimeWatched": 0.65,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 5,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 5,
+        "reach": 2,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T03:18:28Z"
+    },
+    {
+      "slug": "jetbrains-air-copilot-cloud-tasks",
+      "title": "JetBrains Air adds cloud tasks on existing Copilot subscriptions",
+      "publishedAt": "2026-11-04T02:08:59Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "views": 2,
+          "totalTimeWatched": 0.3,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 67,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 2.38,
+          "averageTimeWatched": 2.27,
+          "reach": 63
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 69,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 6,
+        "reach": 64,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T02:23:11Z"
+    },
+    {
+      "slug": "ai2-statebench-long-context-tracking",
+      "title": "Ai2 tests how language models follow changing state in long contexts",
+      "publishedAt": "2026-11-04T01:04:40Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "views": 2,
+          "totalTimeWatched": 0.34,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 1,
+          "comments": 1,
+          "engagementRate": 4.44,
+          "reposts": 0,
+          "impressions": 45,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 2,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 46,
+        "reach": 1,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-04T01:13:17Z"
+    },
+    {
+      "slug": "cloudflare-agents-pi-storage-migration",
+      "title": "Cloudflare Agents adopts Pi 1.5 with a one-way conversation migration",
+      "publishedAt": "2026-11-03T23:06:32Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 1,
+          "comments": 1,
+          "engagementRate": 22.22,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 11,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T23:12:02Z"
+    },
+    {
+      "slug": "apple-siri-custom-actions-developer-preview",
+      "title": "Apple opens Siri AI developer preview to custom app actions",
+      "publishedAt": "2026-11-03T21:13:05Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 1
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "views": 7,
+          "totalTimeWatched": 0.86,
+          "viewers": 6
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 11.11,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 16,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.28,
+          "averageTimeWatched": 1.12,
+          "reach": 15
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 23,
+        "reposts": 1,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 11,
+        "reach": 16,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T21:51:04Z"
+    },
+    {
+      "slug": "pagerduty-paige-reliability-platform-availability",
+      "title": "PagerDuty launches PD Reliability Platform with Paige",
+      "publishedAt": "2026-11-03T20:12:39Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 14.29,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 0,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 8,
+        "reach": 0,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T20:19:28Z"
+    },
+    {
+      "slug": "hindsight-models-agent-memory-inference",
+      "title": "Vectorize introduces three Hindsight models for agent memory",
+      "publishedAt": "2026-11-03T19:11:44Z",
+      "priority": 2,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 20,
+          "reach": 12,
+          "shares": 0,
+          "views": 6,
+          "totalTimeWatched": 0.52,
+          "viewers": 6
+        },
+        "now:twitter": {
+          "reactions": 2,
+          "comments": 1,
+          "engagementRate": 8.06,
+          "reposts": 1,
+          "impressions": 62,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 2,
+        "comments": 3,
+        "views": 7,
+        "reposts": 1,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 82,
+        "reach": 12,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T19:18:51Z"
+    },
+    {
+      "slug": "nordic-nrf71-wifi-edge-ai-samples",
+      "title": "Nordic samples nRF71 chips for Wi-Fi devices with local AI",
+      "publishedAt": "2026-11-03T18:11:29Z",
+      "priority": 2,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 5,
+          "reach": 5,
+          "shares": 0,
+          "views": 2,
+          "totalTimeWatched": 0.25,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 20,
+          "reposts": 0,
+          "impressions": 5,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 3,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 10,
+        "reach": 5,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T18:17:35Z"
+    },
+    {
+      "slug": "snowflake-cortex-gateway-general-availability",
+      "title": "Snowflake makes Cortex AI Gateway cost controls generally available",
+      "publishedAt": "2026-11-03T17:10:28Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 29,
+          "reach": 21,
+          "shares": 0,
+          "views": 12,
+          "totalTimeWatched": 1.76,
+          "viewers": 12
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 12,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 35,
+        "reach": 21,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T17:15:08Z"
+    },
+    {
+      "slug": "crowdstrike-ai-kill-switch-gateway-controls",
+      "title": "CrowdStrike adds a kill switch for agent model access",
+      "publishedAt": "2026-11-03T13:03:22Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "reach": 3,
+          "shares": 0,
+          "views": 3,
+          "totalTimeWatched": 1.2,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 16.67,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 18,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.5,
+          "averageTimeWatched": 1.78,
+          "reach": 16
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 4,
+        "views": 21,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 10,
+        "reach": 19,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T15:19:23Z"
+    },
+    {
+      "slug": "hugging-face-model-integration-contracts",
+      "title": "Hugging Face proposes smaller models to catch silent Transformers bugs",
+      "publishedAt": "2026-11-03T15:07:33Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 100,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 11,
+          "reach": 9,
+          "shares": 0,
+          "views": 4,
+          "totalTimeWatched": 0.87,
+          "viewers": 4
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 33.33,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 5,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 18,
+        "reach": 9,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T15:13:03Z"
+    },
+    {
+      "slug": "anthropic-flashprove-model-identity-proofs",
+      "title": "Anthropic announces FlashProve for checking model identity",
+      "publishedAt": "2026-11-03T10:14:26Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 29,
+          "reach": 27,
+          "shares": 0,
+          "views": 15,
+          "totalTimeWatched": 2.22,
+          "viewers": 15
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 7.69,
+          "reposts": 0,
+          "impressions": 13,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 3,
+        "views": 15,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 42,
+        "reach": 27,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T10:24:28Z"
+    },
+    {
+      "slug": "openai-grid-protectors-flexible-power",
+      "title": "OpenAI launches Grid Protectors for flexible campus power demand",
+      "publishedAt": "2026-11-03T05:13:09Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 38,
+          "reach": 32,
+          "shares": 0,
+          "views": 19,
+          "totalTimeWatched": 3.98,
+          "viewers": 17
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 9,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.19,
+          "averageTimeWatched": 2.22,
+          "reach": 5
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 28,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 39,
+        "reach": 37,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T09:25:25Z"
+    },
+    {
+      "slug": "momentic-qa-bench-bug-finding-costs",
+      "title": "Momentic compares AI testers against 1,396 known bugs",
+      "publishedAt": "2026-11-03T09:14:10Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 30,
+          "reach": 22,
+          "shares": 0,
+          "views": 15,
+          "totalTimeWatched": 3.29,
+          "viewers": 15
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 3,
+        "views": 15,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 34,
+        "reach": 22,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T09:19:54Z"
+    },
+    {
+      "slug": "flower-endeavor-1-1-eu-image-inputs",
+      "title": "Flower adds EU inference and image inputs to Endeavor 1.1",
+      "publishedAt": "2026-11-03T08:13:53Z",
+      "priority": 2,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 7,
+          "reach": 5,
+          "shares": 0,
+          "views": 4,
+          "totalTimeWatched": 0.54,
+          "viewers": 3
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 12.5,
+          "reposts": 0,
+          "impressions": 8,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 4,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 15,
+        "reach": 5,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T08:22:55Z"
+    },
+    {
+      "slug": "publishers-sue-brave-ai-search",
+      "title": "Publishers sue Brave over AI search",
+      "publishedAt": "2026-11-03T07:13:38Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 18,
+          "reach": 16,
+          "shares": 0,
+          "views": 7,
+          "totalTimeWatched": 0.76,
+          "viewers": 7
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 7,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 24,
+        "reach": 16,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T07:18:41Z"
+    },
+    {
+      "slug": "recraft-logo-maker-guided-beta",
+      "title": "Recraft launches a guided Logo Maker beta",
+      "publishedAt": "2026-11-03T06:13:23Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 6.666666666666667,
+          "impressions": 15,
+          "reach": 13,
+          "shares": 0,
+          "views": 7,
+          "totalTimeWatched": 1.27,
+          "viewers": 7
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 7,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 19,
+        "reach": 13,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T06:20:31Z"
+    },
+    {
+      "slug": "anthropic-short-term-compute-capacity",
+      "title": "Anthropic discloses $5 billion of short-term compute",
+      "publishedAt": "2026-11-03T04:12:56Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.7092198581560284,
+          "impressions": 141,
+          "reach": 112,
+          "shares": 0,
+          "views": 49,
+          "totalTimeWatched": 73.99,
+          "viewers": 49
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 143,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 6.99,
+          "averageTimeWatched": 3.06,
+          "reach": 136
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 192,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 144,
+        "reach": 248,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T05:01:18Z"
+    },
+    {
+      "slug": "hydrogen-scientific-model-open-weights",
+      "title": "Deep Principle introduces Hydrogen-1.0 for scientific research",
+      "publishedAt": "2026-11-03T03:12:38Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 24,
+          "reach": 17,
+          "shares": 0,
+          "views": 13,
+          "totalTimeWatched": 2.06,
+          "viewers": 13
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 13,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 27,
+        "reach": 18,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T03:21:26Z"
+    },
+    {
+      "slug": "cloudflare-ai-search-billing-delay-sync",
+      "title": "Cloudflare postpones AI Search billing and changes its default sync interval",
+      "publishedAt": "2026-11-03T02:12:15Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 4,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 1,
+          "comments": 1,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 4,
+          "reach": 2,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.16,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 50,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 1,
+        "views": 5,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 6,
+        "reach": 2,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T02:20:27Z"
+    },
+    {
+      "slug": "hume-audio-decision-api-listener-judgments",
+      "title": "Hume introduces an API for questions about speech and sound",
+      "publishedAt": "2026-11-03T01:11:52Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 1,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 12,
+          "reach": 10,
+          "shares": 0,
+          "views": 3,
+          "totalTimeWatched": 0.41,
+          "viewers": 3
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 2,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 0,
+        "views": 3,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 14,
+        "reach": 10,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T01:17:22Z"
+    },
+    {
+      "slug": "onsemi-ferric-package-power-delivery",
+      "title": "Onsemi agrees to buy Ferric for package-level AI power delivery",
+      "publishedAt": "2026-11-02T23:11:53Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 2,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 48,
+          "reach": 39,
+          "shares": 0,
+          "views": 31,
+          "totalTimeWatched": 4.14,
+          "viewers": 28
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 4,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 0.62,
+          "averageTimeWatched": 18.48,
+          "reach": 1
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 35,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 59,
+        "reach": 40,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-03T00:03:44Z"
+    },
+    {
+      "slug": "browserskill-target-control-context",
+      "title": "BrowserSkill lets agents reuse control across targeted browser actions",
+      "publishedAt": "2026-11-02T22:11:30Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 7,
+          "reach": 7,
+          "shares": 0,
+          "views": 2,
+          "totalTimeWatched": 0.16,
+          "viewers": 2
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 2,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 9,
+        "reach": 7,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T22:16:54Z"
+    },
+    {
+      "slug": "claude-mem-setup-upload-consent",
+      "title": "Claude-mem adds consent before setup uploads coding prompts",
+      "publishedAt": "2026-11-02T20:05:27Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 3,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 3,
+          "reach": 2,
+          "shares": 0,
+          "views": 14,
+          "totalTimeWatched": 1.54,
+          "viewers": 14
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 14,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 8,
+        "reach": 3,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T20:12:52Z"
+    },
+    {
+      "slug": "marvell-lumentum-optical-acquisition",
+      "title": "Marvell agrees to acquire Lumentum for AI optical connections",
+      "publishedAt": "2026-11-02T17:11:02Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 3.0303030303030303,
+          "impressions": 33,
+          "reach": 28,
+          "shares": 0,
+          "views": 13,
+          "totalTimeWatched": 5.64,
+          "viewers": 13
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 10,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 0,
+        "views": 13,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 44,
+        "reach": 29,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T17:16:39Z"
+    },
+    {
+      "slug": "vllm-cuda-release-artifacts",
+      "title": "vLLM 0.33 drops CUDA 12.9 release artifacts",
+      "publishedAt": "2026-11-02T16:10:47Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 23,
+          "reach": 19,
+          "shares": 0,
+          "views": 3,
+          "totalTimeWatched": 1.17,
+          "viewers": 3
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 3,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 28,
+        "reach": 20,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T16:16:52Z"
+    },
+    {
+      "slug": "autoware-two-learned-planner-boundary",
+      "title": "Autoware 2.0 makes learned planning a selectable component",
+      "publishedAt": "2026-11-02T13:13:05Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 2,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 2.2222222222222223,
+          "impressions": 45,
+          "reach": 35,
+          "shares": 0,
+          "views": 18,
+          "totalTimeWatched": 1.69,
+          "viewers": 18
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 19,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 55,
+        "reach": 36,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T13:23:07Z"
+    },
+    {
+      "slug": "agent-zero-action-permissions-admin-controls",
+      "title": "Agent Zero 2.15 separates permissions for individual tool actions",
+      "publishedAt": "2026-11-02T10:15:16Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 5.88235294117647,
+          "impressions": 17,
+          "reach": 13,
+          "shares": 0,
+          "views": 6,
+          "totalTimeWatched": 0.69,
+          "viewers": 5
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 8,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 7,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 26,
+        "reach": 14,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T10:21:55Z"
+    },
+    {
+      "slug": "gdpx-agent-benchmark-acceptance-tests",
+      "title": "GDPx tests agents against demanding specialist workflows",
+      "publishedAt": "2026-11-02T09:14:59Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 1,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 3,
+          "reach": 3,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 1,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 2.857142857142857,
+          "impressions": 35,
+          "reach": 19,
+          "shares": 0,
+          "views": 14,
+          "totalTimeWatched": 4.29,
+          "viewers": 13
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 15,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 15,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 54,
+        "reach": 22,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T09:22:41Z"
+    },
+    {
+      "slug": "cocoindex-connector-keys-graph-migration",
+      "title": "CocoIndex 1.1 fixes connector key collisions",
+      "publishedAt": "2026-11-02T08:11:33Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 7.6923076923076925,
+          "impressions": 13,
+          "reach": 13,
+          "shares": 0,
+          "views": 8,
+          "totalTimeWatched": 1.08,
+          "viewers": 8
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 25,
+          "reposts": 0,
+          "impressions": 4,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 8,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 18,
+        "reach": 14,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T08:21:43Z"
+    },
+    {
+      "slug": "droid-code-tool-orchestration",
+      "title": "Droid 1.0 puts tool orchestration into code",
+      "publishedAt": "2026-11-01T09:10:02Z",
+      "priority": null,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.91,
+          "views": 127,
+          "shares": 0,
+          "saves": 1,
+          "totalTimeWatched": 4.2,
+          "averageTimeWatched": 2.15,
+          "reach": 110
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 127,
+        "shares": 0,
+        "saves": 1,
+        "reach": 110
+      },
+      "sharedAt": "2026-11-02T07:48:05Z"
+    },
+    {
+      "slug": "hex-three-desktop-dictation-migration",
+      "title": "Hex 3 rebuilds desktop dictation around a common settings interface",
+      "publishedAt": "2026-11-02T07:11:13Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 9.090909090909092,
+          "impressions": 11,
+          "reach": 9,
+          "shares": 0,
+          "views": 1,
+          "totalTimeWatched": 0.29,
+          "viewers": 1
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 3,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 1,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 15,
+        "reach": 10,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T07:16:23Z"
+    },
+    {
+      "slug": "invoke-editable-vector-layers",
+      "title": "InvokeAI adds editable vector layers to its image-generation canvas",
+      "publishedAt": "2026-11-02T06:10:48Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 5.555555555555555,
+          "impressions": 18,
+          "reach": 11,
+          "shares": 0,
+          "views": 6,
+          "totalTimeWatched": 1.05,
+          "viewers": 6
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 5,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 8,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 24,
+        "reach": 12,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T06:19:01Z"
+    },
+    {
+      "slug": "jenny-two-approved-agent-plans",
+      "title": "Jenny 2.0 adds approved agent plans to Android notebooks",
+      "publishedAt": "2026-11-02T05:10:24Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 16.666666666666664,
+          "impressions": 6,
+          "reach": 5,
+          "shares": 0,
+          "views": 5,
+          "totalTimeWatched": 1.05,
+          "viewers": 5
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 7,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 7,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 14,
+        "reach": 6,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T05:19:30Z"
+    },
+    {
+      "slug": "longcat-two-five-native-multimodal",
+      "title": "Meituan releases LongCat-2.5 for visual coding and longer agent tasks",
+      "publishedAt": "2026-11-02T04:09:35Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 3,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 23,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 10,
+          "impressions": 10,
+          "reach": 8,
+          "shares": 0,
+          "views": 7,
+          "totalTimeWatched": 1.4,
+          "viewers": 6
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 17.65,
+          "reposts": 0,
+          "impressions": 17,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 10,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 51,
+        "reach": 9,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T04:42:12Z"
+    },
+    {
+      "slug": "dograh-whatsapp-inbound-calling",
+      "title": "Dograh 1.50 packages WhatsApp inbound calling for voice agents",
+      "publishedAt": "2026-11-02T01:08:23Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 7,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 12.5,
+          "impressions": 8,
+          "reach": 6,
+          "shares": 0,
+          "views": 7,
+          "totalTimeWatched": 1.39,
+          "viewers": 7
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 7,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 22,
+        "reach": 7,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T01:14:51Z"
+    },
+    {
+      "slug": "mage-cowork-hybrid-computer-agent",
+      "title": "Microsoft puts clicks and commands inside one Mage agent",
+      "publishedAt": "2026-11-01T19:09:01Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 19,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 1,
+          "reach": 1,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 2.4390243902439024,
+          "impressions": 41,
+          "reach": 32,
+          "shares": 0,
+          "views": 14,
+          "totalTimeWatched": 2.16,
+          "viewers": 14
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        },
+        "reel:instagram": {
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 0.76,
+          "views": 152,
+          "shares": 0,
+          "saves": 0,
+          "totalTimeWatched": 7.7,
+          "averageTimeWatched": 3.37,
+          "reach": 132
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 1,
+        "comments": 1,
+        "views": 185,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 51,
+        "reach": 165,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-02T00:52:50Z"
+    },
+    {
+      "slug": "conductor-agent-execution-realms",
+      "title": "Microsoft Conductor moves agent execution into container profiles",
+      "publishedAt": "2026-11-01T22:07:51Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 0,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 3,
+          "reach": 2,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {},
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 6.25,
+          "impressions": 16,
+          "reach": 15,
+          "shares": 0,
+          "views": 4,
+          "totalTimeWatched": 0.6,
+          "viewers": 4
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 5,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 4,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 24,
+        "reach": 17,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-01T22:13:14Z"
+    },
+    {
+      "slug": "gemini-computer-use-ga-api-integration",
+      "title": "Google makes Gemini Computer Use generally available across two APIs",
+      "publishedAt": "2026-11-01T21:07:39Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 2,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 2,
+          "reach": 2,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 6.666666666666667,
+          "impressions": 15,
+          "reach": 14,
+          "shares": 0,
+          "views": 6,
+          "totalTimeWatched": 0.54,
+          "viewers": 6
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 6,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 8,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 23,
+        "reach": 16,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-01T21:13:02Z"
+    },
+    {
+      "slug": "xai-colossus-turbine-suit-proceeds",
+      "title": "Court lets the pollution lawsuit over xAI’s Colossus 2 power plant proceed",
+      "publishedAt": "2026-11-01T18:04:28Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 3,
+          "quotes": 0,
+          "reposts": 0
+        },
+        "now:pinterest": {
+          "saves": 0,
+          "clicks": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "reactions": 0
+        },
+        "now:mastodon": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:substack": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0,
+          "impressions": 0,
+          "reach": 0,
+          "shares": 0,
+          "freeSubscriptions": 0,
+          "paidSubscriptions": 0
+        },
+        "now:bluesky": {
+          "reactions": 0,
+          "comments": 0,
+          "reposts": 0
+        },
+        "now:facebook": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "impressions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "now:linkedin": {
+          "reactions": 0,
+          "comments": 1,
+          "engagementRate": 1.8518518518518516,
+          "impressions": 54,
+          "reach": 42,
+          "shares": 0,
+          "views": 23,
+          "totalTimeWatched": 3.68,
+          "viewers": 23
+        },
+        "now:twitter": {
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "reposts": 0,
+          "impressions": 9,
+          "clicks": 0
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {
+        "reactions": 0,
+        "comments": 1,
+        "views": 26,
+        "reposts": 0,
+        "saves": 0,
+        "clicks": 0,
+        "impressions": 63,
+        "reach": 42,
+        "shares": 0
+      },
+      "sharedAt": "2026-11-01T18:10:03Z"
+    }
+  ]
+}

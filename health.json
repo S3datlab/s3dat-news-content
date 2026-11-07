@@ -1,0 +1,44 @@
+{
+  "updated": "2026-11-07T17:35:13Z",
+  "pipeline": {
+    "timer": "active",
+    "paused": false,
+    "running": [],
+    "last24h": {
+      "done": 8,
+      "fallback": 0,
+      "reels": 1
+    },
+    "lastDone": {
+      "slug": "psi-quantum-conjecture-proof",
+      "at": "2026-11-07T15:24:32Z"
+    },
+    "backlog": [],
+    "cooldown": null
+  },
+  "vibes": {
+    "signedIn": true,
+    "checkedAt": "2026-11-07T16:35:13Z"
+  },
+  "codex": {
+    "loggedIn": true,
+    "fiveHourUsedPercent": 2.0,
+    "fiveHourResetsAt": "2026-11-07T20:16:51Z",
+    "weeklyUsedPercent": 23.0,
+    "weeklyResetsAt": "2026-11-11T16:44:47Z",
+    "asOf": "2026-11-07T15:21:50.993Z",
+    "plan": "plus"
+  },
+  "failures6h": [],
+  "sharing": {
+    "lastShareAt": "2026-11-07T15:23:08Z",
+    "failures24h": []
+  },
+  "server": {
+    "diskFreeGB": 169,
+    "githubFetch": true
+  },
+  "metricsUpdated": "2026-11-07T13:05:13Z",
+  "status": "ok",
+  "problems": []
+}
