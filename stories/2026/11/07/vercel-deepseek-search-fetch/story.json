@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "vercel-deepseek-search-fetch",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Vercel adds DeepSeek search and page fetching to AI Gateway",
+  "titleAccent": "DeepSeek search",
+  "dek": "The new tools separate web retrieval from the model answering the question, with a request fee for each successful search or fetched page.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-07T18:12:52Z",
+  "lede": "Vercel announced DeepSeek Search and Fetch to AI Gateway on November 6. Developers can give compatible tool-calling models web retrieval through their existing Gateway key. Both tools cost $0.75 per thousand billable requests, before model-token charges.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "6 November 2026"
+    },
+    {
+      "label": "Tool price",
+      "value": "$0.75 per 1,000 billable requests"
+    },
+    {
+      "label": "Search result limit",
+      "value": "1–50 results; default 10"
+    },
+    {
+      "label": "SDK minimums",
+      "value": "AI SDK 6.0.321 or 7.0.160"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Retrieval becomes a separate choice",
+      "text": "The integration gives an application two distinct operations. Search finds candidate pages and returns their titles, addresses and summaries. Fetch takes a page address and returns its contents as Markdown. The model can therefore discover a source first, then request the underlying text. Vercel also describes combining these tools with Exa or Parallel search results. A page found by another search provider can become input to DeepSeek Fetch. That separation makes the discovery service, page reader and answering model independent choices within one application."
+    },
+    {
+      "heading": "The bill follows tool calls",
+      "text": "A question is not the billing unit. Consider an illustrative workload of ten thousand questions, each producing one successful search and two successful page fetches. That produces thirty thousand tool requests and a $22.50 retrieval bill at the announced rate. Search alone accounts for $7.50; the two fetched pages add $15. These figures describe an assumed workload, not a measured benchmark. A system that reads five pages for each question makes a different number of calls even when it serves the same number of users. The arithmetic separates retrieval volume from audience size."
+    },
+    {
+      "heading": "Result limits also shape context",
+      "text": "The documentation allows between one and fifty search results, with ten as the default. Changing that count does not change the price of an individual search request. It can change how much material the application subsequently reads. Host-model input and output tokens remain a separate charge, including tool results supplied to the model. Developer-specified search options take precedence over model arguments. That gives the application an explicit place to define retrieval limits rather than leaving every query parameter to generated tool calls. The same result count can still lead to different reading paths."
+    },
+    {
+      "heading": "The implementation preceded the announcement",
+      "text": "The November 2 Gateway package release already lists DeepSeek Search and Fetch among its changes. The same release preserves cancellation and timeout error reasons instead of wrapping them as retryable server errors. That distinction affects whether an application interprets a stopped operation as a reason to try again. AI SDK 6.0.321 includes this Gateway dependency, version 3.0.227. The November 6 announcement names that SDK version as its version-six minimum. A package release and a public announcement are separate milestones; the dependency record makes that sequence explicit."
+    },
+    {
+      "heading": "Fallback needs its own accounting",
+      "text": "The announcement’s fallback example asks the model to try DeepSeek, Exa and Parallel in sequence after errors. Vercel describes that order and the retry limit as best effort because the model directs the calls. This differs from a deterministic application rule that stops after a fixed number of attempts. For the illustrative workload, adding a second search attempt changes the request count before any page is read. An answer counter alone would hide that change. Search history, fetched-page history and token use explain different parts of the final bill."
+    }
+  ],
+  "buildersNote": "Budget a test of 1,000 questions at one search and two fetches each: $2.25 in tool fees, plus model tokens. Record successful calls, fetched pages and token charges separately before increasing the result limit.",
+  "claims": [
+    {
+      "text": "Vercel documents Search and Fetch at $0.75 per thousand billable requests each, with failed, timed-out or empty responses excluded from tool charges.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "AI SDK 6.0.321 was released November 2 and updates @ai-sdk/gateway to 3.0.227.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The integration supports tool-calling models through one Gateway key without a separate DeepSeek account, according to Vercel.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The announcement supplies no independent comparison of retrieval accuracy or end-to-end answer quality. Fetch availability depends on the target site.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "AI Gateway adds DeepSeek Search and Fetch tools",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/changelog/ai-gateway-adds-deepseek-search-and-fetch-tools",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "AI Gateway Web Search",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/docs/ai-gateway/models-and-providers/web-search",
+      "date": "2026-09-08"
+    },
+    {
+      "title": "ai@6.0.321",
+      "publisher": "Vercel",
+      "url": "https://github.com/vercel/ai/releases/tag/ai%406.0.321",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "@ai-sdk/gateway@3.0.227",
+      "publisher": "Vercel",
+      "url": "https://github.com/vercel/ai/releases/tag/%40ai-sdk%2Fgateway%403.0.227",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "hook": "One answer can carry three retrieval charges.",
+    "voiceover": "[measured] One answer can carry three retrieval charges. Vercel added DeepSeek search and page fetching to its gateway. Each costs seventy-five cents per thousand billable requests. Model tokens cost extra.",
+    "short": "Vercel added DeepSeek Search and Fetch to AI Gateway at $0.75 per thousand billable requests each. Retrieval now works separately from the answering model. Answer quality has no independent benchmark here.",
+    "long": "AI Gateway now offers DeepSeek search and page fetching through Vercel’s existing key. The November 6 addition lets a compatible tool-calling model find pages and then read their contents as separate operations.\n\nBoth tools cost $0.75 per thousand billable requests. Ten thousand questions with one search and two fetches each would cost $22.50 in retrieval fees, before model tokens. That is an illustrative workload, not a benchmark. The announcement does not establish an independent answer-quality advantage.",
+    "take": "We would measure retrieval calls and model tokens separately. A low request price does not describe the cost of a full research answer.",
+    "keyFacts": [
+      "6 November: DeepSeek tools added",
+      "Search and Fetch: $0.75 per 1,000 each",
+      "Model tokens billed separately"
+    ],
+    "hashtags": [
+      "Vercel",
+      "DeepSeek",
+      "AIAgents",
+      "WebSearch"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

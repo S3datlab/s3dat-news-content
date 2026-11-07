@@ -1,0 +1,27 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "VERCEL ADDS",
+    "DEEPSEEK",
+    "WEB RETRIEVAL"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Vercel",
+      "icon": "vercel"
+    },
+    {
+      "name": "DeepSeek",
+      "icon": "deepseek"
+    }
+  ],
+  "mood": "calm",
+  "stat": {
+    "value": "$0.75",
+    "label": "per 1,000 billable requests"
+  },
+  "seed": 71118,
+  "sources": {}
+}
