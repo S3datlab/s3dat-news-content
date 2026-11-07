@@ -27,5 +27,9 @@
   "sources": {
     "hero.webp": "generated",
     "prop.webp": "generated"
+  },
+  "vibes": {
+    "banner": true,
+    "reel": true
   }
 }
