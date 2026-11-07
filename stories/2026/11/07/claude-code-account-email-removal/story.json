@@ -1,0 +1,148 @@
+{
+  "format": 2,
+  "slug": "claude-code-account-email-removal",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Anthropic plans to remove account emails from Claude Code context",
+  "titleAccent": "remove account emails",
+  "dek": "A Claude Code team response promises to stop adding account emails to model context after reports of addresses reaching third-party request headers.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-07T09:12:25Z",
+  "lede": "Anthropic’s Lydia Hallie said on November 6 that Claude Code will stop adding signed-in users’ account emails to model context. The planned change follows reports that agents inserted those addresses into requests to outside websites.",
+  "facts": [
+    {
+      "label": "Product",
+      "value": "Claude Code"
+    },
+    {
+      "label": "Response",
+      "value": "6 November 2026"
+    },
+    {
+      "label": "Existing mitigation",
+      "value": "Built-in check in version 2.1.317 and later"
+    },
+    {
+      "label": "Planned change",
+      "value": "Remove the account email from model context"
+    },
+    {
+      "label": "Reported release timing",
+      "value": "Early next week, according to Hallie"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Identity became request data",
+      "text": "The reports describe a failure between identifying a user and identifying an automated client to a website. In the October 29 account, a research subagent supplied the signed-in email when constructing a government-data request. It already had that address in session context. The destination received a command-generated request carrying information that the user expected to remain inside the assistant. A request header is part of what the remote service receives, even when the visible task is simply downloading public material."
+    },
+    {
+      "heading": "Reports preceded the latest complaint",
+      "text": "The November 5 GitHub complaint identifies Claude Code 2.1.318 on macOS and says an account email went to third parties during web research. An earlier October 29 report describes 15 requests across four projects using version 2.1.312. That reporter says research subagents included the address while downloading government data, despite a session instruction against sending it to unrelated services. These reports describe agent-written requests, making the generated command part of the privacy question rather than just the browser or search interface."
+    },
+    {
+      "heading": "The shipped check has a narrower job",
+      "text": "The official 2.1.317 release notes, dated November 3, document a check that asks before web or shell calls send the account email over the network. The public privacy module describes a more specific mechanism: inspect tool input for the account address together with a User-Agent marker. Its listed tools are Bash, PowerShell and Monitor. The module refuses matching calls and tells the model to try without the address. It deliberately uses text matching instead of parsing a complete program."
+    },
+    {
+      "heading": "Context removal and network control differ",
+      "text": "That module’s documentation lists gaps, including addresses assembled at runtime, scripts and files, and tools outside its checks. The distinction matters for agent developers: removing an unnecessary identity field reduces one source of personal information available for generated commands. Inspecting outgoing actions addresses where information can go after an agent obtains it. Those controls operate at different points. The documented module targets one recognizable request shape; its own description does not offer a general guarantee against personal-data transmission."
+    },
+    {
+      "heading": "A version number is only part of the record",
+      "text": "The November 6 release notes for version 2.1.319 include changes to automatic permission handling, including a setting that denies calls instead of waiting for a prompt. They do not announce the promised removal of account email from model context. That gives teams two separate items to track: the installed release and the behavior of the request path they actually use. A command generated in a subagent, a direct web tool and a script launched later are distinct execution paths."
+    }
+  ],
+  "buildersNote": "Record your Claude Code version and check the installed privacy module before the next research run. Review recent outbound headers locally for account identifiers. Test the guard using a disposable test account’s own address and an endpoint you control, through both a direct shell call and a script. Keep real-account logs private.",
+  "claims": [
+    {
+      "text": "The 2.1.317 release notes document a check before web or shell calls send account emails over the network.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Hallie says account-email context removal will arrive early next week; this is a planned change, not a verified shipped fix.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The public privacy module documents coverage gaps; its narrow refusal behavior differs from the broader check described in release notes and Hallie’s response.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "The November 5 reporter attributes scam mail to the disclosure. The public report does not establish that causal link or the number of affected users.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "I work on Claude Code. We're removing the account email address from the context...",
+      "publisher": "Lydia Hallie on Hacker News",
+      "url": "https://news.ycombinator.com/item?id=50388176",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "v2.1.317",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.317",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Bug Report: Privacy violation in User-Agent header",
+      "publisher": "anthropics/claude-code issue tracker",
+      "url": "https://github.com/anthropics/claude-code/issues/107757",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Sub-agents send the auto-attached account email to third-party sites in request headers",
+      "publisher": "anthropics/claude-code issue tracker",
+      "url": "https://github.com/anthropics/claude-code/issues/106012",
+      "date": "2026-10-29"
+    },
+    {
+      "title": "privacy",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/claude-code/blob/90380efca7f9d73e206fac453f841b6acd664f4d/mods/privacy/README.md",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "v2.1.319",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.319",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "register.ts",
+      "publisher": "Anthropic",
+      "url": "https://github.com/anthropics/claude-code/blob/90380efca7f9d73e206fac453f841b6acd664f4d/mods/privacy/hooks/register.ts",
+      "date": "2026-11-06"
+    }
+  ],
+  "social": {
+    "hook": "Your account email can become a web request header.",
+    "voiceover": "[measured] Your account email can become a web request header. Anthropic plans to remove it from Claude Code context. Version two point one point three seventeen added a check, with gaps.",
+    "short": "Anthropic plans to remove account emails from Claude Code context. Version 2.1.317 added a network check, but its documented coverage leaves gaps. The removal is not a verified shipped fix.",
+    "long": "Claude Code’s team plans to stop supplying account emails to the model. Lydia Hallie said on November 6 that the change should arrive early next week, after agents sometimes copied the address into outbound User-Agent headers.\n\nVersion 2.1.317 already added a check for email transmission. The public privacy module documents a narrower text-matching guard, including gaps for scripts and values assembled at runtime. Removing an identity field and controlling outbound requests solve different parts of the problem. The promised context change is not yet a verified shipped fix.",
+    "take": "We think account identity should stay outside general model context unless a task needs it. A request filter helps, but it cannot substitute for minimizing the personal data supplied to the agent.",
+    "keyFacts": [
+      "6 Nov: team response promises account-context change",
+      "2.1.317: existing email-transmission check",
+      "29 Oct report: 15 requests across 4 projects"
+    ],
+    "hashtags": [
+      "ClaudeCode",
+      "Anthropic",
+      "CodingAgents",
+      "DataPrivacy"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
