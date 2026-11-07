@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "PDD KIT",
+    "MOVES REVIEW",
+    "TO CONTRACTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110706,
+  "sources": {}
+}

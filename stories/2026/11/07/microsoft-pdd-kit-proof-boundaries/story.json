@@ -1,0 +1,168 @@
+{
+  "format": 2,
+  "slug": "microsoft-pdd-kit-proof-boundaries",
+  "kind": "analysis",
+  "topic": "dev-tools",
+  "title": "Microsoft’s PDD Kit moves code review toward proof contracts",
+  "titleAccent": "proof contracts",
+  "dek": "PDD Kit turns reviewed requirements into Rust contracts, while keeping tests and explicit assumptions around code outside the proof.",
+  "eventDate": "2026-11-02",
+  "publishedAt": "2026-11-07T06:11:31Z",
+  "lede": "Microsoft Research detailed PDD Kit’s login-verification workflow on November 5, following GitHub Next’s November 2 project page. The research prototype connects agent-written code to human-approved requirements. Its example makes the boundary between a proved property and a trusted dependency the central review question.",
+  "facts": [
+    {
+      "label": "Project",
+      "value": "PDD Kit, with GitHub Next"
+    },
+    {
+      "label": "Status",
+      "value": "Research prototype"
+    },
+    {
+      "label": "Demonstration",
+      "value": "Login in a roughly 5,000-line Rust app"
+    },
+    {
+      "label": "Verifier",
+      "value": "Verus"
+    },
+    {
+      "label": "Login contract",
+      "value": "8 ensures clauses"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The requirement comes first",
+      "text": "Microsoft demonstrated the workflow on a Rust storefront called Pet Store, concentrating on authentication. A developer supplied two broad requirements about passwords and administrator tokens. The planning stage asked for decisions before implementation, then converted the agreed behavior into formal contracts. The example exposes a useful distinction: rejecting every login satisfies a rule that forbids tokens for incorrect passwords. It does not provide a working sign-in service. Requiring successful authentication for valid credentials closes that gap. The formal target therefore depends on what the human approves, not merely on whether the generated program passes its own tests."
+    },
+    {
+      "heading": "A receipt for the proof",
+      "text": "GitHub Next describes a separate implementation loop that generates code and proofs against the approved specification. Its mutation check deliberately changes code to violate individual contract clauses; the verifier must reject those changes. A surviving mutation sends the clause back for investigation. Completed pull requests record which requirements have proofs, which have empirical checks, and which components remain trusted. That record makes the meaning of a successful check visible at merge time. Later changes face the same contracts in continuous integration. This is a proposed review workflow around formal tools, with people still responsible for deciding what the software promises."
+    },
+    {
+      "heading": "What the verifier actually does",
+      "text": "Verus checks Rust programs statically with automated solvers. Its documentation describes specifications that must hold across all possible executions of the supported code. The checks run before deployment, instead of inserting another set of runtime conditions into the application. That changes the role of examples: a test executes selected cases, while a verified contract describes a property across the modeled input space. The distinction matters when branches interact in ways an example suite misses. The Verus project also provides small programs, reference material and a browser playground, letting developers inspect the verification mechanism separately from any coding agent."
+    },
+    {
+      "heading": "Planning and proof solve different jobs",
+      "text": "GitHub’s existing Spec Kit provides a useful comparison. Its documented processes carry specifications through planning, implementation and convergence, with separate routes for bug fixes and assessing ideas. Teams can adapt templates, add quality gates or connect another coding agent. Those mechanisms organize how work proceeds and how outcomes are recorded. PDD Kit adds a particular mathematical obligation to that planning approach: generated Rust must satisfy the accepted formal contract. A documented process and a proof can therefore sit in the same delivery pipeline. Neither replaces the initial product decision about which behavior matters or who may approve a changed requirement."
+    },
+    {
+      "heading": "The review moves upstream",
+      "text": "Consider a simple transfer rule in a hypothetical application: the amount removed from one balance must equal the amount added to another. Proving that relation would establish a useful property. It would not settle who may request the transfer, which account belongs to whom, or whether a duplicate request should run again. Those are separate requirements. This is why moving review to a contract changes the work instead of eliminating it. The person approving the specification must recognize missing promises, while the delivery system preserves the evidence for the promises actually checked. More generated code makes that distinction harder to ignore."
+    }
+  ],
+  "buildersNote": "Start with one sensitive function. Write down both allowed and rejected outcomes, then list every dependency the proof must trust. Keep a separate test for each assumption before considering a smaller review surface.",
+  "claims": [
+    {
+      "text": "GitHub Next labels PDD Kit a research prototype, not a general production release.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Microsoft reports verifying the demonstration login against eight contract clauses; this is its own case study.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The login proof assumes database, cryptographic and clock behavior; termination and request timing are outside its stated guarantees.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Verus supports a subset of Rust and remains under active development with incomplete features and documentation.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Independent evidence that this workflow reduces production defects or total review time is not established by the demonstration.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Formally verifying agent-written full-stack web apps with PDD Kit",
+      "publisher": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "PDD Kit",
+      "publisher": "GitHub Next",
+      "url": "https://githubnext.com/projects/pdd-kit/",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Verus",
+      "publisher": "Verus contributors",
+      "url": "https://github.com/verus-lang/verus/blob/53e0d5518a50f3f7ec3564905f7ba25f566e76f5/README.md",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Spec Kit",
+      "publisher": "GitHub",
+      "url": "https://github.com/github/spec-kit/blob/ec9a6f3b94c0aa856f77e550785a1ddde1993de1/README.md",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "A passing proof still needs the right promise.",
+    "voiceover": "[measured] A passing proof still needs the right promise. Microsoft demonstrated proof-driven review for agent-written code. Eight login clauses define the contract. Dependencies outside that proof still need their own checks.",
+    "short": "Microsoft demonstrated PDD Kit on a Rust storefront with roughly 5,000 lines. It verifies approved login requirements while keeping explicit assumptions outside the proof.",
+    "long": "Microsoft Research presented a different way to review agent-written software: approve the behavior first, then have a verifier check the generated implementation. PDD Kit’s login example turns a short request into eight contract clauses.\n\nGitHub Next labels it a research prototype. Database access, password hashing and token signing still depend on trusted components. A verified login contract is not a guarantee covering the entire application.",
+    "take": "We favor review receipts that expose the promise, its proof and the dependencies still taken on trust. A green check alone hides that distinction.",
+    "keyFacts": [
+      "Microsoft demonstration: November 5, 2026",
+      "Demo app: roughly 5,000 lines of Rust",
+      "Login specification: 8 contract clauses"
+    ],
+    "hashtags": [
+      "Microsoft",
+      "CodingAgents",
+      "FormalVerification",
+      "Rust"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": [],
+  "comparison": {
+    "caption": "The documented tools address different parts of delivery; PDD Kit remains a research prototype.",
+    "columns": [
+      "Aspect",
+      "PDD Kit",
+      "Spec Kit",
+      "Verus"
+    ],
+    "rows": [
+      [
+        "Primary job",
+        "Reviewed intent, proofs and test receipts",
+        "Structured agent development processes",
+        "Static checking of Rust specifications"
+      ],
+      [
+        "Human focus",
+        "Requirements and trusted dependencies",
+        "Specifications, plans and outcomes",
+        "Formal specification"
+      ],
+      [
+        "Evidence",
+        "Proofs plus empirical checks",
+        "Recorded workflow verification",
+        "Solver-checked contracts"
+      ]
+    ]
+  },
+  "ourRead": "We see the strongest contribution as making the trust boundary a reviewable artifact. Automating a proof has limited value if nobody notices that its contract omits the behavior users need. The prototype gives teams a concrete way to distinguish checked logic from accepted assumptions, and Spec Kit shows how that record can fit a broader planning process. We would change our view if independent trials found that reviewing these contracts and maintaining their assumptions costs more than the defects and review effort it prevents.",
+  "watching": [
+    "By November 21, 2026, look for public reproducible PDD Kit examples beyond the demonstrated login flow.",
+    "By December 5, 2026, look for independent measurements of specification-review time and defects against ordinary review."
+  ]
+}
