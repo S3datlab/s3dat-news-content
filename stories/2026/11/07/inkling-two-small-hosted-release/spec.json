@@ -19,5 +19,9 @@
   "seed": 110721,
   "sources": {
     "tinker.svg": "https://github.com/thinking-machines-lab/tinker/blob/main/docs/images/logo.svg"
+  },
+  "vibes": {
+    "banner": true,
+    "reel": false
   }
 }
