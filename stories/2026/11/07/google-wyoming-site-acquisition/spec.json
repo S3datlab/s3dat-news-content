@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "GOOGLE BUYS",
+    "WYOMING SITE"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110703,
+  "sources": {}
+}

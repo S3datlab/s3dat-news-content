@@ -1,0 +1,135 @@
+{
+  "format": 2,
+  "slug": "google-wyoming-site-acquisition",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "Google buys Crusoe’s Wyoming site for its data center buildout",
+  "dek": "The transfer announced November 6 follows a $17 billion investment announcement, with separate utility contracts showing when power is expected to arrive.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-07T03:11:30Z",
+  "lede": "Google acquired Crusoe’s southeast Wyoming data center site, Crusoe announced on November 6. The transfer moves a planned computing campus beyond its original developer, while earlier energy contracts show the construction work still ahead.",
+  "facts": [
+    {
+      "label": "Acquirer",
+      "value": "Google"
+    },
+    {
+      "label": "Site",
+      "value": "Southeast Wyoming, near Cheyenne"
+    },
+    {
+      "label": "Investment announced Nov 5",
+      "value": "$17 billion, long term"
+    },
+    {
+      "label": "Fuel-cell project",
+      "value": "702 MW planned by AEP"
+    },
+    {
+      "label": "Energy service target",
+      "value": "Late 2027, according to Black Hills"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A development handover",
+      "text": "Crusoe says the sale completes its work selecting the location, securing governmental approvals and designing the power strategy. It developed the campus with Tallgrass Energy, combining site engineering with energy planning. The companies brought together fuel cells, grid supply and gas turbines, with carbon storage included in the longer-term plan. Reuters reported that the transaction price was not disclosed. The ownership change concerns this Wyoming site; Crusoe separately remains the developer of Google’s Armstrong County campus outside Amarillo, according to its announcement."
+    },
+    {
+      "heading": "The investment and the power plant are separate",
+      "text": "Google announced its first Wyoming data center on November 5, describing a long-term $17 billion investment. Its partners include Tallgrass, Black Hills Energy, AEP and Related Digital. Google says the facility will use air cooling and that it will cover the electricity it consumes and infrastructure needs directly caused by its growth. The company also describes carbon capture for the fuel-cell development and a study of capture equipment for Tallgrass turbines. Those are different stages of engineering, even within one campus plan. The investment statement gives the project a budget, not an operating capacity."
+    },
+    {
+      "heading": "A generation project with its own timetable",
+      "text": "AEP’s October 14 announcement supplies another part of the schedule. It plans roughly $4 billion for a 702-megawatt Bloom Energy fuel-cell project under a twenty-year Google power purchase agreement. AEP controls about 92% of the project company; funds advised by Basalt hold nearly 8%. Construction was planned to start in 2026, with full operation expected by the end of 2028. The equipment converts natural gas into electricity without burning it, and the project includes plans for carbon capture. This is generation infrastructure supporting the campus, rather than a count of installed computing hardware."
+    },
+    {
+      "heading": "Capacity arrives in stages",
+      "text": "Black Hills described a broader 2.7-gigawatt resource mix, including reserves, in its October 6 announcement. That plan combines up to 590 megawatts of grid-connected service with management of about 2.1 gigawatts of third-party resources. The agreements took effect September 30 and run through 2048. Energy service is planned to begin in late 2027 and grow toward peak load in 2030. Black Hills says its contracts include protections against shifting project costs to existing customers, including provisions covering early termination and stranded assets. These dates describe a staged electricity supply, not a single switch-on date for every server. For software teams, the distinction is practical: land ownership, available power and a purchasable computing service are separate milestones."
+    }
+  ],
+  "buildersNote": "For a 2027 capacity plan, require three dates from a supplier: power availability, installed computing capacity and customer service launch. The Wyoming site transfer alone does not establish any new GPU allocation you can book today.",
+  "claims": [
+    {
+      "text": "Crusoe announced that Google acquired its southeast Wyoming site on November 6.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Google announced a $17 billion long-term Wyoming investment on November 5.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "AEP targets full fuel-cell operation by end-2028. This remains a company schedule.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "Black Hills targets initial energy service in late 2027. This remains a company schedule.",
+      "status": "claimed",
+      "source": 3
+    },
+    {
+      "text": "The eventual emissions reduction, final campus delivery date and customer compute availability are not established by these announcements.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Crusoe Announces Wyoming Data Center Campus Update",
+      "publisher": "Crusoe",
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-wyoming-data-center-campus-update",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Investing in Wyoming’s infrastructure, energy and workforce",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "AEP Advances Innovative Energy Solution for Google with 702MW of Bloom Fuel Cells",
+      "publisher": "American Electric Power",
+      "url": "https://www.aep.com/news/stories/view/12314/",
+      "date": "2026-10-14"
+    },
+    {
+      "title": "Black Hills Corp. Executes Definitive Agreements to Serve Google’s Planned Data Center in Cheyenne, Wyoming",
+      "publisher": "Black Hills Corporation",
+      "url": "https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-executes-definitive-agreements-serve-googles",
+      "date": "2026-10-06"
+    },
+    {
+      "title": "Google acquires Wyoming data center site from AI infrastructure firm Crusoe",
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/google-acquires-wyoming-data-center-site-ai-infrastructure-firm-crusoe-2026-11-06/",
+      "date": "2026-11-06"
+    }
+  ],
+  "social": {
+    "hook": "Buying the site is only one step toward computing capacity.",
+    "voiceover": "[measured] Buying the site is only one step toward computing capacity. Google acquired Crusoe’s Wyoming site. Its fuel-cell partner targets full operation in twenty twenty-eight. Power and computing capacity arrive on separate schedules.",
+    "short": "Google acquired Crusoe’s Wyoming data center site. AEP’s 702 MW fuel-cell project targets full operation by end-2028; the transfer does not establish when customers can buy computing capacity.",
+    "long": "Google took ownership of the Wyoming site developed by Crusoe. The handover announced November 6 ends Crusoe’s pre-development role, including site selection and power planning.\n\nBlack Hills expects energy service to start in late 2027 and ramp toward peak load in 2030. Those are electricity milestones. Customer compute availability is a separate date that these announcements do not establish.",
+    "take": "We put delivered power and usable computing capacity ahead of acquisition totals. A site transfer advances the project, while customer availability still needs its own evidence.",
+    "keyFacts": [
+      "November 6: Wyoming site acquisition announced",
+      "AEP: 702 MW fuel-cell project planned",
+      "Black Hills energy service target: late 2027"
+    ],
+    "hashtags": [
+      "Google",
+      "AIInfrastructure",
+      "DataCenters",
+      "Energy"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
