@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "claude-enterprise-project-cost-tags",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Claude Enterprise adds project tags for tracking costs",
+  "titleAccent": "tracking costs",
+  "dek": "A new beta assigns project spending to business codes while existing member and group limits remain separate controls.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-08T15:26:11Z",
+  "lede": "Anthropic introduced project cost tags for eligible Claude Enterprise organizations on November 6. The beta lets businesses associate spending with their existing charge codes and client matters. That adds a reporting dimension to a product whose budget controls operate separately.",
+  "facts": [
+    {
+      "label": "Availability",
+      "value": "Eligible Claude Enterprise organizations; beta"
+    },
+    {
+      "label": "Project capacity",
+      "value": "Up to 16 tags per project"
+    },
+    {
+      "label": "Announcement",
+      "value": "6 November 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A project becomes a reporting unit",
+      "text": "The release connects an existing unit of work to the codes a business already uses. Consider a hypothetical consultancy whose engineer spends $30 on one client assignment and $70 on another. A member-level total would show $100 for that engineer. An assignment-level report can instead support a discussion about the two clients, provided the underlying work qualifies for attribution. These are illustrative amounts, not measured results or Anthropic prices. The distinction becomes useful when several employees contribute to one assignment, or one employee handles several assignments. Neither the employee total nor the client total alone describes both relationships."
+    },
+    {
+      "heading": "The tag is not a spending gate",
+      "text": "Anthropic's documentation explicitly excludes spending limits by tag. Attribution also has timing rules: a new tag takes about two hours to take effect, and the report extends through the previous UTC day. Earlier spending is not reassigned. Claude Code requires a project mapping in its settings; an unmapped session remains untagged without a warning. That creates a concrete setup dependency for teams combining browser conversations and terminal work. The reporting unit follows the configured project, so installing the feature and correctly assigning work are separate steps."
+    },
+    {
+      "heading": "Existing controls still decide when work pauses",
+      "text": "The Enterprise consumption guide distinguishes organization ceilings, member limits and pooled group budgets. A group default assigns a limit to each member; a pool provides one shared monthly amount. Consider an illustrative team of four people, each with a $100 member limit. Those four limits do not create a shared $100 budget. A separate $100 pool would constrain their combined consumption, subject to the documented enforcement behavior. This example uses invented amounts to explain the mechanics, not an Anthropic price. Project reporting and pooled budgets therefore answer different questions even when the same people use both."
+    },
+    {
+      "heading": "Automation has its own control path",
+      "text": "Anthropic's Enterprise Admin API exposes effective member limits alongside spending during the current period. It also supports individual overrides and a separate process for approving or denying requests for more usage. Removing an override returns the member to the inherited limit. Its eight spend-control endpoints share an organization-wide allowance of 60 requests per minute. Monetary values use minor currency units, with fractional amounts possible, and the current recurring period is monthly. The API distinguishes an unlimited allowance from a zero allowance, which disables usage credits for that member. Those values need different treatment in an internal budget tool."
+    }
+  ],
+  "buildersNote": "Pilot one client code on a small project before using its export for allocation. Compare the next day's attributed spending with the existing member-limit view; record which work falls outside project reporting.",
+  "claims": [
+    {
+      "text": "The November 6 release introduced project cost tags as an Enterprise beta.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Project tags do not provide per-tag spend limits.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Reports omit seat-covered usage. Eligibility excludes HIPAA, customer-managed keys, restricted retention, non-US storage and own-provider Desktop configurations.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Pooled-budget usage can slightly exceed a limit before it pauses.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Project reporting does not cover every Claude product, and reported amounts may differ from invoices.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes",
+      "publisher": "Anthropic",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Track spend by cost code with project tags",
+      "publisher": "Anthropic",
+      "url": "https://support.claude.com/en/articles/18251257-track-spend-by-cost-code-with-project-tags",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Claude Enterprise consumption guide",
+      "publisher": "Anthropic",
+      "url": "https://support.claude.com/en/articles/14782391-claude-enterprise-consumption-guide",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Claude Enterprise Admin API reference guide",
+      "publisher": "Anthropic",
+      "url": "https://support.claude.com/en/articles/15330651-claude-enterprise-admin-api-reference-guide",
+      "date": "2026-11-07"
+    }
+  ],
+  "social": {
+    "hook": "A cost label does not stop the spending.",
+    "voiceover": "[measured] A cost label does not stop the spending. Claude Enterprise now tracks project costs with up to sixteen tags. Existing member limits and shared budgets still control when work pauses.",
+    "short": "Anthropic added project cost tags to Claude Enterprise on November 6. The beta tracks qualifying spending by business code; it does not set a budget per tag.",
+    "long": "Claude Enterprise introduced cost-code reporting for projects on November 6. Businesses can attach their existing charge codes or client matters to qualifying work.\n\nThat reporting layer sits alongside separate member limits and shared group budgets. Allocating an expense to a client does not authorize more spending or stop the next task. We would compare the reporting and control views before treating a project total as an enforceable budget.",
+    "take": "We see cost allocation and spending permission as separate controls. A useful client report still needs an independently configured budget policy.",
+    "keyFacts": [
+      "6 November: Enterprise project tags beta announced",
+      "Up to 16 tags per project",
+      "No spending limits by tag in this beta"
+    ],
+    "hashtags": [
+      "Claude",
+      "EnterpriseAI",
+      "CostManagement"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

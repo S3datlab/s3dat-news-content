@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "CLAUDE TAGS",
+    "PROJECT",
+    "SPENDING"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Claude",
+      "icon": "claude"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "stat": {
+    "value": "16",
+    "label": "tags per project"
+  },
+  "seed": 861115,
+  "sources": {}
+}
