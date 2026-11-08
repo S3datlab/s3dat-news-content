@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "MUSE ADDS",
+    "CUSTOM",
+    "SPACES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Meta",
+      "icon": "meta"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 861109,
+  "sources": {}
+}

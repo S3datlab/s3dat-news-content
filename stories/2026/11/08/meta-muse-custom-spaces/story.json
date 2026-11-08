@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "meta-muse-custom-spaces",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Meta adds persistent custom spaces to Muse",
+  "titleAccent": "custom spaces",
+  "dek": "The November 6 update gives personal dashboards a home inside Muse, making ongoing state and connected-app permissions more important than a single answer.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-08T09:25:40Z",
+  "lede": "Meta introduced custom spaces inside Muse on November 6. The update turns an instruction into a reusable personal interface, giving users somewhere to return after the conversation ends.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "6 November 2026"
+    },
+    {
+      "label": "Product",
+      "value": "Muse spaces"
+    },
+    {
+      "label": "Placement",
+      "value": "Sidebar or main tabs"
+    },
+    {
+      "label": "Availability",
+      "value": "Wherever Muse is available"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A place to return to",
+      "text": "Meta says users can revise a space through further instructions and schedule when it appears. Connected apps supply background updates. Sharing remains a future possibility. This shifts the unit of interaction from an answer to an ongoing workspace. A conversation can produce a plan once; a persistent interface gives the user a place to change and inspect it later. That makes the relationship between the displayed information and its original source a continuing product requirement."
+    },
+    {
+      "heading": "An existing agent supplies the foundation",
+      "text": "Muse itself predates this release. Meta introduced the personal agent on September 8, describing a dedicated cloud computer and browser for each user. The company said a separate Sentinel system checks outbound actions and requests permission when needed. Its launch account also described selectable access to connected services, the ability to disconnect them and an audit trail. Those are relevant foundations for a persistent interface: a workspace containing information from several services also depends on the permissions granted to those services. Its visible arrangement and its authority to act are separate properties."
+    },
+    {
+      "heading": "Conversation and stored state are different",
+      "text": "The November 5 voice announcement addressed another part of the interaction. Meta described interruptible calls and expressive avatars, initially rolling out in the United States. Calls work across mobile, web and Mac. Users can choose voice alone, an avatar beside the conversation or a full-screen view. The company described work continuing while someone speaks, with glasses and Muse Charm support planned later. Voice changes how a request enters the system. A saved interface changes how the person returns to its result. These are separate releases, not two names for the same feature."
+    },
+    {
+      "heading": "Connectors came before the custom interface",
+      "text": "Meta’s September 29 small-business expansion added skills and connections to services including Shopify, Stripe, Intuit QuickBooks and Slack. That announcement also described custom connectors for unsupported services. It said publishing, sending and spending required approval. A business workspace therefore sits on top of a pre-existing connection layer, rather than establishing access to every service by itself. For software teams, that separates three jobs: connecting a system, assembling a view of its records and authorizing a change. Success at one does not demonstrate success at the other two."
+    },
+    {
+      "heading": "Stored information has its own controls",
+      "text": "The original September introduction described credentials held in secure storage, outside the agent’s direct visibility. Meta also said users could opt out of model training and that conversations and virtual-machine data were not supplied to its advertising systems. Those are company descriptions of the underlying service, not a new privacy promise in the spaces announcement. A recurring workspace makes these existing controls more relevant because users may return to the same collected information repeatedly. The useful question is which permissions remain attached to that information after its presentation changes."
+    }
+  ],
+  "buildersNote": "Test one non-sensitive workspace with 3 changes: move a date, cancel an item and revoke a connection. Compare the display with its original records after each change. Keep permission checks separate from visual review.",
+  "claims": [
+    {
+      "text": "Meta dated the spaces release November 6.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Meta says connected apps refresh spaces in the background.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Meta’s September launch described a separate Sentinel system and user-controlled service permissions.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The spaces announcement gives no refresh-time guarantee or independent reliability measurements.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Design the Muse App, Just for You",
+      "publisher": "Meta",
+      "url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app/",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Introducing Muse: The World’s First Personal AI Agent Built for Everyone",
+      "publisher": "Meta",
+      "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "date": "2026-09-08"
+    },
+    {
+      "title": "Give Your Muse a Voice",
+      "publisher": "Meta",
+      "url": "https://about.fb.com/news/2026/11/introducing-muse-ai-voice-expressive-avatars/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "The Future Is for Everyone: Muse for Small Business",
+      "publisher": "Meta",
+      "url": "https://about.fb.com/news/2026/09/introducing-muse-small-business/",
+      "date": "2026-09-29"
+    }
+  ],
+  "social": {
+    "hook": "A saved workspace needs to stay right tomorrow.",
+    "voiceover": "[measured] A saved workspace needs to stay right tomorrow. Meta introduced Muse spaces on November sixth. Personal dashboards now persist inside the app. The useful test is what happens when the underlying information changes.",
+    "short": "Meta introduced Muse spaces on November 6, with scheduled visibility in the app. The release gives no refresh-time guarantee.",
+    "long": "Meta added custom spaces to Muse on November 6, including scheduled visibility.\n\nThe useful test comes on the next visit. Move a date or cancel an item in the source, then check whether the saved view still tells the right story. We would test that behavior before relying on a dashboard for ongoing work. A convincing first screen does not establish reliability over time.",
+    "take": "We would judge a persistent workspace by how it handles changed and revoked information. Its appearance on the first visit is only the beginning of the test.",
+    "keyFacts": [
+      "6 November: spaces announced",
+      "5 November: separate voice rollout announced",
+      "8 September: Muse’s original introduction"
+    ],
+    "hashtags": [
+      "Meta",
+      "Muse",
+      "AIAgents",
+      "PersonalAssistants"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
