@@ -1,0 +1,105 @@
+{
+  "format": 2,
+  "slug": "biobasicsbench-credit-versus-correctness",
+  "kind": "explained",
+  "topic": "research",
+  "title": "OpenAI’s wet-lab benchmark separates credit from correctness",
+  "titleAccent": "credit from correctness",
+  "dek": "BioBasicsBench makes a familiar evaluation problem concrete: partial credit and fully correct decisions answer different questions.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-08T00:24:53Z",
+  "lede": "OpenAI introduced BioBasicsBench with Ligo on November 6. Its scoring design makes percentages central to interpreting scientific AI results.",
+  "facts": [
+    {
+      "label": "New benchmark",
+      "value": "BioBasicsBench: 100 tasks"
+    },
+    {
+      "label": "Reported metric",
+      "value": "Mean share of available rubric credit"
+    },
+    {
+      "label": "Earlier comparison",
+      "value": "LAB-Bench, introduced July 2024"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What does the percentage measure?",
+      "text": "OpenAI reports that GPT-6 Astra earned 66.7% of available credit at xhigh reasoning effort. The grading assigns credit to individual criteria. That number describes the average task score, not a count of fully correct experiments. A percentage has no useful operational meaning until its denominator is clear. An evaluation can count correct choices, completed tasks or points awarded across several parts of an answer. Those measurements can all be legitimate while supporting different conclusions about the same system."
+    },
+    {
+      "heading": "How can partial credit hide a decisive error?",
+      "text": "Consider a hypothetical evaluation with three equally weighted criteria per task: identify the evidence, calculate a value and select the final action. An agent that gets the first two right on every task scores two-thirds of available points. It still gets every final action wrong. Another agent could earn all three points on two tasks and none on a third. Its average would be identical, despite completing two of those three tasks correctly. This is an illustrative scoring example, not a reconstruction of BioBasicsBench. It shows why an average cannot reveal where the errors occur. The weighting expresses what the evaluator values; it does not automatically express the cost of acting on a mistake."
+    },
+    {
+      "heading": "How does an older biology benchmark differ?",
+      "text": "FutureHouse introduced LAB-Bench on July 16, 2024, with 2,457 questions across eight categories. Its tasks cover research activities including literature retrieval, database use, figures and tables. The format is multiple choice. The authors explicitly discuss a weakness: eliminating implausible options can improve results without demonstrating that the model can independently derive the answer. They recommend validating such performance through manually graded open answers. They also report an important tooling difference in their initial comparison: human participants could use tools, while the evaluated models did not. These are features of that historical study, not a ranking of current systems."
+    },
+    {
+      "heading": "Why can two benchmark scores disagree?",
+      "text": "A multiple-choice task supplies candidate conclusions. An open response requires the system to produce its own. A rubric can reveal which parts of that response were useful, while an exact-match score compresses them into a single decision. Neither format supplies a universal exchange rate between percentages. A ten-point increase on one test cannot be added to, or substituted for, ten points on another. The useful comparison starts with the action being measured and the assistance available during the test."
+    },
+    {
+      "heading": "What would make the result useful in a product?",
+      "text": "For a software team, the missing link is the consequence of each output. A tool that suggests an annotation has a different decision boundary from one that authorizes the next step. In our worked example, recording final-action correctness separately immediately distinguishes the two agents. Keeping the intermediate scores preserves information about useful progress. That produces two interpretable measurements instead of asking a single average to describe both assistance and autonomy."
+    }
+  ],
+  "buildersNote": "For a pilot, grade 20 representative cases twice: once for intermediate evidence handling and once for the final decision. Keep the results separate, and require human review before any consequential action.",
+  "claims": [
+    {
+      "text": "BioBasicsBench awards credit against individual rubric criteria.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The 66.7% result is OpenAI’s reported mean reward, not an independently reproduced result.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The aggregate score alone establishes autonomous laboratory reliability.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Measuring how AI agents handle everyday wet-lab science",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "LAB-Bench: Measuring Capabilities of Language Models for Biology Research",
+      "publisher": "FutureHouse",
+      "url": "https://www.futurehouse.org/research/lab-bench-measuring-capabilities-of-language-models-for-biology-research",
+      "date": "2024-07-16"
+    }
+  ],
+  "social": {
+    "hook": "Partial credit can hide a wrong final decision.",
+    "voiceover": "[measured] Partial credit can hide a wrong final decision. OpenAI’s new lab benchmark uses one hundred tasks. Our worked example separates points earned from actions completed correctly.",
+    "short": "OpenAI introduced BioBasicsBench with 100 lab tasks. Its rubric rewards parts of an answer, so the average cannot stand in for a count of fully correct decisions.",
+    "long": "OpenAI’s BioBasicsBench measures laboratory reasoning through partial credit. That makes the denominator worth examining before the score becomes a product claim.\n\nOur worked example gives two hypothetical agents identical averages, although only one completes whole tasks correctly. A comparison with FutureHouse’s earlier multiple-choice benchmark shows why the answer format matters too. Neither percentage alone tells a team which decisions it can safely automate.",
+    "take": "We think final-decision accuracy belongs beside partial credit in product evaluations. A useful intermediate answer and a safe action are different outcomes.",
+    "keyFacts": [
+      "BioBasicsBench: 100 tasks",
+      "OpenAI introduced the benchmark on November 6, 2026",
+      "LAB-Bench began with 2,457 questions in July 2024"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "BioBasicsBench",
+      "AIEvaluation",
+      "ScientificAI"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "LAB CREDIT",
+    "IS NOT",
+    "CORRECTNESS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110800,
+  "sources": {}
+}
