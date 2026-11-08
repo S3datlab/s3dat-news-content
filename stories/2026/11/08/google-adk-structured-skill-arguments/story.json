@@ -1,0 +1,130 @@
+{
+  "format": 2,
+  "slug": "google-adk-structured-skill-arguments",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google ADK restricts how agents run skill scripts",
+  "titleAccent": "run skill scripts",
+  "dek": "Version 2.14.0 replaces a free-form model command with validated script arguments, alongside stable environment APIs and repeatable evaluations.",
+  "eventDate": "2026-11-07",
+  "publishedAt": "2026-11-08T12:25:59Z",
+  "lede": "Google published Agent Development Kit for Python 2.14.0 on November 7, changing how agents invoke scripts bundled with skills. The update narrows the model’s input to a script runner, while introducing breaking changes for applications using the old interface.",
+  "facts": [
+    {
+      "label": "Version",
+      "value": "google-adk 2.14.0"
+    },
+    {
+      "label": "Public release",
+      "value": "7 November 2026"
+    },
+    {
+      "label": "Changelog heading",
+      "value": "4 November 2026"
+    },
+    {
+      "label": "Supported script types",
+      "value": ".py, .sh and .bash"
+    },
+    {
+      "label": "Replacement inputs",
+      "value": "args, short_options and positional_args"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The model supplies arguments, not a whole command",
+      "text": "The change concerns RunSkillScriptTool when a SkillToolset uses an execution environment. Previously, the model could supply a free-form shell command. The November 2 implementation commit describes a prompt-injection risk in that design: a manipulated model could request arbitrary shell commands. The new interface takes structured arguments for a selected skill script. It validates the script path, checks the supported file type and constructs the invocation itself. This moves part of the decision from model-generated text into the tool’s code."
+    },
+    {
+      "heading": "Existing skill calls need a different shape",
+      "text": "Calls that still send the command field now return INVALID_ARGUMENTS. The tool accepts named arguments, short options and positional arguments, and runs from the skill’s directory rather than the environment’s working directory. That directory change matters for a script that opens another file by relative path. For example, an adjacent configuration file and a file in the former working directory can have the same name while containing different data. The release therefore changes both the call format and the location from which a script resolves its work."
+    },
+    {
+      "heading": "Stable environments are another part of the release",
+      "text": "Google also promoted its base and local environment interfaces, environment toolset, and Daytona and E2B integrations out of experimental status. File reading gains a streaming interface so a requested line range need not load the complete file into memory. AgentEngineEnvironment handles large reads and writes in chunks, and reports a command exceeding 570 seconds as timed out before the service deadline. These are runtime and interface changes: they affect how agent code reaches its execution backend and receives results."
+    },
+    {
+      "heading": "Evaluation can repeat the same case",
+      "text": "The adk eval command-line interface gains configurable repeated runs. MultiRunConfig and --num_runs repeat each case; --parallelism caps concurrent evaluation work. Results combine scores or pass rates across those attempts. That gives a team a way to distinguish one successful execution from repeatable behavior using the same test case. Another tool, ToolArgsMatcher, compares arguments using exact matches, case-insensitive checks, numeric tolerances or a model-backed semantic comparison. The chosen matching rule determines what the evaluation treats as equivalent."
+    },
+    {
+      "heading": "The publication date differs from the changelog date",
+      "text": "GitHub records the public release at 00:58 UTC on November 7, while its changelog heading is dated November 4. The underlying script-runner fix was committed on November 2. The release record separates public distribution from the dates attached to its changelog and underlying code. Version 2.14.0 packages the change with other compatibility adjustments, including enum arguments arriving as members rather than raw strings and stricter options for Vertex AI session creation."
+    }
+  ],
+  "buildersNote": "Before upgrading, replay 3 skill calls in a test environment: one with named arguments, one with positional arguments and one using a relative file path. Replace the old command field and verify both the resulting invocation and its working directory.",
+  "claims": [
+    {
+      "text": "GitHub records v2.14.0 as published on November 7; the release notes carry a November 4 heading.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The implementation rejects the old command input and constructs a validated skill-script invocation from structured arguments.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The change does not remove shell execution internally or restrict everything a permitted script can do. Its safety depends on script content and the execution backend’s permissions.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The release does not establish an independent rate of prompt-injection prevention or production reliability for this change.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "v2.14.0",
+      "publisher": "Google / GitHub",
+      "url": "https://github.com/google/adk-python/releases/tag/v2.14.0",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "fix: build skill script commands from validated paths and arguments",
+      "publisher": "Google / GitHub",
+      "url": "https://github.com/google/adk-python/commit/ff61524bb1378bd355d92b5b88955ea142f83be0",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "feat(eval): run each eval case N times in adk eval for steadier verdicts",
+      "publisher": "Google / GitHub",
+      "url": "https://github.com/google/adk-python/commit/7f3517e43d7b6012f51438cffb60e6d7983e4217",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "feat(features): graduate 26 auth, environment, app, cli, and cache modules from experimental",
+      "publisher": "Google / GitHub",
+      "url": "https://github.com/google/adk-python/commit/c54b253eba3359264a5f86805051aeb6cd93034d",
+      "date": "2026-10-27"
+    }
+  ],
+  "social": {
+    "hook": "A skill runner no longer accepts a whole shell command.",
+    "voiceover": "[measured] A skill runner no longer accepts a whole shell command. Google’s agent toolkit now takes structured script arguments. Version two point fourteen changes existing calls. Script permissions still matter.",
+    "short": "Google released ADK 2.14.0 with structured skill-script arguments. Calls using the old command field now fail validation. Permitted scripts still retain their execution backend’s privileges.",
+    "long": "Google changed skill-script invocation in ADK for Python 2.14.0, published November 7. In environment mode, the model supplies structured arguments instead of a free-form command. Older calls using the command field return INVALID_ARGUMENTS.\n\nScripts now run from the skill directory, which can change how relative file paths resolve. The implementation addresses a specific prompt-injection route; it does not remove shell execution internally or make every permitted script safe. Teams migrating existing skills have both a call-format change and a working-directory change to test.",
+    "take": "We would test this as a compatibility change as well as a security improvement. A narrower tool interface is useful only if the selected script and its backend permissions are also appropriate.",
+    "keyFacts": [
+      "2.14.0 published on 7 November 2026",
+      "3 script types supported: .py, .sh and .bash",
+      "Old command field returns INVALID_ARGUMENTS"
+    ],
+    "hashtags": [
+      "GoogleADK",
+      "AIAgents",
+      "AgentSecurity",
+      "Python"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

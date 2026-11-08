@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "ADK LIMITS",
+    "SKILL",
+    "COMMANDS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 861112,
+  "sources": {}
+}
