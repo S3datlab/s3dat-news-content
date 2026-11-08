@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "GITHUB CHAT",
+    "AGENTS GO GA"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "GitHub",
+      "icon": "github"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110803,
+  "sources": {}
+}

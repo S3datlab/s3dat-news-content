@@ -1,0 +1,120 @@
+{
+  "format": 2,
+  "slug": "github-slack-teams-general-availability",
+  "kind": "story",
+  "topic": "agents",
+  "title": "GitHub takes Slack and Teams coding agents to general availability",
+  "titleAccent": "general availability",
+  "dek": "Teams gains a shared Canvas for reviewing agent work. Earlier context and repository controls explain what the move from preview actually changes.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-08T03:25:01Z",
+  "lede": "GitHub made its Slack and Microsoft Teams integration generally available on November 6. The release adds a Teams Canvas for reviewing plans, changes and previews beside the conversation.",
+  "facts": [
+    {
+      "label": "Release date",
+      "value": "November 6, 2026"
+    },
+    {
+      "label": "Chat platforms",
+      "value": "2: Slack and Microsoft Teams"
+    },
+    {
+      "label": "Teams addition",
+      "value": "Canvas for shared review"
+    },
+    {
+      "label": "Earlier multi-repo update",
+      "value": "October 15, 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The discussion stays beside the work",
+      "text": "The latest release lets the integration infer a repository from a message rather than asking for the same selection again. GitHub also adds the requesting username and originating chat platform to descriptions of issues and pull requests it creates. Those details serve different purposes: one reduces setup friction, while the other gives reviewers a clearer account of where the work began. A shared review surface matters because the person who describes a bug is not necessarily the person who evaluates its implementation."
+    },
+    {
+      "heading": "Coding from chat predates this release",
+      "text": "GitHub introduced the newer Slack experience in public preview on August 21. That version already supported investigating failures, changing code and validating work in a cloud sandbox. It could continue asynchronously, with teammates contributing context or redirecting a session in a dedicated code channel. Existing GitHub permissions still bounded its actions. Repository administrators could require an additional approval for pull requests attributed to the Copilot app. General availability therefore should not be read as the invention of chat-based coding, or as permission to bypass a repository’s review rules. The change is a release milestone for an established workflow, with a new Teams review interface."
+    },
+    {
+      "heading": "More context arrived during preview",
+      "text": "The September 25 update expanded the material available to the agent. Slack gained support for files, attachments and message links. Teams supported inline images, forwarded messages and conversation history. The integration also checked for similar issues before creating new work and linked results back to their originating discussion. These additions address a practical failure mode: a ticket can lose the screenshot, qualification or later correction that made the original conversation useful. Keeping those inputs connected reduces the amount a person must reconstruct, although it does not establish that the resulting code is correct."
+    },
+    {
+      "heading": "One conversation can span repositories",
+      "text": "On October 15, GitHub added multi-repository work within a single conversation. Its examples included investigating a problem across frontend and backend code and finding pull requests across repositories. That changes the unit of collaboration from a single checkout to the discussion around a task. A team tracing a frontend symptom into a backend service can keep that investigation together instead of opening another chat for each repository. The benefit is continuity of context. The corresponding review task is still concrete: identify which repository each proposed change affects and which maintainers own it."
+    },
+    {
+      "heading": "Attribution is part of the handoff",
+      "text": "Taken together, the releases move more of the handoff into the place where a team discusses work. Conversation context, repository selection and review are separate steps, even when the interface places them side by side. A visible origin helps a maintainer recover the request; a working preview helps evaluate a proposed result. Neither substitutes for tests or an authorized merge. For builders, the useful distinction is between making it easier to start a coding task and making its finished change acceptable to ship."
+    }
+  ],
+  "buildersNote": "Pilot with 3 low-risk issues in one repository. Record time to a reviewable pull request and reviewer corrections separately, while retaining the repository’s required approvals.",
+  "claims": [
+    {
+      "text": "GitHub announced general availability for Slack and Teams on November 6.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The August preview kept actions within existing GitHub permissions.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The release reduces review effort or improves code correctness in production.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "@GitHub in Slack and Teams is generally available and more",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available/",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Updates to GitHub Copilot for Slack and Microsoft Teams",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-09-25-updates-to-github-copilot-for-slack-and-microsoft-teams/",
+      "date": "2026-09-25"
+    },
+    {
+      "title": "Multi-repository support and other improvements for GitHub in Slack and Teams",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-10-15-copilot-in-slack-and-teams-adds-model-and-repository-updates/",
+      "date": "2026-10-15"
+    },
+    {
+      "title": "The new GitHub Copilot experience in Slack",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-08-21-the-new-github-copilot-experience-in-slack/",
+      "date": "2026-08-21"
+    }
+  ],
+  "social": {
+    "hook": "The coding task stays in the conversation.",
+    "voiceover": "[measured] The coding task stays in the conversation. GitHub brought Slack and Teams agents out of preview. Multiple repositories already work together. Review permissions still matter before a change ships.",
+    "short": "GitHub made Slack and Teams agents generally available. Multi-repository work arrived October 15; shared context still needs repository-level review.",
+    "long": "GitHub moved its chat integrations out of preview. The earlier October 15 update already let one conversation cover frontend and backend repositories. That continuity can preserve the context behind a bug report.\n\nThe August Slack preview also kept actions within existing GitHub permissions, with optional extra approval for agent-authored pull requests. A shared discussion makes a request easier to follow. It does not turn everyone in the conversation into an authorized reviewer.",
+    "take": "We see reviewer corrections as a useful companion to time saved. Moving a request into chat changes the handoff, not the standard a code change must meet.",
+    "keyFacts": [
+      "Slack and Teams reached general availability on November 6",
+      "Multi-repository conversations arrived on October 15",
+      "The August preview retained existing GitHub permissions"
+    ],
+    "hashtags": [
+      "GitHubCopilot",
+      "CodingAgents",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
