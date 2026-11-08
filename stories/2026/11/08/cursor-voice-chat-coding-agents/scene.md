@@ -1,0 +1,7 @@
+Concept: period
+Stake: A developer can keep discussing a task while a separate worker carries it out; speaking does not replace inspecting the finished work.
+Scene: In a 1930s radio repair shop, a dispatcher is already speaking into a desk telephone while sliding a blank work card down a short wooden chute to a technician adjusting a radio chassis; the technician continues turning a screwdriver as the dispatcher listens.
+Cast: One invented adult male dispatcher, about 55, silver hair and rolled cream shirtsleeves with a charcoal waistcoat; one invented adult woman radio technician, about 35, auburn pinned curls and a fitted navy work jacket, focused on the chassis rather than a screen. Both are photorealistic period characters.
+Attention: Speed and machines: the moving work card makes the conversational handoff visible while the screwdriver keeps turning; focused facial reaction: the dispatcher listens as the technician looks up briefly, making the return update readable.
+Logo: The real Cursor mark is composited onto a large blank flat enamel panel behind the technician, upper center-right and facing the camera; no painted marks.
+Banner: Photorealistic cinematic 16:9 medium shot in warm workshop daylight; the telephone cord gently sways and the technician makes a small repeatable adjustment, with faces and action center-right and a quiet lower-left third. Establish the card already in transit at frame 0, then loop on the continued work and conversation. No screens, generated text, numbers or logos; all cards remain blank.

@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "CURSOR ADDS",
+    "VOICE CALLS",
+    "TO AGENTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Cursor",
+      "icon": "cursor"
+    }
+  ],
+  "mood": "calm",
+  "seed": 81106,
+  "sources": {}
+}

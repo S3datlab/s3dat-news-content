@@ -1,0 +1,125 @@
+{
+  "format": 2,
+  "slug": "cursor-voice-chat-coding-agents",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Cursor adds two-way voice calls to coding agents",
+  "titleAccent": "two-way voice calls",
+  "dek": "A speaking agent can hand work to a coding agent while the conversation continues, with account and privacy settings shaping how the call works.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-08T06:25:24Z",
+  "lede": "Cursor launched voice chat with its agents on November 6. A developer can discuss a task aloud while a separate coding agent continues the work, instead of sending each instruction as typed text.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "6 November 2026"
+    },
+    {
+      "label": "Surfaces",
+      "value": "Agents Window, IDE, web and iOS"
+    },
+    {
+      "label": "Speech model",
+      "value": "Grok Voice"
+    },
+    {
+      "label": "Default idle cutoff",
+      "value": "About 10 minutes of user silence with no work running"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Speech and coding have different jobs",
+      "text": "Cursor describes a division of labor inside the call. The voice agent handles the conversation and passes requests to the coding agent already attached to the chat. That coding agent retains its selected model. A spoken request therefore does not, by itself, replace the system producing the code. Progress reports can arrive while the conversation continues. The distinction matters when a team compares results: the speaking voice and the code-writing model are separate parts of the same interaction."
+    },
+    {
+      "heading": "The handoff changes the input step",
+      "text": "The documentation distinguishes a live call from dictation. Dictation produces editable text that the user reviews and sends. In voice chat, the conversational agent can hand off a request during the call. Calls require a signed-in Cursor account; an API-key session does not qualify. A transcript appears in the chat. Privacy Mode affects its live syncing across devices."
+    },
+    {
+      "heading": "Privacy has a setting and a policy",
+      "text": "The launch describes zero data retention when Privacy Mode is enabled. Cursor’s September 3 data-use policy explains the broader arrangement: customer data is excluded from its training, and it maintains retention agreements with model providers. Turning the mode off allows Cursor to store and use code-related inputs and actions for improving its models. The policy also describes temporary encrypted file caching to reduce repeated transfers. A voice interface adds another way to supply instructions, while the surrounding account settings still determine how customer data is handled."
+    },
+    {
+      "heading": "The release follows hosted app publishing",
+      "text": "A day earlier, Cursor introduced building and deploying live apps from cloud agents. That separate November 5 release can provision hosting, a Postgres database and authentication through Cursor sign-in. It covers new and existing repositories in Cursor Origin and GitHub. Publication requires an explicit user action after deterministic and agent-based security checks. Administrators can inspect apps and secrets, add review rules and remove an app from service. The two releases address different stages: a conversation supplies the request, while the deployment flow decides when an application becomes accessible to others."
+    },
+    {
+      "heading": "A call is another way to supervise work",
+      "text": "For a developer, the immediate change is the route between an instruction and the task already underway. An illustrative session might begin with a spoken repair request, continue with a question about the resulting change, and end with a written review of the diff. That sequence separates conversational convenience from checking the result. It also makes a practical comparison possible: the same small repair can be requested by voice or text, then judged against the same tests."
+    }
+  ],
+  "buildersNote": "Try one non-sensitive repair twice, once by voice and once by text. Keep the coding model and tests fixed; compare the requested change, resulting diff and missed instructions. Check Privacy Mode before discussing proprietary code.",
+  "claims": [
+    {
+      "text": "Cursor’s November 6 announcement lists voice chat across the Agents Window, IDE, web and iOS.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Cursor documents a separate voice agent and coding agent, with the latter keeping its selected model.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Cursor says voice chat uses zero data retention with Privacy Mode enabled. Its wider policy allows abuse-triggered retention for investigation.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The documentation states a daily calling limit without a numeric allowance. The launch provides no independent measurement of coding accuracy or time saved.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Voice Chat with Agents",
+      "publisher": "Cursor",
+      "url": "https://cursor.com/changelog/voice-chat",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Voice chat",
+      "publisher": "Cursor",
+      "url": "https://cursor.com/docs/agent/voice-chat",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Data Use & Privacy Overview",
+      "publisher": "Cursor",
+      "url": "https://cursor.com/en-US/data-use",
+      "date": "2026-09-03"
+    },
+    {
+      "title": "Build Live Apps in Cursor",
+      "publisher": "Cursor",
+      "url": "https://cursor.com/changelog/build-live-apps",
+      "date": "2026-11-05"
+    }
+  ],
+  "social": {
+    "hook": "The conversation can continue while the code changes.",
+    "voiceover": "[measured] The conversation can continue while the code changes. Cursor launched two-way voice calls on November sixth. A speaking agent hands tasks to the coding agent. Faster conversation still needs code review.",
+    "short": "Cursor launched two-way agent calls on November 6. Grok Voice handles the conversation while a coding agent works. The launch provides no independent measure of time saved.",
+    "long": "Cursor added live voice conversations to its coding agents on November 6. Developers can ask for a change, then keep talking while the coding work proceeds. Grok Voice supplies the spoken interaction.\n\nThat matters for supervision, not just input: a call can carry a follow-up while an earlier task runs. The release does not establish that speaking produces better code or saves time. We would judge the resulting diff against the same tests used for a typed request.",
+    "take": "We favor testing voice on the same tasks as typed requests. The useful measure is whether spoken instructions produce the intended diff, not how natural the conversation sounds.",
+    "keyFacts": [
+      "6 November: live agent calls launched",
+      "4 surfaces: Agents Window, IDE, web and iOS",
+      "About 10 idle minutes before the default hang-up"
+    ],
+    "hashtags": [
+      "Cursor",
+      "CodingAgents",
+      "VoiceAI"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
