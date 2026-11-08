@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "AWS ADDS KIMI",
+    "CACHE PRICES",
+    "SPLIT THE BILL"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "AWS",
+      "icon": "aws"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110821,
+  "sources": {}
+}

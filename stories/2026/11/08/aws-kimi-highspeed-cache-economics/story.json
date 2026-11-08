@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "aws-kimi-highspeed-cache-economics",
+  "kind": "explained",
+  "topic": "models",
+  "title": "AWS brings Kimi Highspeed to Bedrock with separate cache pricing",
+  "titleAccent": "separate cache pricing",
+  "dek": "The November 6 announcement adds a hosted route for Kimi. A worked example shows why cheap cache reads do not describe the whole input bill.",
+  "eventDate": "2026-11-06",
+  "publishedAt": "2026-11-08T21:27:21Z",
+  "lede": "AWS announced Kimi K3.1 Pro Highspeed on Amazon Bedrock on November 6. Its separate prices for ordinary input, cache writes and cache reads make repeated context an explicit budgeting decision.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "6 November 2026"
+    },
+    {
+      "label": "Global Standard input",
+      "value": "$4 per million tokens"
+    },
+    {
+      "label": "Global cache write / read",
+      "value": "$5 / $0.20 per million tokens"
+    },
+    {
+      "label": "Global Standard output",
+      "value": "$20 per million tokens"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What did AWS announce?",
+      "text": "The addition gives Bedrock customers another route to Moonshot’s model for coding and document work. AWS describes it as an open-weight, multimodal model with a million-token context window. This is a hosting announcement, not a newly trained model. AWS’s documentation history records the model-card addition on November 4, two days before the public announcement. The distinction matters when dating the release: an earlier documentation entry and a later announcement describe the same hosted offering."
+    },
+    {
+      "heading": "What does the input bill measure?",
+      "text": "A cached input reuses processing from an earlier request. Ordinary input, writing reusable context and reading it again occupy different billing categories. AWS’s caching guide explains that a stable prefix can serve later questions about the same material. A changed prefix produces a miss. This makes prompt structure part of the economics: repeated instructions or reference material have a different reuse pattern from a succession of unrelated questions. The amount submitted alone does not identify which category the service will bill."
+    },
+    {
+      "heading": "How does the arithmetic work?",
+      "text": "Consider a hypothetical workload that sends the same 100,000-token reference prefix ten times. Ignore changing question text and all output, so the example isolates that prefix. At the Global Standard rates, ten ordinary input charges would total $4. One cache write costs $0.50. If the remaining nine requests each read the entire prefix from cache, those reads total $0.18. The combined prefix cost is $0.68, a saving of $3.32 against the ordinary-input baseline. These are calculated scenarios, not measured performance or a promise of the bill a customer will receive."
+    },
+    {
+      "heading": "What happens when reuse fails?",
+      "text": "Now keep the same ten requests but assume five cache writes and five reads. The writes cost $2.50 and the reads cost $0.10, producing $2.60 for the prefix. If all ten requests instead write new entries, the prefix costs $5. That exceeds the $4 ordinary-input baseline by $1. The price of one read is therefore a poor stand-in for the price of a session. The relevant quantity is the mixture of writes, reads and ordinary input across completed work. Output remains a separate charge in every version of this example."
+    },
+    {
+      "heading": "What changes outside the calculation?",
+      "text": "AWS’s guide describes a cache entry as belonging to the server that processed the request. Routing a later request elsewhere can produce another write. Concurrent requests can also arrive before an identical request has begun responding. Explicit cache controls select reusable material; they do not reserve a future hit. The launch also enters an existing hosting market: Runpod’s November 6 guide offers both Pro and Highspeed through its public endpoint. That choice makes the hosting interface and billing behavior part of integration work, alongside the model’s answers."
+    }
+  ],
+  "buildersNote": "Replay 10 representative requests and record ordinary input, cache writes, cache reads and output separately. Compare the full session cost with the $4 prefix-only baseline in this example before forecasting savings.",
+  "claims": [
+    {
+      "text": "AWS publicly announced Kimi K3.1 Pro Highspeed on Bedrock on November 6.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The worked example uses the model card’s Global Standard token rates.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The launch does not establish a workload-specific cache-hit rate or independent end-to-end speed advantage.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Kimi K3.1 Pro (Highspeed) now available on Amazon Bedrock",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/moonshot-ai-kimi-k3-1-pro-on-amazon-bedrock/",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Kimi K3.1 Pro - Highspeed",
+      "publisher": "AWS",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-moonshot-ai-kimi-k3-1-highspeed.html",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Prompt caching for faster model inference",
+      "publisher": "AWS",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html",
+      "date": "2026-09-01"
+    },
+    {
+      "title": "Document history for the Amazon Bedrock User Guide",
+      "publisher": "AWS",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-ug-doc-history.html",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "How to use Kimi K3.1 Pro and Kimi K3.1 Pro Highspeed on Runpod",
+      "publisher": "Runpod",
+      "url": "https://www.runpod.io/blog/kimi-k3-1",
+      "date": "2026-11-06"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "A cheap cache read can follow an expensive miss.",
+    "voiceover": "[measured] A cheap cache read can follow an expensive miss. AWS added Kimi Highspeed to Bedrock. Our ten-request example separates cache writes from reads. The actual bill depends on reuse.",
+    "short": "AWS added Kimi Highspeed to Bedrock on November 6. Our ten-request example shows how cache writes change the input bill. Real savings depend on cache hits.",
+    "long": "Amazon brought Kimi K3.1 Pro Highspeed to Bedrock on November 6. That gives teams another hosted route for coding and document work.\n\nOur example repeats one reference prefix across ten requests. One write followed by nine reads has a different cost from ten new writes, even though the amount submitted is identical. The calculation isolates the prefix; changing questions and generated output add their own costs.\n\nA posted cache-read price cannot establish the bill for a complete session. The missing input is the workload’s actual reuse pattern.",
+    "take": "We would budget from a complete session, not the cheapest token category. Reuse determines whether caching lowers the bill for a particular workload.",
+    "keyFacts": [
+      "6 November: AWS hosting announcement",
+      "Example: 100,000-token prefix across 10 requests",
+      "Example excludes question text and generated output"
+    ],
+    "hashtags": [
+      "AmazonBedrock",
+      "Kimi",
+      "PromptCaching",
+      "AIInfrastructure"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
