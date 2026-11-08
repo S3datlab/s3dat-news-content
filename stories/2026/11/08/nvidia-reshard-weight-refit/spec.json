@@ -1,11 +1,24 @@
 {
   "engine": 2,
   "template": "brand",
-  "headline": ["NVIDIA CUTS", "WEIGHT", "TRANSFERS"],
+  "headline": [
+    "NVIDIA CUTS",
+    "WEIGHT",
+    "TRANSFERS"
+  ],
   "accent": 2,
-  "brands": [{"name": "NVIDIA", "icon": "nvidia"}],
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
   "cutouts": [],
   "mood": "up",
   "seed": 110818,
-  "sources": {}
+  "sources": {},
+  "vibes": {
+    "banner": true,
+    "reel": false
+  }
 }
