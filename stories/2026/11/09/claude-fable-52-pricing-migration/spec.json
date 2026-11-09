@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "FABLE 5.2",
+    "CUTS TOKEN",
+    "PRICES"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "stat": {
+    "value": "−20%",
+    "label": "standard token prices"
+  },
+  "seed": 110921,
+  "sources": {}
+}

@@ -1,0 +1,129 @@
+{
+  "format": 2,
+  "slug": "claude-fable-52-pricing-migration",
+  "kind": "story",
+  "topic": "models",
+  "title": "Anthropic releases Fable 5.2 and Mythos 5.2 with lower token prices",
+  "titleAccent": "lower token prices",
+  "dek": "The models launch at $8 per million input tokens and $40 per million output tokens, with access rules and conversation-history checks shaping deployment.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-09T21:29:55Z",
+  "lede": "Anthropic released Claude Fable 5.2 and Claude Mythos 5.2 on November 9, cutting their standard input and output token prices by 20%. The launch changes the cost of demanding agent work while adding migration requirements for applications that manage their own conversation history.",
+  "facts": [
+    {
+      "label": "Models",
+      "value": "Claude Fable 5.2 and Claude Mythos 5.2"
+    },
+    {
+      "label": "Standard input",
+      "value": "$8 per million tokens"
+    },
+    {
+      "label": "Standard output",
+      "value": "$40 per million tokens"
+    },
+    {
+      "label": "Context / output",
+      "value": "1M context; up to 128K output tokens"
+    },
+    {
+      "label": "Mythos access",
+      "value": "Verified organizations only"
+    },
+    {
+      "label": "Retention",
+      "value": "30 days unless expressly authorized otherwise"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The unit price falls; the work budget has more parts",
+      "text": "The previous Fable 5.1 and Mythos 5.1 rates were $10 for a million input tokens and $50 for a million output tokens. At identical standard-rate usage, the new prices turn a $60 bill for one million tokens in each direction into $48. That calculation excludes caching, tools and other charges. Optional fast mode costs $16 for input and $80 for output per million tokens. The standard model and the speed option therefore have different economics. Anthropic still recommends starting most workloads with its latest Opus model, then moving to Fable when evaluations at higher Opus effort fall short."
+    },
+    {
+      "heading": "The same underlying model has different access paths",
+      "text": "Fable and Mythos share an underlying model, according to Anthropic. Fable includes cybersecurity and biology safeguards that support broader availability. Mythos is reserved for organizations admitted through verification programs for those areas. That distinction matters when a team chooses a model for security or scientific work: a general release does not provide every customer with the same permitted capabilities. Anthropic lists Fable availability across its own platform, Amazon Web Services, Google Cloud and Microsoft Azure. It describes both releases as intended for ambitious technical work, including coding and research."
+    },
+    {
+      "heading": "Applications must preserve the conversation they send back",
+      "text": "The migration guide describes a change that reaches beyond replacing the model name. Fable 5.2 checks whether earlier messages, system instructions or tool definitions changed before a returned thinking block. That check now applies to every account. Sending an invalid block back normally produces a request error. An append-only conversation retains earlier turns and adds new ones; a client that silently rewrites old context has different behavior. Model switching has a separate constraint. On the Claude API and Google-managed Claude service, other models cannot read Fable 5.2 thinking blocks, except Mythos 5.2. Those blocks are dropped when the conversation moves to an incompatible model."
+    },
+    {
+      "heading": "Retention and effort remain deployment decisions",
+      "text": "The model overview specifies a one-million-token context window and up to 128,000 output tokens. Adaptive thinking is always enabled, with high effort as the API default. Effort controls how much reasoning the model performs, so the token rate is only one component of a completed job. The overview also requires 30-day data retention unless Anthropic expressly authorizes a zero-retention arrangement. The launch describes Enterprise Frontier Safeguards, currently in private beta, as a route that runs automated monitoring on prompts and responses stored in customer infrastructure. That makes retention approval a separate deployment dependency from gaining access to the model itself."
+    }
+  ],
+  "buildersNote": "Replay 20 representative tasks before changing production traffic. Record successful completions, total token and tool charges, and elapsed time at the same effort setting. Include one conversation that changes tools and one that switches models, then confirm the workspace's approved retention arrangement.",
+  "claims": [
+    {
+      "text": "Anthropic lists the new standard token prices as $8 input and $40 output per million, compared with $10 and $50 for the 5.1 models. The reduction is 20%.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Anthropic says output generation is up to 30% faster than the preceding models. This is a company result, not an independent guarantee for a complete agent job.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Fable 5.2 requires 30-day retention unless Anthropic expressly authorizes an exception; Mythos access requires verification.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The cost and success rate of a specific application after migration remain unmeasured here. Lower per-token prices alone do not establish either result.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "What’s new in Claude Fable 5.2",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Claude Fable 5.2",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Claude Fable 5.2 and Claude Mythos 5.2 migration guide",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/migration-guide",
+      "date": "2026-11-09"
+    }
+  ],
+  "social": {
+    "priority": 5,
+    "hook": "A cheaper token does not guarantee a cheaper job.",
+    "voiceover": "[measured] A cheaper token does not guarantee a cheaper job. Anthropic released Fable five point two with twenty percent lower prices. Conversation checks and retention rules still matter. Actual task costs need measuring.",
+    "short": "Anthropic released Fable 5.2 and Mythos 5.2 at $8 input and $40 output per million tokens, down 20%. Fable adds conversation-history checks for every account; actual task savings need measurement.",
+    "long": "Anthropic cut standard token prices with Fable 5.2 and Mythos 5.2. One million input tokens plus one million output tokens now cost $48, compared with $60 on the preceding models, before caching or other charges.\n\nThe migration also changes how applications can reuse conversation history. Fable 5.2 checks earlier context for every account. On the Claude API, moving its conversation to a different model can drop its thinking blocks; Mythos 5.2 is the exception.\n\nAccess and retention remain separate conditions. Mythos is restricted to verified organizations. Fable requires 30-day retention unless Anthropic expressly authorizes an exception. The price cut does not establish what a completed agent task will cost.",
+    "take": "We would measure completed jobs before moving traffic. Lower token prices help only if extra reasoning, delegation and retries do not consume the saving.",
+    "keyFacts": [
+      "5.2 standard input: $8 per million tokens.",
+      "5.2 standard output: $40 per million tokens.",
+      "20% lower standard token rates than 5.1.",
+      "30-day retention unless expressly authorized otherwise."
+    ],
+    "hashtags": [
+      "Claude",
+      "AIAgents",
+      "CodingAgents",
+      "ModelPricing"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}
