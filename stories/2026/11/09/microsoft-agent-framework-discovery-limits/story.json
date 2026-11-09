@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "microsoft-agent-framework-discovery-limits",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Microsoft caps agent tool discovery and separates workflow users",
+  "titleAccent": "caps agent tool discovery",
+  "dek": "Agent Framework Python 1.25 adds catalog limits and live-session ownership checks, alongside a Python 3.11 minimum that changes upgrade plans.",
+  "eventDate": "2026-11-07",
+  "publishedAt": "2026-11-09T00:27:42Z",
+  "lede": "Microsoft released Agent Framework Python 1.25 on November 7, limiting tool discovery and blocking reuse of live workflow sessions across authorization scopes. The update changes how developers connect tools and serve multiple users from one agent application.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "Agent Framework Python 1.25.0"
+    },
+    {
+      "label": "Runtime minimum",
+      "value": "Python 3.11"
+    },
+    {
+      "label": "Discovery defaults",
+      "value": "100 pages and 1,000 items per catalog"
+    },
+    {
+      "label": "Owned request timeout",
+      "value": "30 seconds by default"
+    },
+    {
+      "label": "Scope conflict",
+      "value": "Rejected before model calls"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Discovery gets a stopping point",
+      "text": "The Model Context Protocol lets an agent discover the tools and prompts a connected server offers. Those catalogs can arrive across many pages. Microsoft now places defaults on both the page count and the total items collected, making discovery a bounded operation. A server offering a larger catalog can therefore require an explicit configuration change after an upgrade. Developers can raise either limit, and trusted servers can have those limits disabled. This changes the contract between an application and a tool server: discovering everything is no longer an open-ended task by default."
+    },
+    {
+      "heading": "A failed refresh keeps the old catalog",
+      "text": "The catalog update is atomic. If a refresh fails, the framework retains the previous complete snapshot, including the tool annotations used for security labels. This avoids replacing a usable catalog with an incomplete collection from a failed fetch. Framework-created clients also receive a thirty-second default request timeout. Clients supplied by the application retain their own transport and timeout rules. These are distinct controls: the catalog limits bound discovery size, while request timing limits individual waits. The release notes also distinguish separate admission and recovery budgets from a single deadline for the entire operation."
+    },
+    {
+      "heading": "A new workflow can still share old state",
+      "text": "A separate change addresses live workflow ownership in AG-UI endpoints, which connect an agent backend to a user interface. Microsoft's implementation notes describe how a shared executor retains conversation history, pending approvals and standing approval rules between runs. Building a new workflow around that same executor can carry the earlier caller's state into another authorization scope. The new guard binds executors and their sessions to one scope. A conflicting call stops before reaching the model. Microsoft recommends factories that create fresh workflows, executors and sessions together, rather than reusing a builder that retains those objects."
+    },
+    {
+      "heading": "Migration reaches beyond a version pin",
+      "text": "The Python package release also removes installation eligibility for Python 3.10. Its predecessor had already identified Python 3.11 as the supported baseline while leaving older installations possible. Version 1.25 turns that warning into a package requirement. Integration-specific upper version bounds still apply, so selecting the newest Python interpreter is a separate compatibility decision. AG-UI also rejects workflow agents exposed through its workflow-as-tool interface. Together, these changes affect environment setup, object construction and endpoint behavior. An upgrade can fail at installation or produce a new scope-conflict error even when the application's model choice stays unchanged."
+    },
+    {
+      "heading": "Permissions follow the running objects",
+      "text": "The practical distinction is between a fresh wrapper and fresh state. A workflow factory provides isolation only when the objects holding history and approvals are created within the intended boundary. Microsoft's change makes that boundary explicit for live sessions. It also makes discovery limits visible at the integration layer, where an application decides which servers to trust. These controls move decisions that were easy to leave implicit into configuration and runtime checks. They give developers specific failures to handle instead of allowing the same object graph to keep serving unrelated callers."
+    }
+  ],
+  "buildersNote": "Before moving to 1.25, test two distinct authorization scopes against the same endpoint and confirm their histories and approvals stay separate. Check Python 3.11 compatibility and whether any connected catalog exceeds 100 pages or 1,000 items.",
+  "claims": [
+    {
+      "text": "Release 1.25 defaults discovery to 100 pages and 1,000 items per catalog, with configurable limits.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The AG-UI change rejects cross-scope reuse of live workflow executors and sessions before model calls.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The AG-UI guard does not cover state restored from shared storage or custom tool functions invoking workflows.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "python-1.25.0",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/agent-framework/releases/tag/python-1.25.0",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Python: [BREAKING] Bind AG-UI workflow agent executors to one authorization scope",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/agent-framework/pull/10035",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Python: [BREAKING] Harden MCP catalog discovery behavior",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/agent-framework/pull/10042",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "python-1.24.0",
+      "publisher": "Microsoft / GitHub",
+      "url": "https://github.com/microsoft/agent-framework/releases/tag/python-1.24.0",
+      "date": "2026-10-30"
+    }
+  ],
+  "social": {
+    "hook": "One user's approval must not become another's.",
+    "voiceover": "[measured] One user's approval must not become another's. Microsoft tightened workflow ownership in its agent framework. Tool discovery now defaults to one thousand items. Shared storage still needs separate isolation.",
+    "short": "Microsoft capped Agent Framework tool discovery at 1,000 items per catalog by default. Version 1.25 also blocks cross-scope live-session reuse in AG-UI endpoints; stored state needs separate isolation.",
+    "long": "Microsoft tightened AG-UI session ownership in Agent Framework Python 1.25, released November 7. Shared live executors can no longer carry history and approvals into a different authorization scope. A fresh workflow wrapper alone does not create fresh session state.\n\nThe release also limits tool discovery to 100 pages and 1,000 items per catalog by default, and requires Python 3.11. Developers must check both runtime compatibility and how their endpoint creates sessions. The guard does not cover state reloaded from shared storage.",
+    "take": "We see session construction as part of an agent's permission boundary. A new workflow wrapper is not enough when its executor still holds another user's history and approvals.",
+    "keyFacts": [
+      "Python 1.25.0 released November 7",
+      "Python 3.11 minimum replaces 3.10 installation eligibility",
+      "Discovery defaults: 100 pages and 1,000 items per catalog",
+      "Framework-owned requests default to 30 seconds"
+    ],
+    "hashtags": [
+      "Microsoft",
+      "AIAgents",
+      "AgentSecurity",
+      "MCP"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
