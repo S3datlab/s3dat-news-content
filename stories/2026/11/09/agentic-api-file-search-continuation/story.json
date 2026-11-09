@@ -1,0 +1,131 @@
+{
+  "format": 2,
+  "slug": "agentic-api-file-search-continuation",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Agentic API merges file search with citations and saved context",
+  "titleAccent": "file search",
+  "dek": "The vLLM project’s gateway now connects document retrieval to Responses sessions on its development branch, with raw search results exposed only on request.",
+  "eventDate": "2026-11-08",
+  "publishedAt": "2026-11-09T03:27:56Z",
+  "lede": "The vLLM project merged file-search execution into Agentic API on November 8, connecting retrieved documents to its Responses-compatible gateway. Applications can request cited answers and continue a session without reconstructing the search exchange in their own code.",
+  "facts": [
+    {
+      "label": "Project",
+      "value": "Agentic API"
+    },
+    {
+      "label": "Status",
+      "value": "Merged to main; changelog lists Unreleased"
+    },
+    {
+      "label": "Search integration",
+      "value": "Pull request 486, merged 8 November"
+    },
+    {
+      "label": "Upload ceiling",
+      "value": "20 MiB per file; default request limit is 10 MiB"
+    },
+    {
+      "label": "Raw search results",
+      "value": "Returned only when explicitly requested"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Retrieval joins the conversation",
+      "text": "The merge joins two pieces that applications previously had to connect. The gateway can execute a file search, pass retrieved passages to the generation model and return an answer with file citations. It also saves the model-facing search exchange for a later request using previous_response_id. That matters when a follow-up refers to material found earlier. A client can keep the conversation going through the same API, instead of replaying its own reconstruction of a tool call. Public responses contain a file_search_call item, while the passage list is an optional addition. Citations can survive both completed responses and streaming output."
+    },
+    {
+      "heading": "The storage routes arrived first",
+      "text": "A November 7 merge exposed the upload, attachment, search and deletion routes that sit beneath the tool. It connected those routes to the gateway’s authentication configuration and request-size limits. The maintainers report testing the lifecycle with version 3.8.0 of the OpenAI Python client against a locally rebuilt gateway. That exercise covered uploading a file, attaching it to a vector store, searching with filters and deleting it. This is useful compatibility work for applications already organized around those operations. The new Responses integration adds the next layer: the gateway can conduct the search during a model turn, alongside functions executed by the client."
+    },
+    {
+      "heading": "A local index has a deployment cost",
+      "text": "The documented storage design separates original file bytes from searchable metadata and vectors. Uploaded bytes live in a local directory, while SQLite or PostgreSQL stores the database records. Moving an installation therefore involves both the database and its file directory. Multiple replicas need access to the same stored material. Without an embedding endpoint, retrieval uses keywords; configuring embeddings enables semantic and hybrid search. This makes deployment choices visible in application behavior. A developer cannot assume that selecting a generation model also supplies the separate embedding service. Changing a store’s embedding configuration requires creating a new store and ingesting the documents again."
+    },
+    {
+      "heading": "Search is now a server responsibility",
+      "text": "Agentic API is the stateful gateway in front of inference, rather than the model itself. Its repository describes moving conversation state, tool loops and continuation out of application clients. Adding document search follows that design: the server owns another multi-step operation that can otherwise be repeated across every application. The practical gain is a smaller amount of retrieval coordination in client code. The operational work moves with it. A service owner still needs storage that survives restarts, access rules for the gateway and tests that exercise a conversation after its first answer. The change is most concrete for teams running their own inference stack and wanting an existing Responses-style application to search its documents."
+    }
+  ],
+  "buildersNote": "Test three requests before deployment: an answer that cites an uploaded file, a follow-up using previous_response_id, and a response requesting raw search results. Test a file above 10 MiB separately: the default request limit is lower than the 20 MiB file ceiling.",
+  "claims": [
+    {
+      "text": "Pull request 486 merged Responses file-search execution on November 8; the changelog still places it under Unreleased.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The November 7 HTTP layer adds Files and vector-store routes with configured authentication and request limits.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Live upstream file-search parity is not established by the reported tests: execution tests use a mocked upstream, and a recorded live-provider test remains outstanding.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Omitting raw passages from a public response is not a promise that the model never sees them; they remain available for model continuation.",
+      "status": "confirmed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "feat: add Responses file_search protocol and execution",
+      "publisher": "vLLM project",
+      "url": "https://github.com/vllm-project/agentic-api/pull/486",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "feat: expose Files and vector-store HTTP APIs",
+      "publisher": "vLLM project",
+      "url": "https://github.com/vllm-project/agentic-api/pull/485",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Files, vector stores, and file search",
+      "publisher": "vLLM project",
+      "url": "https://github.com/vllm-project/agentic-api/blob/432b80d18b64c62183170277df4116bf69f0966f/docs/api/file-search.md",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "Agentic API",
+      "publisher": "vLLM project",
+      "url": "https://github.com/vllm-project/agentic-api/tree/432b80d18b64c62183170277df4116bf69f0966f",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "Changelog",
+      "publisher": "vLLM project",
+      "url": "https://github.com/vllm-project/agentic-api/blob/432b80d18b64c62183170277df4116bf69f0966f/CHANGELOG.md",
+      "date": "2026-11-08"
+    }
+  ],
+  "social": {
+    "hook": "The next answer can reuse the documents already found.",
+    "voiceover": "[matter-of-fact] The next answer can reuse the documents already found. Agentic API merged file search on November eighth. Citations and search context persist, while live provider compatibility still needs a recorded test.",
+    "short": "Agentic API merged file search on November 8. Responses sessions retain retrieved context and citations; raw result lists are opt-in. Live upstream compatibility remains unverified.",
+    "long": "Agentic API added document retrieval to its Responses tool loop on November 8. The development-branch change lets the gateway search uploaded files, carry passages into the model’s answer and save that exchange for the next turn.\n\nThe Files and vector-store routes merged a day earlier. Together, they move retrieval coordination from each application into the gateway. The default request limit is 10 MiB, below the 20 MiB file ceiling.\n\nAnswers can include file citations, while raw search results require an explicit request. The maintainers report local lifecycle tests; recorded testing against a live upstream provider remains outstanding.",
+    "take": "We think saved retrieval context is the useful change here: it removes repeated client orchestration. A merged protocol implementation still needs end-to-end checks against the intended provider.",
+    "keyFacts": [
+      "File-search execution merged on 8 November 2026",
+      "Files and vector-store routes merged on 7 November",
+      "10 MiB default request limit; 20 MiB file ceiling"
+    ],
+    "hashtags": [
+      "vLLM",
+      "AIAgents",
+      "DocumentRetrieval"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

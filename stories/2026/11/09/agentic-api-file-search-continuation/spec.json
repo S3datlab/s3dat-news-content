@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "AGENTIC API",
+    "ADDS FILE",
+    "SEARCH"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Agentic API",
+      "logo": "agentic-api.svg",
+      "color": "#30a2ff"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110903,
+  "sources": {
+    "agentic-api.svg": "https://github.com/vllm-project/agentic-api/blob/432b80d18b64c62183170277df4116bf69f0966f/website/public/brand/agentic-api-mark.svg"
+  }
+}
