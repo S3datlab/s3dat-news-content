@@ -29,5 +29,9 @@
     "ledger.webp": "generated",
     "folder.webp": "generated",
     "crewai.svg": "https://cdn.simpleicons.org/crewai"
+  },
+  "vibes": {
+    "banner": true,
+    "reel": false
   }
 }
