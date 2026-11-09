@@ -1,0 +1,142 @@
+{
+  "format": 2,
+  "slug": "crewai-spreadsheet-agent-queries",
+  "kind": "story",
+  "topic": "agents",
+  "title": "CrewAI adds spreadsheet queries to agent inputs",
+  "titleAccent": "spreadsheet queries",
+  "dek": "Version 1.15.38 gives agents tools to inspect and query linked spreadsheets, with file limits and a clear distinction between a preview and a calculation.",
+  "eventDate": "2026-11-08",
+  "publishedAt": "2026-11-09T12:28:53Z",
+  "lede": "CrewAI released version 1.15.38 on November 8, letting agents inspect and query spreadsheets linked in their inputs. The model receives a compact overview and dedicated tools, rather than having the entire workbook pasted into its conversation.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "CrewAI 1.15.38"
+    },
+    {
+      "label": "File types",
+      "value": "CSV, TSV and XLSX"
+    },
+    {
+      "label": "Per-file ceiling",
+      "value": "50 MB and 10 million cells"
+    },
+    {
+      "label": "Files per run",
+      "value": "Up to 10 spreadsheet URLs"
+    },
+    {
+      "label": "Download budget",
+      "value": "60 seconds shared across the run"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The preview is a map, not the dataset",
+      "text": "The change follows version 1.15.37, released on November 7, which introduced spreadsheet reading in crewai-files. The newer release connects that machinery to URLs in an agent’s kickoff message or task description. With the optional spreadsheets package installed, the input supplies the file location and the prompt gains a summary of columns, data types and sample values. Two tools then separate orientation from calculation. inspect_spreadsheet describes the available sheets and columns. query_spreadsheet can retrieve pages of rows, count values, group records, aggregate figures or calculate correlations between numeric columns. It can apply up to five filters before those operations."
+    },
+    {
+      "heading": "A tool call reaches beyond sampled rows",
+      "text": "The earlier spreadsheet implementation separates the material shown to the model from the underlying table. A compact preview helps the agent choose an operation without requiring every cell to fit into its prompt. The query layer then works against the loaded data. That distinction matters for a sales total or a count of support tickets: a handful of example rows describes the structure, while an aggregate needs the relevant records. The model still chooses the column, operation and conditions. The feature changes how evidence is retrieved and computed, rather than making a preview itself sufficient evidence for an answer."
+    },
+    {
+      "heading": "The input determines which links are opened",
+      "text": "CrewAI’s new input-handling code records caller-provided task text before planning or conversation history is added. Spreadsheet links produced later by the model or another tool are not automatically treated as caller input. There is an important boundary here: if an application explicitly passes a previous model response into a new agent’s input, that text counts as input. The documented downloader refuses private and internal network destinations. It also uses a shared deadline across spreadsheet downloads. This is a separate budget from the agent’s own execution-time setting, so it belongs in the application’s handling of slow or unavailable files."
+    },
+    {
+      "heading": "The release includes checks for misleading file results",
+      "text": "The accompanying tests cover a web page served at what looks like a CSV address, an expired download budget and more URLs than the run accepts. A page in place of a file is reported as unreadable instead of becoming spreadsheet data. Another regression test uses two different files with the same name. It verifies that the second answer comes from the second file’s rows, rather than a cached answer for the first one. These cases make the distinction between locating a file, reading its contents and returning a result explicit in the implementation."
+    }
+  ],
+  "buildersNote": "Test one known subtotal and one filtered row count against the original workbook before relying on an agent’s answer. Budget for the separate 60-second download limit, and include a same-named-file case in regression tests.",
+  "claims": [
+    {
+      "text": "Version 1.15.38 connects spreadsheet URLs in agent inputs to inspection and query tools.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Input downloads are limited to 10 spreadsheets with a shared 60-second deadline.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "Reading is bounded: XLSX uses at most 50 sheets and 2,000 columns, within a 10-million-cell budget. Formula cells use saved cached values; missing caches are empty.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The tools do not establish that a model chose the correct filters or interpreted a result correctly.",
+      "status": "unclear"
+    },
+    {
+      "text": "Legacy XLS, ODS and password-protected workbooks are unsupported.",
+      "status": "confirmed",
+      "source": 4
+    }
+  ],
+  "sources": [
+    {
+      "title": "1.15.38",
+      "publisher": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/releases/tag/1.15.38",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "1.15.37",
+      "publisher": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/releases/tag/1.15.37",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "feat(agents): read spreadsheet URLs in an agent's input with tools over every row (#9234)",
+      "publisher": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/commit/c81633aca11344c9bded662db350a587927612fc",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "feat(files): read spreadsheets for agents in crewai-files (#9184)",
+      "publisher": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/commit/bf5ea11fc31398d4dd89be28da01097a63f37bb1",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Agents",
+      "publisher": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/blob/c81633aca11344c9bded662db350a587927612fc/docs/edge/en/concepts/agents.mdx",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "test_agent_spreadsheets.py",
+      "publisher": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/blob/c81633aca11344c9bded662db350a587927612fc/lib/crewai/tests/agents/test_agent_spreadsheets.py",
+      "date": "2026-11-08"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "A few sample rows cannot prove a total.",
+    "voiceover": "[measured] A few sample rows cannot prove a total. CrewAI now gives agents spreadsheet query tools. The release accepts up to ten linked files per run. Choosing the right calculation still matters.",
+    "short": "CrewAI added spreadsheet queries to agent inputs in version 1.15.38. Agents get a preview plus tools for counts and aggregates, with up to 10 files per run. A sample of rows is not a verified total.",
+    "long": "CrewAI now gives agents a way to calculate from linked spreadsheets instead of relying only on a preview. Version 1.15.38 recognizes supported file URLs in the input, provides a compact overview and adds inspection and query tools.\n\nThe distinction matters when a task asks for totals, grouped values or filtered counts. Showing a model a few rows explains the table’s shape; a query works against the loaded data.\n\nDownloads are limited to ten spreadsheet URLs per run, with a shared sixty-second budget. The caller’s input also matters: model-generated text passed into a new agent becomes that agent’s input, including its spreadsheet links.",
+    "take": "We would check one known subtotal and a filtered count before relying on spreadsheet answers. Tool access does not choose the right question for the model.",
+    "keyFacts": [
+      "CrewAI 1.15.38 was released on November 8.",
+      "Up to 10 spreadsheet URLs are read per run.",
+      "Downloads share a separate 60-second deadline.",
+      "The agent gets inspection and query tools."
+    ],
+    "hashtags": [
+      "CrewAI",
+      "AIAgents",
+      "SpreadsheetAnalysis",
+      "DataTools"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}

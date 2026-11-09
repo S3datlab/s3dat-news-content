@@ -1,0 +1,33 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "CREWAI QUERIES",
+    "SPREADSHEETS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "CrewAI",
+      "logo": "crewai.svg",
+      "color": "#FF5A50"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "ledger.webp",
+      "role": "hero"
+    },
+    {
+      "src": "folder.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 110912,
+  "sources": {
+    "ledger.webp": "generated",
+    "folder.webp": "generated",
+    "crewai.svg": "https://cdn.simpleicons.org/crewai"
+  }
+}
