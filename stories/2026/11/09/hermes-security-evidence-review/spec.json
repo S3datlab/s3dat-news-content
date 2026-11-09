@@ -1,0 +1,22 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "HERMES CHECKS",
+    "BUG EVIDENCE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Hermes",
+      "logo": "hermes.svg",
+      "color": "#d4ad78"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110909,
+  "sources": {
+    "hermes.svg": "https://nousresearch.com/assets/hermes-landing/teams/hermes-wing.svg"
+  }
+}

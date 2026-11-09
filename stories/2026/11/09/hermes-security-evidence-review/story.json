@@ -1,0 +1,130 @@
+{
+  "format": 2,
+  "slug": "hermes-security-evidence-review",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Nous adds evidence checks and bounded testing to Hermes Security",
+  "titleAccent": "evidence checks",
+  "dek": "The official Hermes plugin records rejected findings and coverage gaps, while optional live-app testing requires a user grant limited to one hour and 200 requests.",
+  "eventDate": "2026-11-08",
+  "publishedAt": "2026-11-09T09:28:32Z",
+  "lede": "Nous Research announced its official Hermes Security plugin on November 8, adding repository review through chat, the command line and Desktop. The workflow keeps evidence and rejected candidates alongside findings, giving developers more to inspect than a list of suspected bugs.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "8 November 2026"
+    },
+    {
+      "label": "Required runtime",
+      "value": "Hermes 0.21.5+ and Python 3.11+"
+    },
+    {
+      "label": "Modes",
+      "value": "Standard, deep and diff"
+    },
+    {
+      "label": "Live-app test grant",
+      "value": "One origin, one hour, up to 200 requests"
+    },
+    {
+      "label": "Exports",
+      "value": "Markdown, JSON, CSV and SARIF"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The review starts with reachability",
+      "text": "Nous describes a process that first identifies what an attacker can reach and which inputs the application trusts. Parallel agents then inspect separate parts of the repository. Candidate issues go through code checks and attack-path analysis before the report is finished. The announcement also describes optional small reproductions in a temporary repository copy. That sequence puts a question between discovery and reporting: can the suspected behavior actually be reached? For a developer reviewing the output, the useful artifact is the chain of evidence connecting an entry point to the alleged problem."
+    },
+    {
+      "heading": "A finding carries its proof state",
+      "text": "The implementation contract defines separate states for candidates, source-supported findings, runtime-confirmed findings, rejected findings and inconclusive results. Severity and confidence are separate fields. Promotion to runtime-confirmed requires a successful validation receipt with paired positive and negative controls. An unrun test remains marked as not run. These distinctions preserve a difference that can disappear in a polished security report: reading suspicious code is not the same event as reproducing its behavior. They also let a reviewer retain an unresolved candidate without presenting it as demonstrated exploitation."
+    },
+    {
+      "heading": "Execution needs a separate decision",
+      "text": "The marketplace describes three review modes and a separate permission for testing a running application. A per-scan grant covers one origin for one hour, with a ceiling of 200 requests. Agent tools cannot issue that grant themselves. Local test confirmation is a different option: repository code runs under the user’s identity in a temporary copy after credential-like environment variables are removed. The publisher explicitly says that copy is not a sandbox. Choosing tests therefore changes the operation from reading code to executing code, even when the original checkout remains untouched."
+    },
+    {
+      "heading": "Coverage stays visible",
+      "text": "The README says standard review divides code into chunks of roughly 4,000 lines and permits up to ten concurrent reviewers. Its normal production-code budget covers 90 chunks; larger repositories receive risk-based prioritization. Skipped files and unfinished review work remain visible in the report. This makes a scan’s scope part of its result. A report from a small change and one from a whole repository can contain the same number of findings while representing very different amounts of inspection. The documented export formats allow that evidence to travel into other review tools."
+    },
+    {
+      "heading": "Local reports still have a data path",
+      "text": "The marketplace separates stored scan data from model processing. Reports remain in the active Hermes profile, while the configured model provider receives the code being reviewed. The dependency check also sends package information to advisory services and downloads a pinned scanner with a hash check. These are distinct destinations, each serving a different step of the workflow. For a team deciding whether to enable the plugin, the relevant boundary includes both code disclosure and execution permission. Keeping the report on disk describes storage; it does not describe every network interaction."
+    }
+  ],
+  "buildersNote": "Before enabling test confirmation, use a trusted repository copy without production credentials. Record the model provider and compare reviewed files with skipped files. For live-app testing, review the one-origin, one-hour, 200-request grant separately.",
+  "claims": [
+    {
+      "text": "Nous announced the official Security plugin on November 8.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The documented live-app permission is limited to one origin, one hour and 200 requests.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The contract requires a successful test receipt with positive and negative controls for runtime confirmation.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The sources do not establish independent detection accuracy. Models can miss bugs, and partial coverage cannot certify a clean repository.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nous Research",
+      "publisher": "Nous Research",
+      "url": "https://nousresearch.com/",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "hermes-security",
+      "publisher": "Nous Research",
+      "url": "https://hermes-agent.nousresearch.com/marketplace/hermes-security",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Security for Hermes Agent",
+      "publisher": "Nous Research",
+      "url": "https://github.com/NousResearch/hermes-official-plugins/blob/ccc79c36b6f1f377d1626346198d649af4cc1be5/hermes-security/README.md",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "hermes-security — implementation contract (authoritative for all workers)",
+      "publisher": "Nous Research",
+      "url": "https://github.com/NousResearch/hermes-official-plugins/blob/2e7ecfd07f06ad3759764fee364c8542a2fb2896/hermes-security/docs/CONTRACT.md",
+      "date": "2026-11-09"
+    }
+  ],
+  "social": {
+    "hook": "A suspected bug needs a traceable path to proof.",
+    "voiceover": "[measured] A suspected bug needs a traceable path to proof. Nous added security reviews to Hermes. Findings retain their evidence, and testing a live app needs a separate one-hour grant from the user.",
+    "short": "Nous announced Hermes Security on November 8. Reports retain rejected findings and coverage gaps. Live-app testing needs a separate one-hour grant; independent detection accuracy remains unestablished.",
+    "long": "Nous Research announced an official Security plugin for Hermes on November 8. Its review starts by mapping reachable inputs, then uses parallel agents to examine code and investigate candidate issues.\n\nThe report distinguishes code-backed findings from test-confirmed results. Rejected and unresolved candidates remain visible. The implementation contract requires paired positive and negative controls before a result counts as runtime-confirmed.\n\nThat structure gives reviewers something concrete to challenge. It does not supply an independent accuracy result for the model doing the review.",
+    "take": "We think rejected candidates and coverage gaps are as important as the headline findings. A security review is more useful when a developer can challenge its evidence.",
+    "keyFacts": [
+      "Requires Hermes 0.21.5+ and Python 3.11+",
+      "Live-app grant: 1 origin, 1 hour, 200 requests",
+      "Up to 10 reviewers run concurrently"
+    ],
+    "hashtags": [
+      "Hermes",
+      "CodeSecurity",
+      "AIAgents",
+      "ApplicationSecurity"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
