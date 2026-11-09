@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "GOOGLE ADDS",
+    "TWO TPU",
+    "SYSTEMS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 91115,
+  "sources": {}
+}

@@ -1,0 +1,120 @@
+{
+  "format": 2,
+  "slug": "google-tpu-secure-memory-systems",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "Google adds TPU systems for confidential inference and larger working memory",
+  "titleAccent": "confidential inference",
+  "dek": "TPU 8tx pairs existing Google silicon with AMD hosts, while TPU 8i Max combines two chips in one package for memory-heavy workloads.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-09T15:29:18Z",
+  "lede": "Google announced TPU 8tx and TPU 8i Max on November 9, expanding its eighth-generation accelerator family with two specialized systems. The additions target different constraints: protecting sensitive workloads during execution and feeding models that need large amounts of working memory.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "9 November 2026"
+    },
+    {
+      "label": "Confidential system",
+      "value": "TPU 8tx with 5th Gen AMD EPYC hosts"
+    },
+    {
+      "label": "Memory-focused system",
+      "value": "TPU 8i Max: 2 chips per package"
+    },
+    {
+      "label": "Generation",
+      "value": "Four eighth-generation TPU systems"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A system redesign around existing silicon",
+      "text": "The new names describe system configurations, not a fresh chip generation. TPU 8tx uses the same silicon as TPU 8t, while adopting the Boardfly network associated with TPU 8i. The distinction matters for buyers comparing an accelerator with the system surrounding it. A confidential workload depends on more than the processor design. The host and the connections carrying protected data also belong in that review. In this case, the two additions also split the purchasing question. One asks whether protected information can remain isolated throughout computation. The other asks whether the accelerator can keep enough data moving to sustain a demanding model workload."
+    },
+    {
+      "heading": "The host participates in the security boundary",
+      "text": "AMD separately confirmed that its fifth-generation EPYC processors provide the host infrastructure for TPU 8tx. Its account describes the CPU preparing data, coordinating work and communicating with the accelerators. Secure Encrypted Virtualization extends the protection mechanism across that connection. Before an accelerator receives direct access to protected memory, the system verifies its identity and security configuration. AMD says prompts, model weights and intermediate data remain encrypted in CPU memory and during transfers, with isolation during accelerator execution. This makes the host part of the confidential-computing design, rather than merely a feeder for the accelerator. AMD notes that these security features require cloud-provider enablement."
+    },
+    {
+      "heading": "More memory bandwidth serves a different problem",
+      "text": "TPU 8i Max puts two TPU 8i chips in one package. Google reports twice the compute, on-chip SRAM and high-bandwidth-memory bandwidth of TPU 8i. The design targets long-context workloads and higher computing density in an existing rack footprint. This is a capacity and data-movement proposition. It does not by itself answer whether an application produces better responses. A coding service, for example, still needs to retrieve the right files and evaluate its output. Faster access to a larger working set changes the infrastructure budget for that service."
+    },
+    {
+      "heading": "The April split still explains the lineup",
+      "text": "Google introduced the original TPU 8t and TPU 8i on April 22. The training-oriented 8t emphasized compute throughput and scale-up connections. The inference-oriented 8i emphasized memory bandwidth and communication latency. That earlier design included 288 GB of high-bandwidth memory and 384 MB of on-chip SRAM for TPU 8i. Google also described native support for JAX, PyTorch, SGLang and vLLM across the original platforms. Those choices established a distinction between training a model and serving repeated requests. Today’s configurations add further specialization around that foundation, making the host, memory system and interconnect part of the product decision alongside the accelerator itself."
+    }
+  ],
+  "buildersNote": "For a procurement trial, keep two separate checklists: attestation and data-handling requirements for confidential inference; memory use and request latency for long-context serving. Ask for a workload-specific quote before converting a hardware multiplier into expected savings.",
+  "claims": [
+    {
+      "text": "Google announced two additional eighth-generation TPU systems on November 9.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "AMD identifies fifth-generation EPYC processors as the TPU 8tx hosts.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Google reports doubled compute, SRAM and HBM bandwidth for TPU 8i Max versus TPU 8i. Independent application-level gains are not established here.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The announcement supplies no price, region list or general-availability date for the two new systems.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Confidential hardware does not establish that an application prevents every leak or uses the correct access policy.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Our newest TPUs: 8tx and 8i Max, built for the agentic era",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "AMD EPYC Expands Its Leadership at the Foundation of AI",
+      "publisher": "AMD",
+      "url": "https://newsroom.amd.com/news/amd-epyc-expands-leadership-foundation-ai/",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Our eighth generation TPUs: two chips for the agentic era",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/",
+      "date": "2026-04-22"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "Keeping data private needs more than a faster chip.",
+    "voiceover": "[measured] Keeping data private needs more than a faster chip. Google announced two new accelerator systems. One targets confidential inference; the other combines two chips for memory-heavy work. Pricing remains unspecified.",
+    "short": "Google announced TPU 8tx for confidential inference and TPU 8i Max with two chips per package. These are system redesigns around existing silicon; prices and general availability remain unspecified.",
+    "long": "Google expanded its accelerator lineup with two systems aimed at different limits. TPU 8tx pairs existing Google silicon with fifth-generation AMD EPYC hosts for confidential workloads. TPU 8i Max combines two chips in one package for memory-heavy work.\n\nThe distinction is practical: protecting data while a model runs requires a security boundary across the host and accelerator. Moving more context through a model requires memory capacity and bandwidth. Neither choice automatically proves better application answers.\n\nThe announcement does not specify prices, regions or a general-availability date for the new systems.",
+    "take": "We would separate the security review from the throughput trial. A confidential-computing boundary and a larger working set solve different problems, even when both arrive in one hardware announcement.",
+    "keyFacts": [
+      "Two new TPU systems announced on November 9.",
+      "TPU 8tx uses 5th Gen AMD EPYC hosts.",
+      "TPU 8i Max combines 2 chips per package.",
+      "Original TPU 8t and 8i announced on April 22."
+    ],
+    "hashtags": [
+      "Google",
+      "AIHardware",
+      "ConfidentialComputing",
+      "TPU"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}
