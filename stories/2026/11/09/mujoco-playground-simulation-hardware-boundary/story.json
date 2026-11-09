@@ -1,0 +1,138 @@
+{
+  "format": 2,
+  "slug": "mujoco-playground-simulation-hardware-boundary",
+  "kind": "explained",
+  "topic": "dev-tools",
+  "title": "MuJoCo Playground links robot simulation with hardware control",
+  "dek": "The rebuilt robot toolkit shares task logic between virtual and physical arms. Its November 8 patch also changes how observations survive resets.",
+  "eventDate": "2026-11-08",
+  "publishedAt": "2026-11-09T06:28:18Z",
+  "lede": "Google DeepMind’s MuJoCo Playground team released version 1.0.1 on November 8, following its rebuilt 1.0 release on November 6. The toolkit connects robot training, simulation and hardware control through shared task code. Understanding that connection matters before a successful virtual demonstration becomes a moving physical arm.",
+  "facts": [
+    {
+      "label": "Latest patch",
+      "value": "1.0.1, November 8, 2026"
+    },
+    {
+      "label": "Framework",
+      "value": "PyTorch; earlier 0.2 used JAX"
+    },
+    {
+      "label": "Hardware examples",
+      "value": "SO-101 and i2rt YAM Pro"
+    },
+    {
+      "label": "Agent interface",
+      "value": "Robot state, wrist image and Python plans"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What does the shared layer actually share?",
+      "text": "Playground separates the task from the robot and sensor implementation. Its current overview lists reinforcement learning, teleoperation, system identification and agent-driven manipulation within the same development toolkit. Version 0.2 used JAX; the rebuilt version uses PyTorch with MuJoCo or MuJoCo Warp. That changes the surrounding software stack as well as the examples. The repository keeps the original JAX and MJX environments under a separate RSS 2025 directory. Existing experiments therefore have an identifiable older home instead of silently becoming the new implementation."
+    },
+    {
+      "heading": "How does one task reach a real arm?",
+      "text": "The documented SO-101 cube-picking workflow provides a concrete example. A developer trains a vision policy, loads its checkpoint in simulation, then runs the deployment entry point in real mode. The same task layer and trained policy cross that boundary. The instructions also include replaying logged deployment episodes, which makes the resulting behavior available for inspection. Hardware setup comes first in the documented sequence. The public robot list marks SO-101 and YAM Pro for both simulation and real operation; WidowX and Unitree G1 are marked simulation-only."
+    },
+    {
+      "heading": "Where does a language model enter the loop?",
+      "text": "The tabletop agent example uses a local HTTP bridge. Each turn supplies robot state and an annotated wrist-camera image to a vision-language model. The model returns a Python plan built from operations such as grasp, place and move until contact. This is a different control path from replaying a trained cube-picking policy. The documentation explicitly warns that generated Python is executed and directly drives the robot. A shared interface makes the transition between environments convenient, while also making the selected execution mode consequential."
+    },
+    {
+      "heading": "Why does the November 8 patch matter?",
+      "text": "Version 1.0.1 changes the measurement interface used by its robot devices and moves state updates into explicit lifecycle hooks. The underlying reaf-sim patch addresses a more specific problem: partial resets could duplicate an observation in environments that were not resetting. Its camera devices now return cached frames when measurements are requested, rather than rendering during that read. These changes separate asking for a measurement from advancing state. For a learning system that consumes observation history, repeating an entry changes the input sequence even when the physical scene has not changed."
+    },
+    {
+      "heading": "What can the release establish?",
+      "text": "The useful distinction is between reusable software and demonstrated behavior. Playground supplies paired workflows, deployment entry points and examples that connect simulation with supported hardware. Its agent example exposes the additional step where model-generated instructions become actuator commands. The November 8 fixes also show why resets and measurement timing belong in the explanation: task code depends on the observations it receives. Sharing that code gives developers a common place to investigate behavior across environments. It does not make the two environments identical."
+    }
+  ],
+  "buildersNote": "Before a hardware run, test 2 cases in simulation: an ordinary episode and a partial reset while another environment continues. Compare observation histories and confirm the selected sim/real mode. These software checks do not replace hardware-specific safety checks.",
+  "claims": [
+    {
+      "text": "Playground 1.0.1 is dated November 8 and changes measurement interfaces and partial-reset state updates.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The documented SO-101 workflow uses the same policy checkpoint for simulation and physical deployment.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "A shared task layer guarantees safe hardware operation or identical simulation and physical results. The documentation does not establish that guarantee.",
+      "status": "unclear",
+      "source": 4
+    }
+  ],
+  "sources": [
+    {
+      "title": "Changelog",
+      "publisher": "MuJoCo Playground",
+      "url": "https://reaf-sim.readthedocs.io/en/latest/playground/changelog.html",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "MuJoCo 4: Studio & Filament, Deformables, Speculative Contacts",
+      "publisher": "MuJoCo",
+      "url": "https://github.com/google-deepmind/mujoco/discussions/3773",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "MuJoCo Playground",
+      "publisher": "Google DeepMind",
+      "url": "https://playground.mujoco.org/",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "Sim-to-Real",
+      "publisher": "MuJoCo Playground",
+      "url": "https://reaf-sim.readthedocs.io/en/latest/playground/sim2real.html",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Agentic",
+      "publisher": "MuJoCo Playground",
+      "url": "https://reaf-sim.readthedocs.io/en/latest/playground/agentic.html",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Changelog",
+      "publisher": "reaf-sim",
+      "url": "https://reaf-sim.readthedocs.io/en/latest/changelog.html",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "MuJoCo Playground",
+      "publisher": "Google DeepMind",
+      "url": "https://github.com/google-deepmind/mujoco_playground/blob/6c3047e75e1c2f954a90837c1a2183847500ff58/README.md",
+      "date": "2026-11-09"
+    }
+  ],
+  "social": {
+    "hook": "The same task can move from simulation to a real arm.",
+    "voiceover": "[measured] The same task can move from simulation to a real arm. Google’s robot toolkit now shares that code. November eighth’s patch fixes observation handling. Shared software still needs separate hardware checks.",
+    "short": "Google updated MuJoCo Playground to 1.0.1 on November 8. Shared task code connects simulated and physical robot arms; reset handling changed too. Hardware safety remains a separate check.",
+    "long": "MuJoCo Playground connects robot simulation and hardware through shared task code. Google DeepMind’s rebuilt toolkit includes a cube-picking example that loads the same trained policy in either mode. The November 8 patch changes measurement handling and partial-reset behavior.\n\nIts language-model example uses a separate path: a wrist-camera image and robot state go in, and a generated Python plan comes back. The documentation warns that those plans directly drive the robot. Reusing a task makes experiments easier to compare; it does not establish that a virtual success will transfer safely to hardware.",
+    "take": "We see shared task code as a better place to diagnose transfer failures. The hardware decision still needs its own tests, especially when a language model generates the commands.",
+    "keyFacts": [
+      "Playground 1.0.1: November 8, 2026",
+      "2 robot families: SO-101 and YAM Pro support sim and hardware",
+      "Version 1.0 uses PyTorch; 0.2 used JAX"
+    ],
+    "hashtags": [
+      "MuJoCo",
+      "Robotics",
+      "RobotLearning",
+      "EmbodiedAI"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
