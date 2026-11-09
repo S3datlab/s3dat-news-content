@@ -19,5 +19,9 @@
   "seed": 110903,
   "sources": {
     "agentic-api.svg": "https://github.com/vllm-project/agentic-api/blob/432b80d18b64c62183170277df4116bf69f0966f/website/public/brand/agentic-api-mark.svg"
+  },
+  "vibes": {
+    "banner": true,
+    "reel": false
   }
 }
