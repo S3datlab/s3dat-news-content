@@ -20,5 +20,9 @@
     "label": "default items per catalog"
   },
   "seed": 911100,
-  "sources": {}
+  "sources": {},
+  "vibes": {
+    "banner": true,
+    "reel": false
+  }
 }
