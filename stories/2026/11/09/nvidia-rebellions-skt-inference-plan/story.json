@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "nvidia-rebellions-skt-inference-plan",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "NVIDIA and Korean partners plan a GPU–NPU inference system for 2028",
+  "titleAccent": "GPU–NPU inference system",
+  "dek": "Rebellions' R200 processors would generate answers after NVIDIA GPUs process prompts, with SK Telecom testing the combined system in its data centers.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-09T18:29:33Z",
+  "lede": "SK Telecom, NVIDIA and Rebellions announced a Korean AI infrastructure collaboration on November 9, pairing graphics processors with dedicated inference chips. The planned system divides a model request between two architectures, while NVIDIA supplies the connections and rack design around them.",
+  "facts": [
+    {
+      "label": "Partners",
+      "value": "NVIDIA, Rebellions and SK Telecom"
+    },
+    {
+      "label": "Target processor",
+      "value": "Rebellions R200, in development"
+    },
+    {
+      "label": "Expected readiness",
+      "value": "R200 systems: deployment in 2028"
+    },
+    {
+      "label": "Work split",
+      "value": "NVIDIA GPU prefill; Rebellions NPU decode"
+    },
+    {
+      "label": "Current stage",
+      "value": "Development and verification agreement"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Different chips for different stages",
+      "text": "SK Telecom describes two distinct demands inside language-model inference. Prefill processes the incoming prompt and needs substantial computation. Decode generates the response incrementally and puts pressure on memory access. The proposed arrangement assigns the first stage to NVIDIA GPUs and the second to Rebellions' neural processing units. Separating those jobs lets the partners design around their different requirements. For an application, the first stage affects how long a user waits before an answer starts. The second affects how quickly that answer continues to arrive. A long document followed by a short response creates a different balance from a short prompt asking for extensive output."
+    },
+    {
+      "heading": "The connection is part of the product",
+      "text": "NVIDIA says Rebellions will use NVLink Fusion to join its developing R200 processors to NVIDIA's scale-up network. The project also uses MGX, NVIDIA's modular rack architecture. That provides common design elements for power delivery and cooling, alongside access to component makers and system manufacturers. The partnership therefore covers more than a processor attached to a cable. It gives the custom chip a route into an established rack and supply chain. NVIDIA expects R200 systems to be ready for deployment in 2028. The schedule places this announcement in infrastructure planning, beyond the buying cycle of a team needing inference capacity immediately."
+    },
+    {
+      "heading": "The operator supplies the validation setting",
+      "text": "SK Telecom's announcement describes an agreement to develop and verify the combined infrastructure. Its data centers would provide a setting to test performance and stability, then assess service use and commercialization. The operator identifies its A.X K2 model and Korea's AI for All initiative among the intended applications. That connects the hardware project to an operator with models and services of its own. It also defines a practical sequence: assemble the system, establish how it behaves, and evaluate where it belongs in service. Public and private Korean deployments are the intended market for that work."
+    },
+    {
+      "heading": "Custom silicon still uses NVIDIA's infrastructure",
+      "text": "NVLink Fusion already had a custom-chip partner before this agreement. On May 19, 2025, Marvell announced plans to combine its custom cloud silicon with NVIDIA's rack architecture and connectivity. The Korean project adds a named processor, an operator and a proposed division of inference work to that approach. Its sovereignty proposition combines domestic chip development and local services with NVIDIA infrastructure. Those are separate layers of control. Choosing a Korean inference processor does not remove the role of the interconnect and rack supplier. The agreement illustrates how a custom accelerator can enter the market through an incumbent's surrounding system."
+    }
+  ],
+  "buildersNote": "For a future trial, record two latency measures separately: time to the first output token and time between subsequent tokens. Compare them at the same prompt length, output length and concurrent request count before translating projected hardware efficiency into a serving budget.",
+  "claims": [
+    {
+      "text": "SK Telecom announced an agreement with NVIDIA and Rebellions for development and verification of integrated AI infrastructure on November 9.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "NVIDIA identifies R200 systems as expected to be ready for deployment in 2028; this is a target, not a guaranteed availability date.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The partners expect GPU prefill and NPU decode to improve throughput and energy efficiency. No independently measured result for this combined system is supplied.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "Pricing, deployment capacity and the date of a commercial SK Telecom service remain unspecified.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "SKT-엔비디아-리벨리온, 한국형 소버린 AI 인프라 구축 협력",
+      "publisher": "SK Telecom",
+      "url": "https://news.sktelecom.com/232944",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "NVIDIA, Rebellions and SK Telecom Announce Collaboration to Advance Sovereign AI Infrastructure With NVIDIA NVLink Fusion",
+      "publisher": "NVIDIA",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "date": "2026-11-08"
+    },
+    {
+      "title": "Marvell and NVIDIA to Provide Custom Solutions for Advanced AI Infrastructure",
+      "publisher": "Marvell",
+      "url": "https://investor.marvell.com/news-events/press-releases/detail/97/marvell-and-nvidia-to-provide-custom-solutions-for-advanced-ai-infrastructure",
+      "date": "2025-05-19"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "One answer can use two different kinds of chip.",
+    "voiceover": "[matter-of-fact] One answer can use two different kinds of chip. NVIDIA and Korean partners plan to split inference between graphics and neural processors. Systems are expected in twenty twenty-eight. Independent results remain unavailable.",
+    "short": "NVIDIA and Korean partners announced plans to split inference between GPUs and Rebellions NPUs. R200 systems are expected in 2028; the combined design still needs performance validation.",
+    "long": "SK Telecom joined NVIDIA and Rebellions in a plan to divide language-model inference between different processors. NVIDIA GPUs would process the prompt. Rebellions' R200 neural processors would generate the answer.\n\nThe surrounding system matters too. NVLink Fusion supplies the scale-up connection, while MGX provides shared rack design elements for power and cooling. SK Telecom plans to test performance and stability in its data centers and assess commercial applications.\n\nNVIDIA expects R200 systems to be ready for deployment in 2028. The partners have not supplied an independently measured performance result or a price for the combined system.",
+    "take": "We see this as a test of mixed-chip serving, not an available capacity upgrade. The useful result will be a complete request's cost and latency, measured across both stages.",
+    "keyFacts": [
+      "3 partners: NVIDIA, Rebellions and SK Telecom.",
+      "R200 systems expected ready for deployment in 2028.",
+      "2 stages: GPU prefill and NPU decode."
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "AIHardware",
+      "AIInference",
+      "Rebellions"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}

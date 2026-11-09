@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "NVIDIA PLANS",
+    "MIXED-CHIP",
+    "INFERENCE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 110918,
+  "sources": {}
+}
