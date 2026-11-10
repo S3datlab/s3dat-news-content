@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "CLAUDE ADDS",
+    "SHARED SHEETS",
+    "AND BOARDS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Claude",
+      "icon": "claude"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 111021,
+  "sources": {}
+}

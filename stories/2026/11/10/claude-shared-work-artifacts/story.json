@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "claude-shared-work-artifacts",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Anthropic adds shared sheets and whiteboards inside Claude",
+  "titleAccent": "shared sheets and whiteboards",
+  "dek": "Claude gains collaborative work surfaces and larger app connectors, while Enterprise admins face a November 19 change to Claude Data defaults.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-10T21:58:52Z",
+  "lede": "Anthropic launched Claude Sheets and Whiteboards in beta on November 10 and renamed its generally available dashboard product Claude Data. The release moves more team work into shared artifacts instead of leaving it in separate chat answers.",
+  "facts": [
+    {
+      "label": "Access",
+      "value": "All paid plans for Sheets, Whiteboards and Data"
+    },
+    {
+      "label": "Enterprise change",
+      "value": "Claude Data defaults on November 19, 2026"
+    },
+    {
+      "label": "Interactive connectors",
+      "value": "Rolling out on web and desktop, all plans"
+    },
+    {
+      "label": "Meeting availability",
+      "value": "Company overview says coming soon"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A workspace beyond the answer",
+      "text": "The company frames the release as an extension of the way people work with Claude Code. For office teams, the material needed to finish a job is scattered across messages, files and applications. Its proposed solution is to retain that context while the output changes form. A planning conversation can become a board, then a spreadsheet, then a data presentation. Anthropic also describes custom artifacts for recurring tasks, including account tracking and contract review. That makes the workspace itself part of the product: the assistant can remain involved after the initial answer, instead of handing over a static result and losing sight of subsequent changes."
+    },
+    {
+      "heading": "Different tools, different release states",
+      "text": "Sheets supports formulas, tabs and shared editing, with Excel and CSV export for work that needs other tools. Whiteboards turns discussion into a collaborative board. Claude Data adds certified queries and live sharing, both still in beta. Shared dashboard viewers receive approved results without needing the underlying connector. Team plans enable all three products by default. Enterprise keeps Sheets and Whiteboards off initially, while Data switches on by default on November 19. These controls separate an individual trial from an organization-wide rollout. A paid subscription therefore does not tell an administrator which features colleagues will encounter automatically."
+    },
+    {
+      "heading": "Partner apps stay in the picture",
+      "text": "Interactive connectors now let supported partner applications open alongside a conversation or occupy the full screen. Anthropic lists Adobe, Atlassian and Box among the integrations. Users can edit the open material themselves or ask Claude to work on it, approving actions through the connector. This upgrade reaches all plans through the new Claude experience on web and desktop. Accounts and organizations need that experience enabled before the interface appears. The underlying mechanism is MCP Apps, an extension that allows a server to supply an interface within an AI application. This route preserves the partner tool as a working destination, alongside the artifacts Anthropic hosts itself."
+    },
+    {
+      "heading": "Meetings need a separate availability check",
+      "text": "Reuters reported a Team and Enterprise beta for Claude Meetings, initially using Google Meet. Its account describes a visible participant that answers questions and produces work while people talk. Anthropic\u2019s product overview instead describes Meetings as coming soon. For teams planning adoption, the published artifacts and connector changes are the firmer starting point. The broader pitch is continuous collaboration across a task, from discussion to a usable result. That is a more ambitious promise than producing a polished answer, because the work also has to survive edits, sharing and handoffs."
+    }
+  ],
+  "buildersNote": "Before November 19, review Organization settings > Artifacts on Enterprise. Pilot one shared sheet and one dashboard with non-sensitive data, checking edit visibility, approved query results and export behavior before expanding access.",
+  "claims": [
+    {
+      "text": "Sheets and Whiteboards are beta products; Claude Data is generally available.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Enterprise Claude Data turns on by default on November 19.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Keeping context across artifacts reduces repeated briefing and handoffs, according to Anthropic.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "Meetings availability is inconsistent across the company overview and Reuters launch coverage.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Claude Whiteboards, Claude Sheets, and Claude Data",
+      "publisher": "Anthropic",
+      "url": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "More ways to work with Claude: Sheets, Whiteboards, and Interactive Connectors",
+      "publisher": "Anthropic",
+      "url": "https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Your apps can now open in Claude, and Claude can work in them",
+      "publisher": "Anthropic",
+      "url": "https://claude.com/resources/articles/interactive-connectors-full-tool",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Anthropic brings Claude to Google Meet to tackle tasks live",
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/technology/anthropic-brings-claude-google-meet-tackle-tasks-live-2026-11-10/",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "The work can stay beside the conversation.",
+    "voiceover": "[matter-of-fact] The work can stay beside the conversation. Anthropic added shared sheets and whiteboards to Claude. Enterprise data tools turn on by default on November nineteenth. Admin settings matter as much as access.",
+    "short": "Anthropic added shared sheets and whiteboards to Claude. Enterprise Claude Data turns on by default November 19; admins can change the setting.",
+    "long": "Anthropic expanded Claude\u2019s workspace with shared artifacts and full app views. Partner tools can sit beside a conversation, keeping manual edits and assistant actions in the same place.\n\nThe November 10 release spans beta and generally available products. We see the practical test as whether teams can keep working on an output without losing its context. Meetings availability needs a separate check: the company overview still says coming soon.",
+    "take": "We think the useful shift is a shared work surface, not another answer format. Teams need clear ownership of edits and access before making it their default.",
+    "keyFacts": [
+      "Sheets and Whiteboards entered beta on November 10",
+      "Claude Data defaults on for Enterprise November 19",
+      "Interactive connectors roll out on 2 platforms: web and desktop"
+    ],
+    "hashtags": [
+      "Claude",
+      "WorkplaceAI",
+      "AICollaboration",
+      "MCPApps"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
