@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "adobe-disney-custom-model-alliance",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Adobe expands Disney alliance around custom AI models",
+  "titleAccent": "custom AI models",
+  "dek": "The November agreement adds early tool access and engineering support to a relationship already testing Firefly Foundry in theme park design.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-10T15:54:17Z",
+  "lede": "Adobe and Disney announced a multi-year AI alliance on November 9, extending their work on custom creative models. The agreement brings early product access and dedicated engineering support to Disney’s production teams.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "9 November 2026"
+    },
+    {
+      "label": "Arrangement",
+      "value": "Multi-year alliance"
+    },
+    {
+      "label": "Earlier design project",
+      "value": "Announced 16 June 2026"
+    },
+    {
+      "label": "Custom-model service",
+      "value": "Adobe Firefly Foundry"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A wider relationship",
+      "text": "The new agreement includes work with StudioLAB and ESPN Edge, alongside parks and cruise development. Adobe will provide access to Firefly, Foundry, Premiere and Photoshop. The announcement also covers marketing and industry events. That makes this a broader technology and commercial relationship, extending beyond a single model or one design department."
+    },
+    {
+      "heading": "The design work predates this deal",
+      "text": "Adobe described its Imagineering collaboration on June 16. That earlier plan included three distinct workflows: turning sketches into rendered concepts, generating franchise-specific images and converting two-dimensional designs into three-dimensional prototypes. The starting material was Imagineering’s own catalog, including licensed and proprietary assets. A sketch transformation preserves a designer’s proposed composition while supplying a more finished image. A prototype serves another purpose: communicating spatial choices to engineers before construction. These are separate stages with different approval needs. Producing more concept variations does not, by itself, settle whether a design is ready to build. The distinction matters when a supplier describes progress across the whole production pipeline."
+    },
+    {
+      "heading": "Custom training is also a service",
+      "text": "Firefly Foundry itself dates to October 28, 2025. Adobe introduced it as a way for businesses to develop private models from their existing intellectual property. Its launch described support across images, video, audio, vectors and three-dimensional assets. The service includes Adobe specialists who handle training, plus tools for testing outputs, managing access and deploying the resulting models. That structure puts integration work alongside model quality. A business is buying a process for turning its catalog into a controlled production tool. The useful comparison for a creative team is therefore its existing approval workflow, including who can generate an asset and who can approve its use."
+    },
+    {
+      "heading": "Infrastructure sits underneath the creative tools",
+      "text": "Adobe’s March 16 partnership announcement with Nvidia set out another part of that approach. It planned accelerated computing for Foundry and future Firefly models, plus a cloud-based digital-twin offering built with Omniverse libraries. Digital twins preserve a product’s identity across different marketing scenes. A custom generative model instead learns a company’s visual material and produces variations. The two approaches can support related production tasks without being interchangeable. For software builders, that difference affects what must be stored and reviewed: a reusable object representation, training material, generated outputs, or a combination of all three."
+    },
+    {
+      "heading": "Approval remains a separate job",
+      "text": "The practical issue is the handoff from generation to acceptance. A plausible image, an approved brand asset and a construction reference answer different questions. Treating them as separate deliverables makes failures easier to locate. A team can then measure whether generation reduces total revision time, including human review, instead of counting only how quickly the first image appears."
+    }
+  ],
+  "buildersNote": "For a custom-model pilot, reserve 20 approved assets outside training. Compare outputs against that held-out set and record review minutes, correction rounds and rejected outputs before buying a wider deployment.",
+  "claims": [
+    {
+      "text": "The November 9 announcement establishes a multi-year alliance covering creative technology and engineering support.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The June 16 Imagineering plan specified sketch conversion, custom images and 3D prototyping.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Adobe describes the models as commercially safe and production-ready; this is a vendor claim.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The announcement supplies no independent productivity measurement or public price for Disney’s custom models.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Adobe and The Walt Disney Company Announce Multi-Year Strategic Alliance to Support Disney Innovation with New AI-Powered Tools",
+      "publisher": "Adobe",
+      "url": "https://news.adobe.com/news/2026/11/adobe-and-the-walt-disney-company-alliance",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Adobe and Disney Imagineering Collaborate to Bring Firefly Foundry to the Theme Park Design Toolkit",
+      "publisher": "Adobe",
+      "url": "https://news.adobe.com/news/2026/06/adobe-and-disney-imagineering-collaborate",
+      "date": "2026-06-16"
+    },
+    {
+      "title": "Adobe Firefly Foundry Delivers Proprietary and On-Brand Generative AI Models for Businesses",
+      "publisher": "Adobe",
+      "url": "https://news.adobe.com/news/2025/10/adobe-max-2025-firefly-foundry",
+      "date": "2025-10-28"
+    },
+    {
+      "title": "Adobe and NVIDIA Announce Strategic Partnership to Deliver the Next Generation of Firefly Models and Creative, Marketing and Agentic Workflows",
+      "publisher": "Adobe",
+      "url": "https://news.adobe.com/news/2026/03/adobe-and-nvidia-announce-strategic-partnership",
+      "date": "2026-03-16"
+    }
+  ],
+  "social": {
+    "hook": "A custom model still needs a human approval gate.",
+    "voiceover": "[matter-of-fact] A custom model still needs a human approval gate. Adobe expanded its Disney alliance around creative tools. June’s earlier plan had three design workflows. [measured] Faster generation still needs review.",
+    "short": "Adobe expanded its Disney AI alliance on November 9. It builds on June’s three design workflows, from sketch conversion to 3D prototypes. Independent productivity gains remain unmeasured.",
+    "long": "Adobe and Disney extended their AI partnership. The earlier June 16 design plan covered sketch conversion, custom franchise images and 3D prototyping. Those stages need different approvals.\n\nFoundry, introduced in October 2025, includes model training, output testing and access management. The useful test is total revision time, including human review. A polished first image alone does not establish a faster production process.",
+    "take": "We think custom-model pilots should be judged by accepted work per review hour. Generating more variants can simply move the bottleneck to the people approving them.",
+    "keyFacts": [
+      "Alliance announced 9 November 2026",
+      "Earlier Imagineering plan: 16 June 2026",
+      "Foundry introduced 28 October 2025"
+    ],
+    "hashtags": [
+      "Adobe",
+      "Firefly",
+      "CreativeAI",
+      "CustomModels"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

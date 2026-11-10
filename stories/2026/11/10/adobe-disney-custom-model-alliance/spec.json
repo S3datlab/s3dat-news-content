@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "ADOBE EXPANDS",
+    "DISNEY AI",
+    "ALLIANCE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Adobe",
+      "logo": "adobe.svg",
+      "color": "#EB1000"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 111015,
+  "sources": {
+    "adobe.svg": "https://raw.githubusercontent.com/simple-icons/simple-icons/13.21.0/icons/adobe.svg"
+  }
+}
