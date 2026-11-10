@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "GITHUB SCANS",
+    "BUILD LOGS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "GitHub",
+      "icon": "github"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 111012,
+  "sources": {}
+}

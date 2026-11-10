@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "github-actions-log-secret-scanning",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "GitHub adds secret scanning for completed Actions logs",
+  "titleAccent": "completed Actions logs",
+  "dek": "The enterprise preview checks newly completed workflow logs for provider credentials, adding a separate detection layer alongside GitHub’s AI code scanners.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-10T12:31:51Z",
+  "lede": "GitHub announced secret scanning for Actions workflow logs on November 9, extending credential detection beyond repository content. The enterprise preview adds a post-run check for teams whose build and agent workflows handle service credentials.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "9 Nov 2026; public preview"
+    },
+    {
+      "label": "Scan timing",
+      "value": "After a workflow run completes"
+    },
+    {
+      "label": "Coverage",
+      "value": "Provider credential patterns"
+    },
+    {
+      "label": "Access",
+      "value": "Enterprise Cloud with Secret Protection or Advanced Security"
+    },
+    {
+      "label": "Default",
+      "value": "Disabled; enterprise owner enables the policy"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A new surface for credential checks",
+      "text": "The November 9 release puts detected log credentials in the repository’s existing secret scanning alert list. Findings link back to the workflow log, and supported credential types receive validity checks. Alerts persist after the underlying logs are deleted. This changes where detection happens: a credential printed during execution can become an alert even when the source file itself contains no hardcoded value. For a team running automated builds, the log becomes a security surface with its own review queue. The feature’s access requirements also matter. Enterprise Cloud data-residency deployments on GHE.com are included, subject to the same licensing and repository prerequisites."
+    },
+    {
+      "heading": "Detection and notification are separate",
+      "text": "GitHub’s documentation distinguishes this feature from scanning Git history across branches. One log alert can collect several appearances of a credential across runs or jobs. Each location points to the originating workflow file and output line, without displaying an inline log excerpt. That grouping gives responders a way to trace repeated exposure without treating every occurrence as a different secret. The documentation also separates detection from remediation: revoking or rotating an exposed credential addresses its continued use. Removing stored output alone does not perform that revocation. A record that survives log deletion can therefore still carry useful follow-up work."
+    },
+    {
+      "heading": "Provider patterns are getting narrower",
+      "text": "A separate November 5 update changed the detectors behind secret scanning. GitHub added a Starlink API credential pattern and named SpaceX as a scanning partner. It also tightened matching for several providers. OpenVSX filtering now uses stronger context around legacy tokens; Pydantic Services matching follows the documented token length and character set. Those changes illustrate a different quality problem from missing log coverage. A scanner needs to distinguish a usable credential from an unrelated identifier or placeholder. Expanding the places searched and reducing incorrect matches are two separate improvements to the same alert backlog."
+    },
+    {
+      "heading": "This is different from an AI security review",
+      "text": "GitHub’s October 28 AI Scan preview examines repository code with an agentic scanner operating within a fixed time budget. It analyzes the latest default-branch commit and can cover languages outside CodeQL’s scope. Another October 28 preview targets AI application risks in pull requests, including indirect prompt injection, sensitive information disclosure and excessive agency. These features examine different evidence. An agent permission problem lives in application behavior and code paths; a credential leak may appear in execution output. Passing one review therefore does not establish that the other surface is clean. The new log scan adds a specific layer to that broader set of checks."
+    }
+  ],
+  "buildersNote": "For an eligible enterprise pilot, assign one owner to inspect the secret scanning alert list daily. Track the policy activation time and review older logs separately. Do not use a real credential as a test fixture.",
+  "claims": [
+    {
+      "text": "The preview scans only runs completed after activation; it does not backfill old logs or send alert notifications.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Generic, custom, AI-detected and already-masked secrets are outside workflow-log detection.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The announcement does not establish a detection rate or a maximum time from completion to an alert.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Secret scanning detects secrets in GitHub Actions workflow logs",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-09-secret-scanning-detects-secrets-in-github-actions-workflow-logs/",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Secret scanning",
+      "publisher": "GitHub Docs",
+      "url": "https://docs.github.com/en/enterprise-cloud@latest/code-security/concepts/secret-security/secret-scanning",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Secret scanning upgrades detectors, adds SpaceX as partner",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-05-secret-scanning-upgrades-detectors-adds-spacex-as-partner/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "AI Scan for repositories in public preview",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-10-28-ai-scan-for-repositories-in-public-preview/",
+      "date": "2026-10-28"
+    },
+    {
+      "title": "Code scanning for AI applications in public preview",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-10-28-code-scanning-for-ai-applications-in-public-preview/",
+      "date": "2026-10-28"
+    }
+  ],
+  "social": {
+    "hook": "A finished build can leave a credential behind.",
+    "voiceover": "[matter-of-fact] A finished build can leave a credential behind. GitHub added log scanning on November ninth. The preview skips old logs and sends no notifications. Someone still has to check the alerts.",
+    "short": "GitHub added Actions log secret scanning on Nov 9. The enterprise preview checks completed runs, with no backfill or alert notifications. Detection still needs an owner.",
+    "long": "GitHub now checks completed Actions logs for provider credentials in an enterprise preview announced November 9. Findings enter the repository’s secret scanning list, and the alert survives deletion of the log.\n\nThis adds a different layer from GitHub’s AI code reviews: a repository scan examines code, while a workflow can expose a credential during execution. The preview does not establish a detection rate. Reviewing the resulting queue remains a team responsibility.",
+    "take": "We would pair log scanning with an assigned responder. Adding a policy switch creates another alert queue, and that queue needs a clear owner.",
+    "keyFacts": [
+      "Public preview announced 9 November 2026",
+      "Only runs completed after activation are scanned",
+      "0 alert notifications during the preview"
+    ],
+    "hashtags": [
+      "GitHub",
+      "DevSecOps",
+      "SecretScanning",
+      "GitHubActions"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
