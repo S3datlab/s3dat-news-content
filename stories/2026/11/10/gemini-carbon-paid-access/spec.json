@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "GEMINI CARBON",
+    "OPENS ACCESS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google Gemini",
+      "icon": "googlegemini"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 111018,
+  "sources": {}
+}

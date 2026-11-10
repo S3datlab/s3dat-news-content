@@ -1,0 +1,133 @@
+{
+  "format": 2,
+  "slug": "gemini-carbon-paid-access",
+  "kind": "story",
+  "topic": "models",
+  "title": "Google opens Gemini 4 Carbon to paying developers and Ultra users",
+  "titleAccent": "opens Gemini 4 Carbon",
+  "dek": "Carbon moves beyond its restricted October preview, with introductory token rates ending November 30 and a new agent-team preview in Antigravity.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-10T18:58:02Z",
+  "lede": "Google opened Gemini 4 Carbon to paying developers and began its rollout to Google AI Ultra subscribers on November 10. Teams can now evaluate the model outside its earlier restricted security program, with a dated change in token pricing ahead.",
+  "facts": [
+    {
+      "label": "Public access",
+      "value": "10 November 2026"
+    },
+    {
+      "label": "Introductory API rates",
+      "value": "$2 input / $10 output per million tokens"
+    },
+    {
+      "label": "After 30 November",
+      "value": "$4 input / $20 output per million tokens"
+    },
+    {
+      "label": "Consumer rollout",
+      "value": "Google AI Ultra subscribers"
+    },
+    {
+      "label": "Earlier announcement",
+      "value": "28 October 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An access change, not a second unveiling",
+      "text": "Google first announced Carbon on October 28. That release described staged access for cybersecurity defenders through the Fairwind Program and engagement with government pre-release testing. Developers and consumers were still waiting. The earlier post positioned Carbon around longer engineering tasks, including investigation and repair across large codebases. It also said the model used the safety stack developed for Argon. Today’s developer announcement supplies the practical change: the paid API tier in AI Studio and Android Studio is available, while Ultra subscribers can try Carbon in AI Studio and Antigravity. A team evaluating coding agents can therefore move from watching demonstrations to testing its own work."
+    },
+    {
+      "heading": "The price has a calendar attached",
+      "text": "The public model starts at two dollars per million input tokens and ten dollars per million output tokens. Google’s footnote sets November 30 as the end of that offer. The subsequent rates are four and twenty dollars respectively. For an illustrative job consuming one million input tokens and 100,000 output tokens, uncached token charges total three dollars initially. At the later rates, the same quantities cost six dollars. These calculations exclude tools, storage and other charges. They isolate the effect of the announced rate change. Actual agent costs also depend on how much work the model repeats before it finishes."
+    },
+    {
+      "heading": "More workers still need a coordinator",
+      "text": "Google is also previewing a swarm feature in Antigravity. It assigns a prompt to coordinated agents across isolated workspaces, with separate verification roles. Carbon can handle planning and auditing alongside lighter models. This changes the unit of comparison from one answer to a completed project. Parallel workers can investigate different parts of a problem, while integration and acceptance remain separate jobs. A fast first draft and a verified final change are different outputs. That distinction becomes more important when several agents contribute to the same deliverable. Antigravity’s own post warns that parallel teams can consume quota much faster than standard chat, even when idle agents use no tokens."
+    },
+    {
+      "heading": "A new test measures finished files",
+      "text": "A separate November 10 announcement introduced the Multimodal Knowledge Agent benchmark with Artificial Analysis. Its 200 evaluation tasks span ten fields and 83 occupations, using documents whose visual structure matters. Models run in the same open-source Stirrup harness with matching tools and budgets. The rubric weights factual accuracy at 75 percent and visual design at 25 percent. Google reports Carbon placed second for quality, at roughly one-sixth the average task cost of the highest-scoring model. The evaluation set remains private, while ten separate example tasks are public. That design offers a more concrete comparison than a polished demonstration alone: it examines the delivered files against explicit requirements."
+    }
+  ],
+  "buildersNote": "Before November 30, run 20 representative jobs with fixed acceptance tests. Record total input and output tokens, rejected results and review time. Reprice the identical token counts at $4/$20 before setting a December budget.",
+  "claims": [
+    {
+      "text": "The November 10 developer post opens Carbon on the paid API tier in AI Studio and Android Studio.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The launch footnote ends introductory public-model pricing on November 30, 2026.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Google reports second-place MKA quality at about one-sixth the task cost of the highest-scoring model.",
+      "status": "claimed",
+      "source": 3
+    },
+    {
+      "text": "MKA results do not establish the cost or acceptance rate of Carbon on an individual team’s projects.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gemini 4 Carbon is now available",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Gemini 4 Carbon is now available for developers.",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-4-carbon-developers/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Gemini 4 Carbon: our next frontier model",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+      "date": "2026-10-28"
+    },
+    {
+      "title": "Introducing the Multimodal Knowledge Agent benchmark",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Gemini 4 Carbon and /swarm",
+      "publisher": "Google Antigravity",
+      "url": "https://antigravity.google/blog/gemini-4-carbon-in-google-antigravity",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "Your trial budget changes in December.",
+    "voiceover": "[matter-of-fact] Your trial budget changes in December. Google opened Carbon to paying developers and Ultra users. Public token rates double after November thirtieth. [measured] Count the whole job before choosing a model.",
+    "short": "Google opened Gemini 4 Carbon to paid API users and began its Ultra rollout. Introductory $2/$10 token rates end November 30. Project-level costs still depend on usage.",
+    "long": "Google made Carbon available beyond its restricted security preview on November 10. Developers can use the paid API tier in AI Studio and Android Studio. Ultra subscribers also get access through Google’s rollout.\n\nThe public model costs $2 per million input tokens and $10 per million output tokens initially, rising to $4/$20 after November 30. A trial bill therefore needs a December recalculation. The useful comparison is accepted work per dollar, including repeated attempts and human review, not the price of one response.",
+    "take": "We would price a Carbon pilot at December rates from the start. A temporary token discount can hide the continuing cost of a workflow that needs repeated attempts.",
+    "keyFacts": [
+      "Public access announced 10 November 2026",
+      "$2/$10 per million input/output tokens initially",
+      "$4/$20 after 30 November 2026",
+      "MKA evaluation: 200 tasks across 83 occupations"
+    ],
+    "hashtags": [
+      "Gemini",
+      "AIAgents",
+      "CodingAgents",
+      "ModelPricing"
+    ],
+    "priority": 5
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
