@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "MAPS IN STUDIO",
+    "100 DEMO CALLS",
+    "PER API / DAY"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google Maps",
+      "icon": "googlemaps"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 101003,
+  "sources": {}
+}

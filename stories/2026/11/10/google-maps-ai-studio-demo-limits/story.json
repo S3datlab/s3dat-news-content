@@ -1,0 +1,133 @@
+{
+  "format": 2,
+  "slug": "google-maps-ai-studio-demo-limits",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google brings Maps into AI Studio with 100 daily demo calls per API",
+  "titleAccent": "100 daily demo calls",
+  "dek": "Google's new Maps integration handles setup inside AI Studio, while demo credentials and production billing keep different limits.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-10T03:30:54Z",
+  "lede": "Google announced Google Maps Platform integration in AI Studio on November 9, combining prompted app building with automatic credential setup. Developers can test location-aware applications without entering a credit card, within a daily allowance of 100 calls per API.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "9 November 2026"
+    },
+    {
+      "label": "Demo allowance",
+      "value": "100 calls per day per API"
+    },
+    {
+      "label": "Reset",
+      "value": "Every 24 hours"
+    },
+    {
+      "label": "Production",
+      "value": "Google Cloud billing account required"
+    },
+    {
+      "label": "Demo exclusions",
+      "value": "Route Optimization, Solar and Nav Connect"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Setup moves into the builder",
+      "text": "The integration connects Gemini's app-building interface to Maps services inside the same workspace. A request for a location-based application can trigger recommendations and configuration for mapping tools. AI Studio provisions credentials and stores them in the app's secrets settings. Google describes two routes: start with demo credentials, or connect an existing billed Cloud project. Its announcement includes a live interactive preview, so developers can inspect a working map alongside the generated application. The change reduces the setup between describing an idea and seeing real map data. It does not change the distinction between generating application code and operating the services that code calls."
+    },
+    {
+      "heading": "The examples make different calls",
+      "text": "Google's launch gallery illustrates three uses: an interactive city tour, a mobile-service route planner and a searchable store locator. The tour combines three-dimensional city maps with camera paths and markers. The route example combines appointment times and driver shifts with route calculations. Its driving progress is simulated. The store example brings search, branch details and opening hours into one interface. These examples show why a map application has more than one service dependency. Drawing a map, finding a place and calculating a route are different operations. The demo allowance applies per API, rather than representing a single shared pool for every feature in the application."
+    },
+    {
+      "heading": "Demo credentials have narrower coverage",
+      "text": "The integration documentation distinguishes new users from existing Cloud users choosing free prototyping. It lists broader demo coverage for new users, while the existing-user route includes common mapping, place, route, geocoding and weather services. Route Optimization, Solar and Nav Connect require a standard key. The separate Maps Demo Key guide also excludes user-submitted photos and reviews. That guide describes personal Google Accounts as eligible and excludes corporate Workspace accounts. A successful map preview therefore does not demonstrate access to every data field or product a finished application might need. The account route and the particular service both affect what can be tested."
+    },
+    {
+      "heading": "Production remains a separate decision",
+      "text": "The standalone Demo Key documentation already described no-billing prototyping before this announcement. AI Studio now brings that setup into the app-building flow. With a demo key, reaching the daily limit pauses usage until the reset instead of producing unexpected charges. Moving to production requires a billing account and standard Maps Platform terms and pricing. For a newly created demo project, the integration guide says the existing key can continue working after billing is linked. Existing Cloud users can instead connect a billed project. The resulting application still needs its own cost model: a completed user session may require several service calls, even when the interface shows one map. Standard pay-as-you-go pricing tracks billable events by product SKU and aggregates usage across projects attached to one billing account."
+    }
+  ],
+  "buildersNote": "Before adding billing, record the APIs used by one complete test session. If it makes five calls to the same API, a 100-call daily allowance supports at most 20 such sessions, before retries or other traffic. Verify the key's account route and restrictions separately.",
+  "claims": [
+    {
+      "text": "Google announced Maps Platform integration in AI Studio on November 9, with 100 daily demo calls per API",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Production use requires a Cloud billing account; a demo is not an unlimited free production tier",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The integration guide lists different demo API coverage for new and existing Cloud users",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Google's claims of building applications in minutes have not been independently timed here",
+      "status": "claimed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "From prompt to app: Build with Google Maps in AI Studio",
+      "publisher": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/from-prompt-to-app-build-with-google-maps-in-ai-studio/",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Developers can now build with Google Maps Platform in AI Studio.",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-google-maps-platform-ai-studio/",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Google Maps Platform in AI Studio",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/maps/ai/ai-studio",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Get a Maps Demo Key and use it with Google Maps Platform",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/maps/demo-key",
+      "date": "2026-10-22"
+    },
+    {
+      "title": "Google Maps Platform pricing overview",
+      "publisher": "Google for Developers",
+      "url": "https://developers.google.com/maps/billing-and-pricing/overview",
+      "date": "2026-11-03"
+    }
+  ],
+  "social": {
+    "hook": "A working map demo still has a daily limit.",
+    "voiceover": "[matter-of-fact] A working map demo still has a daily limit. Google added Maps to AI Studio with one hundred daily calls per A P I. Production requires billing, and some demo features are excluded.",
+    "short": "Google brought Maps into AI Studio with 100 daily demo calls per API. Setup happens in the builder; production still needs billing, and demo coverage depends on the account route.",
+    "long": "Google added Maps Platform setup to AI Studio on November 9. Developers can generate a location-aware app and preview a live map without first entering a credit card. The demo allowance is 100 calls per day for each API.\n\nThat limit counts calls, not completed user sessions. A route planner or store finder can combine several services, and demo credentials do not cover the entire Maps portfolio. Google's guide also distinguishes new users from existing Cloud users choosing free prototyping.\n\nProduction requires a billed Cloud project. The practical gain is a shorter path to testing an idea, while service coverage and operating costs still need separate checks.",
+    "take": "We think putting credentials inside the builder makes prototypes easier to judge. The production decision still turns on which services each user session calls, not how quickly the first map appeared.",
+    "keyFacts": [
+      "Announced 9 November 2026",
+      "100 calls per day per API",
+      "Demo quotas reset every 24 hours",
+      "3 excluded APIs include Route Optimization"
+    ],
+    "hashtags": [
+      "GoogleMaps",
+      "AIStudio",
+      "AppDevelopment",
+      "GeospatialAI"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
