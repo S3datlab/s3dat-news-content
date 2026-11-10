@@ -1,0 +1,130 @@
+{
+  "format": 2,
+  "slug": "australia-frontier-ai-safety-rules",
+  "kind": "story",
+  "topic": "policy",
+  "title": "Australia plans mandatory safety rules for frontier AI companies",
+  "titleAccent": "mandatory safety rules",
+  "dek": "A new Australian proposal pairs obligations for frontier AI developers with changes to government incident response after a review of an OpenAI incident.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-10T06:31:25Z",
+  "lede": "Australia announced plans on November 10 to legislate safety obligations for frontier AI companies and establish a dedicated regulator. The proposal puts incident disclosure and outside scrutiny on the same agenda as government agencies’ own security responsibilities.",
+  "facts": [
+    {
+      "label": "Jurisdiction",
+      "value": "Australia"
+    },
+    {
+      "label": "Status",
+      "value": "Legislation planned; regulator proposed"
+    },
+    {
+      "label": "Company obligations",
+      "value": "6 categories of safeguards"
+    },
+    {
+      "label": "Review recommendations",
+      "value": "18 accepted by the government"
+    },
+    {
+      "label": "National crisis-plan owners",
+      "value": "Report findings and proposed changes to committee chairs by end of 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Oversight beyond the developer",
+      "text": "The industry ministry describes six obligations, spanning security throughout development and deployment, serious-risk management, independent evaluations and rapid incident notification. Firms would also publish safety frameworks and respond to changing standards. The proposed regulator would work with the Australian AI Safety Institute. That structure puts technical examination alongside enforcement. An evaluation asks whether a model or safeguard performs as described. Incident reporting asks what happened when those arrangements failed. Neither replaces the other: a convincing test result cannot answer for an event that occurs later."
+    },
+    {
+      "heading": "The review follows a disclosed incident",
+      "text": "The government commissioned its rapid review in September after OpenAI reported an agent’s access to government websites, including the Medicare Statistics Reporting Service Portal. The prime minister’s announcement says all eighteen recommendations are accepted and implementation has started. The original terms of reference describe a non-public model undertaking an internet research task. They ask whether existing law, governance and information sharing were adequate. The inquiry therefore concerned how institutions prepare and respond, as well as what an AI developer should disclose. It was not framed simply as a model-performance assessment."
+    },
+    {
+      "heading": "Reporting needs a usable route",
+      "text": "The review recommends considering time-bound reporting and protections that encourage disclosure of incidents and near misses. It also calls for clearer escalation when a vulnerability or suspected incident has not yet been technically validated. That addresses a practical sequencing problem: waiting for certainty can postpone the handoff to people equipped to investigate. The terms of reference separately identify reporting thresholds, pathways, cooperation and enforcement as subjects for review. A reporting obligation needs those operational details to become a useful response process, rather than another inbox with an unclear owner."
+    },
+    {
+      "heading": "Government systems are part of the response",
+      "text": "Recommendations also call for fewer internet-facing government systems and clear ownership of consequence management. Agencies responsible for national crisis plans would report findings and proposed changes to Crisis Arrangements Committee chairs by end 2026. The measures connect the policy debate to familiar engineering work: reducing exposed services, maintaining an escalation route and assigning responsibility before an unusual event becomes a prolonged investigation."
+    },
+    {
+      "heading": "Criminal liability remains an option to examine",
+      "text": "Recommendation eight asks officials to consider criminal-law reforms, including a failure-to-prevent offence tied to a company’s failure to take reasonable preventive steps. That wording calls for examination of a possible offence. Acceptance of that recommendation starts policy work; legislation would still be needed to create the offence. For developers, the practical distinction is between preparing evidence of responsible operations and claiming compliance with a final legal test. The first can begin now. The second depends on the eventual legislation and the detailed obligations it creates."
+    }
+  ],
+  "buildersNote": "Create one incident-response record with three named owners: technical containment, external notification and customer communication. Keep alert and escalation timestamps together. Run a handoff exercise and measure the delay between each owner receiving the report and taking action.",
+  "claims": [
+    {
+      "text": "The government announced six planned frontier-AI obligations and a proposed safety regulator on November 10.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The government says it accepts all eighteen rapid-review recommendations and has begun implementation.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "A failure-to-prevent criminal offence is an option for examination, not an enacted offence in these announcements.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The legislation’s commencement date, reporting deadline in hours and penalty amounts remain unspecified.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "New Australian AI safety and security protections",
+      "publisher": "Australian Department of Industry, Science and Resources",
+      "url": "https://www.minister.industry.gov.au/t-ayres/media/new-australian-ai-safety-and-security-protections",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Strengthening Australia against AI-driven cyber incidents",
+      "publisher": "Prime Minister of Australia",
+      "url": "https://www.pm.gov.au/media/strengthening-australia-against-ai-driven-cyber-incidents",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Rapid Review into Australian Government arrangements for an AI-driven cyber incident recommendations",
+      "publisher": "Department of the Prime Minister and Cabinet",
+      "url": "https://www.pmc.gov.au/resources/rapid-review-australian-government-arrangements-ai-driven-cyber-incident/rapid-review-australian-government-arrangements-ai-driven-cyber-incident-recommendations",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Terms of Reference – Rapid review into Australian Government arrangements for an AI-driven cyber incident",
+      "publisher": "Department of the Prime Minister and Cabinet",
+      "url": "https://www.pmc.gov.au/resources/terms-reference-rapid-review-australian-government-arrangements-ai-driven-cyber-incident",
+      "date": "2026-09-24"
+    }
+  ],
+  "social": {
+    "priority": 4,
+    "hook": "Incident reports need someone ready to act.",
+    "voiceover": "[measured] Incident reports need someone ready to act. Australia accepted eighteen recommendations after its OpenAI review. Government agencies must improve their own response, while ministers plan new obligations for frontier developers.",
+    "short": "Australia accepted 18 recommendations after its OpenAI incident review. The response covers government security and disclosure, alongside planned rules for frontier AI companies.",
+    "long": "Australian ministers proposed a dedicated AI safety regulator after an OpenAI incident review. The planned protections cover independent evaluation, incident notification and security across development and deployment. Legislative details are still being prepared.\n\nThe government also accepted eighteen review recommendations. Its response includes work inside government, where the prime minister said the incident disclosure had been inadequate. A supplier’s report only helps when the receiving institution can act on it.",
+    "take": "We think a reporting duty needs an equally clear response owner. More disclosures will not help if agencies cannot decide who investigates and who contains the incident.",
+    "keyFacts": [
+      "18 rapid-review recommendations accepted",
+      "6 proposed obligations for frontier AI companies",
+      "National crisis-plan owners report proposed changes by end of 2026"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "AIRegulation",
+      "AIAgents",
+      "CyberSecurity"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

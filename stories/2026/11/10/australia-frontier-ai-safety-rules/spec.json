@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "AUSTRALIA",
+    "PLANS AI",
+    "SAFETY RULES"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 111006,
+  "sources": {}
+}
