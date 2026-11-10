@@ -1,0 +1,125 @@
+{
+  "format": 2,
+  "slug": "meta-muse-ember-agent-execution",
+  "kind": "story",
+  "topic": "models",
+  "title": "Meta releases Muse Ember for high-volume agent work",
+  "titleAccent": "high-volume agent work",
+  "dek": "The small model matches Haiku 5.5 on an independent intelligence index at a lower measured task cost, while input support and service status differ by provider.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-10T00:30:07Z",
+  "lede": "Meta released Muse Ember on November 9 for repeated agent work, including tool calls, coding subtasks, routing and document processing. The model gives developers another execution option beneath larger planning models, with independent evaluation results and multiple hosting routes already available.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "Muse Ember 1.0"
+    },
+    {
+      "label": "Independent index",
+      "value": "36 at max reasoning, Artificial Analysis"
+    },
+    {
+      "label": "Index task cost",
+      "value": "$0.14 at max reasoning; benchmark-specific"
+    },
+    {
+      "label": "Meta context window",
+      "value": "1 million tokens"
+    },
+    {
+      "label": "Google Cloud status",
+      "value": "Preview, global endpoint"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A smaller executor beneath the planner",
+      "text": "Meta positions Ember as the model for work an agent performs repeatedly, rather than its hardest planning decisions. Its launch recommends pairing Ember with Muse Wonder, assigning planning to the larger model and volume work to the smaller one. Meta says Ember is the first model trained using Muse Wonder Full. The company lists availability through its own Model API and Muse Code, with text, image, audio and video understanding."
+    },
+    {
+      "heading": "Independent results separate task cost from token prices",
+      "text": "Artificial Analysis reports an Intelligence Index score of 36 for Ember at maximum reasoning effort, matching Claude Haiku 5.5 at its maximum setting. Its measured cost per index task is $0.14 for Ember and $0.41 for Haiku. Those are task costs from that evaluation, rather than prices for a fixed quantity of tokens. Coding results also vary by test. Ember scores 27.2% on FrontierCode 2.0, below Haiku's 34.9%, so the tied aggregate score does not mean identical strengths across engineering work."
+    },
+    {
+      "heading": "Gateway access exposes the surrounding application controls",
+      "text": "Vercel added Ember to AI Gateway on November 9 under the identifier meta/muse-ember. Its announcement lists text, image and video inputs, a one-million-token context window and reasoning settings from minimal through max. Developers can reach the model through the AI SDK or supported Chat Completions, Responses and Anthropic Messages interfaces. The integration lets an application feed tool results into later steps, keeping the model inside a continuing workflow. Gateway also supplies usage and cost tracking, routing and configurable retry or failover behavior. These are service features around the model: choosing Ember does not itself specify how an application will handle a failed request. Vercel says it applies provider pricing without an inference markup or a separate platform fee. This separates the gateway charge from the model's token rates. Existing applications can keep a supported interface while changing their selected model."
+    },
+    {
+      "heading": "The Google-hosted version has a narrower input contract",
+      "text": "Google Cloud's November 9 model page lists Muse Ember 1.0 as a preview service on a global endpoint. It accepts text and images and returns text, with maximum input of 1,048,576 tokens and maximum output of 524,288 tokens. The page lists standard pay-as-you-go and fixed quota support, while excluding batch predictions and Provisioned Throughput. An audio workflow needs a different supported endpoint."
+    }
+  ],
+  "buildersNote": "Replay 30 representative tasks on the exact provider endpoint before switching traffic. Record correct completions, total billed cost and elapsed time at two reasoning settings. Include a tool failure and your largest real input; verify supported input types and current pricing separately from the benchmark's $0.14 task result. Keep prompts and tools fixed across both runs so an orchestration change is not mistaken for a model improvement.",
+  "claims": [
+    {
+      "text": "Artificial Analysis reports Ember at 36 and $0.14 per index task at max reasoning, compared with Haiku 5.5 at 36 and $0.41.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Meta describes Ember as its smallest and most efficient model and says it was trained using Muse Wonder Full.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Google Cloud lists Ember as preview, with text and image input; batch predictions and Provisioned Throughput are unsupported.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The published benchmark does not establish the cost, latency or completion rate of a particular production workflow.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Our Smallest, Most Efficient Model: Muse Ember",
+      "publisher": "Meta",
+      "url": "https://research.meta.ai/blog/muse-ember",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Meta's newest model Muse Ember scores 36 on the Artificial Analysis Intelligence Index, matching Claude Haiku 5.5 (max) at a third of the Cost per Task",
+      "publisher": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/articles/meta-s-muse-ember-is-the-cheapest-model-scoring-36-on-the-intelligence-index",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Muse Ember now available on AI Gateway",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/changelog/muse-ember-now-available-on-ai-gateway",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Muse Ember 1.0",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/meta/muse-ember-1-0",
+      "date": "2026-11-09"
+    }
+  ],
+  "social": {
+    "priority": 4,
+    "hook": "The same model name can hide different input limits.",
+    "voiceover": "[measured] The same model name can hide different input limits. Meta released Muse Ember for repeated agent work. Google's preview accepts text and images. Its endpoint does not support batch predictions.",
+    "short": "Meta released Muse Ember for repeated agent work. Google's preview supports text and images, with up to 524,288 output tokens. Input support differs by provider; production task costs still need measuring.",
+    "long": "Meta added Muse Ember to its agent model lineup on November 9. The intended division is straightforward: a larger model handles demanding planning, while Ember performs repeated execution tasks.\n\nDeployment details differ across providers. Vercel's Gateway integration offers reasoning settings from minimal through max and accepts text, images and video. Google's preview endpoint accepts text and images, supports function calling and structured output, and excludes batch predictions.\n\nA model name alone is not a deployment specification. Input support, hosting status and the application's retry behavior still need checking. Published benchmark results do not settle the cost or reliability of a team's own workload.",
+    "take": "We would choose the endpoint before comparing model scores. Input support and service limits can rule out a deployment before a benchmark advantage matters.",
+    "keyFacts": [
+      "Released November 9, 2026.",
+      "Google preview: maximum output 524,288 tokens.",
+      "Vercel Gateway: 1M-token context window.",
+      "Google preview: batch predictions unsupported."
+    ],
+    "hashtags": [
+      "MuseEmber",
+      "AIAgents",
+      "CodingAgents",
+      "ModelDeployment"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}

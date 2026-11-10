@@ -1,0 +1,12 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": ["META RELEASES", "MUSE EMBER", "FOR AGENTS"],
+  "accent": 1,
+  "brands": [{"name": "Meta", "icon": "meta"}],
+  "cutouts": [],
+  "mood": "calm",
+  "stat": {"value": "36", "label": "AA index, max reasoning"},
+  "seed": 111000,
+  "sources": {}
+}
