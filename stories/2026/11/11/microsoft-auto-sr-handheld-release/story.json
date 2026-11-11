@@ -1,0 +1,129 @@
+{
+  "format": 2,
+  "slug": "microsoft-auto-sr-handheld-release",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Microsoft brings Auto SR to unplugged handheld play",
+  "dek": "Auto SR leaves preview on Xbox Ally X devices with battery-powered play and 1080p input; its faster mode arrives through Windows updates.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-11T18:21:05Z",
+  "lede": "Microsoft released Auto SR for undocked Xbox Ally X and X20 play on November 10, ending the handheld preview. The Windows upscaler can now process games running at 1080p, while a faster mode arrives through Windows updates.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "10 November 2026"
+    },
+    {
+      "label": "Handhelds",
+      "value": "ROG Xbox Ally X and X20"
+    },
+    {
+      "label": "New input support",
+      "value": "1080p games"
+    },
+    {
+      "label": "Performance mode",
+      "value": "Up to 120 FPS; Windows update rollout"
+    },
+    {
+      "label": "Earlier preview",
+      "value": "Docked play only"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The dock is no longer required",
+      "text": "The launch also extends availability to selected AMD Ryzen Copilot+ PCs. Microsoft separates features available immediately from those arriving through Windows updates: battery-powered play and 1080p input are available now; Performance Mode and compatibility with Auto HDR follow through that rollout. Its Rocket League example reports 70 frames per second in Quality Mode and 115 in Performance Mode. Both examples use an Ally X at 720p with high game settings. The distinction matters because a feature announcement and its arrival on a particular handheld are separate events."
+    },
+    {
+      "heading": "An operating-system route into older games",
+      "text": "Auto SR runs an image-upscaling model on the device’s neural processor while the graphics processor renders the game. Microsoft’s April 30 preview explanation describes this parallel arrangement as giving the model an extra frame to work. The game produces a lower-resolution image, and the model reconstructs detail for the display. That adds a frame of latency. The architecture targets existing games without requiring their developers to integrate a new rendering feature. It moves some image reconstruction work outside the game, into a Windows capability controlled by the player."
+    },
+    {
+      "heading": "Integrated upscalers still have an advantage",
+      "text": "Microsoft’s April guidance distinguishes that route from AMD FSR, Intel XeSS and NVIDIA DLSS implementations inside games. Those integrations can use information from the game, including motion vectors and adjusted texture sampling. Microsoft still describes integrated upscaling as the preferred option when available. Its September 16 Intel expansion made another practical point: Auto SR also processes interface elements. Fine interface details and text can look fainter. Post-processing effects can also affect reconstruction, because the model may interpret film grain as part of the scene. Those details make interface quality part of the performance trade-off."
+    },
+    {
+      "heading": "Hardware support is only the first check",
+      "text": "The current support documentation requires Windows 11 version 24H2 or later, current graphics and neural-processor drivers, and an appropriate Auto SR package. It specifies DirectX 10 or later games running as x64, emulated x64 or Arm64 applications. Older x86 games and games using DirectX 9, Vulkan or OpenGL sit outside that support list. Game Bar exposes the per-game controls and an indicator showing whether processing is active. A compatible computer alone therefore does not establish that an individual title is receiving the enhancement."
+    },
+    {
+      "heading": "A different test on battery",
+      "text": "The September Intel post explains why allocating work to a neural processor does not make the power budget disappear. On some devices, that processor shares power limits with the CPU and graphics processor. Microsoft also describes input resolution and display configuration as factors affecting results. A portable gaming PC has to balance those resources while drawing from its battery. The new release broadens where Auto SR can run, but the useful outcome remains specific to the game, its settings and the device’s power profile."
+    }
+  ],
+  "buildersNote": "For a handheld game test, compare the same 60-second sequence with Auto SR off and on. Record frame rate, input latency, battery draw and small-text readability at identical settings before changing the resolution.",
+  "claims": [
+    {
+      "text": "Microsoft released handheld play and 1080p input support on November 10; Performance Mode and Auto HDR compatibility roll out through Windows updates.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Microsoft reports 70 FPS in Quality Mode and 115 FPS in Performance Mode for its 720p Rocket League example; these are company measurements.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Universal frame-rate or battery-life gains are not established. Microsoft also warns that 1080p handheld performance can be less favorable than other configurations.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Microsoft’s April architecture explanation describes parallel NPU processing in exchange for one frame of latency.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Auto SR Officially Launches on ROG XBOX Ally X and X20, Expands to Copilot+ PCs powered by AMD Ryzen",
+      "publisher": "Microsoft",
+      "url": "https://devblogs.microsoft.com/directx/autosr-performance-mode/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Automatic Super Resolution Preview Comes to the ROG Xbox Ally X for Docked Play",
+      "publisher": "Microsoft",
+      "url": "https://devblogs.microsoft.com/directx/autosrpreview/",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "Auto SR Comes to Intel Core Ultra Series-3 Processors",
+      "publisher": "Microsoft",
+      "url": "https://devblogs.microsoft.com/directx/autosr-on-intel/",
+      "date": "2026-09-16"
+    },
+    {
+      "title": "Automatic Super Resolution",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/windows/ai/ai-features/automatic-super-resolution",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "The upscaler no longer needs a dock.",
+    "voiceover": "[matter-of-fact] The upscaler no longer needs a dock. Microsoft brought Auto S R to handheld play on battery. Games can run at ten eighty p. The faster mode is still rolling out.",
+    "short": "Microsoft released Auto SR for handheld play on battery, with 1080p game support. Its mode targeting up to 120 FPS arrives through Windows updates.",
+    "long": "Microsoft brought its Windows upscaler out of preview on Xbox Ally X and X20. Battery-powered handheld play and 1080p input support are available now. Performance Mode and Auto HDR compatibility arrive through Windows updates.\n\nThe change brings image reconstruction beyond the dock. Microsoft’s technical explanation puts that work on the neural processor, adding a frame of latency. Integrated game upscalers remain its preferred option when available; the result still depends on the game and power profile.",
+    "take": "We favor removing the dock requirement over chasing a headline frame rate. For handheld developers, readable interfaces and input latency belong in the same test.",
+    "keyFacts": [
+      "November 10: handheld release leaves preview",
+      "Ally X and X20 now support 1080p game input",
+      "120 FPS ceiling for the rolling-out Performance Mode"
+    ],
+    "hashtags": [
+      "Microsoft",
+      "AutoSR",
+      "PCGaming",
+      "NeuralProcessing"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

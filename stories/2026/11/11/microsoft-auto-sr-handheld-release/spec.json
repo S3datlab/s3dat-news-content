@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "AUTO SR",
+    "GOES HANDHELD"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "stat": {
+    "value": "1080p",
+    "label": "Supported game input"
+  },
+  "seed": 111118,
+  "sources": {}
+}
