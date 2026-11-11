@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "ibm-microsoft-imagine-enterprise-agents",
+  "kind": "story",
+  "topic": "agents",
+  "title": "IBM and Microsoft launch Imagine Enterprise for governed agent workflows",
+  "titleAccent": "Imagine Enterprise",
+  "dek": "The consulting-led platform combines industry blueprints with Microsoft infrastructure, separating agent preparation from human decisions.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-11T07:02:07Z",
+  "lede": "IBM and Microsoft announced Imagine Enterprise on November 10, a platform for building and governing industry-specific AI agents. It packages consulting expertise with enterprise infrastructure for organizations connecting agents to existing business processes.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "10 November 2026"
+    },
+    {
+      "label": "Starting industries",
+      "value": "Financial services, insurance and retail"
+    },
+    {
+      "label": "Delivery",
+      "value": "IBM Consulting engagements; self-management options available"
+    },
+    {
+      "label": "Engineering support",
+      "value": "Joint forward-deployed teams for qualifying engagements"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An implementation offer",
+      "text": "Customers can engage IBM Consulting to deploy and operate the platform or collaborate on an enterprise implementation. Self-management is also available. The initial frameworks cover financial services, insurance and retail. SEI appears as an organization exploring agentic technology with the partners. For a buyer, that delivery arrangement determines who configures and runs the agents alongside the software. Contract scope and operational ownership become part of the product decision."
+    },
+    {
+      "heading": "The existing consulting platform underneath",
+      "text": "Imagine Enterprise builds on IBM Consulting Advantage. IBM introduced that platform on January 17, 2024, as a library of role-based assistants for its consultants. The original release described tailored prompts, models and output formats, with assistants supporting business analysis, strategy and development. Consultants could compare outputs from IBM and third-party models and share assistants across teams. Project-specific spaces restricted access to the team handling an engagement. This history matters because the new offer starts with a consulting delivery system already designed to carry reusable methods and project context. The announcement extends that approach into a joint enterprise platform. The launch also described private model instances that would not retain project data for training, and alerts for personal information in prompts."
+    },
+    {
+      "heading": "From individual tasks to business operations",
+      "text": "IBM expanded Consulting Advantage on October 21, 2024, with capabilities for cloud transformation, cloud management and business operations. Those packages included agents, applications and methods for areas such as migration, quality engineering, finance and procurement. IBM also made Granite 3.0 the platform’s default model at that time, while retaining access to third-party models. Imagine Enterprise adds Microsoft’s technology foundation to this longer-running effort to package operational expertise as software. The relevant comparison is therefore with assembling a workflow from separate services: this offer bundles industry design and implementation responsibility alongside the technical components. Its business-operations package connected work across systems and data, while the cloud packages covered modernization and migration. Those responsibilities persist when agents become part of a larger coordinated process."
+    },
+    {
+      "heading": "An insurance example keeps a human decision",
+      "text": "In their November 10 explanation, IBM and Microsoft describe an insurance workflow organized around a Digital Steward. This coordinator assesses complexity, checks coverage and routes cases according to adjuster authority. Difficult cases go to senior staff or specialist teams. People decide after agents prepare context and proposed actions. The same post describes action logs, operating-cost records and escalation controls. Approval requirements become part of the workflow definition. The handoff between preparation and decision is the important design boundary: a correct document summary does not itself authorize a payment."
+    }
+  ],
+  "buildersNote": "For a first pilot, choose one workflow and record three boundaries: what an agent may change, what requires approval and who handles escalation. Compare end-to-end completion cost and exception volume with the existing process before widening access. Keep the approval record with each completed case.",
+  "claims": [
+    {
+      "text": "The partners announced Imagine Enterprise on November 10, with IBM Consulting delivery and self-management options.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "IBM describes a contribution of more than 6,000 agents and assets, not 6,000 distinct agents.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The described insurance workflow, control guarantees and operating improvements are company descriptions, not independently measured production results.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "Public pricing, deployment time and measured customer outcomes for Imagine Enterprise remain unspecified in the launch materials.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "IBM and Microsoft Announce a New AI Agent Platform Designed for Industry-Specific Transformation",
+      "publisher": "IBM",
+      "url": "https://newsroom.ibm.com/2026-11-10-ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "The digital workforce: Why the next competitive frontier isn’t AI—it’s how you operationalize it",
+      "publisher": "IBM",
+      "url": "https://www.ibm.com/new/announcements/the-digital-workforce-why-the-next-competitive-frontier-isn-t-ai-it-s-how-you-operationalize-it",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "IBM Introduces IBM Consulting Advantage, an AI Services Platform and Library of Assistants to Empower Consultants",
+      "publisher": "IBM",
+      "url": "https://newsroom.ibm.com/2024-01-17-IBM-Introduces-IBM-Consulting-Advantage%2C-an-AI-Services-Platform-and-Library-of-Assistants-to-Empower-Consultants?sf185661368=1",
+      "date": "2024-01-17"
+    },
+    {
+      "title": "IBM Expands Capabilities in IBM Consulting Advantage to Help Clients Maximize ROI of AI",
+      "publisher": "IBM",
+      "url": "https://newsroom.ibm.com/blog-ibm-expands-capabilities-in-ibm-consulting-advantage-to-help-clients-maximize-roi-of-ai",
+      "date": "2024-10-21"
+    }
+  ],
+  "social": {
+    "hook": "An agent needs a limit on what it can change.",
+    "voiceover": "[matter-of-fact] An agent needs a limit on what it can change. IBM and Microsoft launched Imagine Enterprise for three industries. [measured] Its insurance example leaves decisions with people after agents prepare the work.",
+    "short": "IBM and Microsoft launched Imagine Enterprise on November 10. The platform connects agents to business processes through IBM Consulting. Its insurance example keeps people responsible for decisions.",
+    "long": "Microsoft and IBM launched Imagine Enterprise for governed workflows. IBM’s contribution includes more than 6,000 agents and assets, a mixed inventory rather than a count of distinct agents.\n\nThe partners’ insurance example keeps people responsible for decisions after agents prepare the work. It describes routing difficult cases to specialists and logging agent actions. Measured production outcomes remain unestablished.",
+    "take": "We favor workflows with a named human owner, clear approval boundaries and measurable exception costs. Counting agents tells a buyer much less.",
+    "keyFacts": [
+      "Announced on 10 November 2026",
+      "Initial frameworks cover 3 industries",
+      "Forward-deployed support requires a qualifying engagement"
+    ],
+    "hashtags": [
+      "IBM",
+      "AIAgents",
+      "EnterpriseAI",
+      "Microsoft"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}

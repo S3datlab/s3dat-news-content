@@ -1,0 +1,24 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "IBM + MICROSOFT",
+    "LAUNCH AGENT",
+    "WORKFLOWS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "IBM",
+      "icon": "ibm"
+    },
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 111107,
+  "sources": {}
+}
