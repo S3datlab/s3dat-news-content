@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "NOTION CHATS",
+    "EXPOSED VIA",
+    "AI SUPPLIER"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "Notion",
+      "icon": "notion"
+    }
+  ],
+  "cutouts": [],
+  "mood": "down",
+  "seed": 111100,
+  "sources": {}
+}

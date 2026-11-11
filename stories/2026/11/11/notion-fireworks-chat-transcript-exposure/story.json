@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "notion-fireworks-chat-transcript-exposure",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Notion discloses chat transcript exposure through Fireworks",
+  "titleAccent": "chat transcript exposure",
+  "dek": "Notion disabled Insights after a vendor incident exposed some AI conversations; affected customers can inspect their data and rotate pasted credentials.",
+  "eventDate": "2026-11-09",
+  "publishedAt": "2026-11-11T01:00:04Z",
+  "lede": "Notion disclosed on November 9 that a Fireworks AI security incident exposed chat transcripts used by its Insights feature. The company disabled Insights and ended its Fireworks connections, bringing an infrastructure supplier’s breach into customers’ everyday workspace software.",
+  "facts": [
+    {
+      "label": "Disclosure",
+      "value": "9 November 2026"
+    },
+    {
+      "label": "Workspace scope",
+      "value": "Fewer than 1%, according to Notion"
+    },
+    {
+      "label": "Data involved",
+      "value": "Notion AI chat transcripts used for Insights"
+    },
+    {
+      "label": "Product response",
+      "value": "Insights disabled; Fireworks connections ended"
+    },
+    {
+      "label": "Customer review",
+      "value": "Affected data available inside notified workspaces"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The assessment changed after a second dataset",
+      "text": "Notion initially received a November 2 warning involving synthetic testing data. It disconnected from Fireworks by November 3. A November 6 notification prompted another investigation, and Fireworks confirmed the additional dataset on November 8. Notion says affected customers have been contacted. For most impacted workspaces, transcripts lacked user or workspace labels and excluded tool-call results. That separation matters, although the conversation itself remains part of the exposed material. The response therefore gives notified customers a way to inspect their own data, instead of asking them to infer exposure from a platform-wide announcement."
+    },
+    {
+      "heading": "Development systems and production services differ",
+      "text": "Fireworks describes an October 23 incident at a third-party cloud provider followed by access to development machines on October 24. Its updated bulletin lists account and billing information, plus some customers’ datasets and incomplete model weights. Payment-card numbers were excluded. The company disabled self-service dataset uploads and downloads for Batch Inference and dataset-based training. Training SDK remains available. These are distinct operational paths: a stored dataset, a development machine and a live inference request do not have identical retention or access boundaries. A supplier’s product name alone cannot describe which path a customer’s material took."
+    },
+    {
+      "heading": "The wider risk includes stolen compute",
+      "text": "A separate November 2 report from Google Threat Intelligence Group and Mandiant describes criminals reselling unauthorized model access through illicit routing services. Mandiant observed individual incidents with more than $100,000 in fraudulent daily charges and some cumulative bills reaching $1 million. Those figures describe its wider investigations, not losses established in the Notion incident. The researchers identify stolen cloud identities and model credentials as recurring entry points. They also describe attackers enabling model services that victims were not previously using. This makes resource theft different from a familiar stolen-document incident: the attacker can create a new running bill while the original application continues to function."
+    },
+    {
+      "heading": "A response has two separate jobs",
+      "text": "Mandiant’s defensive guidance separates access control from spending control. It recommends narrowly scoped credentials, monitoring for unauthorized service changes, model quotas and budget limits. Those measures address continued use of a stolen credential; they do not retrieve a conversation that has already left a system. Conversely, removing account labels does not revoke a password pasted into a conversation. For a software team, exposure review and credential containment are separate workstreams. The distinction also explains why a small affected-workspace percentage cannot decide the severity for any individual customer: the contents of that customer’s transcript determine the next action."
+    }
+  ],
+  "buildersNote": "If Notion notified your workspace, review the supplied transcripts and rotate any passwords or API keys pasted during the incident period. For your own AI app, map 3 data paths separately: inference, stored evaluation datasets and usage analytics.",
+  "claims": [
+    {
+      "text": "Notion published a customer-data advisory on November 9 and disabled Insights",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Fewer than 1% of workspaces were affected, according to Notion’s investigation",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Fireworks reports no detected impact to its default zero-retention Inference, Training SDK and Nexus services; the investigation continues",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The final exposure scope and whether transcript contents identify particular users remain unsettled",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fireworks AI incident",
+      "publisher": "Notion",
+      "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Update on October 2026 security incident",
+      "publisher": "Fireworks AI",
+      "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident-update",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources",
+      "publisher": "Google Threat Intelligence Group and Mandiant",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "AI company Fireworks says hackers stole data, billing info during October breaches",
+      "publisher": "The Record",
+      "url": "https://therecord.media/ai-company-fireworks-says-hackers-stole-data-in-oct-attacks",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "A workspace breach can start at an AI supplier.",
+    "voiceover": "[serious] A workspace breach can start at an AI supplier. Notion disclosed exposed chat transcripts affecting fewer than one percent of workspaces. Notified customers can review the data and rotate credentials they pasted.",
+    "short": "Notion disclosed chat transcript exposure through Fireworks, affecting fewer than 1% of workspaces. Insights is disabled; notified customers can inspect their data. The investigation continues.",
+    "long": "Notion disabled Insights after discovering that a Fireworks incident included AI chat transcripts. Its November 9 advisory says fewer than 1% of workspaces were affected. Customers identified as affected have been contacted.\n\nFireworks separately says the breach reached development machines through a cloud supplier. Its investigation expanded beyond the secrets initially reported. A vendor’s infrastructure incident can therefore reach an application’s customers through a secondary feature.\n\nAffected Notion customers can inspect their own transcripts. The remaining question is the final scope of exposure, not whether every Notion workspace was breached.",
+    "take": "We think usage analytics deserves the same data-flow review as inference. A secondary feature can retain material that the main chat experience makes easy to overlook.",
+    "keyFacts": [
+      "Notion advisory: 9 November 2026",
+      "Fewer than 1% of workspaces affected, Notion says",
+      "Fireworks connections ended by 3 November",
+      "Additional dataset confirmed on 8 November"
+    ],
+    "hashtags": [
+      "Notion",
+      "FireworksAI",
+      "AISecurity",
+      "DataPrivacy"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
