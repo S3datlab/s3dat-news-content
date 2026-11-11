@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "ERNIE FLASH",
+    "OPENS PREVIEW"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Baidu",
+      "icon": "baidu"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "bg": "white",
+  "seed": 111121,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

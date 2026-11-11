@@ -1,0 +1,146 @@
+{
+  "format": 2,
+  "slug": "baidu-ernie-flash-preview-access",
+  "kind": "story",
+  "topic": "models",
+  "title": "Baidu opens ERNIE Flash Preview ahead of its weight release",
+  "dek": "ERNIE 5.5 Flash Preview adds a post-trained API option; the existing base checkpoint remains a separate download with different commercial terms.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-11T21:21:45Z",
+  "lede": "Baidu announced ERNIE 5.5 Flash Preview on November 11, adding a post-trained model to its existing base release. Developers get a hosted route for agent tasks while the promised Apache-licensed weights remain a separate delivery.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "11 November 2026"
+    },
+    {
+      "label": "Model",
+      "value": "ERNIE 5.5 Flash Preview"
+    },
+    {
+      "label": "Context",
+      "value": "1 million tokens"
+    },
+    {
+      "label": "OpenRouter endpoint",
+      "value": "Free; rate limits apply"
+    },
+    {
+      "label": "Base license",
+      "value": "Custom agreement dated 5 November"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A hosted preview before the weights",
+      "text": "The launch page links Qianfan and OpenRouter access and describes the release as an intermediate post-training checkpoint. Its demonstrations combine the model with an agent harness and outside tools. That distinction matters: an application assembled through tool calls is a system-level result. It does not mean the language model directly generates every image or sees every screen. Baidu says Apache 2.0 weights will follow, without giving a date in the announcement."
+    },
+    {
+      "heading": "What the free endpoint actually offers",
+      "text": "OpenRouter lists Baidu Qianfan as the serving provider, with zero input and output token charges for this endpoint. Its product page supports function calling and structured responses defined by a JSON schema. It also says the model is not currently available through EU in-region routing. These are separate deployment properties: a free token price describes billing, while routing determines where requests can be served. The listing points users to rate limits, so the free label does not imply unlimited request capacity or reserved throughput."
+    },
+    {
+      "heading": "The base model is a different starting point",
+      "text": "Baidu's earlier technical release describes a checkpoint taken immediately after pre-training, before instruction tuning or other post-training. It has 280 billion parameters in total and activates 14 billion per token. The architecture compresses older context in most attention layers, with fewer layers retaining token-level access. This is a design for controlling memory and computation as prompts grow. The base release also provides a common starting point for teams studying domain adaptation or training methods. It is not interchangeable with the new hosted assistant checkpoint."
+    },
+    {
+      "heading": "Downloadable does not mean ready-made",
+      "text": "The base model card provides FP8 and BF16 downloads and deployment examples for SGLang and vLLM. Requests use a completions interface with a text prompt. Its configuration lists 43 layers, and the card distinguishes the context used during training from the larger context enabled for inference. Those instructions describe operating a model, not installing a complete creative agent. A deployment still needs the surrounding software that calls tools, handles files and checks outputs. Separating that application layer from the checkpoint makes comparisons between hosted demonstrations and local deployments more useful."
+    },
+    {
+      "heading": "The existing license has its own boundaries",
+      "text": "The November 5 base-model agreement excludes the European Union, United Kingdom and South Korea from its licensed territory. Within its terms, commercial users at or below $50 million in related annual revenue must provide attribution and send a use notice. Above that threshold, separate written authorization is required. The agreement aggregates related revenue across entities under common control. These provisions belong to the base checkpoint; the announcement's planned Apache release does not retroactively replace them. Choosing which artifact to download therefore changes the licensing assessment, even when both names contain ERNIE Flash."
+    }
+  ],
+  "buildersNote": "Before a pilot, record the exact model identifier and its license. Run 10 fixed tasks through the hosted preview and keep tool calls and acceptance tests, not only the final files, for comparison.",
+  "claims": [
+    {
+      "text": "Baidu's research index dates the Preview announcement November 11.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "The preview's end-to-end demonstrations establish general reliability across users' projects.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Baidu plans an Apache 2.0 weight release; the announcement does not establish that those weights are already available.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The base checkpoint's license includes territorial limits and a $50 million commercial-revenue threshold.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "OpenRouter labels its endpoint release November 10, one day before Baidu's announcement date.",
+      "status": "confirmed",
+      "source": 5
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing ERNIE 5.5 Flash Preview",
+      "publisher": "Baidu",
+      "url": "https://ernie.baidu.com/release/ernie-5-5-flash-preview/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "ERNIE 5.5 Flash Base",
+      "publisher": "Baidu",
+      "url": "https://ernie.baidu.com/release/ernie-5-5-flash-base/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "ERNIE-5.5-Flash-Base",
+      "publisher": "Baidu on Hugging Face",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "ERNIE 5.5 Flash Base Model License Agreement v1.0",
+      "publisher": "Baidu",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base/blob/main/LICENSE",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Research",
+      "publisher": "Baidu ERNIE",
+      "url": "https://ernie.baidu.com/research/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Baidu: ERNIE-5.5-Flash-Preview (free)",
+      "publisher": "OpenRouter",
+      "url": "https://openrouter.ai/baidu/ernie-5.5-flash-preview:free",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "The free endpoint is not the downloadable model.",
+    "voiceover": "[measured] The free endpoint is not the downloadable model. Baidu opened its Ernie Flash preview for agent tasks. OpenRouter lists one million tokens of context. The base download has different licensing terms.",
+    "short": "Baidu opened ERNIE Flash Preview for hosted agent tasks. OpenRouter lists a free million-token endpoint; the existing base download has separate licensing terms.",
+    "long": "Baidu added a post-trained ERNIE Flash preview to its model family. OpenRouter lists free token usage and a million-token context, with rate limits. Hosted access and a downloadable checkpoint are separate choices.\n\nThe existing base release has a custom license, including territorial restrictions and a $50 million commercial threshold. We would keep model identifiers and licensing decisions together when comparing deployments.",
+    "take": "We favor testing hosted access before budgeting a local deployment. A working API integration does not settle the rights for downloading and serving the checkpoint.",
+    "keyFacts": [
+      "November 11: Baidu's preview announcement",
+      "1 million tokens of context on OpenRouter",
+      "Base license: $50 million commercial threshold"
+    ],
+    "hashtags": [
+      "Baidu",
+      "ERNIE",
+      "AIAgents",
+      "ModelLicensing"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
