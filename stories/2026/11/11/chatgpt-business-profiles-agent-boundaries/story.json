@@ -1,0 +1,146 @@
+{
+  "format": 2,
+  "slug": "chatgpt-business-profiles-agent-boundaries",
+  "kind": "story",
+  "topic": "agents",
+  "title": "OpenAI opens business profiles and separate merchant agents in ChatGPT",
+  "titleAccent": "merchant agents",
+  "dek": "Business Hub adds merchant information and aggregate discovery insights, while US business agents answer product questions in separate chats.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-11T04:00:44Z",
+  "lede": "OpenAI launched Businesses in ChatGPT in beta on November 10, adding business profiles, discovery insights and merchant-run conversations. A seller can now supply information and answer follow-up questions inside ChatGPT, with its agent clearly separated from independent responses.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "Beta, announced 10 November 2026"
+    },
+    {
+      "label": "Agent availability",
+      "value": "Eligible US ecommerce and online service businesses"
+    },
+    {
+      "label": "Insights window",
+      "value": "Past 28 days"
+    },
+    {
+      "label": "Verification",
+      "value": "Business claim plus Persona identity approval"
+    },
+    {
+      "label": "Transaction handoff",
+      "value": "Customer completes actions on the business website"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A profile and a conversation",
+      "text": "Business Hub lets verified organizations maintain details and product feeds with prices and availability. When a business appears in a response, a customer can open its profile and choose a separate agent conversation. OpenAI also allows the same agent to serve as an advertising destination. Sponsored placements carry their own label. This creates two distinct entry points into a merchant conversation: discovery through an answer and paid distribution. The launch broadens the business presence inside ChatGPT without turning every mention into a customer-service session."
+    },
+    {
+      "heading": "Verification has more than one gate",
+      "text": "The setup documentation separates claiming a business from identity approval and agent publication. A phone, business email, domain or Shopify connection can establish the claim. Persona approval is then required for publishing changes, connecting feeds and viewing insights. A blue verification check follows that approval. Businesses can manage information without advertising or publishing an agent. Agent access has additional location, category and website requirements. The help page also says existing local-store and restaurant listings are currently claimable only in the United States. For an operator, these are separate operational steps with different outcomes."
+    },
+    {
+      "heading": "The seller must identify its role",
+      "text": "The Business Agents Policy requires an agent to identify itself as AI representing the merchant. It cannot pose as an independent adviser or a human, or imply OpenAI endorsement. Instructions must preserve material fees and conditions. The policy also prohibits pressure after a customer declines, invented guarantees and unnecessary collection of sensitive information. Providing user information to the business or submitting a form requires explicit authorization through an approved feature. These are constraints on the instructions and material a business supplies, not evidence that each generated answer has been audited."
+    },
+    {
+      "heading": "A click is not a completed sale",
+      "text": "OpenAI’s documentation describes insights over the past 28 days. For an online business, a counted mention requires a reference to its website; a name alone is insufficient. Digiday reported that website clicks measure link interaction, not completed visits or purchases. In the same briefing, OpenAI said businesses could not bring their own agents into this experience. The publication reported that Business Hub and agents are free at launch, while leaving future pricing open. This limits what a merchant can conclude from the dashboard: distribution and commercial outcomes remain different measurements."
+    },
+    {
+      "heading": "Profile accuracy remains the business’s job",
+      "text": "The profile policy assigns responsibility for submitted information to the business, including service areas, qualifications and availability. It also forbids misleading links, fabricated endorsements and concealed terms. OpenAI says it can remove content or restrict profile management, and does not verify every detail or settle every factual dispute. That makes the profile another maintained customer-facing record. A verified identity establishes who can represent the seller; it does not transfer responsibility for the seller’s claims to the platform."
+    }
+  ],
+  "buildersNote": "Before publishing an agent, test three common questions against the current catalog: a return exception, an unavailable product and a service-area limit. Keep the final purchase on the website and compare recorded clicks with your own completed orders.",
+  "claims": [
+    {
+      "text": "OpenAI announced the beta and initially limited Business Agents to eligible US ecommerce and online service businesses.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Business verification alone does not establish agent eligibility.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "OpenAI says businesses receive aggregate insights, not individual prompts or Business Agent transcripts.",
+      "status": "claimed",
+      "source": 5
+    },
+    {
+      "text": "Claiming a profile does not guarantee more recommendations; blank insights can reflect reporting thresholds rather than no activity.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The beta’s effect on completed sales and the date of agent expansion outside the US remain unestablished.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Businesses in ChatGPT",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-businesses-chatgpt/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Setting up your business on ChatGPT",
+      "publisher": "OpenAI Help Center",
+      "url": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Business Agents Policy",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/policies/business-agents-policy/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Businesses in ChatGPT",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/policies/businesses-in-chatgpt/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "OpenAI’s new business agents give brands a free way into the conversation it’s also selling as an ad",
+      "publisher": "Digiday",
+      "url": "https://digiday.com/marketing/openais-new-business-agents-give-brands-a-free-way-into-the-conversation-its-also-selling-as-an-ad/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Introducing Businesses in ChatGPT in beta",
+      "publisher": "OpenAI Developer Community",
+      "url": "https://community.openai.com/t/introducing-businesses-in-chatgpt-in-beta/1414865",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "A seller’s agent speaks for the seller.",
+    "voiceover": "[matter-of-fact] A seller’s agent speaks for the seller. OpenAI launched business profiles and separate merchant chats on November tenth. [measured] Customers choose to enter them, and businesses receive aggregate insights rather than transcripts.",
+    "short": "OpenAI launched Business Hub and merchant agents on November 10. Eligible US businesses can answer product questions in separate chats; the seller’s agent is distinct from ChatGPT’s independent answers.",
+    "long": "ChatGPT now gives businesses their own labeled conversations. OpenAI’s November 10 beta lets eligible merchants supply product information and launch an agent that customers can choose to enter. It speaks for the business, separately from ChatGPT’s independent answers.\n\nBusiness Hub also provides aggregate mentions, website clicks and discovery topics. OpenAI says it does not give businesses individual conversations or agent transcripts. The first agents cover eligible US ecommerce and online service businesses; expansion dates remain unspecified.",
+    "take": "We see the separate conversation as the key boundary. Merchant answers need to be read as a sales interaction, even when the customer first arrives through independent discovery.",
+    "keyFacts": [
+      "Beta announced 10 November 2026",
+      "Insights cover the past 28 days",
+      "Business Agents initially available to eligible US sellers"
+    ],
+    "hashtags": [
+      "ChatGPT",
+      "BusinessAgents",
+      "ConversationalCommerce",
+      "AIAgents"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}

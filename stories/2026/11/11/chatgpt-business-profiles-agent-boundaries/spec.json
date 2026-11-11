@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "CHATGPT OPENS",
+    "BUSINESS",
+    "AGENTS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 111103,
+  "sources": {}
+}
