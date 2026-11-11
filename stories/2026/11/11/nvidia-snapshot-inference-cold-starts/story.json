@@ -1,0 +1,132 @@
+{
+  "format": 2,
+  "slug": "nvidia-snapshot-inference-cold-starts",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "NVIDIA Snapshot reuses GPU state to shorten inference restarts",
+  "titleAccent": "reuses GPU state",
+  "dek": "New vendor and partner benchmarks separate faster worker recovery from the longer job of provisioning infrastructure, with storage and compatibility still deciding the result.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-11T13:04:12Z",
+  "lede": "NVIDIA announced Snapshot as an open-source component of its DSX platform on November 10 at KubeCon. The software saves an initialized inference worker and restores it later, reducing the repeated setup needed before a model can answer requests.",
+  "facts": [
+    {
+      "label": "Component",
+      "value": "NVIDIA Snapshot"
+    },
+    {
+      "label": "License",
+      "value": "Apache 2.0"
+    },
+    {
+      "label": "Crusoe test",
+      "value": "GLM-5.3 ready in 31 seconds on HGX B300"
+    },
+    {
+      "label": "Storage in that test",
+      "value": "594 GB of GPU state; local NVMe"
+    },
+    {
+      "label": "Deployment scope",
+      "value": "Single-node workloads, including multiple GPUs"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A saved worker instead of another setup",
+      "text": "An idle GPU is not immediately useful serving capacity. The model’s weights must reach its memory, and the inference engine must prepare its execution paths. Snapshot preserves both CPU and GPU process state after that preparation. A restored worker resumes the saved setup instead of repeating model loading, compilation and graph capture. NVIDIA’s November 10 technical report describes tests using B200 GPUs and three engines: vLLM, SGLang and TensorRT LLM. Its measured restores ranged from 3.6 to 42.7 seconds. Those clocks start after infrastructure provisioning, and exclude pulling the container image and setting up its runtime."
+    },
+    {
+      "heading": "Storage changes the result",
+      "text": "Crusoe’s separate November 10 report describes a joint test with NVIDIA using GLM-5.3 on HGX B300 hardware. Its restored worker reached readiness 31 seconds after pod creation, compared with roughly eight minutes from a cold start. The saved GPU state occupied 594 GB. Moving that artifact from network storage to local NVMe reduced readiness time from 50 seconds to 31. The GPU-state transfer itself took 15 seconds; that is one stage inside the larger readiness measurement. Crusoe tested the local storage without a warm file cache. Its result makes the storage path part of the deployment decision, alongside the model and GPU."
+    },
+    {
+      "heading": "A response clock measures something different",
+      "text": "Saturn Cloud’s benchmark, first published November 2 and updated November 10, measures the first successful response after worker creation. It reports six to 34 seconds for restored workers on an already-running B300 node. The comparison used downloaded weights and cached container images. Snapshot creation, machine provisioning and model downloads sit outside those startup figures. Each Qwen and GPT-OSS configuration had one paired run; GLM-5.3 had two. These are individual observations rather than averages across a large fleet. The eight-GPU GLM checkpoint occupied 564 GiB and took 41 seconds to create, a separate expense from bringing it back."
+    },
+    {
+      "heading": "The surrounding platform still owns the schedule",
+      "text": "The project’s documentation assigns Snapshot the capture and restore operations. Other systems decide which workers to save, when to stop them and when to request a replacement. A Kubernetes operator coordinates the work, with a privileged agent on GPU nodes and shared storage for checkpoint artifacts. That means adopting the component also involves permissions, storage management and integration with an existing serving platform. The prerequisites include Linux kernel 5.13 or newer and GPU Operator 26.3 or newer, with GPU partitioning through MIG disabled. Existing scheduling rules still decide whether a compatible machine is available when demand returns. The open repository is licensed under Apache 2.0."
+    }
+  ],
+  "buildersNote": "Compare 20 cold starts and 20 restores for one model on the same hardware. Record time to first successful reply, checkpoint storage and capture time. Include machine provisioning and image downloads in a second, end-to-end measurement before estimating savings.",
+  "claims": [
+    {
+      "text": "Snapshot captures initialized CPU and GPU state so compatible workers can resume without repeating their full setup.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Crusoe reports 31-second GLM-5.3 readiness in a joint NVIDIA test; this is partner-reported performance, not an independent production guarantee.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The repository requires matching GPU hardware and driver versions, limits workloads to one node and does not recommend Snapshot for production-critical workloads yet.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "The published tests do not establish fleet-wide reliability or a general dollar saving for operators.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "NVIDIA Expands Open Source Commitment With OpenShell Donation and New AI Infrastructure",
+      "publisher": "NVIDIA",
+      "url": "https://blogs.nvidia.com/blog/open-source-openshell-infrastructure/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Start and Restore GPU Workloads in Seconds with NVIDIA Snapshot",
+      "publisher": "NVIDIA",
+      "url": "https://developer.nvidia.com/blog/start-and-restore-gpu-workloads-in-seconds-with-nvidia-snapshot",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "NVIDIA and Crusoe cut GLM-5.3 startup from 8 minutes to 31 seconds with NVIDIA Snapshot",
+      "publisher": "Crusoe",
+      "url": "https://www.crusoe.ai/resources/blog/nvidia-snapshot-crusoe-cloud",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Benchmarking NVIDIA Snapshot for Loading Large Models in Seconds",
+      "publisher": "Saturn Cloud",
+      "url": "https://saturncloud.io/blog/benchmarking-nvidia-dynamo-snapshot/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Snapshot",
+      "publisher": "NVIDIA",
+      "url": "https://github.com/ai-dynamo/snapshot/blob/0725bdefc8c63b3183105328a890bec43de5c6b2/README.md",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "A saved setup can shorten the wait for a model.",
+    "voiceover": "[matter-of-fact] A saved setup can shorten the wait for a model. NVIDIA announced Snapshot for restoring initialized workers. Crusoe reports thirty-one-second readiness in one configuration. [measured] Storage and compatible hardware still matter.",
+    "short": "NVIDIA announced Snapshot for restoring initialized GPU workers. Crusoe reports 31-second GLM-5.3 readiness on B300 hardware. The partner test does not establish fleet-wide savings.",
+    "long": "NVIDIA introduced Snapshot as a DSX component on November 10. It saves initialized CPU and GPU state, giving a new inference worker a way to resume without repeating model loading and warmup.\n\nSaturn Cloud’s tests restored workers in six to 34 seconds on an already-running node. Those measurements exclude machine provisioning and downloads. The practical gain depends on the complete path from an incoming request to a working model, not just the restore step.",
+    "take": "We would evaluate saved worker state as a way to reduce idle capacity, with the storage bill and full request delay included in the comparison.",
+    "keyFacts": [
+      "Announced as a DSX component on 10 November",
+      "Crusoe: 31 seconds from pod creation to ready",
+      "Saturn: 6–34 seconds to first response in its tests"
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "Inference",
+      "Kubernetes",
+      "GPUComputing"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
