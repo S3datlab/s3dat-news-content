@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "QWEN4 PREVIEW",
+    "ENDS NOV 25"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Alibaba Cloud",
+      "icon": "alibabacloud"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "stat": {
+    "value": "NOV 25",
+    "label": "preview retirement"
+  },
+  "seed": 111109,
+  "sources": {}
+}

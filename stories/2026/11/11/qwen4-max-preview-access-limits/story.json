@@ -1,0 +1,132 @@
+{
+  "format": 2,
+  "slug": "qwen4-max-preview-access-limits",
+  "kind": "story",
+  "topic": "models",
+  "title": "Alibaba opens Qwen4-Max preview with a November 25 cutoff",
+  "titleAccent": "Qwen4-Max preview",
+  "dek": "The new model enters Token Plan with a fixed retirement date, separate credentials and an interactive-use restriction that excludes application backends.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-11T10:04:06Z",
+  "lede": "Alibaba opened Qwen4-Max in preview on November 11 through Token Plan. The release gives developers a new model to evaluate inside coding and agent tools, with a scheduled end to this preview version.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "qwen4-max-preview"
+    },
+    {
+      "label": "Preview ends",
+      "value": "25 November 2026 at 24:00 UTC+8"
+    },
+    {
+      "label": "Access",
+      "value": "Token Plan; no pay-as-you-go access"
+    },
+    {
+      "label": "Personal plan region",
+      "value": "Singapore; Global deployment"
+    },
+    {
+      "label": "Permitted use",
+      "value": "Interactive coding and agent tools"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A fixed evaluation window",
+      "text": "Alibaba’s model documentation describes text generation, image and video understanding, reasoning, tool calls and structured outputs. It targets coding, office work and tasks involving agents. The preview began at 10:00 on November 11, China time, and ends at midnight after November 25. That cutoff is 16:00 UTC on November 25. Alibaba says the model will remain unchanged during that period and retire afterward. That makes the preview an evaluation target with an expiry date. Results gathered against this version describe that version; the announcement does not turn it into a permanent production dependency."
+    },
+    {
+      "heading": "Access comes through a tool subscription",
+      "text": "The Personal Edition terms limit Token Plan to interactive use in compatible coding and agent tools. Automated scripts, application backends and non-interactive batches fall outside that scope. Alibaba lists reasoning, visual understanding and text generation for Qwen4-Max in its supported-model table. The same table retains Qwen3.8-Max and Qwen3.8-Flash. The preview therefore adds another model choice within the subscription instead of replacing the existing entries. The international Personal Edition operates from Singapore with Global deployment, and its terms disclose cross-border handling of prompts and outputs."
+    },
+    {
+      "heading": "The connection is separate from standard billing",
+      "text": "The November 4 quick-start guide describes a dedicated Token Plan key and two protocol options: OpenAI-compatible and Anthropic-compatible. Token Plan credentials cannot be exchanged with ordinary Model Studio or Coding Plan credentials. Each key must match its own endpoint. This separation matters when a developer already has a working client configuration: the model name alone does not determine the billing route. The guide lists clients including Cursor, Codex, Claude Code, Qwen Code and Qoder. For tools using the Responses API, its Harness integration can add search or code execution, with Credits charged for successful tool invocations."
+    },
+    {
+      "heading": "A production endpoint is a different decision",
+      "text": "Alibaba’s October 11 endpoint guide separates subscription traffic from pay-as-you-go traffic. It documents legacy shared endpoints, workspace-specific endpoints and trial endpoints for the latter. Alibaba recommends workspace-specific domains for production and describes lower rate limits for trial domains. Those routes have their own regional keys and workspace requirements. Access to the new preview does not confer access through every documented route: the model page explicitly excludes pay-as-you-go. For an existing application, this divides two decisions that often look similar in a model picker. One concerns evaluating a model in an interactive development tool. The other concerns serving repeated requests from a backend under a different access arrangement."
+    }
+  ],
+  "buildersNote": "Run a fixed set of 20 representative coding tasks before November 25. Record completed tasks, tool failures and Credits consumed. Keep the current production model configured separately, and schedule removal of the preview ID before its documented retirement.",
+  "claims": [
+    {
+      "text": "Alibaba documents a fixed Qwen4-Max preview ending on November 25, followed by retirement of that preview model.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Token Plan Personal Edition excludes automated scripts, custom application backends and non-interactive batch calls.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The model’s coding, reasoning and multimodal abilities are described by Alibaba; these documents do not independently establish comparative performance.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The timing, access terms and capabilities of a replacement after the preview are not established by the cited release documents.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Latest model: Qwen4-Max-Preview",
+      "publisher": "Alibaba Cloud",
+      "url": "https://docs.modelstudio.console.alibabacloud.com/en/model-studio/qwen4-max-preview",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Overview",
+      "publisher": "Alibaba Cloud Model Studio",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/token-plan-personal-overview",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Quick start",
+      "publisher": "Alibaba Cloud Model Studio",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/token-plan-personal-quick-start",
+      "date": "2026-11-04"
+    },
+    {
+      "title": "Base URL overview",
+      "publisher": "Alibaba Cloud Model Studio",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/base-url",
+      "date": "2026-10-11"
+    },
+    {
+      "title": "Recommended models",
+      "publisher": "Alibaba Cloud Model Studio",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/models",
+      "date": "2026-11-11"
+    }
+  ],
+  "social": {
+    "hook": "A new model arrives with an expiry date.",
+    "voiceover": "[matter-of-fact] A new model arrives with an expiry date. Alibaba opened Qwen four Max in preview. It retires after November twenty-fifth. [measured] Token Plan access covers interactive tools, not your application backend.",
+    "short": "Alibaba opened Qwen4-Max in preview on November 11. The version retires after November 25. Token Plan access is for interactive coding and agent tools, excluding application backends.",
+    "long": "Qwen4-Max entered Alibaba’s Token Plan preview on November 11. The model is available for interactive coding and agent tools, with a fixed retirement after November 25.\n\nIts connection uses a dedicated key and endpoint, separate from ordinary Model Studio billing. A familiar API format does not make the subscription suitable for an application backend. The cited documents do not establish the replacement’s access terms after the preview.",
+    "take": "We would use the fixed preview window for a repeatable evaluation, keeping production traffic on a separately supported model and billing route.",
+    "keyFacts": [
+      "Preview opened on 11 November 2026",
+      "This version retires after 25 November",
+      "Personal Edition excludes application backends"
+    ],
+    "hashtags": [
+      "Qwen",
+      "CodingAgents",
+      "ModelAPIs",
+      "AlibabaCloud"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
