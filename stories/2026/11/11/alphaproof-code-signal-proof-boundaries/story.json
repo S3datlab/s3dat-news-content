@@ -1,0 +1,136 @@
+{
+  "format": 2,
+  "slug": "alphaproof-code-signal-proof-boundaries",
+  "kind": "story",
+  "topic": "research",
+  "title": "DeepMind links Signal security proofs to compiled code",
+  "titleAccent": "compiled code",
+  "dek": "AlphaProof Code pairs human-approved specifications with machine-checked proofs, extending verification while leaving whole-app security and commercial costs outside the result.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-11T15:20:34Z",
+  "lede": "Google DeepMind introduced AlphaProof Code on November 10, reporting proofs of key security properties in compiled Signal protocol code. The research connects cryptographic guarantees to an implementation, giving developers a more specific assurance than a model saying code looks safe.",
+  "facts": [
+    {
+      "label": "Project",
+      "value": "AlphaProof Code"
+    },
+    {
+      "label": "Target",
+      "value": "libsignal compiled to AArch64 Linux"
+    },
+    {
+      "label": "Proof output",
+      "value": "About 6.5 million lines of Lean, researchers report"
+    },
+    {
+      "label": "Trusted foundation",
+      "value": "About 26,000 lines of specifications and machine semantics"
+    },
+    {
+      "label": "Announcement",
+      "value": "10 November 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The claim has an executable target",
+      "text": "The technical report covers the PQXDH handshake and Triple Ratchet in libsignal. Researchers compiled unmodified Rust through the standard compiler and proved properties of the resulting machine code. These include message authenticity, forward secrecy and recovery after a compromise, within the stated models. The distinction matters when a design is sound but its implementation makes a different choice. Here, a mathematical statement is tied to a particular executable. The report also identifies a trusted foundation: specifications, machine semantics and assumptions about cryptographic routines. Those assumptions remain part of the security argument."
+    },
+    {
+      "heading": "People choose the promise",
+      "text": "DeepMind describes a division of labor in which humans review the security goals and agents build the proofs. Gemini Carbon powered the proving agents, while Lean checked their output. The company says the project took four weeks. Researchers also restored two previously fixed bugs in an isolated copy and showed that the faulty versions violated the security requirements. These were controlled tests of historical defects, not newly discovered attacks on Signal users. This separates the ability to generate persuasive explanations from the ability to produce evidence that a separate checker accepts."
+    },
+    {
+      "heading": "Signal had verification before this release",
+      "text": "Signal described its own verification process on October 2, 2025, when it announced the Sparse Post Quantum Ratchet. Its Triple Ratchet combines that mechanism with the existing Double Ratchet. Forward secrecy protects earlier messages when secrets are exposed later; post-compromise security addresses protection after the compromise. Signal had already modeled protocol behavior with ProVerif and used hax to translate Rust into F* for implementation checks. It also described repeating verification in continuous integration, with failed proofs blocking builds. DeepMind extends this history toward protocol-level guarantees for compiled code. The announcement does not mean Signal previously relied only on conventional tests."
+    },
+    {
+      "heading": "An audit trail outside the model",
+      "text": "The released repository contains separate symbolic and computational proof directories, the compiled-library material, machine semantics and a comparator. Its reviewer site provides a route through the specifications and checks. Publishing those artifacts gives specialists something concrete to examine beyond a demonstration or a headline. For a software team, the useful deliverable is the relationship between the requirement, the executable and the check. A count of generated lines describes the size of the work; it does not by itself describe how much of an application has been secured."
+    },
+    {
+      "heading": "The practical deployment question",
+      "text": "WIRED reports that Google did not disclose the project cost or say whether it plans a commercial verification service. That leaves teams without a price or procurement path for applying the approach to their own code. The immediate result is a research artifact for inspection, rather than a new security feature that messaging users need to enable."
+    }
+  ],
+  "buildersNote": "For a first verification pilot, choose one security property and record the exact binary, approved specification and trusted dependencies. Budget expert review for those three items before treating generated proof volume as a coverage measure.",
+  "claims": [
+    {
+      "text": "The public research targets compiled libsignal and publishes specifications and proof artifacts.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The released repository includes symbolic and computational verification material.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "DeepMind says its verification process took four weeks.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The result verifies the entire Signal mobile app or every dependency without assumptions. It does not; its guarantees have a defined scope.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at depth",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "AlphaProof Code: Verifying Signal’s Security at the Machine-Code Level",
+      "publisher": "Google DeepMind",
+      "url": "https://google-deepmind.github.io/code-verification/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Verifying Signal's security at the machine-code level",
+      "publisher": "Google DeepMind",
+      "url": "https://github.com/google-deepmind/code-verification",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "A New AI Tool From Google DeepMind Proved the Signal Protocol Is Secure",
+      "publisher": "WIRED",
+      "url": "https://www.wired.com/story/a-new-ai-tool-from-google-deepmind-formally-verified-the-signal-protocol/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Signal Protocol and Post-Quantum Ratchets",
+      "publisher": "Signal",
+      "url": "https://signal.org/blog/spqr/",
+      "date": "2025-10-02"
+    }
+  ],
+  "social": {
+    "hook": "A security proof still needs a human-approved promise.",
+    "voiceover": "[measured] A security proof still needs a human-approved promise. DeepMind used agents to verify Signal protocol code in four weeks. A separate checker tests the proofs. The whole app remains outside that guarantee.",
+    "short": "DeepMind connected Signal security proofs to compiled code. Its four-week project used human-reviewed goals and machine checks; the result does not certify the whole messaging app.",
+    "long": "Google DeepMind introduced AlphaProof Code for checking security properties in Signal’s compiled protocol implementation. The November 10 release includes proof artifacts that specialists can inspect.\n\nSignal already used formal methods in its development process. This work extends the connection between a cryptographic promise and the code that implements it. It does not establish whole-app safety, and Google has not disclosed the project cost.",
+    "take": "We value the inspectable link between a security requirement and compiled code over proof volume. Human review of that requirement still decides what the result means.",
+    "keyFacts": [
+      "Announced on 10 November 2026",
+      "Project duration: 4 weeks, DeepMind says",
+      "Signal described earlier verification on 2 October 2025"
+    ],
+    "hashtags": [
+      "GoogleDeepMind",
+      "FormalVerification",
+      "Signal",
+      "SoftwareSecurity"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

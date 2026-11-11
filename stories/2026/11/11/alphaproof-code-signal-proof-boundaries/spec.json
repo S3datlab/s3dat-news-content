@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "DEEPMIND",
+    "PROVES SIGNAL",
+    "CODE PROPERTIES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 111115,
+  "sources": {}
+}
