@@ -1,0 +1,136 @@
+{
+  "format": 2,
+  "slug": "microsoft-lazarus-model-weight-integrity",
+  "kind": "story",
+  "topic": "research",
+  "title": "Microsoft exposes hidden agent commands in altered model weights",
+  "titleAccent": "altered model weights",
+  "dek": "Lazarus research separates model-file integrity from ordinary evaluations, with a measured detection trade-off and no observed attacker use.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-12T06:23:46Z",
+  "lede": "Microsoft published Lazarus research on November 10 showing how small changes to model weights can redirect an AI agent. The work makes the downloaded model file itself a security boundary, alongside the tools and permissions surrounding it.",
+  "facts": [
+    {
+      "label": "Disclosure",
+      "value": "10 November 2026"
+    },
+    {
+      "label": "Research method",
+      "value": "Fewer than 10 edited neurons; no model training"
+    },
+    {
+      "label": "Reference-free detection",
+      "value": "91.4% of held-out edited checkpoints, researchers report"
+    },
+    {
+      "label": "False positives",
+      "value": "9.7% in that detection evaluation"
+    },
+    {
+      "label": "Observed attacker use",
+      "value": "None reported by Microsoft"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A changed file can keep its normal scores",
+      "text": "The researchers describe a model that behaves normally until a specific trigger enters its context. Its altered behavior then reaches the surrounding agent, which acts with the permissions already assigned to it. This is a change inside the checkpoint, the saved file containing model weights. Microsoft says the necessary access is the ability to modify that checkpoint. An internal model can therefore face the same integrity problem as an externally downloaded one."
+    },
+    {
+      "heading": "Detection has a measurable trade-off",
+      "text": "The accompanying research abstract reports a defense built with agents that inspects weights without a reference model. It flagged 91.4 percent of held-out edited checkpoints, with a 9.7 percent false-positive rate. Those figures belong together: a detector can identify altered files while sending clean ones for review. The result measures checkpoint classification, a different job from scoring an agent on ordinary tasks. A capability evaluation measures behavior on selected inputs; inspection looks for suspicious changes in the underlying artifact."
+    },
+    {
+      "heading": "Another route begins before the checkpoint exists",
+      "text": "An October 27 paper, Agentic Backdoors via Pretraining Poisoning, studied a different point in the supply chain. Its authors trained models on poisoned data and subsequently turned them into command-line agents through a clean post-training process. Their controlled experiments found that the earlier poisoning could survive those later stages. Lazarus instead examines direct modification of existing weights. The comparison separates two responsibilities: protecting the data used to produce a model and protecting the artifact distributed afterward. Both studies concern experimentally induced behavior, with different access assumptions. They do not establish how often either method occurs in deployed products."
+    },
+    {
+      "heading": "Direct edits also have legitimate uses",
+      "text": "Separate MIT CSAIL work published November 2 studied models reading and modifying neural-network weights for useful tasks. Its examples include identifying a network’s learned behavior and repairing a small language model’s reasoning loops. The researchers describe direct changes made without conventional training loops. This matters to the security interpretation: a weight change is not automatically evidence of an attack. Legitimate optimization and malicious alteration can touch the same artifact. The declared purpose, origin and evaluation record give an operator context that the existence of a changed file alone cannot provide."
+    },
+    {
+      "heading": "File scanning and weight auditing cover different risks",
+      "text": "Microsoft’s security guidance distinguishes checking model files for embedded malware or unsafe operators from auditing numerical weights. Its Defender model-scanning description covers the former and explicitly says that it complements the latter. The guidance also describes isolating generated code, restricting outbound network access and requiring approval for consequential tool calls. These controls act at separate points: model intake, execution and external communication. A detector’s result does not determine which resources an agent can reach. That access remains a property of the application and its deployment, even when the model has passed an intake review."
+    }
+  ],
+  "buildersNote": "For the next model update, retain its publisher, file hash, declared base and audit result together. Test one denied network destination and one denied write path before granting the agent production access.",
+  "claims": [
+    {
+      "text": "Microsoft published the Lazarus research and mitigation guidance on November 10, 2026",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Reference-free auditing detected 91.4% of edited checkpoints with 9.7% false positives in the reported evaluation",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "Microsoft says it has not observed threat actors weaponizing this technique",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The reported defense rates generalize to arbitrary models and deployments",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Lazare, veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents",
+      "publisher": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Lazare veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents",
+      "publisher": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/publication/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Detecting sleeper agents hiding in AI model neurons",
+      "publisher": "Microsoft Threat Intelligence",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Agentic Backdoors via Pretraining Poisoning",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2610.37741",
+      "date": "2026-10-27"
+    },
+    {
+      "title": "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights",
+      "publisher": "MIT CSAIL researchers",
+      "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+      "date": "2026-11-02"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "A clean test run can miss a changed model.",
+    "voiceover": "[serious] A clean test run can miss a changed model. Microsoft studied hidden commands in altered weights. Its detector flagged about nine in ten edited checkpoints. False positives still need human review.",
+    "short": "Microsoft described Lazarus, a research backdoor in altered model weights. Its detector caught 91.4% of edited checkpoints with 9.7% false positives; those rates need to be read together.",
+    "long": "Microsoft published Lazarus on November 10, examining hidden agent commands in altered model weights. A downloaded checkpoint can carry a change that ordinary task tests miss.\n\nAn October 27 pretraining-poisoning study explored a different route: altered training data whose effects survived clean post-training. The two studies put integrity checks at different stages of a model’s life. Neither establishes the frequency of these attacks in deployed products. Microsoft says it has not observed attackers weaponizing Lazarus.",
+    "take": "We think model intake needs an artifact review as well as behavior tests. A strong benchmark score does not establish that the file came through a trusted pipeline.",
+    "keyFacts": [
+      "Research disclosed 10 November 2026",
+      "91.4% detection in the reference-free evaluation",
+      "9.7% false-positive rate in that evaluation"
+    ],
+    "hashtags": [
+      "Microsoft",
+      "AISecurity",
+      "AIAgents",
+      "ModelSecurity"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

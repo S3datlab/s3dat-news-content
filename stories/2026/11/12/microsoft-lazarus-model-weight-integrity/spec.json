@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "MODEL WEIGHTS",
+    "HIDE COMMANDS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 121106,
+  "sources": {}
+}
