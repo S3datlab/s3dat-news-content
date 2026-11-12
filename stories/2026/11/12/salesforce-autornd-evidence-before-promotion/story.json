@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "salesforce-autornd-evidence-before-promotion",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Salesforce reports research-agent gains in models and code",
+  "titleAccent": "research-agent gains",
+  "dek": "SFR-AutoR&D links autonomous experiments to retained evidence, while deployment decisions and research goals remain separate controls.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-12T00:21:49Z",
+  "lede": "Salesforce reported on November 11 that its SFR-AutoR&D research agents improved embedding models and existing software. The account gives new context for an existing research project, with people setting its goals and constraints.",
+  "facts": [
+    {
+      "label": "System",
+      "value": "SFR-AutoR&D"
+    },
+    {
+      "label": "Research agents",
+      "value": "2: AutoR&D-Engineer and TrainForge"
+    },
+    {
+      "label": "Model research cycle",
+      "value": "About 80 hours, Salesforce reports"
+    },
+    {
+      "label": "TrainForge access",
+      "value": "Interactive platform coming soon"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A patch comes with an experiment",
+      "text": "The project\u2019s October research pages describe AutoR&D-Engineer starting with a repository and an engineering goal. Its published examples include pandas, hnswlib and USearch, alongside Salesforce\u2019s own training infrastructure. The output includes a proposed implementation and measurements against the previous version. For pandas, one change avoids creating a temporary label array while keeping the numerical reduction kernel. Salesforce reports a median speedup of 1.38 times across 40 benchmark cells for that change. The important unit is the named workload with its correctness checks, rather than a blanket claim that the entire library became faster. A result attached to a patch also gives maintainers something concrete to inspect before accepting it."
+    },
+    {
+      "heading": "Training begins with a cheaper test",
+      "text": "TrainForge takes a baseline model, target task and compute budget. Its project page describes a staged process: a small adaptation test comes first, followed by a short full-parameter run and then full training for promising ideas. Evaluation datasets remain separate from training. The system records results and uses them to choose its next proposal. Its guided demonstration also distinguishes illustrative research lineage from measured screens. That distinction matters because an animation of iterative discovery cannot establish the provenance of every experiment it depicts. The public page says the interactive platform is coming soon. A research demonstration and a tool available for general customer use are different stages."
+    },
+    {
+      "heading": "Retrieval is the immediate application",
+      "text": "The November account says the agents improved an existing embedding model and developed SFR-Embedding v4 from EmbeddingGemma 2. Salesforce reports an approximately 80-hour research cycle. Embedding models convert material into numerical representations for retrieval. The engineering question is whether a measured improvement changes which useful records the application actually returns."
+    },
+    {
+      "heading": "The release decision remains a separate step",
+      "text": "Meta described a related boundary in its November 11 account of Intelligent Delivery. Its agents inspect source code, design documents and experiment history, then propose and test changes to advertising infrastructure. Engineers approve the final change before deployment. The two accounts address different systems, so their performance numbers cannot form a ranking. They do show a useful separation between searching for an improvement and granting permission to ship it. A team can automate many experiments while retaining a distinct release decision. That separation gives an operator room to reject a technically successful change when its operational costs or risks do not fit. The acceptance test therefore belongs to the application owner. A benchmark can measure one improvement without deciding whether that change deserves the next production slot."
+    }
+  ],
+  "buildersNote": "For a pilot, retain one baseline and one candidate with the exact test data, runtime and compute bill. Require a separate deployment approval. Count failed experiments in the cost per accepted improvement, not just the winning run.",
+  "claims": [
+    {
+      "text": "Salesforce\u2019s November 11 account describes two agents and supporting AutoInfra infrastructure.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The approximately 80-hour cycle and embedding improvements are Salesforce\u2019s reported results, not independent reproductions.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "TrainForge\u2019s public page says the interactive platform is coming soon.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Customer-wide availability and transferable production savings are not established by these research results.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Salesforce Releases R&D Agents That Improve Its AI Models",
+      "publisher": "Salesforce",
+      "url": "https://www.salesforce.com/news/stories/agents-that-improve-ai-models/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "SFR-AutoR&D-Engineer \u00b7 Salesforce AI Research",
+      "publisher": "Salesforce AI Research",
+      "url": "https://sfr-autornd.github.io/engineer/",
+      "date": "2026-10-20"
+    },
+    {
+      "title": "SFR-AutoR&D TrainForge \u00b7 Salesforce AI Research",
+      "publisher": "Salesforce AI Research",
+      "url": "https://sfr-autornd.github.io/trainforge/",
+      "date": "2026-09-18"
+    },
+    {
+      "title": "Intelligent Delivery: Making Every Unit of Compute Serve Better Ads",
+      "publisher": "Engineering at Meta",
+      "url": "https://engineering.fb.com/2026/11/11/ml-applications/intelligent-delivery-serve-better-ads/",
+      "date": "2026-11-11"
+    }
+  ],
+  "social": {
+    "hook": "A better experiment is not permission to ship.",
+    "voiceover": "[measured] A better experiment is not permission to ship. Salesforce described two research agents that test model and code improvements. TrainForge starts with cheaper experiments. Its interactive platform is still coming soon.",
+    "short": "Salesforce described two research agents for code and model experiments. TrainForge stages cheaper tests before full training; its interactive platform is still coming soon.",
+    "long": "Salesforce described SFR-AutoR&D for testing changes to code and models. The November 11 announcement separates research goals and budgets from the agents\u2019 experiments.\n\nTrainForge tests ideas cheaply before committing to full training, keeping evaluation data separate. We see the retained baseline and evidence as the useful product. General access to its interactive platform remains pending.",
+    "take": "We favor automating experiments before automating deployment approval. A faster research loop needs a record of rejected ideas as well as its winning result.",
+    "keyFacts": [
+      "2 research agents: Engineer and TrainForge",
+      "Pandas test: 40 benchmark cells, median 1.38\u00d7 speedup",
+      "November 11: Salesforce reports model research results"
+    ],
+    "hashtags": [
+      "Salesforce",
+      "AIAgents",
+      "AutomatedResearch",
+      "ModelTraining"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

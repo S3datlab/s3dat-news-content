@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "AGENTS TEST",
+    "MODEL",
+    "IMPROVEMENTS"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "Salesforce",
+      "icon": "salesforce"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 121101,
+  "sources": {}
+}
