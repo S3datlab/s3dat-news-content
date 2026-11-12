@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "MICROSOFT",
+    "OUTAGE HITS",
+    "AI CONNECTORS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "down",
+  "seed": 111221,
+  "sources": {}
+}

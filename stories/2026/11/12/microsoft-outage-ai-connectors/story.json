@@ -1,0 +1,132 @@
+{
+  "format": 2,
+  "slug": "microsoft-outage-ai-connectors",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Microsoft 365 outage disrupts Claude and ChatGPT connectors",
+  "titleAccent": "disrupts Claude and ChatGPT connectors",
+  "dek": "Mail, calendar and search failures show how an office-service outage can interrupt AI workflows even when the model service remains available.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-12T21:36:09Z",
+  "lede": "Microsoft 365 suffered an outage on November 12 that also disrupted Microsoft connectors in Claude and ChatGPT. Anthropic's evening update extended the reported impact to Claude for Outlook, alongside mail, calendar and search failures.",
+  "facts": [
+    {
+      "label": "Affected dependency",
+      "value": "Microsoft 365"
+    },
+    {
+      "label": "Claude incident opened",
+      "value": "November 12, 17:52 UTC"
+    },
+    {
+      "label": "Claude latest update",
+      "value": "21:18 UTC; upstream server restarts"
+    },
+    {
+      "label": "OpenAI component",
+      "value": "ChatGPT Connectors/Apps"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The connector becomes the failure boundary",
+      "text": "Anthropic first reported slow responses and errors at 17:52 UTC. Its notice covered requests to mail, SharePoint, Teams chat and calendar, plus problems establishing new connections. At 18:34 UTC, it identified an upstream-provider issue. The 20:28 UTC update said most mail, calendar and search requests were still failing. It also described failed mail and calendar actions in Claude for Outlook, with some users unable to open the add-in. The incident was assigned to Claude's web product and Cowork. Anthropic's status page separately listed the Claude API and Claude Code as operational. That distinction matters for applications that combine a working model with external business data. At 21:18 UTC, Anthropic said its upstream provider was restarting affected servers while these failures continued."
+    },
+    {
+      "heading": "A second assistant reports the same dependency",
+      "text": "OpenAI opened its own Microsoft connector incident, identifying ChatGPT's Connectors/Apps component. Its notice described broken new connections and tools behaving incorrectly. The report classified the problem as degraded performance and remained under investigation. OpenAI also explains that its availability figures aggregate tiers, models and error types, so individual customers can have different experiences. The two incident reports identify a shared Microsoft integration problem from separate assistant providers. A successful ordinary chat therefore answers a different operational question from whether an assistant can fetch a mailbox or complete a calendar action."
+    },
+    {
+      "heading": "Office users see the underlying interruption",
+      "text": "The disruption also reached people using office applications directly. UMass Amherst's November 12 service notice warned its campus community about Teams, Outlook, SharePoint and Office web apps. Old Dominion University described email and calendar access failures across desktop, browser and mobile clients. Its notice said outgoing messages could remain in Outbox or Drafts, while incoming mail was queued for later delivery. It advised using alternative communication channels for urgent matters and warned against suspicious support messages seeking login details. Those are concrete consequences outside the assistant interface: a workflow can finish composing a message while its delivery remains pending."
+    },
+    {
+      "heading": "Service restoration is a separate checkpoint",
+      "text": "The Associated Press reported that Microsoft traced the disruption to servers becoming unavailable after failing automated checks. Microsoft was testing a fix at the time of that report. The incident separates several states that an automation dashboard can otherwise collapse into one success indicator: generating content, reaching the connected service, and completing the requested action. The university notice's queued incoming mail describes a delivery mechanism; the assistant notices describe failed tool requests. Recovery of one does not by itself document completion of every interrupted action. For operators, the useful evidence is the action's actual result in the destination service."
+    }
+  ],
+  "buildersNote": "Track 3 states separately: model response, connector result and destination confirmation. Before replaying a failed send or calendar action, inspect the destination for an existing result. Keep unsent work visible instead of treating a generated answer as delivery.",
+  "claims": [
+    {
+      "text": "Anthropic's November 12 incident includes Microsoft 365 tools and Claude for Outlook.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "OpenAI listed ChatGPT Connectors/Apps as the affected component.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Microsoft attributed server unavailability to failures during automated checks, according to AP; a final root-cause report was not available.",
+      "status": "claimed",
+      "source": 4
+    },
+    {
+      "text": "The incident notices do not establish a universal recovery time or the outcome of each interrupted user action.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Elevated errors affecting the Microsoft 365 connector",
+      "publisher": "Anthropic",
+      "url": "https://status.claude.com/incidents/sqn3fg1l96dl",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Elevated errors affecting the Microsoft 365 connector",
+      "publisher": "OpenAI",
+      "url": "https://status.openai.com/incidents/01M78GAT3AK9P9W8Z230KHFVE8",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Investigating: Microsoft 365 Issues Reported, Thurs., 11/12",
+      "publisher": "UMass Amherst Information Technology",
+      "url": "https://www.umass.edu/it/news/investigating-microsoft-365-issues-reported-thurs-1112",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Microsoft Exchange Outage",
+      "publisher": "Old Dominion University",
+      "url": "https://www.odu.edu/article/microsoft-exchange-outage",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Is Outlook down? Widespread outage hits Microsoft apps",
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/6376045281feb430c0b923e3a4b251c2",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Claude Status",
+      "publisher": "Anthropic",
+      "url": "https://status.claude.com/",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "hook": "Your assistant can answer while its inbox connection fails.",
+    "voiceover": "[matter-of-fact] Your assistant can answer while its inbox connection fails. Two assistant providers reported broken Microsoft connections. [measured] Claude and ChatGPT tool failures mean a generated answer does not confirm delivery.",
+    "short": "Microsoft's outage disrupted Claude and ChatGPT connectors. Anthropic's 20:28 UTC update included Claude for Outlook. A working model does not confirm that a mail or calendar action completed.",
+    "long": "Microsoft 365 failures reached Claude and ChatGPT on November 12. Anthropic's 20:28 UTC update described failed mail, calendar and search requests, plus problems opening Claude for Outlook. Its API and Claude Code were separately listed as operational.\n\nThat split matters for automated work. The model's answer, the connector's result and the destination's confirmation are different signals. The notices did not establish the outcome of every interrupted action, so replaying a send without inspecting the destination can create a second problem.",
+    "take": "We separate delivery confirmation from model completion. Inspecting the destination before replaying interrupted actions limits duplicate work.",
+    "keyFacts": [
+      "Claude incident opened at 17:52 UTC",
+      "20:28 UTC update included Claude for Outlook",
+      "2 assistant providers reported connector failures"
+    ],
+    "hashtags": [
+      "Microsoft365",
+      "AIAgents",
+      "CloudReliability"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
