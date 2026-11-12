@@ -1,0 +1,140 @@
+{
+  "format": 2,
+  "slug": "gemini-decisions-fixed-choice-api",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google opens Gemini Decisions API for fixed-choice judgments",
+  "dek": "Gemini Decision 1 returns scores instead of generated answers, with input-only billing and developer-defined choices that still need an escape route.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-12T03:22:07Z",
+  "lede": "Google introduced the Gemini Decisions API on November 11, giving developers a model that scores supplied choices instead of writing answers. Gemini Decision 1 puts classification and routing behind a dedicated endpoint, separating those jobs from open-ended text generation.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "gemini-decision-1"
+    },
+    {
+      "label": "Question types",
+      "value": "3: binary, choice and ordered rubric"
+    },
+    {
+      "label": "Input price",
+      "value": "$0.10 per million tokens"
+    },
+    {
+      "label": "Output tokens",
+      "value": "0"
+    },
+    {
+      "label": "Questions per request",
+      "value": "Up to 1,000"
+    },
+    {
+      "label": "Context limit",
+      "value": "256K tokens"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A smaller job than a chat model",
+      "text": "The launch covers text, images, audio, video and PDFs in a shared input. Google reports 150–250 milliseconds of end-to-end latency for contexts up to 16K tokens. Its reported latency remains nearly flat between one and 100 questions. That measured range is narrower than the maximum context and question counts. Google describes uses inside Gemini Notebook, Stitch and Search, making this a component for deciding what happens next within a larger application."
+    },
+    {
+      "heading": "The application owns the branches",
+      "text": "The API documentation separates three operations: a binary judgment, a selection from named alternatives and a score over ordered levels. Questions evaluate independently against the same input. One answer cannot silently become another question’s evidence within that call. The application combines the results afterward. For a routing system, that means a scope check and a destination check can remain separate. A result supplies an option and probabilities, leaving ordinary program logic to determine which action follows."
+    },
+    {
+      "heading": "Billing rewards shared inputs",
+      "text": "Google’s price table charges the common input once per request. Each question still contributes its own instructions, criteria and formatting tokens. One million billed input tokens therefore costs ten cents; ten million costs one dollar. Those calculations exclude any later model call or action that the decision triggers. There is no output-token bill, while context caching and the Batch API are unavailable for this model. A free tier is listed alongside paid access. The table distinguishes their data use: free-tier content may improve Google’s products, while paid-tier content does not."
+    },
+    {
+      "heading": "Structured answers solve a different problem",
+      "text": "OpenAI’s August 2024 Structured Outputs release addressed a neighboring problem: making generated responses follow a developer’s JSON Schema. It uses constrained decoding, restricting which tokens can be emitted as the response is written. Its original explanation also distinguishes schema compliance from correctness inside the values. The comparison is architectural, not a speed contest between current models. A valid response format helps software consume an answer. A fixed-choice scoring interface gives software a different contract, centered on candidate alternatives and their probabilities."
+    },
+    {
+      "heading": "The remaining work moves into evaluation",
+      "text": "The practical consequence is a narrower unit to test. A team can measure its router separately from the model that eventually answers the customer. That separation makes a mistaken destination visible before it becomes mixed with the quality of a generated reply. It also makes the downstream action an explicit application decision, rather than something inferred from prose. A routing failure and a poor answer then become different defects with different owners and remedies."
+    }
+  ],
+  "buildersNote": "Start with 100 labeled routing cases, including requests outside every named category. Compare wrong automatic routes and review volume at two confidence thresholds before enabling actions.",
+  "claims": [
+    {
+      "text": "Google documents a dedicated Decisions API returning probabilities without generated text tokens.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "The published price is $0.10 per million input tokens, with shared input billed once per request.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Google reports 150–250 ms end-to-end latency for tested contexts up to 16K tokens; this is not an independent production guarantee.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Choice probabilities are assigned even when no option fits. Google recommends setting confidence thresholds using labeled traffic.",
+      "status": "confirmed",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Decisions API",
+      "publisher": "Google AI Studio",
+      "url": "https://aistudio.google.com/docs/decisions-api",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Gemini Developer API pricing",
+      "publisher": "Google AI Studio",
+      "url": "https://aistudio.google.com/docs/pricing#gemini-decision",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Introducing Structured Outputs in the API",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-structured-outputs-in-the-api/",
+      "date": "2024-08-06"
+    },
+    {
+      "title": "Release notes",
+      "publisher": "Google AI Studio",
+      "url": "https://aistudio.google.com/docs/changelog#11-11-2026",
+      "date": "2026-11-11"
+    }
+  ],
+  "social": {
+    "hook": "A model can choose without writing an answer.",
+    "voiceover": "[matter-of-fact] A model can choose without writing an answer. Google’s new decision model scores supplied options, with zero output tokens billed. Your application still decides when a result is safe to use.",
+    "short": "Google opened the Gemini Decisions API for fixed-choice judgments. Gemini Decision 1 handles up to 1,000 questions per request; developers still define the options and what happens afterward.",
+    "long": "Google introduced input-only billing for Gemini Decision 1 at $0.10 per million tokens. The shared input is charged once, while each question adds its own instructions and criteria. There is no output-token charge.\n\nThe engineering change is a dedicated scoring step before the rest of an application runs. Separate evaluation can show whether a bad result came from routing or from the model answering afterward. Production reliability still needs testing on the traffic that actually reaches that application.",
+    "take": "We would test this as a small routing component before expanding its authority. Faster scoring is useful when the application keeps a clear path for uncertain cases.",
+    "keyFacts": [
+      "November 11: Gemini Decisions API announced",
+      "Up to 1,000 independent questions per request",
+      "$0.10 per million input tokens; zero output tokens",
+      "256K-token maximum context"
+    ],
+    "hashtags": [
+      "Gemini",
+      "AIAgents",
+      "ModelRouting",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
