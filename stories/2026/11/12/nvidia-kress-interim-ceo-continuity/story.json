@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "nvidia-kress-interim-ceo-continuity",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "NVIDIA names Kress interim CEO as Huang resigns",
+  "titleAccent": "names Kress interim CEO",
+  "dek": "The leadership change leaves a November 17 earnings date and announced cloud deployments as concrete checkpoints for customers assessing continuity.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-12T18:34:14Z",
+  "lede": "NVIDIA appointed Colette Kress interim chief executive on November 12 after Jensen Huang resigned as president, CEO and director. The change puts an existing executive in charge of a supplier whose hardware supports deployed AI services.",
+  "facts": [
+    {
+      "label": "Interim leadership",
+      "value": "Colette Kress; also remains CFO"
+    },
+    {
+      "label": "Board chair",
+      "value": "Harvey C. Jones"
+    },
+    {
+      "label": "Next results",
+      "value": "November 17, fiscal Q3 2027"
+    },
+    {
+      "label": "Last reported quarter",
+      "value": "$96.2 billion revenue; ended July 26"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An interim appointment and a separate search",
+      "text": "The board will consider internal and external candidates for the permanent role. Jones becomes its first chair. The board expects uninterrupted operations and product delivery. Kress joined NVIDIA as finance chief in September 2013, following roles at Cisco and Microsoft. She retains that finance role during the interim appointment."
+    },
+    {
+      "heading": "The reporting calendar stays in place",
+      "text": "NVIDIA's October 28 notice scheduled results for November 17, with the quarter having ended on October 25. The release is due at roughly 1:20 p.m. Pacific, followed by a webcast at 2 p.m. Written commentary from Kress accompanies the numbers. The event includes prepared remarks and questions from analysts and institutional investors; the public can listen through the webcast. A recording remains available until the following quarterly earnings call. The written commentary and replay give customers outside the live call's time zone access to the same operating update, with figures tied to a completed quarter."
+    },
+    {
+      "heading": "A large installed business enters the transition",
+      "text": "The August 26 earnings release reported $96.2 billion in quarterly revenue, including $89.0 billion from Data Center. That quarter ended July 26. NVIDIA then forecast $108 billion, plus or minus two percent, for the following quarter. Its outlook assumed no Data Center compute revenue from China. These figures describe the last reported quarter and the outlook issued in August, keeping the accounting periods distinct from today's management change. The same release said Vera Rubin was entering full production, with racks at partners including CoreWeave, Google Cloud, Microsoft Azure, Oracle Cloud Infrastructure and Nebius. This is the operating background to the transition: products and partner deployments already described before the leadership announcement."
+    },
+    {
+      "heading": "Cloud commitments have their own delivery milestones",
+      "text": "Oracle's October 27 announcement put Vera Rubin NVL72 and Vera CPUs into general availability on its cloud. An NVL72 rack connects 72 GPUs. The partners also outlined a multi-gigawatt expansion and an eight-GPU HGX Rubin NVL8 option. The announcement therefore combines an available service with subsequent expansion plans. Oracle describes Kubernetes support that lets CPU and GPU resources scale separately, giving application operators a deployment choice beneath the larger partnership. Its future-product disclaimer treats timing and features as subject to change. For a team running an AI service, the relevant continuity question has several concrete parts: capacity already rented, software already deployed, and hardware promised for a later date. Those commitments sit at different points in a customer's release schedule. Oracle also describes CUDA as a shared software foundation across NVIDIA generations, connecting the new hardware announcement with applications already using that programming environment."
+    }
+  ],
+  "buildersNote": "Before your next capacity renewal, list 3 dependencies: deployed GPUs, reserved future capacity and CUDA-specific software. Compare each delivery date and support commitment with your cloud provider's contract; a corporate continuity statement is not a replacement for those terms.",
+  "claims": [
+    {
+      "text": "NVIDIA announced Kress's interim appointment and Huang's resignation effective immediately.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The board expects uninterrupted operations and roadmap execution; delivery performance remains to be demonstrated.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The $108 billion figure is August guidance, not a new forecast or a reported third-quarter result.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Oracle announced general availability separately from planned multi-gigawatt expansion.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "NVIDIA Announces CEO Transition",
+      "publisher": "NVIDIA",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "NVIDIA Sets Conference Call for Third-Quarter Financial Results",
+      "publisher": "NVIDIA",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx",
+      "date": "2026-10-28"
+    },
+    {
+      "title": "NVIDIA Announces Financial Results for Second Quarter Fiscal 2027",
+      "publisher": "NVIDIA",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/",
+      "date": "2026-08-26"
+    },
+    {
+      "title": "NVIDIA and Oracle Expand NVIDIA Vera Rubin to Multi-Gigawatt Scale and Bring NVIDIA Vera CPU to Oracle Cloud Infrastructure",
+      "publisher": "Oracle",
+      "url": "https://www.oracle.com/news/announcement/ai-world-nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-2026-10-27/",
+      "date": "2026-10-27"
+    }
+  ],
+  "social": {
+    "hook": "Your supplier's leadership changed. Delivery still matters.",
+    "voiceover": "[measured] Your supplier's leadership changed. Delivery still matters. NVIDIA named an interim chief executive. Its next earnings report is scheduled November seventeenth. [calm] Customers still need capacity dates and support commitments they can check.",
+    "short": "NVIDIA named Kress interim CEO after Huang resigned. Its November 17 earnings date remains in place. The board's continuity pledge still needs to hold in delivery.",
+    "long": "NVIDIA put its finance chief in interim control on November 12. The next scheduled operating checkpoint is its November 17 earnings report, covering the quarter that ended October 25.\n\nFor builders, existing deployments and future capacity are different dependencies. Oracle announced Vera Rubin availability in October alongside expansion plans. Contracted delivery dates remain the practical test of the board's continuity pledge.",
+    "take": "We would keep operating decisions tied to contracted capacity and support, then compare November's results with the earlier outlook before changing a deployment plan.",
+    "keyFacts": [
+      "Fiscal Q3 ended October 25, 2026",
+      "Results webcast: November 17 at 2 p.m. Pacific",
+      "Prior-quarter revenue reported at $96.2 billion"
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "AIInfrastructure",
+      "CloudComputing"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
