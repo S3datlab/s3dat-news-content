@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "AGENTS TEST",
+    "AWS LOCALLY"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "AWS",
+      "icon": "aws"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 121212,
+  "sources": {}
+}

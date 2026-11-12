@@ -1,0 +1,137 @@
+{
+  "format": 2,
+  "slug": "aws-emulator-local-agent-tests",
+  "kind": "story",
+  "topic": "agents",
+  "title": "AWS gives coding agents a local cloud test environment",
+  "titleAccent": "local cloud test environment",
+  "dek": "AWS Emulator runs cloud API tests locally, with public fidelity checks and agent-written code. A passing local test does not establish production security.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-12T12:27:55Z",
+  "lede": "AWS launched AWS Emulator on November 11, giving developers and coding agents a local target for testing applications that use its cloud APIs. The release moves part of the build-and-check cycle onto a developer’s machine, before deployment creates real cloud resources.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "11 November 2026"
+    },
+    {
+      "label": "Service fee",
+      "value": "No additional AWS service fee"
+    },
+    {
+      "label": "Local endpoint",
+      "value": "HTTPS on port 9297 by default"
+    },
+    {
+      "label": "Source license",
+      "value": "CC0, with separately licensed vendor code"
+    },
+    {
+      "label": "Testing scope",
+      "value": "Application behavior, not production security"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The application talks to a local substitute",
+      "text": "The public repository describes a program that accepts AWS API calls on a laptop, development server or continuous-integration machine. It has no graphical interface and does not require an AWS account. Developers redirect an existing SDK or command-line client through environment variables while retaining their application code. Requests then address emulated resources. Linux packages provide the normal installation route; Windows and macOS use a container built from the documented Dockerfile. There is also an embedded Rust mode that runs inside a test process, with a separate instance for each test."
+    },
+    {
+      "heading": "Feedback has to include the awkward cases",
+      "text": "In an accompanying post, AWS technology chief Matt Wood describes a hypothetical order-processing application. A duplicate order reaches a queue, and a database correctly rejects a second write. The application nevertheless treats that rejection as temporary, leaving the message to return again. This is an illustrative test case, not a reported customer incident. A fixed mock response can cover such a case when someone anticipates it. A stateful emulator instead lets successive requests change the environment. That gives a coding agent something concrete to inspect when its assumptions produce the wrong result. The feedback concerns execution, beyond the generated code’s explanation."
+    },
+    {
+      "heading": "Agents also built the test target",
+      "text": "Amazon’s engineering account says agents wrote the emulator’s code without humans writing or reviewing those changes. Humans designed the surrounding process. Separate agent teams produced tests, found discrepancies and implemented fixes. The workflow compared behavior with real AWS, then put changes through compilation, security and regression checks before publication. The important distinction is between generating code and deciding what counts as correct. Here, the reference system supplied an external answer. Amazon describes thousands of agents and tens of thousands of fidelity tests; those are company-reported quantities, not an independent audit of the development process."
+    },
+    {
+      "heading": "Coverage is a release-level measurement",
+      "text": "AWS publishes fidelity results as passed tests out of attempted tests for each service. Its launch explanation says the checks compare responses and the resources created by a workflow, including the state left by successive operations. Adding tests can lower a score even when the implementation improves. An unimplemented operation returns HTTP 501. This makes the denominator and emulator version important to interpreting a result: a service name in the supported interface set is not a measurement of every application path. The public evaluation suite also exposes failing cases, giving developers a way to inspect the boundary behind a headline coverage claim."
+    },
+    {
+      "heading": "Local infrastructure still has operating costs",
+      "text": "The repository warns that compiling the whole source tree needs at least 100 GB of free disk space. Embedded mode brings that compilation work into the test binary’s first build, while prebuilt packages avoid that route. Usage telemetry is enabled by default and has documented opt-out controls. These details change the practical comparison with remote testing. The emulator removes service charges for emulated operations, but a team still supplies a machine, build storage and a maintained test setup. Its value is a shorter feedback path for specific application behavior. Infrastructure work remains part of the arrangement."
+    }
+  ],
+  "buildersNote": "Start with 1 existing integration test and compare it against both a pinned emulator release and an isolated AWS account. Keep real credentials out of the local test environment; retain AWS-side authorization tests before production.",
+  "claims": [
+    {
+      "text": "AWS released a local emulator with Linux packages, Docker instructions and a public source repository on November 11",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Amazon says agents wrote and reviewed the emulator code within a human-designed testing and release process",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "AWS says IAM and resource-policy enforcement is not equivalent to AWS; each emulator has one account and lacks cross-account and cross-Region behavior",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Independent evidence that this release matches a particular production application's full behavior is not established",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Test your applications against AWS locally with AWS Emulator",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/blogs/aws/test-your-applications-against-aws-locally-with-aws-emulator/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Better feedback for building with agents",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/blogs/aws-insights/better-feedback-for-building-with-agents/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "How we built the agents that built AWS Emulator",
+      "publisher": "Amazon",
+      "url": "https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "AWS Emulator README",
+      "publisher": "AWS",
+      "url": "https://github.com/aws/aws-emulator",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "AWS Emulator is now available for building and testing AWS applications locally",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-emulator-now-available/",
+      "date": "2026-11-11"
+    }
+  ],
+  "social": {
+    "hook": "Your cloud tests can start on your laptop.",
+    "voiceover": "[measured] Your cloud tests can start on your laptop. Amazon released a local emulator for coding agents, with zero additional service fees. Production security still needs separate checks on real infrastructure.",
+    "short": "AWS released Emulator for local cloud API tests, with no additional service fee. Coding agents can check application behavior before deployment; a local pass does not prove production security.",
+    "long": "Amazon launched AWS Emulator to let developers and coding agents test cloud interactions on their own machines. The public source repository lists a practical tradeoff: a full source build needs at least 100 GB of free disk. Prebuilt Linux packages offer another route.\n\nThe emulator accepts familiar SDK calls instead of asking teams to rewrite applications for a test harness. Its usefulness depends on the particular operations a project needs, not simply the number of service interfaces it exposes.\n\nAWS publishes versioned fidelity results and known gaps. Local testing can shorten the feedback cycle, while production authorization still needs checks against AWS itself.",
+    "take": "We put reproducible application failures ahead of agent authorship. A local test target earns trust one verified workflow at a time.",
+    "keyFacts": [
+      "AWS Emulator launched on 11 November",
+      "Default local HTTPS endpoint uses port 9297",
+      "Full source build needs at least 100 GB free disk",
+      "Each emulator operates as 1 account"
+    ],
+    "hashtags": [
+      "AWSEmulator",
+      "CodingAgents",
+      "SoftwareTesting",
+      "AWS"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
