@@ -10,11 +10,14 @@
   "brands": [
     {
       "name": "Salesforce",
-      "icon": "salesforce"
+      "logo": "salesforce.svg",
+      "color": "#00A1E0"
     }
   ],
   "cutouts": [],
   "mood": "calm",
   "seed": 121101,
-  "sources": {}
+  "sources": {
+    "salesforce.svg": "https://raw.githubusercontent.com/simple-icons/simple-icons/14.0.0/icons/salesforce.svg"
+  }
 }
