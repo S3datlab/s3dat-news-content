@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "chatgpt-legacy-voice-retirement",
+  "kind": "story",
+  "topic": "apps",
+  "title": "OpenAI sets December 11 cutoff for two ChatGPT voice modes",
+  "titleAccent": "December 11 cutoff",
+  "dek": "Advanced and Standard Voice leave ChatGPT's model picker next month, while video and screen sharing keep a separate transition path.",
+  "eventDate": "2026-11-10",
+  "publishedAt": "2026-11-12T09:27:07Z",
+  "lede": "OpenAI announced on November 10 that ChatGPT will retire Advanced and Standard Voice on December 11. People using either mode will move to GPT-Live, while live video and screen sharing remain on Advanced Voice until its replacement supports them.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "10 November 2026"
+    },
+    {
+      "label": "Picker cutoff",
+      "value": "11 December 2026"
+    },
+    {
+      "label": "Replacement",
+      "value": "GPT-Live"
+    },
+    {
+      "label": "Saved conversations",
+      "value": "Remain in ChatGPT history"
+    },
+    {
+      "label": "Video and screen sharing",
+      "value": "Advanced Voice continues until GPT-Live supports them"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A selector changes before every feature moves",
+      "text": "The retirement notice separates the model choice from the content people have already created. Existing conversations stay in history and can continue in text or voice. During the transition, users can still select the older modes. Once the deadline arrives, Settings > Voice will stop offering them and previous selections will default to Live. This makes the cutoff a change in how the next conversation runs, rather than a deletion of earlier conversations. The explicit exception for visual input also matters: removing a selectable voice mode does not mean every feature using that model ends simultaneously."
+    },
+    {
+      "heading": "Conversation timing is part of the replacement",
+      "text": "GPT-Live arrived on July 8 with a different interaction design. OpenAI describes a full-duplex system that listens while producing speech, deciding repeatedly whether to speak, pause or use a tool. Standard Voice instead passed a turn through transcription, a text model and speech generation. Advanced Voice handled audio directly within a model, while retaining separate speaking turns. The difference affects pauses and interruptions, not only the sound of a voice. GPT-Live also separates conversation from heavier work: another model can search or reason in the background while the spoken exchange continues. That division lets the conversational layer remain responsive during a longer task."
+    },
+    {
+      "heading": "The adoption argument has limits",
+      "text": "OpenAI's November 10 release notes say voice usage has nearly doubled since GPT-Live launched and that virtually all voice users now use it. The company presents consolidation as a way to focus development on one experience. It identifies response depth, continuity and personalization as areas it is improving. Those are different measures from the amount of use. More usage describes adoption; it does not, by itself, establish that every established workflow transfers intact. For a person who dictates a long thought or pauses frequently, the timing of a reply can be as important as its factual content."
+    },
+    {
+      "heading": "API builders have a separate calendar",
+      "text": "Developers embedding audio in their own software face a different set of dates. OpenAI's July 20 API notice schedules legacy audio and realtime families for removal on January 20, 2027. Its table maps older realtime models to gpt-realtime-2.1 and older audio models to gpt-audio-1.5, with separate replacements for smaller variants. That is an endpoint migration inside an application, not a choice in ChatGPT's settings. A team using both products therefore has two distinct inventories: the ChatGPT experiences its staff rely on and the model identifiers its code actually calls."
+    }
+  ],
+  "buildersNote": "Before December 11, compare three recurring voice tasks in GPT-Live: a long pause, an interruption and a search request. Record lost context and unwanted interruptions separately. For your own app, match each audio model identifier to the API deprecation table instead of applying ChatGPT's date.",
+  "claims": [
+    {
+      "text": "Advanced and Standard Voice leave ChatGPT's model picker on December 11; existing chats remain.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Live video and screen sharing stay on Advanced Voice until GPT-Live supports them.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Voice usage has nearly doubled since GPT-Live launched, according to OpenAI; the release notes provide no comparable satisfaction breakdown.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "OpenAI has not given a migration date for GPT-Live video and screen sharing in this notice.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Retiring Advanced and Standard Voice in ChatGPT",
+      "publisher": "OpenAI",
+      "url": "https://help.openai.com/en/articles/20001638-retiring-advanced-and-standard-voice-in-chatgpt",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "ChatGPT release notes",
+      "publisher": "OpenAI",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "date": "2026-11-10"
+    },
+    {
+      "title": "Introducing GPT-Live",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-gpt-live/",
+      "date": "2026-07-08"
+    },
+    {
+      "title": "Deprecations",
+      "publisher": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "date": "2026-07-20"
+    }
+  ],
+  "social": {
+    "hook": "Your familiar voice mode has a cutoff date.",
+    "voiceover": "[matter-of-fact] Your familiar voice mode has a cutoff date. OpenAI retires two ChatGPT voice modes on December eleventh. Video and screen sharing stay on Advanced Voice until Live supports them.",
+    "short": "OpenAI set December 11 as the cutoff for Advanced and Standard Voice in ChatGPT. Video and screen sharing keep using Advanced Voice until GPT-Live supports them.",
+    "long": "OpenAI set a December 11 retirement date for ChatGPT's two older voice modes. The consumer change and the API transition run on separate calendars.\n\nGPT-Live can listen while speaking and delegate heavier work to another model. That changes the timing of interruptions and pauses, not simply the sound.\n\nOpenAI's July 20 API notice gives legacy audio and realtime families a January 20, 2027 deadline. Its replacement table distinguishes realtime, audio and smaller variants. A team using ChatGPT alongside its own voice application needs to check both the staff experience and the identifiers in its code.",
+    "take": "We would judge this transition on interruption handling and retained context, not adoption totals. A voice that talks more naturally still has to let someone finish a thought.",
+    "keyFacts": [
+      "ChatGPT cutoff: 11 December 2026",
+      "GPT-Live launch: 8 July 2026",
+      "Legacy API audio deadline: 20 January 2027"
+    ],
+    "hashtags": [
+      "ChatGPT",
+      "GPTLive",
+      "VoiceAI",
+      "ConversationalAI"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}

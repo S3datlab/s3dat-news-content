@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "TWO VOICE MODES",
+    "END DEC 11"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 121209,
+  "sources": {}
+}
