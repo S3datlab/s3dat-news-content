@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "anthropic-agent-messages-before-checkout",
+  "kind": "explained",
+  "topic": "agents",
+  "title": "Anthropic explains why agent messages miss the checkout",
+  "titleAccent": "messages miss the checkout",
+  "dek": "A new Anthropic write-up revisits tests where agents sent requests that never reached the final decision. Reading a message and delivering it are different events.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-12T15:30:03Z",
+  "lede": "Anthropic published a November 11 account of experiments showing how agents serving different users can lose requests before completing shared tasks. The underlying paper dates to September 30; the practical question is what a platform checks before an agent commits an order.",
+  "facts": [
+    {
+      "label": "New write-up",
+      "value": "11 November 2026"
+    },
+    {
+      "label": "Original paper",
+      "value": "30 September 2026"
+    },
+    {
+      "label": "Benchmark",
+      "value": "MAMUBench: 74 scenarios across 3 environments"
+    },
+    {
+      "label": "Study scope",
+      "value": "77 scenarios across 4 simulated environments"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What changes when each user has an agent?",
+      "text": "The study separates two arrangements that can look similar in a product demonstration. A coordinator receives requests from every user and controls the shared task. A peer team gives each person a separate agent, its own context and a way to message the others. Both arrangements can use the same underlying model. The difference is where information lives when an action becomes final. Researchers tested limited compute budgets, appointment calendars, shared orders and a software release queue. These environments force tradeoffs because the available resource cannot satisfy every request independently."
+    },
+    {
+      "heading": "How can a delivered request still be missing?",
+      "text": "Consider the study’s shared food cart: one user asks for a side dish while other agents edit the same order. Sending that preference to the agent completing checkout does not guarantee it enters that agent’s context before checkout happens. Across the personal-assistant scenarios and four tested models, the request was sent in 94–99% of committed team episodes. It was actually in the committing agent’s context in only 47–67%. The paper reports that teams honored requests more often when they were in context. This distinction explains why a message-delivery log alone cannot establish that a decision incorporated someone’s instruction."
+    },
+    {
+      "heading": "Does assigning a team leader fix it?",
+      "text": "The researchers reran previously failed Claude team episodes with different interventions. Restricting checkout to one designated leader performed roughly like repeating the original setup. A different intervention changed the platform itself: checkout was blocked until the committing agent had read every pending direct message. That guard recovered 73.1% of failed Opus 5 episodes and 62.3% of failed Sonnet 5 episodes. These percentages describe recovery within selected failed episodes, not success across a fresh test population. The paper presents the comparison as evidence that premature checkout contributed to these failures."
+    },
+    {
+      "heading": "What does a reproducible check include?",
+      "text": "The public MAMUBench repository contains 74 scenarios covering compute budgets, clinic calendars and personal assistants. Its separate merge-queue environment brings the paper’s total to 77. Runs can select a model, formation, scenario and episode count. The repository also exposes reports and checks against the paper’s results, allowing the coordinator and peer configurations to be compared on the same task. Food orders use a simulated integration and never call a real delivery service. This is a controlled test of coordination, not a record of customers receiving the wrong meal."
+    },
+    {
+      "heading": "Where does this result stop?",
+      "text": "The tested models include Claude Opus 5 and Sonnet 5, GPT-5.6 variants and Qwen3.8-max, with coverage varying by environment. The study measures particular tasks and interventions rather than a general ranking of current assistants. Its outcome scores come from environment logs. Separate consent and fabrication labels use model judges without human validation. The authors also describe substantial evaluation costs: running every formation serially takes about 370 hours in their setup. That makes a small, repeatable test of a specific commitment boundary more practical than treating a broad agent benchmark as a quick certification."
+    }
+  ],
+  "buildersNote": "Start with 1 shared-cart test and log three timestamps separately: message sent, message read and checkout committed. Compare a coordinator with a peer team, then repeat with checkout blocked while messages remain unread.",
+  "claims": [
+    {
+      "text": "Anthropic published its account of the experiments on November 11",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The underlying paper was submitted September 30 and documents simulated tests",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The researchers report 73.1% and 62.3% recovery with the unread-message checkout guard on failed Claude episodes",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The results do not establish real-world incident rates or performance for newer model versions",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Worse Together: How Performance Breaks Down in Multi-User Multi-Agent Teams",
+      "publisher": "Anthropic",
+      "url": "https://alignment.anthropic.com/2026/worse-together/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "Worse Together: How Performance Breaks Down in Multi-User Multi-Agent Teams",
+      "publisher": "Paliskara, Namchittai and Lampinen",
+      "url": "https://arxiv.org/abs/2610.00583",
+      "date": "2026-09-30"
+    },
+    {
+      "title": "MAMUBench",
+      "publisher": "safety-research",
+      "url": "https://github.com/safety-research/MAMUBench",
+      "date": "2026-10-09"
+    }
+  ],
+  "social": {
+    "hook": "A delivered message can still miss checkout.",
+    "voiceover": "[measured] A delivered message can still miss checkout. Anthropic describes simulated agent teams acting before reading requests. A checkout guard recovered seventy-three percent of previously failed Opus five episodes, according to the researchers.",
+    "short": "Anthropic examined agent teams handling shared orders. Requests reached the final agent in 94–99% of committed test episodes, yet often missed its context before checkout. These were simulations.",
+    "long": "Anthropic explained how shared agent tasks can finish before every request is read. Its November write-up draws on a September study covering four simulated environments, including group orders and bookings.\n\nThe useful distinction is between delivering a message and putting it in the context of the agent that commits the action. Assigning a checkout leader did little in failed-episode reruns. A platform guard requiring pending messages to be read recovered 73.1% of failed Opus 5 episodes.\n\nThat is a recovery result from selected failures, not a production success rate. The experiment gives builders a concrete boundary to test: what the acting agent has actually read before the order becomes final.",
+    "take": "We would measure message reading at the commitment boundary. Delivery receipts alone do not show that an agent used a request.",
+    "keyFacts": [
+      "New Anthropic write-up: 11 November",
+      "Underlying paper: 30 September",
+      "MAMUBench contains 74 scenarios",
+      "Checkout-guard recovery: 73.1% for failed Opus 5 episodes"
+    ],
+    "hashtags": [
+      "Anthropic",
+      "AIAgents",
+      "MultiAgentSystems",
+      "AgentSafety"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
