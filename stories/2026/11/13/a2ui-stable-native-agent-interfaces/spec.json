@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "A2UI 1.0",
+    "GOES STABLE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-tile.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "bg": "white",
+  "seed": 113124,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-tile.webp": "generated"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "a2ui-stable-native-agent-interfaces",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google makes A2UI 1.0 stable for native agent interfaces",
+  "titleAccent": "A2UI 1.0 stable",
+  "dek": "The interface protocol adds two-way function calls and mixed component catalogs, while Android and Gemini Enterprise retain version-specific rollout limits.",
+  "eventDate": "2026-11-11",
+  "publishedAt": "2026-11-13T12:46:21Z",
+  "lede": "Google released A2UI 1.0 on November 11, making its protocol for agent-generated interfaces stable. The release lets developers replace some conversational back-and-forth with native forms and controls drawn from their own component libraries.",
+  "facts": [
+    {
+      "label": "Protocol",
+      "value": "A2UI 1.0"
+    },
+    {
+      "label": "Announced",
+      "value": "11 November 2026"
+    },
+    {
+      "label": "New interaction",
+      "value": "Function calls in both directions"
+    },
+    {
+      "label": "Compose renderer",
+      "value": "0.9.1 today; 1.0 planned"
+    },
+    {
+      "label": "License",
+      "value": "Apache 2.0"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The model describes; the app draws",
+      "text": "A2UI sends an interface description as structured data. The application maps that description onto components it already knows, rather than executing arbitrary model-written interface code. Its repository describes three separate stages: model inference, validated transport messages and rendering. A core library holds the interface and data representation; a framework adapter turns that representation into native widgets. The component catalog determines which widgets are available. That division gives product teams a specific boundary to control: a model can assemble approved controls without owning the implementation of those controls. The project supports language models and decision models as producers of the interface description."
+    },
+    {
+      "heading": "Calls can travel in both directions",
+      "text": "The 1.0 evolution guide adds explicit messages for an agent calling a renderer function and for a renderer calling an agent function. Each direction has a corresponding response carrying a result or error. Catalog definitions identify permitted callers, which the runtime checks before execution. Multiple component catalogs can now contribute to one surface, provided they use the same protocol version. A component can identify its own catalog or inherit the surface default. If neither exists, resolution fails instead of silently selecting a catalog advertised elsewhere. These rules make the source of a control part of the interface contract."
+    },
+    {
+      "heading": "A stable protocol is not a simultaneous rollout",
+      "text": "Google lists web renderers for React, Angular and Lit, alongside Flutter and SwiftUI options. Its launch announcement separately places Jetpack Compose and Gemini Enterprise on 0.9.1, with upgrades to 1.0 still ahead. That distinction matters for a product shipping the same workflow across devices. The protocol can be stable while a particular host still needs an older message format. Google also describes A2UI cards in Jira and Gemini Notebook. Those examples concern interfaces that gather missing details or confirm choices, bringing structured interaction into an agent conversation."
+    },
+    {
+      "heading": "MCP Apps provide another container",
+      "text": "A2UI can also run inside an MCP App, rather than requiring the host assistant to install an A2UI renderer directly. The integration guide describes a self-contained HTML bundle with its own renderer inside a sandboxed frame. A button press travels through the host to an MCP tool, and the result updates the interface data. This separates the interface protocol from its delivery container. The guide also distinguishes model-visible launch tools from app-visible interaction tools. Its sample still uses older 0.8 messages, while the walkthrough explains newer payloads. The same guide notes that the sandbox blocks ordinary browser storage, so durable state belongs on the server."
+    }
+  ],
+  "buildersNote": "Before moving a 0.9.1 integration to 1.0, test three paths: initial rendering, a permitted function call and a rejected caller. Keep a separate compatibility test for each host that still expects 0.9.1.",
+  "claims": [
+    {
+      "text": "A2UI 1.0 adds agent-to-renderer and renderer-to-agent function calls with runtime caller checks.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Google has not announced dates for the remaining Jetpack Compose and Gemini Enterprise upgrades to A2UI 1.0.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Native rendering delivers low latency and high trust across applications. This is Google\u2019s product claim, not an independently measured result.",
+      "status": "claimed",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "A2UI 1.0: Build delightful, fast, reliable, agentic experiences",
+      "publisher": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/a2ui-10-build-delightful-fast-reliable-agentic-experiences/",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "A2UI Protocol Evolution Guide: v0.9 to v1.0",
+      "publisher": "A2UI project",
+      "url": "https://github.com/a2ui-project/a2ui/blob/24d1bf9c830071f74c9c908433e73cc6cbe0aa33/specification/v1_0/docs/evolution_guide.md",
+      "date": "2026-11-11"
+    },
+    {
+      "title": "A2UI",
+      "publisher": "A2UI project",
+      "url": "https://github.com/a2ui-project/a2ui/blob/da2addd1c31f036028f527f48990d07da4abf9ef/README.md",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Render A2UI Inside an MCP App",
+      "publisher": "A2UI project",
+      "url": "https://a2ui.org/guides/a2ui-in-mcp-apps/",
+      "date": "2026-11-10"
+    }
+  ],
+  "social": {
+    "hook": "Your agent can offer controls instead of another paragraph.",
+    "voiceover": "[matter-of-fact] Your agent can offer controls instead of another paragraph. Google made its interface protocol stable with version one. Apps still decide which components the agent can use. Some hosts need older messages.",
+    "short": "Google made A2UI 1.0 stable, adding function calls in both directions. Agents describe native interfaces using registered components; runtime checks decide which side can call each function.",
+    "long": "Google released a stable interface protocol on November 11. A2UI lets an agent describe forms and controls while the application draws them with its own components. Version 1.0 adds two-way function calls and allows several component catalogs in one surface.\n\nThe repository separates model inference, validated transport and rendering. That gives product teams a defined component catalog to maintain instead of accepting arbitrary interface code from a model. A stable wire format does not remove the work of testing the host application.",
+    "take": "We favor a fixed component catalog over arbitrary generated interface code. It gives the app a concrete place to define what an agent can compose.",
+    "keyFacts": [
+      "A2UI 1.0 announced on 11 November",
+      "Two-way calls added in version 1.0",
+      "Apache 2.0 license for the project"
+    ],
+    "hashtags": [
+      "A2UI",
+      "Google",
+      "AgentInterfaces",
+      "AIAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
