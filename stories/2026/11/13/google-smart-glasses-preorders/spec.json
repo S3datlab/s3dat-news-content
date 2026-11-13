@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "portrait",
+  "headline": [
+    "SMART GLASSES",
+    "FROM $395",
+    "PREORDERS OPEN"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "case.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 1318,
+  "sources": {
+    "hero.webp": "generated",
+    "case.webp": "generated"
+  }
+}

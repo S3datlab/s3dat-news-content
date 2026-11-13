@@ -1,0 +1,126 @@
+{
+  "format": 2,
+  "slug": "google-smart-glasses-preorders",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "Google opens smart-glasses preorders from $395",
+  "titleAccent": "from $395",
+  "dek": "Warby Parker frames bring Gemini to eyewear, with launch access tied to supported phones, eligible accounts and separate rules for camera data and chats.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-13T18:49:35Z",
+  "lede": "Google opened preorders for its intelligent eyewear on November 12, with Warby Parker models starting at $395. The launch puts Gemini into glasses sold through an optical retailer, while phone requirements and data settings remain part of the purchase.",
+  "facts": [
+    {
+      "label": "Warby Parker starting price",
+      "value": "$395"
+    },
+    {
+      "label": "Frame designs",
+      "value": "Alden, Reid and Wren"
+    },
+    {
+      "label": "Google purchase date",
+      "value": "December 10, 2026"
+    },
+    {
+      "label": "Eligible account regions",
+      "value": "United States and South Korea"
+    },
+    {
+      "label": "Minimum account age",
+      "value": "18 years"
+    }
+  ],
+  "body": [
+    {
+      "heading": "An optical-store launch",
+      "text": "Warby Parker is offering three frame designs in optical and sun versions. Its November 12 announcement says deliveries are expected to begin in mid-December. Demonstrations started in more than 60 US stores, with expansion to over 360 locations planned for the following week. That gives prospective buyers a way to check fit and try the interaction before delivery. The company describes frames weighing about 41 grams, with a camera, two open-ear speakers and four microphones. Google separately lists December 10 for in-store and online purchasing. Those dates describe different stages: trying a pair, placing an order and receiving one are not the same event."
+    },
+    {
+      "heading": "The phone still matters",
+      "text": "Google lists compatible Pixel, Samsung Galaxy and iPhone devices rather than treating every smartphone as interchangeable. Its footnotes require an eligible Google account for an adult in the United States or South Korea. Pixel support starts with Pixel 7, with Android 17 and the September 2026 update or later. The iPhone list begins at iPhone 13 Pro. The glasses combine spoken assistance with camera input, giving Gemini a view of what the wearer is asking about. This is a change in where interaction happens, not a removal of the account and phone behind it."
+    },
+    {
+      "heading": "Visual assistance has a history",
+      "text": "Guided Vision is one of the accessibility features Google is bringing to eyewear. It is not a new capability invented for this preorder: Google launched it in Gemini Live on Android on October 1. The earlier release described spoken camera-framing prompts and help reading labels or locating nearby objects. Google said it worked with Aira specialists and more than 1,000 trusted testers to develop the experience. Eyewear changes how the camera is carried, while keeping the conversational pattern of asking about something and hearing a description. The launch materials put Guided Vision and access to Aira on Android at launch."
+    },
+    {
+      "heading": "Camera input and chat history differ",
+      "text": "Google describes two distinct data paths. Visual input sent to Gemini is excluded from Gemini history, model training and advertising use, according to its privacy announcement. Text conversations can be retained in Gemini history, with settings for reviewing, deleting and controlling their use to improve models. A promise about camera frames therefore does not mean every interaction disappears. Google also describes app-specific camera permissions, a physical power switch and face redaction before visual input reaches Gemini. For gallery photos and videos, an outward-facing light signals capture. The company says tamper detection is designed to stop recording when that light is covered."
+    }
+  ],
+  "buildersNote": "Test an eyewear integration on at least two supported phone families before promising parity. Document camera permissions and text-history controls separately; a single privacy toggle description would conceal two different data paths.",
+  "claims": [
+    {
+      "text": "Warby Parker opened preorders on November 12 with models starting at $395.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Google lists December 10 for in-store and online purchasing.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Google says camera visuals are excluded from Gemini history, training and advertising; these protections are company claims, not an independent audit.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "Guided Vision can make mistakes and is not a mobility aid, navigation tool or substitute for established safe-travel practices.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "See our intelligent eyewear lineup and pre-order your pair",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Warby Parker Opens Preorders for First Intelligent Eyewear Collection",
+      "publisher": "Warby Parker / Business Wire",
+      "url": "https://www.businesswire.com/news/home/20261112472878/en/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Designing for privacy on intelligent eyewear",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/safety-security/intelligent-eyewear-privacy-protections/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Guided Vision in Gemini Live: built for accessibility",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/guided-vision-gemini-live/",
+      "date": "2026-10-01"
+    }
+  ],
+  "social": {
+    "priority": 4,
+    "hook": "Your next glasses still depend on your phone.",
+    "voiceover": "[matter-of-fact] Your next glasses still depend on your phone. Google opened smart glasses preorders from three hundred ninety-five dollars. Supported devices and account regions determine who can actually use them.",
+    "short": "Google opened smart-glasses preorders from $395. Warby Parker offers three frame designs; eligible accounts and supported phones still determine access. The preorder is not a promise of support for every phone.",
+    "long": "Warby Parker opened preorders for three smart-glasses designs built with Google and Samsung. Prices start at $395, and the retailer expects deliveries to begin in mid-December.\n\nOne feature has a longer history than the new frames. Google launched Guided Vision on Android on October 1, describing spoken assistance for reading labels and locating nearby objects. Moving the camera onto glasses changes how it is carried. It does not make the system a mobility aid or remove its potential for mistakes.",
+    "take": "We would check phone compatibility before frame color. A wearable assistant is only useful if the account, device and permissions support the features the buyer expects.",
+    "keyFacts": [
+      "Warby Parker models start at $395.",
+      "3 designs: Alden, Reid and Wren.",
+      "Warby Parker expects mid-December deliveries.",
+      "Guided Vision launched on Android on October 1."
+    ],
+    "hashtags": [
+      "Google",
+      "WarbyParker",
+      "SmartGlasses",
+      "WearableComputing"
+    ]
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}
