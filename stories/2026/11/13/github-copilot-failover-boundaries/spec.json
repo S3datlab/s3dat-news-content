@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "COPILOT",
+    "SWITCHING",
+    "HAS LIMITS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "GitHub",
+      "icon": "github"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 131121,
+  "sources": {}
+}

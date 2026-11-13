@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "github-copilot-failover-boundaries",
+  "kind": "explained",
+  "topic": "dev-tools",
+  "title": "GitHub’s outage report shows where Copilot model switching stops",
+  "titleAccent": "model switching stops",
+  "dek": "An October incident illustrates the difference between a model picker and an independent recovery path. Policy and shared dependencies determine which alternatives work.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-13T21:50:56Z",
+  "lede": "GitHub published its October availability report on November 12. Its account of a Copilot credential failure shows why an alternative model is only one part of a recovery path.",
+  "facts": [
+    {
+      "label": "Incident date",
+      "value": "28 Oct 2026"
+    },
+    {
+      "label": "Reported failure rate",
+      "value": "About 1 in 10 affected-model requests"
+    },
+    {
+      "label": "Fusion release",
+      "value": "28 Oct 2026"
+    },
+    {
+      "label": "Routing boundary",
+      "value": "Administrator-enabled models"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What failed in the October incident?",
+      "text": "GitHub says an upstream credential became invalid. The provider then rejected Copilot requests to several GPT-family models, while other models remained available. Automatic selection redirected some traffic. Features tied to one model, including code scanning autofix, suffered more. Recovery required replacing the credential across environments. The October 28 incident was resolved before this report appeared."
+    },
+    {
+      "heading": "What does automatic selection actually choose?",
+      "text": "GitHub’s June 17 description of auto mode made request complexity and current availability inputs to model selection. The eligible pool depended on the subscription and configured policies, and could change over time. Users could inspect which model produced a response and choose a particular model for the next one. That explains the difference between a selection mechanism and a spare service. A router chooses among permitted destinations. Its usefulness depends on those destinations being available and suitable for the particular request."
+    },
+    {
+      "heading": "How does Fusion change the choice?",
+      "text": "GitHub launched Copilot Fusion on October 28, combining automatic selection with multi-model orchestration. Its three effort levels range from Standard to Max. A task can use one model, escalate a draft after a quality check, or send a draft to another model for review. Administrators can restrict Fusion’s choices independently of general model availability. An effort level describes how work is approached. The recovery question concerns which underlying service the work needs and whether another path can complete it."
+    },
+    {
+      "heading": "What would a fallback test need to distinguish?",
+      "text": "Consider a hypothetical coding service with two approved models and one shared credential. A routing test disables the first model and successfully reaches the second. A different test invalidates the credential needed by both. The same successful routing logic now has nowhere usable to send the request. Giving the second destination independent authentication changes that example again. These constructed cases illustrate a dependency problem without describing GitHub’s internal design. They illustrate why counting model names is insufficient: the number of independent working paths depends on the dependencies beneath those names. A successful answer and a successful recovery exercise answer different questions. The first shows that one request worked. The second identifies which failure the alternative could survive."
+    },
+    {
+      "heading": "Why does the eligible model list keep mattering?",
+      "text": "Scheduled retirement changes the list even without an outage. GitHub’s October 15 notice sets November 16 as the retirement date for Claude Opus 5 and GPT-5.6 Terra. It names newer alternatives, including Opus 5.5. Under default enablement, those alternatives become available to Business and Enterprise customers unless administrators have disabled them or the global default. That is a policy condition, not a guarantee inferred from the presence of a model picker. A planned migration and an emergency fallback both depend on the destinations actually allowed for the account."
+    }
+  ],
+  "buildersNote": "Test two failures separately: an unavailable model and rejected authentication. Record the destination selected, whether it completed the task, and the extra calls billed. Review enabled replacements before the November 16 retirement.",
+  "claims": [
+    {
+      "text": "The report attributes the October 28 failures to an invalid upstream credential",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Fusion uses only models enabled by enterprise and organization policy",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The report does not establish that Fusion protects every Copilot feature from every provider failure",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "GitHub availability report: October 2026",
+      "publisher": "GitHub",
+      "url": "https://github.blog/news-insights/company-news/github-availability-report-october-2026/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Route and orchestrate models with GitHub Copilot Fusion",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/",
+      "date": "2026-10-28"
+    },
+    {
+      "title": "Auto mode in Copilot Chat available for all users",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-06-17-auto-mode-in-copilot-chat-available-for-all-users/",
+      "date": "2026-06-17"
+    },
+    {
+      "title": "Upcoming deprecation of selected GitHub Copilot models in mid-November",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-10-15-upcoming-deprecation-of-selected-github-copilot-models-in-mid-november/",
+      "date": "2026-10-15"
+    }
+  ],
+  "social": {
+    "hook": "A second model still needs a working path.",
+    "voiceover": "[measured] A second model still needs a working path. GitHub offers three effort levels in Copilot Fusion. Administrators control which models it can use. A backup needs to survive the dependency that failed.",
+    "short": "GitHub detailed an October 28 Copilot credential failure. Automatic model selection reduced errors, while features tied to one model were hit harder. Switching models has a boundary.",
+    "long": "GitHub combined model selection and orchestration in Fusion on October 28. The system can assign one model or involve several, with administrators controlling its eligible pool. Each model used is charged separately.\n\nThat makes a recovery exercise more specific than changing a name in a picker. The useful test is whether the permitted alternative completes the task when the original dependency fails, and what the additional calls cost.",
+    "keyFacts": [
+      "Incident: October 28, 2026",
+      "Fusion: three effort levels",
+      "Selected model retirements: November 16"
+    ],
+    "take": "We would test the dependency path before calling a second model a backup. An alternative that shares the failed dependency is another name, not another way through.",
+    "hashtags": [
+      "GitHubCopilot",
+      "CodingAgents",
+      "SiteReliability"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
