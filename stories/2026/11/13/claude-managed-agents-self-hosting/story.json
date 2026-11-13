@@ -1,0 +1,135 @@
+{
+  "format": 2,
+  "slug": "claude-managed-agents-self-hosting",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Anthropic brings the Managed Agents service into customer infrastructure",
+  "titleAccent": "customer infrastructure",
+  "dek": "A private beta moves agent operations and history into customer systems while model requests still go to a chosen provider.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-13T03:41:50Z",
+  "lede": "Anthropic launched self-hosted Claude Managed Agents in private beta on November 12. Customers can operate the agent service and retain its history on their own infrastructure, while choosing where model requests go.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "12 November 2026; private beta"
+    },
+    {
+      "label": "Persistent database",
+      "value": "PostgreSQL 16 or later"
+    },
+    {
+      "label": "Customer operates",
+      "value": "Server, database and sandbox workers"
+    },
+    {
+      "label": "Model execution",
+      "value": "Anthropic or a chosen inference provider"
+    },
+    {
+      "label": "Access",
+      "value": "Request through an Anthropic account team"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The service joins the sandbox",
+      "text": "The earlier self-hosted sandbox option moved tool execution into a customer's environment. Anthropic still operated the service coordinating that work. The new option also moves the agent loop, API and session storage. Developers retain the core interface for defining agents and starting sessions. That separates two decisions often bundled together: where software runs commands and who keeps the record of its work. Anthropic positions the release for tasks such as repairing builds, testing releases and handling internal alerts. Customers can deploy in their own cloud account or an on-premise data center."
+    },
+    {
+      "heading": "Local history still feeds model requests",
+      "text": "The data boundary follows the model call. Each request carries the conversation so far, including prompts, tool inputs and tool results, to the selected inference provider. Keeping the database in-house does not by itself keep that request content inside the same network. The default destination is the Claude API. Other configurations can use a cloud provider or a customer's gateway. Anthropic's data documentation says it has no remote access to the customer's server or logs. Logs, monitoring destinations and worker network access are separate parts of the deployment."
+    },
+    {
+      "heading": "An operator inherits the operating work",
+      "text": "A deployment combines the service, persistent storage and workers that execute shell and file operations. PostgreSQL version sixteen or later provides persistence; the in-memory alternative loses its contents when the server restarts. Customers install releases and secure these components themselves. A worker does not create an isolation boundary around a shell command. Its container or virtual machine supplies that boundary, along with the permissions and network reach available to the command."
+    },
+    {
+      "heading": "The same interface has migration gaps",
+      "text": "Moving an application also requires rebuilding its service state. Agents, credentials, skills and history are not copied from the hosted product. The self-hosted version lacks hosted scheduling and webhooks, so existing automation cannot assume those triggers will survive a move. Another compatibility detail affects evidence: an image or document supplied by URL can be accepted without reaching the model. The documented alternative is inline data. These differences make a successful API response a narrower signal than a completed migration. A workload has to retain its inputs and execution path."
+    },
+    {
+      "heading": "Control has a narrower meaning here",
+      "text": "The release gives customers another place to draw their operating boundary. It does not replace the inference service with downloadable Claude weights. Anthropic's announcement describes credential handling outside the sandbox and event records that can feed existing monitoring systems. Those controls address different parts of an agent's work: access to internal services, execution of commands and review afterward. For an organization that already operates isolated infrastructure, the change brings more of that workflow under its own administration. It also adds a server and its update cycle to the systems it owns."
+    }
+  ],
+  "buildersNote": "Before a migration, run one representative session with a tool call and an image input. Compare the resulting event record and model-visible evidence with the hosted version; include PostgreSQL 16+ persistence and worker isolation in the deployment checklist.",
+  "claims": [
+    {
+      "text": "Anthropic announced the self-hosted service on November 12 in private beta.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Model calls still carry conversation and tool content to the chosen inference provider.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "The documented architecture separates credentials and agent execution; its production security depends on the customer's deployment.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "General availability timing and a public self-hosting price were not established by the announcement.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Operate Claude Managed Agents inside your security perimeter",
+      "publisher": "Anthropic",
+      "url": "https://claude.com/fr/resources/articles/self-hosted-claude-managed-agents",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Claude Platform release notes",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Self-hosted Claude Managed Agents",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/managed-agents/self-hosted",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Data and access in self-hosted Claude Managed Agents",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/managed-agents/self-hosted-data-and-access",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Differences from the hosted service",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/managed-agents/self-hosted/differences",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "Local agent history still feeds a model provider.",
+    "voiceover": "[measured] Local agent history still feeds a model provider. Anthropic opened self-hosted Managed Agents in private beta. Customers run the service and database. The chosen provider still receives conversation and tool results.",
+    "short": "Anthropic launched self-hosted Managed Agents in private beta. PostgreSQL 16 or later holds session history; conversation and tool results still go to the chosen model provider.",
+    "long": "Anthropic moved its agent service into customer-operated infrastructure with a November 12 private beta. Teams can keep session history in their own database and choose the provider handling model calls.\n\nThis is a change in operating responsibility, not a local Claude model. The customer runs the server and workers, installs updates and provides isolation. Migration also has gaps: hosted scheduling and webhooks are absent, and existing session history is not copied. General availability remains unspecified.",
+    "take": "We see the useful boundary in who operates the service, not the self-hosted label. Local storage and permission to send content to a model are separate decisions.",
+    "keyFacts": [
+      "Private beta announced November 12",
+      "Persistent storage requires PostgreSQL 16 or later",
+      "3 components to operate: server, database and workers"
+    ],
+    "hashtags": [
+      "Claude",
+      "AIAgents",
+      "SelfHosting",
+      "AgentSecurity"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}

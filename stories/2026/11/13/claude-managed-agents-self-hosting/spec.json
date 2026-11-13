@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "CLAUDE AGENTS",
+    "GO SELF-HOSTED"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 131103,
+  "sources": {}
+}
