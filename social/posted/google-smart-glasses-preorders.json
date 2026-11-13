@@ -7,5 +7,42 @@
         "error": null
       }
     }
+  },
+  "now": {
+    "at": "2026-11-13T19:15:58Z",
+    "results": {
+      "threads:s3datlab": {
+        "id": "6af761f0bb36d00909c17936",
+        "error": null
+      },
+      "pinterest:sustunova": {
+        "id": "6af761fc9257ce3398063844",
+        "error": null
+      },
+      "mastodon:s3dat": {
+        "id": "6af76207bb36d00909c17e77",
+        "error": null
+      },
+      "substack:S3dat": {
+        "id": "6af7620e4b28296eb10ce90a",
+        "error": null
+      },
+      "bluesky:S3dat": {
+        "id": "6af7621981e1228421bade65",
+        "error": null
+      },
+      "facebook:S3dat": {
+        "id": "6af7622578196a0a971585a9",
+        "error": null
+      },
+      "linkedin:S3DAT": {
+        "id": "6af7622d81e1228421baead8",
+        "error": null
+      },
+      "twitter:s3datlab": {
+        "id": "6af762394b28296eb10cfb0d",
+        "error": null
+      }
+    }
   }
 }
