@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "chatgpt-wallet-purchase-boundaries",
+  "kind": "explained",
+  "topic": "apps",
+  "title": "OpenAI separates card access from purchase approval in ChatGPT Wallet",
+  "titleAccent": "purchase approval",
+  "dek": "New Wallet terms separate saving a card, authorizing a purchase and receiving merchant confirmation, with US eligibility and retained transaction records.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-13T15:49:20Z",
+  "lede": "OpenAI set out ChatGPT Wallet purchase and privacy rules in documents effective November 12. They explain where an assistant’s payment authority ends and the merchant’s order responsibility begins.",
+  "facts": [
+    {
+      "label": "Terms effective",
+      "value": "12 Nov 2026"
+    },
+    {
+      "label": "Age requirement",
+      "value": "18 or older"
+    },
+    {
+      "label": "Current product scope",
+      "value": "US Pro users in conversations with a dot"
+    },
+    {
+      "label": "Payment method",
+      "value": "Eligible US-issued cards; no stored purchase balance"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Who can use this payment flow?",
+      "text": "OpenAI’s help page limits Wallet to Pro users talking with a dot. It excludes ordinary Chat, Work and standalone Codex conversations. Supported US-issued cards include eligible American Express, Chase, Mastercard and Visa cards. Chase enrollment requires the primary cardholder. Purchase approval uses biometric verification on a supported device. This puts payment access behind several checks: the account, the conversation surface, the card and the device. A subscription alone does not establish that every checkout will work."
+    },
+    {
+      "heading": "What is different from a ChatGPT balance?",
+      "text": "A saved card funds a merchant purchase through a payment credential. The separate ChatGPT balance holds dollar-denominated funds, including redeemed gift cards, for eligible purchases on OpenAI’s website. Those funds can cover eligible subscription purchases, but not API credits or subscriptions billed by Apple or Google. They remain attached to the account or workspace where they were redeemed. The distinction matters because an available subscription balance does not describe the card payment authority granted to an assistant. These are separate payment products with different destinations."
+    },
+    {
+      "heading": "Does saving a card authorize an order?",
+      "text": "Enrollment and purchase permission are separate. The terms describe approval tied to the merchant, amount, card, recipient and delivery details; material changes require renewed approval. They also allow advance authority, while the help page describes reviewing individual transactions. Consider a hypothetical parcel order approved for one address and price. A later change to either is a change to the purchase being authorized, not merely a revised sentence in the conversation. Issuer authorization and merchant acceptance remain distinct steps after the assistant submits the order."
+    },
+    {
+      "heading": "What information remains after payment?",
+      "text": "According to the privacy notice, the payment provider collects card details through a secure form. OpenAI receives a tokenized credential and limited card information, not the full card number or security code. That does not make the purchase anonymous. Records can include the request, approval or rejection, authentication result, merchant submission and order status. Delivery information can also reach the seller. Removing a saved card does not erase records retained for disputes, fraud prevention or legal obligations. The notice says Wallet data is not sold or shared for targeted advertising."
+    },
+    {
+      "heading": "What does a failed conversation actually prove?",
+      "text": "An assistant error is not a merchant cancellation. OpenAI’s help page tells users to check the order or receipt before repeating checkout. In the parcel example, a stalled conversation could leave the user without a clear result even after submission. A second attempt would be a second payment request, not proof that the first disappeared. The useful boundary is therefore evidence from the destination: whether an order exists. Wallet’s documentation separates that operational question from the fact that a card was saved or a purchase was approved."
+    }
+  ],
+  "buildersNote": "For a checkout integration, test three states separately: approval recorded, request submitted and merchant order confirmed. Use a synthetic interrupted-checkout test to verify that an unknown result cannot automatically become a new purchase.",
+  "claims": [
+    {
+      "text": "The Wallet terms and privacy notice are effective November 12, 2026",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The published help page restricts Wallet to eligible US Pro users in dot conversations",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "These documents do not establish worldwide availability or acceptance by every merchant",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "ChatGPT Wallet terms",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/policies/chatgpt-wallet-terms/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "ChatGPT Wallet Privacy Notice",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/policies/chatgpt-wallet-privacy-notice/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Making purchases with ChatGPT Wallet",
+      "publisher": "OpenAI Help Center",
+      "url": "https://help.openai.com/en/articles/20001654-making-purchases-with-chatgpt-wallet",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Using your ChatGPT wallet balance",
+      "publisher": "OpenAI Help Center",
+      "url": "https://help.openai.com/en/articles/20001508-using-your-chatgpt-wallet-balance",
+      "date": "2026-10-28"
+    }
+  ],
+  "social": {
+    "hook": "Saving a card is not the same as approving an order.",
+    "voiceover": "[measured] Saving a card is not the same as approving an order. OpenAI published Wallet terms for adults in the United States. Merchant confirmation still matters when a conversation stops during checkout.",
+    "short": "OpenAI published ChatGPT Wallet terms effective November 12. Purchase approval is tied to the seller and order details; a submitted request still needs merchant acceptance.",
+    "long": "OpenAI separated payment credentials from purchase authority in its November 12 Wallet terms. Saving a card, approving an order and receiving merchant acceptance are distinct steps.\n\nThe privacy notice also separates tokenized card information from the transaction record. OpenAI says it receives no full card number or security code, while retaining purchase and approval details. Removing a card does not erase records needed for disputes or legal obligations.",
+    "keyFacts": [
+      "Terms effective November 12, 2026",
+      "Minimum age: 18 in the United States",
+      "Three states: approval, submission, merchant confirmation"
+    ],
+    "take": "We want checkout systems to preserve an unknown result. A stalled conversation must not quietly become permission to place the same order twice.",
+    "hashtags": [
+      "ChatGPT",
+      "AgenticCommerce",
+      "DigitalPayments"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

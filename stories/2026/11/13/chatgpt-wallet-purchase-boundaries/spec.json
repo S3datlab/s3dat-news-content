@@ -1,0 +1,31 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "WALLET NEEDS",
+    "ORDER APPROVAL"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 1315,
+  "sources": {
+    "hero.webp": "generated",
+    "prop.webp": "generated"
+  }
+}
