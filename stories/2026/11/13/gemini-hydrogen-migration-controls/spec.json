@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "GEMINI",
+    "HYDROGEN",
+    "GOES LIVE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google Gemini",
+      "icon": "googlegemini"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 131100,
+  "sources": {}
+}

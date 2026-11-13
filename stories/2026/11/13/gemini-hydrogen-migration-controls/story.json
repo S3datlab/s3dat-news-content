@@ -1,0 +1,136 @@
+{
+  "format": 2,
+  "slug": "gemini-hydrogen-migration-controls",
+  "kind": "story",
+  "topic": "models",
+  "title": "Google releases Gemini 4 Hydrogen with new migration controls",
+  "dek": "The model reaches Google's apps and developer tools, while Flash migrations change thinking defaults, context accounting and cache support.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-13T00:37:33Z",
+  "lede": "Google released Gemini 4 Hydrogen on November 12 for everyday coding and agent workflows across its developer and consumer products. For builders moving from Gemini 3.8 Flash, the change reaches beyond the model name into request settings and spending controls.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "gemini-4-hydrogen"
+    },
+    {
+      "label": "Standard API input",
+      "value": "$1.50 per million tokens"
+    },
+    {
+      "label": "Standard API output",
+      "value": "$7.50 per million tokens, including thinking"
+    },
+    {
+      "label": "Thinking settings",
+      "value": "4; high is the default"
+    },
+    {
+      "label": "Shared context",
+      "value": "1,048,576 tokens across input, thinking and output"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A wider release with different access routes",
+      "text": "Hydrogen is rolling out through the Gemini app, Search, AI Studio, the Gemini API and Google's business products. Google positions it as an execution model for routine coding and multi-step work, alongside Carbon and Argon for deeper reasoning. Access differs by product: Antigravity requires a paid Google AI Pro or Ultra subscription. Free Gemini app users receive Hydrogen through automatic selection when Google considers it suitable for their prompt. That distinction matters when a team wants a specific model for repeatable testing instead of whatever the consumer app selects."
+    },
+    {
+      "heading": "The request budget changes shape",
+      "text": "Google's documentation replaces Flash's separate input and output allowances with one shared pool for input, thinking and the final answer. A long document therefore leaves less room for the model's reasoning and response. Synchronous output remains capped at 65,536 tokens. Longer responses require background execution with a larger output allowance, or client-side continuation. Merely turning on background mode leaves the default limit unchanged. The default thinking setting also moves from medium to high. The four supported levels are low, medium, high and xhigh; the old minimal setting returns an error."
+    },
+    {
+      "heading": "The model reads more formats than it produces",
+      "text": "The developer specification lists text, images, video, audio and PDFs as inputs, with text as the output. Function calling, structured responses, file search and code execution are supported. Image generation, audio generation and the Live API are separate capabilities that this model does not provide. This makes Hydrogen a reader and operator inside a broader application: it can interpret a recording or document and produce instructions or a structured result. Generating a spoken reply or a new image still needs another component, with its own integration and billing."
+    },
+    {
+      "heading": "Thinking is part of the output bill",
+      "text": "Standard API pricing is $1.50 per million input tokens and $7.50 per million output tokens, including thinking. For example, 100,000 uncached input tokens and 20,000 billed output tokens cost $0.30 before grounding or tool charges. Google's table lists implicit cached input at $0.075 per million tokens. It also distinguishes data treatment: free-tier content can improve Google's products, while paid Standard content does not. That makes the tier selection a data-handling decision as well as a spending decision for teams evaluating the same model."
+    },
+    {
+      "heading": "Existing clients need more than a renamed model",
+      "text": "The migration checklist removes explicit cached-content references and ignores custom temperature, top-p and top-k values. It also requires declared native tools or a structured-output schema instead of instructions that imitate tool calls in raw text. Conversation state and thought signatures must survive subsequent turns. These changes affect the surrounding client, even when the application asks the same question. A successful first response does not exercise the cache path, a later tool result or a long-running job."
+    }
+  ],
+  "buildersNote": "Replay 50 representative tasks at medium and high thinking. Record completed tasks, billed thinking tokens and end-to-end time; include one cached request, one tool-call continuation and one response that crosses the 64K boundary.",
+  "claims": [
+    {
+      "text": "Google documents four thinking levels and a shared 1,048,576-token context budget.",
+      "status": "confirmed",
+      "source": 3
+    },
+    {
+      "text": "Standard output pricing includes thinking tokens; implicit cached input has a separate published rate.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Google says Hydrogen completes tasks 2.5 times faster than Gemini 3.8 Flash at its default high setting; this is a vendor result.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The model card still lists hallucinations and timeouts as possible limitations, and says a full safety and security report is forthcoming.",
+      "status": "confirmed",
+      "source": 4
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Gemini 4 Hydrogen",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "What's new in Gemini 4 Hydrogen",
+      "publisher": "Google AI Studio",
+      "url": "https://aistudio.google.com/docs/whats-new-gemini-4-hydrogen",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Gemini Developer API pricing",
+      "publisher": "Google AI Studio",
+      "url": "https://aistudio.google.com/docs/pricing#gemini-4-hydrogen",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Gemini 4 Hydrogen",
+      "publisher": "Google AI Studio",
+      "url": "https://aistudio.google.com/docs/models/gemini-4-hydrogen",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Gemini 4 Hydrogen",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "hook": "Changing the model also changes the controls.",
+    "voiceover": "[measured] Changing the model also changes the controls. Google released Gemini Four Hydrogen with four thinking levels. Migrating from Flash also changes caching and the shared budget for inputs, reasoning and answers.",
+    "short": "Google released Gemini 4 Hydrogen with four thinking levels. Flash migrations also change context accounting and caching; Google's reported speed gains still need workload testing.",
+    "long": "Google opened Hydrogen access across its Gemini products on November 12. The developer model accepts text, images, audio, video and PDFs, while returning text. It supports tools and structured responses, not image or audio generation.\n\nFor an existing application, the important change is the request contract. Input, thinking and the answer share one context budget, and the default thinking level is now high. A model-name swap alone does not test whether an existing client handles these changes correctly.",
+    "take": "We would compare cost per completed task before replacing Flash. The model's thinking setting and the client's handling of long jobs can matter as much as its token price.",
+    "keyFacts": [
+      "November 12: Gemini 4 Hydrogen released",
+      "4 thinking levels; high is the default",
+      "$1.50 input / $7.50 output per million tokens",
+      "65,536-token synchronous output limit"
+    ],
+    "hashtags": [
+      "Gemini",
+      "CodingAgents",
+      "ModelDeployment",
+      "DeveloperTools"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
