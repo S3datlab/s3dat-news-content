@@ -1,0 +1,36 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "NONPROFITS",
+    "SEEK AI",
+    "FREEZE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    },
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-gavel.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 113093,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-gavel.webp": "generated"
+  }
+}
