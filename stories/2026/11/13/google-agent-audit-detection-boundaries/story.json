@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "google-agent-audit-detection-boundaries",
+  "kind": "story",
+  "topic": "agents",
+  "title": "Google tests agent audits after harmful actions",
+  "titleAccent": "after harmful actions",
+  "dek": "Google’s new evaluation separates post-action findings from prevention, while its preview adds monitoring for agents running outside Google Cloud.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-13T06:42:11Z",
+  "lede": "Google published an Agent Anomaly Detection evaluation on November 12, reporting findings after agents had executed harmful instructions. The distinction matters for builders deciding where to place checks around tools that change external systems.",
+  "facts": [
+    {
+      "label": "Evaluation",
+      "value": "1,774 simulated sessions"
+    },
+    {
+      "label": "Product status",
+      "value": "Private Preview"
+    },
+    {
+      "label": "Audit timing",
+      "value": "Asynchronous, after activity"
+    },
+    {
+      "label": "External-cloud SDK",
+      "value": "ADK for Python 2.12.0 or later"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Read the result as an audit",
+      "text": "Google reports flagging 87% of executed harmful instructions across five public benchmarks. Its test used Gemini 2.5 Flash in simulated applications. False alarms ranged from 2% to 16% of benign sessions. The denominator is completed harmful behavior, not every attack attempt. That makes the result relevant to incident review, while leaving prevention as a separate engineering problem."
+    },
+    {
+      "heading": "An older preview gains new evidence",
+      "text": "The product entered Private Preview on September 16. Its launch description separates a lightweight pass over traffic from deeper reasoning about unusual sessions. The first stage identifies statistical outliers. Later analysis examines the session and, when needed, reconstructs individual tool interactions. Findings carry severity, an explanation and suggested next steps. They also appear in Security Command Center, where an operator can handle them alongside other security findings. The launch post describes an API for customer callbacks that can stop subsequent tool calls or a later turn. A finding can therefore influence what happens next without becoming a guarantee about what already happened. The audit reads existing logs and OpenTelemetry traces away from the live request path. Google presents that separation as a way to avoid adding latency to responses."
+    },
+    {
+      "heading": "Monitoring can cross a hosting boundary",
+      "text": "The overview documentation records another change on November 12: support for agents running outside Google Cloud, including AWS and Azure. Those agents require ADK for Python 2.12.0 or later and send traces and logs to a Google Cloud project. Authentication uses Workload Identity Federation. The prerequisites include capturing prompt inputs and response outputs, active tracing and reader access for the scanners. Being discovered as an agent is separate from enabling analysis. Monitoring must be enabled automatically through enrollment or explicitly for the agent. This makes the telemetry destination part of the architecture even when execution remains with another cloud provider."
+    },
+    {
+      "heading": "A gate occupies a different point",
+      "text": "Google’s separate Semantic Governance preview evaluates a proposed tool call before it runs. The policy engine considers the user’s request, conversation history and configured natural-language constraints. A rejected call is removed from the model response through the gateway. This control addresses permission to proceed, whereas an audit reconstructs behavior from recorded activity. The documentation places semantic policies alongside existing access controls, rate limits and network protections. It also distinguishes tool permission from whether a particular action fits the user’s request. An application can therefore keep a narrow tool identity and still evaluate individual actions at the moment they are proposed."
+    }
+  ],
+  "buildersNote": "Track three separate measures in a test run: harmful actions blocked before execution, executed actions later flagged, and benign sessions flagged. Assign a response owner before enabling automatic monitoring; a finding needs a defined next step.",
+  "claims": [
+    {
+      "text": "Google reports 87% detection of executed harmful instructions; about 6% of sessions returned no result. Counting those as misses lowers rates by 1–2 points.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The November 12 documentation adds external-cloud agents with ADK Python 2.12.0 or later.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Poisoned-memory detection reached 4 of 18 executed cases. Production performance and independent replication remain unestablished.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Semantic governance uses a probabilistic model and excludes streamed model responses. Its verdicts can be inaccurate.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "How Agent Anomaly Detection scores on benchmarks we didn't write",
+      "publisher": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/how-agent-anomaly-detection-scores-on-benchmarks-we-didnt-write/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Agent Anomaly Detection, now in Private Preview on the Gemini Enterprise Agent Platform",
+      "publisher": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/",
+      "date": "2026-09-16"
+    },
+    {
+      "title": "Agent Anomaly Detection overview",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/agent-anomalies-overview",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Semantic governance policies overview",
+      "publisher": "Google Cloud",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/policies/semantic-governance-overview",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "A security finding can arrive after the action.",
+    "voiceover": "[measured] A security finding can arrive after the action. Google now supports monitoring agents on other clouds. Their traces and logs go to a Google project. The preview still requires approved access.",
+    "short": "Google tested its agent audit on 1,774 simulated sessions. Reported detection covers harmful actions already carried out, not attacks blocked before execution.",
+    "long": "Google added external-cloud agents to its monitoring preview on November 12. They require Python ADK 2.12.0 or later.\n\nThe audit analyzes recorded activity away from the live request path. Findings include severity and an explanation, and reach Security Command Center. A customer callback can stop later calls, while handling a completed action remains an incident-response task.",
+    "take": "We treat prevention and detection as separate scorecards. An alert after a completed action is useful evidence, not proof that the action was prevented.",
+    "keyFacts": [
+      "1,774 simulated sessions in the evaluation",
+      "Private Preview began September 16",
+      "External-cloud support: ADK Python 2.12.0 or later"
+    ],
+    "hashtags": [
+      "GoogleCloud",
+      "AgentSecurity",
+      "AIAgents"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

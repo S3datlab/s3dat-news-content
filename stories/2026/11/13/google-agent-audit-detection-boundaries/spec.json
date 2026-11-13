@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "GOOGLE TESTS",
+    "AGENT AUDITS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Google",
+      "icon": "google"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "stat": {
+    "value": "1,774",
+    "label": "simulated sessions"
+  },
+  "seed": 131106,
+  "sources": {}
+}
