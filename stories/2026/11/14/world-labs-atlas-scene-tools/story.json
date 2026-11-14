@@ -1,0 +1,115 @@
+{
+  "format": 2,
+  "slug": "world-labs-atlas-scene-tools",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "World Labs releases Atlas tools for editable 3D scenes",
+  "titleAccent": "editable 3D scenes",
+  "dek": "Viewfinder and Chisel connect image-based worlds to production tools. The useful distinction is between an attractive new viewpoint and a measured reconstruction.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-14T00:51:37Z",
+  "lede": "World Labs released its Atlas tool suite on November 12. The launch connects scene generation and reconstruction with editing, mesh conversion and developer integrations.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "12 Nov 2026"
+    },
+    {
+      "label": "Model debut",
+      "value": "1 Sep 2026"
+    },
+    {
+      "label": "Frameboy preview",
+      "value": "Up to 15 frames per second"
+    },
+    {
+      "label": "Integration",
+      "value": "Blender"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A route from images to usable scenes",
+      "text": "The release includes Viewfinder for building scenes from images and Chisel for controlling their structure. Splats to Mesh converts the representation into geometry, while Relight changes illumination. The developer API connects these operations to other applications. For a team making a virtual set, the important change is the handoff: a generated view can be part of a scene that moves into an existing production workflow. A finished image, an editable environment and an exportable object solve different parts of that production job, with different deliverables."
+    },
+    {
+      "heading": "The model predates this release",
+      "text": "Atlas itself was introduced on September 1. World Labs described a model that combines text, images, camera positions and depth in one spatial context. Instead of asking for a vague pan in a prompt, its camera input specifies where the next view should come from. The company demonstrated a one-minute video at 1440p with a planned path. The November release packages capabilities around that earlier research. A camera path also changes what consistency means: the same doorway must remain in the same place as the viewpoint moves, rather than merely looking convincing in an isolated frame."
+    },
+    {
+      "heading": "Reconstruction and invention share a pipeline",
+      "text": "World Labs’ September examples distinguish visible evidence from invented surroundings. One photograph of a garden produces a wider scene containing imagined buildings. Additional photographs supply context for the cottage and main house. The model can also output point clouds and Gaussian splats, a representation used to render a scene from different directions. This creates two legitimate uses with different standards. A fictional set benefits from plausible additions. A representation of an existing location needs those additions separated from captured detail. A smooth camera move alone does not establish that an unseen wall, passage or surface exists in the photographed place."
+    },
+    {
+      "heading": "Interactive exploration is a separate tradeoff",
+      "text": "On November 5, World Labs introduced Frameboy, a research preview streaming generated views from cloud GPUs at up to fifteen frames per second. It also described a Viewfinder overlay for exploring user-built scenes. At that point Viewfinder was in closed beta. The preview focused on changing viewpoints quickly instead of waiting for each manually planned sequence. World Labs noted that this mode required a powerful cloud GPU server and cost more than local rendering methods. The distinction remains useful when choosing a workflow: exploring a scene, producing a final camera sequence and exporting geometry are separate operations. Faster feedback helps select a view; the exported asset still has to suit the project that receives it."
+    }
+  ],
+  "buildersNote": "Test one captured room and one invented set separately. For the captured room, compare three known distances and two unseen corners against photographs before treating the exported mesh as a measured asset.",
+  "claims": [
+    {
+      "text": "The Atlas launch includes Viewfinder, Chisel, mesh conversion, relighting and developer integrations",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "World Labs reports Frameboy streaming at up to 15 frames per second",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The launch materials do not establish survey-grade accuracy or production costs for a particular project",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Atlas",
+      "publisher": "World Labs",
+      "url": "https://worldlabs.ai/atlas",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Atlas: A World Model for Spatial Intelligence",
+      "publisher": "World Labs",
+      "url": "https://worldlabs.ai/blog/atlas",
+      "date": "2026-09-01"
+    },
+    {
+      "title": "Frameboy: Atlas in Real-time",
+      "publisher": "World Labs",
+      "url": "https://worldlabs.ai/blog/atlas-realtime",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "Research & Insights",
+      "publisher": "World Labs",
+      "url": "https://worldlabs.ai/blog",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "hook": "One photo can become a place to move through.",
+    "voiceover": "[measured] One photo can become a place to move through. World Labs released Atlas scene tools. Its model fills unseen areas with imagined detail. A convincing camera move is not a measurement.",
+    "short": "World Labs released Atlas scene tools on November 12. Viewfinder builds from images; Chisel controls structure. Mesh export connects the result to other tools, without proving reconstruction accuracy.",
+    "long": "World Labs introduced Atlas in September with explicit camera control and depth alongside images. Its November 12 tool release adds a route from those worlds into existing workflows.\n\nThe distinction matters when the input depicts a real place. In the company’s garden example, extra photographs replace invented surroundings with captured context. A fictional set can welcome invention. A reconstruction needs a way to distinguish it from evidence.",
+    "keyFacts": [
+      "Tool release: November 12, 2026",
+      "Atlas model debut: September 1, 2026",
+      "Frameboy preview: up to 15 frames per second"
+    ],
+    "take": "We would evaluate creative scene building and factual reconstruction separately. The same plausible addition can help a fictional set and undermine a measured one.",
+    "hashtags": [
+      "WorldLabs",
+      "WorldModels",
+      "SpatialComputing"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

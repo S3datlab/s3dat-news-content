@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "ATLAS BUILDS",
+    "EDITABLE",
+    "3D SCENES"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "World Labs",
+      "logo": "worldlabs.svg",
+      "color": "#547b66"
+    }
+  ],
+  "cutouts": [],
+  "mood": "up",
+  "seed": 141100,
+  "sources": {
+    "worldlabs.svg": "https://worldlabs.ai/atlas"
+  }
+}
