@@ -1,0 +1,125 @@
+{
+  "format": 2,
+  "slug": "google-teamwork-rust-rewrite-tests",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "Google reports Rust rewrite gains with unchanged tests",
+  "titleAccent": "unchanged tests",
+  "dek": "Google’s latest Antigravity results separate a working port from a fast one, with original tests kept outside the rewrite.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-14T09:56:22Z",
+  "lede": "Google reported Antigravity agent-led Rust rewrites on November 13, using unchanged tests to check the replacement code. Correct output and acceptable speed are separate engineering requirements.",
+  "facts": [
+    {
+      "label": "Workflow",
+      "value": "Antigravity /teamwork"
+    },
+    {
+      "label": "Example",
+      "value": "libgav1 AV1 decoder"
+    },
+    {
+      "label": "Reported speed gain",
+      "value": "20–30% on x86_64 and ARM"
+    },
+    {
+      "label": "Rewrite pattern",
+      "value": "Coming to Antigravity; not released yet"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The first port was slower",
+      "text": "Google says its libgav1 port initially ran about four times slower. Profiling and further optimization then put it ahead of the original implementation. The rewrite workflow schedules modules after their dependencies compile, keeping the original tests intact. That separates two jobs: preserving behavior and improving execution."
+    },
+    {
+      "heading": "Teamwork predates these results",
+      "text": "Google described Teamwork’s orchestration design on August 27. The framework assigns different patterns to different tasks, rather than sending every problem to an identical group of agents. Work that separates cleanly can use parallel implementers and critics. Tightly connected code can instead follow repeated implementation, testing and revision. Agent numbers can change during a run as the task develops. Humans retain responsibility for the objective and final acceptance. This is a workflow specification, not simply a larger collection of model responses. Its practical purpose is to turn candidate generation and criticism into an organized process, with explicit criteria for work moving forward. The August release made the preview available on paid plans."
+    },
+    {
+      "heading": "A migration is also a measurement problem",
+      "text": "Earlier engineering examples show why the distinction matters. In its October 13 Argon announcement, Google described a scientific Fortran codebase rewritten into Rust and reported a 1.8-fold performance improvement. The same announcement described a separate YouTube comments project driven by production profiles. There, the model identified redundant emoji rendering and proposed targeted optimizations. These are different routes to a faster program: changing a codebase’s implementation language, or removing expensive work inside an existing service. A migration headline alone does not identify which part of an improvement came from language choice, implementation changes or the workload used to measure it."
+    },
+    {
+      "heading": "Rust has a broader delivery case",
+      "text": "Google’s Android team had already published a separate account of Rust adoption on November 13, 2025. Its analysis compared first-party Rust and C++ changes, grouping similar change sizes and drawing from overlapping developer populations. Google reported less review time for Rust and fewer rollbacks for medium and large changes. Those measurements concern shipping and maintaining software, not merely the speed of one program. They also explain why a rewrite can have value beyond a benchmark result: revisions, reviews and reversions consume engineering time. The Android evidence comes from a different codebase and development process than the new agent campaigns."
+    },
+    {
+      "heading": "The acceptance test has more than one job",
+      "text": "Consider a hypothetical decoder migration. Replaying a fixed set of video inputs can compare the old and new outputs. Timing those same inputs measures another property. A replacement can pass the first check while taking too long for its intended workload. Keeping the checks separate makes that outcome visible. It also leaves a clear record of what changed between the first working replacement and the optimized version."
+    }
+  ],
+  "buildersNote": "For one candidate module, freeze the original test suite and input corpus before a rewrite. Record output equality and elapsed time as two separate acceptance gates; retain the original implementation for comparison.",
+  "claims": [
+    {
+      "text": "The reported libgav1 performance gains are Google’s measurements.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The specialized rewrite pattern is described as forthcoming.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Independent replication and production reliability of these ports are not established.",
+      "status": "unclear"
+    },
+    {
+      "text": "The Android comparison describes first-party changes, not an evaluation of AI-generated rewrites.",
+      "status": "confirmed",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "Advancing science & engineering with Antigravity’s /teamwork",
+      "publisher": "Google Research",
+      "url": "https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Teamwork: when AI becomes a research partner",
+      "publisher": "Google Antigravity",
+      "url": "https://antigravity.google/blog/teamwork-when-ai-becomes-a-research-partner",
+      "date": "2026-08-27"
+    },
+    {
+      "title": "Gemini 4 Argon in Google Antigravity",
+      "publisher": "Google Antigravity",
+      "url": "https://antigravity.google/blog/gemini-4-argon-in-google-antigravity/",
+      "date": "2026-10-13"
+    },
+    {
+      "title": "Rust in Android: move fast and fix things",
+      "publisher": "Google",
+      "url": "https://blog.google/security/rust-in-android-move-fast-fix-things/",
+      "date": "2025-11-13"
+    }
+  ],
+  "social": {
+    "hook": "A working rewrite can still be a slower program.",
+    "voiceover": "[measured] A working rewrite can still be a slower program. Google separates implementation and criticism in its agent teams. Keep two checks distinct: whether the replacement behaves correctly, and how quickly it runs.",
+    "short": "Google reported Rust rewrite gains on November 13. Its new workflow preserves original tests; the decoder port improved after profiling. The specialized workflow is forthcoming.",
+    "long": "Google added Rust rewrite results on November 13. Its earlier October Fortran port had a reported 1.8-fold speed gain.\n\nA hypothetical decoder can reproduce every tested output and still miss a runtime target. Keeping a fixed input corpus gives the old and new implementations the same task. Correctness and elapsed time then remain separate results, instead of one vague claim that the migration worked.",
+    "take": "We would keep the old test suite outside the rewrite agent’s remit. A faster replacement is valuable only after the team has defined which behavior must survive unchanged.",
+    "keyFacts": [
+      "New rewrite results: 13 November 2026",
+      "Teamwork design published: 27 August 2026",
+      "Earlier Fortran migration: reported 1.8× speed gain"
+    ],
+    "hashtags": [
+      "Google",
+      "Antigravity",
+      "CodingAgents",
+      "Rust"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
