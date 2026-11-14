@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "NEMOCLAW FIXES",
+    "APPROVAL GAP"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Nvidia",
+      "icon": "nvidia"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 141118,
+  "sources": {}
+}

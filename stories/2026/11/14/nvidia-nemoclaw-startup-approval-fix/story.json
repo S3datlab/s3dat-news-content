@@ -1,0 +1,118 @@
+{
+  "format": 2,
+  "slug": "nvidia-nemoclaw-startup-approval-fix",
+  "kind": "explained",
+  "topic": "agents",
+  "title": "Nvidia fixes a startup path that bypassed disabled agent auto-approval",
+  "dek": "NemoClaw 0.0.144 makes managed Deep Agents Code start in Manual when auto-approval is disabled, including inherited startup preferences.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-14T20:38:06Z",
+  "lede": "Nvidia released NemoClaw 0.0.144 on November 13 with a fix for managed Deep Agents Code startup approval. The change makes a disabled auto-approval capability govern the session even when a saved preference asks for automatic approval.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "NemoClaw 0.0.144"
+    },
+    {
+      "label": "Component",
+      "value": "Managed Deep Agents Code"
+    },
+    {
+      "label": "Announcement",
+      "value": "13 November 2026"
+    },
+    {
+      "label": "Disabled capability",
+      "value": "Starts in Manual"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What is the difference between policy and preference?",
+      "text": "A saved startup preference describes how an application should open next time. A managed capability defines which behavior its owner permits. These settings can disagree. In this case, the owner disabled automatic approval while the agent retained a native preference for Auto. The distinction matters because an operator could inspect the management setting and reasonably expect the next session to follow it. The release makes that expectation part of startup resolution, instead of relying on the preference to match the policy."
+    },
+    {
+      "heading": "How did the mismatch appear?",
+      "text": "The October 27 issue describes a managed sandbox with automatic approval disabled and a native startup setting of auto. The reporter could not enable the same behavior through the command-line shortcut: that path refused the request. Opening an interactive session nevertheless displayed Auto. The report identified Ubuntu on x86 hardware and DGX Spark on Arm, using NemoClaw 0.0.138 and Deep Agents Code 0.1.71. Changing the saved preference required shell access inside the sandbox. The report isolates how two launch paths produced different outcomes under the same managed setting."
+    },
+    {
+      "heading": "What does the new check change?",
+      "text": "The merged fix applies the managed capability where Deep Agents Code resolves its startup mode. When automatic approval is disabled, that resolver returns Manual. When thread opt-in is allowed, native resolution remains available. This addresses the inherited setting rather than only blocking an explicit launch flag. The change also makes the managed image build fail if the expected resolver disappears upstream. That turns a changed integration point into a visible build problem instead of silently leaving the startup restriction unapplied."
+    },
+    {
+      "heading": "What would a worked check look like?",
+      "text": "Consider a disposable test sandbox, not a production incident. Its owner disables automatic approval, while its saved startup preference requests Auto. A new session should show Manual. Repeating the same check with the native Yolo preference tests a second inherited path. In both cases, the relevant observation is the running session, not just the stored file. Restoring the original configuration completes the exercise. This example illustrates why checking a rejected command-line option alone cannot establish that every route into a mode is restricted."
+    },
+    {
+      "heading": "What does this establish about agent control?",
+      "text": "The issue separates three observations: the owner setting, the launch request and the mode that actually starts. They are related, but none is a substitute for the others. A configuration screen can accurately display a saved preference even when policy prevents that preference from taking effect. For an agent integration, the useful boundary is where the effective behavior is selected. This release supplies a concrete example of moving the restriction to that boundary. It also shows why a small startup change can matter independently of model quality or task completion speed."
+    }
+  ],
+  "buildersNote": "Rebuild the managed Deep Agents Code image with the fix. In a disposable sandbox, test both Auto and Yolo startup preferences with auto-approval disabled; verify Manual in each new session, then restore the original configuration.",
+  "claims": [
+    {
+      "text": "NemoClaw 0.0.144 release notes include the managed startup approval fix.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The startup resolver fix was merged on November 13.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The reporter reproduced the earlier mismatch on x86 hardware and DGX Spark.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "The records do not establish exploitation, affected deployment counts or a general sandbox escape.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "November 13, 2026",
+      "publisher": "NVIDIA NemoClaw",
+      "url": "https://docs.nvidia.com/nemoclaw/user-guide/deepagents/release-notes/2026/11/13",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "fix(dcode): apply the disabled auto-approval capability to the startup mode",
+      "publisher": "NVIDIA / GitHub",
+      "url": "https://github.com/NVIDIA/NemoClaw/pull/13915",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "[Ubuntu 22.04][Agent&Skills] Deep Agents sandbox with auto-approval disabled starts DCode in Auto when the native startup mode is auto",
+      "publisher": "NVIDIA / GitHub",
+      "url": "https://github.com/NVIDIA/NemoClaw/issues/13838",
+      "date": "2026-10-27"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "social": {
+    "priority": 3,
+    "hook": "A saved preference could defeat the approval setting.",
+    "voiceover": "[matter-of-fact] A saved preference could defeat the approval setting. Nvidia fixed one startup path in NemoClaw. Managed agents now start in Manual when automatic approval is disabled, even with inherited automatic settings.",
+    "short": "Nvidia fixed a NemoClaw startup approval gap in version 0.0.144. Managed Deep Agents Code now starts in Manual when auto-approval is disabled. Exploitation is not established.",
+    "long": "Nvidia changed how managed Deep Agents Code starts in its November 13 release. NemoClaw 0.0.144 applies the disabled auto-approval capability even when a saved startup preference requests Auto or Yolo.\n\nThe earlier report showed a useful distinction: the command-line shortcut was refused, while an inherited preference still selected Auto. The fix puts the check at startup resolution. The public records do not establish how many deployments were affected or whether anyone exploited the mismatch.",
+    "take": "We favor checking the running session alongside the management setting. An approval policy is useful only when every startup path applies it.",
+    "keyFacts": [
+      "NemoClaw 0.0.144 released November 13",
+      "Issue reported October 27, 2026",
+      "2 inherited modes covered: Auto and Yolo"
+    ],
+    "hashtags": [
+      "Nvidia",
+      "NemoClaw",
+      "CodingAgents",
+      "AgentSecurity"
+    ]
+  }
+}
