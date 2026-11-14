@@ -1,0 +1,134 @@
+{
+  "format": 2,
+  "slug": "inkling-two-small-open-weight-deployment",
+  "kind": "story",
+  "topic": "models",
+  "title": "Thinking Machines opens Inkling 2 Small weights for deployment",
+  "titleAccent": "opens Inkling 2 Small weights",
+  "dek": "The November 12 download release ends the hosted-only phase, while published hardware requirements keep self-hosting a cluster-scale decision.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-14T06:55:10Z",
+  "lede": "Thinking Machines made Inkling 2 Small weights downloadable on November 12, following its November 5 hosted launch. Builders can now take the checkpoint outside Tinker, with hardware and serving configuration becoming their responsibility.",
+  "facts": [
+    {
+      "label": "Weight release",
+      "value": "12 November 2026"
+    },
+    {
+      "label": "License",
+      "value": "Apache 2.0"
+    },
+    {
+      "label": "Model size",
+      "value": "594B total parameters; 17B active"
+    },
+    {
+      "label": "Published VRAM minimum",
+      "value": "NVFP4: 500GB aggregate; MXFP8: 800GB aggregate"
+    },
+    {
+      "label": "Inputs and outputs",
+      "value": "Text and images in; text out"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A download changes the deployment choice",
+      "text": "The November 12 update links the public download and several serving integrations. An existing evaluation can now compare an installation the team operates with the hosted route it could already use. This adds an operating choice without requiring customers to leave Tinker."
+    },
+    {
+      "heading": "Small is a model name",
+      "text": "The model card gives two hardware paths. It lists at least 500GB of combined GPU memory for the NVFP4 checkpoint and 800GB for MXFP8. Example configurations include four H200 GPUs for the first and eight for the second. Those are deployment requirements published by the lab, not measurements from our own hardware. The active parameter count describes the part used during processing; it does not replace the memory requirements for the complete model. For a procurement decision, the useful starting point is the actual checkpoint and serving configuration, not the word Small."
+    },
+    {
+      "heading": "The serving recipe narrows the promise",
+      "text": "The vLLM recipe, updated November 12, separates configurations by context length. Its verified GB200 setup supports 262,144 tokens on one four-GPU tray and the full 1,048,576-token context across two trays. The recipe also specifies a dedicated container image while release support is pending. This is a concrete difference between a model capability and an installation setting. A service configured for the shorter limit cannot accept the longer request merely because the model card advertises it. The deployment contract includes both the checkpoint and the runtime that loads it."
+    },
+    {
+      "heading": "Throughput comes with a workload",
+      "text": "Inferact and Thinking Machines published performance results with the vLLM integration on November 12. Their agent workload reused long contexts through prefix caching, appended tool output and generated 1,024 tokens per turn. Reported throughput changed as session context grew, even with a fixed target of 100 output tokens per second per user. These details make the benchmark useful as a configuration example. They also explain why a single headline speed cannot price an application: request length, repeated material and simultaneous sessions determine which part of that example resembles its traffic."
+    },
+    {
+      "heading": "Ownership includes the operating work",
+      "text": "The lab\u2019s July 31 release policy describes staged access as a way to prepare the surrounding ecosystem before weights become public. That earlier policy explains the sequence; November 12 is the date this checkpoint became downloadable. The practical choice now splits into separate questions: whether the application benefits from controlling the weights, whether its infrastructure can serve them, and whether its tests support the intended use. An open checkpoint answers the access question. It leaves the operator to establish a release process for the application built around it."
+    }
+  ],
+  "buildersNote": "Before booking capacity, test the same 20 representative requests through the hosted service and the chosen local runtime. Record peak memory, context length, completed tool calls and cost per accepted result; keep the checkpoint revision with those results.",
+  "claims": [
+    {
+      "text": "The November 12 announcement update links downloadable Inkling 2 Small weights.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The model card specifies 500GB aggregate VRAM for NVFP4 and 800GB for MXFP8.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The published vLLM throughput results generalize to a different production workload.",
+      "status": "unclear"
+    },
+    {
+      "text": "The vLLM tool-call parser is unit-tested, but its recipe reports no end-to-end tool-calling benchmark.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Inkling 2 Small",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/news/inkling-2-small/",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Inkling 2 Small Model Card",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/model-card/inkling-2-small/",
+      "date": "2026-11-05"
+    },
+    {
+      "title": "thinkingmachines/Inkling-2-Small",
+      "publisher": "vLLM",
+      "url": "https://recipes.vllm.ai/thinkingmachines/Inkling-2-Small",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Inkling 2 Small on vLLM: Day-0 Support",
+      "publisher": "vLLM",
+      "url": "https://vllm.ai/blog/2026-11-12-inkling2-small",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "A Safe Path to Open Weights",
+      "publisher": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/",
+      "date": "2026-07-31"
+    }
+  ],
+  "social": {
+    "hook": "The weights are open. The hardware is still your job.",
+    "voiceover": "[measured] The weights are open. The hardware is still your job. Thinking Machines released Inkling Two Small for download. The lab specifies five hundred gigabytes of combined graphics memory for its lower-memory checkpoint.",
+    "short": "Thinking Machines opened Inkling 2 Small weights on November 12. Its NVFP4 checkpoint requires 500GB of combined GPU memory. Download access and affordable deployment are separate questions.",
+    "long": "Thinking Machines made its November 5 hosted model downloadable a week later. Inkling 2 Small can now run outside Tinker under Apache 2.0.\n\nThe serving setup still determines the usable limits. The vLLM recipe supports 262,144 tokens on one four-GPU GB200 tray and the full context on two trays. Published throughput also depends on reused context and concurrent sessions. Owning the checkpoint does not establish what an application will cost to run.",
+    "take": "We would price the serving configuration before celebrating the download. Control of the weights is useful when the application can justify the hardware and operating work.",
+    "keyFacts": [
+      "Hosted debut: November 5, 2026",
+      "Weight download release: November 12, 2026",
+      "NVFP4 minimum: 500GB aggregate VRAM"
+    ],
+    "hashtags": [
+      "Inkling",
+      "OpenWeights",
+      "ModelDeployment"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}
