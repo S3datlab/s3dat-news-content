@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "CLAUDE FACTORY",
+    "WORK NEEDS",
+    "HUMAN REVIEW"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Anthropic",
+      "icon": "anthropic"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 1412,
+  "sources": {}
+}

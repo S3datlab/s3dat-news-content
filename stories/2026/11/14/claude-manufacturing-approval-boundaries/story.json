@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "claude-manufacturing-approval-boundaries",
+  "kind": "explained",
+  "topic": "agents",
+  "title": "Claude brings factory paperwork to a human approval step",
+  "titleAccent": "human approval",
+  "dek": "Manufacturing plugins separate reading records, drafting decisions and changing business systems. That boundary matters before an assistant places an order.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-14T12:58:07Z",
+  "lede": "Anthropic introduced Claude for Manufacturing on November 12, alongside an Infor integration for approved changes to business records. The distinction between preparing work and executing it gives plant teams a concrete way to assess an assistant before connecting purchasing authority.",
+  "facts": [
+    {
+      "label": "Manufacturing plugin",
+      "value": "17 skills; 4 connectors"
+    },
+    {
+      "label": "Claude plans",
+      "value": "Team and Enterprise"
+    },
+    {
+      "label": "Infor availability",
+      "value": "Select Velocity Suite customers; administrator activation"
+    },
+    {
+      "label": "Equipment operation",
+      "value": "Outside the manufacturing plugin’s scope"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What does the manufacturing plugin prepare?",
+      "text": "Anthropic describes work such as assembling quotes and investigating quality problems. Its connectors reach Autodesk Fusion, Infor, Microsoft 365 and Oracle NetSuite. The intended endpoint is review by the responsible person. A technician still decides what to inspect; the plugin does not operate machinery. This makes the release a workflow product for manufacturing staff, rather than a replacement control system for a production line."
+    },
+    {
+      "heading": "When does a conversation change a business record?",
+      "text": "Infor’s separate plugin adds actions after explicit approval of each change. Its November 12 announcement lists purchase orders, stock reallocations and production adjustments. Existing role permissions determine access, and actions are recorded in Infor. Customers need their own Claude license, while an administrator activates the connector. A conversational interface therefore sits above an existing business system: the announcement does not give every user the same purchasing powers."
+    },
+    {
+      "heading": "How does another supplier approach the same problem?",
+      "text": "Luminovo announced its own assistant connection on November 4, with a live debut planned for electronica on November 10–13. Its selected-customer beta uses the Model Context Protocol to expose electronics supply-chain information. The examples include reviewing a bill of materials for long lead times and preparing negotiations. Its stated focus is making company and market data usable through assistants, including ChatGPT, Claude and Microsoft Copilot. That is useful context for the newer manufacturing launch: a common connection method does not, by itself, define which business changes an assistant is allowed to make."
+    },
+    {
+      "heading": "What would a controlled purchasing example look like?",
+      "text": "Consider a hypothetical workshop that needs 100 replacement parts. Its buyer asks an assistant to compare two fictional quotes: $8 per part with $40 shipping, or $9 per part with free shipping. The totals are $840 and $900. That calculation prepares a choice; it does not place either order. An approval step could present the selected supplier, quantity, total and delivery date together. A change from 100 parts to 1,000 would then be a different commitment, even if the conversational summary still called it the same replacement order."
+    },
+    {
+      "heading": "What evidence would show that the boundary works?",
+      "text": "In that hypothetical test, a useful result has two records: what the buyer approved and what the business system accepted. If the conversation stops after approval, the absence of a chat reply does not establish whether an order exists. Checking the system’s order record avoids treating silence as a reason to submit again. This is an integration acceptance criterion, not a finding that either vendor has mishandled orders. Draft quality and successful transaction control are separate questions, and a polished explanation cannot substitute for the second record."
+    }
+  ],
+  "buildersNote": "Before allowing live purchasing, run 3 sandbox cases: an approved order, a rejected order and an interrupted response. Compare the requested supplier, quantity and total with the resulting record; require no duplicate order in the interrupted case.",
+  "claims": [
+    {
+      "text": "Anthropic documents 17 manufacturing skills and excludes equipment operation.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Infor says its plugin requests explicit approval before each change and records actions in Infor.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The launch announcements establish lower purchasing error rates in production.",
+      "status": "unclear"
+    },
+    {
+      "text": "Luminovo announced a selected-customer MCP beta on November 4.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Claude for Manufacturing",
+      "publisher": "Anthropic",
+      "url": "https://claude.com/resources/articles/claude-for-manufacturing",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Infor and Anthropic Announce Partnership That Turns Insights into Actions for Manufacturing Operations",
+      "publisher": "Infor",
+      "url": "https://www.infor.com/en-ca/news/infor-and-anthropic-announce-partnership",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "Luminovo opens its electronics supply chain platform to AI assistants like ChatGPT, Claude, and Microsoft Copilot",
+      "publisher": "Luminovo",
+      "url": "https://www.circuitnet.com/press-files/luminovo-press-release-2026-11-04-en.pdf",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "A draft quote is not a purchase order.",
+    "voiceover": "[measured] A draft quote is not a purchase order. Claude now offers seventeen manufacturing skills. Infor adds changes after approval. The useful check is what the business system actually accepted.",
+    "short": "Anthropic added 17 manufacturing skills to Claude. Infor’s separate plugin changes records after approval. The November 12 launches do not establish lower purchasing error rates.",
+    "long": "Anthropic introduced manufacturing workflows on November 12, covering preparation of quotes and quality work. Infor separately provides approved actions inside its business system.\n\nTake a hypothetical order for 100 parts. Reviewing the selected supplier and total is one check; confirming the order that the system accepted is another. A stopped conversation should not become a reason to place the same order twice. Production error rates remain unestablished by the announcements.",
+    "take": "We prioritize the approval-to-order handoff over drafting speed. A fast quote helps less if the resulting commitment is wrong or duplicated.",
+    "keyFacts": [
+      "17 skills in the manufacturing plugin",
+      "4 connectors to existing systems",
+      "November 12: Anthropic and Infor announcements"
+    ],
+    "hashtags": [
+      "Claude",
+      "Manufacturing",
+      "AIAgents",
+      "Procurement"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
