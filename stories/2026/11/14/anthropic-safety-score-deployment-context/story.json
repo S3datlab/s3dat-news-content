@@ -1,0 +1,113 @@
+{
+  "format": 2,
+  "slug": "anthropic-safety-score-deployment-context",
+  "kind": "explained",
+  "topic": "research",
+  "title": "Anthropic explains why safety scores need deployment context",
+  "titleAccent": "deployment context",
+  "dek": "A new evaluation guide separates a model’s score from the conditions that produced it. A worked example shows why that distinction changes a release decision.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-14T03:52:33Z",
+  "lede": "Anthropic published safety evaluation guidance on November 13. Its examples tie a score to the configuration used in testing.",
+  "facts": [
+    {
+      "label": "New guidance",
+      "value": "13 Nov 2026"
+    },
+    {
+      "label": "Reported setting gap",
+      "value": "Up to 34 percentage points"
+    },
+    {
+      "label": "Earlier research",
+      "value": "BetterBench assessed 24 benchmarks"
+    },
+    {
+      "label": "Auditing tool",
+      "value": "Petri uses simulated interactions"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What changes when the settings change?",
+      "text": "Anthropic reports an API-versus-claude.ai gap of up to 34 percentage points in Fable 5.1 testing. Its guide calls for documenting model settings and distinguishing observed differences from demonstrated causes. The tested configuration is part of the result."
+    },
+    {
+      "heading": "Is this only a concern raised by a model vendor?",
+      "text": "The BetterBench paper, submitted on November 20, 2024, assessed 24 benchmarks against 46 practices covering their lifecycle. Its authors found substantial differences in quality. Most benchmarks in that assessment did not report statistical significance or make reproduction straightforward. The study supplied a minimum-quality checklist and a repository of assessments. That earlier work examines the measurement infrastructure itself: the evidence behind a ranking and its first-place entry. It provides independent context for the new guide without independently verifying Anthropic’s model results."
+    },
+    {
+      "heading": "How can a test follow an entire interaction?",
+      "text": "Petri, introduced on October 6, 2025, uses an auditor agent to interact with a target model through simulated users and tools. A separate judging step scores transcripts. Researchers supply initial instructions describing the behavior they want to investigate. The auditor can adapt as the target responds, instead of following one fixed script. Anthropic’s original pilot covered 14 models and 111 starting scenarios. Its release explicitly presented those metrics as provisional and encouraged reading the underlying transcripts. The pilot’s interactions take place in constructed evaluations with simulated users and tools."
+    },
+    {
+      "heading": "What would the distinction mean in practice?",
+      "text": "Consider a hypothetical support assistant tested on 100 invented conversations. In one configuration it drafts replies but cannot send them. In another it can send messages to customers. Suppose both receive 95 passing grades under a rubric that checks only the words in the final answer. Those equal totals do not establish equal behavior. The second configuration could have sent an incorrect message before producing an acceptable final reply. These invented numbers serve only to illustrate the distinction. Adding a check for sent messages changes what a passing grade means. Reusing the old percentage after changing that definition would compare two different tests. Keeping the conversation record and action record separate makes the discrepancy visible: one records what the assistant said, the other what it did."
+    },
+    {
+      "heading": "Where does the evidence stop?",
+      "text": "A deployment decision in that example concerns the sending assistant and its permissions. The useful comparison would hold the invented cases constant while recording both answers and actions. A passing final response cannot undo an earlier send. Equally, a failed case identifies a specific failure under those conditions; it does not prove every conversation will fail. This is why the release question needs a named configuration and a defined failure, alongside its aggregate number."
+    }
+  ],
+  "buildersNote": "For the next release test, keep 2 separate checks: final-answer quality and actions already taken. Save the model, prompt, tool permissions and grader version with each run so a later comparison has the same meaning.",
+  "claims": [
+    {
+      "text": "Anthropic published the evaluation guide on November 13",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The reported API-versus-product gap reaches 34 percentage points",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The guide does not establish the failure rate of a reader’s own deployment",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building strong safety evaluations",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/building-strong-safety-evaluations",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "BetterBench: Assessing AI Benchmarks, Uncovering Issues, and Establishing Best Practices",
+      "publisher": "Anka Reuel et al.",
+      "url": "https://arxiv.org/abs/2411.12990",
+      "date": "2024-11-20"
+    },
+    {
+      "title": "Petri: An open-source auditing tool to accelerate AI safety research",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/petri-open-source-auditing",
+      "date": "2025-10-06"
+    }
+  ],
+  "social": {
+    "hook": "The score belongs to the setup that earned it.",
+    "voiceover": "[measured] The score belongs to the setup that earned it. Anthropic published new safety evaluation guidance. Its reported configuration gap reaches thirty-four percentage points. A different deployment needs its own evidence.",
+    "short": "Anthropic published evaluation guidance on November 13. Safety scores depend on the tested setup. Your deployed application still needs its own evidence.",
+    "long": "Anthropic described configuration-sensitive safety scores in its November 13 guide. That makes the setup part of the evidence, rather than a footnote to a ranking.\n\nConsider a hypothetical assistant that can draft a customer message and another that can send it. Equal grades for their final answers would not show that both took acceptable actions. The release decision concerns the assistant actually deployed, including what it can do before it answers.",
+    "take": "We would attach deployment settings to every release score. A result without its permissions, prompts and grading rules is too easy to apply to the wrong system.",
+    "keyFacts": [
+      "Guidance published November 13",
+      "BetterBench assessed 24 benchmarks",
+      "Petri pilot used 111 scenarios"
+    ],
+    "hashtags": [
+      "Anthropic",
+      "AIEvaluations",
+      "AgentSafety"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
