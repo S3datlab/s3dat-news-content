@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "perplexity-decider-source-text-extraction",
+  "kind": "explained",
+  "topic": "models",
+  "title": "Perplexity adds source-linked text extraction to Decider",
+  "titleAccent": "text extraction",
+  "dek": "Decider v1.3 returns selected words and their positions in the input, giving document pipelines a checkable connection between a field and its source.",
+  "eventDate": "2026-11-12",
+  "publishedAt": "2026-11-14T16:38:45Z",
+  "lede": "Perplexity released Decider v1.3 and Decider Flash v1.3 on November 12, adding a text-extraction feature called Locate. It gives document-processing applications a way to connect an extracted field to the words supplied to the model.",
+  "facts": [
+    {
+      "label": "New request type",
+      "value": "Locate, alongside 3 decision types"
+    },
+    {
+      "label": "Locate input",
+      "value": "Text only; up to 128 questions per request"
+    },
+    {
+      "label": "Returned evidence",
+      "value": "Text, start and end positions, score"
+    },
+    {
+      "label": "License listed",
+      "value": "Apache 2.0"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What changes when the answer is selected text?",
+      "text": "The launch expands a family designed for classification and scoring. Perplexity describes uses such as finding names, identifying personal information and extracting answers from documents. These are narrower jobs than composing a response. A source-linked field gives the consuming application two things to inspect: the selected content and the location from which it came. That makes it possible to display a highlight next to a populated form, saving a reviewer another search for the supporting sentence."
+    },
+    {
+      "heading": "What does the software receive?",
+      "text": "The model card defines each result as text with start and end character positions, plus a score. The end position is exclusive. No match produces an empty list. Locate accepts text, not images, and mixing it with decision questions requires separate computation passes. An application therefore receives a structured extraction result, not an assurance that a single combined request has the same latency as one classification request."
+    },
+    {
+      "heading": "How would a simple extraction check work?",
+      "text": "Consider this invented shipping note: Ship to Oslo on Friday. Counting characters from zero, Oslo begins at position 8 and ends before position 12. A hypothetical extraction returning those positions can be checked against the original string without asking another model. If it instead supplies Paris, the substring check fails immediately. If it correctly selects Friday when the requested field is the destination, the substring check passes while the task still fails. The example separates faithful copying from choosing the correct information. Neither result is a test of Decider; both illustrate checks a document pipeline can make."
+    },
+    {
+      "heading": "What does the smaller model change?",
+      "text": "The Flash model card describes a smaller version distilled from the larger model, with the same request interface and extraction capability. Its stated weight-memory requirement is about 8.5 GiB in BF16, plus working memory. The larger model card lists about 49 GiB for weights. That changes the starting hardware requirement for local trials. It does not include the rest of an application, input-processing memory or concurrent requests. A shared interface can simplify testing both sizes against the same saved examples without making their error patterns identical."
+    },
+    {
+      "heading": "What remains an application decision?",
+      "text": "In the shipping example, an empty result needs a different path from a confidently selected destination. A reviewer could inspect the original note, while the application leaves the destination unset. A useful evaluation would also include two cities, a corrected destination and a document with no destination. These cases ask whether the selected field answers the requested question, not merely whether it exists somewhere in the document. The distinction matters most when an extracted value feeds another action: highlighting evidence and accepting a business value are separate steps."
+    }
+  ],
+  "buildersNote": "Use 30 labeled documents for a first extraction check: 10 ordinary cases, 10 with competing values and 10 with no answer. Verify both substring equality and the intended field before connecting the result to an automatic action.",
+  "claims": [
+    {
+      "text": "The published model card specifies character offsets and an empty list when Locate finds no match.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Perplexity says Locate improves extraction across its evaluation tasks.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The cards list Apache 2.0 but also retain private-repository authentication instructions; unrestricted weight download is not established here.",
+      "status": "unclear",
+      "source": 2
+    },
+    {
+      "text": "Exact source text alone establishes that the requested field was selected correctly.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Perplexity Decider v1.3: Training, eval, and use cases",
+      "publisher": "Perplexity",
+      "url": "https://www.perplexity.ai/en-GB/hub/blog/perplexity-decider",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "pplx-decider-v1.3",
+      "publisher": "Perplexity",
+      "url": "https://huggingface.co/perplexity-ai/pplx-decider-v1.3",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "pplx-decider-flash-v1.3",
+      "publisher": "Perplexity",
+      "url": "https://huggingface.co/perplexity-ai/pplx-decider-flash-v1.3",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "hook": "An extracted answer can point to the exact words.",
+    "voiceover": "[measured] An extracted answer can point to the exact words. Perplexity added Locate to Decider version one point three. It returns source text and positions. Choosing the right field still needs checking.",
+    "short": "Perplexity added Locate to Decider v1.3, returning text and character positions. A source match is checkable; it does not prove the model selected the right field.",
+    "long": "Perplexity expanded Decider on November 12 with Locate, a feature for extracting content from supplied text. The result includes the selected words and their positions.\n\nIn a hypothetical shipping note, a system could verify that a city name really appears at the reported location. That still leaves a second check: whether it chose the destination rather than another city mentioned in the note. Evidence highlighting and accepting a field are different steps.",
+    "take": "We would judge extraction by two checks: whether the words exist in the source and whether they answer the requested field. Passing only the first is not enough for automation.",
+    "keyFacts": [
+      "November 12: Decider v1.3 announced",
+      "Locate supports up to 128 questions per request",
+      "Flash card lists about 8.5 GiB of BF16 weights"
+    ],
+    "hashtags": [
+      "Perplexity",
+      "DocumentAI",
+      "InformationExtraction",
+      "DecisionModels"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
