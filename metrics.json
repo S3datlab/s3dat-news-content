@@ -1,0 +1,2364 @@
+{
+  "updated": "2026-11-14T13:35:15Z",
+  "days": 7,
+  "stories": [
+    {
+      "slug": "google-teamwork-rust-rewrite-tests",
+      "title": "Google reports Rust rewrite gains with unchanged tests",
+      "publishedAt": "2026-11-14T09:56:22Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-14T10:09:00Z"
+    },
+    {
+      "slug": "inkling-two-small-open-weight-deployment",
+      "title": "Thinking Machines opens Inkling 2 Small weights for deployment",
+      "publishedAt": "2026-11-14T06:55:10Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-14T07:09:44Z"
+    },
+    {
+      "slug": "anthropic-safety-score-deployment-context",
+      "title": "Anthropic explains why safety scores need deployment context",
+      "publishedAt": "2026-11-14T03:52:33Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-14T04:04:28Z"
+    },
+    {
+      "slug": "world-labs-atlas-scene-tools",
+      "title": "World Labs releases Atlas tools for editable 3D scenes",
+      "publishedAt": "2026-11-14T00:51:37Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-14T03:36:19Z"
+    },
+    {
+      "slug": "github-copilot-failover-boundaries",
+      "title": "GitHub’s outage report shows where Copilot model switching stops",
+      "publishedAt": "2026-11-13T21:50:56Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T22:09:24Z"
+    },
+    {
+      "slug": "google-smart-glasses-preorders",
+      "title": "Google opens smart-glasses preorders from $395",
+      "publishedAt": "2026-11-13T18:49:35Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T19:15:58Z"
+    },
+    {
+      "slug": "chatgpt-wallet-purchase-boundaries",
+      "title": "OpenAI separates card access from purchase approval in ChatGPT Wallet",
+      "publishedAt": "2026-11-13T15:49:20Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T16:11:34Z"
+    },
+    {
+      "slug": "a2ui-stable-native-agent-interfaces",
+      "title": "Google makes A2UI 1.0 stable for native agent interfaces",
+      "publishedAt": "2026-11-13T12:46:21Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T13:04:03Z"
+    },
+    {
+      "slug": "nonprofits-seek-frontier-ai-freeze",
+      "title": "Nonprofits ask court to freeze frontier AI development",
+      "publishedAt": "2026-11-13T09:45:13Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T10:04:44Z"
+    },
+    {
+      "slug": "google-agent-audit-detection-boundaries",
+      "title": "Google tests agent audits after harmful actions",
+      "publishedAt": "2026-11-13T06:42:11Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T06:58:59Z"
+    },
+    {
+      "slug": "claude-managed-agents-self-hosting",
+      "title": "Anthropic brings the Managed Agents service into customer infrastructure",
+      "publishedAt": "2026-11-13T03:41:50Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T03:57:04Z"
+    },
+    {
+      "slug": "gemini-hydrogen-migration-controls",
+      "title": "Google releases Gemini 4 Hydrogen with new migration controls",
+      "publishedAt": "2026-11-13T00:37:33Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-13T03:53:09Z"
+    },
+    {
+      "slug": "microsoft-outage-ai-connectors",
+      "title": "Microsoft 365 outage disrupts Claude and ChatGPT connectors",
+      "publishedAt": "2026-11-12T21:36:09Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T21:51:22Z"
+    },
+    {
+      "slug": "nvidia-kress-interim-ceo-continuity",
+      "title": "NVIDIA names Kress interim CEO as Huang resigns",
+      "publishedAt": "2026-11-12T18:34:14Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T18:52:45Z"
+    },
+    {
+      "slug": "anthropic-agent-messages-before-checkout",
+      "title": "Anthropic explains why agent messages miss the checkout",
+      "publishedAt": "2026-11-12T15:30:03Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T15:42:13Z"
+    },
+    {
+      "slug": "aws-emulator-local-agent-tests",
+      "title": "AWS gives coding agents a local cloud test environment",
+      "publishedAt": "2026-11-12T12:27:55Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T15:37:12Z"
+    },
+    {
+      "slug": "chatgpt-legacy-voice-retirement",
+      "title": "OpenAI sets December 11 cutoff for two ChatGPT voice modes",
+      "publishedAt": "2026-11-12T09:27:07Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T09:46:57Z"
+    },
+    {
+      "slug": "microsoft-lazarus-model-weight-integrity",
+      "title": "Microsoft exposes hidden agent commands in altered model weights",
+      "publishedAt": "2026-11-12T06:23:46Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T06:39:26Z"
+    },
+    {
+      "slug": "gemini-decisions-fixed-choice-api",
+      "title": "Google opens Gemini Decisions API for fixed-choice judgments",
+      "publishedAt": "2026-11-12T03:22:07Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T03:36:08Z"
+    },
+    {
+      "slug": "salesforce-autornd-evidence-before-promotion",
+      "title": "Salesforce reports research-agent gains in models and code",
+      "publishedAt": "2026-11-12T00:21:49Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-12T00:46:25Z"
+    },
+    {
+      "slug": "baidu-ernie-flash-preview-access",
+      "title": "Baidu opens ERNIE Flash Preview ahead of its weight release",
+      "publishedAt": "2026-11-11T21:21:45Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T21:37:33Z"
+    },
+    {
+      "slug": "microsoft-auto-sr-handheld-release",
+      "title": "Microsoft brings Auto SR to unplugged handheld play",
+      "publishedAt": "2026-11-11T18:21:05Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T18:46:46Z"
+    },
+    {
+      "slug": "alphaproof-code-signal-proof-boundaries",
+      "title": "DeepMind links Signal security proofs to compiled code",
+      "publishedAt": "2026-11-11T15:20:34Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T15:39:07Z"
+    },
+    {
+      "slug": "nvidia-snapshot-inference-cold-starts",
+      "title": "NVIDIA Snapshot reuses GPU state to shorten inference restarts",
+      "publishedAt": "2026-11-11T13:04:12Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T13:17:12Z"
+    },
+    {
+      "slug": "qwen4-max-preview-access-limits",
+      "title": "Alibaba opens Qwen4-Max preview with a November 25 cutoff",
+      "publishedAt": "2026-11-11T10:04:06Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T10:21:47Z"
+    },
+    {
+      "slug": "notion-fireworks-chat-transcript-exposure",
+      "title": "Notion discloses chat transcript exposure through Fireworks",
+      "publishedAt": "2026-11-11T01:00:04Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T10:11:41Z"
+    },
+    {
+      "slug": "ibm-microsoft-imagine-enterprise-agents",
+      "title": "IBM and Microsoft launch Imagine Enterprise for governed agent workflows",
+      "publishedAt": "2026-11-11T07:02:07Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T07:17:03Z"
+    },
+    {
+      "slug": "chatgpt-business-profiles-agent-boundaries",
+      "title": "OpenAI opens business profiles and separate merchant agents in ChatGPT",
+      "publishedAt": "2026-11-11T04:00:44Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-11T04:20:25Z"
+    },
+    {
+      "slug": "gemini-carbon-paid-access",
+      "title": "Google opens Gemini 4 Carbon to paying developers and Ultra users",
+      "publishedAt": "2026-11-10T18:58:02Z",
+      "priority": 5,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T23:46:12Z"
+    },
+    {
+      "slug": "claude-shared-work-artifacts",
+      "title": "Anthropic adds shared sheets and whiteboards inside Claude",
+      "publishedAt": "2026-11-10T21:58:52Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T22:25:12Z"
+    },
+    {
+      "slug": "google-maps-ai-studio-demo-limits",
+      "title": "Google brings Maps into AI Studio with 100 daily demo calls per API",
+      "publishedAt": "2026-11-10T03:30:54Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T18:17:30Z"
+    },
+    {
+      "slug": "adobe-disney-custom-model-alliance",
+      "title": "Adobe expands Disney alliance around custom AI models",
+      "publishedAt": "2026-11-10T15:54:17Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T16:07:58Z"
+    },
+    {
+      "slug": "github-actions-log-secret-scanning",
+      "title": "GitHub adds secret scanning for completed Actions logs",
+      "publishedAt": "2026-11-10T12:31:51Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T12:42:33Z"
+    },
+    {
+      "slug": "openai-education-time-savings-learning-evidence",
+      "title": "OpenAI reports teacher time savings and uneven classroom feedback",
+      "publishedAt": "2026-11-10T09:31:33Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T12:38:40Z"
+    },
+    {
+      "slug": "australia-frontier-ai-safety-rules",
+      "title": "Australia plans mandatory safety rules for frontier AI companies",
+      "publishedAt": "2026-11-10T06:31:25Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T06:57:40Z"
+    },
+    {
+      "slug": "meta-muse-ember-agent-execution",
+      "title": "Meta releases Muse Ember for high-volume agent work",
+      "publishedAt": "2026-11-10T00:30:07Z",
+      "priority": 4,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-10T02:28:18Z"
+    },
+    {
+      "slug": "claude-fable-52-pricing-migration",
+      "title": "Anthropic releases Fable 5.2 and Mythos 5.2 with lower token prices",
+      "publishedAt": "2026-11-09T21:29:55Z",
+      "priority": 5,
+      "vibes": false,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-09T21:54:59Z"
+    },
+    {
+      "slug": "nvidia-rebellions-skt-inference-plan",
+      "title": "NVIDIA and Korean partners plan a GPU–NPU inference system for 2028",
+      "publishedAt": "2026-11-09T18:29:33Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-09T18:40:11Z"
+    },
+    {
+      "slug": "google-tpu-secure-memory-systems",
+      "title": "Google adds TPU systems for confidential inference and larger working memory",
+      "publishedAt": "2026-11-09T15:29:18Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-09T15:47:08Z"
+    },
+    {
+      "slug": "crewai-spreadsheet-agent-queries",
+      "title": "CrewAI adds spreadsheet queries to agent inputs",
+      "publishedAt": "2026-11-09T12:28:53Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "In a 1950s accounting office, a clerk pulls a full ledger from a wooden slot beside a few loose blank sample cards.",
+      "ingredients": [
+        "Satisfying physics: a heavy ledger slides precisely in wooden guides and opens with a soft page fan, separating full records from samples"
+      ],
+      "people": [
+        "One fictional adult male accountant, dark side-parted hair, cream rolled-sleeve shirt and navy waistcoat"
+      ],
+      "reelMade": false,
+      "concept": "period",
+      "textStyle": "type",
+      "totals": {},
+      "sharedAt": "2026-11-09T12:37:12Z"
+    },
+    {
+      "slug": "hermes-security-evidence-review",
+      "title": "Nous adds evidence checks and bounded testing to Hermes Security",
+      "publishedAt": "2026-11-09T09:28:32Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-09T09:48:30Z"
+    },
+    {
+      "slug": "mujoco-playground-simulation-hardware-boundary",
+      "title": "MuJoCo Playground links robot simulation with hardware control",
+      "publishedAt": "2026-11-09T06:28:18Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A real wind-up toy robot arm transfers one cobalt wooden cube between two matching oak practice trays.",
+      "ingredients": [
+        "speed and machines: an articulated wind-up toy arm lifts and transfers a wooden cube",
+        "tactile toy mechanics: scuffed tin, a brass winding key and fitted oak trays make shared task reuse tangible"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "toys",
+      "textStyle": "band",
+      "totals": {},
+      "sharedAt": "2026-11-09T06:43:24Z"
+    },
+    {
+      "slug": "agentic-api-file-search-continuation",
+      "title": "Agentic API merges file search with citations and saved context",
+      "publishedAt": "2026-11-09T03:27:56Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "In a sunlit architectural archive, an archivist rolls a trolley carrying a retained clipped sheet while lifting the next blank folder from a shelf.",
+      "ingredients": [
+        "moving document trolley: carries retrieved material forward into the next task",
+        "fluttering retained paper: clipped sheet makes saved search context physically visible"
+      ],
+      "people": [
+        "One invented adult woman archivist in her fifties, short dark hair with silver strands, cream shirt and fitted cobalt waistcoat"
+      ],
+      "reelMade": false,
+      "concept": "everyday",
+      "textStyle": "blur",
+      "totals": {},
+      "sharedAt": "2026-11-09T03:34:50Z"
+    },
+    {
+      "slug": "microsoft-agent-framework-discovery-limits",
+      "title": "Microsoft caps agent tool discovery and separates workflow users",
+      "publishedAt": "2026-11-09T00:27:42Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A night concierge seats a brass key in its own private guest tray while a solid divider separates a second closed tray.",
+      "ingredients": [
+        "satisfying physical separation: brass key seats in its own fitted guest tray while a solid divider isolates the closed neighboring tray",
+        "weather and elements: rain-streaked rear window and hard practical sidelight create noir atmosphere"
+      ],
+      "people": [
+        "One invented older adult woman night concierge, about 58, silver swept-back hair, fitted charcoal blazer and ivory open-neck shirt"
+      ],
+      "reelMade": false,
+      "concept": "noir",
+      "textStyle": "stamp",
+      "totals": {},
+      "sharedAt": "2026-11-09T00:35:21Z"
+    },
+    {
+      "slug": "aws-kimi-highspeed-cache-economics",
+      "title": "AWS brings Kimi Highspeed to Bedrock with separate cache pricing",
+      "publishedAt": "2026-11-08T21:27:21Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-08T21:52:06Z"
+    },
+    {
+      "slug": "nvidia-reshard-weight-refit",
+      "title": "NVIDIA cuts repeated weight transfers in reinforcement learning",
+      "publishedAt": "2026-11-08T18:26:39Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "In an indoor relay training hall, a coach hands only the needed baton section to a waiting runner while full spare batons remain on the rack.",
+      "ingredients": [
+        "speed through human relay movement: waiting runners make the cost of delayed handoffs tangible",
+        "satisfying physics: two removable baton sections click together while redundant full batons remain in the rack"
+      ],
+      "people": [
+        "Invented older adult female coach with short silver hair and charcoal tracksuit",
+        "Four invented adult runners: two women and two men, varied muted green athletic clothing"
+      ],
+      "reelMade": false,
+      "concept": "sport",
+      "textStyle": "giant",
+      "totals": {},
+      "sharedAt": "2026-11-08T18:38:37Z"
+    },
+    {
+      "slug": "claude-enterprise-project-cost-tags",
+      "title": "Claude Enterprise adds project tags for tracking costs",
+      "publishedAt": "2026-11-08T15:26:11Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A miniature freight depot sorts flowing brass tokens into cobalt and terracotta wagons without stopping the conveyor.",
+      "ingredients": [
+        "satisfying physical sorting: brass tokens fall into separate wagons while the conveyor keeps spending flowing",
+        "miniature scale: a real tabletop freight model makes two distinct reporting destinations visible together"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "miniature",
+      "textStyle": "type",
+      "totals": {},
+      "sharedAt": "2026-11-08T15:43:04Z"
+    },
+    {
+      "slug": "google-adk-structured-skill-arguments",
+      "title": "Google ADK restricts how agents run skill scripts",
+      "publishedAt": "2026-11-08T12:25:59Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A compact precision indexing machine seats a matched cobalt tool holder in a keyed steel socket while an oversized loose bar remains beside it.",
+      "ingredients": [
+        "satisfying keyed contact: a fitted cobalt tool holder enters a matching socket, making validated script arguments tangible",
+        "oversized loose steel bar: an incompatible input stays outside the keyed fixture"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "object",
+      "textStyle": "blur",
+      "totals": {},
+      "sharedAt": "2026-11-08T12:35:08Z"
+    },
+    {
+      "slug": "meta-muse-custom-spaces",
+      "title": "Meta adds persistent custom spaces to Muse",
+      "publishedAt": "2026-11-08T09:25:40Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A ginger cat nudges a blue cushion into its chosen oak nook while a compact household robot adjusts a neighboring cubby.",
+      "ingredients": [
+        "cat curiosity: ginger cat actively chooses and adjusts its own comfortable nook",
+        "modular movement: a household robot slides a neighboring cubby to make a reusable custom space tangible"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "pet",
+      "textStyle": "giant",
+      "totals": {},
+      "sharedAt": "2026-11-08T09:33:04Z"
+    },
+    {
+      "slug": "cursor-voice-chat-coding-agents",
+      "title": "Cursor adds two-way voice calls to coding agents",
+      "publishedAt": "2026-11-08T06:25:24Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "In a 1930s radio repair shop, a dispatcher talks on a desk telephone while handing a blank work card down a wooden chute to a technician continuing her radio repair.",
+      "ingredients": [
+        "speed and machines: a sliding work card and continuing screwdriver adjustment make simultaneous conversation and delegated work visible",
+        "focused facial reaction: the technician looks up with a progress update while the dispatcher listens"
+      ],
+      "people": [
+        "Invented adult male dispatcher, about 55, silver hair, rolled cream shirtsleeves and charcoal waistcoat",
+        "Invented adult woman radio technician, about 35, auburn pinned curls, fitted navy period work jacket and cream blouse"
+      ],
+      "reelMade": false,
+      "concept": "period",
+      "textStyle": "type",
+      "totals": {},
+      "sharedAt": "2026-11-08T06:35:16Z"
+    },
+    {
+      "slug": "github-slack-teams-general-availability",
+      "title": "GitHub takes Slack and Teams coding agents to general availability",
+      "publishedAt": "2026-11-08T03:25:01Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A bicycle-shop owner slides a blank repair card into a compact courier robot tray beside a disassembled bell, retaining oversight of the handoff.",
+      "ingredients": [
+        "satisfying physics: a blank repair card seats in the courier robot tray, keeping the repair handoff tangible",
+        "direct confident glance: the bicycle-shop owner makes human review responsibility visible"
+      ],
+      "people": [
+        "One invented adult woman bicycle-shop owner, about 30, short wavy auburn hair, fitted navy work shirt and tan canvas apron"
+      ],
+      "reelMade": false,
+      "concept": "everyday",
+      "textStyle": "band",
+      "totals": {},
+      "sharedAt": "2026-11-08T03:32:45Z"
+    },
+    {
+      "slug": "biobasicsbench-credit-versus-correctness",
+      "title": "OpenAI’s wet-lab benchmark separates credit from correctness",
+      "publishedAt": "2026-11-08T00:24:53Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "On a real inspection bench, a mechanical pusher fits brass discs together beside an equal quantity of separated pieces.",
+      "ingredients": [
+        "satisfying physics: equal quantities of brass discs remain loose or click into a complete interlocking assembly",
+        "strong brass-versus-cobalt contrast: makes the difference between points and completion visible"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "metaphor",
+      "textStyle": "wipe",
+      "totals": {},
+      "sharedAt": "2026-11-08T02:45:38Z"
+    },
+    {
+      "slug": "inkling-two-small-hosted-release",
+      "title": "Thinking Machines releases Inkling 2 Small on Tinker",
+      "publishedAt": "2026-11-07T21:14:15Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A tabletop freight workshop circulates a cobalt equipment crate on an indoor test loop while its outbound gate stays closed.",
+      "ingredients": [
+        "speed and machines: miniature cart circulates a cobalt equipment crate on a working internal test loop",
+        "scale and color: tactile tabletop machinery and cobalt against amber distinguish hosted work from the closed exit"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "miniature",
+      "textStyle": "type",
+      "totals": {},
+      "sharedAt": "2026-11-07T21:24:51Z"
+    },
+    {
+      "slug": "vercel-deepseek-search-fetch",
+      "title": "Vercel adds DeepSeek search and page fetching to AI Gateway",
+      "publishedAt": "2026-11-07T18:12:52Z",
+      "priority": 3,
+      "vibes": false,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "reel:instagram": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": null,
+      "ingredients": null,
+      "people": null,
+      "reelMade": null,
+      "concept": null,
+      "textStyle": null,
+      "totals": {},
+      "sharedAt": "2026-11-07T19:41:00Z"
+    },
+    {
+      "slug": "psi-quantum-conjecture-proof",
+      "title": "PSI reports an AI-assisted proof of a quantum speedup conjecture",
+      "publishedAt": "2026-11-07T15:12:44Z",
+      "priority": 3,
+      "vibes": true,
+      "posts": {
+        "now:threads": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:pinterest": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:mastodon": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:substack": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:bluesky": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:facebook": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:linkedin": {
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "now:twitter": {
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "scene": "A brass ball rolls through a real wooden maze beneath a removable clear inspection plate with aligned grooves.",
+      "ingredients": [
+        "tactile toy detail: cobalt-painted wood, brass and acrylic make an abstract proof package approachable",
+        "transparent layered inspection: matching grooves expose the route for checking rather than implying acceptance"
+      ],
+      "people": [],
+      "reelMade": false,
+      "concept": "toys",
+      "textStyle": "band",
+      "totals": {},
+      "sharedAt": "2026-11-07T15:23:08Z"
+    }
+  ]
+}

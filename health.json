@@ -1,0 +1,51 @@
+{
+  "updated": "2026-11-14T16:05:13Z",
+  "pipeline": {
+    "timer": "active",
+    "paused": false,
+    "running": [],
+    "last24h": {
+      "done": 0,
+      "fallback": 7,
+      "reels": 2
+    },
+    "lastDone": {
+      "slug": "crewai-spreadsheet-agent-queries",
+      "at": "2026-11-09T12:38:30Z"
+    },
+    "backlog": [],
+    "cooldown": null
+  },
+  "vibes": {
+    "signedIn": false,
+    "checkedAt": "2026-11-14T14:35:13Z"
+  },
+  "codex": {
+    "loggedIn": true,
+    "fiveHourUsedPercent": 0,
+    "fiveHourResetsAt": "2026-11-14T14:58:53Z",
+    "weeklyUsedPercent": 15.0,
+    "weeklyResetsAt": "2026-11-18T18:25:52Z",
+    "asOf": "2026-11-14T13:08:00.785Z",
+    "plan": "plus"
+  },
+  "failures6h": [
+    "2026-11-14T13:13:46.561884Z vibes relogin: vibes.ai says \"Not available in your country yet\"; no Log In control available",
+    "2026-11-14T13:14:32Z vibes claude-manufacturing-approval-boundaries vibes: no banner takes (exit 2): SIGNED_OUT: relogin not verified; Sedat must check Vibes via browser-login.sh (see logs/hermes-relogin.log)",
+    "2026-11-14T13:19:26Z vibes claude-manufacturing-approval-boundaries fallback: social.py reported a failure"
+  ],
+  "sharing": {
+    "lastShareAt": "2026-11-14T10:09:00Z",
+    "failures24h": []
+  },
+  "server": {
+    "diskFreeGB": 166,
+    "githubFetch": true
+  },
+  "metricsUpdated": "2026-11-14T13:35:13Z",
+  "status": "alert",
+  "problems": [
+    "Vibes is SIGNED OUT: Sedat must sign in again (noVNC: ~/work/bin/browser-login.sh). Until then stories go out with the old banner.",
+    "3 pipeline problem(s) in the last 6 h (failures.log: a story on the old banner, or a reel or voice-over left out)."
+  ]
+}
