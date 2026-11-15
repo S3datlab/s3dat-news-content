@@ -1,0 +1,123 @@
+{
+  "format": 2,
+  "slug": "nvidia-hospital-chart-review-evidence",
+  "kind": "explained",
+  "topic": "research",
+  "title": "NVIDIA shows how hospital-local AI supports chart review",
+  "dek": "Dyania’s Synapsis turns medical notes into evidence for clinical teams. Keeping records onsite and finding useful signals answer different questions.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T06:08:46Z",
+  "lede": "NVIDIA described on November 13 how Dyania Health’s Synapsis AI reviews patient records inside hospital infrastructure. The account connects a heart-valve research project with a broader question: what changes when software reads the chart before a clinician does.",
+  "facts": [
+    {
+      "label": "Platform",
+      "value": "Dyania Health Synapsis AI"
+    },
+    {
+      "label": "Valve study cohort",
+      "value": "More than 7,800 patients, according to NVIDIA"
+    },
+    {
+      "label": "Treatment period",
+      "value": "2005–2021"
+    },
+    {
+      "label": "Deployment",
+      "value": "Inside the health system’s firewall"
+    },
+    {
+      "label": "Decision maker",
+      "value": "Clinician reviewing the evidence"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What does the software actually produce?",
+      "text": "Dyania describes a system that connects information across notes, imaging reports and laboratory results. Its output is a set of signals linked to the underlying records, for clinical review. Dyania says Cleveland Clinic used it to support research on aortic valve replacement patients treated between 2005 and 2021. That work assembled information for predictions about deterioration and further intervention. The distinction matters: extracting a usable history is one task; deciding what to do for a patient is another."
+    },
+    {
+      "heading": "Why keep the work inside the hospital?",
+      "text": "In NVIDIA’s account, Synapsis operates on the health system’s own accelerated servers, behind its firewall. This puts computation near the records with processing kept onsite. For builders, that separates deployment location from the usefulness of an answer. A local system still needs a way to show the source passage and put its conclusion in front of a qualified reviewer. Locality describes where the work happens. Traceability describes how someone can inspect it."
+    },
+    {
+      "heading": "What evidence predates this announcement?",
+      "text": "Cleveland Clinic described a different Synapsis application on March 3: pre-screening for a rare-disease clinical trial. It reported that the system reviewed 1,476 patients in one week and identified 46 potential matches. Following clinician review, 30 patients were identified as trial matches, including 29 missed by traditional recruitment. These are separate steps with separate counts. A potential match enters the review queue before enrollment. The hospital reported seven enrollments over six days through AI-assisted screening, compared with ten over ninety days through traditional screening. The process included auditable reasons for eligibility decisions."
+    },
+    {
+      "heading": "How would the review chain work in practice?",
+      "text": "Consider a hypothetical screening task with three requirements and ten candidate records. The system returns thirty criterion-level answers, each accompanied by the relevant passage and its date. A reviewer checks whether the passage supports the answer, whether it describes the right time period, and whether information is missing. A correct extraction from an old note can still be unsuitable for a current eligibility decision. Recording both extraction errors and eligibility disagreements gives the team two different measurements. This hypothetical test design illustrates the review process. It illustrates why a useful summary and a final decision should remain separately inspectable."
+    },
+    {
+      "heading": "How does screening fit into a longer deployment?",
+      "text": "Cleveland Clinic’s October 26 account places its enterprise deployment in November 2025, after cardiology and oncology pilots. The hospital says participating study teams subsequently enrolled forty percent more patients, forty-seven percent faster on average. That describes an operational recruitment result, not the heart-valve study. The chronology also matters. NVIDIA’s November account is a new description of an existing clinical workflow, not evidence that hospital deployment began that week. For a builder, the relevant progression runs from a defined screening task to reviewed candidates and then recorded enrollment. Those stages give a deployment more informative checkpoints than a single claim that the model reads records."
+    }
+  ],
+  "buildersNote": "For a pilot, evaluate 10 synthetic charts against 3 explicit criteria. Record source-extraction errors and reviewer disagreements separately, and require a dated evidence passage for all 30 answers before considering a broader test.",
+  "claims": [
+    {
+      "text": "NVIDIA describes hospital-local processing and a heart-valve research cohort of more than 7,800 patients. These are supplier-reported deployment details.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "Cleveland Clinic reports trial-screening and enrollment results, but it also discloses an investment in Dyania and a potential financial benefit from sales. This is not an independent customer evaluation.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The cited accounts do not establish a reduction in patient harm or prove that these results transfer to another hospital. Faster recruitment is not itself a treatment-outcome measure.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
+      "publisher": "NVIDIA",
+      "url": "https://blogs.nvidia.com/blog/how-ai-is-helping-care-teams/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "AI-Driven Chart Review Accurately Identifies Potential Rare Disease Trial Participants in New Study",
+      "publisher": "Cleveland Clinic",
+      "url": "https://newsroom.clevelandclinic.org/2026/03/03/ai-driven-chart-review-accurately-identifies-potential-rare-disease-trial-participants-in-new-study",
+      "date": "2026-03-03"
+    },
+    {
+      "title": "Cleveland Clinic and Dyania’s Work on AI in Clinical Trial Matching Earns 2026 Gartner Eye on Innovation Award",
+      "publisher": "Cleveland Clinic",
+      "url": "https://newsroom.clevelandclinic.org/2026/10/26/cleveland-clinic-and-dyanias-work-on-ai-in-clinical-trial-matching-earns-2026-gartner-eye-on-innovation-award",
+      "date": "2026-10-26"
+    },
+    {
+      "title": "Dyania Health Brings Clinical Reasoning AI Inside the Hospital Firewall to Advance Patient Care with NVIDIA",
+      "publisher": "Dyania Health",
+      "url": "https://dyaniahealth.com/press-release/dyania-health-nvidia-clinical-reasoning-ai/",
+      "date": "2026-11-13"
+    }
+  ],
+  "social": {
+    "hook": "A faster chart review still ends with a clinician.",
+    "voiceover": "[measured] A faster chart review still ends with a clinician. Nvidia describes hospital-local software supporting a study of thousands of heart patients. Reading records and making care decisions remain different jobs.",
+    "short": "NVIDIA described hospital-local AI chart review for over 7,800 heart-valve patients. Dyania’s software surfaces evidence; clinicians decide what to do. Treatment benefits remain unproven here.",
+    "long": "NVIDIA outlined how Dyania’s Synapsis reads years of medical notes without sending hospital records elsewhere. Its November 13 account describes a study involving more than 7,800 heart-valve patients.\n\nThe useful distinction is between finding evidence and acting on it. Earlier Cleveland Clinic trial-screening work reported 46 potential matches from 1,476 records, followed by clinician review. A candidate list was not the same thing as enrolled patients.\n\nWe would evaluate extraction quality and clinical review separately. These accounts support a workflow discussion, not a claim that local AI has already improved treatment outcomes. Cleveland Clinic also has a financial interest in Dyania.",
+    "take": "We think traceable evidence is the useful output here. Running inside a hospital answers a data-location question; clinical review still has to establish whether the answer is usable.",
+    "keyFacts": [
+      "NVIDIA account published November 13",
+      "More than 7,800 heart-valve patients in cited study",
+      "Clinicians review the evidence and decide"
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "ClinicalAI",
+      "MedicalResearch",
+      "HealthData"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}

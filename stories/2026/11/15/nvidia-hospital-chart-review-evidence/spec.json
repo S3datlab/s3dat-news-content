@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "AI READS",
+    "THE CHART"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151103,
+  "sources": {}
+}
