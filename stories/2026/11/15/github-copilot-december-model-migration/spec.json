@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "COPILOT SETS",
+    "6 RETIREMENTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "GitHub",
+      "icon": "github"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "stat": {
+    "value": "6",
+    "label": "models listed for retirement"
+  },
+  "seed": 11421,
+  "sources": {}
+}

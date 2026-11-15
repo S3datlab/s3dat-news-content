@@ -1,0 +1,118 @@
+{
+  "format": 2,
+  "slug": "github-copilot-december-model-migration",
+  "kind": "explained",
+  "topic": "dev-tools",
+  "title": "GitHub sets a December deadline for six Copilot models",
+  "dek": "Copilot model retirement creates separate work for workflow owners, administrators and data reviewers, even when a replacement appears automatically.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T00:01:07Z",
+  "lede": "GitHub announced on November 13 that six Copilot models will be deprecated on December 14. The notice creates a migration deadline for teams whose coding workflows depend on a specific model.",
+  "facts": [
+    {
+      "label": "Platform",
+      "value": "GitHub Copilot"
+    },
+    {
+      "label": "Listed retirements",
+      "value": "6 models"
+    },
+    {
+      "label": "Deadline",
+      "value": "14 December 2026"
+    },
+    {
+      "label": "Kimi K3 replacement",
+      "value": "To be announced"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What does retirement change?",
+      "text": "The notice covers chat, inline editing, agent and ask modes, and code completions. It pairs five retirements with suggested alternatives. Individual annual Copilot subscribers retain Haiku 4.5. The same date therefore does not mean identical changes for every subscription."
+    },
+    {
+      "heading": "Does appearing in the picker mean a migration is finished?",
+      "text": "Hydrogen illustrates the difference between access and readiness. GitHub introduced it on November 13 for Pro, Pro+, Max, Business and Enterprise customers. Distribution is gradual across editors, the command line, coding agent, app and other supported surfaces. Billing follows provider list prices under usage-based billing. Business and Enterprise administrators manage its model policy; default enablement applies unless the global default is off or the model is explicitly disabled. These controls determine whether someone can select a model. They do not test the output of a particular repository task."
+    },
+    {
+      "heading": "Why does data review belong in the same migration?",
+      "text": "Fable 5.2 has a separate requirement in its November 9 release notice. Its organization policy starts disabled, and enabling it acknowledges data retention for safety classifiers. Anthropic retains prompts and outputs for that purpose, not model training. Eligible enterprises can obtain a temporary zero-retention exemption through the calendar year while Enterprise Frontier Safeguards rolls out. GitHub directs eligibility questions to account teams. Even approved organizations must still enable the policy. A model change can therefore involve both an administrator and the person responsible for data handling."
+    },
+    {
+      "heading": "What would a small migration test look like?",
+      "text": "Consider a hypothetical team with ten repeatable repository tasks: four bug fixes, three test additions and three documentation changes. Running each once with the old model and once with a candidate produces twenty attempts. The team records completed tasks, failed tests, elapsed time and billed usage separately. A model that finishes more tasks might still need more review on one category. Keeping the same inputs makes those differences easier to inspect. This is an example test design, not a reported benchmark or a promise that ten tasks represent an entire codebase."
+    },
+    {
+      "heading": "Can changing one default settle every policy?",
+      "text": "GitHub\u2019s October 22 feature-default rollout preserved explicit administrator choices. Eligible unconfigured feature settings received the selected default once; later changes to that default did not rewrite policies already set. Preview features remained opt-in. That announcement concerned feature and client controls, whereas the November model notices describe model-specific policies. Treating these as separate records avoids confusing a platform-wide preference with the actual state of a replacement. The useful migration record joins the model name, allowed surfaces, data decision and test result in one place."
+    }
+  ],
+  "buildersNote": "Before December 14, inventory pinned models and run the same 10 repository tasks on each proposed replacement. Record access, test failures, review time and cost separately; do not use picker visibility as the acceptance test.",
+  "claims": [
+    {
+      "text": "GitHub lists six December retirements, with an annual-plan exception for Haiku 4.5.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "GitHub says Hydrogen improves instruction following over Gemini 3.8 Flash.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The retirement notice describes default enablement broadly, while Fable 5.2\u2019s release notice requires explicit activation. The notice does not resolve that policy exception.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Upcoming deprecation of selected GitHub Copilot models in December",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-13-upcoming-deprecation-of-selected-github-copilot-models-in-december/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Gemini 4 Hydrogen in GitHub Copilot",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-13-gemini-4-hydrogen-in-github-copilot/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Claude Fable 5.2 in GitHub Copilot",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-09-claude-fable-5-2-in-github-copilot/",
+      "date": "2026-11-09"
+    },
+    {
+      "title": "Global default for Copilot features generally available",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-10-22-global-default-for-copilot-features-generally-available/",
+      "date": "2026-10-22"
+    }
+  ],
+  "social": {
+    "hook": "A replacement model still needs a migration test.",
+    "voiceover": "[measured] A replacement model still needs a migration test. GitHub plans six Copilot model retirements in December. Access, data rules and task results are separate checks. A visible model is only the first step.",
+    "short": "GitHub scheduled six Copilot model retirements for December 14. A suggested replacement is a starting point for testing, not proof that an existing workflow will behave the same.",
+    "long": "GitHub gave Copilot teams a December 14 migration deadline. The practical work extends beyond choosing another name in a menu.\n\nHydrogen is rolling out across supported clients, with provider list pricing under usage-based billing. Fable 5.2 carries a separate data-retention requirement and an administrator activation step.\n\nWe would compare identical repository tasks before switching a workflow. Access approval cannot establish output quality, and a clean test run cannot settle a data-handling decision.",
+    "take": "We think migration acceptance belongs to the workflow owner, not the model picker. A replacement earns its place through repeatable tasks and an explicit data decision.",
+    "keyFacts": [
+      "6 models listed for December retirement",
+      "December 14, 2026: migration deadline",
+      "Haiku 4.5 stays for individual annual subscribers"
+    ],
+    "hashtags": [
+      "GitHubCopilot",
+      "CodingAgents",
+      "DeveloperTools"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}
