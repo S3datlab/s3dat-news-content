@@ -1,0 +1,125 @@
+{
+  "format": 2,
+  "slug": "microsoft-aion-output-migration",
+  "kind": "explained",
+  "topic": "models",
+  "title": "Microsoft Aion changes the output contract for Windows apps",
+  "dek": "The Phi Silica replacement keeps familiar interfaces while changing model behavior. Preview testing separates API compatibility from dependable application output.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T18:25:47Z",
+  "lede": "Microsoft outlined its Aion Instruct transition on November 13, including a planned November 20 Windows Insider rollout. The practical migration question is whether existing applications can still interpret what the local model returns.",
+  "facts": [
+    {
+      "label": "Successor",
+      "value": "Aion Instruct replaces Phi Silica"
+    },
+    {
+      "label": "Model size",
+      "value": "2.3 billion parameters, Microsoft reports"
+    },
+    {
+      "label": "Insider target",
+      "value": "20 November 2026"
+    },
+    {
+      "label": "Retail target",
+      "value": "January 2027"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Why can familiar APIs return unfamiliar results?",
+      "text": "An API is the interface an application calls. The model supplies the content behind that interface. Keeping the call intact therefore does not preserve every answer that existing code expects. Microsoft identifies custom prompts, adapters and output parsers as migration concerns. This distinction matters for local assistants that turn generated text into a category, a command or a database field. A successful call only establishes that a response arrived. It does not establish that the response still satisfies the application’s rules."
+    },
+    {
+      "heading": "What does a parser failure look like?",
+      "text": "Consider a hypothetical receipt assistant whose application accepts exactly two categories: travel and supplies. The model returns a category, and ordinary code reads that string. A response containing an explanation could be understandable to a person yet invalid for that parser. A response containing the wrong category could pass the parser and still corrupt the expense record. These are different failures. The example is not a reported Aion incident; it illustrates why readable answers, valid formats and correct decisions need separate checks."
+    },
+    {
+      "heading": "What can the preview actually measure?",
+      "text": "Microsoft’s sample application separates chat, image description, text intelligence and adapter validation into different tabs. It reports first-update delay and streaming updates per second. Those updates are not tokenizer tokens, so converting the display into a token-throughput claim would change its meaning. The package is for developer validation, not customer distribution. Its documentation also separates successful adapter loading from output quality. That makes the sample a place to exercise an integration, with shipping readiness left for a separate review."
+    },
+    {
+      "heading": "How does testing separate improvement from coincidence?",
+      "text": "Microsoft’s prompt guide starts with a defined answer contract and representative cases. It separates development examples from a held-out set and compares individual cases across prompt variants. In the receipt example, a proposed test could use forty labeled receipts for development and ten untouched receipts for a final check. Those numbers are an illustrative test design, not a Microsoft benchmark. A higher average can conceal a newly broken category. Keeping the same inputs makes gains and regressions visible without confusing a different test set with a better model."
+    },
+    {
+      "heading": "Where does the application keep responsibility?",
+      "text": "The guide distinguishes controls available in the preview from general techniques a runtime might support. It lists application-side validation as necessary where native constraints are unavailable. Windows documentation separately describes readiness checks before creating the language model and requesting a response. Together these describe two boundaries: whether the model is available and whether its answer is acceptable. For the receipt assistant, an unavailable model and an invalid category need different recovery paths. Neither condition is fixed merely by increasing the amount of text a model can read."
+    }
+  ],
+  "buildersNote": "Before the November 20 target, run 50 representative inputs through the current parser and the Aion preview. Record invalid formats separately from wrong decisions; keep 10 cases untouched until selecting the prompt. This is a proposed test budget, not a measured result.",
+  "claims": [
+    {
+      "text": "Microsoft targets November 20 for the Insider rollout and January 2027 for retail availability. These remain plans.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The preview documentation says Phi Silica adapters are incompatible with Aion and warns that output behavior changes.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The prompt guide says the current preview lacks native JSON-schema or regex constrained decoding and tokenizer-token counts.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Final application quality and performance cannot be established from preliminary preview measurements alone.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Microsoft Aion Instruct: Advancing local AI on Windows and expanding to GPU",
+      "publisher": "Microsoft",
+      "url": "https://devblogs.microsoft.com/foundry-on-windows/aion-instruct-local-ai-windows-gpu/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Aion Instruct Preview Chat",
+      "publisher": "Microsoft",
+      "url": "https://github.com/microsoft/Aion-Instruct-Preview-Sample",
+      "date": "2026-10-31"
+    },
+    {
+      "title": "Improving Prompts for Aion",
+      "publisher": "Microsoft",
+      "url": "https://github.com/microsoft/Aion-Instruct-Preview-Sample/blob/main/docs/prompt-guide.md",
+      "date": "2026-10-11"
+    },
+    {
+      "title": "Get started with Phi Silica",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica",
+      "date": "2026-10-19"
+    }
+  ],
+  "social": {
+    "hook": "A working API can still break your parser.",
+    "voiceover": "[matter-of-fact] A working API can still break your parser. Microsoft targets November twentieth for Aion’s Insider rollout. Existing custom prompts and adapters need testing before familiar calls become dependable application results.",
+    "short": "Microsoft plans Aion’s Insider rollout for November 20. Custom prompts and output parsers need checks even when Windows calls stay familiar.",
+    "long": "Microsoft identifies output parsing as an Aion migration risk. The planned November 20 Insider rollout gives Windows developers a concrete testing milestone, not proof that existing integrations already work.\n\nThe preview sample distinguishes streaming updates from tokens and adapter loading from quality. A useful migration check separates a response that cannot be parsed from one that parses correctly but makes the wrong decision. Final application performance remains unestablished.",
+    "take": "We would treat parser compatibility as a release gate. An unchanged method call is a weak substitute for testing the decisions an application actually consumes.",
+    "keyFacts": [
+      "November 20: planned Insider rollout",
+      "January 2027: retail transition target",
+      "2.3B parameters reported for Aion Instruct"
+    ],
+    "hashtags": [
+      "Microsoft",
+      "AionInstruct",
+      "OnDeviceAI",
+      "WindowsApps"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  },
+  "corrections": []
+}

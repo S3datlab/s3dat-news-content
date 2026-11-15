@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "AION CHANGES",
+    "APP OUTPUT"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "Microsoft",
+      "icon": "microsoft"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151518,
+  "sources": {}
+}
