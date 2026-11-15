@@ -1,0 +1,121 @@
+{
+  "format": 2,
+  "slug": "deepseek-app-api-round-budgets",
+  "kind": "explained",
+  "topic": "agents",
+  "title": "DeepSeek separates step limits from whole-answer budgets",
+  "dek": "DeepSeek\u2019s expanded app APIs put search on the server. A familiar output limit applies to each inference step, not the entire round.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T21:30:23Z",
+  "lede": "DeepSeek released its full suite of application APIs on November 13, bringing more of its chat application into developer integrations. The release makes a budgeting distinction important: one visible answer can contain several server-managed inference steps.",
+  "facts": [
+    {
+      "label": "Announcement",
+      "value": "13 November 2026"
+    },
+    {
+      "label": "Model",
+      "value": "deepseek-flash"
+    },
+    {
+      "label": "Interfaces",
+      "value": "Messages, Responses, Chat Completions"
+    },
+    {
+      "label": "Thinking search",
+      "value": "Up to about 20 tool calls before answering"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What moved into the service?",
+      "text": "DeepSeek\u2019s release combines built-in conversation features with standalone tools. The announcement covers search, files, links, safety and voice, alongside an open-source chat demonstration. For developers, the relevant change is where orchestration happens. A request can ask the service to assemble context and perform searches, instead of making the application run every intermediate action. The release is therefore useful context for examining what a request limit actually controls. A shared endpoint format does not make all parameter meanings interchangeable."
+    },
+    {
+      "heading": "Which limit applies to a step?",
+      "text": "The chatbot guide says max_tokens, called max_output_tokens in Responses, limits each inference step within a round. It does not cap the round\u2019s combined output. The guide also lists parameters the service ignores when web tools, high-level safety checking or title generation activate this mode. These include max_tool_calls in Responses. A setting present in a client library can therefore remain in the request without controlling the operation its name suggests. The integration boundary includes both accepted fields and their documented effect."
+    },
+    {
+      "heading": "How does that change a budget calculation?",
+      "text": "Consider an illustrative request with a limit of 1,000 output tokens per step. If three steps each produce 800 tokens, their combined output is 2,400 tokens. Each step remains below 1,000. These numbers describe arithmetic, not a measured DeepSeek run or a prediction of its bills. The distinction matters for a product that promises a fixed allowance per answer: a step-sized limit and an answer-sized allowance measure different units. Input processing and tool use introduce additional accounting categories beyond the example\u2019s output total."
+    },
+    {
+      "heading": "What does a search round contain?",
+      "text": "DeepSeek\u2019s Web Tools guide describes deep thinking search as a sequence of searches, page openings and text lookups. It gives an approximate ceiling of twenty tool calls before an answer. A tool call and an inference step are different events, so multiplying that figure by an output limit would not establish a precise round budget. The model chooses whether to search. Direct Search and Fetch endpoints provide a separate route when an application wants to issue those operations itself."
+    },
+    {
+      "heading": "When is a returned answer finished?",
+      "text": "The Responses reference distinguishes completed, incomplete and failed states. Its streaming protocol ends with an event identifying one of those outcomes. An application can receive useful-looking text before reaching that terminal state. The reference also defines usage fields and error details, which separate content from accounting and completion information. In practical terms, displaying a partial answer, accepting a finished answer and recording resource consumption are three separate application decisions. A visible paragraph alone cannot settle all three."
+    },
+    {
+      "heading": "Where does responsibility remain?",
+      "text": "Server-managed execution reduces the amount of orchestration an application implements, while leaving its product-level acceptance rules intact. An application\u2019s allowance, timeout policy and definition of a complete answer still need explicit meanings. For the hypothetical budget above, a per-step guard prevents an oversized individual step; a whole-answer ledger answers a different question. The new suite makes that separation more relevant because several capabilities now sit behind a single conversation request. The central integration task is matching each product promise to the boundary that actually enforces it."
+    }
+  ],
+  "buildersNote": "Run 10 representative requests with web tools enabled. Record terminal status, total reported token usage and tool counts separately; compare those records with your per-answer allowance before setting a customer quota.",
+  "claims": [
+    {
+      "text": "DeepSeek documents the output limit as per inference step, not per complete round.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Deep thinking search makes up to about 20 tool calls before answering, according to the guide.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "A particular application will remain below its monetary budget using these settings alone.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Change Log",
+      "publisher": "DeepSeek",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Build a Chatbot",
+      "publisher": "DeepSeek",
+      "url": "https://api-docs.deepseek.com/guides/build_a_chatbot/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Web Tools",
+      "publisher": "DeepSeek",
+      "url": "https://api-docs.deepseek.com/guides/web_tools/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Responses API",
+      "publisher": "DeepSeek",
+      "url": "https://api-docs.deepseek.com/api/create-response/",
+      "date": "2026-11-13"
+    }
+  ],
+  "social": {
+    "priority": 3,
+    "hook": "One answer can contain several separately limited steps.",
+    "voiceover": "[measured] One answer can contain several separately limited steps. DeepSeek brought its app tools to developers. Thinking search can make about twenty tool calls. A step limit is not an answer budget.",
+    "short": "DeepSeek opened its app tools through three API formats. Its output limit applies per inference step, not per complete answer. A whole-answer budget needs separate accounting.",
+    "long": "DeepSeek\u2019s new app APIs move search orchestration onto the service. The November 13 release lets developers combine more conversation capabilities without running every intermediate action themselves.\n\nThe useful distinction is between a request field and a product promise. A per-step limit does not establish a fixed allowance for a complete answer. We would keep completion status and resource accounting separate from the text shown to a user. Actual spending still depends on the workload.",
+    "take": "We favor measuring complete answers before promising a fixed allowance. Familiar parameter names are a poor substitute for checking which boundary they control.",
+    "keyFacts": [
+      "3 API formats support the chat features",
+      "November 13: full-suite announcement",
+      "Thinking search: up to about 20 tool calls"
+    ],
+    "hashtags": [
+      "DeepSeek",
+      "AIAgents",
+      "APIDevelopment"
+    ]
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}
