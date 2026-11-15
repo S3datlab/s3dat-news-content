@@ -1,0 +1,133 @@
+{
+  "format": 2,
+  "slug": "apple-homeview-personal-content-gates",
+  "kind": "explained",
+  "topic": "apps",
+  "title": "Apple brings personal AI to HomeView with a paired-device gate",
+  "titleAccent": "paired-device gate",
+  "dek": "HomeView is now on sale, but personal Siri requests depend on a recognized face and a compatible device, not just a shared screen.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T12:13:43Z",
+  "lede": "Apple began selling HomeView on November 13, bringing Siri AI to a shared household display. Its personal-content rules make the paired phone or tablet part of the access decision. That distinction matters for anyone building assistants that serve several people in one room.",
+  "facts": [
+    {
+      "label": "US starting price",
+      "value": "$299 for either model; wall mount sold separately"
+    },
+    {
+      "label": "Personal profiles",
+      "value": "Up to 6 people"
+    },
+    {
+      "label": "Software",
+      "value": "HomeView 27.2; Siri AI in beta"
+    },
+    {
+      "label": "Personal context",
+      "value": "Requires paired Apple Intelligence-enabled iPhone or iPad"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What changes when an assistant leaves the phone?",
+      "text": "A personal phone and a communal display pose different access-control problems. A kitchen display can serve several residents and visitors. Apple introduced HomeView on October 13 as a seven-inch display with tabletop and wall-mounted versions. The November release turns that announced product into something households can buy. Its general conversations, music and home controls share a physical device with information from individual accounts. Separating those uses is the central design problem, even when the same assistant answers every request."
+    },
+    {
+      "heading": "What opens the personal-content gate?",
+      "text": "Apple says Messages and Calendar content appears when HomeView recognizes the enrolled person and their paired device was recently unlocked. The normal path also requires that device on the same Wi-Fi network. There is a documented exception: a device disconnected from Wi-Fi can qualify with active cellular service, the same location and a recent connection to that network. Losing Wi-Fi is therefore not a universal sign-out switch. This is a combined identity-and-device check, not facial recognition working alone."
+    },
+    {
+      "heading": "How does that distinction work in a household?",
+      "text": "Consider a hypothetical resident asking for an appointment while a visitor asks to play music. The appointment belongs to the personal-content path; the music request can use the guest experience. Apple’s software notes explicitly allow unrecognized users to play media and control home accessories without opening personal content. For a developer, those are different permission classes even though they share one microphone. A successful guest request provides no evidence that private records should become available. This hypothetical example illustrates the documented design."
+    },
+    {
+      "heading": "What else limits a personal request?",
+      "text": "Apple’s September usage terms separate access to a feature from continued service availability. A feature can stop or offer reduced functionality after its usage allowance is exhausted, while other device functions remain available. Limits can differ by feature and change over time. HomeView’s release notes also require matching English variants on the display and paired device. The practical distinction is between identity, compatibility and service capacity: satisfying one does not establish the others. Hardware ownership and server-backed service allowances are separate conditions."
+    },
+    {
+      "heading": "Does the privacy design remove ordinary software risk?",
+      "text": "Apple describes Secure Exclaves in the A18 chip as isolated processing for camera and microphone data. That architecture is separate from the permissions enforced by apps. Its November 12 security bulletin lists an App Intents authorization fix for possible sensitive-data access and several pairing-related fixes in version 27.2. These records concern corrected software issues; they do not establish an incident involving a purchaser. A hardware privacy mechanism and a maintained software permission system address different parts of the same product."
+    }
+  ],
+  "buildersNote": "Test three states separately: recognized resident with an eligible paired device, resident without that device, and unrecognized guest. Record which personal records and home controls each state exposes; do not treat Wi-Fi disconnection alone as revocation.",
+  "claims": [
+    {
+      "text": "Apple documents face recognition plus a recently unlocked paired device for personal content, including a conditional cellular exception.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Secure Exclaves isolate camera and microphone processing from the operating system. This is Apple’s architecture description, not our security audit.",
+      "status": "claimed",
+      "source": 2
+    },
+    {
+      "text": "Apple lists an App Intents authorization fix in HomeView 27.2, released November 12.",
+      "status": "confirmed",
+      "source": 4
+    },
+    {
+      "text": "The cited documentation does not establish recognition error rates or an exact timeout for “recently unlocked”.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "Apple HomeView available today",
+      "publisher": "Apple",
+      "url": "https://www.apple.com/newsroom/2026/11/apple-homeview-available-today/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "About Apple HomeView software updates",
+      "publisher": "Apple Support",
+      "url": "https://support.apple.com/en-us/127196",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Meet Apple HomeView, a new way to enjoy entertainment, stay connected, and manage the home",
+      "publisher": "Apple",
+      "url": "https://www.apple.com/newsroom/2026/10/meet-apple-homeview-a-new-way-to-enjoy-entertainment-and-manage-the-home/",
+      "date": "2026-10-13"
+    },
+    {
+      "title": "Apple Intelligence Usage Terms",
+      "publisher": "Apple Support",
+      "url": "https://support.apple.com/en-us/148587",
+      "date": "2026-09-09"
+    },
+    {
+      "title": "About the security content of HomeView Software Version 27.2",
+      "publisher": "Apple Support",
+      "url": "https://support.apple.com/en-us/149851",
+      "date": "2026-11-12"
+    }
+  ],
+  "social": {
+    "hook": "A shared screen still needs a personal key.",
+    "voiceover": "[measured] A shared screen still needs a personal key. Apple’s HomeView supports six people. Personal content requires a recognized face and a recently unlocked paired device. Guest access follows different rules.",
+    "short": "Apple started selling HomeView for $299. Personal content needs a recognized face and a recently unlocked paired device; a documented cellular exception means leaving Wi-Fi alone is not a sign-out.",
+    "long": "Apple brought Siri AI into the home with HomeView’s November 13 retail release. The shared display supports up to six profiles, with personal content gated by recognition and an eligible paired device.\n\nApple describes isolated camera and microphone processing in Secure Exclaves. Its November 12 software security bulletin separately lists an App Intents authorization fix. Hardware isolation and application permissions solve different problems.\n\nWe would test resident and guest access independently. The documents do not establish recognition error rates.",
+    "take": "We think shared assistants need separate tests for identity and action permissions. A guest being allowed to control a light does not justify access to private records.",
+    "keyFacts": [
+      "US price: $299 for either HomeView model",
+      "Up to 6 personal profiles",
+      "HomeView 27.2 security release: November 12",
+      "Retail availability began November 13"
+    ],
+    "hashtags": [
+      "Apple",
+      "HomeView",
+      "SiriAI",
+      "SmartHome"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

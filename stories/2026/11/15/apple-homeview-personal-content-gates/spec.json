@@ -1,0 +1,21 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "HOMEVIEW",
+    "GATES PERSONAL",
+    "CONTENT"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Apple",
+      "icon": "apple",
+      "color": "#737373"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151109,
+  "sources": {}
+}
