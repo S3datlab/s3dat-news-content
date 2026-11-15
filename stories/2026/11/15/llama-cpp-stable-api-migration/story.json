@@ -1,0 +1,135 @@
+{
+  "format": 2,
+  "slug": "llama-cpp-stable-api-migration",
+  "kind": "explained",
+  "topic": "dev-tools",
+  "title": "llama.cpp 1.0 marks breaking changes with major versions",
+  "dek": "The local inference project and ggml now tie incompatible interfaces to major releases, starting with a migration that removes deprecated functions.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T15:16:24Z",
+  "lede": "The ggml-org team released llama.cpp and ggml version 1.0.0 on November 13, with an explicit compatibility policy for downstream developers. Applications embedding local models now get a clearer signal for interface changes that require migration.",
+  "facts": [
+    {
+      "label": "Libraries",
+      "value": "llama.cpp and ggml 1.0.0"
+    },
+    {
+      "label": "Compatibility boundary",
+      "value": "Public C interfaces in include directories"
+    },
+    {
+      "label": "Breaking changes",
+      "value": "Major-version increase"
+    },
+    {
+      "label": "RPC protocol",
+      "value": "Version 9"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What does the version number promise?",
+      "text": "The maintainers distinguish three release types. A major release changes the public C interface incompatibly. Minor releases add compatible features, backends, model support or interfaces. Patches fix bugs without changing that interface. The announcement also explicitly covers binary compatibility, which matters when an application loads a compiled library. This gives downstream maintainers a release boundary to track, instead of treating every upstream change as an equally uncertain integration event. It is a policy about the software interface, separate from the quality of a model's answers."
+    },
+    {
+      "heading": "What changes in the first migration?",
+      "text": "The starting point includes breaking changes of its own. The llama.cpp release removes thirty-five deprecated functions, plus the warmup setter and an old defragmentation setting. Its speculative execution interface moves into the main public header. For an application calling those older functions directly, adopting version one involves changing the integration code. The release also adds an OpenAI-compatible speech endpoint to the server. That addition concerns how an application requests generated audio; it does not turn the local runtime into a hosted OpenAI service."
+    },
+    {
+      "heading": "Why do remote workers need a separate check?",
+      "text": "The companion ggml release changes the protocol used when work crosses a remote procedure call connection. Protocol version nine rejects incompatible peers, and the release notes describe graceful failure when an endpoint cannot be reached or a handshake fails. A deployment split across machines therefore has another compatibility boundary beyond the application's library calls. For example, an application can link successfully against the new library while a remote worker still speaks the older protocol. The protocol rejection exposes that mismatch at connection time."
+    },
+    {
+      "heading": "What changes in memory handling?",
+      "text": "The releases also change how mixture-of-experts models use host memory. Their expert cache can send a configurable share of cache misses to the processor, then copy results back asynchronously. This offers another way to divide work between processor and accelerator. The ggml scheduler separately avoids uploading inputs that are never read. These are concrete execution changes under the same release number as the interface policy. They affect different parts of an application's behavior and call for different checks during an upgrade."
+    },
+    {
+      "heading": "What does a stable interface leave to the application?",
+      "text": "The maintainers describe the two libraries as separate layers: llama.cpp handles model inference, while ggml provides the underlying tensor machinery. Their public headers define the supported interface boundary. Backend changes and new model support can still arrive in minor releases under the announced rules. For a product shipping a local model, version tracking can now distinguish interface migration from compatible capability updates. That distinction makes release planning more legible without replacing an application's own acceptance tests."
+    }
+  ],
+  "buildersNote": "Before adopting 1.0.0, compile your integration against the new headers, exercise one complete generation request, and test every remote worker handshake. Keep the previous working binary available until all three checks pass.",
+  "claims": [
+    {
+      "text": "The maintainers tie incompatible public interfaces and binary interfaces to major-version changes.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The llama.cpp 1.0.0 release removes deprecated functions and adds a speech endpoint.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "ggml 1.0.0 moves its remote protocol to version 9 and rejects incompatible peers.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The release does not establish a universal speed gain or guarantee identical model outputs across upgrades.",
+      "status": "unclear",
+      "source": 1
+    }
+  ],
+  "sources": [
+    {
+      "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
+      "publisher": "ggml-org",
+      "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Release v1.0.0 · ggml-org/llama.cpp",
+      "publisher": "ggml-org",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/v1.0.0",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Release v1.0.0 · ggml-org/ggml",
+      "publisher": "ggml-org",
+      "url": "https://github.com/ggml-org/ggml/releases/tag/v1.0.0",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "llama : prune",
+      "publisher": "ggml-org",
+      "url": "https://github.com/ggml-org/llama.cpp/pull/30565",
+      "date": "2026-11-12"
+    },
+    {
+      "title": "llama_moe_cache: run missed experts on CPU, add tuning script",
+      "publisher": "ggml-org",
+      "url": "https://github.com/ggml-org/llama.cpp/pull/30966",
+      "date": "2026-11-07"
+    },
+    {
+      "title": "RPC: Improve loading times",
+      "publisher": "ggml-org",
+      "url": "https://github.com/ggml-org/llama.cpp/pull/29413",
+      "date": "2026-11-09"
+    }
+  ],
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "social": {
+    "priority": 3,
+    "hook": "Local model upgrades get a clearer boundary.",
+    "voiceover": "[measured] Local model upgrades get a clearer boundary. The llama team released version one with major versions marking incompatible interfaces. Existing applications still need migration checks, including remote worker connections.",
+    "short": "The llama.cpp team released version 1.0.0 with major releases marking incompatible interfaces. The first upgrade removes deprecated functions; remote workers also move to protocol nine.",
+    "long": "ggml-org released llama.cpp and ggml 1.0.0 on November 13. The important change for applications embedding local models is a compatibility policy: incompatible public interfaces now require a major-version increase.\n\nThat boundary starts with migration work. The llama.cpp release removes deprecated functions, while ggml moves remote connections to protocol nine and rejects incompatible peers. A successful build does not by itself prove that every worker can connect.\n\nThe policy makes interface changes easier to identify. It does not establish identical model outputs or a universal speed improvement after an upgrade.",
+    "take": "We think the compatibility boundary matters more than another feature count. It lets product teams separate interface migration from routine updates, while keeping their own release tests.",
+    "keyFacts": [
+      "llama.cpp and ggml 1.0.0 released November 13",
+      "Incompatible public interfaces require a major version",
+      "ggml remote protocol moves to version 9"
+    ],
+    "hashtags": [
+      "LlamaCpp",
+      "LocalAI",
+      "OpenSource"
+    ]
+  }
+}

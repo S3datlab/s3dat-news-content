@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "poster",
+  "headline": [
+    "LLAMA.CPP",
+    "MARKS API",
+    "BREAKS"
+  ],
+  "accent": 2,
+  "brands": [
+    {
+      "name": "Hugging Face",
+      "icon": "huggingface"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151215,
+  "sources": {}
+}
