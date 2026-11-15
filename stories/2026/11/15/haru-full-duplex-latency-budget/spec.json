@@ -1,0 +1,21 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "HARU LISTENS",
+    "WHILE TALKING"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "higurashi",
+      "logo": "higurashi.svg"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151106,
+  "sources": {
+    "higurashi.svg": "https://www.higurashi.ai/_astro/wordmark.DzakdSd9.svg"
+  }
+}

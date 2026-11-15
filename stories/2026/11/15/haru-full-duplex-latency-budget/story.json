@@ -1,0 +1,124 @@
+{
+  "format": 2,
+  "slug": "haru-full-duplex-latency-budget",
+  "kind": "explained",
+  "topic": "models",
+  "title": "Haru opens local research into listening while speaking",
+  "titleAccent": "listening while speaking",
+  "dek": "The open-weight speech model listens while speaking. Its reported 65 ms processing path excludes the time needed to collect an audio frame.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T09:10:45Z",
+  "lede": "Higurashi released Haru-4B on November 13, opening its weights and inference code for research into simultaneous listening and speaking. The release makes conversational timing something developers can inspect locally, alongside the behavior of a hosted assistant.",
+  "facts": [
+    {
+      "label": "Release",
+      "value": "13 November 2026"
+    },
+    {
+      "label": "License",
+      "value": "Apache 2.0 for code and weights"
+    },
+    {
+      "label": "Audio frame",
+      "value": "Approximately 133 ms at 7.5 frames per second"
+    },
+    {
+      "label": "Model type",
+      "value": "Pretrained speech-to-speech base model"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What changes when listening never pauses?",
+      "text": "Haru handles incoming speech, outgoing speech and text together. The company contrasts that design with a sequence of transcription, text generation and speech synthesis. In its demonstrations, the point is not simply a faster answer. It is the ability to keep receiving speech while producing a response. A listener can acknowledge a sentence or start to interrupt before the other speaker finishes. The product page presents English and Japanese recordings with overlapping speech. These demonstrations illustrate the intended interaction through selected conversations."
+    },
+    {
+      "heading": "What does the latency number actually measure?",
+      "text": "The technical report describes roughly 65 milliseconds on an M1 Max MacBook using eight-bit weights and wired audio equipment. That measurement includes input, a model step, handoff and output. Audio framing sits outside it: collecting a frame can add up to about 133 milliseconds. These are separate parts of the path. Reporting only the smaller number would omit a delay that a person can still experience. Neither figure alone describes the time required for the model to decide that a meaningful response should begin."
+    },
+    {
+      "heading": "How would the two delays combine?",
+      "text": "Consider an illustrative timing budget, not a new benchmark. If a sound waits 100 milliseconds for a frame and the remaining path takes 65 milliseconds, the combined delay is 165 milliseconds. With no framing wait, the same processing path would contribute 65 milliseconds. The difference comes from when the sound arrives, not a change in model intelligence. This simple example explains why measurements need a start point and an end point. A processing measurement and a microphone-to-headphone measurement answer different questions unless they include the same stages."
+    },
+    {
+      "heading": "Where can the released code run?",
+      "text": "The repository offers a PyTorch implementation, an Apple-silicon implementation with a native app, and a vLLM-Omni serving plugin. All three use the same checkpoint. Its GPU quick start specifies about 12 GB of memory. The demo can run locally; an optional sharing mode instead sends traffic through Gradio share servers. Local computation and public demo access are therefore separate choices. A team investigating voice timing can keep the model fixed while changing the serving path, audio equipment or client. That is useful for distinguishing an application delay from a model delay."
+    },
+    {
+      "heading": "What does a conversational voice leave unresolved?",
+      "text": "The model card lists nine languages and lets developers supply a character description and a reference voice recording. Those controls concern how a conversation sounds. They do not turn a believable delivery into evidence for an answer. For a hypothetical appointment assistant, fluent interruption handling and correct appointment details would be two separate evaluation results. A voice can resume smoothly after being interrupted while still giving an incorrect time. The practical value of an open research release is that developers can separate these tests instead of treating a convincing demonstration as one overall score."
+    }
+  ],
+  "buildersNote": "Measure 20 short exchanges with wired audio. Record framing wait, processing time and time to first meaningful response separately. Use a voice recording you have permission to use, and keep public demo sharing off for private tests.",
+  "claims": [
+    {
+      "text": "The public repository releases code and weights under Apache 2.0.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Higurashi reports about 65 ms on its M1 Max setup, excluding up to 133 ms of framing delay.",
+      "status": "claimed",
+      "source": 0
+    },
+    {
+      "text": "The model card warns that this research base model is not a reliable factual source or an instruction-following assistant.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "The supplied demonstrations do not establish interruption accuracy or latency across deployment conditions.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Haru-4B: A Low-Latency and Multilingual Full-Duplex Continuous Spoken Dialogue Foundation Model",
+      "publisher": "higurashi",
+      "url": "https://blog.higurashi.ai/melte/haru4b/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Haru",
+      "publisher": "higurashi / GitHub",
+      "url": "https://github.com/higurashi-ai/Haru",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Haru-4B",
+      "publisher": "higurashi / Hugging Face",
+      "url": "https://huggingface.co/higurashi-ai/Haru-4B",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Haru 4B",
+      "publisher": "higurashi",
+      "url": "https://www.higurashi.ai/haru4b/",
+      "date": "2026-11-13"
+    }
+  ],
+  "social": {
+    "hook": "Audio frames add time the model number leaves out.",
+    "voiceover": "[measured] Audio frames add time the model number leaves out. Higurashi released Haru for local voice research. Its sixty-five millisecond path excludes framing. Listening while speaking still needs a complete timing budget.",
+    "short": "Higurashi released Haru-4B for local voice research. Its reported 65 ms path excludes up to 133 ms of audio framing. Simultaneous listening and speaking is not the same as instant response.",
+    "long": "Higurashi opened Haru’s weights and inference code on November 13. The release lets developers investigate overlapping speech on their own hardware, with three implementations sharing one checkpoint.\n\nThe model card describes a research base model, not a finished assistant. Natural turn-taking and factual reliability need separate tests: a convincing voice is not evidence that an answer is correct.",
+    "take": "We would compare complete audio paths, not isolated model timings. Open code makes those boundaries easier to inspect; it does not remove the need to measure the application.",
+    "keyFacts": [
+      "Released 13 November 2026",
+      "Audio frames: approximately 133 ms",
+      "3 inference implementations",
+      "Code and weights: Apache 2.0"
+    ],
+    "hashtags": [
+      "Haru",
+      "SpeechAI",
+      "OpenWeights"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  }
+}
