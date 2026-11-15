@@ -1,0 +1,114 @@
+{
+  "format": 2,
+  "slug": "gemini-wallet-spending-context",
+  "kind": "explained",
+  "topic": "apps",
+  "title": "Google gives Gemini spending context through Wallet",
+  "titleAccent": "spending context",
+  "dek": "The US rollout connects financial records to answers, while leaving money movement outside the new Wallet integration.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-15T03:03:33Z",
+  "lede": "Google announced a Google Wallet connection for Gemini on November 13, bringing personal spending information into its assistant. The change gives a budget conversation a record to work from, with less manual description of each account.",
+  "facts": [
+    {
+      "label": "Announced",
+      "value": "13 November 2026"
+    },
+    {
+      "label": "Initial market",
+      "value": "United States"
+    },
+    {
+      "label": "Connection provider",
+      "value": "Plaid"
+    },
+    {
+      "label": "Access boundary",
+      "value": "Read-only; no moving, managing or investing money"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What changes when the account is connected?",
+      "text": "Google describes an optional Wallet connection inside Personal Intelligence, available across the web, Android and iOS. Its examples include spending charts, recurring subscriptions and comparisons with earlier holiday spending. Those are questions about a particular household, not general explanations of budgeting. The distinction matters because a fluent answer can otherwise be built around an incomplete account of the problem. A person who remembers rent and groceries may forget an annual renewal. Connecting records changes the material available for an answer; the reasoning still has to make sense."
+    },
+    {
+      "heading": "Where does the financial record come from?",
+      "text": "Plaid supplies the account-linking route. Its announcement lists bank accounts, credit cards, loans and investment accounts as optional connections to Wallet. It also points people to Plaid Portal for managing those connections. This separates the conversation from the collection of its financial context. Gemini is the place where a person asks the question; Wallet and the linked institutions supply information for the response. Choosing which accounts to include therefore helps define what the assistant can see, rather than merely changing the wording of a prompt."
+    },
+    {
+      "heading": "What would a useful answer have to get right?",
+      "text": "Consider a hypothetical household that moves $500 from checking to savings and also pays $500 for groceries. The equal amounts describe different events. Adding both as consumption would report $1,000 of spending when only $500 bought goods. This is an illustration, not a reported Gemini error. It shows why a useful summary needs more than a total. The transaction type, covered accounts and date range determine what the total means. The same reasoning applies when comparing a full calendar month with a shorter period: equal labels do not make unequal windows comparable."
+    },
+    {
+      "heading": "Does seeing a recurring charge cancel it?",
+      "text": "No. The companies describe this integration as read-only, without authority to move, manage or invest money. Google says the Wallet connection can be turned off in Personal Intelligence settings. Identifying a renewal and ending the subscription are different operations. In a hypothetical review, finding three recurring charges might support a decision to keep two and cancel one. The discovery is evidence for that choice; it is not a cancellation receipt. This distinction keeps the answer separate from any later action taken through a merchant or financial service."
+    },
+    {
+      "heading": "What is the practical test for a finance assistant?",
+      "text": "The useful output is a conclusion that can be traced back to its inputs. A named period, a defined set of accounts and a calculation explain more than a confident statement that spending is high. They also make corrections possible. If one account was excluded or one transfer was counted twice, a person can identify the source of the disagreement. The new connection supplies context for that process. It does not make an attractive chart a substitute for reconciling the numbers."
+    }
+  ],
+  "buildersNote": "Test a finance summary with 2 synthetic $500 entries: one internal transfer and one purchase. Require separate classifications and a traceable $500 consumption total before presenting the result as spending.",
+  "claims": [
+    {
+      "text": "Google announced the US Wallet connection on November 13, with web and mobile access.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Plaid supplies optional financial-account linking for the experience.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The companies describe Gemini’s access through this connection as read-only.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "The announcements do not establish transaction-classification accuracy or realized household savings.",
+      "status": "unclear"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Connect Google Wallet to Gemini for personal finance insights",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Plaid is powering personalized financial insights with Google Wallet in the Gemini app",
+      "publisher": "Plaid",
+      "url": "https://plaid.com/blog/google-wallet-gemini-plaid/",
+      "date": "2026-11-13"
+    }
+  ],
+  "social": {
+    "hook": "Your budget answer now has an account history.",
+    "voiceover": "[measured] Your budget answer now has an account history. Google connected Wallet to Gemini in the United States. Reading a recurring charge does not cancel it. The new connection is read-only.",
+    "short": "Google connected Wallet to Gemini for US users. Plaid supplies optional account linking. The November 13 rollout adds spending context, not authority to move money.",
+    "long": "Google added financial context to Gemini through a Wallet connection announced November 13. Plaid provides the optional account-linking route.\n\nA hypothetical $500 transfer into savings and a $500 grocery purchase should not become $1,000 of consumption. The useful answer needs to explain which records it counted and why. Access to more records and accuracy in classifying them are separate questions.",
+    "take": "We favor spending summaries that reconcile with the underlying records. A convincing chart alone is a weak test of a financial answer.",
+    "keyFacts": [
+      "Google announced the connection on November 13.",
+      "3 access surfaces: web, Android and iOS.",
+      "Plaid provides optional financial-account linking.",
+      "The new Wallet connection is read-only."
+    ],
+    "hashtags": [
+      "Gemini",
+      "GoogleWallet",
+      "PersonalFinance",
+      "OpenBanking"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

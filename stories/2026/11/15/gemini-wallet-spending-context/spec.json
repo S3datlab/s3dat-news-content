@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "paper",
+  "headline": [
+    "GEMINI READS",
+    "YOUR SPENDING"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Gemini",
+      "icon": "googlegemini"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 151100,
+  "sources": {}
+}
