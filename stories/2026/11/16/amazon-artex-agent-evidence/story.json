@@ -1,0 +1,117 @@
+{
+  "format": 2,
+  "slug": "amazon-artex-agent-evidence",
+  "kind": "explained",
+  "topic": "agents",
+  "title": "Amazon’s ARTEX report separates agent records from verified outcomes",
+  "dek": "Three security reports show why captured agent memory, cloud logs and incident response establish different parts of an intrusion.",
+  "eventDate": "2026-11-13",
+  "publishedAt": "2026-11-16T00:34:24Z",
+  "lede": "Amazon published its ARTEX threat report on November 13, describing campaign records captured by decoy model endpoints. For builders, the important distinction is between an agent reporting success and a service recording what actually happened.",
+  "facts": [
+    {
+      "label": "Latest report",
+      "value": "Amazon, 13 November 2026"
+    },
+    {
+      "label": "Collection window",
+      "value": "3 October–5 November 2026"
+    },
+    {
+      "label": "Evidence types",
+      "value": "Agent memory, cloud logs, incident response"
+    },
+    {
+      "label": "Earlier reports",
+      "value": "Datadog 9 November; Google 30 October"
+    }
+  ],
+  "body": [
+    {
+      "heading": "What did Amazon actually collect?",
+      "text": "Amazon’s MadPot sensors presented interfaces resembling model inference services. Requests arriving there included persistent context and descriptions of earlier activity. Amazon says those records described credential theft campaigns and attempts against identity verification. This is a view into the instructions and memory accompanying a model request. It is a different vantage point from monitoring every system mentioned inside that request. The November report makes that distinction important when interpreting its account of sustained offensive automation."
+    },
+    {
+      "heading": "What does a cloud audit log add?",
+      "text": "Datadog’s November 9 investigation describes activity in AWS environments during October. Its researchers observed searches through CloudWatch after long-term access keys were compromised. They also described a Cognito registration path followed by resource discovery attempts. In that example, the authenticated role lacked the required permissions, so the listed discovery calls failed. A successful earlier step and a denied later step can coexist within one session. The report therefore provides a concrete example of why an operation needs an outcome attached to each stage."
+    },
+    {
+      "heading": "Why does fast activity still leave evidence?",
+      "text": "Google’s October 30 report draws on threat intelligence and Mandiant incident response. It describes one burst containing 27 events in 23 seconds, alongside other operations that produced substantial errors. Its account treats automated speed and forensic visibility as separate properties. Rapid attempts can still produce records that defenders can investigate. Google also distinguishes detecting activity from interrupting it before an objective is completed. Its defensive approach combines limited access with telemetry about abnormal behavior, including identity activity and management operations."
+    },
+    {
+      "heading": "How would a worked example separate these layers?",
+      "text": "Consider an illustrative review with three records, not an additional reported incident. First, an agent note says that a document was obtained. Second, a service log shows a request was accepted. Third, an object-access record shows permission was denied. The note establishes what the agent recorded. The accepted request establishes a particular interaction with the service. The denial establishes the result of that object-access attempt. None of these entries should be silently rewritten to match another. A useful review can retain all three and mark the document claim unresolved. That preserves the evidence without inventing either a successful theft or a clean bill of health."
+    },
+    {
+      "heading": "What is the practical limit of this comparison?",
+      "text": "These reports are complementary views, not a controlled ranking of security products or AI models. The useful unit of comparison is the event each source can support. An instruction describes intent; a request records an attempt; a result describes the response at that boundary. Keeping those categories separate makes an incident account more useful for remediation. It also prevents the language of autonomous agents from turning every ambitious plan into a completed breach."
+    }
+  ],
+  "buildersNote": "For one recent agent-security alert, make a three-column evidence record: agent claim, service event and observed result. Keep the source timestamp beside each entry and leave missing outcomes explicitly unresolved.",
+  "claims": [
+    {
+      "text": "Amazon published captured campaign-memory findings from October 3 through November 5.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Outcomes described in the captured agent histories are not independently verified by Amazon for systems outside its visibility.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "Datadog reports that the discovery calls in its Cognito example failed because permissions were absent.",
+      "status": "claimed",
+      "source": 1
+    },
+    {
+      "text": "Google reports a burst of 27 events in 23 seconds in one operation, not a universal attack speed.",
+      "status": "claimed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Amazon Threat Intelligence observes threat actors running cybercrime campaigns with ARTEX AI agents",
+      "publisher": "AWS Security Blog",
+      "date": "2026-11-13",
+      "url": "https://aws.amazon.com/blogs/security/amazon-threat-intelligence-observes-threat-actors-running-cybercrime-campaigns-with-artex-ai-agents/"
+    },
+    {
+      "title": "On the hunt for ARTEX: understanding agentic attacks in AWS environments",
+      "publisher": "Datadog Security Labs",
+      "date": "2026-11-09",
+      "url": "https://securitylabs.datadoghq.com/articles/artex-agentic-attacks-aws-environments/"
+    },
+    {
+      "title": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+      "publisher": "Google Threat Intelligence Group",
+      "date": "2026-10-30",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks"
+    }
+  ],
+  "social": {
+    "hook": "An agent’s success claim needs a separate receipt.",
+    "voiceover": "[measured] An agent’s success claim needs a separate receipt. Amazon captured campaign records through decoy model endpoints. Three security reports show why an attempted action and a completed intrusion need different evidence.",
+    "short": "Amazon published ARTEX campaign records on November 13. Captured agent memory reveals intent; it does not independently establish every reported outcome.",
+    "long": "Amazon’s November 13 ARTEX report adds captured agent memory to the evidence on automated intrusions. That evidence has a boundary: describing an outcome is different from observing it.\n\nGoogle’s earlier incident-response report recorded 27 events in 23 seconds in one operation. It also described noisy errors. Speed, successful access and stealth are separate questions. A useful review ties each conclusion to the event that supports it.",
+    "take": "We think security reviews need an outcome for each stage, not one success label for an entire agent session. That distinction changes which access controls need repair.",
+    "keyFacts": [
+      "Amazon report: 13 November 2026",
+      "Datadog report: 9 November 2026",
+      "Google report: 30 October 2026"
+    ],
+    "hashtags": [
+      "Amazon",
+      "AIAgents",
+      "CloudSecurity"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "titleInVideo": true,
+    "width": 1080,
+    "height": 608
+  }
+}

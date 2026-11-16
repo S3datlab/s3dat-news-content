@@ -1,0 +1,19 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "AGENT CLAIMS",
+    "NEED EVIDENCE"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Amazon",
+      "icon": "amazon"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 161103,
+  "sources": {}
+}
