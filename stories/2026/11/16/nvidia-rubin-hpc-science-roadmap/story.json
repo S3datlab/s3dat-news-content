@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "nvidia-rubin-hpc-science-roadmap",
+  "kind": "story",
+  "topic": "hardware",
+  "title": "NVIDIA plans Rubin HPC for scientific computing in 2028",
+  "titleAccent": "scientific computing",
+  "dek": "The simulation-focused GPU joins a wider science push whose CPU racks, libraries and existing Vera Rubin systems follow different schedules.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-16T18:18:07Z",
+  "lede": "NVIDIA announced Rubin HPC at SC26 on November 16, targeting scientific simulation and data processing. The new GPU is expected in 2028, making it a longer-term hardware plan for teams building scientific agents.",
+  "facts": [
+    {
+      "label": "New GPU",
+      "value": "Rubin HPC"
+    },
+    {
+      "label": "CUDA cores",
+      "value": "More than 50,000, NVIDIA says"
+    },
+    {
+      "label": "Expected availability",
+      "value": "2028"
+    },
+    {
+      "label": "Interconnect",
+      "value": "Seventh-generation NVLink"
+    }
+  ],
+  "body": [
+    {
+      "heading": "The design addresses scattered data",
+      "text": "NVIDIA describes a chip that increases computing capacity and data movement together. Sparse-data acceleration is intended to keep its cores working when a simulation fetches scattered values from a large dataset. That positions the product around the numerical work behind a scientific workflow: evaluating a proposed molecule or design after an agent suggests it."
+    },
+    {
+      "heading": "The earlier Vera Rubin plan is separate",
+      "text": "The name overlaps with an existing platform roadmap. In its June 22 announcement, NVIDIA described Vera Rubin NVL4 systems combining Rubin GPUs and Vera CPUs for simulation, AI and data analysis. That release expected partner systems in the fourth quarter of 2026. It also described Blue Lion at Germany’s Leibniz Supercomputing Centre as scheduled for 2027. Those dates belong to the earlier system plans, not today’s newly announced chip. Keeping the component and system names separate matters when a research group turns a platform announcement into a procurement timetable."
+    },
+    {
+      "heading": "CPU racks have another delivery window",
+      "text": "A separate November 16 announcement puts Vera CPU racks on an earlier schedule, with availability expected from early 2027. NVIDIA names Dell, HPE, Lenovo and Supermicro as suppliers. The liquid-cooled design combines 192 CPUs with approximately 300 TB of memory and Quantum-X800 InfiniBand networking. It targets memory-intensive scientific applications, including climate and molecular simulations. NVIDIA also says HPC SDK 26.11 is available now and introduces a public beta of its next-generation Fortran compiler. For established scientific code, compiler support and the processor purchase are therefore different milestones in the same modernization project."
+    },
+    {
+      "heading": "Software already defines the agent’s tools",
+      "text": "The accompanying CUDA-X update shows what an agent can invoke before the new hardware arrives. NVIDIA describes Pacific Fusion researchers using cuPhoton.xLens to inspect plasma simulations as results emerge. It also reports work with the AMBER, NAMD, GROMACS and LAMMPS communities to integrate cuPotential into molecular-dynamics workflows. These examples place the agent around specialist computation, not in place of it. A proposed next step still passes through a simulation or analysis tool whose inputs, outputs and numerical behavior determine whether the result is useful."
+    },
+    {
+      "heading": "A workflow includes data preparation",
+      "text": "The software update also introduces an agent-ready container for rapids-singlecell and describes cuSpa as newly open source. The latter handles cell polygon calculations used to build spatial graphs. Those are concrete pieces of a scientific application, separate from generating a hypothesis in natural language. They also illustrate why a hardware evaluation needs the whole workflow: loading data, transforming it, running the solver and returning results can all occupy part of a researcher’s waiting time. A faster calculation changes that total only by the time it actually removes."
+    }
+  ],
+  "buildersNote": "Profile one representative simulation now. Record solver time, data loading, transfers and numerical error separately. Keep the input dataset and correctness threshold fixed for future hardware trials; a core count cannot substitute for time to an accepted result.",
+  "claims": [
+    {
+      "text": "NVIDIA lists 2028 as the expected availability date for Rubin HPC.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Rubin HPC pricing and measured application speedups are not established by the launch announcement.",
+      "status": "unclear",
+      "source": 0
+    },
+    {
+      "text": "The separate Vera CPU rack announcement targets availability from early 2027.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics",
+      "publisher": "NVIDIA",
+      "url": "https://blogs.nvidia.com/blog/rubin-hpc/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "NVIDIA Vera Rubin Delivers World-Class Supercomputers for Science",
+      "publisher": "NVIDIA",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-vera-rubin-delivers-world-class-supercomputers-for-science",
+      "date": "2026-06-22"
+    },
+    {
+      "title": "NVIDIA Expands Vera CPU Platform to Accelerate Scientific Discovery",
+      "publisher": "NVIDIA",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "NVIDIA CUDA-X Libraries Give Agents the Tools to Accelerate Scientific Discovery",
+      "publisher": "NVIDIA",
+      "url": "https://blogs.nvidia.com/blog/cuda-x-libraries-agents-accelerate-scientific-discovery/",
+      "date": "2026-11-16"
+    }
+  ],
+  "social": {
+    "hook": "The new science chip is a longer-term plan.",
+    "voiceover": "[matter-of-fact] The new science chip is a longer-term plan. NVIDIA expects Rubin H P C in twenty twenty-eight. [measured] Scientific teams can profile their existing simulations before choosing future hardware.",
+    "short": "NVIDIA announced Rubin HPC for 2028. The science-focused GPU is distinct from the Vera CPU racks expected in early 2027.",
+    "long": "NVIDIA set out separate hardware timelines at SC26. Vera CPU racks are expected from early 2027, while the newly announced simulation-focused GPU follows later.\n\nThe software work is already concrete: HPC SDK 26.11 is available now, and scientific libraries connect agents to specialist calculations. We would start by measuring where an existing simulation spends its time, before using a roadmap to plan an upgrade.",
+    "take": "We would buy against measured time to a correct result, not core count. Data preparation and transfers belong in that test alongside the numerical solver.",
+    "keyFacts": [
+      "Rubin HPC expected in 2028",
+      "Vera CPU racks expected from early 2027",
+      "192 Vera CPUs in the announced rack",
+      "HPC SDK 26.11 available now"
+    ],
+    "hashtags": [
+      "NVIDIA",
+      "RubinHPC",
+      "ScientificComputing",
+      "GPUComputing"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

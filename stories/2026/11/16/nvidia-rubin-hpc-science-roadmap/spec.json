@@ -1,0 +1,23 @@
+{
+  "engine": 2,
+  "template": "data",
+  "headline": [
+    "RUBIN HPC",
+    "DUE IN 2028"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "NVIDIA",
+      "icon": "nvidia"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "stat": {
+    "value": "50,000+",
+    "label": "CUDA cores announced"
+  },
+  "seed": 111618,
+  "sources": {}
+}
