@@ -1,0 +1,134 @@
+{
+  "format": 2,
+  "slug": "qwen4-max-production-payg",
+  "kind": "story",
+  "topic": "models",
+  "title": "Alibaba opens Qwen4-Max to pay-as-you-go users",
+  "titleAccent": "pay-as-you-go users",
+  "dek": "The production release adds metered access, lower Singapore list prices and new caching options, while the separate preview still expires November 25.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-16T15:17:41Z",
+  "lede": "Alibaba released the production version of Qwen4-Max on November 16, adding pay-as-you-go access alongside Token Plan subscriptions. Developers can now meter usage without relying on the separate, time-limited preview.",
+  "facts": [
+    {
+      "label": "Production model",
+      "value": "qwen4-max"
+    },
+    {
+      "label": "Context window",
+      "value": "1,000,000 tokens"
+    },
+    {
+      "label": "Singapore list prices",
+      "value": "$1.50 input / $4.50 output per million tokens"
+    },
+    {
+      "label": "Preview retirement",
+      "value": "November 25, 2026, at 24:00 UTC+8"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A new model ID, not an extended trial",
+      "text": "The November 11 preview remains a separate product route. Its documentation still restricts access to Token Plan and schedules retirement after November 25. The updated page now recommends the production version. That makes this launch a migration event for existing testers as well as an access change for new customers. A working preview configuration does not establish that an application is using the production model. The two identifiers distinguish different availability and billing arrangements, even though both belong to the same model family."
+    },
+    {
+      "heading": "A lower unit price in Singapore",
+      "text": "QwenCloud lists Singapore International pricing at $1.50 per million input tokens and $4.50 per million output tokens. The corresponding Qwen3.8-Max rates are $2 and $6: a 25% reduction on each side. For an illustrative workload totaling one million uncached input tokens and 100,000 output tokens across requests, that is $1.95 instead of $2.60. This calculation holds token volumes constant and excludes tools and other charges. Output billing includes thinking as well as the answer. Other deployment scopes have different rates, so this comparison belongs specifically to Singapore."
+    },
+    {
+      "heading": "Production defaults deserve their own test",
+      "text": "The production model accepts text, images and video, with a million-token context window. Thinking is enabled by default at high effort, and the combined thinking-and-answer ceiling is 262,144 tokens. Batch inference and fine-tuning are not supported. Those details define a different integration test from checking whether an endpoint returns text. An agent also has to finish its tool sequence within the chosen budget. A larger context window describes how much material can fit into a request; it does not specify how many attempts a task will need."
+    },
+    {
+      "heading": "Cache reuse now has an explicit lifetime",
+      "text": "Qwen4 explicit caching lets an application reuse an identical opening section of its input for five minutes or one hour. The default is five minutes. The documentation describes deterministic reuse while the matching prefix remains valid, unlike implicit caching, which does not guarantee a hit. Chat Completions, Responses and Anthropic Messages support the feature; DashScope does not. For agents that repeatedly send the same tool definitions and reference material, this creates a separate cost control from choosing a cheaper model. Changing the shared prefix changes what can be reused."
+    },
+    {
+      "heading": "A readable summary is not the saved state",
+      "text": "The new thinking-summary feature separates what a person reads from what a later request needs. When enabled, it returns a displayable summary plus encrypted reasoning content. The documentation requires applications to replay that encrypted content unchanged to restore the reasoning history. Historical images and other inputs still need to be retained separately. A chat interface can therefore show a compact explanation while its storage layer preserves a different object for continuation. Discarding that object because the visible summary looks complete would confuse presentation with conversation state."
+    }
+  ],
+  "buildersNote": "Run 20 representative tasks on the production model before replacing the preview ID. Record successful completions, total billed tokens, retries and cache hits. Keep the same task set and budget when comparing Qwen3.8-Max; a unit-price reduction is only one part of task cost.",
+  "claims": [
+    {
+      "text": "QwenCloud dates the Qwen4-Max production release to November 16.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The Singapore input and output list rates are each 25% below Qwen3.8-Max at equal token volumes.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "A 25% lower rate does not establish a 25% lower cost per successfully completed task.",
+      "status": "unclear",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Model releases: November 16, qwen4-max",
+      "publisher": "QwenCloud",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Latest model: Qwen4-Max",
+      "publisher": "QwenCloud",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/latest-model",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Model pricing",
+      "publisher": "QwenCloud",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/model-prices",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "qwen4-max-preview",
+      "publisher": "Alibaba Cloud",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Explicit cache (Qwen4)",
+      "publisher": "QwenCloud",
+      "url": "https://docs.qwencloud.com/developer-guides/run-and-scale/explicit-cache-qwen4",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Thinking summary and encryption",
+      "publisher": "QwenCloud",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/cot-summary",
+      "date": "2026-11-16"
+    }
+  ],
+  "social": {
+    "hook": "The trial and the production model are different routes.",
+    "voiceover": "[matter-of-fact] The trial and the production model are different routes. Alibaba opened metered access to Qwen four Max. [measured] The separate preview still ends November twenty-fifth, so existing testers have a migration ahead.",
+    "short": "Alibaba released Qwen4-Max for pay-as-you-go use. Singapore token rates are 25% below Qwen3.8-Max; completed-task savings still need testing.",
+    "long": "QwenCloud added production access to Qwen4-Max on November 16. That gives builders a metered route alongside Token Plan, while the separate preview is still scheduled to retire November 25.\n\nThe release also separates readable reasoning summaries from the encrypted history needed for later turns. We would test a complete tool workflow before changing the model ID in an existing integration.",
+    "take": "We would migrate a measured task set before switching an entire application. Correct history handling and successful completions matter more than a cheaper token in isolation.",
+    "keyFacts": [
+      "Production model ID: qwen4-max",
+      "Singapore: $1.50 input / $4.50 output per million tokens",
+      "Preview ends November 25 at 24:00 UTC+8",
+      "Explicit cache lifetime: five minutes or one hour"
+    ],
+    "hashtags": [
+      "Qwen4Max",
+      "QwenCloud",
+      "LLMPricing",
+      "AgentTools"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

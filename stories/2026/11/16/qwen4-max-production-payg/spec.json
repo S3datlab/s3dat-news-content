@@ -1,0 +1,32 @@
+{
+  "engine": 2,
+  "template": "cutout",
+  "headline": [
+    "QWEN4 MAX",
+    "PAY AS YOU GO"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Alibaba Cloud",
+      "icon": "alibabacloud"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "up",
+  "bg": "white",
+  "seed": 111615,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}
