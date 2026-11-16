@@ -1,0 +1,20 @@
+{
+  "engine": 2,
+  "template": "brand",
+  "headline": [
+    "OPENAI JOINS",
+    "NEWSROOM",
+    "AND REACH"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [],
+  "mood": "calm",
+  "seed": 161226,
+  "sources": {}
+}
