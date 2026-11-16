@@ -1,0 +1,31 @@
+{
+  "engine": 2,
+  "template": "collage",
+  "headline": [
+    "20+ PLUGINS",
+    "FOR CARE TEAMS"
+  ],
+  "accent": 0,
+  "brands": [
+    {
+      "name": "OpenAI",
+      "icon": "openai"
+    }
+  ],
+  "cutouts": [
+    {
+      "src": "hero.webp",
+      "role": "hero"
+    },
+    {
+      "src": "prop-1.webp",
+      "role": "prop"
+    }
+  ],
+  "mood": "calm",
+  "seed": 111621,
+  "sources": {
+    "hero.webp": "generated",
+    "prop-1.webp": "generated"
+  }
+}

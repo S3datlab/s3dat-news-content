@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "slug": "openai-healthcare-plugins-access-review",
+  "kind": "story",
+  "topic": "apps",
+  "title": "OpenAI adds 20-plus plugins for healthcare teams",
+  "titleAccent": "20-plus plugins",
+  "dek": "The rollout separates organizational access from individual clinician tools, with review and data permissions still defining what can happen.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-16T21:18:22Z",
+  "lede": "OpenAI expanded ChatGPT for Healthcare on November 16 with more than 20 plugins. Individual clinicians receive a selected set, rather than the full organizational catalog.",
+  "facts": [
+    {
+      "label": "New plugins",
+      "value": "More than 20"
+    },
+    {
+      "label": "Organizational access",
+      "value": "Subject to workspace settings"
+    },
+    {
+      "label": "Individual plan",
+      "value": "Verified US clinicians"
+    },
+    {
+      "label": "Photon launch offer",
+      "value": "Free through December 31"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A catalog with different access routes",
+      "text": "The full new collection is available to Healthcare customers, subject to administrator settings. Selected plugins also reach the individual Clinicians offering. For a team evaluating a connection, product eligibility and access to a particular integration are separate checks."
+    },
+    {
+      "heading": "Computer use stops for review",
+      "text": "A separate OpenAI demonstration uses synthetic patient data to show an agent preparing an MRI order, a clinical note and a patient reply for clinician review. A payer authorization request goes to a specialist for review as another step. The company also shows an Ambience demonstration that pauses when a record is ambiguous and requires approval before submission. These examples show the intended division of labor: software assembles and navigates the work, while a person checks a consequential action. A demonstration of that sequence is not evidence that patient outcomes improve. OpenAI separately describes CVS Health using validation checks, human oversight, screenshots and action records to verify application state in production. That example adds an operational distinction to the demos: an approval step controls what happens next, while a record helps establish what actually happened."
+    },
+    {
+      "heading": "Individual access has explicit boundaries",
+      "text": "The Clinicians help page lists free access for verified US physicians, nurse practitioners, physician assistants and pharmacists. It requires an appropriate Business Associate Agreement before protected health information is shared. Its public healthcare data apps are read-only, do not retrieve patient charts and must not receive patient identifiers. The separate Epic plugin is unavailable in that plan. Those are different constraints, not interchangeable descriptions of privacy: a user can be eligible for the product while a particular data source or transfer remains outside its permitted scope."
+    },
+    {
+      "heading": "Photon attaches conditions to prescribing",
+      "text": "Photon’s own launch announcement offers its ChatGPT prescribing connection free through December 31, 2026. It describes access through a connected Photon account for eligible users, with clinician review and authorization for each prescription. Controlled substances are excluded. The promotional end date is a concrete commercial boundary; the announcement does not establish the price afterward. For organizations comparing plugin availability with a deployable workflow, account requirements, supported actions and the duration of an introductory offer are separate entries in the evaluation. The launch label alone leaves those operational questions open."
+    },
+    {
+      "heading": "Evidence search is a separate capability",
+      "text": "OpenAI’s November 16 release notes also introduce trusted clinical search and plugins for Clinicians. Finding cited medical evidence and carrying out an administrative action solve different parts of the workflow. A citation helps a reviewer inspect the basis of an answer; it does not confirm that an order reached the correct external system. Conversely, an action log can establish what a tool did without establishing the clinical merit of the underlying decision. The release brings those activities closer together, but its launch materials do not collapse their distinct verification requirements. A practical evaluation therefore has two observable endpoints: the evidence a reviewer can inspect and the external state a system can confirm after an approved action. Neither endpoint answers the other question."
+    }
+  ],
+  "buildersNote": "Start with 20 synthetic cases covering missing records, ambiguous matches and interrupted submissions. Record where the agent stops, who approves, and the resulting application state. Test recovery without duplicate actions before considering a live workflow.",
+  "claims": [
+    {
+      "text": "The full new plugin catalog is available to Healthcare customers subject to administrator settings.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Epic is not available in the individual Clinicians plan.",
+      "status": "confirmed",
+      "source": 2
+    },
+    {
+      "text": "Photon’s launch announcement does not specify pricing after December 31.",
+      "status": "unclear",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "title": "More ways to move care forward with ChatGPT for Healthcare",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Advancing computer-use agents for healthcare teams",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/advancing-computer-use-for-healthcare-teams/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "ChatGPT for Clinicians",
+      "publisher": "OpenAI Help Center",
+      "url": "https://help.openai.com/en/articles/20001202-chatgpt-for-clinicians"
+    },
+    {
+      "title": "Photon Brings Prescribing to ChatGPT",
+      "publisher": "Photon Health via PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/photon-brings-prescribing-to-chatgpt-302939815.html",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "ChatGPT release notes: November 16, 2026",
+      "publisher": "OpenAI Help Center",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "date": "2026-11-16"
+    }
+  ],
+  "social": {
+    "hook": "Connected tools still need clear approval gates.",
+    "voiceover": "[matter-of-fact] Connected tools still need clear approval gates. OpenAI added more than twenty healthcare plugins. [measured] Individual clinicians get a smaller selection, while protected patient data still needs the right agreements.",
+    "short": "OpenAI added 20-plus healthcare plugins. Individual clinicians get selected tools, not the full organizational catalog. Human review still separates a draft from an authorized action.",
+    "long": "ChatGPT for Healthcare gained new connected tools for clinical and administrative work. The operational question is where each workflow stops for a person.\n\nPhoton’s prescribing connection requires review and authorization for each prescription and excludes controlled substances. Its introductory offer runs through December 31. We would test ambiguous records and interrupted submissions with synthetic data before treating a connected workflow as ready for live use.",
+    "take": "We would measure where the workflow stops for approval and whether retries create duplicate actions. A successful connection is not the same as a verified result.",
+    "keyFacts": [
+      "20-plus new healthcare plugins",
+      "Selected tools for individual clinicians",
+      "Epic unavailable in Clinicians",
+      "Photon offer ends December 31"
+    ],
+    "hashtags": [
+      "OpenAI",
+      "ChatGPT",
+      "HealthcareAI",
+      "ClinicalWorkflows"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
