@@ -1,0 +1,116 @@
+{
+  "format": 2,
+  "slug": "gemini-notebook-interactive-sites",
+  "kind": "story",
+  "topic": "apps",
+  "title": "Google turns Gemini Notebook sources into interactive sites",
+  "titleAccent": "interactive sites",
+  "dek": "The web rollout adds a source-based creation route alongside earlier study tools and a separate Gemini-to-Google-Sites publishing flow.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-17T03:19:02Z",
+  "lede": "Google began rolling out interactive site generation in Gemini Notebook on November 16. The feature gives people another way to explore their research, with custom dashboards, visual explainers and project trackers.",
+  "facts": [
+    {
+      "label": "Rollout",
+      "value": "Global web rollout"
+    },
+    {
+      "label": "Age requirement",
+      "value": "18 and older"
+    },
+    {
+      "label": "Workspace",
+      "value": "Subscribers included"
+    },
+    {
+      "label": "Mobile app",
+      "value": "Coming soon"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A new output starts from the notebook",
+      "text": "Users describe the site they want in the notebook’s chat, then open the generated result in a separate tab. Google’s examples range from a historical timeline to a sales dashboard. The starting point is a collection of research material that already exists, giving the interface a specific subject and evidence base to organize."
+    },
+    {
+      "heading": "Study tools supplied an earlier version of the idea",
+      "text": "In September, Google announced interactive learning overviews that would combine summaries with artifacts such as quizzes, flashcards and infographics. It also described follow-up conversations about completed quizzes and the ability to edit their questions. Those features organized studying around recognizable formats. The new site announcement broadens the requested result to work and study tools described by the user. The distinction is in how the output is specified: choosing a study format supplies a familiar structure, while requesting a dashboard or tracker requires deciding which relationships and controls should be visible."
+    },
+    {
+      "heading": "Google Sites already has a separate publishing route",
+      "text": "An October 19 Workspace announcement introduced exporting interactive apps from the Gemini app into Google Sites. That flow creates a private site draft, where the user can add content before publishing. It requires Google Sites to be enabled and permission to create and edit sites. The resulting sites follow existing Google Sites and Drive policies. This is a different documented route from generating an artifact inside a notebook. For teams comparing the options, the place where content is created and the place where it is published are separate product choices."
+    },
+    {
+      "heading": "The Gemini connection manages the source collection",
+      "text": "Another October update brought Gemini Notebook into the Gemini app as a connected app. Google described creating notebooks, adding or updating sources, saving notes and answering questions from notebook context through natural-language requests. For managed accounts, access depends on both Gemini and Gemini Notebook being enabled. The end-user connection was on by default globally except in the European Economic Area. That integration addresses collecting and querying material. Site generation addresses the presentation built from it. The two announcements therefore occupy different steps between a research question and something another person can use."
+    },
+    {
+      "heading": "The useful test is what the interface explains",
+      "text": "Consider a project tracker built from a planning document. A useful result would preserve the difference between an agreed deadline and a proposed date, and make missing ownership visible. A polished layout alone cannot establish either fact. Similarly, a sales dashboard needs to retain the period and unit attached to each number before a chart can support a comparison. These are acceptance criteria for the generated output, not results Google reports from a product evaluation. They connect the new creation route to the original reason for collecting sources: making a particular body of information easier to understand."
+    }
+  ],
+  "buildersNote": "Try one non-sensitive source set with ten facts you can verify by hand. Compare the generated site with those facts, then test its controls and a recipient’s access. Choose the publishing route before putting internal material into a shareable prototype.",
+  "claims": [
+    {
+      "text": "Google’s rollout covers adults and includes Workspace subscribers.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "The earlier Gemini-to-Google-Sites export creates a private draft before publication.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Transform notes, research, and sources into interactive sites with Gemini Notebook.",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/interactive-sites/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Sharpen your study routine with new Gemini Notebook tools",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/new-study-tools-september-2026/",
+      "date": "2026-09-15"
+    },
+    {
+      "title": "Publish interactive apps from the Gemini app to Google Sites",
+      "publisher": "Google Workspace Updates",
+      "url": "https://workspaceupdates.googleblog.com/2026/10/publish-interactive-apps-from-gemini-app-to-Google-Sites.html",
+      "date": "2026-10-19"
+    },
+    {
+      "title": "Take actions on your notebooks from Gemini Notebook directly in the Gemini app",
+      "publisher": "Google Workspace Updates",
+      "url": "https://workspaceupdates.googleblog.com/2026/10/take-actions-on-your-notebooks-from-Gemini-Notebook-directly-in-the-Gemini-app.html",
+      "date": "2026-10-23"
+    }
+  ],
+  "social": {
+    "hook": "Your research can become something people can interact with.",
+    "voiceover": "[matter-of-fact] Your research can become something people can interact with. Google added sites to Gemini Notebook. [measured] Its separate Google Sites export starts with a private draft. Choose your publishing route before sharing.",
+    "short": "Google introduced sites in Gemini Notebook, turning source collections into interactive tools. The rollout starts on the web.",
+    "long": "Gemini Notebook gained a new way to present research as interactive sites. That sits alongside an earlier, separate route from the Gemini app into Google Sites.\n\nThe October export feature creates a private draft before publication and follows existing Sites and Drive policies. We would choose the intended audience and publishing route first, then test the generated interface against known facts. A useful dashboard has to preserve units, dates and missing information, not merely look finished.",
+    "take": "We prefer a small source-based prototype with ten verified facts over a large polished demo. The useful measure is whether the interface preserves distinctions that matter to the reader.",
+    "keyFacts": [
+      "Notebook sites: web rollout for adults",
+      "Google Sites export announced October 19",
+      "Notebook connected app announced October 23"
+    ],
+    "hashtags": [
+      "Gemini",
+      "Google",
+      "ResearchTools",
+      "NoCode"
+    ],
+    "priority": 4
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
