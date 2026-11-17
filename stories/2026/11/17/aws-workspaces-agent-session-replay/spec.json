@@ -1,0 +1,17 @@
+{
+  "engine": 2,
+  "template": "ink",
+  "headline": [
+    "AGENT ACTIONS",
+    "GET A REPLAY"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "AWS",
+      "icon": "aws"
+    }
+  ],
+  "mood": "calm",
+  "seed": 111712
+}

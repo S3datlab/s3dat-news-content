@@ -1,0 +1,109 @@
+{
+  "format": 2,
+  "slug": "aws-workspaces-agent-session-replay",
+  "kind": "story",
+  "topic": "agents",
+  "title": "AWS adds identity controls and replay to WorkSpaces agents",
+  "titleAccent": "identity controls and replay",
+  "dek": "WorkSpaces gains a reviewable session record, building on managed desktop access and its recent expansion to Linux and Windows 11.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-17T12:00:42Z",
+  "lede": "AWS added identity and session-replay controls to WorkSpaces for AI agents on November 16. The update gives administrators more ways to attribute and review desktop activity.",
+  "facts": [
+    {
+      "label": "Release date",
+      "value": "November 16, 2026"
+    },
+    {
+      "label": "New identity option",
+      "value": "OpenID Connect, alongside SAML"
+    },
+    {
+      "label": "Replay storage",
+      "value": "Customer-owned Amazon S3 bucket"
+    },
+    {
+      "label": "Earlier OS expansion",
+      "value": "Linux and Windows 11, November 3"
+    }
+  ],
+  "body": [
+    {
+      "heading": "Identity and evidence serve different purposes",
+      "text": "On-behalf-of sign-in applies the signed-in user’s directory identity, permissions and Group Policies to the desktop. Replay combines session screenshots into video alongside an action transcript, encrypted with the customer’s keys. Together, these features connect an activity record with the identity under which work occurred. Attribution answers who the session represented; a recording supplies material for a subsequent review."
+    },
+    {
+      "heading": "Managed desktop access came first",
+      "text": "The service became generally available on June 30, targeting existing desktop applications that enterprises still depend on. AWS described compatibility with agent frameworks using Model Context Protocol, with charges based on active session time. Operators could already watch activity live and revoke access during a session. The launch also included direct MCP tool forwarding, letting agents interact with applications and the operating system through tool calls. That earlier design supplied the execution environment and a way to intervene. Operator intervention was therefore part of the service from the start."
+    },
+    {
+      "heading": "Different operating systems broaden the deployment choice",
+      "text": "On November 3, AWS added Linux and Windows 11 desktops alongside Windows Server. The Linux option provides root access for tasks such as builds, tests and scripts. AWS said the additional systems retain network isolation and IAM-based access controls. Choosing an operating system is therefore part of choosing the agent’s working environment. A build task and a workflow inside a Windows application have different dependencies, even if both are described as desktop automation. The broader selection lets the environment follow the application, instead of making the application fit a single desktop image."
+    },
+    {
+      "heading": "A replay still needs an acceptance test",
+      "text": "Consider a hypothetical agent updating delivery dates in a test inventory application. A replay could show the agent opening a record, changing a field and saving it. The acceptance test would compare the final stored date with the authorized request and check that neighboring records stayed unchanged. A visible save action and a correct business outcome are separate observations. Keeping both in the review makes it possible to distinguish a navigation mistake from a mistaken interpretation of the task. This example describes a proposed test, not an AWS performance result."
+    },
+    {
+      "heading": "Review access becomes another operational decision",
+      "text": "A team reviewing desktop automation also needs to decide who examines the evidence and what they are looking for. For the inventory example, that means identifying the requested change, the affected record and the expected final state before the run starts. This turns a replay into a specific investigation aid. It also gives an operator a reason to stop a task early when the observed activity diverges from the assignment, rather than waiting for a polished completion message."
+    }
+  ],
+  "buildersNote": "Run 10 non-sensitive test transactions with known final states. Compare application records with session evidence, then test live access revocation. Restrict replay reviewers to the people responsible for the trial before introducing real customer data.",
+  "claims": [
+    {
+      "text": "AWS announced session replay on November 16.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Live operator revocation was included at general availability.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Set up, connect, and govern AI agents faster with Amazon WorkSpaces",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-workspaces-AI-agents-connect-govern/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Amazon WorkSpaces for AI agents now supports Linux and Windows 11 cloud desktops",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/workspaces-ai-agents-linux-windows-11/",
+      "date": "2026-11-03"
+    },
+    {
+      "title": "Announcing general availability of Amazon WorkSpaces for AI agents",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/06/amazon-workspaces-ai/",
+      "date": "2026-06-30"
+    }
+  ],
+  "social": {
+    "hook": "A recorded click still needs a checked result.",
+    "voiceover": "[measured] A recorded click still needs a checked result. Amazon WorkSpaces added session replay on November sixteenth. [matter-of-fact] Compare the application’s final state with the assignment, then test whether operators can stop the agent.",
+    "short": "AWS added session replay for WorkSpaces agents on November 16. A recording supports review; the application’s final state still needs checking.",
+    "long": "Amazon WorkSpaces gained new ways to review agent activity. The service already provided live access revocation when it became generally available on June 30.\n\nFor a test inventory workflow, a reviewer needs more than evidence that the agent clicked Save. The stored delivery date must match the request, and unrelated records must stay unchanged. Those checks turn a replay into useful evidence about a specific task.",
+    "take": "We would test the final application state and the stop control together. A clear recording helps explain an action; it cannot decide whether the action was the right one.",
+    "keyFacts": [
+      "Identity and replay update: November 16",
+      "Linux and Windows 11 added November 3",
+      "General availability began June 30"
+    ],
+    "hashtags": [
+      "AmazonWorkSpaces",
+      "AIAgents",
+      "AgentGovernance"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
