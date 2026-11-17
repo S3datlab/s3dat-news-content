@@ -1,0 +1,122 @@
+{
+  "format": 2,
+  "slug": "github-ai-scan-bulk-start",
+  "kind": "story",
+  "topic": "dev-tools",
+  "title": "GitHub lets teams start AI scans across 20 repositories",
+  "titleAccent": "20 repositories",
+  "dek": "The public preview adds bulk execution while keeping policy controls, credit budgets and follow-up checks as separate steps.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-17T00:18:36Z",
+  "lede": "GitHub added bulk starts for AI Scan on November 16, covering up to 20 repositories at once. Security teams can launch a batch from organization controls or the organization’s code-scanning alerts page.",
+  "facts": [
+    {
+      "label": "Batch size",
+      "value": "Up to 20 repositories"
+    },
+    {
+      "label": "Status",
+      "value": "Public preview"
+    },
+    {
+      "label": "Detection cap",
+      "value": "30 minutes and 150,000 AI credits"
+    },
+    {
+      "label": "Copilot license",
+      "value": "Not required"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A batch launch joins the existing backlog",
+      "text": "The new control extends an on-demand tool that reports findings alongside CodeQL alerts. It is available on github.com and GitHub Enterprise Cloud with data residency. Individual repositories still have their own launch control. For a security team with several services, the immediate change is fewer separate starts; the announcement does not describe a recurring organization-wide scan schedule."
+    },
+    {
+      "heading": "Access and scan spending are different checks",
+      "text": "GitHub’s documentation makes the billing distinction explicit. Organization-owned private or internal repositories need Code Security or Advanced Security, while personal private repositories are unsupported. Each scan consumes AI credits separately from active-committer licensing. Included credits are used first when the billing account has the relevant entitlement, then metered budgets apply. A hard budget can prevent findings from being produced. Detection is capped at 30 minutes and 150,000 credits, so starting a larger batch also expands the set of scans that can consume the account’s AI credits."
+    },
+    {
+      "heading": "The API controls policy, not execution",
+      "text": "The November 13 REST API update handles a different part of deployment. Administrators can read or change repository_scan at organization and repository scope. Repositories inherit an enabled organization setting and can opt out; they cannot enable it while the organization disables it. Enterprise policy can block an enable request with a 422 response. When a request combines repository_scan and pr_scan, a blocked change leaves both unchanged. Enabling the setting alone does not start a scan. That separates permission to use the tool from a decision to spend credits on a particular run."
+    },
+    {
+      "heading": "The agent chooses what to inspect",
+      "text": "AI Scan searches the default branch within a time budget, selecting files and functions for deeper analysis. It does not read every file exhaustively. It operates independently of CodeQL and uses existing CodeQL alerts to suppress matching findings, although duplicates remain possible. This makes coverage a property of the completed investigation, not the number of repositories selected in the launcher. Twenty started jobs establish activity across twenty projects; they do not establish that every path in those projects received an equally thorough review."
+    },
+    {
+      "heading": "A merged fix still needs a follow-up scan",
+      "text": "GitHub’s alert-management guide says a merge does not automatically trigger another AI Scan during the preview. A new scan must be started to check a potential fix. Automatic alert closure also depends on whether the fix changes the exact line that originally triggered the alert; other cases require manual closure. That detail matters when a team reports progress from its backlog. A code change, a second investigation and an alert’s recorded status are distinct events. Bulk launch reduces the work of starting investigations, while the existing assessment and remediation workflow remains responsible for their outcomes."
+    }
+  ],
+  "buildersNote": "Pilot the batch control on three repositories with known, already-triaged issues. Record credits consumed, useful findings and duplicates per repository. Assign an owner for the follow-up scan and verify the fix before treating an alert closure as completion.",
+  "claims": [
+    {
+      "text": "GitHub supports starting AI Scan for up to 20 repositories at once in public preview.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Enabling repository_scan through the REST API does not start a scan.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "The documentation does not promise exhaustive inspection of every file.",
+      "status": "confirmed",
+      "source": 2
+    }
+  ],
+  "sources": [
+    {
+      "title": "Bulk start AI Scan for repositories",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-16-bulk-start-ai-scan-for-repositories/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Manage AI Scan for repositories using the REST API",
+      "publisher": "GitHub",
+      "url": "https://github.blog/changelog/2026-11-13-manage-ai-scan-for-repositories-using-the-rest-api/",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "AI Scan for a repository’s backlog",
+      "publisher": "GitHub Docs",
+      "url": "https://docs.github.com/en/code-security/concepts/code-scanning/ai-scan-for-repositories",
+      "date": "2026-11-13"
+    },
+    {
+      "title": "Viewing and managing AI Scan alerts on your repository’s default branch",
+      "publisher": "GitHub Docs",
+      "url": "https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-code-scanning-alerts/viewing-and-managing-ai-scan-alerts",
+      "date": "2026-10-28"
+    }
+  ],
+  "social": {
+    "hook": "Starting more scans does not finish the security work.",
+    "voiceover": "[matter-of-fact] Starting more scans does not finish the security work. GitHub now batches twenty repositories. [measured] Merging a fix still needs a new scan, and some alerts need manual closure.",
+    "short": "GitHub added bulk AI Scan starts for up to 20 repositories. The public preview reduces launch work; follow-up scans after fixes remain manual.",
+    "long": "GitHub expanded AI Scan with batch starts for security teams. Its separate policy API controls whether repositories can use the feature; enabling that setting does not launch a job.\n\nThe less visible detail comes after a fix: merging code does not automatically start another scan. Even after rescanning, automatic alert closure depends on changing the exact line that triggered the finding. We would track verified fixes separately from the number of jobs started.",
+    "take": "We value useful findings and verified fixes per credit over repositories scanned. Bulk launch is an administrative improvement; review capacity determines how much of the resulting backlog gets resolved.",
+    "keyFacts": [
+      "Batch launch: up to 20 repositories",
+      "Public preview on github.com",
+      "Detection limit: 30 minutes",
+      "Merging a fix does not trigger a rescan"
+    ],
+    "hashtags": [
+      "GitHub",
+      "CodeSecurity",
+      "SecurityEngineering",
+      "DevSecOps"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}
