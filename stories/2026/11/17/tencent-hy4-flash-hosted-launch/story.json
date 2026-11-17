@@ -1,0 +1,119 @@
+{
+  "format": 2,
+  "slug": "tencent-hy4-flash-hosted-launch",
+  "kind": "story",
+  "topic": "models",
+  "title": "Tencent releases Hy4 flash for lower-cost hosted workloads",
+  "titleAccent": "Hy4 flash",
+  "dek": "Tencent’s smaller Hy4 tier reaches hosted services, while Vercel offers a separate introductory discount with a different end date.",
+  "eventDate": "2026-11-16",
+  "publishedAt": "2026-11-17T06:19:20Z",
+  "lede": "Tencent released Hy4 flash on November 16 as a lower-cost model for everyday work. Vercel added the model to AI Gateway the same day, giving developers another hosted route into the new tier.",
+  "facts": [
+    {
+      "label": "Model",
+      "value": "Hy4 flash"
+    },
+    {
+      "label": "Standard input price",
+      "value": "About $0.070 per million tokens, Tencent"
+    },
+    {
+      "label": "Standard output price",
+      "value": "About $0.281 per million tokens, Tencent"
+    },
+    {
+      "label": "Gateway promotion ends",
+      "value": "November 29, 2026"
+    },
+    {
+      "label": "TokenHub promotion ends",
+      "value": "November 30, 2026"
+    }
+  ],
+  "body": [
+    {
+      "heading": "A cheaper tier reaches users",
+      "text": "Tencent positions Flash around routine document work and research, reserving the larger Hy4 for more demanding software projects. The company reports a one-million-token context window and multimodal input. WorkBuddy access is free through November 30, alongside a half-price TokenHub promotion. These are temporary offers attached to particular services. The standard token rates provide the more useful starting point for a budget that extends beyond this month."
+    },
+    {
+      "heading": "The gateway has its own controls",
+      "text": "Vercel’s announcement lists image input, tool calling, structured output and prompt caching. Its integration preserves thinking between turns and permits requests with reasoning disabled. Developers select tencent/hy4-flash through AI Gateway; the introductory discount covers input, cached input and output tokens. That creates a practical distinction between choosing a model and choosing a route to it. A team using a gateway can keep that integration boundary while changing the model underneath. Whether a particular application benefits depends on the requests it actually sends."
+    },
+    {
+      "heading": "The larger model remains the reference point",
+      "text": "Tencent’s November 4 Hy4 announcement priced ordinary input at about $0.90 per million tokens and output at $2.70. It also described visual understanding, computer use through graphical and command-line interfaces, and training involving Blender and CAD. That release concentrated on broadening the kinds of work the family could perform. Flash now adds a cheaper hosted option to the same purchasing decision. The distinction matters for routing: an application can separate routine transformations from work that needs a longer sequence of decisions, without treating every request as the same purchase."
+    },
+    {
+      "heading": "Token prices are only one part of the result",
+      "text": "Consider a hypothetical assistant that turns a customer brief into a structured project plan. One attempt might return valid fields immediately; another might require a repair request after producing an invalid date. Both initial answers could look plausible in a demonstration. Their useful outputs differ once the application checks the result. The relevant comparison includes the original request, any repair attempts and the final accepted plan. A low-priced answer that repeatedly needs correction can consume more reviewer time than its token bill suggests. This is an evaluation example, not a result measured for Flash."
+    },
+    {
+      "heading": "Discounts set a test window",
+      "text": "The two promotion deadlines create a short period for trials, not a permanent production price. A useful comparison separates model behavior from procurement: identical source material and acceptance rules establish the first, while the selected endpoint and normal tariff establish the second. For the project-plan example, a pass could require preserved deadlines, valid owner fields and no invented commitments. Those criteria make a cheaper model’s result comparable with an existing workflow instead of rewarding the most polished first draft."
+    }
+  ],
+  "buildersNote": "Replay 20 non-sensitive, previously completed tasks through the candidate route. Record accepted results, repair attempts and reviewer minutes. Compare normal-rate costs separately from the introductory bill, using the same acceptance criteria for the incumbent model.",
+  "claims": [
+    {
+      "text": "Vercel announced hosted Hy4 Flash access on November 16.",
+      "status": "confirmed",
+      "source": 1
+    },
+    {
+      "text": "Tencent’s launch post lists standard token prices separately from its promotion.",
+      "status": "confirmed",
+      "source": 0
+    },
+    {
+      "text": "Tencent plans to open-source Flash; the announcement does not establish released weights.",
+      "status": "unclear",
+      "source": 0
+    }
+  ],
+  "sources": [
+    {
+      "title": "Tencent Launches Hy4 flash to Power High-Speed, Cost-Efficient AI Deployment for Everyday Workflows",
+      "publisher": "Tencent",
+      "url": "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Hy4 Flash now available on AI Gateway for 50% off",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/changelog/hy4-flash-now-available-on-ai-gateway-for-50-off",
+      "date": "2026-11-16"
+    },
+    {
+      "title": "Tencent Launches Hy4, Joining the Ranks of the World’s Leading Open-Source AI Models",
+      "publisher": "Tencent",
+      "url": "https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/",
+      "date": "2026-11-04"
+    }
+  ],
+  "social": {
+    "hook": "A cheaper model still has to finish the job.",
+    "voiceover": "[matter-of-fact] A cheaper model still has to finish the job. Tencent released Hy four flash. Vercel’s half-price offer runs through November twenty-ninth. [measured] Compare accepted results, including repairs, before changing production traffic.",
+    "short": "Tencent released Hy4 flash for lower-cost hosted work. Vercel added it to AI Gateway with half-price tokens through November 29.",
+    "long": "Vercel added Tencent’s Hy4 Flash to AI Gateway on November 16, with a separate introductory discount ending November 29. The integration supports structured output and lets developers disable reasoning for requests that do not need it.\n\nFor a team testing a cheaper model, the useful unit is an accepted result. A plan with invented deadlines can require repairs even when the first response looks polished. Our proposed test counts those repairs and reviewer minutes alongside the token bill.",
+    "take": "We would compare accepted results at normal rates before moving production traffic. A temporary discount is a good testing window, not a durable budget.",
+    "keyFacts": [
+      "AI Gateway promotion: 50% off through November 29",
+      "Tencent TokenHub promotion ends November 30",
+      "Earlier Hy4 launch: November 4"
+    ],
+    "hashtags": [
+      "Tencent",
+      "Hy4",
+      "ModelRouting",
+      "AIAgents"
+    ],
+    "priority": 3
+  },
+  "video": {
+    "width": 1080,
+    "height": 608,
+    "titleInVideo": true
+  },
+  "corrections": []
+}

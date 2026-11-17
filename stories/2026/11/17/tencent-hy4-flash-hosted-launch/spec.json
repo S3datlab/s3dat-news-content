@@ -1,0 +1,18 @@
+{
+  "engine": 2,
+  "template": "monolith",
+  "headline": [
+    "HY4 FLASH",
+    "CUTS COSTS"
+  ],
+  "accent": 1,
+  "brands": [
+    {
+      "name": "Tencent Hy",
+      "icon": "tencenthy",
+      "color": "#0052D9"
+    }
+  ],
+  "mood": "up",
+  "seed": 111706
+}
