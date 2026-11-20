@@ -1,0 +1,16 @@
+{
+  "date": "2026-12-01",
+  "product": "s3-brain",
+  "image": "products/media/2026-12-01-s3-brain-markdown.png",
+  "alt": "S3 Brain capture mode settings, under the headline: Your AI memory, in a folder you can read.",
+  "x": [
+    "Your AI memory, as a Markdown folder you can open and read yourself.\n\nS3 Brain works with 18 AI tools, in 11 languages, and stays on your Mac.",
+    "Background summaries are optional: use your own API key or a local model such as Ollama or LM Studio.\n\nNo Python to install. The app brings its own runtime.",
+    "Free for personal use on Mac:\nhttps://s3dat.com/products/s3-brain"
+  ],
+  "linkedin": "We think your AI tools' memory should be something you can open and read, not a black box.\n\nS3 Brain keeps it as a readable Markdown folder on your Mac. It works with 18 AI tools and in 11 languages.\n\n· Background summaries are optional: bring your own API key, or run a local model such as Ollama or LM Studio\n· A guided assistant sets up your memory folder, your AI tools and how memories are saved\n· No Python to install: the app brings its own runtime\n· It lives in your menu bar and tells you exactly what needs you\n\nFree for personal use, macOS 14 or later.\nhttps://s3dat.com/products/s3-brain\n\n#AITools #LocalAI #macOS",
+  "instagram": "Your AI memory, as a Markdown folder you can open and read yourself.\n\nS3 Brain works with 18 AI tools, in 11 languages, and stays on your Mac. Summaries are optional, with your own API key or a local model like Ollama or LM Studio.\n\nFree for personal use on Mac. Download at s3dat.com.\n\n#AITools #LocalAI #MacApps #Ollama #Productivity",
+  "sources": [
+    "https://s3dat.com/products/s3-brain"
+  ]
+}

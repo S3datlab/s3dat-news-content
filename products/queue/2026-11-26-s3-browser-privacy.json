@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-26",
+  "product": "s3-browser",
+  "image": "products/media/2026-11-26-s3-browser-privacy.png",
+  "alt": "S3 Browser home in the General space, under the headline: Your browsing stays on your Mac. We never see it.",
+  "x": [
+    "Your browsing stays on your Mac. We never see it.\n\nS3 Browser has no analytics and no telemetry. History, tabs, spaces and Memory live in local profiles, and there's no account to create.",
+    "It doesn't keep a password vault either. Website passwords stay in Apple Passwords and macOS AutoFill, and importing from another browser never brings passwords over.",
+    "Free for Mac:\nhttps://s3dat.com/products/s3-browser"
+  ],
+  "linkedin": "A browser sees more of your work than almost any other app. So we built S3 Browser to keep it on your Mac.\n\n· No analytics, no telemetry\n· History, tabs, spaces and Memory are kept in local profiles\n· There is no account, so there is nothing for us to collect\n· No password vault: website passwords live in Apple Passwords and macOS AutoFill, and importing from another browser never brings passwords\n· Private windows keep no history, Memory or watch records, and AI agents cannot see them\n\nFree for Macs with Apple silicon.\nhttps://s3dat.com/products/s3-browser\n\n#Privacy #macOS #Browser",
+  "instagram": "Your browsing stays on your Mac. We never see it.\n\nS3 Browser has no analytics and no telemetry. History, tabs, spaces and Memory live in local profiles, and there's no account to create.\n\nNo password vault either: website passwords stay in Apple Passwords and macOS AutoFill.\n\nFree for Apple silicon Macs. Download at s3dat.com.\n\n#Privacy #MacApps #macOS #Browser #DataPrivacy",
+  "sources": [
+    "https://s3dat.com/products/s3-browser"
+  ]
+}

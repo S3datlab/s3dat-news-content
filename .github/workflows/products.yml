@@ -1,0 +1,73 @@
+name: Post the product of the day
+
+# One S3 Browser or S3 Brain post a day on X, LinkedIn and Instagram (PRODUCTS.md), from the oldest
+# due file in products/queue/. Scheduled for 15:00 UTC; the later checks catch a dropped or delayed
+# scheduled run, and social.py posts at most one product post per UTC day.
+on:
+  schedule:
+    - cron: '0 15 * * *'
+    - cron: '0 17 * * *'
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Queue file to post now (products/queue/...json); empty = the one due today'
+        required: false
+        type: string
+      dry_run:
+        description: 'Only print the posts'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: products
+  cancel-in-progress: false
+
+jobs:
+  post:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check the queue
+        run: python scripts/social.py --product-check
+      - name: Pick the post
+        id: pick
+        env:
+          FILE: ${{ inputs.file }}
+        run: |
+          if [ -n "$FILE" ]; then
+            if ! printf '%s' "$FILE" | grep -Eq '^products/queue/[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9-]+\.json$'; then echo "Invalid file"; exit 1; fi
+            echo "file=$FILE" >> "$GITHUB_OUTPUT"
+          else
+            python scripts/social.py --product-due
+          fi
+      - name: Post it
+        if: steps.pick.outputs.file != ''
+        env:
+          FILE: ${{ steps.pick.outputs.file }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ -z "$BUFFER_API_KEY" ]; then echo "BUFFER_API_KEY is not set; nothing to post."; exit 0; fi
+          args=(--product "$FILE")
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          python scripts/social.py "${args[@]}"
+      - name: Commit the posting record
+        if: always()
+        run: |
+          if [ -z "$(git status --porcelain -- social/products)" ]; then exit 0; fi
+          git config user.name 'S3DAT News'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add social/products
+          git commit -q -m 'Products: posting record'
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 10; done
+          exit 1

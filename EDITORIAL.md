@@ -8,36 +8,29 @@ AI and developer tooling, seen by a team that builds software: models, agents, d
 research, hardware, policy and the apps people use. Not general tech news, not gossip, not
 funding rounds unless they change what builders can do.
 
-Every day, at least four of the eight pieces cover what the wider AI audience is talking about that day: the
-big labs and platforms (OpenAI, Anthropic, Google, Meta, Apple, Microsoft, Nvidia, xAI, Mistral),
-the apps people use, prices, lawsuits and rules. Small releases still have their place, but they
-rarely earn a reel, and a day of only small releases leaves the social channels with nothing
-people stop for (`SOCIAL.md`, priority).
+The one piece of the day covers what the wider AI audience is talking about that day whenever
+there is such a development: the big labs and platforms (OpenAI, Anthropic, Google, Meta, Apple,
+Microsoft, Nvidia, xAI, Mistral), the apps people use, prices, lawsuits and rules. It is the only
+news post our X, LinkedIn and Instagram accounts make that day (`SOCIAL.md`), so it has to be the
+story people stop for.
 
 ## Cadence
 
-- One run every three hours, around the clock: 00, 03, 06, 09, 12, 15, 18 and 21 UTC (eight runs
-  a day; Sedat's decision, 5 November 2026).
-- **Every run publishes exactly one piece. A run is never skipped** (Sedat's decision, 6 November
-  2026). Gather the candidates, compare them and publish the best one.
-- Candidates, in this order of preference:
-  1. Developments announced since the last published piece, up to 48 hours back, that we have not
-     covered yet.
-  2. A development from the last two days that we have not covered yet, even if it was announced
-     before the last piece.
-  3. An `analysis` or `explained` piece that today's news makes timely: a comparison across
-     recent releases, a pattern over the last weeks, or the idea behind a current story.
-  There is always a best candidate. A quiet stretch means a smaller story or an analysis, not an
-  empty run. The quality rules below still apply in full: pick a candidate you can source and
-  write properly.
+- **One piece a day** (Sedat's decision, 21 November 2026; it replaces the three-hour runs of
+  5 and 6 November). One run a day at 06:00 UTC (09:00 in Istanbul) publishes exactly one piece.
+  The run is never skipped.
+- Pick the single most important development of the last 24 hours that we have not covered: the
+  one that changes the most for people who use or build with AI. Compare the candidates before
+  choosing; the biggest name is not automatically the most important story.
+- If no development of the last 24 hours deserves the day's slot, publish an `analysis` (or an
+  `explained`) that the week's news makes timely instead: a comparison across recent releases, a
+  pattern over the last weeks, or the idea behind a current story.
 - Never publish twice about the same development unless something new happened; check the last
   published pieces before choosing.
-- Space `publishedAt` at least three hours apart and never publish more than one piece per run.
-  The video pipeline makes one Meta Vibes video per piece, and Meta's generation limit was hit at
-  about 30 generations in 15 hours, so never publish more often than this.
 - Never present an old announcement as new. Put the announcement date in `eventDate`. A `story`
   must be at most two days old; anything older is an `analysis` or `explained` with a reason to
   exist today, or it is not a candidate. The site shows "Announced" next to "Published".
+- Set `social.priority` honestly; the piece gets the Instagram reel whatever its priority.
 
 ## Kinds
 

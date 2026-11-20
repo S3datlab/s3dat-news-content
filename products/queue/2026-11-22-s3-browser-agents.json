@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-22",
+  "product": "s3-browser",
+  "image": "products/media/2026-11-22-s3-browser-agents.png",
+  "alt": "S3 Browser setup screen connecting Claude Code and Codex, under the headline: Your agent gets a browser. You keep your window.",
+  "x": [
+    "Your AI agent needs a browser. It shouldn't need your window.\n\nS3 Browser 2.4 connects Claude Code and Codex on your Mac. They work in background tabs with a space's sign-ins, and the window you're using stays yours.",
+    "Before an agent runs page code on a site, S3 asks you once for that site.\n\nPrivate tabs leave no trace, and agents can't see your private windows.",
+    "Free for Apple silicon Macs, macOS 15.4 or later.\nhttps://s3dat.com/products/s3-browser"
+  ],
+  "linkedin": "Most browsers were built for one person at a keyboard. Ours was built for you and your AI agents.\n\nS3 Browser 2.4 connects Claude Code and Codex during setup, using the command-line tools already on your Mac and your own account. Setup shows where to install a missing tool or which Terminal command signs you in; when it's ready, one button connects it.\n\nFrom there an agent can work in any space's sign-ins, or in private tabs that leave no trace, without touching the window you're working in.\n\nYou stay in charge:\n· Agents ask once per site before running page code\n· Private windows keep no history and agents can't see them\n· Reading a site's storage needs your approval, every time\n\nFree for Macs with Apple silicon (macOS 15.4 or later).\nhttps://s3dat.com/products/s3-browser\n\n#AIAgents #ClaudeCode #macOS",
+  "instagram": "Your AI agent needs a browser. It shouldn't need your window.\n\nS3 Browser 2.4 connects Claude Code and Codex on your Mac. They work in background tabs with a space's sign-ins, while the window you're using stays yours.\n\nBefore an agent runs page code on a site, S3 asks you once. Private tabs leave no trace, and agents can't see your private windows.\n\nFree for Apple silicon Macs. Download at s3dat.com.\n\n#AIAgents #ClaudeCode #Codex #MacApps #macOS",
+  "sources": [
+    "https://s3dat.com/products/s3-browser"
+  ]
+}

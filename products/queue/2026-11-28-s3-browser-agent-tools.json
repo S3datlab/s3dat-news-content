@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-28",
+  "product": "s3-browser",
+  "image": "products/media/2026-11-28-s3-browser-agent-tools.png",
+  "alt": "S3 Browser home with pinned pages and groups, under the headline: Agents that read, save and sort the web with you.",
+  "x": [
+    "What a connected agent can do in S3 Browser, besides clicking:\n\n· save a page to Memory\n· extract data\n· gather tabs into a space\n· reader view and translation\n· timestamped video notes\n· the research board",
+    "Developer and QA tools are built in too. Reading a site's storage stays read-only and needs your approval, every time.",
+    "Free for Mac:\nhttps://s3dat.com/products/s3-browser"
+  ],
+  "linkedin": "Connecting an AI agent to a browser usually means handing it a window and hoping for the best. In S3 Browser the agent gets real tools instead.\n\nA connected Claude Code or Codex agent can:\n· Save a page to Memory\n· Extract data from a page\n· Gather tabs into a space\n· Use reader view and translation\n· Take timestamped video notes\n· Add to the research board\n· Use the built-in developer and QA tools\n\nIt asks once per site before running page code, and reading a site's storage stays read-only with your approval, every time.\n\nFree for Macs with Apple silicon.\nhttps://s3dat.com/products/s3-browser\n\n#AIAgents #ClaudeCode #DeveloperTools",
+  "instagram": "What a connected AI agent can do in S3 Browser, besides clicking:\n\nSave a page to Memory. Extract data. Gather tabs into a space. Reader view and translation. Timestamped video notes. The research board.\n\nIt asks once per site before running page code, and reading a site's storage needs your approval every time.\n\nFree for Apple silicon Macs. Download at s3dat.com.\n\n#AIAgents #ClaudeCode #Codex #MacApps #DeveloperTools",
+  "sources": [
+    "https://s3dat.com/products/s3-browser"
+  ]
+}

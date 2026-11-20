@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-27",
+  "product": "s3-brain",
+  "image": "products/media/2026-11-27-s3-brain-tool-access.png",
+  "alt": "S3 Brain connections list of AI tools, under the headline: Every AI tool gets only the access it needs.",
+  "x": [
+    "Not every AI tool should see every project.\n\nS3 Brain lets you limit a connected tool to read-only access, or to the projects you choose. Same memory, your rules.",
+    "Credentials written as JSON, YAML or environment-style settings are masked before they're stored.\n\nIf a connected tool asks for something destructive, S3 Brain waits for your clear yes.",
+    "Free for personal use on Mac:\nhttps://s3dat.com/products/s3-brain"
+  ],
+  "linkedin": "Connecting several AI tools to one memory raises a fair question: who gets to see what?\n\nIn S3 Brain you decide per tool. Limit a connected tool to read-only access, or to the projects you choose, while another keeps full access to the same memory.\n\nA few more guardrails:\n· Credentials written as JSON, YAML or environment-style settings are masked before they're stored\n· Remote model endpoints must use HTTPS\n· If a connected tool asks for something destructive, S3 Brain waits for your clear yes\n· Per project, you can keep to local backends only, stop capturing it, or delete raw conversation text after a number of days\n\nFree for personal use on Mac.\nhttps://s3dat.com/products/s3-brain\n\n#AISecurity #DeveloperTools #AITools",
+  "instagram": "Not every AI tool should see every project.\n\nS3 Brain lets you limit a connected tool to read-only access, or to the projects you choose. Same memory, your rules.\n\nCredentials in config-style text are masked before they're stored, and if a tool asks for something destructive, S3 Brain waits for your clear yes.\n\nFree for personal use on Mac. Download at s3dat.com.\n\n#AISecurity #AITools #MacApps #DeveloperTools #Privacy",
+  "sources": [
+    "https://s3dat.com/products/s3-brain"
+  ]
+}

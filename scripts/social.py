@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Post a story to the Buffer channels in two groups (SOCIAL.md).
 
-  now   X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack: the 16:9 cut,
-        shared the moment the story is published (.github/workflows/publish.yml)
-  reel  Instagram (and YouTube Shorts or TikTok if connected): the 9:16 cut. Four or five times a
-        day .github/workflows/reel.yml picks the strongest story and posts it
+  now   X and LinkedIn: the 16:9 cut, shared the moment the story is published
+        (.github/workflows/publish.yml)
+  reel  Instagram: the 9:16 cut. .github/workflows/reel.yml posts the day's story as a reel
+  product  X, LinkedIn and Instagram: one S3 Browser or S3 Brain post from products/queue/
+        (PRODUCTS.md), with its image, posted by .github/workflows/products.yml
 
   python scripts/social.py --story SLUG --group now|reel [--dry-run] [--force]
   python scripts/social.py --pick      choose the story for the next reel; writes slug= and folder=
@@ -14,11 +15,14 @@
   python scripts/social.py --dry-run --offline [--group now|reel]
                                        print the posts for sample channels, no API key
   python scripts/social.py --channels  list the Buffer channels and Pinterest boards (read-only)
+  python scripts/social.py --product FILE [--dry-run] [--force]
+                                       post one product post (products/queue/*.json)
+  python scripts/social.py --product-due
+                                       print the queue file that is due today, if any
 
---pick takes the strongest live story of the last 24 hours that has no reel yet, by the writer's
-social.priority (1-5; 1 and 2 never get a reel), then analysis before story and explained, then
-the newest: priority 4-5 four hours after the last reel, priority 3 only after six, at most five
-reels in 24 hours. Each posting is recorded in social/posted/<slug>.json (SOCIAL_RECORDS overrides the
+--pick takes the live story of the last 24 hours that has no reel yet (one piece a day since
+21 November 2026, so every piece gets its reel), highest social.priority first, at most two
+reels in 24 hours and four hours apart. Each posting is recorded in social/posted/<slug>.json (SOCIAL_RECORDS overrides the
 folder), so a story goes to each group once unless --force is given.
 
 BUFFER_API_KEY is required except with --offline. PINTEREST_BOARD picks the board by name or
@@ -44,15 +48,21 @@ SITE = "https://news.s3dat.com"
 API = "https://api.buffer.com"
 AGENT = "S3DAT-News-Social/1.0 (+https://news.s3dat.com/about)"
 WINDOW = dt.timedelta(hours=24)  # how far back a reel looks for its story
-# Four or five reels a day, the strongest stories only (SOCIAL.md): a priority 4-5 story once the
-# last reel is 4 h old, a priority 3 story only after 6 h without one, never more than 5 in 24 h.
+# One piece a day since 21 November 2026 (EDITORIAL.md), and it always gets its reel: any
+# priority, four hours after the last reel, never more than two in 24 h.
 REEL_GAP = dt.timedelta(hours=4)
-REEL_GAP_SOLID = dt.timedelta(hours=6)
-REELS_PER_DAY = 5
+REEL_GAP_SOLID = dt.timedelta(hours=4)
+REELS_PER_DAY = 2
 RANK = {"analysis": 3, "story": 2, "explained": 2, "brief": 1}
-WIDE = {"twitter", "threads", "bluesky", "mastodon", "substack", "facebook", "linkedin", "pinterest"}
-TALL = {"instagram", "youtube", "tiktok"}
+# Sedat, 21 November 2026: news goes to X, LinkedIn and Instagram only. The other channels stay
+# connected in Buffer but get nothing, which also keeps the Buffer API budget small.
+WIDE = {"twitter", "linkedin"}
+TALL = {"instagram"}
 GROUPS = {"now": WIDE, "reel": TALL}
+PRODUCT = {"twitter", "linkedin", "instagram"}
+PRODUCT_QUEUE = ROOT / "products" / "queue"
+PRODUCT_RECORDS = Path(os.environ.get("PRODUCT_RECORDS") or ROOT / "social" / "products")
+RAW = "https://raw.githubusercontent.com/S3datlab/s3dat-news-content/main/"
 THUMB_MS = 2500  # a frame where the banner headline is fully on screen
 # How many of the story's own hashtags (social.hashtags, most important first) each channel shows.
 # Hashtags are discovery on Mastodon, Instagram, TikTok and YouTube; a few help on LinkedIn, X and
@@ -146,16 +156,16 @@ def lowest_priority(at: dt.datetime, force: bool = False) -> int | None:
     """The lowest priority a reel may have now, or None when it is too soon for any."""
     times = reel_times()
     if force or not times:
-        return 3
+        return 1
     if sum(t > at - WINDOW for t in times) >= REELS_PER_DAY:
         return None
     since = at - times[-1]
-    return 3 if since >= REEL_GAP_SOLID else 4 if since >= REEL_GAP else None
+    return 1 if since >= REEL_GAP else None
 
 
 def pick(candidates: list[dict], at: dt.datetime, lowest: int = 3) -> dict | None:
     """The live story of the last WINDOW most worth a reel, or None."""
-    fresh = [s for s in candidates if at - WINDOW <= s["published"] <= at and s["priority"] >= max(3, lowest) and "reel" not in record(s["slug"])]
+    fresh = [s for s in candidates if at - WINDOW <= s["published"] <= at and s["priority"] >= max(1, lowest) and "reel" not in record(s["slug"])]
     fresh.sort(key=lambda s: (s["priority"], RANK.get(s["kind"], 1), s["published"]), reverse=True)
     for story in fresh:
         if reachable(story_url(story["slug"]), "GET"):
@@ -403,6 +413,133 @@ def save_record(slug: str, data: dict) -> None:
     (RECORDS / f"{slug}.json").write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+# ------------------------------------------------------------------ product posts
+# One post a day about a live S3DAT product (PRODUCTS.md): a queue file products/queue/<date>-<name>.json
+# holds the X thread, the LinkedIn text, the Instagram caption and an image committed under
+# products/media/ (this repository is public, so Buffer fetches the image from its raw URL).
+PRODUCT_BANNED = ("follow us", "thoughts?", "what do you think", "like if", "tag a friend", "share this",
+                  "comment yes", "game-changer", "revolutionary", "unleash", "delve")
+
+
+def x_length(text: str) -> int:
+    """X counts every link as 23 characters."""
+    return len(re.sub(r"https?://\S+", "x" * 23, text))
+
+
+def product_check(path: Path) -> tuple[dict | None, list[str]]:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return None, [f"{path.name}: unreadable ({exc})"]
+    errors = []
+    need = {"date": str, "product": str, "image": str, "alt": str, "x": list, "linkedin": str, "instagram": str, "sources": list}
+    for field, kind in need.items():
+        if not isinstance(data.get(field), kind) or not data.get(field):
+            errors.append(f"{path.name}: {field} is missing or not a {kind.__name__}")
+    if errors:
+        return None, errors
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", data["date"]) or not path.name.startswith(data["date"]):
+        errors.append(f"{path.name}: date must be YYYY-MM-DD and start the file name")
+    if data["product"] not in ("s3-browser", "s3-brain"):
+        errors.append(f"{path.name}: product must be s3-browser or s3-brain")
+    if not re.fullmatch(r"products/media/[\w.-]+\.(png|jpg|jpeg)", data["image"]) or not (ROOT / data["image"]).is_file():
+        errors.append(f"{path.name}: image must be a committed products/media/*.png or .jpg")
+    if not 10 <= len(data["alt"]) <= 400:
+        errors.append(f"{path.name}: alt text must be 10-400 characters")
+    if not 1 <= len(data["x"]) <= 4 or not all(isinstance(t, str) and 1 <= x_length(t) <= 280 for t in data["x"]):
+        errors.append(f"{path.name}: x must be 1-4 posts of at most 280 characters (links count 23)")
+    if not 200 <= len(data["linkedin"]) <= 2800:
+        errors.append(f"{path.name}: linkedin must be 200-2800 characters")
+    if not 150 <= len(data["instagram"]) <= 2000 or "http" in data["instagram"]:
+        errors.append(f"{path.name}: instagram must be 150-2000 characters without links")
+    if not all(isinstance(u, str) and u.startswith("https://") for u in data["sources"]):
+        errors.append(f"{path.name}: sources must be https links")
+    text = " ".join(data["x"] + [data["linkedin"], data["instagram"]]).lower()
+    for phrase in PRODUCT_BANNED:
+        if phrase in text:
+            errors.append(f"{path.name}: drop \"{phrase}\" (PRODUCTS.md)")
+    return data, errors
+
+
+def product_due(at: dt.datetime) -> Path | None:
+    """The oldest queue file whose date has come and that has not been posted, or None when one
+    already went out today (one product post a day)."""
+    today = at.strftime("%Y-%m-%d")
+    for done in PRODUCT_RECORDS.glob("*.json"):
+        try:
+            if json.loads(done.read_text(encoding="utf-8")).get("at", "").startswith(today):
+                return None
+        except (OSError, ValueError):
+            continue
+    for path in sorted(PRODUCT_QUEUE.glob("*.json")):
+        if path.name[:10] <= today and not (PRODUCT_RECORDS / path.name).exists():
+            return path
+    return None
+
+
+def build_product(channel: dict, data: dict) -> dict | None:
+    service = channel["service"]
+    if service not in PRODUCT:
+        return None
+    image = {"image": {"url": RAW + data["image"], "metadata": {"altText": data["alt"]}}}
+    post = {"channelId": channel["id"], "schedulingType": "automatic", "mode": "shareNow", "needsApproval": False,
+            "assets": [image]}
+    if service == "twitter":
+        post["text"] = data["x"][0]
+        if len(data["x"]) > 1:
+            post["metadata"] = {"twitter": {"thread": [{"text": t, "assets": [image] if i == 0 else []}
+                                                       for i, t in enumerate(data["x"])]}}
+    elif service == "linkedin":
+        post["text"] = data["linkedin"]
+    elif service == "instagram":
+        post["text"] = data["instagram"]
+        post["metadata"] = {"instagram": {"type": "post", "shouldShareToFeed": True}}
+    return post
+
+
+def post_product(buffer, path: Path, dry: bool, force: bool, offline: bool) -> int:
+    data, errors = product_check(path)
+    if errors:
+        print("\n".join(errors), file=sys.stderr)
+        return 1
+    target = PRODUCT_RECORDS / path.name
+    if target.exists() and not force:
+        print(f"{path.name} already went out; use --force to post it again")
+        return 0
+    if not offline and not reachable(RAW + data["image"]):
+        print(f"{path.name}: {RAW + data['image']} is not reachable yet (push the image first)", file=sys.stderr)
+        return 1
+    channels = ([{"id": f"sample-{s}", "service": s, "name": s} for s in sorted(PRODUCT)] if offline
+                else buffer.channels())
+    results, failed = {}, 0
+    for channel in channels:
+        name = f"{channel['service']}:{channel.get('displayName') or channel['name']}"
+        post = build_product(channel, data)
+        if post is None:
+            continue
+        if channel.get("isDisconnected") or channel.get("isLocked") or channel.get("isQueuePaused"):
+            warn(f"{name} is disconnected, locked or paused; skipped")
+            continue
+        if dry:
+            print(f"\n--- {name}\n{json.dumps(post, indent=2, ensure_ascii=False)}")
+            continue
+        try:
+            post_id, error = buffer.create(post)
+        except RuntimeError as exc:
+            post_id, error = None, str(exc)
+        results[name] = {"id": post_id, "error": error}
+        print(f"  {'ok  ' if post_id else 'FAIL'} {name}" + (f": {error}" if error else ""))
+        failed += bool(error)
+    if dry:
+        return 0
+    if not any(r["id"] for r in results.values()):
+        return 1  # nothing went out (rate limit, outage): no record, so the next run tries again
+    PRODUCT_RECORDS.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps({"at": iso(now()), "product": data["product"], "results": results},
+                                 indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return 1 if failed else 0
+
+
 # ------------------------------------------------------------------ main
 def output(**values: str) -> None:
     target = os.environ.get("GITHUB_OUTPUT")
@@ -423,8 +560,19 @@ def main() -> int:
     parser.add_argument("--offline", action="store_true", help="with --dry-run: sample channels, no API key")
     parser.add_argument("--force", action="store_true", help="post even if the story already went to this group")
     parser.add_argument("--channels", action="store_true", help="list channels and Pinterest boards, read-only")
+    parser.add_argument("--product", metavar="FILE", type=Path, help="post one products/queue/*.json file")
+    parser.add_argument("--product-due", action="store_true", help="print the product post due today")
+    parser.add_argument("--product-check", action="store_true", help="check every products/queue file, offline")
     args = parser.parse_args()
     at = now()
+    if args.product_check:
+        problems = [e for f in sorted(PRODUCT_QUEUE.glob("*.json")) for e in product_check(f)[1]]
+        print("\n".join(problems) or "product queue ok")
+        return 1 if problems else 0
+    if args.product_due:
+        due = product_due(at)
+        output(file=str(due.relative_to(ROOT)) if due else "")
+        return 0
     candidates = stories()
 
     if args.pick:
@@ -448,6 +596,8 @@ def main() -> int:
         print("BUFFER_API_KEY is required", file=sys.stderr)
         return 1
     buffer = Buffer(key) if key else None
+    if args.product:
+        return post_product(buffer, args.product.resolve(), args.dry_run, args.force, args.offline)
     if args.channels:
         for c in buffer.channels():
             state_note = "disconnected" if c.get("isDisconnected") else "locked" if c.get("isLocked") else "paused" if c.get("isQueuePaused") else "ok"

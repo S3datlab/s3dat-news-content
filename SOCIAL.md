@@ -1,13 +1,19 @@
 # S3DAT News on social media
 
-Every story leaves the site as a video post on the channels connected to Buffer, in two groups.
+Every story leaves the site as a video post on three channels: **X, LinkedIn and Instagram**
+(Sedat's decision, 21 November 2026; Threads, Bluesky, Mastodon, Facebook, Pinterest, Substack,
+YouTube and TikTok stay connected in Buffer but get nothing). There is one news piece a day
+(`EDITORIAL.md`), and the same accounts post one product post a day (`PRODUCTS.md`).
 You write the copy in `story.json` (`social`, below); nobody posts by hand.
 
 - **Now:** the moment a story is published, `publish.yml` renders its 16:9 cut and shares it on
-  X, Threads, Bluesky, Mastodon, Facebook, LinkedIn, Pinterest and Substack.
-- **Reel:** four or five times a day `reel.yml` picks the strongest story of the last 24 hours,
-  renders its 9:16 cut with the voice-over and posts it to Instagram (and YouTube Shorts or
-  TikTok when connected). Instagram is the one channel that needs the vertical video.
+  X and LinkedIn.
+- **Reel:** `reel.yml` renders the day's story as a 9:16 cut with the voice-over and posts it to
+  Instagram, whatever its priority (at most two reels in 24 hours, four hours apart).
+- **Buffer API budget:** the account's API limit is 600 requests a day and 3,000 in 30 days (a
+  rolling window). A story costs about ten requests and a product post about five. Never poll
+  Buffer for metrics on a timer: that used up the 30-day limit in November 2026 and stopped every
+  post for two weeks.
 
 Only the Oracle Meta Vibes pipeline writes `spec.json`'s `vibes` object: required boolean
 `banner` and optional boolean `reel`, with no other keys (for example,
@@ -67,18 +73,12 @@ shared, `publish.yml` renders `--format hd`, uploads it (`publish.py --social --
 `social.py --story <slug> --group now`. The result is committed to `social/posted/<slug>.json`. A
 failure here leaves the story published; the workflow `Post to social media` can share it by hand.
 
-## Reel: the strongest stories, four or five a day
+## Reel: the day's story on Instagram
 
-Every hour at :41, and after every publish run (GitHub delays scheduled runs and drops some, on
-2 November seven hours of them) `reel.yml` runs `social.py --pick`. It takes the live story of
-the last 24 hours without a reel, highest `social.priority` first, then analysis before story and
-explained, then the newest, and posts it when:
-
-- the story has priority 4 or 5 and the last reel is at least 4 hours old, or
-- the story has priority 3 and no reel went out for 6 hours (so a quiet day still gets four), and
-- fewer than five reels went out in the last 24 hours.
-
-Priority 1 and 2 never get a reel. It renders the tall cut, uploads it and runs
+Every hour at :41, and after every publish run, `reel.yml` runs `social.py --pick`. It takes the
+live story of the last 24 hours without a reel (since 21 November 2026 that is the day's one
+piece, whatever its `social.priority`) and posts it when the last reel is at least four hours old
+and fewer than two went out in the last 24 hours. It renders the tall cut, uploads it and runs
 `social.py --story <slug> --group reel`.
 
 For a withdrawn story, run `social.py --cancel <slug>` with `BUFFER_API_KEY` (it deletes the posts
