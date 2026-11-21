@@ -1,0 +1,47 @@
+{
+  "updated": "2026-11-21T21:35:13Z",
+  "pipeline": {
+    "timer": "inactive",
+    "paused": false,
+    "running": [],
+    "last24h": {
+      "done": 0,
+      "fallback": 0,
+      "reels": 0
+    },
+    "lastDone": {
+      "slug": "crewai-spreadsheet-agent-queries",
+      "at": "2026-11-09T12:38:30Z"
+    },
+    "backlog": [],
+    "cooldown": null
+  },
+  "vibes": {
+    "signedIn": false,
+    "checkedAt": "2026-11-21T21:05:13Z"
+  },
+  "codex": {
+    "loggedIn": true,
+    "fiveHourUsedPercent": 0,
+    "fiveHourResetsAt": "2026-11-17T17:04:52Z",
+    "weeklyUsedPercent": 0,
+    "weeklyResetsAt": "2026-11-18T18:25:52Z",
+    "asOf": "2026-11-17T12:06:44.201Z",
+    "plan": "plus"
+  },
+  "failures6h": [],
+  "sharing": {
+    "lastShareAt": null,
+    "failures24h": []
+  },
+  "server": {
+    "diskFreeGB": 165,
+    "githubFetch": true
+  },
+  "metricsUpdated": "2026-11-20T19:35:13Z",
+  "status": "alert",
+  "problems": [
+    "The Vibes pipeline timer is not running: no new story gets a video.",
+    "Vibes is SIGNED OUT: Sedat must sign in again (noVNC: ~/work/bin/browser-login.sh). Until then stories go out with the old banner."
+  ]
+}
